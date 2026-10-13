@@ -1,0 +1,22 @@
+name: Weekly KB digest
+on:
+  schedule:
+    - cron: "0 7 * * 1"   # 10:00 Sofia during summer time (UTC+3)
+    - cron: "0 8 * * 1"   # 10:00 Sofia during winter time (UTC+2)
+  workflow_dispatch: {}    # manual "Run workflow" button for testing (sends immediately)
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python kb_digest.py
+        env:
+          FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
