@@ -10,6 +10,7 @@ Stdlib only.
 import json, os, smtplib, sys, html
 from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
+from email.utils import formataddr
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
@@ -141,7 +142,11 @@ def main():
     body_html, body_txt, label = build(fetch(start, end), start, end, load_changes())
     msg = EmailMessage()
     msg["Subject"] = "Weekly Knowledge Base Update for week %s" % label
-    msg["From"] = os.environ.get("MAIL_FROM", "kb-digest@example.com")
+    sender = os.environ.get("MAIL_FROM", "kb-digest@example.com")
+    name = os.environ.get("MAIL_FROM_NAME", "").strip()
+    msg["From"] = formataddr((name, sender)) if name else sender
+    if os.environ.get("MAIL_REPLY_TO", "").strip():
+        msg["Reply-To"] = os.environ["MAIL_REPLY_TO"].strip()
     msg["To"] = os.environ.get("MAIL_TO", "you@example.com")
     msg.set_content(body_txt)
     msg.add_alternative(body_html, subtype="html")
