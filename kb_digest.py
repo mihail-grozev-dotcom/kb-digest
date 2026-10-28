@@ -140,7 +140,7 @@ def main():
     start, end = week_window(now)
     body_html, body_txt, label = build(fetch(start, end), start, end, load_changes())
     msg = EmailMessage()
-    msg["Subject"] = "Weekly KB digest - %s" % label
+    msg["Subject"] = "Weekly Knowledge Base Update for week %s" % label
     msg["From"] = os.environ.get("MAIL_FROM", "kb-digest@example.com")
     msg["To"] = os.environ.get("MAIL_TO", "you@example.com")
     msg.set_content(body_txt)
