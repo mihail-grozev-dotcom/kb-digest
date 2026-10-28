@@ -1,0 +1,40 @@
+Title: Operating System Packages
+Requires Decipher Cloud
+Every Decipher instance utilizes Ubuntu 18.04 as its operating system. A limited scope of packages is installed on each instance to ensure its security and reliability.
+List of Installed Packages
+Below is a partial list of the operating system packages installed on all Decipher instances by Forsta’s configuration management tool.
+acl
+elinks
+expect
+fonts-liberation
+gdb
+geoip-bin
+geoip-database
+gettext
+htop
+imagemagick
+inotify-tools
+ispell
+libffi-dev
+libfreetype6-dev
+libgeoip-dev
+libicu-dev
+libjpeg8-dev
+libsqlite3-dev
+libxml2-dev
+libxml2-utils
+libxslt1-dev
+libyajl2
+lynx
+mutt
+ncftp
+python-apsw
+sqlite3
+sysstat
+wget
+xfsdump
+xfsprogs
+xmlsec1
+For more information on any of these packages, see Ubuntu Packages Search. You can search for a specific package using its bionic distribution.
+Package Installation
+Forsta does not install individual packages for Decipher instances. Every package install is a global change to all instances. To request that a package be added to the list of installed packages, please contact your account manager with the name of the package and the reason why it should be installed. All packages will require a security audit and approval by the Forsta engineering team prior to being added.

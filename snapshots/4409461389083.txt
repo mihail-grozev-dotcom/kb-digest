@@ -1,0 +1,66 @@
+Title: Button Multi-Select Grid Element
+1: About the Button Multi-Select Grid Element
+The Button Multi-Select Grid element utilizes a multi-select function and must contain buttons, rows, and / or column legend text. This element is mobile compatible and does not utilize Flash.
+Note: Selecting a response option in a Button Multi-Select Grid element requires very little effort on mobile devices because of the large hit area. This significantly reduces both cognitive and kinematic load (i.e., click fatigue).
+This element uses a traditional answer grid (i.e., table), therefore usability degrades as the number of columns in an element increases. See Customizing Button Select Grid Elements to learn how to customize the Button Multi-Select Grid element.
+2: Adding a Button Multi-Select Grid Element
+Note: You can set the "Show if" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Button Multi-Select Grid element, first click the "+ Element" button to add a new survey element. Then click "Single and Multi Select" under Question Types and select the "Button Multi-Select Grid" element. Then click "Add".
+Enter the question and instruction text in the areas provided.
+2.1: Adding Rows
+Click "+ New Row" to add each new row then enter the text for the response option in the text field.
+2.2: Adding Buttons
+Click "+ New Button" to add each new button, then enter the text for the response option in the text field. Optionally, you can also add column legend text that will appear above the buttons in the survey.
+2.3: Configuring Row Actions
+To customize the row settings for a Button Multi-Select Grid element, click "Row / Button Actions" and select from the following options (you can click each option for more information):
+Import Answers
+Save Answers to Library
+Copy All Answer Text
+Insert Reusable Answer List (only available if you have previously saved
+an answer list)
+Create Reusable Answer List
+Add Answer Group
+Answer Piping
+Reverse Values
+Reset Values
+Reset Labels
+Delete All Answers
+Edit All Answers
+3: Style Settings
+To edit the display settings for a Button Multi-Select Grid element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Question Display Options" window, use the options on the left to specify how the question displays. When you mouse-over an option, information about the feature displays on the right.
+Click "Save and Preview" to preview the settings. Once you are satisfied with the style options settings, click "Save and Close".
+4: Question Options
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it.
+4.1: General Options
+When altered, each of the following options affects all attributes within the Button Multi-Select Grid element.
+Label: The label assigned to the element. Click to edit the default label for the Button Multi-Select Grid element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information ,see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Min Answers: Enter a number to define the minimum number of answers the participant must select in order to complete the question.
+Max Answers: Enter a number to define the maximum number of answers the participant may select.
+Randomize: Check the boxes to randomize items by type. Items can be randomized by rows, columns, groups, or all.
+More options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.2: Row Options
+When altered, each of the following options only affects specific row attributes.
+Label: The label assigned to the row. Click to edit the default label for the row.
+Data Value: The value assigned to the row in the data. Click to edit the default value for the row if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the row will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the row to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the row optional and non-mandatory.
+Exclusive: When checked, this option will make the row exclusive. The participant will not be able to select the "exclusive" row with any other options in the row.
+Hidden: Click to hide the row from participants.
+No Answer: This option will replace the multi-select form with an exclusive checkbox form. It is primarily used if there is a "Don't know" or "None of these" response option in the question.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.3: Button Options
+When altered, each of the following options only affects specific button attributes.
+Label: The label assigned to the button. You may edit the default label for the button here.
+Data Value: The value assigned to the button in the data. Click to edit the default value for the button if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the button. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the button will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the button to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the button optional and non-mandatory.
+Exclusive: When checked, this option will make the button exclusive. The participant will not be able to select the "exclusive" button with any other options in the row.
+Hidden: Click to hide the button from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.

@@ -1,0 +1,8 @@
+Title: Using Start-at for Testing
+Adding "start-at=" in a survey URL allows you to skip to a specific question in the survey. This can be used for reviewing the layout of a specific question or to show someone something in a question without having to go through the survey. This should not be used to test any questions or survey paths that contain logic or conditional settings (e.g., conditional shuffling or answer options with conditions).
+Note: You must be logged into the research hub for the link to work.
+1: Skipping to a Question
+Add "?start-at=x", where "x" is the label of the question you want to start at, to the end of the survey URL.
+For example:
+https://v2.decipherinc.com/survey/selserve/abc/proj1234?start-at=q5
+Entering the above link into your browser will take you directly to q5:

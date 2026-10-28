@@ -1,0 +1,12 @@
+Title: 153.45 Release Notes
+Release Date: November 19, 2024
+Release Version: 153.45
+New Features
+Portal
+Company Settings
+For companies which have a "Notification Settings" email configured: that address will now receive survey compat retirement reports.
+Learn More: Create and Manage Companies
+Bug Fixes
+Responses
+Participant Sources
+An issue that caused custom exit links and messages to be removed when saving changes to default exit messages has been resolved.

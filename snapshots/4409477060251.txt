@@ -1,0 +1,30 @@
+Title: About Answer Actions
+The answer actions menu is available for rows, columns, or choices and may vary by question type and setup. This example shows the "Row Actions" menu in a Single Select question.
+1: Import Rows
+Allows you to import answer options (rows in this case) from the library. This includes the standard industry answer options and any answers that you have saved to the library.
+2: Save Answers to Library
+Allows you to save the selected answer options to the library.
+Learn more: Saving and Importing Response Options
+3: Copy All Row Text
+Allows you to copy all of the row text from a question to use in another question.
+Learn more: Copying All Answer Text
+4: Create Reusable Answer List
+Allows you to create an answer list that can be re-used later.
+Learn more: Reusable Answer List Element
+Tip: You can also insert an already created Reusable answer list
+5: Row Group
+Allows you to add single-dimension grouping in question elements. You can then shuffle the attributes within a group, shuffle multiple groups and/or include headers in the groups.
+Learn more: Adding Answer Groups
+6: Answer Piping
+Allows you to show or hide the answer options from one question in another question, based on what the participant selects (or does not select).
+Learn more: Answer Piping
+7: Reverse Values
+Reversing the values may be useful in cases where your scale direction is positive to negative, for example, 1 - Not at All Satisfied to 10 - Completely Satisfied. Normally, these would get values 1-10 in the order programmed, but using the "Reverse Values" would reverse the order of values assigned earlier and assign them the expected values of 10-1 i.e.,1 - Completely Satisfied to 10 - Not at All Satisfied.
+8: Reset Values
+When answers are dragged into a new position, the values automatically update to the new order. However, if the "Data Value" field is manually updated, this action allows you to reset the values to their original order.
+9: Reset Labels
+Allows you to reset all answer labels to their original order.
+10: Delete All Rows
+Delete all of the rows, columns, or choices in the question.
+11: Edit All Rows
+Allows you to edit all of the rows, columns, or choices at once. For example, make all answers bold.

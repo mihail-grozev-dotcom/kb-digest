@@ -1,0 +1,24 @@
+Title: 144.7 Release Notes
+Release Date: February 25, 2020
+Release Version: 144.7
+New Features
+Survey
+Participant View
+Disabled the “Continue” and “Back” survey buttons on click to prevent duplicate page submissions.
+Participant Sources
+Sample Marketplace
+Added information on the contract validation Test Runner to the Forsta Sample Partner Hub.
+Added the ability to target a specific region and language when purchasing sample.
+Updated the targeting qualifications drop-down to only display questions available to the selected locale.
+Updated the Qualification List available in the Forsta Sample Partner Hub.
+Added the ability to view a localized language translation of all targeting qualification questions that are visible to participants (excludes the ‘mobile’ and ‘tablet’ qualification questions).
+Bug Fixes
+Reporting
+Fixed an issue causing some noanswer data to be lost when updating a survey that was out of date and had delphi="1".
+Fixed an issue causing some checkbox question data to be lost when updating a datasource in a survey with delphi="1".
+Fixed an issue causing the datamap for some surveys to shift when exporting it to both a stacked and non-stacked data format.
+Fixed an issue preventing the Panel Management importer tool from importing surveys containing a Google reCaptcha element.
+Data Downloads
+Fixed an issue preventing some custom values from being displayed properly in stacked data exports when using those values in a question loop.
+Architecture/DevTools
+Fixed an error handling issue causing hanging and inefficiencies when a pipeline class was created without the threads also being started and created in surveys with delphi="1".

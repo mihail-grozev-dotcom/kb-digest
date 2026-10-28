@@ -1,0 +1,263 @@
+Title: Compatible Languages for Decipher & Panel Management Surveys
+It is possible for Panel Management customers to include multiple languages in a survey that uses both Panel Management and Decipher. If a selected language is available for both Panel Management and Decipher, it is sent from Panel Management via the survey URL, populated in the survey for each panelist, and then sent back to Panel Management as the panelists' default language.
+Note: Some survey languages are not compatible for both Decipher and Panel Management. If an incompatible language is set in the survey, it will only be applied there and not shared with Panel Management. See Decipher-Only Languages below for a full list of Decipher-only languages.
+1: How it Works
+If your Panel Management panel allows multiple languages and you expect to display your Decipher survey in a language other than English, you will need to add the corresponding Decipher language code(s) to your project. This can be done using the Language Manager within Decipher.
+Once each language code is added within the Language Manager, the survey link will automatically append a Decipher language (decLang) variable for each language based on its mapping to Panel Management languages. If a panelist's language is not supported within Decipher, the default survey language will be used instead.
+The table below lists all of the languages available for mapping within a survey using Panel Management and Decipher.
+Note: Some languages do not have a matching language within Decipher. For these, you will need to select the default language and translate all text within the Decipher survey.
+Panel Management Language
+Decipher Language
+AF - Afrikaans
+Afrikaans
+SQ - Albanian
+Albanian
+AR-DZ - Arabic (Algeria)
+Arabic
+AR-BH - Arabic (Bahrain)
+Arabic
+AR-EG - Arabic (Egypt)
+Arabic (Egypt)
+AR-IQ - Arabic (Iraq)
+Arabic
+AR-JO - Arabic (Jordan)
+Arabic
+AR-KW - Arabic (Kuwait)
+Arabic
+AR-LB - Arabic (Lebanon)
+Arabic (Lebanon)
+AR-LY - Arabic (Libya)
+Arabic
+AR-MA - Arabic (Morocco)
+Arabic (Morocco)
+AR-OM - Arabic (Oman)
+Arabic
+AR-QA - Arabic (Qatar)
+Arabic (Qatar)
+AR-SA - Arabic (Saudi Arabia)
+Arabic (Saudi Arabia)
+AR-SY - Arabic (Syria)
+Arabic
+AR-TN - Arabic (Tunisia)
+Arabic
+AR-AE - Arabic (U.A.E.)
+Arabic (UAE)
+AR-YE - Arabic (Yemen)
+Arabic
+EU - Basque
+Default Survey Language
+BE - Belarusian
+Default Survey Language
+BG - Bulgarian
+Bulgarian
+CA - Catalan
+Default Survey Language
+ZH-HK - Chinese (Hong Kong SAR)
+Chinese Traditional
+ZH-CN - Chinese (PRC)
+Chinese Simplified
+ZH-SG - Chinese (Singapore)
+Chinese Simplified
+ZH-TW - Chinese (Taiwan)
+Traditional Chinese (Taiwan)
+HR - Croatian
+Croatian
+CS - Czech
+Czech
+DA - Danish
+Danish
+NL - Dutch
+Dutch
+NL-BE - Dutch (Belgium)
+Dutch (Belgium)
+EN-AU - English (Australia)
+English (Australia)
+EN-BZ - English (Belize)
+English (USA)
+EN-CA - English (Canada)
+English (Canada)
+EN-CX - English (Caribbean)
+English (USA)
+EN-IE - English (Ireland)
+English (Ireland)
+EN-JM - English (Jamaica)
+English (USA)
+EN-NZ - English (New Zealand)
+English (USA)
+EN-ZA - English (South Africa)
+English (USA)
+EN-TT - English (Trinidad)
+English (USA)
+EN-US - English (United States)
+English (USA)
+EN-GB - English (United Kingdom)
+English (UK)
+ET - Estonian
+Estonian
+FO - Faeroese
+Default Survey Language
+FA - Farsi
+Arabic
+FI - Finnish
+Finnish
+FR - French
+French
+FR-BE - French (Belgium)
+French (Belgium)
+FR-CA - French (Canada)
+French (Canada)
+FR-LU - French (Luxembourg)
+French (Luxemborg)
+FR-CH - French (Switzerland)
+French
+GD - Gaelic (Scotland)
+Default Survey Language
+KA - Georgian
+Default Survey Language
+DE - German
+German
+DE-AT - German (Austria)
+German (Austria)
+DE-LI - German (Liechtenstein)
+German
+DE-LU - German (Luxembourg)
+German (Luxemborg)
+DE-CH - German (Switzerland)
+German
+EL - Greek
+Greek
+HE - Hebrew
+Hebrew
+HI - Hindi
+Hindi
+HU - Hungarian
+Hungarian
+IS - Icelandic
+Icelandic
+ID - Indonesia
+Indonesian
+GA - Irish
+Default Survey Language
+IT - Italian
+Italian
+IT-CH - Italian (Switzerland)
+Italian
+JA - Japanese
+Japanese
+KO-KR - Korean
+Korean
+LV - Latvian
+Latvian
+LT - Lithuanian
+Lithunian
+MK - Macedonian (FYROM)
+Macedonian
+MS - Malaysian
+Malay
+MT - Maltese
+Default Survey Language
+NB-NO - Norwegian (Bokmal)
+Norwegian
+NN-NO - Norwegian (Nynorsk)
+Norwegian
+PL - Polish
+Polish
+PT-BR - Portuguese (Brazil)
+Portuguese (Brazil)
+Portuguese (Portugal)
+Portuguese
+RM - Rhaeto-Romanic
+Default Survey Language
+RO - Romanian
+Romanian
+RO-MO - Romanian (Republic of Moldova)
+Default Survey Language
+RU - Russian
+Russian
+RU-MO - Russian (Republic of Moldova)
+Russian
+SZ - Sami (Lappish)
+Default Survey Language
+SR-YU - Serbian (Cyrillic)
+Default Survey Language
+SH-YU - Serbian (Latin)
+Serbian
+SK - Slovak
+Slovak
+SL - Slovenian
+Slovenian
+SB - Sorbian
+Default Survey Language
+ES-AR - Spanish (Argentina)
+Spanish (Argentina)
+ES-BO - Spanish (Bolivia)
+Spanish (South America)
+ES-CL - Spanish (Chile)
+Spanish (Chile)
+ES-CO - Spanish (Colombia)
+Spanish (Colombia)
+ES-CR - Spanish (Costa Rica)
+Spanish (Latin America)
+ES-DO - Spanish (Dominican Republic)
+Spanish (Latin America)
+ES-EC - Spanish (Ecuador)
+Spanish (Ecuador)
+ES-SV - Spanish (El Salvador)
+Spanish (Latin America)
+ES-GT - Spanish (Guatemala)
+Spanish (Latin America)
+ES-HN - Spanish (Honduras)
+Spanish (Latin America)
+ES-MX - Spanish (Mexico)
+Spanish (Mexico)
+ES-NI - Spanish (Nicaragua)
+Spanish (Latin America)
+ES-PA - Spanish (Panama)
+Spanish (Latin America)
+ES-PY - Spanish (Paraguay)
+Spanish (Latin America)
+ES-PE - Spanish (Peru)
+Spanish (Peru)
+ES-PR - Spanish (Puerto Rico)
+Spanish (Latin America)
+Spanish (Spain)
+Spanish
+ES-UY - Spanish (Uruguay)
+Spanish (South America)
+ES-VE - Spanish (Venezuela)
+Spanish (Venezuela)
+SX - Sutu
+Default Survey Language
+SV - Swedish
+Swedish
+SV-FI - Swedish (Finland)
+Swedish
+TH - Thai
+Thai
+TS - Tsonga
+Default Survey Language
+TN - Tswana
+Default Survey Language
+TR - Turkish
+Turkish
+UK - Ukrainian
+Ukrainian
+UR - Urdu
+Default Survey Language
+VE - Venda
+Default Survey Language
+VI - Vietnamese
+Vietnamese
+XH - Xhosa
+Default Survey Language
+JI - Yiddish
+Default Survey Language
+ZU - Zulu
+Default Survey Language
+2: Decipher-Only Languages
+Languages that are available in Decipher but not in Panel Management will not change a panelist's language in Panel Management. Instead, they will be set as English (not the panel's default language) for the panelist.
+The following Decipher languages do not have an equivalent in Panel Management:
+Azerbaijani
+Khmer
+Swahili
+Tagalog

@@ -1,0 +1,22 @@
+Title: Creating a Table Set
+This document outlines the process for creating, applying, and editing custom table sets in Crosstabs. You can create custom table sets to view data for only certain questions in any Crosstabs report.
+1: Creating a Table Set
+To create a new table set, open the Settings menu for any Crosstabs report. Then select + New Table Set from the Table Set drop-down.
+The Create a Table Set window opens. The Toggle options allow you to quickly select or de-select All, Closed-End, Open-End, or Additional Variables tables for the table set. A preview of the tables appears on the right.
+The search box allows you to search through all tables. If you select a table from the search results, all tables for that table are displayed. Similarly, if you select a question from the search results, all tables for that question are displayed.
+Tip: When selecting tables from the table list, press the Shift key on your keyboard and click with your mouse to select or de-select ranges of tables.
+Once you have located the desired questions / tables, use the following options to configure your table set:
+1. Tables: Select a question or table by checking the checkbox next to its question label. The selected tables are shown in the preview window to the right.
+2. Name: Enter a name for the table set.
+3. Access: Select the preferred "access" level for your table set:
+Editable: Any logged-in user can edit the table set.
+View Only: Any logged-in user can view this table set. Only the owner can edit.
+Private: Only you (the owner) can use/edit this table set.
+4. Save: Click to save your table set.
+2: Applying a Table Set
+Any table set you save can be applied to crosstab reports from the report Settings menu.
+To apply a saved table set, open the Settings menu for any Crosstabs report. Then select the table set in the Table Set drop-down menu and click Apply.
+3: Editing and Deleting Table Sets
+To edit or delete a saved table set, first open the Settings menu for your crosstab. Then, from the Table Set menu, hover-over the saved table set and click the edit icon or delete icon, as desired.
+If the edit icon is clicked, the Create a Table Set window opens, allowing you to edit and save the table set.
+Important: Changing the primary dimension of a two-dimensional radio question removes it from any custom table sets.

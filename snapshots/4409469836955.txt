@@ -1,0 +1,195 @@
+Title: Adding Images to the Survey's XML
+Tip: See Adding and Managing Images to learn more about adding images if you are using the Survey Editor.
+Note: The methods described below require a survey compat level of 124+.
+When adding images to a survey, it is important that they look clear and show appropriately across devices. You can use the [image ...] syntax described below to add images that maintain aspect ratio, scale well, and look great on mobile devices.
+1: Uploading Images to a Project's Static Directory
+First, name your image (i.e., myimage.png) and upload it to your project's /static subdirectory. For example, selfserve/9d3/proj1234/static/myimage.png.
+See Uploading System Files to learn more about uploading system files.
+2: Adding Images to the Survey XML
+With the image located in your static directory, the next step is to add it to your survey using a special syntax:
+[image YOUR-IMAGE.jpg]
+The code above generates the necessary HTML <img> code to display your protected image.
+For example:
+<radio label="Q1">
+<title>
+<p>Please look at the following image:</p>
+<p>[image YOUR-IMAGE.jpg]</p>
+</title>
+<row label="r1">I like it</row>
+<row label="r2">I don't like it</row>
+</radio>
+<suspend/>
+<html label="Next_Image" where="survey">
+<p>Please take a moment to look at this image and answer the questions that follow:</p>
+<p>[image YOUR-OTHER-IMAGE.png]</p>
+</html>
+<suspend/>
+2.1: Image Syntax & Attributes
+The syntax for including an image from your project's static directory is below:
+[image image.png attribute1=value1 attribute2=value2]
+For example:
+<html label="MyImage" where="survey">
+[image image.png width=400 height=400 protected=1 value=${source or "Default"} color=#000000]
+</html>
+The code above produces the following 400 x 400px watermarked image:
+Note: The use of image protection is optional.
+The complete list of attributes available is provided below.
+Attribute
+Purpose
+Description
+width
+Sets the image's maximum width.
+The width attribute controls the image's horizontal size. For example:
+[image img.png width=400]
+The code above produces the following <img> tag:
+<img src="/survey/selfserve/9d3/proj1234/img_w800.png?0fa4eb3472" style="max-width: 400px">
+height
+Sets the image's maximum height.
+The height attribute controls the image's vertical size. For example:
+[image img.png height=400]
+The code above produces the following <img> tag:
+<img src="/survey/selfserve/9d3/proj1234/img_w800.png?0fa4eb3472" style="max-height: 400px">
+size
+Sets the image's maximum width & height
+The size attribute controls the image's horizontal and vertical size. For example:
+[image img.png size=400]
+The code above produces the following <img> tag:
+<img src="/survey/selfserve/9d3/proj1234/img_w800.png?0fa4eb3472" style="max-width: 400px; max-height: 400px">
+protected
+Adds image protection to the image.
+The protected attribute adds image protection to the image. For example:
+[image img.png protected=1]
+value
+If protected enabled, sets the watermark's text.
+The value attribute applies only to protected images and controls the watermark's text. For example:
+[image img.png protected=1 value=${ID or "DEFAULT"}]
+The code above produces a protected image with the value of ID (or "DEFAULT" if it does not exist) as the watermark text.
+color
+If protected enabled, sets the watermark's text color.
+The code above produces a protected image with the value of ID (or "DEFAULT" if it does not exist) as the watermark text.
+[image img.png protected=1 value=${ID or "DEFAULT"} color=#ff0000]
+The code above produces a protected image with the value of ID (or "DEFAULT" if it does not exist) as the watermark's red-colored text.
+fontSize
+If protected enabled, sets the watermark's text font size
+The fontSize attribute applies only to protected images and controls the watermark's text font size. For example:
+[image img.png protected=1 value=${ID or "DEFAULT"} fontSize=12]
+The code above produces a protected image with the value of ID (or "DEFAULT" if it does not exist) as the watermark's 12px text.
+placement
+If protected enabled, sets the watermark's placement.
+The placement attribute can be set to bottom (default), top, center or repeat and applies only to protected images and controls the watermark's position. For example:
+[image img.png protected=1 value=${ID or "DEFAULT"} placement=top]
+The code above produces a protected image with the value of ID (or "DEFAULT" if it does not exist) as the watermark's text. The watermark will appear at the top of the image.
+xpad
+If protected enabled, sets the watermark's horizontal padding.
+The xpad attribute applies only to protected images and controls the horizontal spacing between repeated watermarks. For example:
+[image img.png protected=1 value=${ID} placement=repeat xpad=30]
+The code above produces a protected image with the value of ID as the watermark's text. The watermark will repeat and have horizontal padding of 30px.
+ypad
+If protected enabled, sets the watermark's vertical padding
+The ypad attribute applies only to protected images and controls the vertical spacing between repeated watermarks. For example:
+[image img.png protected=1 value=${ID} placement=repeat ypad=30]
+The code above produces a protected image with the value of ID as the watermark's text. The watermark will repeat and have a vertical padding of 30px.
+class
+If protected disabled, adds a classname to the image.
+The class attribute adds a class name to the image. It cannot be applied to protected images. For example:
+[image img.png class=myClassName]
+The code above produces the following <img> tag:
+<img src="/survey/selfserve/9d3/proj1234/img_w800.png?0fa4eb3472" class="myClassName">
+alt
+If protected disabled, sets the alt attribute of the image.
+The alt attribute adds an alt attribute to the image. It cannot be applied to protected images. For example:
+[image img.png alt="Shoe Graphic"]
+The code above produces the following <img> tag:
+<img src="/survey/selfserve/9d3/proj1234/img_w800.png?0fa4eb3472" alt="Shoe Graphic">
+title
+If protected disabled, sets the title attribute of the image.
+The title attribute adds a title to the image. It cannot be applied to protected images. For example:
+[image img.png title="Hover over the image"]
+The code above produces the following <img> tag:
+<img src="/survey/selfserve/9d3/proj1234/img_w800.png?0fa4eb3472" title="Hover over me">
+align
+If protected disabled, sets the image's alignment.
+The align attribute can be set to bottom, middle, top, left or right and adds an align attribute to the image. It cannot be applied to protected images. For example:
+[image img.png align=middle]
+The code above produces the following <img> tag:
+<img src="/survey/selfserve/9d3/proj1234/img_w800.png?0fa4eb3472" align="middle">
+style
+If protected disabled, adds additional CSS to the image.
+The style attribute adds a style attribute to the image. It cannot be applied to protected images. For example:
+[image img.png style="border: 5px solid black"]
+The code above produces the following <img> tag:
+<img src="/survey/selfserve/9d3/proj1234/img_w800.png?0fa4eb3472" style="border: 5px solid black">
+3: Adding Image Protection
+If you have an image with sensitive content or concepts that you would like to protect from being copied, you can perform the following steps.
+Important: The following solutions only safeguard images from the most straightforward methods of copying / saving images. None of these methods can prevent participants from taking a screenshot or saving the entire page.
+Note: The Shopping Cart Element is not compatible with protected or watermarked images.
+3.1: Changing Image Names
+The first step in making your image more secure is to rename it to something that is difficult to guess (i.e., image_4738.png) and re-upload it to your project's /static subdirectory.
+3.2: protected: Syntax & Attributes
+To protect images from unpermitted distribution or use, you can add the protected=1 attribute or [protect…] syntax to your image tag to protect the image from the most common methods of copying.
+Adding this syntax activates the following security measures:
+Copy Protection: A transparent one-pixel image is layered on top of the image to be protected, preventing participants from right-clicking the image and selecting "Save Image As" from the context menu.
+Link Obfuscation: The image's link is replaced with an obfuscated version, making it much more difficult to copy the direct link to the image via "View Page Source".
+Watermarking: This does not make the image more difficult to copy, but it does make it more obvious where the copied image came from and can be configured to allow an easy trace back to the particular person who copied it.
+3.2.1: (Optional) Customize the Watermark
+By default, a watermark of the participant's unique uuid is placed over the entire image:
+You can customize the watermark text, placement, and color using the following syntax:
+[protected myimage.png attribute1=value1 attribute2=value2]
+A complete list of the attributes available is provided below:
+Attribute
+Description
+Example
+value
+The watermark's text to show.
+Default: ${uuid}; set value=" to hide the watermark.
+[protected img.png value=${ID or "DEFAULT"}]
+color
+The watermark's hex color.
+Default: #d3d3d3.
+[protected img.png color=#ff0000]
+fontSize
+The watermark's font size.
+Default: Scale the width of the image.
+[protected img.png fontSize=12]
+alpha
+The watermark's transparency.
+Default: 80%.
+[protected img.png alpha=50]
+placement
+The watermark's position.
+Default: bottom; can also be top, center or repeat.
+[protected img.png placement=repeat]
+xpad
+The watermark's horizontal padding.
+Default: 10px.
+[protected img.png xpad=20]
+ypad
+The watermark's vertical padding.
+Default: 15px.
+[protected img.png ypad=50]
+For example:
+[protected decipher.png placement=repeat value=${"IP_is_%s" % gv.request.getRemote()} color=#ff0000 fontSize=27 xpad=30 ypad=30 alpha=30]
+The code above produces the following changes to the watermark:
+4: Image Resizing for Retina Displays
+It is also possible to resize an image using some simple CSS. The following describes how the system resizes images for retina displays found on mobile devices and others.
+Note: The methods described below require a survey compat level of 124+.
+Supporting Retina Displays:
+Given a 1600 x 1600px image, for example:
+[image img.png width=400]
+Image is physically resized to no smaller than 400px in width.
+This resized image is named img_w800.png.
+The resulting image tag is: <img src="img_w800" style=”max-width:400px”>.
+[image img.png height=400]
+Image is physically resized to no smaller than 400px in height.
+This resized image is named img_w800.png.
+The resulting image tag is: <img src="img_w800.png" style=”max-width=800; max-height=400”>.
+[image img.png size=400]
+Image is physically resized to no smaller than 400px in size.
+This resized image is named img_w800.png.
+The resulting image tag is: <img src="img_800x400" style="max-width=400; max-height=400">.
+[image img.png width=1000]
+Image is physically resized to no smaller than 1000px in width.
+This resized image is named img_w1000.png.
+The resulting image tag is: <img src="img_w1000">.
+The same file-naming rules apply when adding images through the Image Manager. For pre-defined sizes, the max-width and max-height style is applied via CSS class name. For custom sizes, the style attribute is added to the image tag.
+Note: Protected images are not restricted by minimum width and are never expanded beyond their original size.

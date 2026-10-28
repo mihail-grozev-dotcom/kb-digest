@@ -1,0 +1,41 @@
+Title: 147.10 Release Notes
+Release Date: July 6, 2021
+Release Version: 147.10
+New Features
+Portal
+Upload System Files
+Added minimum and maximum widths for question header and row text within the File Manager.
+Survey
+Logic Nodes
+Added the ability to pass blank data values into Lumoa when using the Lumoa Logic Node.
+Tagged questions will no longer need to be completed in order to show up in the Lumoa dashboard.
+This update only affects the "tags" data field - Numeric Score and open-end response fields still require data inputs.
+Programming & Tools
+API
+Adjusted the Get Headers endpoint to run when the File Manager is opened rather than when data is loaded.
+Loading and error messages will now be displayed if the call fails.
+Added the $date field to the JSON Data and Data endpoints.
+Displays the participant’s completion time in ISO-8601 format.
+Bug Fixes
+Portal
+Fixed an issue causing some usernames to appear twice for a single user in the Shared Users section of the Company Settings page if those names were recently changed.
+Upload System Files
+Fixed an issue causing blank rows to appear in the File Manager.
+Usage Statistics
+Fixed an issue causing usage statistics for certain systems to appear incorrectly within company usage reports.
+Survey
+Dynamic Questions
+Fixed an issue causing “[object Object]” to appear in every input field when attempting to edit rows in some Autosuggest elements.
+Fixed an issue which allowed participants to skip to new times in videos without first watching them all the way through when using the Media Evaluator element.
+Fixed an issue preventing additional video counts from appearing in the Video View usage report for the Video Player element when participants uploaded videos to a temporary survey during live changes.
+Reporting
+Data Downloads
+Fixed an issue causing some Odata exports to output blank files when one or more question tags contained alt labels.
+Programming & Tools
+API
+Updated the error message shown when attempting to upload an invalid file type to an Autosuggest Dynamic Question.
+Fixed an issue causing the $date field to be returned when running JSON Data calls, regardless of what fields were specified.
+Users must now specify the meta=date parameter to return the $date value.
+Fixed an issue causing a “StopIteration” error when new participants entered a survey while the legacy Data endpoint was running.
+Architecture/DevTools
+Fixed an issue causing some database queries to idle indefinitely when applied to replicas.

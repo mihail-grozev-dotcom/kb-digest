@@ -1,0 +1,20 @@
+Title: Editing Your User Profile
+You can change your system language, profile information, and other preferences at any time via your user profile. This document explains how to view and edit your user profile directly from the Portal.
+1: Accessing Your Profile Options
+To access your user profile, log into the portal and click the user icon or your email at the top right of the screen. Then select Edit Profile.
+2: Viewing and Editing Your Profile
+The Update Personal Information and Password window is where you can view and edit your user settings.
+Full Name: Your user name as it will appear in the portal.
+Email: Your email address, as entered by the supervisor. This field can not be changed.
+Photo (optional): Your user photo. Click Choose file to upload a new photo.
+Language (optional): The language for the Decipher application, which defaults to English. Click into the box to select another language from the drop-down.
+Two Factor Authentication: Enable 2FA or reset your linked authentication device.
+Enable 2FA: Check this box to enable 2FA for your profile. You will be required to set up 2FA on your next login; see Logging in to Your Account for instructions.
+Note: If 2FA is enabled for the company, this box will be pre-checked and you will not be able to disable 2FA for your profile.
+Reset 2FA: Resets 2FA for your profile. See Managing Two Factor Authentication to learn more about 2FA.
+No Device: 2FA is not enabled for your profile.
+Linked Device: 2FA is enabled for your profile, and an authentication device is linked. This line may display as a short set of random characters.
+Reset Device: Select this option, then click Save to unlink your associated authentication device. See Logging in to Your Account for instructions on linking an authentication device.
+Password: Your account password. Click to change your password at any time.
+Note: Password strength requirements are set at the company level. See Create and Manage Companies to learn more about managing your company's security settings.
+Once you are satisfied with any changes, click Save Changes to apply them and close the profile window.

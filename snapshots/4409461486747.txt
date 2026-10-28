@@ -1,0 +1,56 @@
+Title: Page Timer Element
+The Page Timer element forces survey participants to view an image or other piece of media for a predetermined amount of time before automatically proceeding to the next page.
+The Page Timer element utilizes a multi-select form with no response options. It does not utilize Flash and is desktop, tablet, and mobile compatible.
+Note: The image used must be mobile-friendly.
+1: Adding a Page Timer Element
+Note: You can set the "Show if" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Page Timer element, first click the "+ Element" button to add a new survey element. Then click "Stimulus" under Question Types and select the "Page Timer" element. Then click "Add".
+Enter the question and instruction text in the areas provided.
+Tip: Keep the question text short and to the point, so that the participant can read it quickly.
+2: Upload the Image
+The image file can be uploaded in the file manager, or hosted on a separate domain.
+To access the file manager, select "Upload System Files" from the "More Tools" drop-down under "Build" in the navigation menu that appears at the top of any project page. See Uploading System Files to learn more about using the file manager to upload image files.
+The image file must be in one of the following supported formats:
+.jpeg / .jpg
+.png
+.gif
+Once uploaded, copy the file name or click the "copy" icon to copy it to your clipboard.
+To return to the Survey Editor, click "Survey Editor" under "Build" in the navigation menu. Then locate your Page Timer question to continue the setup.
+3: Style Settings
+To edit the display settings for a Page Timer element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Question Display Options" window, use the options on the left to specify how the question displays. When you mouse-over an option, information about the feature displays on the right.
+Click "Save and Preview" to preview the settings. Once you are satisfied with the style options settings, click "Save and Close".
+The following style options are configurable:
+Style Option
+Description
+Ad Path (Image)
+Enter the file name of the image uploaded to the file manager. You may also provide a full link to the image.
+Example:
+/survey/[path]/image.png or http://www.domain.com/image.png
+Timer Limit (seconds)
+Enter a whole number to set the number of seconds that the ad should be displayed.
+Example:
+If you enter 30, the ad test will advance to the next question after 30 seconds.
+Counter Position
+Allows you to specify the position of the counter bar in relation to the image.
+Above
+Below
+Both (Above & Below)
+Show Counter as Number
+When checked, the counter timer also displays a number timer.
+When unchecked, a number timer is not shown with the counter timer.
+Primary Counter Color
+Allows you to change the color of the shrinking portion of the countdown bar, which indicates the time remaining. Enter a color code, or click the color wheel to select a color.
+Example:
+#b7b7b7 makes the shrinking portion of the countdown bar grey.
+Secondary Counter Color
+Allows you to change the color of the growing portion of the countdown bar, which indicates the time that is gone. Enter a color code, or click the color wheel to select a color.
+Example:
+#f4f4f4 makes the growing portion of the countdown bar a very light grey.
+You can preview the question at any time by clicking the "Preview" button located at the top right corner of the element. To learn more about previewing a question, see Previewing a Question.
+4: General Options
+When altered, each of the following options affects all attributes within the Page Timer element.
+Label: The label assigned to the element. Click to edit the default label for the Page Timer element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.

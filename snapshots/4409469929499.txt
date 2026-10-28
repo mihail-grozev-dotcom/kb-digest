@@ -1,0 +1,13 @@
+Title: Making Live Translation Changes
+Note: If you've never created a multi-language project, be sure to read the Guide to Programming Multi-Language Studies.
+1: Creating a Copy of the Survey
+Before making changes to translations for a live survey, you should create a copy of the survey to work in. You can create a temporary version of your study by accessing the Survey Editor after you have launched your survey. To do this, select “Survey Editor” under "Build" in the navigation menu.
+2: Making the Changes
+From inside the newly created temporary version of your study, enter the Language Manager by selecting "Language Manager" under "Build" in the navigation menu. Then complete your translation changes by following the steps for Making Changes to Translations for Multi-Language Studies.
+Once you’re done with changes, test your survey to ensure that the translations are in place and working as expected.
+Learn more: Testing Survey Translations
+3: Merging the Changes to the Live Survey
+The final step for making changes to your live study is to merge them from the temporary version of your study to the live version. Merging changes into the live survey maintains any data you have collected to date. The live edit mode also maintains the original link, allowing you to continue to field as normal.
+To merge your changes, click the "Save to Live Survey" button from within the Survey Editor.
+Next, confirm the survey settings and click "Proceed".
+The system tests the newly modified survey for errors. If the survey passes, then the changes are pushed to replace the existing live survey. During this process the original survey link is maintained, as is the data collected to date.

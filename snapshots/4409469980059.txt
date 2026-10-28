@@ -1,0 +1,4 @@
+Title: Copying All Answer Text
+The Survey Editor allows you to copy all the response options within one question or element for use in another. To copy all answer text, click "Row / Column Actions" and select "Copy All Row / Column Text".
+Next, select the question within which you want to use the copied response options. Right-click the desired answer field and select "Paste" to paste the text (or use CTRL+P ).
+Finally, click anywhere in the window to refresh the question. The system will reload with the text for each response option appearing as a new row, matching the format of the original.

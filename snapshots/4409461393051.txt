@@ -1,0 +1,152 @@
+Title: DQ Styles (styles.xml)
+Requires Decipher Cloud
+The styles.xml file is an XML file very similar to the survey.xml, but it can only house style definitions for a DQ, containing its <style>, <stylevar> and <include> tags. When a DQ style is applied to a question, its styles.xml file overrides the existing XML style for that question and its tags are effectively inserted as if they were specified within the question itself.
+1: Style Variables
+Each styles.xml file can add new configurable style variables when loaded, and you can add these variables using a <stylevar> tag. The <stylevar> tag defines a configurable attribute, and you can add the default value of each variable you would like to include within the tag itself.
+For example, here is how you would include the name variable for an atmbox DQ:
+<stylevar name="atmbox:show_dividers" type="bool">1</stylevar>
+Note: Only the name and type are required within a <stylevar> tag for a style to be loaded.
+The following variables can also be designated within the <stylevar> tag:
+1.1: title
+The title variable will designate the title for each applied style.
+For example, here is how the tooltip styles are written for the starrating DQ:
+<styles>
+<stylevar name="starrating:tooltips" type="bool" title="Show Tool Tips" desc="When &lt;b&gt;checked&lt;/b&gt;, tooltips will be shown on hover over.">1</stylevar>
+<stylevar name="starrating:tooltips_skin" title="Tooltip Skin" desc="Tooltip skin (color/theme)" type="string" where="none">light</stylevar>
+<stylevar name="starrating:tooltips_css" title="Tooltip CSS" type="string" where="none"></stylevar>
+</styles>
+1.2: desc
+The desc variable will describe the functionality of each applied style.
+For example, the starrating tooltip styles have the following descriptions:
+<styles>
+<stylevar name="starrating:tooltips" type="bool" title="Show Tool Tips" desc="When &lt;b&gt;checked&lt;/b&gt;, tooltips will be shown on hover over.">1</stylevar>
+<stylevar name="starrating:tooltips_skin" title="Tooltip Skin" desc="Tooltip skin (color/theme)" type="string" where="none">light</stylevar>
+<stylevar name="starrating:tooltips_css" title="Tooltip CSS" type="string" where="none"></stylevar>
+</styles>
+1.3: where
+By default, all displayed attributes are shown in the Survey Editor. Add where="none" to a DQ’s <stylevar> tag hide an attribute from the Survey Editor entirely, or add where="adv" to display it only in the advanced section.
+For example, the tooltips_skin and tooltips_css variables for the starrating DQ below will not be shown in the Survey Editor:
+<styles>
+<stylevar name="starrating:tooltips" type="bool" title="Show Tool Tips" desc="When checked tooltips will be shown on hover over.">1</stylevar>
+<stylevar name="starrating:tooltips_skin" title="Tooltip Skin" desc="Tooltip skin (color/theme)" type="string" where="none">light</stylevar>
+<stylevar name="starrating:tooltips_css" title="Tooltip CSS" type="string" where="none"></stylevar>
+</styles>
+1.4: type
+The type variable will designate the functionality of a style, and there are a variety of different values you can use to further customize your DQ. The most common style types are outlined below.
+1.4.1: string
+The type variable can be set to string for a non-translated string (e.g., a configuration attribute):
+<stylevar name="autosum:amount" type="string" title="Validate Sum Override" desc="This controls when the sum returns to default black. By default, this uses amount='' attribute but a number could be specify to override this.Example 200" where="none"/>
+1.4.2: res
+The type variable can be set to res for a resource that will be translatable:
+<stylevar name="autosum:preText" type="res" title="Form Pre-text" desc="Allows you to add text or symbols to the left side of the answer field. E.g., $___."/>
+1.4.3: int
+The type variable can be set to int for an integer value:
+<stylevar name="heatclick:width" type="int" title="Image Width" desc="Width of the image that is being rated in pixels. E.g 500">700</stylevar>
+1.4.4: bool
+The type variable can be set to bool for Boolean values 0 (False) or 1 (True):
+<stylevar name="autosum:disabled" type="bool" title="Disable Autosum on a Particular Row/Col" desc="Disable autosum on a particular row/col" where="none">0</stylevar>
+1.4.5: enum
+The type variable can be set to enum for a predefined list:
+<stylevar name="autosum:legendPosition" type="enum" values="top,bottom" title="Legend Position" desc="Allows you to specify the position of the autosum legend in the answer grid. Select top to show the legend at the top of the grid. Select bottom to show the legend at the bottom of the grid. By default autosum is shown at the bottom.">bottom</stylevar>
+1.4.6: color
+The type variable can be set to color for an HTML color code:
+<stylevar name="autosum:color" type="color" title="HTML Color" desc="Sets the color of the autosum indicator when the sum does not meet the required amount. Enter the hex color code, valid CSS color name or click on color picker to select a color Example: #FF0000 or red will display the autosum in red if the sum does not equal the required total.">red</stylevar>
+2: Including Files
+If you would like to use a more customized look for your DQ, you can add JavaScript and CSS files to your style using the <include> tag to load them. Any file you want to reference should be stored in a static folder without a Forsta version directory.
+For example, the hottext style uses both JavaScript and CSS files:
+<include href="hottext.css"/>
+<include href="hottext.js"/>
+If these files are only needed for reporting purposes, you can add where="report" to the <include> tag to designate this functionality. For example, the following hottext style ("reporting.js") will appear only in the report:
+<include where="report" href="reporting.js"/>
+You may also limit the use of a file to certain scenarios using the cond attribute. This is particularly useful when working with device-specific styles.
+For example, if you would only like to load a JS file if users access your survey on an iPhone, you could use the following code:
+<include cond="device.iphone" href="special-iphone-fix.js"/>
+Similarly, if you need to target specific versions of a browser, you can add that browser’s cond attribute. For example, to limit the use of your Javascript file to Internet Explorer versions 8 or below, you could use the following:
+<include iecond="lte IE 8" href="/s/support/excanvas.js"/>
+Which, when rendered, would expand into:
+<!--[if lte IE 8]>
+<script src="/s/support/excanvas.js"></script>
+<![endif]-->
+If needed, .less styles can be added as well. To include .less styles, you would use a slightly different syntax. Here is an example from the atm1d dynamic question:
+<less href="atm1d.less"/>
+Note: When adding a .less style, the file would be hosted in the same location.
+3: The XML <style> Tag
+The styles.xml file also includes <style> tags containing XML styles that can be used to overwrite one or more of the original question’s XML style blocks. Usage of these blocks would be identical to how they would be used within the survey.xml.
+For more information on <style> tag syntax, see XML Style System.
+3.1: Referencing Style Variables Within the <style> Tag
+You can use Python code to reference the style variables created in the previous section and to pipe them in where needed. To do this, you will need to ensure that you are referencing each variable within the correct syntax using the keyword “this”.
+For example, to bring the cardsort.completionHTML style variable into the cardsort style, you could use the following code:
+<li class="sq-cardsort-completion">
+<div class="sq-cardsort-completion-item">${this.styles.cardsort.completionHTML or ""}</div>
+</li>
+3.2: Implementing JavaScript
+If you would like to use your question data within JavaScript, you can call ${jsexport()} in your question.after to return a JSON object of your question.
+For example, you can use the following code to reference the question in the question.after, where the question is first converted to a JSON object and then referenced using the this attribute:
+<style name="question.after" wrap="ready"><![CDATA[
+var jsexport = ${jsexport()};
+\@if gv.hasQA(True) and gv.showCms()
+Survey.question.hottext.debug = true;
+\@endif
+Survey.question.hottext.setup($(this.label|js), jsexport);
+]]></style>
+Once called, jsexport lets you know exactly what rows, cols, and/or choices are being displayed in your question, along with information on any open-ended rows (e.g., openIndex, openName, openValue, etc.).
+In number or float questions, validation information will include minValue, maxValue, and ignoreValues.
+3.2.1: Output Structure
+jsexport outputs all question information within a JSON object, and this object can be copied directly for use in JavaScript. The JSON version of your question should look something like the below:
+{
+"comment": "",
+"uid": 2,
+"errors": [...],
+"totalColCount": 4,
+"export:v3": "v3",
+"device": {
+"category": "",
+"smartphone": false,
+…
+},
+"cols": [
+{
+"index": 1,
+"label": "c2",
+"export:v3": "v3",
+"uid": 7,
+"text": "Col c2"
+}, … columns continue
+The jsexport object consists of both an errors key and a device key, and contains a variety of output variables.
+The errors key contains a list of errors displayed in the question. Each error is a list of two, three, or four items:
+item 0 -- the error text (translated)
+item 1 -- the error scope: question (applies to the whole question, set by <validate> tag), row, col (apply to the entire row or column), row-legend, col-legend (applies only to the legend, where the open="1" input field is), or cell (specific cell only)
+item 2 -- for row, row-legend: the row index; for col, col-legend, or cell: column index
+item 3 -- only displayed for cell: row index
+The row/columns indices in the error list reference the "cols" and "rows" lists in the JSON structure, meaning that 0 references the first displayed row (and not the first row in the XML).
+The device key is equivalent to the device object in a survey -- you can check for the device object using device.smartphone or device.width. This object can also be accessed using ${jsdevice()}, though this call will only output the device information (not question data).
+3.2.2: Output Variables
+The main jsexport object displays the following variables for each question:
+title -- the question title
+type -- the XML tag name for the question (e.g., "radio")
+device -- the current mobile device data information
+grouping -- the question's grouping attribute; can be either cols or rows
+label, comment -- the question's label and comment, as defined in the XML
+uid -- the question's internal numeric UID; the UID is used to generate the form values (for example, ans123.0.0 is the first column, first row answer for question UID 123)
+The object also includes the question's DQ variables (i.e., attributes which are specific to the question type and appear if defined in the XML), as well as the following:
+minRanks
+amount
+minValue / maxValue (based on number/float verifiers)
+ignoreValues
+Additionally, the object may include one or more of the following attributes depending on participant and survey settings:
+qa -- if QA codes are enabled and visible to the user, they will appear here
+haveLeftLegend -- will display if the legend column is currently rendering on the left side of the question
+haveRightLegend -- will display if the legend column is currently rendering on the right side of the question
+totalColCount -- will display the number of columns if survey questions are rendering as tables
+rows/cols/choices/noanswers -- an array of rows, columns, etc., as they are visible to each participant. Shuffling and conditions are already applied, and these are the answer options as they would normally be shown to participants in HTML. Each of these rows, columns, etc., will contain the following information:
+Optional -- 1 or 0 as defined in the XML
+open -- 1 or 0 as defined in the XML
+openOptional -- 1 or 0 as defined in the XML
+exclusive -- 1 or 0 as defined in the XML
+rightLegend -- the rightLegend if defined on a row
+amount -- the defined amount on an element as defined in the XML
+label -- the element's label as defined in the XML
+uid -- the option's internal numeric UID
+openIndex -- the index of the open-ended data array (only for cells that have corresponding open data)
+openName -- the HTML control name (e.g., oe12.2) for open=1 answers where the open-ended data is stored
+openValue -- the open-ended data entered previously by participants for this option (if re-displaying the question or if the option is pre-punched)

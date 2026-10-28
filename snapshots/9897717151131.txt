@@ -1,0 +1,25 @@
+Title: 144.16 Release Notes
+Release Date: June 30, 2020
+Release Version: 144.16
+New Features
+Participant Sources
+Sample Marketplace
+Added MarketCube as a trusted partner and sample provider.
+Bug Fixes
+Portal
+Fixed an issue requiring administrator intervention to re-enable the Microsoft Word survey format after a failed export attempt.
+Fixed an issue causing slow loading times within the Portal for companies containing a high volume of surveys stored in subdirectories.
+Usage Statistics
+Fixed an issue causing dashboards to ignore applied date filters when displayed in “Detail View” mode.
+Participant Sources
+Sample Marketplace
+Fixed an issue which allowed DecipherNOW users to access the Sample Marketplace.
+Fixed an issue which caused DMA regions to be mapped incorrectly for some Lucid participants.
+Responses
+Response Summary
+Fixed an issue which caused inaccurate data to be displayed in the Campaign Manager tab for surveys with delphi="1".
+Reporting
+Crosstabs
+Fixed an issue causing errors when attempting to export questions containing .gif files to Excel.
+Data Downloads
+Fixed an issue causing date and start_date variables to appear as string value types instead of date types in SPSS (.sav) export files.

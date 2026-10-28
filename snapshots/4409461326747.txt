@@ -1,0 +1,94 @@
+Title: Customizing the Video Testimonial Element
+Important: Video Testimonial (videocapture.3) is now closed. Existing Video Testimonial elements will continue working normally until September 30, 2025. Customizing the Media Testimonial Element is available for capturing participant video and audio.
+The video testimonial element uses the essay question type (<textarea>) and instead of the participant entering open-ended text, the participant provides question feedback via a video recording that is uploaded to the server. Video recordings are retrievable in crosstabs.
+1: Element Requirements
+The video testimonial requires:
+a survey with compat 129+
+no rows
+no columns
+the attribute sst set to 0
+2: Underlying Question Architecture
+This dynamic style sits on top of a <textarea> question. See below for an example of the base XML code inserted when using the Survey Editor.
+<textarea label="Q1" optional="0" height="10" width="50">
+<title>
+New Video Testimonial Question
+</title>
+<comment>Record or upload an existing video.</comment>
+<noanswer label="na_Q1">NA</noanswer>
+</textarea>
+3: Converting to the Video Testimonial Element
+To add the video testimonial style to the essay question, update the <textarea> tag by adding the uses="videocapture.3" attribute as shown below:
+<textarea label="Q1" uses="videocapture.3">
+This change produces the following result:
+4: Customization
+Listed below are all the attributes available for this element. Override them to create a custom look and feel for your Video Testimonial element.
+Atttribute
+Default
+Options
+Purpose
+width
+320
+integer
+Set the width of the video.
+height
+240
+integer
+Set the height of the video.
+timelimit
+120
+15, 30, 45, 60, 75, 90, 105, OR 120
+Limit the length of the recording in seconds.
+uploadsizelimit
+1074000000 (1gb)
+integer
+Max filesize of the upload.
+Note: For best results, we recommend maintaining the 1GB size limit for this attribute.
+providenoanswer
+1
+boolean
+Allows participants to skip the question if they are having issues using it.
+Note: We strongly recommend allowing participants to skip this element due to any compatibility issues they may experience with their hardware / software.
+noanswertext
+I'm having issues recording a video
+text
+Text to be shown to the participant if providenoanswer is true.
+text_timelimit
+Recording time limit
+text
+Text to be shown under the element before the time limit.
+text_seconds
+seconds
+text
+Text to be shown under the element, which indicates the unit of measurement for the time limit.
+text_maxfilesize
+Max file size for upload
+text
+Text to be shown under the element before the file size limit.
+region
+us
+us (United States)
+OR
+ie (Ireland)
+By default, set to us.
+Note: Ireland (ie) can be used for projects that have a GDPR requirement that their videos be hosted within the European Union.
+4.1: Changing Hosting Locations
+Video recordings are hosted on servers located in the region you have specified.
+Note: If you switch a survey’s video hosting location after that survey has already begun collecting responses, only videos uploaded after the change will be stored in the new location. Videos recorded prior to the change will remain stored in their original location and will no longer be available within Crosstabs.
+Note: Once collected, videos cannot be moved from one location to another.
+5: Crosstabs
+You can use Crosstabs to retrieve your participants’ video recordings and, if needed, filter those recordings by survey segments and variables.
+5.1: Retrieving the Videos
+After your survey has collected data, you can retrieve your video recordings in Crosstabs. The image below shows the video testimonial question in a total frequency report.
+Note: If the message "Could not display cover shot" displays in place of a thumbnail, an error occurred while uploading the recording.
+From Crosstabs, you can:
+Play back the testimonials.
+Mark a testimonial as a favorite. Favorites are used for filtering in the Dynamic Questions chart.
+View the Responses report to see all the participant's answers.
+Download the testimonial to your device in FLV or .mp4 format.
+Use "Download All" to bulk download all video testimonials. Videos are split into different directories based on segment.
+Use "Only Favorites" to bulk download only favorite video testimonials.
+Use "Current Segment" to bulk download only the selected segment of video testimonials.
+Learn more: Running a Total Crosstab
+5.2: Filtering Thumbnails by Segment
+Once you have setup some saved crosstabs with segments, you can filter the video thumbnails for the segments that have been defined.
+Learn more: Building a Crosstab

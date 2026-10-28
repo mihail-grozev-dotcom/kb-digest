@@ -1,0 +1,196 @@
+Title: Autocoding Question Responses
+In survey programming, it is very common to pre-populate or autocode data into questions. Whether you are using the Survey Editor or the XML Editor, you can add an <exec> tag to implement this type of functionality in your survey.
+1: Automatically Selecting Answers
+Consider the following request:
+"IF 'YES' SELECTED AT Q1, SHOW Q2. OTHERWISE AUTOCODE 'NO' AT Q2"
+Here is what the XML code for this request may look like:
+<radio label="Q1">
+<title>Would you buy this product at $20?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<radio label="Q2" cond="Q1.r1">
+<title>Would you buy this product at $40?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<exec cond="not Q1.r1">
+Q2.val = Q2.r2.index
+</exec>
+In the preceding example, the participant would skip Q2 if "No" was selected at Q1 and "No" would automatically be selected at Q2.
+On the other hand, consider the following request:
+"IF 'NO' SELECTED AT Q1, PRE-SELECT 'NO' AT Q2 BUT STILL SHOW Q2"
+This request is not very common, but here is what that would look like:
+<radio label="Q1">
+<title>Would you buy this product at $20?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<exec cond="Q1.r2">
+Q2.val = Q2.r2.index
+</exec>
+<radio label="Q2">
+<title>Would you buy this product at $40?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+In this example, if "No" is selected at Q1, we will automatically fill in Q2 with "No" but leave opportunity for the participant to adjust the response.
+2: Examples
+In the examples below, we will take a look at how to populate each question type with data. When "autofilling" responses, we are selecting answers for the participant to see in hopes to make it more convenient for them to move onto the next page. When "autocoding" responses, we are selecting answers at a question that a participant will not see.
+If you are using the Survey Editor, the following code is still helpful as you will need to populate the <exec> element yourself. As shown below, when adding an <exec> element to your project, you will see an open area for Python code.
+View the examples below to learn how to properly populate this open space with the necessary code to select question responses.
+2.1: Autofilling Responses for a Participant to See
+In this example, we will autofill a <text>, <checkbox> and <select> question for the participant to see. We will use data provided by the participant on the first page to dynamically populate the remaining questions.
+Note: The questions asked in this example are for demonstration purposes only.
+<text label="Q1" optional="0">
+<title>
+What is your name?
+</title>
+</text>
+<radio label="Q2">
+<title>
+What is your age group?
+</title>
+<row label="r1">1-17</row>
+<row label="r2">18-24</row>
+<row label="r3">25-34</row>
+<row label="r4">35-44</row>
+<row label="r5">45-54</row>
+<row label="r6">55+</row>
+</radio>
+<suspend/>
+<exec>
+first_letter = Q1.val[0]
+if first_letter.isalpha():
+Q3.val = first_letter
+</exec>
+<text label="Q3" optional="0">
+<title>
+What is the first letter of your name?
+</title>
+</text>
+<exec>
+if Q2.r1:
+Q4.r2.val = 1
+elif Q2.r2:
+Q4.r4.val = 1
+else:
+Q4.r3.val = 1
+Q4.r4.val = 1
+Q4.r5.val = 1
+</exec>
+<checkbox label="Q4" atleast="1">
+<title>
+What kinds of things have you done in the past 12 months?
+</title>
+<comment>Please select all that apply</comment>
+<row label="r1">Read a book</row>
+<row label="r2">Played with toys</row>
+<row label="r3" cond="not Q2.r1">Drank an alcoholic beverage</row>
+<row label="r4" cond="not Q2.r1">Driven a vehicle</row>
+<row label="r5" cond="not Q2.r1">Rented a vehicle</row>
+<row label="r6" open="1">Other</row>
+</checkbox>
+<exec>
+if Q2.r2 or Q2.r3:
+Q5.val = Q5.ch2.index
+else:
+Q5.val = Q5.ch1.index
+</exec>
+<select label="Q5">
+<title>
+Do you feel good about life?
+</title>
+<comment>Please select one</comment>
+<choice label="ch1">Yes</choice>
+<choice label="ch2">No</choice>
+</select>
+In the preceding example, it is important that each <exec> block comes before the question it pertains to. This is because the data needs to be populated before the participant arrives at the question.
+Tip: You could combine each <exec> block into a single one after the first page, but it is best practice to keep question logic near the question it affects.
+2.2: Autocoding Question Values
+Autocoding works just the same as the example above, but it does not matter where the <exec> block is placed considering that the participant will not see the question at all.
+In the example below, we will only ask questions related to the brands selected at Q1. If the brand is not selected, we will automatically punch the appropriate value for each question and move on. At the end of the survey, we will show a recap of the answers that were populated.
+<checkbox label="Q1" atleast="1">
+<title>
+Which brands are you aware of?
+</title>
+<comment>Please select all that apply</comment>
+<row label="r1">Brand 1</row>
+<row label="r2">Brand 2</row>
+<row label="r3">Brand 3</row>
+<row label="r4">Brand 4</row>
+<row label="r5">Brand 5</row>
+<row label="r99" exclusive="1">None of the above</row>
+</checkbox>
+<suspend/>
+<exec cond="Q1.r99">
+Q2_b1.val = Q2_b1.r3.index
+Q2_b2.val = Q2_b2.val = 0
+Q2_b3.val = Q2_b3.val = Q2_b3.ch6.index
+Q2_b4.val = Q2_b4.val = "I'm not aware of this brand"
+Q2_b5.val = Q2_b5.c3.index
+</exec>
+<radio label="Q2_b1" cond="Q1.r1">
+<title>
+How often do you use Brand 1?
+</title>
+<row label="r1">Often</row>
+<row label="r2">Rarely</row>
+<row label="r3">Never</row>
+</radio>
+<suspend/>
+<exec cond="not Q1.r1">Q2_b1.val = Q2_b1.r3.index</exec>
+<exec cond="not Q1.r2">Q2_b2.val = 0</exec>
+<number label="Q2_b2" optional="0" size="3" ss:preText="$" cond="Q1.r2">
+<title>
+How much money have you spent on Brand 2?
+</title>
+</number>
+<suspend/>
+<select label="Q2_b3" optional="0" type="rating" values="order" cond="Q1.r3">
+<title>
+Please rate your experience with Brand 3.
+</title>
+<choice label="ch1">1</choice>
+<choice label="ch2">2</choice>
+<choice label="ch3">3</choice>
+<choice label="ch4">4</choice>
+<choice label="ch5">5</choice>
+<choice label="ch6">Not applicable</choice>
+</select>
+<suspend/>
+<exec cond="not Q1.r3">Q2_b3.val = Q2_b3.ch6.index</exec>
+<textarea label="Q2_b4" optional="0" cond="Q1.r4">
+<title>
+What do you have to say about Brand 4?
+</title>
+</textarea>
+<suspend/>
+<exec>
+if not Q1.r4:
+Q2_b4.val = "I'm not aware of this brand"
+</exec>
+<exec cond="not Q1.r5">
+Q2_b5.val = Q2_b5.c3.index
+</exec>
+<radio label="Q2_b5" cond="Q1.r5">
+<title>
+When was your last visit to Brand 5's store?
+</title>
+<col label="c1">Never been</col>
+<col label="c2">More than 6 months ago</col>
+<col label="c3">Within the last 6 months</col>
+</radio>
+<suspend/>
+<html label="Results" where="survey">
+<p>Here are the values that were punched:</p>
+<p>Brand 1, Q2: ${Q2_b1.val} | ${Q2_b1.selected.text}</p>
+<p>Brand 2, Q2: ${Q2_b2.ival}</p>
+<p>Brand 3, Q2: ${Q2_b3.val} | ${Q2_b3.selected.text}</p>
+<p>Brand 4, Q2: ${Q2_b4.val}</p>
+<p>Brand 5, Q2: ${Q2_b5.val} | ${Q2_b5.selected.text}</p>
+</html>

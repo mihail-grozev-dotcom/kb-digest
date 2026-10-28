@@ -1,0 +1,37 @@
+Title: 151.6 Release Notes
+Release Date: November 8, 2022
+Release Version: 151.6
+New Features
+Portal
+Improved Portal search performance for users with a large amount of archived (hidden in Portal) or favorited projects.
+A company's user list is only fetched when relevant to reduce load time and avoid the possibility of duplication.
+Usage Statistics
+Added a "light" scoreboard to display surveys and services using the most resources in the last 4 hours. This data is also available via API.
+Survey
+Decreased run time for "Clear Test Data" in "Run Simulated Data".
+Responses
+Campaign Manager
+Added a banner to the top of Campaign Manager giving notice of discontinued support for our legacy (Bragi) email sends system.
+Campaign Manager and Bulk
+Campaign Manager or bulk email sends via SendGrid now report bounce-backs.
+Reporting
+Data Downloads
+Optimized server memory usage for fixed-width data downloads.
+Architecture and DevTools
+Data Retention
+dbr export uses the data/tmp directory instead of tmp for archival temp files.
+Bug Fixes
+Survey
+Smarthub Integration
+Smarthub integrations mark as failed if datamaps cannot be generated.
+Survey Editor
+The "and" condition displays correctly when declaring conditional logic statements.
+Responses
+Participant Sources
+The uses="digital_feedback" attribute correctly applies to new Forsta Digital Feedback sources when added via Responses > Participant Sources.
+The Forsta Digital Feedback section in Participant Sources displays the term "Link" instead of "Targets".
+View and Edit Responses
+Usage Stats updates correctly when the View/Edit Responses was updated.
+Programming and Tools
+API
+The datafeed API call returns one ack result instead of two.

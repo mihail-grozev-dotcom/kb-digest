@@ -1,0 +1,7 @@
+Title: 153.7 Release Notes
+Release Date: May 9, 2023
+Release Version: 153.7
+Bug Fixes
+Reporting
+Crosstabs
+Saving an element to the Library from a Crosstabs report no longer requires waiting for the tag input to load first.

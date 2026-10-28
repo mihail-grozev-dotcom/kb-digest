@@ -1,0 +1,15 @@
+Title: Crosstabs Entry Page
+When you open Crosstabs for your project, you are taken to the Crosstabs entry page. From here, you can review the project stats, work with saved crosstabs, build new crosstab configurations or run a quick report.
+Project Summary: A summary listing the project name, total completes, total qualified completes, total participants for the day, and the field dates.
+Search: Enter a report name or keyword(s) to search your saved crosstabs.
+Participant Status: Run a crosstab filtered by Participant Status. Select a filter option from the drop-down menu to run.
+Run Quick Split Crosstab: Run a quick split based off of a question in the survey, date logic, or a saved crosstab segment. To learn more about quick splits, see Running a Quick Split Crosstab.
+New Crosstab: Build a custom crosstab report from scratch. This is the most robust option, allowing you to create multiple segments off of one question, create nested logic, and preview the segments (or drag and drop to rearrange them) before running the crosstab. See Building a Crosstab to learn more.
+Favorites: Crosstabs that have the star icon selected are displayed in your Favorites group. If you have not favorited any crosstabs, the Favorites group does not display. Favorites are specific to the user.
+Mark as Favorite: Select the star icon to move a crosstab report into your Favorites group. De-select the star icon to un-favorite a crosstabs report. You may need to refresh the page for a report to display in your Favorites group. Favorites are specific to the user.
+Saved Crosstabs: All saved crosstabs are shown below the line (present when there are Favorites), including the default "Total Qualified" crosstab, which runs a total frequency report. Click a saved crosstab to run the report.
+Edit Crosstab: Edit the logic and structure for the crosstab.
+Settings: Edit the crosstab configuration.
+Duplicate Crosstab: Create a copy of the crosstab.
+Exports: View and download crosstab exports.
+Delete Crosstab: Delete the crosstab.

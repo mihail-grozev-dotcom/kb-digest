@@ -1,0 +1,16 @@
+Title: 149.4 Release Notes
+Release Date: November 16, 2021
+Release Version: 149.4 (Forsta Rebrand Release)
+New Features
+Branding
+Replaced the FocusVision logo and browser favicon with the Forsta logo and browser favicon.
+Replaced all instances of FocusVision with Forsta.
+Portal
+Navigation Menu
+Updated logos and product names in the product selector menu to reflect the company’s new branding.
+Sample Marketplace
+Updated the terms and conditions to reflect the new company name (“Forsta”).
+Programming & Tools
+API
+Updated the logo and naming of the API Documentation site to reflect the new Forsta name and logo.
+Updated occurrences of “FocusVision” to “Forsta” in the contents of the Sample Marketplace API documentation (except the legal entity name).

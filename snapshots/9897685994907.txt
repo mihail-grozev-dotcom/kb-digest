@@ -1,0 +1,153 @@
+Title: Decipher (previously Decipher) M34 Technical Release Notes
+Release date: July 19, 2016
+Mission Statements
+New survey compat level is 134. Use compat="134" for all new surveys. This enables:
+For Essay type questions the ‘width’ option will now control the size of the text area box. The default is ‘50’.
+Removed ability to import or use certain operating system-level (e.g. os, subprocess) Python modules in non-SECURE surveys.
+Element labels are limited to alphanumeric characters and underscore. Resource labels have a similar limitation but also allow.(period) and-(dash). Row/col/choice labels have additional label restrictions and can't use any of the following words:
+empty ival val search map any all count sum check attr unrestrict displayed styles ownstyles but unsafe_val values unsafe_open open valName disabled text page selected lget autofill rows cols choices amount minRanks atmost points title
+New Features
+Survey Builder
+Survey builders will see visual indications on the survey elements menu, question tree, survey element, project settings and when launching a project if an element is incompatible with an offline project type.
+Reporting
+Data in API (Importing Variables): Allows creation of new survey questions and uploading data for use in reporting.
+Dashboard
+New Dashboard layout Enhancements allow: (see extended documentation):
+Responsive Dashboard
+Grouping of Charts and Tables
+#21845: The WordCloud add-on now has the ability to show phrases in the cloud by using the “cloud.phrases” option. [7/01/16]
+Survey
+Email Campaign Manager
+#18962: Reminder email sends now let you apply filters to the send list just like the original email send for the Campaign. [6/06/16]
+#22060: added an list option to export bounce backs [6/09/16]
+Portal
+#21634: Users now have the ability under profile settings to change the platform language in Portal/Builder to French, Spanish, Portuguese or Japanese. Please note that languages have to be enabled on your server for you to change preference. [6/09/16]
+Programming & Tools
+Bulk
+#22175: Confirmation messages to continue a send are now shown when the following thresholds are met: 0.35% spam, 5% bounce backs [5/20/16]
+#22060: added an option to export bounce backs. (currently main server only) [6/09/16]
+URL: [server]/admin/bounced/export?survey=<project path>&send=<email list>
+mail queue: [server]/admin/mailqueue
+api: /api/v1/bulk/bounced
+Misc
+#22163: Added a new report "send_detail" to [server]/admin, which displays the email send subject, sender and domains used in body in addition to the default spam report fields. The report can be filtered by the minimum list size, minimum spam rate and previous days. Selecting the <<global>> (this is only possible from v2) version of the report displays an additional column for the server and aggregates from other servers. * Requires Decipher Cloud (*global option is only available on main server) [6/10/16]
+Logic Nodes
+#22272: Added email:delay and email:senderEmail to the Email Send logic node.
+email:delay - Set a delay on sending the email in seconds. The email is not sent out until after the amount of time specified has passed.
+email:senderEmail - Set the email address to be used as the ‘from’ address in the email. The domain used must be added to your company’s CNAME list. [6/28/16]
+Bug Fixes
+Survey Builder
+#22103: Pressing revert to original survey will reload the page and display a copy of the live survey without displaying your changes [5/16/16]
+#22134: Fixed error when using IE 11 and adding a DQ with a stylevar on rows adding invalid code [5/17/16] [KB: Browser Support]
+#22254: Rating scale updated to show Compatible for smartphones. It was showing Optimized. [06/15/16]
+#22305: Fixed issue with images sometimes not saving in description content or question instructions when image was followed by a line break
+XML Editor
+#21959: Changed the version of CodeMirror to 4.13 to prevent minor UI glitches [5/17/16]
+#22181: There was an issue where using right align would remove the Fir component [5/22/16]
+#19636: Fixed issue where referencing a <res> tag defined within a loop would cause a fatal error [6/23/16]
+Participant View
+#22219: Checking NoAnswer on a star rating question will disable the stars [5/24/16]
+#21784: Fixed issue when using onerowatatime.3 DQ and row groups where the name of the first group would not show up for participant. [5/2716]
+#22295: The system was accepting code instead of text in OE fields associated to a row. [6/17/16]
+Dynamic Questions
+#22148: Fixed issue with Text Highlighter chart not hidden rows that were hidden in reporting [5/16/16]
+#22284: Fixed issue with continue button not enabling for video player in Safari iOS 9.3.2 [6/17/16]
+#19761: Updated default question text for Button Single Select, Button Multi-Select, Button Single Select Grid, Button Multi-Select Grid, Slider Rating
+Theme Editor
+#22169: Updated theme editor preview to match the survey compat.
+SPSS Importer
+#20989: Fixed issue importing values without labels [5/17/16]
+Campaign Manager
+#22228: Fixed issue where if you changed the link address & text from the default it would not show correctly in the preview. [5/24/2016]
+Dashboard
+#22093: When using transpose for dashboard charts the segment base did not work properly when using filters. [5/13/2016]
+Crosstabs
+#22128: Fixed issue where table filter footer text and table editor were not displaying an applied filter from a private crosstab [5/13/16]
+#22159: Fixed an issue in Crosstabs when you had a weight file applied to a saved Crosstab if you removed the weight file the saved Crosstab would no longer load. [5/16/2016]
+#22116: Fixed an issue where you could not from the url jump to a question shown in the drop down menu. [5/17/2016]
+#22224: Fixed an issue where if you added a net that contained ‘0’ in the table editor, saved and then went back into table editor to make any further changes and saved them it would not keep the ‘0’ net that was saved previously. [6/06/16]
+#18886: Fixed logic created when selecting "all: Across All" for open end question types [6/8/16]
+#22218: Fixed an issue where if you applied a weight to a crosstab the ‘unweighted’ row would not show on exports [6/21/16 ]
+#21826: Fixed an issue when using the pdf export option and using groups in your segments it would cut off prematurely. [6/14/16]
+#22288: Fixed an issue where when using the pdf export options and enabling data labels on charts it would cause a fatal error. [6/20/16]
+View/Edit Responses Report:
+#21995: Fixed issue with table heading sorting number fields as text [5/17/16]
+#22215: Ability to add custom reasons to disqualify participants. [6/13/16]
+Field Reports
+#22210: Quota sheet will show the sheet(s) toggled based on user’s last view. [5/17/16]
+Downloads
+#22105: The system warns you when attempting to export SPSS with variables that are smaller than the number of characters on a field. [5/16/16]
+#22248: The Triple S report shows numeric questions as quantity. [06/15/16]
+Portal
+#22089: Searching for users in search bar is now restricted based on the current User’s permission [5/17/2016]
+#22125: The hyperlink to creator email on Grid view is now removed. [06/10/16]
+#22176: Updated links under new flash M30. [06/08/16]
+#22135: Usage Statistic Report optimized. [06/10/16]
+#21860: Fixed a bug when exporting out a translated survey not all text was translated [6/28/16]
+Programming Tools
+#21779: User can now use the clear data logic library to clear hidden variables by using cleardata:allVariables="1".[05/16/2016]
+#22171: Using * in the acl.txt allows access to all projects for that company/subdirectory [06/14/2016]
+Architecture/DevTools
+#22281: Fixed issue where Datafeed API call did not return the same results even if ACK was not sent for previous call [06/13/16]
+Misc / Custom Projects
+#22092: Updated old kb links to use “id” to point to new location on newer kb. [6/24/2016]
+Extended Documentation
+Dashboard Enhancements
+The new Dashboard Compat 4 allows:
+The dashboard to be Responsive for larger or smaller screens.
+Grouping of Charts and Table by using "group" and "endgroup" tags. All the charts/table enclosed with the group tag will be shown in one container.
+For example:
+group id=db-1 Three Charts
+chart id=db-5 Pie Chart 1
+row q1.r1 Male
+row q1.r2 Female
+type pie
+chart id=db-6 Pie Chart 2
+row q1.r1 Male
+row q1.r2 Female
+type column
+table id=db-20 "Table"
+row q1.r1 Male
+row q1.r2 Female
+endgroup
+By using layout attribute in a group one can define the layout within the container.
+For example:
+group id=db-4 layout=2,1 Two Charts in First row
+chart id=db-5 Pie Chart 1
+row q1.r1 Male
+row q1.r2 Female
+type pie
+chart id=db-6 Pie Chart 2
+row q1.r1 Male
+row q1.r2 Female
+type column
+table id=db-20 "Table"
+row q1.r1 Male
+row q1.r2 Female
+endgroup
+The keepwith attribute moves the element into the same column as the specified element.
+For example:
+Table id=db-1 width=6 Left Top
+row q1.r1
+row q1.r2
+Table id=db-3 keepwith=db-1 Left Middle
+row q1.r1
+row q1.r2
+Keepwith Groups example
+group id=db-11 layout=1,1 width=6 Left Group
+Chart id=db-7
+type pie
+row q1.r1
+row q1.r2
+Chart id=db-9
+type column
+row q1.r1
+row q1.r2
+endgroup
+Chart id=db-10 keepwith=db-11 Right Group
+type pie
+row q3.r1
+row q3.r2
+row q3.r3
+row q3.r4
+row q3.r5

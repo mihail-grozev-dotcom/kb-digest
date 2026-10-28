@@ -1,0 +1,97 @@
+Title: Adding Project Parameters
+Including project parameters in a survey will allow you to better organize your projects and provide improved search ability within the portal. Project parameters are not applied by default, however, and will need to be added to your company directory before they can be used on any survey.
+Note: Setup for Project Parameters requires supervisor permissions in Decipher; contact your representative for more information.
+1: Creating a JSON Configuration File
+To add a project parameters module to your survey, you will first need to create a JSON configuration file. The parameters.json file defines what a user will be shown in the project parameters modal, data exports and search autocomplete. If the parameters.json file is uploaded to a server, it should be located in the company directory or subdirectory and will require use of the command line script to make updates.
+All of your desired parameters should be included in your parameters.json file and structured in JSON format as shown below:
+{
+"includeInRespondentData": [true/false],
+"parameters": [
+{
+"label": "[Question Label]",
+"title": "[Question Title]",
+"type": "select",
+"optional": [true/false],
+"hidden": [true/false],
+"multiple": [true/false],
+"options": [
+{
+"title": "[option title]",
+"value": "[option value]",
+"label": "[unique option label]",
+"hidden": [true/false]
+},
+{
+"title": "[option title]",
+"value": "[option value]",
+"label": "[unique option label]",
+"hidden": [true/false]
+}]
+},
+{
+"label": "[Question Label]",
+"title": "[Question Title]",
+"type": "text",
+"hidden": [true/false],
+"optional": [true/false]
+}
+],
+"i18n": {
+"[Locale]":
+{
+"[question label],title": "translated question title",
+"[question label],[option label],title": "translated option title"
+}
+}
+}
+1.1: Required Attributes
+You can add single-select, multi-select, or open-ended questions. The following attributes are required for every question added:
+label: This is the unique ID for the question and must not contain any non-standard characters or whitespace.
+title: This is the question title and is displayed to the survey author.
+type: Must be one of the following:
+select - These are questions with predetermined answers and must include the multiple attribute (can be set to true or false).
+text - These are open-ended questions.
+Additionally, single-select and multi-select questions require the following attributes for every option added:
+label: This is the unique ID for the option and must not contain any non-standard characters or whitespace.
+title: This is the option title and is displayed to the survey author.
+value: This is the option value which will be used for data exports.
+1.2: Additional Considerations
+There are also some optional attributes you can add to make your project parameters settings more dynamic:
+optional: If set to true, this makes the question optional. This attribute is set to false by default.
+Hidden: If set to true, this makes the question or option hidden in the dialog. This attribute will be included in exports.
+Additionally, translated content can be added under the i18n attribute and the user-selected Locale will be applied if translations are found in the JSON configuration. Translations are designated based on the attribute label.
+Locale
+Language/Country
+es_ES
+Spanish/Spain
+pt_BR
+Portuguese/Brazil
+ja_JP
+Japanese/Japan
+fr_FR
+French/France
+de_DE
+German
+ru_RU
+Russian
+2: Adding the Configuration File
+Once you are satisfied with your configuration file, you can upload it using either the Decipher API or the command line.
+2.1: Using the API
+Click here to view the steps for adding your parameters.json file to a survey using the Decipher Rest API.
+2.2: Using the Command Line
+Requires Decipher Cloud
+To add your parameters.json file to a survey, simply run the following command line script:
+project-parameters -p/--path [company/subdirectory path] [path of configuration file]
+Similarly, to remove a parameter configuration you can run:
+project-parameters -r/--remove -p/--path [company/subdirectory path]
+If you would like to view the parameter configuration for your survey or any other survey utilizing project parameters, you can run:
+project-parameters -v/--view -p/--path [company/subdirectory path]
+Example
+The following request would load the project parameters for all surveys in the 540 directory:
+project-parameters -v -p selfserve/540/parameters.json
+selfserve/540/parameters.json
+3: Managing Existing Configuration Files
+Once a configuration file has been added to a company/subdirectory, you can choose to disable it at any time directly from the command line. To disable project parameters within a subdirectory, run the following command line script:
+project-parameters -p [sub directory path] -d
+If you would like to re-enable disabled project parameters, run:
+project-parameters -p [sub directory path] -e

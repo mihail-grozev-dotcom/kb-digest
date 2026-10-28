@@ -1,0 +1,27 @@
+Title: Adding Charts in Report (2010)
+Overview
+After you have run a standard or a custom report, our system gives you the ability to add a chart to any of your report segments. Charts are great for mapping and understanding data by allowing you to view it in a charted format within your report.
+1: Adding a Chart
+To add a chart, click on the chart icon visible at the bottom of each segment in your report:
+A new window will open showing all the editing options for your chart:
+1.1: Viewing the Chart Window
+Chart View - This area shows you a preview of the chart.
+General - This tab gives you general editing options including chart type, chart title and chart size.
+Formatting - This tab shows the formatting options including style, color, font size, etc. (see example below).
+Label List - This tab allows you to select and arrange the labels for the chart (see example below).
+Chart type - This area allows you to select a chart type (H bar, V bar, Pie, Area, Line, Polar - see examples below).
+Chart title - This area allows you to edit the chart title.
+Size - This drop-down list allows you adjust the chart size.
+Formatting tab: This area gives you the ability to format your chart with a variety of elements. You can set background elements, 3D style, select a color palette, set the axis scale, set the segment layout, set the legend location or transpose segments/rows. You can also format the labels' visibility, rotation and font size.
+Label List tab: This area allows you to customize the label titles, set colors for each label and select which labels you want visible in the chart.
+1.2: Selecting a Chart Type
+You can select any of the following chart types to include in your report.
+H Bar (horizontal bars) chart:
+V Bar (vertical bars) chart:
+Pie chart:
+Area chart:
+Line chart:
+Polar chart:
+1.3: Applying the Selected Chart
+When you are finished editing and formatting your chart, click on the 'add chart to report' button on the bottom of the window:
+Your new chart will now be visible within your report:

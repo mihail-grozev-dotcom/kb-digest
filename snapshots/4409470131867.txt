@@ -1,0 +1,181 @@
+Title: Alert Tag: Send Survey Email Notifications
+The <alert> tag enables you to receive notifications via email when specified conditions are met. Alerts are triggered when a participant successfully completes a survey while the survey is LIVE or in testing.
+Note: Alerts will not be triggered by simulated data or DUPE (duplicate) participants.
+You can use the <alert> tag to stay informed and resolve any potential issues for your survey that may arise during field. Alerts can be set based on selections made at particular questions, when quotas have been reached or met a specified threshold, or based on any condition logic you see fit.
+All alert emails that have been sent out for a survey are stored in that survey's survey.log file with the associated timestamp, label, and email addresses to which it was sent. Email bouncebacks and error messages are not recorded.
+The <alert> tag should not be used to contact participants; emails sent out this way do not respect remove lists, bouncebacks, or prior spam complaints. Additionally, you should take special care to ensure that all of your email recipients are okay with receiving alert emails.
+Tip: You can also add alert notifications using the Survey Editor. To learn how to set up alerts in the Survey Editor, see Alert Element.
+1: Attributes
+The <alert> tag has access to the following attributes:
+Attribute
+Purpose
+Description
+label
+Setting the Alert name.
+The label attribute is a string representing the unique label for the alert. For example:
+<alert label="A1" ...>
+emails
+Setting the To: email address sending the Alert.
+The emails attribute is a space-separated list of email addresses for those who should receive the alert. For example:
+<alert ... emails="bob@domain.com jill@domain.com" ...>
+sender
+Setting the From: email address sending the Alert.
+The sender attribute is the email address to show as the "From:" address for the email sent out. For example:
+<alert ... sender="bob@domain.com" ...>
+subject
+Setting the subject line of the Alert.
+The subject attribute is a string to show as the "Subject:" of the email sent out.
+<alert label="A1" ... >
+<subject>(/9d3/proj1234) Total quota has been met</subject>
+...
+</alert>
+body
+Setting the message body of the Alert.
+The body attribute is the main message body of the email sent out. For example:
+<alert label="A1" ... >
+<body>Quota marker /qual/ has reached its threshold (full)</body>
+...
+</alert>
+cond
+Setting the condition for the Alert.
+The cond attribute is the condition that must be met to send the alert email out. For example:
+<alert ... cond="Q1.r1.c1 and Q1.r2.c3" ...>
+marker
+Setting the quota marker to target.
+The marker attribute is the quota marker to target for the email sent out (must be used with threshold). For example:
+<alert ... marker="/Gender/Male" threshold="full" ...>
+threshold
+Setting the quota marker's threshold.
+The threshold attribute can be set to "full" or an integer value. If set to "full", the alert email will be sent out when the quota bucket is full. If set to an integer (e.g., 10), the alert email will be sent out when the bucket has been met or exceeded. When the alert is created through the Response Summary, the threshold is set to "full" (must include a quota marker). For example:
+<alert ... marker="/Gender/Male" threshold="100" ...>
+qns
+Setting the question data to include in Alert Email.
+The qns attribute is a comma-separated list of question labels to include in the email that will show the participant's data for the questions provided. For example:
+<alert ... qns="Q1,Q2,Q3" ...>
+manager
+Including the alert activity in the Alert Center.
+The manager attribute is a boolean value that enables the alert to be shown in the Alert Center. If manager="1" is set, the alert will be stored in a database and shown in the Alert Center. If this attribute does not exist, the alert will not exist in the Alert Center and only an email will be sent.
+Note: If the survey is opened in the Survey Editor, the manager="1" attribute added to the <alert> will show the alert in the Alert Center.
+<alert ... manager="1" ...>
+reminder
+Setting a reminder email to go out.
+The reminder attribute is a boolean value that enables reminder sends to be sent out after a specified number of days. For example:
+<alert ... reminder="1" days="3" ...>
+days
+Setting the number of days until a reminder is sent.
+The days attribute is an integer representing the number of days until a reminder email is sent out due to inactivity in the Alert Center. For example:
+<alert ... reminder="1" days="3" ...>
+link
+Including a link to the participant's data in Alert.
+The link attribute is a boolean value that, if enabled, will provide a link to the participant's entire survey results in the email sent out. This requires access to the reporting feature. For example:
+<alert ... link="1" ...>
+2: Survey Alerts
+Survey alerts are triggered based on condition logic. You can supply logic relative to selections made at a specific question (or questions), extra variables relative to the participant, or any other Python expression you desire.
+Note: Alerts are triggered after the participant has successfully completed the survey (i.e., has been marked as a qualified, terminated, or overquota complete).
+See the example <alert> and its associated email below:
+<alert label="Q1_Alert" cond="(q1.r1 or q1.r3)"
+sender="user@domain.com"
+emails="user@domain.com user2@domain.com user3@domain.com"
+qns="q1" link="1"
+reminder="1" days="3"
+manager="1">
+<subject>Selection Made at Q1</subject>
+<body>The participant selected r1 or r3 at Q1 -- Please follow up and confirm that...</body>
+</alert>
+In the case above, when a participant selects "r1" or "r3" at "Q1", the alert is triggered and the alert email is sent to those specified in the emails attribute. The alert email will contain helpful information, including:
+The case number and a link to the alert case in the Alert Center.
+The title, subject, and main message of the alert.
+The selections made at the question(s) contained in the qns attribute.
+A link to the participant's entire data collection for the survey.
+You can also dynamically set most attributes of the <alert> tag. Consider the following example, which updates the <alert> subject and receiving email addresses depending on the selection made at question "Q1":
+<exec>
+subject = "(%s) selected at question Q1"
+if q1.r1:
+Q1_Alert.subject = subject % "r1"
+Q1_Alert.emails = Q1_Alert.emails + " user4@domain.com"
+elif q1.r3:
+Q1_Alert.subject = subject % "r3"
+Q1_Alert.emails = Q1_Alert.emails + " user5@domain.com"
+</exec>
+<alert label="Q1_Alert" cond="(q1.r1 or q1.r3)"
+sender="user@domain.com"
+emails="user@domain.com user2@domain.com user3@domain.com"
+qns="q1" link="1"
+reminder="1" days="3"
+manager="1">
+<subject>Selection Made at Q1</subject>
+<body>The participant selected r1 or r3 at Q1 -- Please follow up and confirm that...</body>
+</alert>
+Note: The <body> attribute cannot be set dynamically due to security concerns.
+3: Quota Alerts
+Quota alerts are triggered once based on the quota system and each quota's specific marker counts. When a participant completes the survey and fills the specified bucket to the specified threshold, the quota alert is triggered.
+See the example quota alert <alert> below:
+<alert label="Gender_Males_FULL_Alert" marker="/Gender/Male" threshold="full"
+sender="user@domain.com"
+emails="user@domain.com user2@domain.com user3@domain.com">
+<body>Quota marker /Gender/Male has reached its threshold (full)</body>
+<subject>[selfserve/9d3/proj1234] Quota /Gender/Male reached</subject>
+</alert>
+In this case, once the bucket for "/Gender/Male" has been filled, the email above would be sent to all emails listed in the emails attribute.
+By default, quota alerts do not appear in the Alert Center. You can, however, manually append the manager="1" attribute to the alert to access the quota alert from the Alert Center. Consider the following example:
+<alert label="Gender_Males_FULL_Alert" marker="/Gender/Male" threshold="100"
+manager="1"
+sender="user@domain.com"
+emails="user@domain.com user2@domain.com user3@domain.com">
+<body>Quota marker /Gender/Male has reached the limit (100)</body>
+<subject>[selfserve/9d3/proj1234] Quota /Gender/Male reached</subject>
+</alert>
+In this case, once the "/Gender/Male" quota bucket reaches 100 completes, the alert will be sent out and the case will be visible in the Alert Center.
+4: Customizing the Alert Email
+You can use the nstyles file in your project's directory to override the default notification email that is sent out for survey alerts. Copy and paste the following into your nstyles file and override the content to fit the needs of your project:
+*alert.email:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>$(subject)</title>
+<style type="text/css">
+body {
+margin: 0;
+padding: 0;
+-webkit-text-size-adjust: none;
+}
+body, #backgroundTable {
+font-family: arial, 'Helvetica';
+font-size: 15px;
+}
+body #backgroundTable {
+width: 100% !important;
+height: 100% !important;
+}
+p {
+margin: 0 0 20px 0;
+}
+table td {
+border-collapse: collapse;
+}
+</style>
+</head>
+<body marginwidth="0" marginheight="0" offset="0" topmargin="0" leftmargin="0">
+<a href="$(detail)#/?case_id=$(case)">Case ID: $(case)</a>
+<br/><br/>
+$(body)
+<br/><br/>
+$(content)
+<br/><br/>
+<a href="$(detail)#/?case_id=$(case)">View Case in Alert Center.</a>
+<br/><br/>
+$(review_link)
+--
+<br/>
+This email was sent automatically. To opt-out from this alert, visit
+$(host)/apps/notify/$(path):mute?email=$(email)&label=$(label)
+</table>
+</body>
+</html>
+See The nstyles File to learn more about the nstyles file.
+5: Learn more
+Check out these other documents related to the <alert> tag:
+Alert Element
+About the Alert Center
+Adding Quota Alerts in the Response Summary

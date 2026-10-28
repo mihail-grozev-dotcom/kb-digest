@@ -1,0 +1,19 @@
+Title: March 20th General Release Notes
+Release Date: March 20, 2018
+Highlights of March 20th Release
+New Features
+Dashboard
+Add ACL's to dashboard filters and filter groups.
+Survey
+Use the JSON loads() function in SECURE surveys.
+Use uuid as ourKey within survey datasources.
+New Features
+Dashboard Access Levels
+Looking to restrict viewing access for your dashboard filters? You can now enjoy the same permission control for filters and filter groups that you have for pages, tables, and charts.
+Set user access levels for dashboard filters and filter groups using dashboard access control lists (ACL's).
+Survey
+JSON Virtual Data
+If you like to use JSON for summarizing your survey's open-ended responses, you're in luck! You can now use JSON in outputs for virtual questions in Decipher.
+This functionality can be added to both SECURE and non-SECURE surveys using the new json_loads() function in the XML Editor.
+Updated Key Values
+It is now possible to use the unique identifier uuid for tracking participants within your survey datasources. This is accomplished at the datasource level using ourKey.

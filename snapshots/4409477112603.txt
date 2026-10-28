@@ -1,0 +1,9 @@
+Title: How to Make a Response Option Always Show
+In questions where response options have conditional logic, the Survey Editor allows you to show one or more response options all the time. For example, if the selection of response options in the current question has a cascading effect in the following question(s), you may want one or more of the options to show whether or not they were selected.
+1: Adding Conditional Logic
+To make a response option always show in a question, click the row, column, or choice so the options panel appears to the right of the staging area. Then, select "Show if" and click "+ New Condition".
+In the Logic Conditions Setup window, click "show raw code", then enter "2" (without the quotation marks) in the text field and click "Save".
+If QA codes are turned on, the new condition tag appears for the response option.
+2: Testing Conditions
+To test the conditional setup, select "Test Survey" from the "Preview" drop-down in the navigation menu. Once you reach the first question in the series, leave the target response option unchecked and continue.
+In the next question, verify that the response option appears even though it was not selected in the previous question.

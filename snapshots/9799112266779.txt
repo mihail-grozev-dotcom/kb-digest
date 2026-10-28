@@ -1,0 +1,95 @@
+Title: Timeouts for Decipher Processes
+To prevent processes from taking up 100% of system capacity, or to prevent processes from being stuck in a loop, timeouts are applied to requests that involve foreground and/or background processes.
+If a process is not completed by the time limit, an exception is generated, usually stopping the request. If the timeout cannot stop the request within five seconds, the process is killed, which may result in an Apache “proxy error” message to the user.
+Note: To avoid the 30 minute timeout for large data file exports, include the forceTask parameter to turn the API call into an asynchronous task. Temporary files created from asynchronous tasks are saved for 24 hours.
+Tip: Killed processes are noted in the logs/exit.log.
+1: SurveyLoad
+The SurveyLoad timeout is 240 seconds (4 minutes). This timeout is applied any time a survey is accessed (loaded) after more than 15 minutes of inactivity.
+This is a separate timeout that is applied to the survey in addition to whatever else the request might be doing.
+2: Portal
+The Portal timeout is 60 seconds (1 minute). This timeout is applied to any portal-related requests (for example, generating a list of projects).
+3: Report
+The Report timeout is 3600 seconds (60 minutes). This timeout is applied to Reporting 2010, Crosstabs, and “direct” downloads. After 30 minutes of downloading, a “proxy error” from Apache will display, but the 1-hour timeout allows slow virtual code to complete so that the download will still occur.
+Note: Reporting 2010, Crosstabs, and “direct” downloads do not display a progress indicator, but simply show a loading icon until the downloaded file is available.
+4: Background
+The Background timeout is 7200 seconds (120 minutes). This timeout is applied to API endpoints with background processing and to the following User Interface actions:
+View/Edit Respondents: Data Edit (this also applies to the older interface)
+CATI: PRO-T-S Call History
+Portal: Field Stats & Permission Report
+Fulcrum: Creating, Fetching, Updating, Summary
+Report: Exports (for example, tables as Excel)
+After 30 minutes of processing, a “proxy error” from Apache will display, but the 2-hour timeout allows slow virtual code to complete.
+4.1: Examples of API endpoints with background processing
+Name
+Command Type
+Action
+Check for known bounce-backs
+POST
+bulk/bounced
+Get new data
+GET
+datafeed/{feed}
+Calculate usage
+GET
+rh/usage
+Execute crosstabs
+POST
+surveys/{survey}/crosstabs/execute
+Execute saved report
+POST
+surveys/{survey}/crosstabs/saved/{saved}/execute
+Export saved report
+POST
+surveys/{survey}/crosstabs/saved/{saved}/export/{format}
+Validate logic
+GET
+surveys/{survey}/crosstabs/validate
+Download data
+GET
+surveys/{survey}/data
+Download Data
+POST
+surveys/{survey}/data
+Delete or disqualify survey data
+DELETE
+surveys/{survey}/data/edit
+Create new data
+POST
+surveys/{survey}/data/edit
+Update survey data
+PUT
+surveys/{survey}/data/edit
+Update markers
+PUT
+surveys/{survey}/data/edit/markers
+Truncate datasource data
+DELETE
+surveys/{survey}/datasources/{datasource}/data
+List datasource data
+GET
+surveys/{survey}/datasources/{datasource}/data
+Append datasource data
+POST
+surveys/{survey}/datasources/{datasource}/data
+Replace datasource data
+PUT
+surveys/{survey}/datasources/{datasource}/data
+Trigger logic node
+POST
+surveys/{survey}/logic/{label}/trigger
+Import survey data
+POST
+surveys/{survey}/respondents/import
+Get launch warnings
+GET
+surveys/{survey}/state/live/warnings
+Increase unique watermarked videos
+PUT
+surveys/{survey}/videos/{video_id}
+Note: Videos with unique watermarks are removed after three years.
+5: Default
+The Default timeout is 1800 seconds (30 minutes). This timeout is applied to any web-initiated request that does not fall into any of the above categories. The Default timeout is the same length as the Apache proxy timeout.
+Note: To avoid the 30 minute timeout for large data file exports, include the forceTask parameter to turn the API call into an asynchronous task. Temporary files created from asynchronous tasks are saved for 24 hours.
+6: Non-configurable timeouts
+Generating an exception stack trace must take no longer than 10 seconds.
+Temporary files created from the results of asynchronous API calls, such as data downloads, are only retained on the server for 24 hours. For asynchronous API users, this means that if you get an ident from your asynchronous API call, you have 24 hours to retrieve the results. This prevents excessive disk space usage due to the accumulation of such files.

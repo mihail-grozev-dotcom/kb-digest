@@ -1,0 +1,44 @@
+Title: Project Actions
+The Project Actions menu gives you access to all of the building, testing, distributing, and fielding options for your project. This document outlines all of the options available in the Project Actions menu.
+1: Accessing Project Actions
+To access the Project Actions menu for a particular project, click the "..." button under Actions for that project:
+2: Navigating Project Actions
+The following sections outline each of the options available within the Project Actions menu.
+Note: Some of the options listed below may not be available for a project based on the project's individual settings.
+Action
+Description
+Access Requirement
+Preview Survey
+Opens the survey in a new window for testing. You may choose to view the survey in participant view or show the testing toolbar.
+Survey: View
+Launch / Relaunch Survey
+Allows you to launch or relaunch a survey once it has been finalized and is ready to gather data from participants.
+Please do not launch a survey unless it's been previously discussed with your account team.
+Survey: Edit
+Close Survey
+Opens a window allowing you to close a survey.
+Survey: Edit
+& Admin: Full
+Rename Survey
+Allows you to change the name of your project in the portal only.
+Survey: Edit
+Duplicate Survey
+Allows you to create a duplicate version of your survey.
+Survey: Build & Project Creator or Supervisor
+Export Survey
+Allows you to download the survey in PDF, Word, Text, HTML or OpenOffice ODT format.
+Report: View
+& Data: Download
+Hide Survey
+Allows you to hide projects you deem old or no longer active. When you hide a project, it is only hidden in your view and will not affect the view for any other users.
+Survey: Edit
+Archive Survey
+Allows you to archive the survey. You can unarchive a survey from the Archived Surveys Report .
+Supervisor
+Archive and Deletion Settings
+Allows you to change the archival and deletion settings for the survey.
+Note: This option is only available if the Archive and Delete Settings feature is enabled at the company level.
+Survey: Edit
+Delete Survey
+Allows you to delete a project. Please note that this is only available before the project has been launched.
+Survey: Build

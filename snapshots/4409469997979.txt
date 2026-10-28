@@ -1,0 +1,56 @@
+Title: Multiple Column Layout Question Style
+Multiple Column Layout is a unique style that can be applied to 1-dimensional single select, multi-select, select, number or text questions.
+The following example highlights the options for the Multiple Column Layout question style.
+1: Applying Multiple Column Layout to a Question
+To apply the Multiple Column Layout style to a question, select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right of the question and select Update Styling.
+The Question Display Options window will appear. Select Multiple Column Layout in the first drop-down menu. Then select Save and Close and the default style will be applied to the question.
+Note: The Multiple Column Layout style is not applied when the question is viewed on mobile devices.
+Field Name
+Field Description
+Column Flow
+Specifies the order that the rows are distributed in:
+Vertical: Displays the rows in order vertically, from top to bottom.
+Horizontal: Displays the rows in order horizontally, from left to right.
+Start: Allows you to define where each column will begin by entering the row label(s) in the "Column Starters" field.
+For "vertical" and "horizontal" column flow, you must specify the number of columns you want the rows broken out into.
+Number of Columns
+Allows you to specify the number of columns the rows will be split into, if column flow is set to "vertical" or "horizontal."
+Example: 2 will split the rows into two columns.
+Column Starters
+Allows you to specify the row label(s) where a new column will start if the column flow is set to "start." To specify multiple row labels, place a comma between each (with no space).
+Example: r5,r10 will create new columns at rows 5 and 10, creating three columns.
+You can preview the element at any time by clicking either Save and Preview in the Question Display Options window or the Preview link located at the top right corner of the element. To find out more about previewing an element, see Previewing a Question.
+2: Technical Information (XML)
+The following information can be used to modify the question style in the survey XML.
+The underlying question type for Multiple Column Layout is a single dimensional question. It does not support multi-line text question types. To apply the Multiple Column Layout style to a standard question, add uses="multicol.7" to the question tag.
+2.1: Requirements
+Question types: radio, checkbox, select, number, text, number and float.
+One or more rows.
+Zero or one column.
+2.2: Unsupported Elements
+The horizontal layout does not support the usage of groups as it is not intuitive to the participant how the groups interact with the rows.
+Does not support grouping="rows".
+The Multiple Column Layout style does not display on mobile devices.
+2.3: Customization
+Column Flow (multicol:flow)
+Determines the flow to display the rows.
+Options include vertical, horizontal and start.
+multicol:flow="vertical" - rows will be displayed from top to bottom.
+multicol:flow="horizontal" - rows will be displayed from left to right.
+multicol:flow="start" - rows labels specified in multicol:start will start new columns.
+Type="string"; Default: "vertical".
+Example -- multicol:flow="vertical"
+Number of Columns (multicol:count)
+The number of columns the rows will be split over.
+Type="int"; Default: 2.
+Example -- multicol:count="2"
+Note: This only applies with the use of multicol:flow="vertical" or multicol:flow="horizontal".
+Column Starts (multicol:start)
+A comma-separated list of row labels that will determine where each new column starts. The rows will be displayed from top to bottom.
+Type="string"; Default: Blank.
+Example -- multicol:start="r1,r5,r10"
+The above example will result in 3 columns and start the columns on r1,r5,r10.
+Note: This only applies with the use of multicol:flow="start".
+ss:legendColWidth
+The custom style attribute that allows specifying the width of each column.
+Example -- ss:legendColWidth="230px"

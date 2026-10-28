@@ -1,0 +1,36 @@
+Title: Decipher and GDPR
+1: About Decipher GDPR Compliance
+Decipher is GDPR (General Data Protection Regulation) compliant.
+The following sections detail how GDPR compliance affects data storage and use within Decipher. If you have additional questions about Decipher's GDPR compliance or require information regarding Forsta and GDPR, reach out to your Customer Success Representative or contact Decipher Support.
+Note: Due to the variance in how our customers conduct their research, Decipher encourages its customers, as data controllers, to seek their own legal advice regarding GDPR compliance.
+2: Data Modification
+Users with "Edit Data" permission may edit survey responses at any time using the View/Edit Responses Report. Data modification allows a user to ensure that their survey data meets any privacy requirements and other legal obligations.
+For example, if you wanted to change a participant's name to "Participant x", you would use the "Edit Data" tool in the Report:
+3: Data Deletion
+Decipher customers have complete control over what data gets deleted and when. A customer user with the appropriate permissions may view, modify, or delete any of the following:
+Responses for a participant for a given project
+Individual participants for a given project
+All participants for a given project
+These options allow users to ensure that their survey data meets any privacy requirements and other obligations.
+For example, if you wanted to delete response data for a particular participant that contains Personally Identifiable Information (PII), you would use the "Edit Data" tab in the View/Edit Responses Report:
+If you wanted to delete one or more participant records, you would use the "Advanced" tab in the View/Edit Responses Report:
+4: Data Backup & Retention
+Decipher’s data retention policy is optimized to store and retain data only as long as is reasonable.
+See Data Archival and Deletion for more information on how long project-related data is preserved within Decipher.
+5: Survey Fielding Controls
+5.1: IP Collection
+As IP addresses are considered by GDPR guidelines to be personally identifiable information, Decipher has updated its default data collection practice to exclude IP collection. Starting with survey compat 139, Decipher will no longer collect IP address information from participants.
+Should IP collection be required for a specific survey by a customer, this functionality can be turned on specifically by the customer within the survey's Field Settings menu, to capture the customer's consent to such collection.
+For questions on surveys older than compat 139, or to learn how to determine your survey’s compat level, please reach out to your Customer Success Representative or contact Decipher Support.
+Note: Use of the Digital Fingerprinting System requires the collection of participant IP addresses. If fingerprinting is necessary within a survey, you must enable IP collection to allow it.
+5.2: Flagging PII
+Decipher uses a PII flagging system to allow users to dictate what participant information is seen by others within their survey data.
+The PII flagging system consists of a PII level that is assigned to each user based on their Decipher access level (i.e., staff user, supervisor, etc.), and a PII level that is assigned to an individual survey variable. Assigning a PII level to a survey variable ensures that only users with a corresponding PII level see the data for that question. All other users will see a blank value instead.
+In this way, adding PII levels to survey variables helps user ensure that their survey data meets any privacy requirements and other obligations.
+6: Right to be Forgotten
+Under GDPR requirements, data subjects (such as participants) have the right to request that all data collected on them be either deleted or provided to them. Beyond the data editing functionality available via the View/Edit Responses Report, Decipher has created API tools to making searching for participants records / data across all projects easier.
+If you would like more information regarding these tools, please reach out to your Customer Success Representative or contact Decipher Support.
+7: FAQs
+See FAQ - GDPR.eu.
+Q: How can users find out more about Forsta’s GDPR compliance program? Do you have a compliance statement or policy?
+A: Yes. Forsta's GDPR Data Governance Policy is available upon written request with appropriate confidentiality obligations in place..

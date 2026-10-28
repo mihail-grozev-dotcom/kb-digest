@@ -1,0 +1,31 @@
+Title: 144.14 Release Notes
+Release Date: June 2, 2020
+Release Version: 144.14
+New Features
+Portal
+Removed Google Analytics by default; enabling Google Analytics now requires adding the config.py flag.
+Architecture/DevTools
+Added timeout limits for non-survey requests (e.g., API calls, reports, etc.).
+Bug Fixes
+Portal
+Fixed some vulnerability issues with the login and password reset pages.
+Removed some custom URL features (e.g., entering "/login/style" no longer allows users to load the specified style).
+Added XSRF protection to the login and password reset pages.
+Removed some obsolete code.
+Added stricter IRIS_SESSION validation.
+Survey
+Word Importer
+Fixed an issue preventing question elements from being imported to the Survey Editor on some servers.
+Start from Template
+Fixed an issue causing surveys to be created with incorrect URLs when starting from a template using a subdirectory.
+Dynamic Questions
+Fixed an issue preventing users from viewing the demo survey for the Button Select Dynamic Question (version 9).
+Survey Testing Tools
+Participant View
+Fixed an issue causing an English error code to appear to participants in Norwegian surveys containing text questions with character limits on response rows.
+Improved redirect functionality for participants attempting to access a secure survey via an "http://" request rather than an "https://" request.
+Fixed an issue enabling users to pass XSS injections through flash-enabled surveys.
+Reporting
+Fixed an issue preventing GMI’s usage statistics from updating correctly.
+Architecture/DevTools
+Fixed an issue that could affect participant usage reports when running automated cleanup scripts.

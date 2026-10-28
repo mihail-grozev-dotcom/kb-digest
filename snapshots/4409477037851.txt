@@ -1,0 +1,46 @@
+Title: Sharing Crosstabs
+You can use the Logic Library to share your Crosstabs reports with other users who may not have access to the Decipher portal. This can be done using either the Share a Crosstabs Export element in the Survey Editor or the crosstabs logic node in the survey XML, either of which will take a snapshot of the current crosstab or saved report and send it to one or more pre-specified recipients.
+1: Using the Survey Editor
+To share Crosstabs using the Survey Editor, click + Add Survey Element under the staging area:
+In the Element Library, click Advanced and select the Share a Crosstabs Export element from the list. Then click Add:
+Your new element will appear in the staging area, where you can specify who to send the report to and when:
+The following options are configurable:
+Recipient(s): Who will receive the report snapshot. Enter the email address for the intended recipient. If there will be multiple recipients, separate addresses by comma.
+Subject: The messaging to appear in the subject line of the report email sent to recipients.
+Report ID: The ID of the crosstab or saved report that will be shared. Report ID's can be viewed in the URL of each report.
+Export Format: The format in which the report(s) will be sent to recipients. Can be set to pdf (PDF), pptx (PowerPoint), or excel (MS Excel).
+When: When the snapshot will be sent. Must be entered in HH:MM (24-hour) format.
+Message: Optional message to the report recipient(s). Click into the text-box to include custom messaging in the report email.
+2: Using the XML
+The Crosstabs logic node is periodic, meaning that it can be scheduled to send out the report at pre-defined intervals. To learn more about periodic logic nodes, see Scheduling Logic Nodes.
+To share a crosstab or saved report, you will need to add a <logic> tag to your survey XML, specifying a label, uses="crosstabs.1", the intended recipient(s), and desired delivery time. For example, if you wanted to run and send a daily crosstab report about your Cupcake project to "someone@decipherinc.com", you might input the following script:
+<logic label="crosstabs" crosstabs:period="daily" crosstabs:recipients="someone@decipherinc.com"
+crosstabs:subject="Daily report"
+crosstabs:message="Here are the stats for project Cupcake!"
+crosstabs:saved="bqd317gwr5rxsyqq" crosstabs:time="09:00" uses="crosstabs.1" />
+2.1: Parameters
+The following parameters can be passed to the crosstabs logic node:
+Attribute
+Description
+crosstabs:recipients
+Comma-separated list of recipient email addresses.
+crosstabs:subject
+Subject of the email being sent.
+crosstabs:message
+Optional message in the body of the email being sent.
+crosstabs:saved
+ID of the crosstab or saved report you would like to share; this should be a hexadecimal string visible in the URL when running the report (for example, http://[server]/apps/report/[path/to/project]/report/[ID])
+crosstabs:period
+Specifies how often the report will be sent out. Can currently only be set to "daily".
+crosstabs:time
+Specifies the exact time that the report is sent.
+crosstabs:format
+Determines the export format of the report being sent. Can be set to pdf (PDF), excel (Excel 2007) or pptx (PowerPoint).
+Note: The crosstabs:saved attribute should be 12-16 characters long and is not the unsaved ID (when changing settings in a saved crosstab and clicking the save button, the URL may show a temporary ID instead of the saved ID) or TOTAL; temp ID's and TOTAL values are invalid inputs.
+Important: Crosstabs logic nodes are not supported in append.xml.
+2.2: Setup Considerations
+There are a few things to keep in mind when scheduling shared reports:
+The email generated for sharing Crosstabs is not white labeled and there are no customization options for the email template itself; only the email's subject line and body message can be customized.
+crosstabs:saved should reference a non "Private" crosstab/saved report ID to ensure that there are no errors accessing the report when the logic node is triggered (Crosstabs permission defaults to "Private").
+Deleting a Crosstab report that is referenced in a Crosstab logic node results in an error email. Setting the report access as "View Only" or "Protected" provides some protection (because only the owner is able to delete the report).
+Deleting a logic node does not remove it from being triggered and results in an error email. If needed, you can reload the survey after changing a parameter such as the trigger time, which resets the schedule process, and then close the survey.

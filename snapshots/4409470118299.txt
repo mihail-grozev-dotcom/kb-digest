@@ -1,0 +1,35 @@
+Title: Administrator Essentials
+Administrator Essentials
+Welcome to our Administrator Essentials training series! This page contains all of the information you need to successfully use the Decipher platform for company and user account management.
+To view the full Essentials onboarding training, see Decipher Essentials Training Series.
+Overview of the Portal
+Reference Materials
+Logging in to Your Account
+Introduction to the Portal
+Search Capabilities
+Project Management
+Create and Manage Companies
+Requires Decipher Cloud
+Reference Materials
+Create and Manage Companies
+Managing Your Company Page
+Reference Materials
+Managing Your Company Page
+Viewing the Permission Report
+Field Statistics Report
+Usage Statistics Report
+Project Warnings Report
+Create & Manage Users
+Reference Materials
+Create and Manage Users
+Create & Manage User Groups
+Reference Materials
+Create and Manage User Groups
+Managing Users & User Groups on Projects
+Reference Materials
+Create and Manage User Groups
+More Information
+Data Archival and Deletion
+Project Parameters
+Managing Data Encryption Requires Decipher Cloud
+Survey Compat Levels

@@ -1,0 +1,90 @@
+Title: Merging Project Data with hmerge and remerge
+Requires Decipher Cloud
+It is sometimes necessary to combine data from separate surveys into one database for efficient data storage or analysis. The hmerge command allows users to merge data from multiple projects directly from the shell environment. For live surveys, remerge can be used in conjunction with hmerge to safely merge data back into the survey after making edits.
+Note: The hmerge attribute is not usable in surveys with delphi="1". To merge data in surveys with delphi="1", use umerge. To copy data in surveys with delphi="1", use tabimport .
+1: Merging Survey Data
+You can use hmerge to convert and merge data from one project into another. When invoking hmerge, you must provide the path to both the source and target surveys in your command. For example, if you wanted to convert 9d3/proj03p to 9d3/proj03/temp, you would enter the following code:
+$ hmerge 9d3/proj03p 9d3/proj03p/temp
+Merging data between projects requires the following:
+All questions have labels. This is necessary so the converter can find them if they change position or if new questions are added, etc.
+Note: Questions can be added to or removed from the target survey during the merge. If questions are removed, their data is not converted.
+Questions with matching labels have the same type (i.e., you cannot convert a radio question to a checkbox question or change the grouping attribute on a grid question).
+The rows, columns, and choices within each question are uniquely identified. The converter uses the label as the first key and the actual element text as the second. Thus, two answer options cannot share the same label within a question. Otherwise, you can insert, remove, or reorder rows/columns/choice within questions as desired.
+Note:
+Any new (unused) extra variables will be initialized upon conversion.
+Source survey markers are converted and merged with the marker data for the target survey.
+Timestamps from the source survey will carry over to the target survey.
+When you run the hmerge program, the converter will display its pending tasks and ask you to type YES to continue:
+Converting data from 9d3/proj03p and appending to 9d3/proj03p/temp...
+Total of 22 question(s) will have data transferred:
+q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22
+Type YES to continue conversion:
+Once you enter "yes", the data is appended to the target survey:
+Type YES to continue conversion: yes
+Converting 70 records
+Done!
+Note: To avoid overwriting data, hmerge should only be used with a blank target survey (i.e., a survey that contains no participant data).
+1.1: Conditional Copying of Data
+The hmerge command supports a switch (-e) that will allow only records meeting a certain condition or Python expression to be copied over from source to target survey.
+For example, if you only wanted to copy participants with a source value starting with '3' from 9d3/proj104/eng to 9d3/proj104/ger, you would enter the following code:
+$ hmerge -e "source.startswith('3')" 9d3/proj104/eng 9d3/proj104/ger
+[... some output omitted ...]
+16 out of 94 records copied matching "source.startswith('3')
+The following variables are usable within this expression:
+Variable
+Effect
+extraVariables
+Copies only participants with the specified extra survey/URL variables like source, list, etc.
+qualified
+Copies only qualified participants (those with a status of qualified=1).
+markers
+Copies only participants with markers showing the specified value in their list. For example, you can enter -e " 'OQ' in markers" to copy all overquota participants.
+uuid
+Copies only participants with the specified uuid(s).
+timestamp
+Copies only participants with the specified timestamp (number of seconds since 1/1/1970 -- run date +%s to get the current time).
+1.2: Additional Options with hmerge
+There are a variety of other flags you can add to your command to change the behavior of hmerge. The following is a list of some of the most commonly used flags:
+Flag
+Effect
+-R
+By default, hmerge keeps the record variable the same during the merge, which can be useful for merging live changes, or tracker wave data. Use this flag if you prefer to renumber the records during the merge.
+--omit-field
+Skip merging the completions.dat file.
+--omit-database
+Skip merging the general database (data.db) file. The general databases stores things like sample source completions, random order, dupe data, etc.
+Note: Using this flag is strongly recommended for large live surveys to avoid interruptions for participants.
+-O
+Skips merging both the completions.dat and data.db files.
+Tip: We recommend using this flag if you are planning to merge data back into a live study.
+-n
+Copies only new records.'
+Note: Records with pre-existing uuids in the target survey are omitted.
+--clear-data
+Clears all data from the target survey prior to the merge.
+2: Merging Live Survey Data
+When merging data in a live survey, you will need run both hmerge and remerge. The remerge command will ensure there is no data loss by backing up the current survey data before copying the new survey.xml file and data into the live survey.
+If you would like to perform a data merge while your survey is still live, the sequence should be:
+Use copy-survey to make a copy of the data in a temp directory
+Make any necessary edits to the temp directory'
+Run simulated data in temp directory
+Run 'live' on temp survey
+Use hmerge to merge main survey data to the temp directory
+Use remerge to copy the temp back to the main directory
+To use remerge to copy data back from a merged survey, enter "remerge x yy" with x referencing the current survey, and yy referencing the parent survey. For example, if you wanted to merge 9d3/proj007/merged into 9d3/proj007, you would enter the following code:
+remerge 9d3/proj007/merged 9d3/proj007
+This will verify that you are copying from a subdirectory of 9d3/proj007, and that the survey.xml in there is newer than the one in 9d3/proj007. Once verified, the converter will run: copy-survey -d merge.today to copy the current data to merge up to today's date. It will then copy the survey.xml, results.bin, and results.strings files (along with any other files with newer versions) from the source survey into the target survey, storing them all in a new file called previous.datamap.txt.
+Note: When re-launching a survey from the shell environment, be sure add the --check-quotas flag to remerge and to force the system to review any reassigned quotas.
+2.1: Additional Options with remerge
+There are some additional flags you can add to your command to change the behavior of remerge. The following is a list of some of the most commonly used flags:
+Flag
+Effect
+--live
+When used, remerge will first lock the target survey for participants, then do a final hmerge from the live survey to the remerge source survey.
+Note: Respondents who finish the survey during the merge will get a "pause" screen that automatically submits their data after a few seconds. Once the merge is complete, the system proceeds as normal and unlocks the survey.
+--merge-first
+Performs an hmerge before the remerge. Should be used in conjunction with --live when merging data in a live survey.
+--check-quotas
+Forces the system to check the quotas for any reassignments.
+2.2: Live Merge Pitfalls
+Live surveys may include partial participants, and using hmerge will not change the format of partial data. If you remove elements from a live survey, your partial participant data may break and become unusable.

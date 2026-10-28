@@ -1,0 +1,25 @@
+Title: Project Types
+When creating a new project in Decipher, you can select a specific type of project to utilize different options and features. The project types available to you depend on the level of access your company has.
+Survey
+Surveys are available to anyone with Survey Editor access and include use of the following features:
+Survey (build & edit surveys)
+Crosstabs
+Data
+Campaigns (i.e. create, send and manage email campaigns)
+Description
+Files
+To create a survey project, select either "Start from Scratch" or "Start with a Template". See Creating a New Survey to learn more about creating projects in Decipher.
+Campaign
+Campaign projects are available to anyone with Campaign Manager access and include use of the following features:
+Campaigns (i.e. create, send and manage email campaigns)
+Description
+Files
+To create a campaign project, click "More Options" and select "Campaign". See Creating an Email Campaign to learn more about creating email campaigns in Decipher.
+Import
+Imported projects are generated using imported Microsoft Word or SPSS files and are available to anyone with access to both the Survey Editor and the appropriate survey importer tool. They include use of the following features:
+Crosstabs
+Data
+Description
+Files
+To create an imported project using a Word file, click “Start with Word”. See Creating a Survey from a Word Document to learn more about importing Word projects in Decipher.
+To create an imported project using an SPSS file, click "More Options" and select "Campaign". See SPSS Data Importer to learn more about creating SPSS projects in Decipher.

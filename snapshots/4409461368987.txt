@@ -1,0 +1,533 @@
+Title: Validate Tag: Custom Data Quality Checks
+In Decipher surveys, response validation occurs immediately after a participant has submitted their response to a particular question. The <validate> tag enables you to perform custom data checks and display error messages when response data does not meet the requirements of the question.
+For example, you may want to restrict the input value for a question to match a response the participant provided at an earlier question, provide a custom error message when the data entered does not meet your expectations, confirm that the answers provided are unique and that they make sense, etc.
+1: Validation Tags
+There are several different validation tags available that enable you to run Python code to verify the data submitted. All question validation can take place within a <validate> tag. This is the most popular choice for validating participant data.
+Validate Tag
+Description
+<validate>
+Runs once for the entire question.
+<validateCell>
+Runs once for each non-disabled cell.
+<validateRow>
+Runs once for each non-disabled row.
+<validateCol>
+Runs once for each non-disabled column.
+In the examples below, the error function is used to present error messages to the participant. If the error function is called, the participant will see the message provided and will not be able to progress to the next page until the error is resolved. The syntax for this function is below:
+# SYNTAX: error(MESSAGE, ROW, COLUMN)
+# EXAMPLES:
+error("General error with no highlighted elements.")
+error("Error on this row", Q1.r1)
+error("Error on this row", row=Q1.r1)
+error("Error on this row, '%s'" % Q1.r1.text, Q1.r1)
+error("Error on this col", col=Q1.c1)
+error("Error at this cell", Q1.r1, Q1.c1)
+Important: Be sure to visit the Best Practices & Considerations section below for some helpful tips on how to program good, translateable and reusable survey logic.
+1.1: <validate>
+The <validate> tag runs once after the question has been submitted. You can use Python code to iterate through all of the cells available within each row and column to verify that the data entered meets the requirements of the question.
+There are so many different ways that you may need to validate your data that it would be impossible to cover them all in this document, but consider the following examples as a guide to help you write your own validation logic.
+The following examples will start off simple and end up decently complex. Follow along to learn the syntax and methods for validating the different types of questions available.
+1.1.1: Example 1
+Below is a single select question with rows and columns.
+<radio label="Q1" optional="0">
+<title>Please choose one.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+</radio>
+Below is the code you would use if you wanted to make sure that a unique value was selected for each row:
+<radio label="Q1" optional="0">
+<title>Please choose one.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+<validate>
+if Q1.r1.val == Q1.r2.val:
+error("Please select a unique answer for each row.")
+</validate>
+</radio>
+If you run the code above, you will notice that none of the rows were highlighted when the error was shown. You can modify the code a bit to show an error at both rows if the unique values are not selected:
+<validate>
+if Q1.r1.val == Q1.r2.val:
+error("Please select a unique answer for each row.", row=Q1.r1)
+error("Please select a unique answer for each row.", row=Q1.r2)
+</validate>
+</radio>
+Below is an alternative way to achieve the same task.
+<validate>
+if Q1.r1.val == Q1.r2.val:
+for eachRow in Q1.rows:
+error("Please select a unique answer for each row.", eachRow)
+</validate>
+</radio>
+All three of the examples above work as expected, but only the last two highlight the rows upon receiving an error. This example is relatively simple, explained below are more complex examples using the same question.
+1.1.2: Example 2
+Given the same <radio> question, confirm that "c1" is not selected with "c3".
+<radio label="Q1" optional="0">
+<title>Please choose one.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+<validate>
+if Q1.c1.any and Q1.c3.any:
+error("You cannot select '%s' with '%s'." % (Q1.c1.text, Q1.c3.text), col=Q1.c1)
+error("You cannot select '%s' with '%s'." % (Q1.c1.text, Q1.c3.text), col=Q1.c3)
+</validate>
+</radio>
+In this example, there is a more custom error message displaying the column text with your error message. Both columns, "c1" and "c3" are highlighted upon receiving an error. Since the error message is the same, it will not display twice. The end result is illustrated below.
+1.1.3: Example 3
+Below is the code for validating a <checkbox> question.
+<checkbox label="Q1" atleast="1" optional="0">
+<title>Please select all that apply.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+</checkbox>
+Below is the code you would use if you wanted to confirm that "c1" and "c3" were not selected together for any row. Per the example, you would need to iterate through each row using a for loop to confirm that both "c1" and "c3" are not chosen together.
+<checkbox label="Q1" atleast="1" optional="0">
+<title>Please select all that apply.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+<validate>
+for eachRow in Q1.rows:
+if eachRow.c1 and eachRow.c3:
+error("You may not 'Col 1' and 'Col 3' together in this row.", eachRow)
+</validate>
+</checkbox>
+1.1.4: Example 4
+Using the same question, below is the code you would use if you wanted to validate that only one column was selected or that all columns were selected.
+<checkbox label="Q1" atleast="1" optional="0">
+<title>Please select all that apply.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+<validate>
+for eachRow in Q1.rows:
+if eachRow.count gt 1:
+if not (eachRow.c1 and eachRow.c2 and eachRow.c3):
+error("Please select just one or all items for this row.", eachRow)
+</validate>
+</checkbox>
+Since the question is not optional and atleast="1" is set, the participant will receive the default error message if they fail to provide a response for any row.
+1.1.5: Example 5
+Given the following <number> question:
+<number label="Q1" size="3" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">Row 1</row>
+</number>
+Below is the code if you want to validate to confirm that the number entered is an even number.
+<number label="Q1" size="3" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">Row 1</row>
+<validate>
+if Q1.r1.ival % 2 != 0:
+error("Please enter an even number.")
+</validate>
+</number>
+Using the .ival syntax for number questions is very important. If a value was not provided (e.g., left blank) then Q1.r1.ival would return 0 instead of None. Had you used Q1.r1.val instead, this code would have produced a fatal error. This is because you cannot perform integer operations on a None value.
+Tip: When dealing with <number> questions, use .ival instead of .val. Unless, of course, you are checking to see if the no answer was provided (e.g., Q1.r1.val == None).
+1.1.6: Example 6
+Given the following <number> question:
+<number label="Q1" size="3" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<row label="r3">Row 3</row>
+</number>
+Below is the code you would use to confirm that the sum equals the number provided at previous question "Q0".
+<number label="Q1" size="3" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<row label="r3">Row 3</row>
+<validate>
+Q1_values = [x.ival for x in Q1.rows]
+if sum(Q1_values) != Q0.ival:
+error("The total sum must equal %d exactly." % Q0.ival)
+</validate>
+</number>
+In this example, Python list comprehension is used to accumulate a list of values provided for "Q1". Using the sum() function, the total is compared with the value provided at "Q0" and an error is displayed if the total value was not equal to Q0's value.
+Here is a different approach to the same problem with a slightly different error message:
+<validate>
+sum_total = 0
+for eachRow in Q1.rows:
+sum_total += eachRow.ival
+if sum_total != Q0.ival:
+error("The total sum must equal %d exactly. (You entered %d)" % (Q0.ival, sum_total))
+</validate>
+</number>
+1.1.7: Example 7
+Given the following <number> and <text> questions:
+<number label="Q1" size="3" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+</number>
+<text label="Q2" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+</text>
+Below is the code you would use to validate that a value was provided for each question at every cell.
+<number label="Q1" size="3" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+<validate>
+for eachRow in Q1.rows:
+for eachCol in Q1.cols:
+if Q1[eachRow][eachCol].val == None:
+error("Please provide a number for this cell.", eachRow, eachCol)
+</validate>
+</number>
+<text label="Q2" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+<validate>
+for eachRow in this.rows:
+for eachCol in this.cols:
+if not this[eachRow][eachCol].val:
+error("Please provide some text for this cell.", eachRow, eachCol)
+</validate>
+</text>
+Both validations check for the same thing (e.g., an empty cell), but the approaches are slightly different.
+Notice the difference at "Q2". The keyword this refers to the question containing the <validate> block (e.g., this.r1.val is the same as Q2.r1.val).
+1.1.8: Example 8
+The method isdigit() checks whether the string consists of digits only.
+Given the following single select question:
+<radio label="Q1">
+<title>Please enter a whole number.</title>
+<row label="r1" open="1" openSize="25">Please Specify</row>
+</radio>
+You would use a <validate> tag to confirm that the number entered is an integer:
+<radio label="Q1">
+<title>Please enter a whole number.</title>
+<validate>
+if not(Q1.r1.open.isdigit()):
+error("Please enter a whole number.")
+</validate>
+<row label="r1" open="1" openSize="25">Please Specify</row>
+</radio>
+Using the .open syntax for <radio> and <checkbox> questions allows you to access the text of open-ended rows within those questions.
+Using the .isdigit syntax validates that the open-ended entry consists of whole numbers only.
+1.2: <validateCell>
+The <validateCell> will run once for every input available to the participant. Validation checks will not occur at disabled inputs when using <validateCell>.
+To access the value that was provided, use the data keyword. When using the error function, cells that have an error will automatically be highlighted.
+1.2.1: Example 1
+The code below is what you would use to verify that every value provided is greater than twenty.
+<number label="Q1" optional="0" size="2">
+<title>Please enter a value greater than 20 for each input.</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+<validateCell>
+if data lt 20:
+error("Value must be larger than 20.")
+</validateCell>
+</number>
+1.2.2: Example 2
+The code below is what you would use to verify that a valid color was provided for every input.
+<text label="Q1" optional="0" grouping="cols">
+<title>
+What are the first two colors you think of when you think about the items listed below.
+</title>
+<comment>Please only use the following colors: red, green, black, brown, blue, yellow, purple, orange, or white.</comment>
+<col label="c1">Tree</col>
+<col label="c2">Flower</col>
+<col label="c3">Dog</col>
+<row label="r1">Color 1</row>
+<row label="r2">Color 2</row>
+<validateCell>
+colors_available = ['red', 'green', 'black', 'brown', 'blue', 'yellow', 'purple', 'orange', 'white']
+if data.lower() not in colors_available:
+error("This color was not acceptable.")
+</validateCell>
+</text>
+1.2.3: Example 3
+The code below is what you would use to confirm that every checkbox was checked.
+<checkbox label="Q1">
+<title>
+Please check all boxes.
+</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<validateCell>
+if not data:
+error("Please read the instructions.")
+</validateCell>
+</checkbox>
+1.3: <validateRow>
+The <validateRow> element will run once for each row in the question. You can use the row keyword to access each row.
+1.3.1: Example 1
+The code below is what you would us to confirm that only two selections were made per row.
+<checkbox label="Q1" atleast="1">
+<title>
+Please select two for each item.
+</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+<validateRow>
+if len([x for x in row.data if x]) != 2:
+error("Please select 2 for '%s'" % row.text)
+</validateRow>
+</checkbox>
+1.3.2: Example 2
+In the example below, the rows are checked to confirm that a value not greater than one hundred is supplied. Notice that the validate works correctly even with a disabled row.
+<exec>Q1.r4.disabled = True</exec>
+<number label="Q1" optional="0" size="3" ss:postText="%">
+<title>
+What percentage of your time is spent in the following areas.
+</title>
+<row label="r1">Life</row>
+<row label="r2">Work</row>
+<row label="r3">Fun</row>
+<row label="r4">Doing the impossible</row>
+<validateRow>
+if row.data[0] gt 100:
+error("100% is all the time we have. Please adjust the time spent in '{}' ".format(row.text))
+</validateRow>
+</number>
+1.4: <validateCol>
+The <validateCol> element will run once for each column in the question. Use the <col.data> keyword to access each column.
+1.4.1: Example 1
+In the example below, confirm that the total sum equals 100% exactly.
+<number label="Q1" optional="0" size="3" ss:postText="%" grouping="cols">
+<title>
+What percentage of your time is spent in the following areas.
+</title>
+<row label="r1">Life</row>
+<row label="r2">Work</row>
+<row label="r3">Fun</row>
+<row label="r4">Doing the impossible</row>
+<validateCol>
+if sum(col.data) != 100:
+error("Please enter 100% exactly.")
+</validateCol>
+</number>
+2: Error Messages
+When displaying an error message, make sure that the error message you are showing displays properly for the translated version of your survey. For example:
+<validate>
+error("Please provide an answer")
+</validate>
+This error message will always be displayed in English because the string used will not be accounted for in the translation system. To resolve this issue, you can use a <res> tag:
+<res label="no_answer">Please provide an answer</res>
+...
+...
+<validate>
+error(res.no_answer)
+</validate>
+Resource tags are picked up by the translation system and will be visible to the translation team. Another solution is to use the dictionary which already has numerous translations available.
+<validate>
+error(this.lget("textNoAnswerSelected"))
+</validate>
+This uses Decipher's language system to pull out the same text, already on file, and present it nicely for all countries for which you have a translation.
+Learn more: System Language Resources
+When referencing a message that contains variables (e.g., "Sorry, but the value must be at least $(min)."), you must pass in the value to reference. For example:
+<number label="Q1" optional="0" size="3" verify="range(1, 120)">
+<title>How old are you?</title>
+</number>
+<suspend/>
+<number label="Q2" optional="0" size="3" verify="range(1, 120)">
+<title>How many of those years would you guess that you were sleeping?</title>
+<validate>
+if Q2.ival gt Q1.ival:
+error(this.lget("valueAtMost", max=Q1.ival))
+</validate>
+</number>
+<checkbox label="Q3" optional="0">
+<title>Please choose 2 items that you value the most.</title>
+<row label="r1">Happiness</row>
+<row label="r2">Health</row>
+<row label="r3">Wealth</row>
+<row label="r4">Money</row>
+<row label="r5">Love</row>
+<row label="r6">Freedom</row>
+<row label="r7">Sleeping</row>
+<validate>
+if this.count != 2:
+error(this.lget("check-error-exactly-plur-column", count=2, actual=this.count))
+</validate>
+</checkbox>
+Tip: See Available Survey Languages to view all of the available survey languages.
+3: Best Practices & Considerations
+There are some serious considerations that you should make before writing out your <validate> functions.
+3.1: Disabled Cells
+Question to ask yourself: "Are all of the cells that I am checking visible to the participant?"
+If you have a question where some rows or columns were disabled previously in some <exec> block or due to a rowCond, iterating through every row will not account for these disabled rows unless you explicitly check if the element is disabled. For example, consider the following XML example code:
+<exec>Q1.r2.disabled = True</exec>
+<text label="Q1" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<validate>
+for eachRow in Q1.rows:
+if not eachRow.val:
+error("Please answer all elements.")
+</validate>
+</text>
+Because "Q1.r2" is disabled in the <exec> block, the <validate> always produces an error because the participant is not able to provide an isdigit for "Q1.r2". One solution is to use a <validateRow> tag mentioned above, but the easier solution would be to check if the row is disabled:
+<exec>Q1.r2.disabled = True</exec>
+<text label="Q1" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<validate>
+for eachRow in Q1.rows:
+if not eachRow.disabled:
+if not eachRow.val:
+error("Please answer all elements.")
+</validate>
+</text>
+This solution properly checks to verify that the row was shown to the participant before checking to see if a value was supplied.
+Tip: If you are unsure about your <validate> logic, have someone on your team review your code.
+3.2: Empty Values
+Question to ask yourself: "Will my code break if the participant does not provide a value for one of the cells?"
+The value for an empty question or cell returns None. You must always account for this when creating <validate> logic as forgetting to do so may result in a fatal error. Consider the following example that ensures all values entered are greater than ten:
+<number label="Q1" size="3" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<validate>
+for eachRow in Q1.rows:
+if eachRow.val gt 10:
+error("Your value cannot exceed 10.", eachRow)
+</validate>
+</number>
+If a participant leaves any row, "r1" - "r3", blank, then this code will produce an error that is visible to the participant. In this situation, use .ival instead of .val (e.g., eachRow.ival gt 10:). Another solution would be to verify an answer was provided before comparing the value against an integer.
+<number label="Q1" size="3" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<validate>
+for eachRow in Q1.rows:
+if eachRow.val:
+if eachRow.val gt 10:
+error("Your value cannot exceed 10.", eachRow)
+else:
+error("Please enter a value for %s" % eachRow.text, eachRow)
+</validate>
+</number>
+3.3: Multi-Language Studies
+Question to ask yourself: "Will everything that I am showing to the participant properly display in a different language after translation? Am I using any strings in my logic that may not make sense in a multi-language study?"
+Each and every example above does not utilize best practices. Notice that in every <validate> example above, an error message is displayed like this:
+...
+<validate>
+if not blah_blah:
+error("Please provide a value for each input.")
+</validate>
+</radio>
+This is bad practice. For every message in your entire survey displayed to the participant, you should make sure that it can be caught and accounted for by the language system. To accommodate the language system, you should use <res> tags. Here is that same example utilizing best practices:
+...
+<validate>
+if not blah_blah:
+error(res.no_value_provided)
+</validate>
+</radio>
+<res label="no_value_provided">Please provide a value for each input.>/res>
+All <res> tags are translateable and very friendly to use. You can reuse them all over your survey and even pipe text into them. Consider the following example:
+<res label="value_cannot_exceed">Your value cannot exceed %d.</res>
+<res label="value_missing_for">Please enter a value for %s.</res>
+<number label="Q1" size="3" optional="0">
+<title>Please be as specific as possible.</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<validate>
+for eachRow in Q1.rows:
+if eachRow.val:
+if eachRow.val gt 10:
+error(res.value_cannot_exceed % 10, eachRow)
+else:
+error(res.value_missing_for % eachRow.text, eachRow)
+</validate>
+</number>
+The use of <res> is very important for multi-language studies. Forgetting them can result in having to recontact the translation team to translate missing text in your survey.
+Tip: Use <res> tags for all strings used in Python code.
+3.4: Don't Repeat Yourself
+Question to ask yourself: "Will writing a function be more efficient and / or save time?"
+If you need to add validation logic that is repeated in numerous areas of your project, it may be best to create a function that can be reused at each question rather than rewriting the logic out. Consider the following example:
+<res label="value_cannot_exceed">The value cannot be greater than %d.</res>
+<number label="Q1" optional="0" size="3" verify="range(1, 365)">
+<title>How many days this year have you had fun?</title>
+</number>
+<suspend/>
+<number label="Q2" optional="0" size="3" cond="Q1.ival gt 0">
+<title>How many days have you been fishing?</title>
+<validate>
+if this.ival gt Q1.ival:
+error(res.value_cannot_exceed % Q1.ival)
+</validate>
+</number>
+<number label="Q3" optional="0" size="3" cond="Q1.ival gt 0">
+<title>How many days have you been to the arcade?</title>
+<validate>
+if this.ival gt Q1.ival:
+error(res.value_cannot_exceed % Q1.ival)
+</validate>
+</number>
+Writing a function to reuse across the survey saves time, allows you to modify the logic in one place (as opposed to for each question), and is a lot easier to read. For example:
+<res label="value_cannot_exceed">The value cannot be greater than %d.</res>
+<exec when="init">
+def no_greater_than(main_question, source_question):
+if main_question.ival gt source_question.ival:
+error(res.value_cannot_exceed % source_question.ival)
+</exec>
+<number label="Q1" optional="0" size="3" verify="range(1, 365)">
+<title>How many days this year have you had fun?</title>
+</number>
+<suspend/>
+<number label="Q2" optional="0" size="3" cond="Q1.ival gt 0">
+<title>How many days have you been fishing?</title>
+<validate>
+no_greater_than(this, Q1)
+</validate>
+</number>
+<number label="Q3" optional="0" size="3" cond="Q1.ival gt 0">
+<title>How many days have you been to the arcade?</title>
+<validate>
+no_greater_than(this, Q1)
+</validate>
+</number>
+3.5: Opt-Out Options (e.g., <noanswer>)
+If a <noanswer> option is available and selected, the <validate> tag will not be executed and the participant will be allowed to continue.
+4: Learn More
+Streamline Conditions with Vector Logic explains the vector logic used in some of the above examples
+System Language Resources documents some of the built-in error messages available

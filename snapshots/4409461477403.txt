@@ -1,0 +1,8 @@
+Title: Duplicating Survey Elements
+While building a survey in the Survey Editor, you can duplicate questions or elements to streamline the creation of similar types of questions.
+1: Creating a Copy
+To duplicate an element in the Survey Editor, select the element, then click the "..." button at the top right of the element in the staging area and select "Duplicate".
+Alternatively, you can duplicate an element directly from the question tree. To duplicate an element in the question tree, locate the element and right-click the label or question text. Then select "Duplicate Element" from the drop-down.
+2: Viewing the Copy
+Duplicated elements will appear directly below their original elements in the question tree. They will automatically be assigned the next available question label and there will be no page break between the copied elements and their originals.
+To move a duplicated element, drag and drop the element to the desired location within the question tree.

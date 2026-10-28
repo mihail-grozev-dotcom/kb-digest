@@ -1,0 +1,137 @@
+Title: Customizing Dashboard Data
+You can customize the data displayed on your dashboard. You can:
+customize formulas
+apply table weighting
+1: Customizing Data Calculations
+You can apply customized formulas to aggregated data sets. The following table lists the variables that you can use as building blocks for your customized formula.
+Variable
+Description
+sum
+Sum of response values for row
+absSum
+Sum of absolute value of response values for row
+max
+Largest of response values for row
+pct
+100 * count / base
+mean
+Mean of response values for row
+median
+Median of response values for row
+stddev
+Standard deviation of response values for row
+stderr
+Standard error of response values for row
+count
+Number of response values for row
+uwcount
+Unweighted number of response values for row
+base
+Base counts for the segment
+visibleBase
+Base counts for segment, only including visible rows
+(Rows can be hidden via showif)
+effbase
+Effective base. This is used for stat testing calculations
+and will be slightly different from normal base if weighting was used
+sumOfSums
+Sum of participant values for segment. Must use base stats=sum
+absSumOfSums
+Same as sumOfSums, but summed using absolute values
+sumOfVisibleSums
+Sum of participant values for segment, only including visible rows.
+Must use base stats=sum
+absSumOfVisibleSums
+Same as sumOfVisibleSums, but summed using absolute values
+In both examples below, formula <formula> is the actual formula to use for the customized data calculation.
+Example: Shows the Formula in the Table
+In the following example, the stats formula shows a formula in the table as shown in the graphic.
+table "(mean * count) / median "
+stats formula,mean,median,sum,count,stddev,stderr,pct
+formula (mean * count) / median
+row q2.r1.val Brand A
+row q2.r2.val Brand B
+row q2.r3.val Brand C
+width 6
+Example: Shows the Formula for the Chart Value
+In this example, chart.stat formula uses the formula for the chart value as shown in the graphic.
+chart "Mean Doubled"
+chart.stat formula
+formula mean * 2
+width 6
+1.1: Adding a Prefix or Suffix to Datapoints
+You can now add a prefix and a postfix to data points on tables and charts that use stat="formula" with the following attributes:
+dataprefix - prepends the specified string to datapoints in charts and tables
+dataposfix - appends the specified string to datapoints in charts and tables
+Example
+table "Specify pre/postfix values"
+formula sum
+stats formula
+datapostfix '%'
+row "q1.r1.val"
+row datapostfix="*" "q1.r2.val" # overrides the original postfix
+row datapostfix="" "q1.r3.val" # overrides the original postfix
+row dataprefix="$" "q1.r4.val" # adds a prefix
+1.2: Formatting a Formula in Currency
+You can specify currency as the data format for tables that use stat=formula with the following attributes as shown in the example below:
+dataformat currency
+dataprefix $
+When using the currency data format, numeric values are output with two decimal places (0.00). Additionally, you can replace the dollar sign prefix ($) with any money character needed.
+Example
+The following example outputs the sum of all q3.r1 entries as: $X,XXX.XX.
+table width=6 "Format Currency"
+formula sum
+stats formula
+dataformat currency
+dataprefix $
+row "q3.r1.val"
+2: Add Per-Table Weighting
+Requires Decipher Cloud
+A dashboard hook is available that enables you to control weight applied to a table based on a combination of table, selected filters and/or banners.
+To create custom weights, add a file named dashboard_custom.py to your project directory containing a Python method named custom_weight. For example:
+def custom_weight(banner, filters, table):
+# custom weight logic goes here
+To add weights, reference the banner, filters and table variables to customize the weights that are applied. For example, given the following dashboard:
+filter id=myFilter1 1 Weight #1
+filter id=myFilter2 1 Weight #2
+banner id=myBanner1 Weight #3
+segment 1 Brand 1
+segment 1 Brand 2
+table id=myTable1 Table #1
+rows q1.r1-r3
+table id=myTable2 Table #2
+rows q1.r1-r3
+Using the id names of each component, add custom weights as illustrated below:
+def custom_weight(banner, filters, table):
+# if current banner is "myBanner1", set weight to 4
+# this has first priority
+if banner == "myBanner1":
+return "4"
+# if filters are enabled, set a different weight depending on which is selected
+if "myFilter1" in filters:
+# set weight to 2 for "myFilter1"
+return "2"
+if "myFilter2" in filters:
+# set weight to 2.5 for "myFilter2"
+return "2.5"
+# for one specific table, set weight to "1.25"
+if table == "myTable2":
+return "1.25"
+# if none of the conditions above are met, set weight to default "1"
+return "1"
+With the code above applied to dashboard_custom.py, custom weights will be used when viewing the dashboard.
+For example, "myTable2" will have a weight of 1.25 if no filters or banners are set. "myTable1" will have the default weight of 1. If "myBanner1" is selected, then all weights will be set to 4.
+Using the Python code, prioritize these settings and combine those options in any manner you want. For example, the following code will set table-specific weights only when "myBanner1" is selected.
+def custom_weight(banner, filters, table):
+# if current banner is "myBanner1", set weight to 4
+# this has first priority
+if banner == "myBanner1":
+if table == "myTable1":
+return "2"
+if table == "myTable2":
+return "2.5"
+return "1"
+3: What's Next for Creating a Dashboard
+The following topics describe the features that you can apply to your dashboard:
+Creating a Dashboard
+Enhancing a Dashboard with Add-ons and Extensions

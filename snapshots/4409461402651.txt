@@ -1,0 +1,60 @@
+Title: Video Player Element
+The Video Player element allows researchers to expose their survey participants to a short video clip for product review and enhanced engagement.
+Usage fees apply for video files. Please contact your Account Manager for pricing specifics.
+1: How it Works
+The Video Player element uses a text question base with the following rows, which appear in the survey report and any exported data:
+play_count:The number of times the participant has watched the video in full. If a participant does not play the video, a value of 0 will show in the data for them.
+time_elapsed:The most amount of time (in seconds) spent watching the video across each time it was viewed. If a participant does not play the video, a value of 0 will show in the data for them.
+watermark_id: If applicable, the value of the watermark that was shown for the participant. This field is only visible in the reports / data if a watermark value is specified during player setup. See section 2.2 below for more details on adding watermarks and other style settings.
+The following is an example of the Video Player element as it would appear within a survey:
+Note: The Video Player uses HTML 5, and is available in survey compats 137+.
+2: Adding a Video Player Element
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to view and modify your project settings.
+You can add a Video Player to any survey using the Survey Editor. To add a Video Player, click + Element, select the Stimulus tab and choose Video Player. Then click Add.
+Tip: Only include one Video Player element per page, as differing stylevars can lead to potential complications.
+Once you've inserted the Video Player, you can change the question label and style settings, upload a video file, and adjust the default question text in the areas provided.
+Note: Your question label should not contain the word "ad", as this will result in your video being blocked by any adblock software.
+2.1: Uploading a Video File
+Videos must be uploaded using the system file manager. See Uploading System Files to learn how to access the file manager and upload your video.
+Usage fees apply for video files. Please contact your Account Manager for pricing specifics.
+Video files must be uploaded in one of the following formats:
+.mp4 (mobile compatible)
+.mov (mobile compatible)
+Note: Be sure to note the video ID, as this field is required to link your video to a Video Player element.
+2.2: Configuring the Style Settings
+Once you've uploaded your video file, you will need to link it to a Video Player element using the style settings menu within the element. To link your video file and configure the display settings for your video player, click the "..." button at the top right of the Video Player element and select Update Styling.
+The Question Display Options window will appear, where you can adjust each of the following settings for your video player:
+Note: Additional information about each feature will display on the right when you mouse-over the each field.
+Video ID: Enter the unique video ID provided in the file manager. For instructions on how to upload videos, see Uploading System Files.
+Video Width: Enter the width of the video in pixels (for example, 640).
+Video Height: Enter the height of the video in pixels (for example, 360).
+Allow Pause: When checked, the video can be paused by the participant. When unchecked, pausing is not available.
+Allow Replay: When checked, the video can be replayed by the participant. When unchecked, replaying is not available.
+Allow Auto-Start (Desktop): When checked, the video auto-starts on desktop computers. When unchecked, video is manually started on desktop (that is, participant must click play). Due to mobile browser limitations, auto-start is only available for desktop browsers.
+Auto Advance: When checked, the participant is automatically advanced to the next page when the video is finished playing. When unchecked, the participant will be required to click continue/finish to advance to the next page.
+Allow Fullscreen: When checked, the video can be viewed in fullscreen. However, , the watermark feature is not available with fullscreen videos. When unchecked, the video is not available in fullscreen.
+Hide Volume Controls: When checked, the volume controls are not shown to participants. When unchecked, the volume controls are shown to participants.
+Hide Poster on Pause/Finish: When checked, the poster image is not shown to participants. When unchecked, the poster image is shown to participants.
+Must Watch Video: When checked, the video must finish playing before the participant can continue in the survey.
+Enable continue button after...: The value entered here will disable the Continue button for xx seconds or until xx% of the video is played. Requires Must Watch Video to be checked. For example, if "15" is entered, the Continue button will be disabled for 15 seconds. If "15%" is entered, the Continue button will be disabled until 15% of the video has been played.
+Watermark: The value entered here is used for watermarking videos across participants. For example, if you enter "ACME" here, this text will show as the watermark for every participant. It is also possible to use javascript to apply a unique watermark per participant. For example,"${uuid}" will use each participant's unique ID as their watermark. Likewise, "${gv.request.getRemote()}" will use each participant's IP address as their watermark. If this field is left blank, no watermark will be applied.
+Note: Watermarks cannot accept the following character: ’
+Watermark Position: Determines the position of the watermark. This is the starting position if the watermark is animated.
+Caption file(s): When these settings are properly configured,participants watching the video can choose to display the captions from any of the configured files. The following default styles can be configured: text color, opacity, and edge style; background color and opacity; and font family and size.
+Note: Some (not all) devices & browsers allow the participant to change the caption style during video playback.
+Click Save and Preview to preview your settings at any time. Once you are satisfied with your changes, click Save and Close.
+3: Limitations
+The video player has some limitations:
+For best compatibility on desktop/tablet/mobile devices, use only the HTTP protocol when sending survey links out.
+Using HTTPS with the video player transfers video securely when the survey/page is loaded via HTTPS on mobile (Android / iOS devices).
+Note: When using HTTPS, the JS console will sometimes contain mixed content warnings, but the video is transferred securely. The warnings are related to Brightcove's API, and not critical.
+The size of the video file shown in the video player must be less than 2GB.
+When viewed in fullscreen:
+Watermark is not supported for iOS
+Different player is used for iPhone (iOS)
+Fullscreen enables pause and replay by default, overriding any settings for iPhone (iOS)
+When viewed on mobile:
+iPhone (iOS) will play in fullscreen by default and enable the seekbar
+Autostart is only available for desktop browsers.
+Caption styles, unable to fix bugs, add new features, or support it directly in any capacity.
+Caption files (the .vtt or equivalent files that contain the caption text and the timestamps). Support is not available for the file itself; we allow Forsta Surveys users to upload such files to their project. Those users are fully responsible for the quality of the files' contents.

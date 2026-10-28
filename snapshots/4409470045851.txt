@@ -1,0 +1,55 @@
+Title: Logging in to Your Account
+This document outlines how to access your Decipher account and Portal page by logging in using a standard or single sign-on login.
+The Portal is the core of Decipher, where you can create, manage, review, and collaborate on projects. To view your personal Portal, you must first log in to your Decipher account.
+1: Logging In
+To log in to Decipher , navigate to the Forsta website at https://www.forsta.com and click Login at the top right of the page. Select Access FocusVision solutions including Decipher. Then select Decipher from the list of products.
+Alternatively, navigate to https://home.focusvision.com/ and click Sign In at the top right of that page to use Forsta Single Sign-On (Forsta SSO).
+2: Account Types
+There are three login options to choose from. Select the option you would like to use based on your account type:
+Standard Login: If you are signing in using your regular Decipher account or Forsta SSO account, enter your email address and password, then click Sign In. To add two-factor authentication to your Standard Login, see Managing Two Factor Authentication.
+Google Login: If you have a Google email address tied to your Decipher account, click the Google icon. If you are already signed in to your Google account, you will automatically be redirected to the Decipher Portal.
+Microsoft Login: If you have a Microsoft email address tied to your Decipher account, click the Microsoft icon. If you are already signed in to your Microsoft account, you will automatically be redirected to the Decipher Portal.
+Tip: If you are not currently signed into your Google or Microsoft account, you will be asked for your login credentials before redirecting.
+Regardless of which login method you choose, you must also consent to the Forsta cookie policy in order to access your account. To consent to the cookie policy, click the Accept button at the bottom of the page.
+Once you are logged in, you can begin creating and managing projects using the options available to you within the Decipher Portal. To learn more about Portal project tools and features, see Introduction to the Portal.
+3: Single Sign-On
+Single sign-on for all Forsta products formerly under the FocusVision brand allows your users to have only one username and password to access all the products (Decipher, Digital Interviews, Digital Diaries, VideoInsights, and/or Panel Management) that your company uses.
+Note: To enable single sign-on for all Forsta products formerly under the FocusVision brand on your server, contact your Account Manager.
+Note: This is not the same as Single Sign-On with SAML, which uses your Identity Provider to allow your users to login.
+3.1: Logging In with Forsta Single Sign-On for the First Time
+When you login to Decipher using Forsta single sign-on (Forsta SSO) for the first time, you will be asked to set your new Forsta SSO password.
+If you already had a Decipher account prior to your company setting Forsta SSO up, follow the Existing Decipher User instructions below.
+If you are a new Decipher user, follow the New Decipher User instructions below.
+3.1.1: Existing Decipher User
+If your company has enabled single sign-on, when you enter your email address on the Decipher login page, the password field will be replaced with the phrase "Single sign-on enabled".
+>Click Continue to be redirected to the single sign-on page and enter your password.
+If this is your first time using single sign-on, you will be asked to confirm your account after entering your current Decipher password. You will receive an email from no-reply@home.focusvision.com. Follow the instructions in the email to confirm your account and reset your password.
+After resetting your password, you will be automatically logged in.
+After logging in with the single sign-on page, select Surveys from the list of products.
+If you have access to multiple servers, select the server (url) you need access to. You will be directed to that server.
+3.1.2: New Decipher User
+When you are set up as a new user in Decipher and your company has enabled Forsta SSO, you will receive an email from no-reply@home.focusvision.com inviting you to set your password.
+Follow the instructions in the email to confirm your account and set your password.
+After setting your password, you will be automatically logged in.
+After logging in with the single sign-on page, select Surveys from the list of products.
+If you have access to multiple servers, select the server (url) you want access to. You will be directed to that server.
+4: Two Factor Authentication (2FA)
+If two factor authentication (2FA) has been enabled on your user account, additional steps are required to complete the log in process.
+4.1: Logging In with Forsta 2FA for the First Time
+If you have never logged in with 2FA, or you are logging in after resetting your 2FA authentication device, follow these steps.
+4.1.1: 2FA with App (TOTP)
+If your user or company is using 2FA with App (TOTP), you will need to set up a mobile authentication application in order to log in.
+Log in to Decipher using your standard login credentials. After you submit your username and password, the Configure 2FA Device page displays.
+Download your preferred mobile authentication application to your phone (or open your existing authentication app). Your IT department may recommend a specific mobile authentication application.
+Use the mobile authenticator application to scan the QR code on the screen. If you cannot scan the QR code, type the secret key below the QR code into the application.
+Input the 2FA code (also known as a one-time password or OTP) from the mobile authenticator application into the 2FA Code text field on the Decipher Configure 2FA Device page.
+Click Continue to finish signing in.
+4.1.2: 2FA with Email
+Log in to Decipher using your standard login credentials. After you submit your username and password, the Two-Factor Authentication (2FA) page displays, prompting you to check your e-mail.
+Check your email for the code, which will display in both the email's subject line and body. Enter your 2FA code in the appropriate text field.
+Select Continue to finish signing in to Decipher.
+4.2: Logging In with Forsta 2FA
+Log in to Decipher using your standard login credentials. After you submit your username and password, the Two-Factor Authentication (2FA) page displays.
+Use your mobile authenticator application or check your e-mail (indicated on the screen) to enter your 2FA code in the appropriate text field.
+Select Continue to finish signing in to Decipher.
+Note: To reset which mobile authenticator app you use with Decipher 2FA, see Managing Two Factor Authentication.

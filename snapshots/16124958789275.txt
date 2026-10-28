@@ -1,0 +1,11 @@
+Title: 153.9 Release Notes
+Release Date: June 6, 2023
+Release Version: 153.9
+New Features
+Portal
+(General Availability) Added a warning that occurs during re-launch of a survey when there is a quota mismatch between the temporary version and the live version.
+Learn More: Editing a Live or Closed Survey
+Bug Fixes
+Reporting
+Data Collection
+Diary surveys now save data more reliably when data are out of sequence (when resubmitting an old survey page).

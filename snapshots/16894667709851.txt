@@ -1,0 +1,29 @@
+Title: 153.11 Release Notes
+Release Date: July 5, 2023
+Release Version: 153.11
+New Features
+Reporting
+Data Downloads
+Data Downloads now uses a full page to display the contents of the various data download options.
+Learn More: Data Downloads and Formatting Options
+Capitalization in Data Downloads and its modals are now consistent with the rest of Decipher.
+Crosstabs
+Crosstabs table content can now be modified via custom Python code. This functions similarly to the legacy "Aggregate" system in Report 2010.
+Learn More: Data Aggregation
+Crosstabs Reports are now pinnable with favorites.
+Learn More: Crosstabs Entry Page
+Programming and Tools
+The bulk clean script now supports up to 1,000,000 e-mails per batch.
+API
+The Archived Surveys API endpoint response now includes delete_at and clear_data_at timestamp attributes.
+API calls can now be scheduled as asynchronous tasks, allowing users to successfully make calls for larger data which would otherwise time out after 30 minutes.
+Bug Fixes
+Portal
+Projects on the Portal list page, when hidden or unhidden in bulk, will now be automatically deselected once the bulk action is completed. Additionally, selecting all visible projects one-by-one will now automatically check the Select All checkbox.
+Survey
+Participant View
+HTML added to responses in the Ranksort element now renders correctly without showing raw code.
+Button Single Select and Button Multi-Select elements (atm1d.11) once again support XML style elements.
+Responses
+Campaign Manager
+Updated Glock bulk APIs to pass data at query parameters rather than in the body per Glock Apps API specifications.

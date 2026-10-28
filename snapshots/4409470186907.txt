@@ -1,0 +1,51 @@
+Title: About the Survey Testing Toolbar
+The Survey Testing toolbar allows you to review your survey and carefully check each question for errors before it goes live. It is designed to show you every detail of the survey, including its field settings and extra variables that are hidden to participants.
+You can check the logic, skip paths, question settings, and text. The survey testing toolbar allows you to make direct text changes as well as add tasks for programmers to review and update.
+Tip: When any of the features in the toolbar are open, you can resize the sections by clicking the top of the toolbar and sliding it up or down.
+1: Survey Mode
+Indicates the mode the survey is in (i.e., testing, live, or closed).
+2: Tasks
+Allows you to enter feedback or changes for a question.
+Learn more: Using Tasks to Provide Feedback
+3: Edit
+Allows you to edit and format the survey text.
+Learn more: Editing Text in the Test Environment
+4: Recorder
+Tracks the last survey path taken during testing (i.e., the questions that were viewed and how they were answered).
+Learn more: Survey Recorder
+5: QA Codes
+Allows you to turn ON / OFF the QA codes. The default setting is OFF. The codes include question labels, settings, logic conditions, and the "answer for me" button.
+Learn more: About QA Codes
+6: One Page
+Allows you to turn ON / OFF the One Page setting. The default setting is OFF. When ON, the entire survey will appear in the window. Page breaks are indicated by dotted lines.
+Note: When testing in one page mode, logic nodes cannot be executed. To test logic nodes, set One Page to OFF.
+7: Spell Check
+When "ON", all translatable text on the page is checked for spelling errors (US English only). Misspelled words are highlighted in yellow.
+The spell checker references a dictionary of 99.1K words, and a word is flagged as misspelled if:
+It is not found in the dictionary exactly as written in the survey.
+The first letter of the word is the only capitalized letter and the lower-case version of the word is not found in the dictionary (e.g., "Paint" vs. "paiNt").
+Click here to submit additional words to the dictionary (you must be logged in).
+Note: Contact support if you would like to add a word to the dictionary.
+7.1: Known Issues & Limitations
+Spell check does not work in the following areas:
+Survey navigation buttons (e.g., "Continue" / "Finish").
+Even if a <res> is used to override the buttons' text, it cannot be flagged for spelling errors.
+Tooltips (e.g., Tipped).
+Tooltips are generated on-the-fly and cannot be flagged for spelling errors. This includes the tooltips used in the Star Rating Dynamic question style.
+The following Dynamic question styles (DQs) are known to be incompatible with the spell checker and should be manually checked for spelling errors.
+Text Highlighter
+Star Rating
+Page Turner
+Shopping Cart
+8: Actions
+When clicked, a pop-up menu appears that contains useful links. From here, you can restart the survey, access the Knowledge Base, jump to the Portal, or log out.
+User: Identifies your login ID. If you wish to test the survey using a different login, select "switch users" in the drop-down and login with a different ID, via the portal.
+Language: Specifies which language you are viewing and allows you to switch to and view another language if the survey has more than one. See Language Options for additional information.
+Subscribe to This Project: Receive notifications about changes to the survey.
+View Change History: Allows you to view changes made to the survey, including who made each change and the time / date it was done.
+View Survey Version History: Allows you to view previous versions in the history of the survey. See About the Survey Version History Report for an overview of the report.
+Restart survey: This will restart the survey, allowing you to select the survey testing environment and test a new survey path.
+Knowledge Base: Allows you to access this Knowledge Base for information and troubleshooting.
+Log Out: Allows you to log out.
+9: Quick Links
+Allows you to easily navigate through the different phases of your project, from building and testing to reviewing the report and downloading your data.

@@ -1,0 +1,26 @@
+Title: 144.9 Release Notes
+Release Date: March 24, 2020
+Release Version: 144.9
+Features
+Survey
+Added buttons to access the Project Settings menu within both the Survey Editor and XML Editor.
+Removed the Project Settings link from the navigation menu.
+Participant Sources
+Sample Marketplace
+Added the ability for vendors to utilize Secure Exit Links using the Forsta Sample Partner Hub.
+Bug Fixes
+Responses
+Participant Sources
+Fixed an issue causing an incorrect CPI to be displayed in the View Summary menu for some sample bids purchased in the Sample Marketplace.
+Sample Marketplace
+Fixed an issue preventing bids purchased before the 144.8 release from having their state changed after the release.
+Alert Center
+Fixed an issue preventing users from viewing alerts if their email addresses contained both upper- and lowercase letters.
+Reporting
+Data Downloads
+Fixed an issue causing data values to shift in fixed-width stacked datamaps for surveys which included a multi-variable element contained within a loop.
+Programming & Tools
+API
+Fixed an issue causing report segments to erroneously appear in alphabetical order rather than numerical order within Crosstabs GET results.
+Architecture / DevTools
+Fixed an issue preventing proper data archival when making multiple edits in live surveys with delphi="1".

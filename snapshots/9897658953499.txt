@@ -1,0 +1,62 @@
+Title: Decipher (previously Decipher) M38 General Release Notes
+This document contains the general release notes for the Decipher M38 (2017) milestone.
+Release Date: October 26, 2017
+Highlights of Decipher M38 Release
+New Features
+Crosstabs: Custom Tables
+Create report tables in Crosstabs without altering your survey.
+Define custom tables using conditional survey logic.
+Crosstabs: Subnets
+Nest table rows within other rows in Crosstabs for more advanced data filtering.
+Data Importer
+View external data within Crosstabs, survey dashboards, and report exports.
+Append and edit external data alongside existing survey data.
+Multi-Mode Surveys
+Collect data using separately fielded sources simultaneously.
+Collect offline/CAPI data alongside online survey data.
+CAPI 2.0
+Manage all aspects of offline projects within the Decipher CAPI app.
+Customize your app language and account permission levels.
+Add new question types via the Decipher CAPI app: Image Upload, Video Testimonial, and Audio Testimonial (only available in the app).
+Audio Testimonial
+New question type allowing participants to record audio using mobile devices.
+Add to your survey using the CAPI app to collect audio in your survey.
+RIM Weighting - Basic Weight Editor
+Add and configure multiple weighting variables without any custom scripting.
+Add complex weights via the RIM Weighting Advanced Editor.
+View/Edit Responses - Custom/Saved Filters
+Import and write filter rules to better analyze participant data directly within Decipher.
+Save custom filters for use before, during, and after fielding a survey.
+Video Player
+New version allowing for a deeper analysis of video data.
+Capture the number of times a participant has watched a video in full, as well as the most amount of time (in seconds) spent watching the video across all views.
+New Features
+Crosstabs: Custom Tables
+Let your programmers work on the next project. Crosstabs users can now create custom tables with user-defined rows without altering the survey, meaning no live edits! Create as many rows as you need, label each one, and define them using our standard survey logic:
+Get started with your own custom tables using the "Create Custom Table" option in the Actions menu in Crosstabs:
+Crosstabs: Subnets
+Build your Crosstabs out further to tell the whole story. We’ve added more robust netting options that allow for deeper nesting within table rows. With up to four layers of nested nets, you can create a more complete view of your results without using any external tools:
+Subnet options can be found in the Table Editor, where you can use one of your already existing nets as part of your definition:
+Data Importer
+You now have the option to import external data to your survey Crosstabs, Dashboards, and data exports for a more complete analysis. Use the new Data Importer to append data from post-hoc analysis, include open-end coding, combine multiple waves, or even make edits to existing data:
+You’ll find the Data Importer under the new "Import Data" option in the View/Edit Responses page:
+Multi-Mode Surveys
+Do you want to field a face-to-face survey using the Decipher CAPI app while capturing an online sample at the same time? You got it! Have a custom email list you need to distribute while going door-to-door? Done. Running a long term tracker that requires periodic in-store assessments without an internet connection? Not a problem!
+Multi-mode (hybrid) surveys now give researchers the ability to collect data using any number of simultaneously fielded sources, including offline/CAPI. Multi-mode improves Decipher’s data collection process by matching the flexibility of your various research demands.
+Make your survey a multi-mode survey now by adding the CAPI sample source via the Survey Editor:
+CAPI 2.0
+We've made a few exciting changes to our Decipher CAPI App!
+You can now customize your researcher accounts with offline permission levels, an Interviewer-Only access role, and different in-app languages. You can also add any of three new question types to your CAPI surveys: Image Upload, Video Testimonial and Audio Testimonial (only available via the App).
+Audio Testimonial
+The new Audio Testimonial element allows participants to record audio on their mobile devices via the Decipher CAPI App:
+On the backend, you can use Crosstabs to filter and identify highlights directly from the voices of your customers:
+RIM Weighting - Basic Weight Editor
+RIM weighting definitions are now easier to create with amenu-based tool. With the new RIM Weight Editor, you can add multiple variables, set the percentages for each, and add filters without ever touching any custom scripts:
+You can find the RIM Weight Editor via the Actions menu in Crosstabs:
+If you are already familiar with the existing RIM weighting tool, or you'd like to create a more complex weighting variable, not to worry! You can switch to using the old tool at any time via the "Advanced Weight Editor" link within the Editor itself:
+View/Edit Response - Custom/Saved Filters
+Post-field data validation is a critical part of the project lifecycle, and one that used to require data processors to export data before doing any work. Not anymore! With the new Custom Filters feature in our View/Edit Responses Report, we now offer a more robust reporting tool that allows users to create and apply complex filters without ever leaving the Decipher application:
+Additionally, you can now save your custom filters for use any time before, during and after field:
+Video Player
+Our Video Player has been enhanced with more and better options for video analysis. You can now capture the number of times a participant has watched a video in full, as well as view the most amount of time (in seconds) spent watching the video across all views.
+Look for these new stats in your Video Player table within Crosstabs:

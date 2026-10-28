@@ -1,0 +1,76 @@
+Title: Project Warnings Report
+The project warnings report provides an overview of survey-level errors and other potential data collection issues. It also allows you to subscribe to email notifications, so you can track survey quality and react quickly to issues after your survey goes live.
+Note: Only staff and supervisors have access to the project warnings report.
+1: Viewing Project Warnings for a Company
+To access the project warnings report for a company, first click your company name or logo in the Portal to open your company page. Then click the "Project Warnings" link in the left-hand panel of the page.
+In the company project warnings report, you have access to the following tools and view options:
+1. Filter: Click to open the filter menu. You can choose to filter by one or more of the following:
+Date: By default, the project list is filtered by "All Time" and displays all events from the project's lifetime. Click to select a different time period.
+Note: Event details are available for four weeks past the event date. After four weeks, only the counts are displayed.
+Companies: By default, the project list is filtered by the current company. Click to add more companies to the display.
+Survey State: By default, the project list displays only live surveys. Click to add closed surveys or to display both live and closed surveys.
+2. Selected Filters: Any filters applied via the filter menu.
+3. Search: Click to enter a project name to filter the project list by that specific project.
+4. Company name(s):The name of each company included in the report.
+5. Project list: A list of projects that meet the filter or search criteria. Click any project name to access its individual project warnings report.
+6. Exceptions: The number of loading or execution errors reported for a project.
+7. Missing Resources: The number of missing static resources reported for a project, such as images, scripts, or other media.
+8. Quota Misses: The number of participants reported for a project that do not qualify for any quota marker.
+9: Blocked Respondents: The number of participants reported for a project as being blocked from entering the survey.
+10. Warnings: Click any warning count to view more detailed information on the reported warnings.
+1.1: Color-Coded Thresholds
+The exceptions and warnings shown in the report are color-coded according to severity. Thresholds have been preset for your convenience.
+RED - Any count (>0) for exceptions, quota misses, and missing resources
+BLUE - Count for blocked participants greater than the threshold
+BLACK (bold) - Count for blocked participants or quota misses within the threshold
+Note: Exceptions, quota misses, and missing resources (shown in RED) generally indicate a problem with the survey and these need immediate attention. Blocked participants (shown in BLUE) may indicate that there's a problem with the survey setup.
+2: Viewing Individual Project Warnings
+If desired, you can drill-down to view the warnings for each individual project by clicking the desired project's name in the project list.
+You can also access the warnings report for an individual project directly from the Portal. To view the warnings for a project, first navigate to the project page for the desired project. In the navigation menu, click "More Tools" under "Responses". Then select "Project Warnings".
+In the individual project warnings report, you have access to the following tools and view options:
+Note: Only projects that have been launched or closed will contain project warning data.
+1. Date Range: Click to select / specify a date range from which to view project warnings.
+2. Exceptions: Select to view details about any errors generated from a live project. Click the error code for any error to get a complete description of the error text.
+3. Missing Resources: Select to view any resources that are referenced in the survey but not found on the server. You may need to upload a missing file to the survey. For more information, see Uploading System Files.
+Note: The project warning system does not monitor images that are protected (i.e., protected image.png and image image.png. If you are using protected images in a survey, be sure to thoroughly test your project before launching.
+3. Quota Misses: Select to view the number of participants who do not qualify for any of the survey's quota markers. This is likely caused by a programming error and should be addressed immediately. For more information, see Non-Qualified Participants.
+4. Blocked Respondents: Select to view the reason why participants have been blocked from the survey. Participants may be blocked for various reasons and some of which do not indicate a problem with the survey setup and/or sampling. For example, copying/pasting or otherwise entering a URL without its required appended variables will block a participant from the survey.
+The following are reasons why a participant may be blocked:
+Invalid URL variables (See Locking Down a Survey by Unique Variables)
+Invalid CNAME (See Setting Up a Domain Alias (CNAME))
+Duplicate URL variables (participant tries to enter the survey again)
+Unallowed device (See Device Settings)
+Unallowed country/region (See Implementing a Digital Fingerprinting System)
+Improper language
+2.1: Troubleshooting Tips
+2.1.1: Exceptions
+For exceptions, first look at the line that begins with "Error," as this usually contains a brief summary of the problem. If you need more information, the trace back, program context snippet, and/or variables (displayed when you click the error code link), will usually clarify the origin of the problem that needs correcting.
+2.1.2: Quota Misses
+For quota misses, create a quota cell for these "missed" participants. If they should be terminated from the survey, create a term point prior to the quotas. This step ensures understandable survey completion statistics and helps to identify real problems with programming and/or sampling.
+2.1.3: Blocked Respondents
+For blocked participants, complete the following checks:
+For an invalid or missing variable or CNAME, verify that the sample source setup and the survey link is correct.
+For multiple counts of duplicate variables, verify that the URLs being sent to participants are being properly populated with unique variables.
+For multiple counts of wrong type of device or answering from an unallowed country, check the survey setup.
+3: Notification Emails
+Notification emails are sent to users subscribed to a LIVE project. The emails include errors and warnings that have exceeded the preset thresholds:
+Errors
+Missing static resources
+Not qualifying for a quota (participants that do not qualify for any quota marker in a quota table and are consequently terminated)
+Blocked participant
+Drop-outs (although totals are not included on this report). The percentage of drop-outs reported is a "snapshot" in time and will not match the overall project drop-out rate shown on the Response Summary. For performance reasons, here, the dropout formula is based on the number of participants active in the last 60 minutes.
+Notification begins when a threshold is exceeded. Afterwards, one email is sent out when there is a change in the count for aggregated events. The server checks and sends out emails approximately every 5 minutes for event counts that changed to each subscriber.
+You will never receive repeat notifications within 60 minutes of each other for the same event exceeding its threshold; however, if a different type of event exceeds its threshold, the notification email will still include all new activity (including counts for events of which you were recently notified). The exception to this is for survey errors which should be corrected as soon as possible to prevent further loss of data. As long as the survey is getting errors, the subscribers will receive the summary email as well as the individual error emails.
+An survey error could be a fatal error such as one that causes the survey to abort or a survey error can occur when attempting to load the survey (e.g., when the survey file is malformed). Every unique participant that encounters that same error will count toward the next summary email received detailing the number of errors during the time interval. Summary emails are delivered until either the subscriber unsubscribes from the survey or the error is fixed.
+3.1: How Notification Thresholds are Set
+The below details how the threshold levels are set for notifications:
+Exceptions - 1+
+Missing resources - 1+
+Blocked participants - >1 per minute, with a minimum of 5 blocked participants in a notification period (5 per min)
+Drop-outs - 30% dropouts / active with a minimum of 10 participants active during the 1 hour timeframe leading up to the 5-minute system review period
+Missed quotas - 1+
+3.2: Subscribing to a Project
+You can subscribe to a project in the following ways:
+Automatically when you launch a project
+Via the "Actions" menu when testing a survey with tools on
+For users with shell access, there are additional ways to subscribe/manage subscriptions. See Managing Subscriptions for a Project for details.

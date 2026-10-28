@@ -1,0 +1,94 @@
+Title: NoAnswer Tag: An Opt-Out Response Option
+The <noanswer> element can be added to any question to create a "not applicable" response option. Each <noanswer> element is shown as a row with a single checkbox spanning across all columns.
+When a <noanswer> is selected, all other responses are cleared, disabled, and no validation logic run for the question (e.g., <validate> elements are ignored).
+1: Attributes
+Attribute
+Type
+Description
+label
+string
+The unique name of the <noanswer> element.
+alt
+string
+The alternative report name for the <noanswer> element.
+1.1: label - Set the Name of the NoAnswer
+The label attribute controls the name of the <noanswer> element. You can use this attribute to check if the <noanswer> element was selected. For example:
+<text label="Q1" optional="0" verify="zipcode">
+<title>What is your ZIP code?</title>
+<noanswer label="r99">Prefer not to say</noanswer>
+</text>
+<suspend/>
+<note>Show Q1 only if noanswer wasn't selected at Q1</note>
+<radio label="vQ1" optional="0" cond="not Q1.r99.val">
+<exec>
+vQ1.val = getRegionFromZIP(Q1.val)
+</exec>
+<title>AUTOCODE: REGION</title>
+<row label="r1">West</row>
+...
+...
+</radio>
+1.2: alt - Set the Report Name of the NoAnswer
+The alt attribute controls the name of the <noanswer> element in the report data. Use this to override the default text shown. For example:
+<text label="Q1" optional="0" verify="zipcode">
+<title>What is your ZIP code?</title>
+<noanswer label="r99" alt="NO ZIP CODE">Prefer not to say</noanswer>
+</text>
+As shown below, instead of displaying "Prefer not to say" for the <noanswer> element above, the report will display "NO ZIP CODE":
+2: Examples
+Below are some examples of the <noanswer> element applied to several different question types.
+<radio label="Q1">
+<title>
+Radio
+</title>
+<comment>Please select one</comment>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<noanswer label="r4">No Answer</noanswer>
+</radio>
+<checkbox label="Q2" atleast="1">
+<title>
+Checkbox
+</title>
+<comment>Please select all that apply</comment>
+<col label="c1">Item 1</col>
+<col label="c2">Item 2</col>
+<col label="c3">Item 3</col>
+<noanswer label="r4">No Answer 1</noanswer>
+<noanswer label="r5">No Answer 2</noanswer>
+</checkbox>
+<text label="Q3" optional="0">
+<title>
+Text/Number
+</title>
+<comment>Please be as specific as possible</comment>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<noanswer label="r4">No Answer</noanswer>
+</text>
+<textarea label="Q4" optional="0">
+<title>
+Textarea
+</title>
+<comment>Please be as specific as possible</comment>
+<noanswer label="r1">No Answer</noanswer>
+</textarea>
+<select label="Q5" optional="0">
+<title>
+Select
+</title>
+<comment>Please select one for each selection</comment>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<choice label="ch1">Choice 1</choice>
+<choice label="ch2">Choice 2</choice>
+<choice label="ch3">Choice 3</choice>
+<noanswer label="r4">No Answer</noanswer>
+</select>
+3: Additional Considerations
+You can have multiple <noanswer> elements in a single question. They are displayed at the end in the order they are entered and are exclusive to each other.
+An additional table named "noanswer" will be created in the report data that will contain and show the selection counts for every <noanswer> element in the survey.
+<noanswer> rows cannot be dragged into row groups.

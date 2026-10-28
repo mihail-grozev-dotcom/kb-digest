@@ -1,0 +1,64 @@
+Title: Data Processor Essentials
+Data Processor Essentials
+Welcome to our Data Processor Essentials training series! This page contains all of the information you need to successfully use the Decipher platform for data processing.
+To view the full Essentials onboarding training, see Decipher Essentials Training Series.
+Overview of the Portal
+Before we can start building our survey, we'll need to familiarize ourselves with the layout of the Decipher project system. This lesson provides a general introduction to the Portal, the central hub of the Decipher Platform where we can create, manage, review, and collaborate on projects.
+Reference Materials
+Logging in to Your Account
+Introduction to the Portal
+Search Capabilities
+Project Management
+Crosstabs Overview
+The Crosstabs reporting system is designed to improve the speed and ease of crosstab creation. In this lesson, we'll review the reporting tools available within the Crosstabs landing page, total frequencies report, and settings menu.
+Reference Materials
+Crosstabs Overview
+Crosstabs Entry Page
+Crosstabs
+Configuring Crosstab Settings
+Running a Total Crosstab
+Running a Quick Split
+In this lesson, we'll learn how to run a quick split from question logic to quickly create segments in our Crosstabs report. We'll also learn how to nest and append segments from multiple questions.
+Reference Materials
+Running a Quick Split Crosstab
+Build a Crosstab
+The Crosstabs reporting system also allows for the creation of custom segments, or banners, to more easily dissect and digest the information in your report. In this lesson, we'll take a closer look at Crosstabs and learn how to create our own custom banner.
+Reference Materials
+Building a Crosstab
+View Options
+In this lesson, we'll learn about the View Options menu within Crosstabs, where we can adjust the settings and appearance of the tables in our report using the following options:
+Show/Hide QA codes: Showing makes question and answer labels visible for easier reference. Survey codes will also display contextually, highlighting key programming settings.
+Hide Tables with No Participants: Hides tables with no data.
+View Chart Options: Allows you to edit the table's chart color palette and select its data values.
+Show/Hide Download Data Values: Allows you to display/hide the data values in the Crosstabs report.
+Show/Hide Unweighted Total Count: If you are applying weights, you may choose to show or hide the unweighted "Total" row in your tables.
+Turn All Grid Tables On/Off: Allows you to show or hide grid tables throughout the report.
+Create a Table in Crosstabs
+In this lesson, we'll learn how to add a new table to the end of our Crosstabs report and how to reference this table when creating custom crosstabs or running quick splits.
+Editing Tables
+Next, we'll learn about editing tables within Crosstabs using the options available in the table editor:
+Updating Question & Answer Option text
+Show/Hide answer options
+Adding Nets
+Editing Stat Values
+Including answer options in the base for the table
+Adding statistics
+Applying a custom filter
+Reference Materials
+Editing Tables in Crosstabs
+Create a Table Set
+In this lesson, we'll learn how to create a table set to limit the number of tables shown in a Crosstabs report. We'll also learn how to edit and remove table sets, as well as how to apply them to other Crosstabs reports.
+Reference Materials
+Creating a Table Set
+Marking Favorite Tables in Crosstabs
+Data Downloads in Crosstabs
+In this lesson, we'll learn about the various options we have for downloading our raw survey data.
+Reference Materials
+Download Data in Crosstabs
+Data Downloads and Formatting Options
+Data Format
+In this lesson, we are going to learn about the structure and format of the data in Decipher. Understanding how data is collected and stored in Decipher is critical to both survey programmers and data processors.
+Data Layout Manager
+Next, we'll learn how to use the data layout manager to control the order, visibility, and labeling of survey variables in our raw data downloads. We'll also learn how to use data layouts from previously fielded versions of a project in a current version to ensure consistency among the data outputs.
+Reference Materials
+Modifying the Survey Data Layout

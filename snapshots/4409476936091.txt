@@ -1,0 +1,43 @@
+Title: Duplicating Surveys Using copy-survey
+Requires Decipher Cloud
+The copy-survey command allows you to duplicate and / or backup an entire project. It is better than using the default Unix cp -r command, as it does not slow server performance when run.
+Note: The data/state.db file is not copied in this process.
+There are several modifiers available to refine the information that is copied.
+Tip: It is good practice to use "today" when using copy-survey. When using "today" as an argument, the backup directory will use today's date in MMDDYY format (e.g., running copy-survey temp-today on January 1, 2020 creates temp-010120).
+Command
+Description
+copy-survey temp-today
+Copies the entire project (including the survey, survey styles, static folder, and all data files).
+copy-survey -d today
+Copies the data only into unique directory (e.g., data.today).
+copy-survey -m today
+Copies the data only and clears the existing data.
+copy-survey -s temp-today
+Copies the survey only and no data.
+copy-survey -u temp-today
+Copies the entire project and retains the user permissions.
+copy-survey -b temp-today
+Copies the entire project and retains the subscribers.
+1: Copying the Entire Project
+To copy the survey, its styles files, and its data/ and static/ directories, go to the project's directory and run the following command:
+copy-survey temp-today
+You will be prompted with an error message if the temporary directory already exists. The name attribute of the <survey> tag gets changed to "Copy (subdir) of ...", where "..." is your project's original name.
+2: Copying Only the Project's Data
+To copy only the project's data into its own data/ folder, go to the project's directory and run the following command:
+copy-survey -d today
+If the copied data directory already exists, a number value will be appended to the end of the new directory (e.g., data.temp.01 ).
+You can use the -m modifier to copy the data and remove the existing data with the following command:
+copy-survey -m today
+This will create a data.MMDDYY directory and clear the original project's data. In other words, move the data.
+3: Copying Only the Project's Survey
+To copy only the project's survey and static/ directory, go to the project's directory and use the following command:
+copy-survey -s temp-today
+This will copy the survey-related information and not the data.
+4: Copying the Entire Project with User Permissions
+To retain the user permissions set on a particular project, navigate to the project's directory and run the following command:
+copy-survey -u temp-today
+This will copy the entire project and retain the permissions set for each user via the Portal.
+5: Copying the Entire Project with Subscribers
+To retain the subscribers on a particular project, navigate to the project's directory and run the following command:
+copy-survey -b temp-today
+This will copy the entire project and retain the subscribers from the original project.

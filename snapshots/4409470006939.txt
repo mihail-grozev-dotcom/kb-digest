@@ -1,0 +1,43 @@
+Title: Suggested Reading for Learning About Decipher
+The Portal
+Logging in to Your Account: Describes how to access and log into the Portal, our main survey system allowing you to build projects, edit them, test surveys, access the Response Summary, download data from your report and much more.
+Introduction to the Portal: Describes all the features and links available from the opening screen of Decipher Portal.
+Resetting Lost Passwords: Describes how to reset a lost or forgotten password for the Portal.
+Create and Manage Users: Describes how to manage users within the research hub.
+Create and Manage User Groups: Describes how to manage user groups, which allow you to quickly and easily add teams of people to a project.
+Reporting
+Crosstabs: Provides an overview of the versatile, robust and easy to use reporting capabilities that Decipher offers.
+Crosstabs Overview: Describes all of the features and links available in the homepage of the Crosstabs report.
+Running a Standard Report: Explains how to run a standard report, which allows you to view the aggregate totals of each question.
+Creating and Running a Custom Report: Provides a step-by-step guide showing you how to utilize the report area to create highly customized reports based on various criteria including date restrictions, answer restrictions and segment restrictions.
+Response Summary
+About the Response Summary: Provides an overview of the Response Summary, which allows you to monitor the progress of your survey before, during and after it has launched.
+Monitoring Quotas in Field: Describes the quotas tab in the Response Summary, which allows you to track your quotas in real-time (if your survey contains quotas).
+Editing Quota Limits in Field: Describes how to edit existing quotas in the Response Summary.
+Dashboards
+The Dashboard System: Provides an overview of Research Dashboards.
+Guided Examples of Dashboards: Provides examples of research dashboards.
+Best Practices for Dashboard Programming: Describes best practices for creating a research dashboard.
+Survey Editor
+Creating a New Survey: This document walks you through starting a project using the Survey Editor.
+Project Settings Summary: This document provides an overview of the project summary and describes how to edit the global settings.
+Overview of the Building Workspace: Provides an overview of the Survey Editor workspace, which provides all the options and features for building your survey.
+Question and Element Types: Describes the survey elements available in the Survey Editor.
+Adding Logic to a Question or Response Option: Contains information on how to add logic, images and other options in a Decipher survey.
+Testing
+About the Survey Testing Toolbar: Provides an overview of the features of survey testing toolbar, which allows you to make direct text changes and add setting changes for our programmers to review and update.
+Running Simulated Data: Describes how to run test data through your survey. This automated system runs through a bug checking process developed to find potential errors in survey logic or survey flow.
+Survey Summary: Allows you to easily view the URL's, exit links, quotas and settings for your survey.
+About QA Codes: QA codes identify logic conditions, attributes and question labels for each question in a survey, making it easier to confirm that the correct conditions are included in a question.
+About the Survey Version History Report: This page keeps track of all changes to the survey over time, allowing for snapshots in time of previous versions and the side by side comparison versus previous versions.
+Best Practices
+After Building and Testing Your Survey Review some possible next steps once a survey has been built.
+About Participant Sources and Survey URLs Get some insight into sample sources and the survey URL.
+Fielding a Survey
+Launching a Survey: This document covers how to launch a survey in the Survey Editor when it's ready for field.
+Editing a Live or Closed Survey: Describes how to edit a survey that is live in field.
+Closing a Survey: Describes how to close a survey at the end of field.
+Relaunching a Survey: Describes how to relaunch a survey that's been previously fielded and closed.
+Campaign Manager
+Email Campaign Manager Overview: Provides an overview of the campaign manager.
+Email Campaigns: This folder contains documentation on how to create emails, upload lists, test and send emails and manage campaigns.

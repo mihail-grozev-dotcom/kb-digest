@@ -1,0 +1,26 @@
+Title: 152.1 Release Notes
+Release Date: January 17, 2023
+Release Version: 152.1
+New Features
+Programming and Tools
+API
+The "Data Edits" API now lets you filter the edits of a specific survey by uuid.
+Pass in the uuid as the uuid parameter. Ask for survey/path/edits/all to get this change from across all edits.
+Added messaging around making API requests with an unsecure connection (HTTP) that result in the API key being deactivated.
+Custom Code Elements (Logic Nodes)
+Added pagination to the Logic Debug page.
+The Logic Debug page and Debug Logic Node API endpoint now show the newest entries first.
+Bug Fixes
+Portal
+Creating a new user while adding user permissions to a project in v152 no longer fails.
+Searching for a deactivated user from a different company now shows results to users with access to that company.
+Survey
+The theme editor and example survey now use the newest version of the Button Select element (atm1d.11).
+Dynamic Questions
+The Autosuggest Element's meta functionality attribute has now correctly interacts with filters.
+Reporting
+Crosstabs
+Including non-ASCII characters in Summary Tables no longer causes an exception error.
+Architecture and DevTools
+User-Agent strings that include Latin1 characters no longer crash the 51 Degrees v4 service.
+When processes running Portal background tasks lose connection to the load balancer, those processes now exit to avoid multiple background threads.

@@ -1,0 +1,53 @@
+Title: Beacon M24 Release Notes
+Release Date: August 11, 2014
+Survey Editor
+[18655] - Logic gui will display images title or alt values instead of image tag
+[18604] - Updated standard question library to include a numerical age question
+[18604] - Rating scale values in the standard element library are now consistent
+Scales applied to rows have their value attribute and intent ordered from high to low
+(e.g. [5] Excellent, [4] Very good, [3] Good, [2] Fair, [1] Poor)
+Scales applied to columns have their value attribute and intent ordered from low to high
+(e.g. [1] Poor, [2] Fair, [3] Good, [4] Very good, [5] Excellent)
+[18853] - Added support for the “when” attribute of the Exec element. It is accessible in the Options panel.
+[18761] - Access Survey Editor or XML Editor in a view-only mode.
+Dashboard
+[18815] Ability to Add notes in dashboard, you can now add notes to dashboard tables / charts where the comment is in context to the current dashboard configuration (filters / banner).
+Dynamic Questions Toolkit Updates
+Dynamic Question text is now exportable and importable in the xlate.
+[17346] - The following DQ questions contain cell-level stylevars that are now supported in the survey editor options panel:
+Slider Points
+Fancy Boxes [archived]
+Fulcrum
+Beacon will not sync with Fulcrum after initial launch. Post launch changes must be done via Fulcrum's website.
+Multiple sample sources are now supported in Fulcrum
+Fulcrum quota logic is no longer limited to quick quotas only, but allows logic that references the same question (e.g. you can group ethnicities from specific to general types)
+Qualification and Quota objects are now more descriptive in Fulcrums website (however currently limited in length)
+Quotas are now created in the same order in Fulcrum as they are in Beacon to enhance readability on Fulcrum's site
+A new Fulcrum Quota type is available to Fulcrum Automatic surveys that apply only to Fulcrum participants
+Hispanic ethnicity quotas will be evaluated first to allow nesting with ethnicity groups
+RISN is now passed by default in redirects
+Fulcrum icons are more distinguishable
+Fulcrum security parameters are now managed via Fulcrum's website only
+Fulcrum Automatic Sample Source will not be available in any live-edit survey
+Fulcrum Automatic projects will be given the state awarded when set live in Beacon
+Overlapping sync's of the same project are prevented. If you start a sync and then close the window, and then try and sync while the old sync is still running on the server, you'll see a warning. That warning will attempt to wait out the initial sync for 2 minutes (120 seconds). If the initial sync finishes in that time, it will start a new sync, else it will tell you when the initial sync started and to try again later
+Image Manager
+[18650] Watermark protection can be added to images.
+[18821] Choosing to ‘apply to all’ stores the new default settings to the survey.xml and is saved as a user preference (to be applied to future projects)
+Requires compat 124+
+[18576] Image deletion
+[18652] Images can be added to the survey using: [image myimg.png height=200]
+Programming & Tools
+The Automated DataBase allows easy integration of list and other data within your survey. No more manual invited.txt management:
+set lists=”mail” to include dat from all your lists
+set adb=”1” on the sample source you want to manage
+When using a dataSource attribute you can now use dataVirtual=”1” to make the question virtual
+rather than a real question that is merged when taking the survey
+When matching data, rather than matching by the value= attribute you can use dataValue to match non-numeric to specific rows; e.g. dataValue=”us,usa,america” will match either of those 3 values to this specific value row
+The Brightcove view count script has been updated. By running the command here maint/brightcove-collect-views [client] date_start(MM/DD/YYYY) date_end(MM/DD/YYYY) it will display the views for the videos that received views, and also display the length of the video. Video lengths are updated at 1AM. [staff only]
+Bugfixes
+[18434] - LIVE surveys can no longer be edited directly via the XML editor
+[18828] - Renaming/removing element library items no longer returns invalid path error
+[18728] - Adding elements to the survey editor stage via the element library no longer duplicates values
+[18846] - Project Display Settings should no longer detect changes when none were made
+[18759] - Fixed an issue in Media Evaluator and Video Player where certain supported Internet Explorer browsers failed to automatically start the video and / or failed to properly detect completion of the video.

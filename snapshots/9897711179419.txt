@@ -1,0 +1,76 @@
+Title: 141.3 Release Notes
+Release Date: December 11, 2018
+Release Version: 141.3
+New Features
+Survey Templates
+Added the option to create new surveys using preconfigured templates.
+Created the following default survey templates:
+Demographic
+Employee Satisfaction
+Net Promoter Score (NPS)
+Ad Testing
+Crosstabs Reporting Preferences
+Added the "Company Preferences" menu, allowing Supervisors to set company-wide preferences for question types and Crosstabs tables. The following preference settings are available for single and multidimensional Single, Multi Select, Rating, and Number questions:
+Adding charts
+Transposing tables
+Adding stat rows (mean, median, sum, etc.)
+Nesting rows
+Setting bases
+Guides & Walkthroughs
+Added a "Guides & Walkthroughs" section to the Portal Help menu, where users can access interactive walkthroughs, training videos, and other important documentation.
+Survey
+Added the ability to configure a timeframe for running simulated test data. The number of days to include can be customized per project.
+Survey Editor
+Made various performance improvements to speed up initial project load times, as well as the time it takes to select an element and make text changes.
+Updated various sample sources and variables.
+Added the following sample sources:
+Innovate MR
+Offerwise
+P2Sample
+Precision Sample
+Prodege
+Luth
+DISQO
+Renamed the following sample sources:
+Lightspeed (previously GMI)
+SSI (previously Survey Sampling)
+Lucid (previously Fulcrum Manual)
+Updated all sample source exit links to use secure https.
+Project Warnings
+Updated the project name to include a link to the project's overview page.
+Updated the menu to display the local date, time, and timezone at the top right of the warning.
+Programming & Tools
+API
+Adjusted the Bulk Translations Post API call to accept posted translations without requiring a matching sourceString.
+In-App Text Changes
+Decipher Now: Updated the text for the Response Summary upgrade prompt to read as “responses” instead of “completes”.
+Updated "Testing" to "Draft" in more areas.
+Added loading transitions to various areas (i.e., menus for creating a survey, adding users, etc.).
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue in exports where chart and table percentages would sometimes round differently than in the report.
+Dashboard
+Fixed an issue where percentages would sort alphanumerically, rather than by value.
+Fixed an issue where the sortable option was not being enabled for dashboard charts with compat 4.
+Fixed an issue where the "All Data Format" raw data export would show an error when a table or chart was restricted with acl.
+Response Summary
+Fixed the "Launch Survey" button to match the current application style.
+Downloads
+Fixed an issue that occurred with the way errors are handled when data is exported.
+Survey
+Updated how error pages are handled when caching.
+Fixed an issue where rows in Reusable Answer Lists were still being pulled for translation exports even when they were set to be ignored.
+Fixed an issue with not being able to record video in the Video Testimonial Dynamic Question when using Google Chrome.
+Fixed an issue causing some characters to not be properly quoted when using start-at.
+Survey Editor
+Fixed an issue with sample source exit pages losing focus when auto-saving text inputs.
+Fixed an issue with the Language Selector not showing up in participant view when used in a block element.
+Re-added missing translations.
+Portal
+Fixed an issue where searching with unicode characters would not return results.
+Fixed an issue where login times for SAML users were not updated upon login, which caused some accounts to be automatically disabled for inactivity.
+Fixed an error that sometimes occurred when duplicating a closed, Delphi-enabled survey.
+Programming & Tools
+Custom Code Elements (Logic Nodes)
+Fixed an issue caused by connection errors with the CINT Panel Integration element.

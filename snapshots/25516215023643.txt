@@ -1,0 +1,34 @@
+Title: Customizing the Date Picker Element
+The Date Picker element uses a <textarea> question with a date range and format validation. It allows participants to select a date from a pre-configured calendar instead of typing it in manually.
+Note: Adding the Date Picker element to a survey requires a survey compat level of 141 +.
+1: Adding a Date Picker Element Via the XML
+To add a Date Picker element via the survey XML, first create a text question in the desired location. Then add uses="fvdatepicker.3" to the question tag, along with the daterange verifier, which follows the below syntax:
+verify="daterange(FORMAT, START, END)"
+FORMAT: The date entry format. Can be any of the following:
+mm/dd/yyyy
+dd/mm/yyyy
+yyyy/mm/dd
+mm-dd-yyyy
+dd-mm-yyyy
+yyyy-mm-dd
+START: The start date for the calendar. It can be any of the following:
+any: Calendar will allow participants to select a date on or after January 1, 1900.
+today: Calendar will allow participants to select only the current UTC date or later.
+specific: Calendar will allow participants to select only the specified date or later. You must enter the specific date in the chosen FORMAT. Entering an invalid date format will revert the date to today's date (in your local system time). If you do not add a date, this will revert to Any Date. If the start date is after the end date, the start date will be set to the same date as the end date.
+END: The end date for the calendar. It can be set to any of the following:
+any: Calendar will allow participants to select a date on or before December 31, 9999.
+today: Calendar will allow participants to select only the current date or earlier.
+specific: Calendar will allow participants to select only the specified date or earlier. You must enter the specific date in the date format you selected. Entering an invalid date format will revert the date to today's date (in your local system time). If you do not add a date, this will revert to Any Date. If the start date is after the end date, the start date will be set to the same date as the end date.
+2: Style Settings
+2.1: Changing the Week Start Day
+By default, the Date Picker calendar starts every week on a Sunday. If desired, you can alter the question XML to instead start every week on a Monday.
+To force calendar weeks to start on Monday, add the fvdatepicker:firstDay style attribute to the question tag, following the syntax below:
+fvdatepicker:firstDay="Monday"
+The fvdatepicker:firstDay attribute can take one of two values. Enter "Sunday" to start calendar weeks on Sunday, or "Monday" to start calendar weeks on Monday.
+2.2: Changing the Suggested Date
+By default, the Date Picker calendar will suggest the current day based on local system time (the participant’s device / browser). If desired, you can alter the question XML to display a different date first. To change the initial date displayed, add the fvdatepicker:suggestedDate style attribute to the question tag, following the syntax below:
+fvdatepicker:suggestedDate="04/01/2024"
+Note: You must match the date entry format identified in the daterange verifier. Otherwise, the Date Picker calendar will display the current day based on local system time.
+The suggested date is highlighted when the participant opens the Date Picker calendar. If the participant opens the calendar and presses Enter on their keyboard, that date will be selected as their answer to the question.
+3: Learn More
+Learn how to add using Survey Editor: Date Picker Element

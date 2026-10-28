@@ -1,0 +1,27 @@
+Title: 144.10 Release Notes
+Release Date: April 7, 2020
+Release Version: 144.10
+Features
+Portal
+Survey Templates
+Added three COVID-19 survey templates to use when creating a survey using the “Start with a Template” option:
+COVID-19 Company Response Evaluation
+COVID-19 Information Requirements
+COVID-19 Organizational Priorities
+Navigation Menu
+Added the ability for users with survey build permissions to customize their survey path when duplicating a survey.
+Responses
+Sample Marketplace
+Added a new target qualification allowing users to target sample in specific states.
+Programming & Tools
+API
+Updated the Portal API documentation to note that qtime is always null for surveys with delphi="1".
+Improved the way SAML authentication handles specific AuthnContext values to allow users to use any authentication option they desire.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue preventing the export of Excel reports for Number questions containing net tags with special characters in their titles.
+Programming & Tools
+Custom Code Elements (Logic Nodes)
+Fixed an issue preventing logic nodes from using SFTP to access servers that use newer versions of OpenSSH.
+Fixed an issue causing the nightly survey cleanup script to error when encountering surveys with non-ASCII characters in their portal.survey tables.

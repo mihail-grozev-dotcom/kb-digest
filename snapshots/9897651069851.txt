@@ -1,0 +1,81 @@
+Title: Beacon M27 Release Notes
+Release Date: January 13, 2015
+Crosstabs & Classic Reporting
+[19948] compat=127 surveys replace the "status" variable with a status question. The question can now be used to split and filter data in reports.
+#20046 Autorecovering compat=127 surveys will have a "vdropout" question, showing where the recovered participant dropped out
+[19597]The "rconf" script is again functional.
+Automation
+Please see the API reference for current complete list of API and parameters
+surveys/data: get data in JSON format, which can be easier to work with in some cases than tab-delimited data
+surveys/files: you can list and download all system and static files belonging to a survey: survey.xml, quota.xls, images etc.
+rh/surveys: you can list and search for surveys like in the Research Hub. All the searches are supported, and the same information returned as the main list view.
+Builder
+[19921] Editable attributes specified in DQ’s meta xml such as...
+<qem name="xxx">somestyle:some_attribute</qem>
+Will be editable in it’s own text field in Builder’s stage.
+Existing questions that this affects:
+Button Single Select Grid
+Button Multi-Select Grid
+This or That
+Shopping Cart
+[19898] “Edit All” mode added to row/col/choice table. Can be enabled by action menu or “ctrl + e” on the keyboard. This mode allows you to add, edit, remove, and format multiple items at once.
+Notes:
+Editing does not include Group header or DQ attributes
+new rows will get the next available label and value regardless of it's position (similar to adding rows the traditional way)
+if you add new text before an existing one (on the same line), and move the existing text to a new line, the new text will gain the old ones values and the old text will be created as a new row. Going to the end of the string, and hitting enter to create a new line works as you would expect.
+[19943] : Randomizing rows/cols/choices/groups in a question is now done through a series of checkboxes in the options panel rather than a drop down menu. The option for “Shuffle Groups” was removed.
+[19943] : Text change : The answer/cell option for “Do Not Shuffle” was updated to “Do Not Randomize”.
+[19914] : The answer/cell option for “Do Not Randomize” is never in a disabled state and does not depend on whether or not the question is actually being randomized
+[19936] : A smarter question labelling system was introduced. Questions no longer default to the “q#” format (e.g. q1, q2, q3). The label assigned to a new question element will be based on the most recent question label assigned. This means that if the previous element was labeled “C2”, then the next label assigned will be “C3”. Additionally, if the previous question was labeled “F”, then the next label assigned will be “G”.
+[19912] : The “Project Settings” window (aka Global Preferences) will no longer appear automatically in the survey editor upon starting a new project.
+[19960] Added single select grid question type
+[19958] Updated description area of the elements menu, descriptions now show on hover
+[19961] Button grids removed from standard category in elements menu and placed into Dynamic category
+[FT] [19635] Added a link to the File Uploader in XML Editor
+[19328]: Row Legends positioning has been reworked and optimized. This changes default participant view for Dropdown/Number/Text/Essay questions. Row legend settings now also apply to questions rendered as 1-column lists (excludes lists made from using “auto” Mobile Optimization on small screens). A new position called “Above” has been added and only works for Dropdown/Number/Text/Essay 1-column lists (otherwise triggers an error). The “both” option now triggers an error if used on lists. Checks have been added to Style Manager and simulated data to check for these errors in advance. The default Row Legends position is now called “Optimize” in Builder, and intelligently decides where to position the legend, depending on question type and whether question is a list or regular table.
+Survey & CMS
+#20029 the button.goback style can be controlled via the XML styles system. This allows you to fine tune when the smart "Back" button is visible -- for example, you could override it to be blank when certain questions are displayed and thus disallow going back then.
+Dynamic Questions Toolkit Updates
+#19284: when a Page Turner 2 element is added in builder, it will now contain three initial pages.
+#20122: the default template for a Shopping Cart 1 element will now have the text “Upload Image” next to the product image.
+#20123: the default template for a Page Turner 2 will now consist of an image plus the text “Upload Image” next to the image.
+Programming & Tools
+The "generate" script can output JSON data
+The query tool allows for flexible SQL-based querying of data from multiple surveys, data files and other sources
+#20011: the generate script can output XLSX files. Use "xlsx" as the format. Specify --textual as an option to get answer values in the output.
+Bugfixes
+FT: [19795] Error caused when copying and pasting multiple rows from Word
+FT: [20024] Options panel not rendering correctly
+FT: [19977] Performance improvements when adding groups
+FT: [19998] Stage capitalization fix
+FT: [19997] Builder fails to load when rendering elements without placeholders
+FT: [19829] Content should not be editable unless toolbar is active
+FT: [19837] Hotspot fails to load in Builder when compat > 124
+FT: [19699] Fix support links editor
+FT: [20028] Prevents “Spellcheck” from correcting inline <style> text
+FT: [20004] Fixed FIR-related issue where answers table wasn’t populated in QA mode
+[19969] : Invalid login attempts will no longer remove the email address from the “Email” input.
+[19968] : Can no longer “Preview” a question containing a broken style.
+[FT] [20002] Fixed duplicate IDs issue with Loop Variables
+[FT] [17173] Fixed various remove buttons in the Loops editor
+[FT] [10738] Fixed the remove condition button in the Loops editor
+[FT] [19827] Fixed text overlap for long Loop Variable text in the Loops editor
+[FT] [19981] Structural elements should have their text auto-select, if default, when first clicking to edit
+[FT] [19918] Builder should no longer incorrectly remove the “optional” attribute from r/c/ch in certain situations
+[FT] [19897] Font-size should be preserved when pasting
+[FT] [19865] Underline should be preserved when pasting
+[FT] [19913] Clicking to the right off title/comment text should still select all, if default
+[FT] [19885] Backspace should not exit Builder
+[FT] [19917] Fixed legacy flash questions not showing up in compat 118 surveys
+[FT] [19979] Fix saving answer list to library not saving noanswers
+[FT] [19832] Fix saving elements to library with conds
+[M27] 20046 vdropout table
+[M27] 19948 Release Status variable
+[M27] 19709 getFulcrumVars returns a Boolean when an interable is expected
+[M27] 19670 Project SQL
+[M27] 20048 Delete row icon hidden styling issue
+[M27] 19789 pipe/term icons missing in library description
+[FT] [19908] Wrong axis told to participants for unique=1/grouping in error message
+Misc
+[18611]: Updated the welcome email sent to new users. note: clients overriding *sys.login.newuser will not automatically see the new email [staff only]
+[19950] Reset password screen and email updated note: clients overriding *sys.login.password.email will not automatically see the new email [staff only]

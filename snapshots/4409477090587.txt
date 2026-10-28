@@ -1,0 +1,60 @@
+Title: Rating Scale Element
+Tip: See Customizing the Rating Scale Element to learn how to customize the Rating Scale element in the XML Editor.
+1:Rating Scale Overview
+The Rating Scale element provides an interactive alternative to the standard grid base rating question. It utilizes a single select form and must contain multiple rows and columns. This element does not utilize Flash and is mobile compatible.
+Note: This question type works on mobile devices, but please be aware that adding more than a few columns causes horizontal scrolling which may not be obvious on a mobile device. If that happens, you may see an increased number of answers in the first couple of columns as participants may not realize there are more columns that appear off-screen.
+2: Adding a Rating Scale Element
+Note: You can set the "Show if" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Rating Scale element, first click the "+ Element" button to add a new survey element. Then click "Rate, Rank, and Sort" under Question Types and select the "Rating Scale" element. Then click "Add".
+Enter the question and instruction text in the areas provided.
+Rating Scale elements must contain multiple rows and columns. Do not number the answer options unless you want that numeric text to appear for survey participants. The system automatically provides labels / numbers for the answer options, which you can edit later in "Options".
+Tip: The answer options in a Rating Scale element should be measurable attributes.
+Example of measurable attributes:
+Completely agree
+Somewhat agree
+Neither agree nor disagree
+Somewhat disagree
+Completely disagree
+Example of attributes that are not measurable:
+Every day
+1 to 4 times a week
+Once or twice a month
+Less often
+Never
+2.1: Configuring Row / Column Options
+All answers appear in the question box with labels (e.g., r1, r2, r3, or c1, c2, c3). Labels with the "r" prefix indicate row elements. Click "+ New row" to add a row. Labels with the "c" prefix indicate column / button elements. Click "+ New column" to add a column / button. You may edit the answer options in the question boxes. Click "Answer Piping" under "Row Actions" or "Column Actions" to show rows or columns based on the answers of a previous question; to learn more, see Answer Piping.
+You can preview the element at any time by clicking the "Preview" button located at the top right corner of the element. To find out more about previewing an element, see Previewing a Question.
+In the general options for the question, be sure to check the "Rating/Scale" box. This will create additional nets for the element in the report. The net options for a 4-7 point rating scale include Top 2 and Bottom 2 nets while an 8-11 point rating scale also includes Top 3 and Bottom 3 nets.
+3: Options for a Rating Scale Element
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it.
+3.1: General Options
+When altered, each of the following options affects all attributes within the Rating Scale element.
+Label: The label assigned to the element. Click to edit the default label for the Rating Scale element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: This is required and the box is checked by default.
+Randomize: Check the boxes to randomize items by type. Items can be randomized by rows, columns, groups, or all.
+Rating/Scale: Enables nets in the report. To learn how to set up your rating scale preferences in the report, see Editing Tables in Crosstabs.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+3.2: Row Options
+When altered, each of the following options only affects specific row attributes.
+Label: The label assigned to the row. Click to edit the default label for the row.
+Show If: Click to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the row will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the row to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the slider optional and non-mandatory.
+Open End: Allows you to add an open-ended response box to the row by selecting "Mandatory" or "Optional" from the drop-down. "Mandatory" means the participant must enter feedback in the response box to continue if the row is selected, "Optional" means that feedback is not required.
+Hidden: Click to hide the row from participants.
+No Answer: This option replaces the scale form with an exclusive checkbox form. It is primarily used if there is a "Don't know" or "None of these" answer choices in the question.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+3.3: Column Options
+When altered, each of the following options only affects specific column attributes.
+Label: The label assigned to the column. Click to edit the default label for the column.
+Data Value: The value assigned to the column in the data. Click to edit the default value for the column if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the column. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the column will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the column to remain stationary.
+Optional: N/A
+Hidden: Click to hide the column from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+Note: The Rating Scale element may not be visualized properly on a tablet device in portrait mode when there are more than nine columns implemented. If your scale contains more than nine columns, you may want to include a note for participants to switch to landscape orientation to view the question in its entirety.

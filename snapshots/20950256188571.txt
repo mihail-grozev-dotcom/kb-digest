@@ -1,0 +1,18 @@
+Title: 153.21 Release Notes
+Release Date: December 5, 2023
+Release Version: 153.21
+New Features
+Responses
+Campaign Manager
+The bulk aol sub-command has been removed, along with all related AOL-specific functionality.
+Architecture and DevTools
+Data Retention
+Added a new API endpoint to Get Surveys Scheduled to be Archived and an associated weekly email that will send the contents of this report to the email address configured in the Company Settings under “Archive Settings” -> “Email Report To”.
+Bug Fixes
+Survey
+Surveys with the OE Flag logic node now save correctly when running the shell command here save <survey>.
+Participant View
+Open-end answers in Card Sort Single Select questions now correctly allow input on the latest versions of supported browsers on mobile devices.
+Responses
+Campaign Manager
+The Export Bounce-Backs and Opt-Outs report no longer crashes when a bounced or opted-out recipient has been removed from the list. Any bounced or opted-out recipients removed from the list will not be included in this export; for accuracy, leave all original recipients in the list for the duration of the campaign.

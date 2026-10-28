@@ -1,0 +1,11 @@
+Title: Overview of the Building Workspace
+The building workspace of the Survey Editor provides all the options and features needed for creating a survey. Below, you will find an overview of the building workspace, along with a short description of each of its primary features.
+1. View Options: Opens the View Options menu, where you can toggle several behind-the-scenes testing features, including QA codes, data labels, and data values. For a complete list of Decipher QA codes, see About QA Codes.
+2. Change Actions: The arrows allow you to undo or redo any recent changes.
+3. Settings: Opens the Project Settings Summary menu, where you can view and change the survey’s display and field settings.
+4. Launch Survey / Save to Live Survey: If the survey is still in a testing or "DRAFT" state, clicking "Launch Survey" will launch it. If the survey is in a "LIVE" state, clicking "Save to Live Survey" will apply all recent changes to the live survey.
+5. Survey Element: When an element is added to the survey, it appears in the staging area of the Survey Editor, where you can build and edit it.
+6. Element Options: Each survey element has a number of customizable options that are displayed in the options panel, as available. For more information on the options for an element, review the descriptions provided for each element in basic elements, structural elements, and dynamic elements.
+7. Element Tree: Your survey will be shown in a linear format in the question tree on the left panel of the screen. The question tree is a drag and drop panel, that allows re-organization of your survey. Page breaks are represented by dotted lines.
+8. Page Break: Click the "Page Break" button that appears below the element to add a page break after it; click the "---" (page break) button above the element to remove a page break before it. See Adding or Removing a Page Break to learn more.
+9. + Element: Click the "+ Element" button to add a new element after the element that appears in the staging area. See Adding and Removing a Question or Element to learn more about adding questions and elements.

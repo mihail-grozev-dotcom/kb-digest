@@ -1,0 +1,61 @@
+Title: Import Data Element
+The Import Data element allows you to include previously collected data in a new survey. Data imported to a survey can be appended to the report and data set. It can also be used to pipe in extra variables or control the flow of participants through the survey with special logic conditions.
+1: Adding a Key Variable
+To import data using the Import Data element, you must first ensure that you have a unique identifying variable to match the imported data to your survey data. This variable is known as a "Key Variable" and it can be any word or alphanumeric string, but its value should be unique for each participant and should match their records in both the imported and survey data.
+Note: It is not recommended to use record as your Key Variable, as this is an automatically assigned variable and is unique to each completion attempt rather than to each participant.
+1.1: To the Data File
+To ensure that your Key Variable matches, you must add it to both the survey and the data file you wish to import. To add a Key Variable to a data file, first open the data file and add a new column with your Key Variable’s name as the header. Then list each participant’s unique code in their data row.
+Note: To import a data file in a survey, it must be in either Excel (.xls, .xlsx) or text / .txt (comma-separated / csv, tab-delimited) format.
+For example, if you add "pin" as your Key Variable, your data file may look like the below, where column B includes all of the unique pin codes per participant.
+Tip: If desired, you may also import a recipient list from the Campaign Manager as your data file. See Appending a Recipient List using Import Data for a guided example on how to export, update, and re-import recipient lists using the Import Data element.
+1.2: To the Survey
+Once you have added a Key Variable to your import data file, you must add it as a unique variable in your survey as well.
+To set your Key Variable as a required variable in your survey, click the “Participant Sources” element in the Survey Editor and select the participant source in the element tree. Then click the "+ Variable" button.
+In the "Add URL Variable" window, add the Key Variable name and adjust its requirement level in the "Requirement" drop-down. Then click “Save” to apply it to your survey.
+Tip: It is recommended that you set the requirement of your Key Variable to “unique” before launching a survey (i.e., setting it LIVE) with imported data. This will ensure that only participants who have a matching value from your import list are able to access your survey.
+Once you have added the Key Variable to both your data file and your survey, you can start the import process using the Import Data element.
+2: Adding the Import Data Element
+To add an Import Data element, first click the "+ Element" button to add a new survey element. Then click "Structural Elements" under Question Types and select the "Import Data" element. Then click "Add".
+3: Choosing an Import Method
+In the "Import Data" window, you can select an import data method and manage your datasources. There are two options for importing data. You can import data from an existing project using its survey path, or you can upload data from an external file.
+To upload data from an external file, click "Upload Data File". To import data from another project in the Portal, click "Import Project Data”.
+3.1: Using an External Data File
+If you choose to import the data by uploading an external file, click the "Upload Data File" button. Then click "Choose File" to select the file you want to upload and click "Upload".
+You can only import files in the following formats:
+Excel (.xls, .xlsx)
+Text / .txt (comma-separated / csv, tab-delimited)
+The importer reads the first line in the file and creates variables based on its content. The first line of the data file must at least contain a unique variable to identify and match the variable in the survey. It may also contain additional variables to append.
+3.2: Using Another Project
+If you choose to import data from another project in the Portal, you can find that project by either entering its project name or its survey path (e.g., "selfserve/111/101011").
+Note: The two surveys’ data must contain at least one matching variable for aligning records.
+If you know the survey name for the project, start by typing it into the “Project path” field. As you type in the name of the project, suggestions appear in a drop-down list below. You may choose from the suggestions provided or continue typing to narrow your search. Once the appropriate project name appears, click "Import”.
+Alternatively, if you know the path for the project, simply enter this into the “Project path” field and then click “Import”.
+4: Preparing Datasources
+After you have imported a data file, new options appear in the "Datasources Options" section to the right of the window. The following options must be configured before a datasource can be enabled:
+1. Datasources: This box includes all sources you add for importing data to your project. You can toggle between the datasources at any time to view and adjust their individual options, and to append additional data as well.
+2. Append Data to this Datasource: Click to append additional records to an existing datasource.
+3. Datasource Name: The name of the selected datasources appear as the original file or project name. Enter a new one in the field provided to change the datasource name.
+4. Key Variables: Select the variable for your current project from the left drop-down and then choose the matching variable for the imported data from the right drop-down.
+5. Use case-insensitive variable matching: Check the box if you want to ignore cases in variable matching.
+6. Select the Variables to include: All variables available for import appear in this list. Check the box next to any variable to include it in your datasource.
+7. Apply Options: Once all options are configured, click "Apply Options" to import your data.
+8. Close: Once your options have been configured and applied, click "Close” to exit the Import Data menu.
+5: Editing a Datasource
+Once you have applied all options, your new datasource appears in the question tree and the staging area of your survey. To edit a datasource, click "Edit datasource”. To delete a datasource, click the "..." button at the top right of the element in the staging area and select "Delete".
+5.1: Piping a Variable from Imported Data
+If you would like to show imported participants their previous responses within your new survey, you can pipe variables from your appended data using the Piping Tool.
+The Piping Tool provides a list of all of the datasources and elements in your survey that can be used for piping. Select the variable you would like to pipe from the list and click “Apply” to add the pipe to your survey.
+Tip: In order for variables from imported data to be visible to participants, the piped text must come after the imported datasource and on a separate page.
+5.2: Setting Logic Conditions with Imported Data
+To set up logic conditions based on appended data, add survey logic as you normally would, and point this logic to the label of the datasource you would like to use.
+Note: As with piping, any element using logic from appended data must be inserted in the survey after the imported data and on a separate page.
+In the “Logic Conditions Setup” window, select the variable from the drop-down menu, set the appropriate logic conditions, then click “Save”.
+6: Testing a Datasource
+To verify whether a datasource is functioning correctly, test through your survey using a Key Variable value that matches one listed within your datasource. In the "Survey Test Environment" window, copy a unique Key value from your datasource and attempt to take the survey, using the “Show survey with testing tools” link.
+Using the Survey Testing Toolbar, check that QA Codes are turned on. When you reach the imported data elements and conditions, the matching participants’ appended data should be populated in a hidden question. In the example below, the unique pin variable is populated and matches the data file for the participant, ensuring that the data file has been appended correctly.
+7: Appending Data to a Live Survey
+To use the Import Data element in a live survey, follow the same steps as above, but keep a note of the points below:
+Imported data for participants who have finished the survey will be back-filled in the datasource as long as the Key Variable was captured in the survey data. Data for these participants will be populated in the reports, even if the Import Data Element was added after the survey was completed.
+In a live survey, appended data will be auto-populated in survey questions only for participants entering/re-entering the survey after the append. Any participants already taking the survey will have their imported data appended to the reports only.
+Logic and piping based on imported data will only apply to participants entering the survey after the live changes have been merged. Any participant who has passed the element with the logic or pipe will remain unaffected.
+Once your survey is live, add elements or datasources only and never make deletions. Removing elements will also remove their datapoints and cause your survey datamap to shift.

@@ -1,0 +1,44 @@
+Title: Tracking and Terminating Survey Speeders
+Speeders are participants who complete a survey too quickly, indicating that they may not have read the questions or considered the answer options before responding. You can terminate speeders from a survey using either the Survey Editor or the XML Editor. You can also track speeders for later review using hidden questions within the XML.
+1: Terminating Speeders
+1.1: Via the Survey Editor
+To terminate speeders in your survey using the Survey Editor, first add a Terminate element after a page break. Then click "Show If" under the element options menu, and select "New Condition":
+In the conditions window, click "show raw code" and enter timeSpent() < x , where x is the time in seconds that represents a speeder. For example, timeSpent() < 300 represents a recorded time of fewer than 300 seconds (5 minutes); in this case, the participant will be terminated as a speeder if they take less than 300 seconds to complete the survey.
+Next, click "Save".
+Once applied, the speeder logic will appear in the Terminate element.
+Now, when a participant reaches the Terminate element, the amount of time it took them to get there is recorded and checked against the time specified in the element. In most cases, it's best to place the Terminate element at the very end of the survey.
+In order to make sure that your new survey logic does not affect test data (as test data runs through the survey in a matter of seconds), you will need to set an additional XML attribute for your Terminate element. Refer to Section 2 below for how to do this.
+1.2: Via the XML Editor
+To terminate speeders in your survey using the XML Editor, add a <term> tag with the following condition, where x is the time in seconds that represents a speeder:
+cond="timeSpent() &lt; x"
+See Term Tag: Terminate/Screen Out Participants to learn more about the <term> tag.
+You will also want to include some logic to allow test data to skip this specific terminate point. To make sure that test data doesn’t get terminated for speeding, add the sst="0" attribute to your <term> tag. For example, if you wanted to screen out participants who completed the survey in less than five minutes, you would use the following syntax:
+<term label="term_speed" sst="0" cond="timeSpent() < 300">Speeder: Less than 5 minutes</term>
+2: Tracking speeders
+2.1: Using Hidden Questions
+Using the timeSpent() function, you can create hidden questions to track whether the participant sped through your survey or not. The below example shows how to mark a participant as a speeder using a hidden question:
+<exec>
+if timeSpent() &lt; 300:
+q4.val = q4.r1.index
+else:
+Q4.val = q4.r2.index
+</exec>
+<radio
+label="q4"
+where="execute,survey,report">
+<title>Speeder?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+This allows you to mark speeders while they’re taking the survey, but decide later whether you want to disqualify them from the survey.
+See About the View / Edit Responses Report to find out more about disqualifying participants post-field.
+2.2: Using Markers
+Another way of tracking speeders is setting a marker for those participants. Markers can be set either using the <marker> tag or programmatically via the setMarker() function.
+To set a marker using the <marker> tag, use the following syntax:
+<marker name="speeder" cond="timeSpent() &lt; 300" sst="0" />
+To set a marker programmatically, use the following syntax:
+<exec sst="0">
+if timeSpent() &lt; 300:
+setMarker("speeder")
+</exec>
+Note: In both cases, you can still use the sst="0" attribute to avoid marking test data as speeders.

@@ -1,0 +1,38 @@
+Title: June 12th Technical Release Notes
+Release Date: June 12, 2018
+New Features
+GDPR Compliance
+Unsent & unedited email lists will now be removed after 30 days
+All temp directories will now be removed after 21 days
+Archived projects will now be removed after 12 months (cloud servers only)
+API: Survey List Updates
+Added a new property for managing participant data
+dateLaunched : The date the survey was set live
+Added three new properties for managing survey access history
+createdOn : A timestamp of when the survey was created
+lastQuotaEdit : Null or a timestamp of when the quota.xls file was last modified
+lastSurveyEdit : A timestamp of when the survey.xml file was last modified
+Responses Report
+Quota markers are now displayed with the value shown for them in the Field Report instead of the raw code
+Filtering by "Variable" for an open-end response now searches for substrings automatically (without the use of a wildcard [*])
+Users can now add and remove markers in the mass edit separately without the +/- syntax
+Adding open-ends to the column layout can now be completed with one click using the "Open Ends" link
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue where individual table exports would not respect Crosstabs' sorted row order
+Alert Center
+Fixed an issue where the alert center would load with JS errors
+Survey
+Survey Editor
+Fixed an issue where all looprows after the tenth looprow would be labeled incorrectly
+Fixed page breaks in tree styling
+Fixed an issue where the editor would not load a project if the pipeMultiple attribute was added to a checkbox question
+Fixed an issue where custom code element titles were not saving
+Participant View
+Fixed an issue where the browser back button would not work on Safari using iOS.
+Note: This only fixes going back one page. The survey back button is recommended over the browser back button.
+Portal
+Fixed an issue where the permissions report wouldn't load for some users
+Programming & Tools
+Fixed an issue with umanage not correctly setting restricted access permissions

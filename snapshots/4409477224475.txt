@@ -1,0 +1,10 @@
+Title: Automatic Report Segments
+Overview
+Report (2010) allows you to automatically add useful segments during the custom report creation process. This is done through a single checkbox when creating a custom report; all you need to do is select the checkbox while saving a new banner and the points in your banner will be included as a new table in all your reports and downloads. See below for examples of how this simple new process works.
+1: Creating Your Segments & New Table
+To add your new segment, start by creating a new banner as normal. In this example, we are adding two new banners split by gender and an age group of 18-24.
+Once you have created all your required banner points, simply select "Save" and you will be given the option to name and save the banner you just created. Added to the form is the new 'create table' checkbox. This new checkbox allows you to add the points in your new banners as new segments in your report. They will be shown in a single table at the bottom of your report.
+The new segments created will be included in all reports. You can also decide if you want them included in the your data downloads; selecting "add to data" includes the new segments in all data download options. To access the table, you can run any report and easily 'jump' to the new table using the useful drop down at the top of your report.
+Viewing the table we created, we can see the new segments of 'Male 18-24' and 'Female 18-24'. These segments can also be edited by adjusting the banner points in the report editor as normal.
+2: Deleting Your Segments & New Table
+Once added, if you determine you no longer need or want the new table you created, you may simply delete the custom report that was used to create the new segment. By deleting the report, it will remove all instances of the segment in all reports, along with all data downloads. Note, that this will affect your datamap, so carefully consider this before deleting the added segment. You can delete the report using the 'X' located to the right hand of the report you would like to delete.

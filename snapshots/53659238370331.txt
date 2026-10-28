@@ -1,0 +1,10 @@
+Title: July 28, 2026 Release Notes
+Release Date: The following items were released between July 14, 2026 and July 28, 2026.
+New Features
+Reporting
+Crosstabs
+The question table editor now performs validation for net values.
+The question table editor no longer attempts to convert float values to integers.
+Bug Fixes
+Architecture and DevTools
+Emails sent from the fieldreport logic node or from Response Summary no longer show DMARC errors when whitelabeled.

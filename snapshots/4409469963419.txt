@@ -1,0 +1,18 @@
+Title: Adding and Removing a Question or Element
+You can add or remove elements in surveys using the Survey Editor.
+1: Adding the Question or Element
+To add a new element to your survey, first determine where in the survey you want your new element to appear. If your survey already contains questions, select the element that you want your new element to appear after (below). Adding a new element automatically places it below the selected element.
+Note: If you add an element to the wrong place, you can click and drag it to a new location in the element tree.
+Once you have chosen a place for your new element, click the + Element button. The Survey Elements Menu appears, where you can view all of the questions and elements available to you.
+Use the Survey Elements menu's sidebar navigation options to locate the element you would like to add to your survey. Select the element and click Add.
+2: Configuring the Question or Element
+Now that you have added the new element, you need to configure its settings to fit your survey's needs. Follow the steps below to setup a new survey question or element in the Survey Editor.
+Note: Setup varies for each element. See Question and Element Types for a description of each question and element and links to detailed documentation.
+Tip: Smart labels are based on the most recent label assigned to the question or answers. By default the labels are lowercase (r1), but if you enter R1, the next label will be R2. This is helpful for assigning screener questions (S1) or demographic questions (D1), and much more.
+Enter the question text and instructions.
+Click New Row or New Column (depending on the type of element) to add answers.
+Style and format the question and answer text. Learn more: Text Style and Formatting Options
+Configure the element settings and actions.
+Note: Question and answer configuration options vary by element type and setup. Review the documentation for your element type for specific options. See Question and Element Types for a description of each element type and links to specific documentation.
+3: Learn More
+To delete a survey element, see Removing Survey Elements.

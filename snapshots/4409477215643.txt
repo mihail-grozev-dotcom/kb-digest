@@ -1,0 +1,343 @@
+Title: Using Statistical Calculations In Dashboards
+When working with the dashboard system, you can apply customized formulas to aggregated data sets. This includes a range of inbuilt statistical functions available, as well as custom formulas that allow you to combine statistics together.
+1: Applying Statistics in Dashboards
+The following table lists the variables that you can use as inbuilt statistics:
+Variable
+Description
+Sum
+Sum of response values for row
+Pct
+100 * count / base
+Mean
+Mean of response values for row
+Median
+Median of response values for row
+Stddev
+Standard deviation of response values for row
+Stderr
+Standard error of response values for row
+uwcount
+Unweighted number of response values for row
+Effbase
+The "effective base", which is used for stat testing calculations and will be slightly different from the normal base if weighting was used
+Formula
+Apply a custom calculation
+Additionally, the following table lists the custom statistical calculations that can be a applied via the formula keyword:
+Note: Any of the inbuilt stat functions in the table above can also be used as part of the formula keyword.
+Attribute
+Description
+absSum
+Sum of absolute value of response values for row
+max
+Base counts for the segment
+base
+Base counts for the segment
+visibleBase
+Base counts for segment, only including visible rows (rows can be hidden via showif)
+sumOfSums
+Sum of participants for each segment. Must use base stats=sum
+sumOfVisibleSums
+Sum of participant values for segment, only including visible rows. Must use base stats=sum
+absSumOfVisibleSums
+Same as sumOfVisibleSums, but summed using absolute values
+1.1: Applying Statistics to Tables
+To enable statistical calculations for a table, you can use the stats keyword. This will allow you to pass in any of the statistical functions mentioned above. The stats keyword can be added globally, to apply a specific statistical calculation to all data within a table, or individually at the row-level, to customize each data point separately.
+Example:
+Adding overall statistics to a table:
+table Brand Ratings
+stats mean
+row q16.r1.val Brand A
+row q16.r2.val Brand B
+row q16.r3.val Brand C
+The above example creates a table with the mean rating given to a 5-point rating scale question:
+Example:
+Adding multiple statistics to a table:
+table Brand Ratings
+row stats=mean q16.r1.val Brand A - mean
+row stats=median q16.r2.val Brand B - median
+row stats=sum q16.r3.val Brand C - sum
+The above example shows how you can add different statistics to each data point reference in your table:
+1.2: Applying Statistics to Charts
+Applying statistics to a chart follows the same principle as applying them to charts.
+Example:
+Adding overall statistics to a chart:
+chart Brand Ratings
+type column
+stats mean
+row q16.r1.val Brand A
+row q16.r2.val Brand B
+row q16.r3.val Brand C
+The above example creates a chart with the mean rating given to a 5-point rating scale question:
+Example:
+Adding multiple statistics to a chart:
+chart id=db-64 Brand Ratings
+type column
+row stats=mean q16.r1.val Brand A - mean
+row stats=median q16.r2.val Brand B - median
+row stats=stddev q16.r3.val Brand C - standard deviation
+The above example shows how you can add different statistics to each data point referenced in your table:
+1.3: Setting the Precision to Statistical Values
+Statistical precision can be controlled by using the stats.prec keyword, which is short for stats.precision. The base syntax uses a number to set the precision of a statistical calculation to N numbers after the decimal delimiter.
+Example:
+To set the precision of a statistic to three numbers after the decimal point, you can use the below code:
+table Brand Ratings
+stats.prec 3
+row stats=mean q16.r1.val Brand A - mean
+row stats=median q16.r2.val Brand B - median
+row stats=stddev q16.r3.val Brand C - standard deviation
+2: Examples of Using Statistics
+2.1: Sum
+The sum statistic can be applied when you need to display a total of all values input for a question. A basic example of this combining potential expenditure on a specific product.
+For example, consider the following question:
+If you want to display the total amount that all of your participants would be willing to spend on your product, you could create the following:
+Table Potential Expenditure
+stats sum
+row q1.r1.val Product A
+row q1.r2.val Product B
+row q1.r3.val Product C
+This will display the following result:
+Note: See Creating and Customizing Dashboard Tables to find out more about customizing the displayed data format.
+2.2: Mean
+Using the same example question as above, you can also review the average expenditure of your participants, by applying the stats mean keyword:
+Table Average Expenditure
+stats mean
+row q1.r1.val Product A Average
+row q1.r2.val Product B Average
+row q1.r3.val Product C Average
+This will produce the following table:
+2.2.1: Displaying the Mean for Rating Questions
+When displaying the mean for a rating question that uses a closed ended question such as a radio question or a drop-down menu question, the mean function takes into account the index values of each selected answer option. Using the below question as an example:
+The Crosstabs mean summary table will display the following result:
+While the dashboard mean summary table uses the below syntax:
+table Average Consumption
+stats mean
+row s3.r1.val Breakfast
+row s3.r2.val Lunch
+row s3.r3.val Dinner
+This will display the means for each meal type as a full point lower:
+The reason for this is that indexed values for closed ended questions start at 0, rather than 1. As a result, the "Never" frequency has a value of 0 in your Dashboard's syntax, but 1 in your Crosstabs tables, "Rarely" has a value of 1, instead of 2, and so on. To offset this, you can modify the dashboard table mean calculation using the formula keyword instead:
+Note: See 3: Applying Statistical Formulas to find out more about the formula keyword.
+table Average Consumption
+stats formula
+formula mean + 1
+row s3.r1.val Breakfast
+row s3.r2.val Lunch
+row s3.r3.val Dinner
+This will display the correct means you are looking for, since the offset is resolved by adding 1 to the result of your mean formula.
+2.3: Standard Deviation
+To apply a standard deviation function, you can use the stats stddev keyword. Using the above meal consumption frequency question, you can add another table to your dashboard, which will show whether males or females massively deviate from the overall average consumption:
+table Standard Deviation From Average Consumption
+stats stddev
+banner.local
+segment s1.r1 Male
+segment s1.r2 Female
+row s3.r1.val Breakfast
+row s3.r2.val Lunch
+row s3.r3.val Dinner
+Note: See Creating Dashboard Banners to find out more about creating segment splits in dashboards.
+This will produce the below table combination:
+2.4: Standard Error
+Expanding on the above example, you can add the standard error to your displayed statistics. Rather than adding the standard error as a separate statistic though, you can include row-level statistics to display all three statistics for Breakfast for example:
+table Breakfast Consumption Statistics
+banner.local
+segment s1.r1 Male
+segment s1.r2 Female
+row stats=mean s3.r1.val Breakfast Mean Consumption
+row stats=stddev s3.r1.val Breakfast Consumption Standard deviation
+row stats=stderr s3.r1.val Breakfast Consumption SEM
+This displays the below representation of your data:
+2.5: Effective Base
+When working with weighted data, you can use the effective base statistic to determine whether your results are significantly affected by the weighting you’ve applied to your dashboard. If the weighting is inflating the answers from a particular group by a large factor, the effective base tends to be much smaller than both the unweighted and the weighted base. The closer the effective base is to the unweighted base, the better the weighting is.
+The below example uses a 50% / 50% Gender weighting scheme, generated through Crosstabs’ RIM weighting tool, and illustrates the way the effective base changes with regards to the weighted and unweighted totals in your table:
+table Effective Base
+banner.local
+segment weight=nweight.val s1.any Weighted Data
+segment weight= s1.any Unweighted Data
+formula base
+row stats=effbase s1.any Effective Base
+row stats=formula s1.any "Weighted Base"
+row s1.r1 "Males"
+row s1.r2 "Females"
+Note: See Adding Dashboard Weights to find out more about applying weighting in dashboards.
+Note: The above example uses the formula keyword to show the base counts of the unweighted dataset.
+This example will produce the following table:
+Seeing as the effective base is only slightly different than your weighted and unweighted base, you can safely assume that the added weighting does not distort your sample too much.
+Note: Statistical testing also uses the effective base when denoting significance, as opposed to a weighted or unweighted base.
+2.6: Percentage
+The pct keyword allows you to apply the following calculation to your table or chart:
+100*(count/base)
+This statistic is useful when using a custom base for your tables, applied via the base keyword. Rather than calculating percentages based on the number of participants who satisfy your datapoint conditions, you can calculate those percentages based on whatever condition you specify in your base.
+2.7: Unweighted Count
+The unweighted count statistic can be applied to tables that have per-segment weighting applied to them. Setting uwcount as the stats value will show the unweighted count for participants in your table. Consider the below example, where you apply weighting to achieve a 50:50 gender split between your participants:
+table id=db-1 Uwcount
+banner.local
+segment weight=nweight.val qualified Qualified Respondents
+rows s1.r1-r2
+row qualified Weighted Total
+row stats=uwcount qualified Unweighted Total
+This result produces the following table:
+In the above example, the unweighted and weighted counts are the same, as data has not been skewed by your weighting scheme, but the uwcount statistic can be used to verify if you are over- or under-weighting your sample.
+3: Applying Statistical Formulas
+Using the formula keyword, you can customize what calculations are displayed in your table. The formula keyword has access to any of the basic statistics applied via the stats keyword, but also offers some additional formulas that can be used. The formula keyword can also include basic calculations such as addition, subtraction, division and multiplication of statistics for the specific datapoint references in your tables or charts.
+Note: The formula keyword cannot perform calculations based on multiple question values. If you wish to perform custom calculations based on several questions’ data, you can achieve that via virtual questions.
+Note: Only one formula can be specified per dashboard element.
+3.1: Examples
+As already mentioned when discussing the mean statistic, some statistical calculations use the Pythonic index-based values for question answers, rather than the reporting values used by Crosstabs. In cases such as the mean statistic, you can use the formula keyword to offset the Pythonic values by adding 1 to the mean calculation:
+table Average Consumption
+stats formula
+formula mean + 1
+row s3.r1.val Breakfast
+row s3.r2.val Lunch
+row s3.r3.val Dinner
+In addition to the above example, you can combine multiple statistics, to calculate your own mean, by using a combination of the sum and count statistics:
+table Average Product Rating
+filter.local qualified
+stats formula
+formula (sum/count)+1
+stats.prec 2
+row q16.r1.val Product A
+row q16.r2.val Product B
+​​​​​​​row q16.r3.val Product C
+3.2: Additional Statistical Calculations
+3.2.1: Max
+The max keyword allows you to retrieve the maximum value provided for a question. This function can be used with either number or float question types, or radio and drop-down menu question types.
+Note: Similarly to the mean formula, the max keyword takes the index-based values for each answer option in closed-end questions. When using the max keyword in statistical calculations, make sure to use max+1 as part of your formula.
+Example:
+Using the following number question type:
+<float
+label="q18"
+optional="0"
+range="0,50">
+<title>How much would you be willing to spend on these products ?</title>
+<comment>Enter a number</comment>
+<row label="r1" ss:postText="$">Product A</row>
+<row label="r2" ss:postText="$">Product B</row>
+<row label="r3" ss:postText="$">Product C</row>
+​​​​​​​</float>
+You can use the max keyword to retrieve the highest amount participants are willing to pay for each product:
+table Maximum Product Expenditure
+stats formula
+formula max
+row q18.r1.val Product A
+row q18.r2.val Product B
+​​​​​​​row q18.r3.val Product C
+This displays the below table as a result:
+3.2.2: absSum
+The absSum statistic works similarly to the sum statistic, as it provides a sum of all response values provided by your participants. The difference between the two is that absSum uses the absolute values of any data input. Consider the following net revenue question as an example, where negative values can also be input:
+Where some companies can have a net revenue loss, and may input negative values for that question. You can represent the total net gain of all companies by using stats sum:
+table id=db-80 Sum
+stats sum
+​​​​​​​row q20.val Total Net Revenue
+This will produce the below table:
+If you wanted to see the total amount of currency going in and out of a business, you would use the the absSum statistic:
+page sum
+table absSum
+stats formula
+formula absSum
+​​​​​​​row q20.val Total Net Revenue
+This displays the absolute values of your q20 question summed up together:
+The absSum statistic can also be used as part of other custom formulas. The below example uses the same base question asking the participants how much they would spend on your products, but uses a custom formula to calculate the frequency of provided answers for each product:
+table absSum Custom Formula
+base stats=sum qualified
+stats formula
+formula 100*(absSum/absSumOfVisibleSums)
+banner.local
+segment s1.r1 Male
+segment s1.r2 Female
+row q18.r1.val Product A
+row q18.r2.val Product B
+​​​​​​​row q18.r3.val Product C
+Seeing as not all responses are mandatory, and "Product C" is asked conditionally, the above example will show you the row selection frequencies for males and females based on the sums of each product:
+3.2.3: Base
+You can use the base keyword to apply banner splits to your dashboard elements. The base keyword provides the number of participants that fall into each defined segment, and is best used when combining multiple statistics.
+Using the previous question as an example, you can review the average expenditure on each product split by gender, as well as displaying the total number of participants interviewed to get these results:
+table Average Product Expenditure by Gender
+banner.local
+segment s1.r1 Male
+segment s1.r2 Female
+stats mean
+formula base
+row stats=formula stats.prec=0 q18.any "Total Interviewed"
+row q18.r1.val Product A
+row q18.r2.val Product B
+row q18.r3.val Product C
+The above code will produce a table where the first row uses the base formula to display the total number of males and females you’ve interviewed, while the following rows will use the table-level stats mean calculation:
+3.2.4: visibleBase
+Similar to the base formula, visibleBase displays a count of all participants who count toward a specific segment. The difference between base and visibleBase is that the latter will show the base only based on rows displayed in your table/chart. This is particularly useful when using local table/chart filters, along with the showif functionality. See Creating Dashboard Filters for more information on table and chart filters.
+Expanding on the base example, if Product C was only to be displayed to participants from a specific country, you can use the effectiveBase formula, along with local filters and the showif keyword, to have a dynamically changing base:
+table id=db-74 Average Product Expenditure by Gender
+filtergroup.local "Country"
+filter.local id=db-75 qCountry.r1 UK
+filter.local id=db-76 qCountry.r2 US
+filter.local id=db-77 qCountry.r3 Canada
+banner.local
+segment s1.r1 Male
+segment s1.r2 Female
+stats mean
+formula visibleBase
+row stats=formula stats.prec=0 q18.any "Total Interviewed"
+row q18.r1.val Product A
+row q18.r2.val Product B
+row showif="db-76" q18.r3.val Product C
+The above example will produce a table that changes both the number of products displayed, as well as the base for each segment defined in your table, depending on the displayed rows.
+UK Filter Applied:
+US Filter Applied:
+​​​​​​​​​​​​​​
+3.2.5: sumOfSums
+The sumOfSums statistic allows you to review the count of participants in each segment that you define for your dashboard table or chart, rather than the numbers in each answer option defined in your table or chart rows. The sumOfSums attribute requires a custom base to be set, along with an additional statistic applied to the base keyword:
+base stats=sum qualified
+stats formula
+formula sumOfSums
+The sum statistic applied on the base keyword allows you to set the base of your calculations to the number of provided answers, rather than the number of participants in your survey.
+Note: Only stats=sum is allowed as a base-level statistic.
+Example:
+table sumOfSums
+base stats=sum qualified
+stats formula
+formula sumOfSums
+banner.local
+segment s1.r1 Male
+segment s1.r2 Female
+row q18.r1.val Product A
+row q18.r2.val Product B
+​​​​​​​row q18.r3.val Product C
+In the above example, even though you are using the .val syntax to access the response values in a number question Q1, the actual table that will be created displays the count for of participants that provided values for q18, for each segment.
+3.2.6: sumOfVisibleSums
+The sumOfVisibleSums formula allows you to provide a sum of any rows that are displayed within your dashboard table / chart. The sumOfVisibleSums statistic requires additional set-up to be properly displayed:
+A row that uses the showif option
+The local filters to be present within your dashboard element.
+A custom base set that uses stats=sum (e.g., base stats=sum qualified)
+The below example uses local country filters to calculate the total potential expenditure of participants, where "Product C" is only shown to US participants:
+table sumOfVisibleSums
+filtergroup.local Country
+filter.local id=db-82 qCountry.r1 UK
+filter.local id=db-83 qCountry.r2 USA
+filter.local id=db-84 qCountry.r3 Canada
+base stats=sum qualified
+formula sumOfVisibleSums
+row stats=formula qualified Total Expenditure
+row stats=sum q18.r1.val Product A
+row stats=sum q18.r2.val Product B
+row showif="db-83" stats=sum q18.r3.val Product C
+Each product row uses the row-level sum statistic, while the "Total Expenditure" row uses the sumOfVisibleSums formula. This "Total Expenditure" row will now dynamically change the displayed result based on what filters are applied, as well as what rows are shown within the table. If you apply any of the UK or Canada filters, the row for "Product C" will not be displayed, and your "Total Expenditure" will adjust accordingly:
+However, if you apply a US filter, your table will now include the "Product C" row, and your sumOfVisibleSums row will be updated:
+3.2.7: absSumOfVisibleSums
+The absSumOfVisibleSums formula offers the same functionality as the sumOfVisibleSums statistic, but uses absolute values. Similarly to the absSum statistic, it can be applied to a question that allows for negative values to be input as answers.
+Consider a similar example to the absSum question, but with multiple rows:
+In the above example, "Department C" is displayed conditionally, based on the type of business of the participant. Using this question as a base, you create a table that uses local filters, and the showif condition to display the absolute revenue across each department:
+table id=db-87 absSumOfVisibleSums
+filtergroup.local Country
+filter.local id=db-85 q21.r1 Type 1
+filter.local id=db-86 q22.r2 Type 2
+base stats=sum qualified
+stats formula
+formula absSumOfVisibleSums
+row stats=formula qualified Total Expenditure
+row stats=formula formula="absSum" q22.r1.val Department A
+row stats=formula formula="absSum" q22.r2.val Department B
+row showif="db-86" stats=formula formula="absSum" q22.r3.val Department C
+The above example produces a table that can be filtered by business type, and uses absSum at the row level for each department. Then use absSumOfVisibleSums to get the total sum across all departments. Similar to sumOfVisibleSums, the total changes based on the displayed rows.
+Example:
+Business Type 1 (No "Department C"):
+Example:
+Business Type 2 ("Department C"):

@@ -1,0 +1,72 @@
+Title: Open Assist Element
+The Open Assist element is a text area question with an AI prompt that encourages the participant to add more details to their answer. The AI prompt uses Microsoft's Azure OpenAI Service to respond to the participant.
+Important: The Open Assist element must be enabled for your company prior to use. If you're interested in using this element, contact your Forsta representative.
+Note: Decipher has various AI features that rely on AI Models. New versions of these models are frequently released and older versions are retired. When new models are used, there may be variances in responses based on the newer models.
+See Customizing the Open Assist Element to add the Open Assist element using the XML Editor.
+1: Adding an Open Assist Element
+To add an Open Assist element, first select the + Element button to add a new survey element. Then select Custom and select the Open Assist (OpenAI driven) element. Then select Add.
+You must configure style settings for the AI prompt to work correctly.
+2: Configuring Style Settings
+To configure the style settings for the Open Assist question, click the ellipsis ("...") button at the top right of the element in the staging area and select Update Styling.
+The following options are available:
+Delay after typing: The number of milliseconds to wait after the participant stops typing before the survey requests a response from OpenAI. The Minimum input setting and the Delay after typing setting must both be met before the survey requests a response from OpenAI. Default: 1000 milliseconds (1 second).
+Additional context prompt: Additional text sent to OpenAI to provide context about the participant. This will improve the questions that OpenAI asks the participant. Decipher recommends staying under 100 words. You can pipe text into this field.
+For example, you can create a Exec Element with the phrase
+p.context = ("The user used the 'Forsta Surveys' market research product, "
+"spent most of their time in the %s module, and rated their "
+"experience as: %s") % (q0.selected.text, q00.selected.text)
+and pipe that into the Additional context prompt field using ${p.context}. The % (q0.selected.text, q00.selected.text) pipes the answer selected in q0 and q1 into the appropriate locations in the context phrase in the order listed.
+Times to call OpenAI: The number of times per participant that the survey question requests a response from OpenAI. If the Maximum input has already been reached, the survey will not request a response from OpenAI even if the maximum Times to call OpenAI has not been reached. Default: 3.
+Minimum input: The minimum number of characters a participant must type before the survey requests a response from OpenAI. The Delay after typing setting and the Minimum input setting must both be met before the survey requests a response from OpenAI. Default: 20
+Note: The Minimum input field does not prevent the question from being skipped. Use Response Length to require a minimum number of characters in the response.
+Maximum input: The maximum number of characters a participant must type for the survey to stop requesting a response from OpenAI. If the maximum Times to call OpenAI has already been reached, the survey will not request a response from OpenAI even if the Maximum input has not been reached. Default: 100
+Note: The Maximum input field does not limit the number of characters included in the response. Use Response Length to limit the number of characters in the participant's response.
+AI Personality: The default AI personality is “empathetic”. Changing it may entice younger respondents to answer more fully. You may need to add an Additional context prompt to improve the responses provided by OpenAI. Example responses to a participant answer (where the Forsta Surveys Crosstabs experience was rated: performance: 1 out of 5, usability: 3 out of 5, features: 5 out of 5) for each personality are provided below.
+empathetic: What specific aspects did you find unsatisfactory about the Crosstabs reporting module?
+energetic: That's very clear! Can you share what specific aspects you found most disappointing, especially regarding the low performance rating?
+direct: Given your overall dissatisfaction, can you elaborate on what specifically contributed to your low rating on performance despite a high rating on features?
+playful: Oh dear, “did not like” sounds a bit gloomy! 🌧 Can you sprinkle in a bit more detail about what specifically didn’t tickle your fancy? Was it the performance that felt like a slow snail, or did the usability leave you scratching your head? 🐌💭
+funny: Oh, a glowing review! It sounds like Forsta Surveys really knocked your socks off—about as much as a wet sock in a puddle. Can you share what specific features you loved, considering you rated them a perfect 5?
+Debug mode: When set to 1, the intermediate user input and AI prompt will be saved in an additional hidden text question. (If your DQ is applied to a question labeled q1, the debug will be saved in question q1_debug). This will increase data size and can be useful to see whether the AI assist is having a positive effect. Default: 0.
+The following fields are displayed to the participant. They can be reconfigured here or translated using the Guide to Programming Multi-Language Studies.
+Ask for more input: Displayed when the participant has typed less than the Minimum input number of characters and more than 0 characters. The piped field $(min) is replaced with the Minimum input number. The piped field $(count) is replaced with the number of characters typed by the participant. Message is displayed after waiting the milliseconds specified in Delay after typing.
+Default message: Please provide a minimum of $(min) characters in your answer. (You have typed $(count)).
+Thank you message: Displayed when the participant has typed at least the Maximum input number of characters.
+Default message: Thanks for your feedback!
+Conferring message: Displayed while waiting for the OpenAI response.
+Default message: Conferring with AI...
+Response notification: Displayed above the OpenAI response when the OpenAI response is displayed.
+Default message: Please provide any additional feedback.
+Initial prompt: Displayed before the participant begins typing in the field. The piped field $(min) is replaced with the Minimum input number.
+Default message: Please provide a minimum of $(min) characters in your answer.
+Waiting notification: Displayed while the participant is typing in the field, and until the number of milliseconds specified in Delay after typing is reached.
+Default message: User is typing...
+3: Configuring Question Options
+Question options are located to the right of the staging area.
+Label: The label assigned to the element. Click to edit the default label.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: Check the box to force participants to provide a response. When checked, participants will be unable to continue the survey without completing the question (or selecting the Skip option, if available).
+Response Length: Specifies an minimum and/or maximum number of characters required before moving to the next page. See Limiting the Number of Characters Permitted in Open-Ended Questions for details.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+Learn more: Customizing the Open Assist Element
+4: Open Assist in Context (Putting it All Together)
+The following is an example of how to use answers to previous questions to provide context to the AI prompt. In this example, two Single Select Element and a Language Selector Element are on the page prior to the Open Assist Element. The Language Selector element controls the language of the OpenAI response.
+Participant view of the two Single Select Element and the Language Selector Element:
+Responses from the two Single Select elements are piped into the Exec Element using Python.
+The content of the Exec element is then is used in the styling of the Open Assist element to provide an Additional context prompt.
+When the participant sees this question, and replies to it, OpenAI will use the Additional context prompt to create specific questions regarding the part of Forsta Surveys the participant used.
+5: Data Privacy
+The OpenAI service is part of Forsta's Azure subscription. Once data has been submitted to Azure, it is governed by their data policy.
+No data is stored elsewhere and only participant response data and prompts are submitted. We do not include any metadata.
+Your prompts and participant responses:
+are NOT available to other customers.
+are NOT available to OpenAI.
+are NOT used for training (including improvement of OpenAI models, any Microsoft or 3rd party products or services, etc.)
+For Decipher servers hosted in EU, Regional Azure OpenAI installations are used. The data is routed to the OpenAI installation in Stockholm, Sweden. For non-EU installations, global deployment of OpenAI means it is processed in the nearest available node.
+Data stored on the Decipher side:
+follows standard Decipher data retention and security including encryption at rest
+logging for OpenAI service (such as request and response) is retained for 5 weeks separate from the retention for the survey data
+ISO certification notes: Microsoft Azure undergoes ISO/IEC 27017 audit for compliance. You can download the list of certifications undergone by it on the Microsoft portal: https://learn.microsoft.com/en-us/azure/compliance/offerings/cloud-services-in-audit-scope
+Third party: Data sent to Azure OpenAI is retained by Azure only for abuse monitoring, if certain indicators trigger possible abuse attempts; see the Data Privacy note for Azure OpenAI above
+Data Flow:

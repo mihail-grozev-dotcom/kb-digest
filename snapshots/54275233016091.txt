@@ -1,0 +1,13 @@
+Title: August 11, 2026 Release Notes 
+Release Date: The following items were released between July 28, 2026 and August 11, 2026
+New Features
+Survey
+Integration
+Added OpenID Connect sign-in support for Decipher's Kinesis Panel integration.
+Bug Fixes
+Responses
+View/Edit Responses
+Data edits from View/Edit Responses are now faster for large surveys.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+AI Compute translations no longer misalign when processing hundreds of very short text inputs. Translation results now map correctly to their corresponding fields for all batch sizes.

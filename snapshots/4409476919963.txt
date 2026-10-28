@@ -1,0 +1,89 @@
+Title: Custom Report
+Requires Decipher Cloud
+Note: The Custom Report functionality has been deprecated and is only for use
+on legacy data surveys.
+Overview
+The custrep.txt file allows the creation of very customized
+reports, useful for monitoring response rates and other aspects of fielding
+for surveys, or even across multiple surveys. This report is viewable online
+and also available as a download into Excel.
+For the custrep.txt file, basically each row has a little
+formula that gets evaluated. "Total" is the total number of responses (for
+qualified users, for all users you have to do all.total).
+The custom report also has access to the actual question data for both real
+and virtual questions. Probably the best way to learn this file type is to
+look at actual custrep.txt files.
+Here are some examples:
+HTML version:
+Excel/CSV version:
+1: About the Syntax
+. LRW Job Name: Service Evolution
+. Some other text
+@col . US N = 450
+@col se Sweden N = 450
+q5.r1.val Laptop Ownership
+q5.r2.val Cell Phone Owner
+. Business
+virtq1 Flight Length: Short Range
+So the general idea here is that the first word on a line can be: . ( a dot)
+to insert verbatim text, @col to define a column with subdirectory
+and title. As I see it, the N = XXX have to be hand specified.
+Then follow the rows, the first part is an expression like in notify definitions,
+then the title.
+(db.loaded - all.total) Total Drop-Offs
+This is a a piece of Python code surrounded by () -- the () are not necessary
+if you just have something with no spaces that needs to be run.
+The "db" is an special object that lets you dip into the dashboard data.
+The db.loaded is what's displayed as "Click Through" in the
+Dashboard report.
+<>This is more complex:
+((100.0*all.total)/(db.loaded or 1)) Incidence @avg |%.2f%%
+We calculate the percentage so we multiply the all.total (i.e.
+all the respondents) by 100 and divide by load count (the or 1 ensures no
+division by zero).
+The @avg bit makes the report calculate an AVERAGE rather than
+TOTAL for the total row.
+The |%.2f%% bit specifies a format. The %.2f makes
+it display the floating point result with 2 digits of precision and the
+%% inserts a %.
+#60*itime.getMean() Total Interview Time @avg |%d
+is currently commented out, but if you label the interview time question
+as itime you will be able to get the average out, multiply it by 60 to display
+seconds and display it under each survey, with average in the total.
+It is also possible to access the results of custom reports using
+@col syntax like:
+@col survey (Standard report, "All" segment)
+@col survey/report (This named report, "All" segment)
+@col survey/report/segment (This named report, this named segment)
+As usual, . in place of survey means current survey.
+Anticipating overlapping segments I've added a @nototal option
+that will suppress the total row.
+As mentioned before, both markers and db return survey-wide settings. You'll
+need virtual questions if you want to extract data for a specific segment.
+To get the number of respondents who have seen any given page of a survey,
+similar to the data shown in the timing report, use:
+pages.q9.seen
+If needed in the future, we can extract the other information on the timing
+report with this syntax (e.g.
+pages.q9.completed / min / max etc.). This
+requires a completions.dat file that hasn't been reset
+2: Percentages
+If you need to display a percentage do it by using
+(top, bottom) rather than e.g.
+(100*top/bottom). This will make the total
+percentage work correctly.
+3: Custom title cols
+Per default, the row title you specify appears in a single column. If you
+specify @titlecol you can specify a custom or multiple custom column titles
+for those. If you specify multiple title cols, separate cell assignment using
+//. You must have exactly as many title cols in every row as @titlecol tags,
+for example:
+@titlecol Region
+@titlecol School
+@head
+(q1.r1.val) West // First Western School
+(q1.r2.val) East // First Eastern School
+4: Adding to a Project
+Once the custrep.txt file has been created, you will need to
+place it in the root directory for the project that it applies to. Once added
+to that directory, it will show up in the field tabs.

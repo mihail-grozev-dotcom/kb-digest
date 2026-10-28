@@ -1,0 +1,48 @@
+Title: Tips for Simplifying Logic
+        
+In certain cases it is possible to use simplify logic in the XML editor. For example, if logic is meant to check if any or all of the answers in a question have a certain value, instead of writing q1.r1 or q1.r2 or q1.r3, you can write q1.any.
+The examples in the table below show how to write simplified logic that checks everything visible to the participant in the question. If a question contains disabled elements or condition logic (i.e., cond=) this logic will not include them if the participant did not see it in the question.
+q1.any
+Was anything in q1 selected?
+q1.r2.any
+Was anything in r2 of q1 selected?
+q1.r3.all
+Were all options in r3 of q1 selected?
+q1.r3.count == 3
+How many options were selected in r3 of q1?
+q1.c1.count == 1
+How many options were selected in column c1 of q1?
+For number elements, the examples in the table below will check that a sum of the values is met.
+q2.sum == 35
+Checks that the sum of ALL the options in q2 adds up to 35.
+q2.r1.sum == 8
+Checks that the sum of the options in r1 of q2 adds up to 8.
+It is also possible to exclude certain things from calculations, including entire rows, columns, or specific answer options.
+q2.but(q2.r1).sum == 27
+Checks that the sum of all the options in q2, except the options in r1, adds up to 27.
+q1.but(q1.r3.c1, q1.r1).count == 2
+Checks that the sum of all the options in q1, except the option r3/c1 and all options in r1, adds up to 2.
+For single select or select questions you can ask for the "value" dimension and get the number of times it was selected. This is used to collect information which can be used later in the code for conditions.
+If q3 (a single select question grouped by rows) has 3 rows and 3 columns you can check how the rows in c2 are answered using q3.c2.values = (True, False, True), where "True, False, True" is a result of how the participant answered (i.e., row 1 was selected, row 2 was not, row 3 was selected).
+Continuing with this example, you can base logic on the responses.
+q3.c2.count == 2
+Checks that c2 was selected twice in q3.
+q3.c3.any == False
+Checks that no answer options in c3 were selected in q3.
+Numerical Checks
+The .check method outlined here lets you specify a string of numbers, ranges or numerical planes to check against.
+q1.check("10")
+Checks if the number entered is equal to 10.
+q1.check("5-10")
+Checks if the number entered is a value between 5 and 10.
+q1.check(">=18")
+Checks if the number entered is greater than or equal to 18. Other valid operators can be used, such as:
+> (i.e., greater than)
+< (i.e., less than; note: < must be escaped with &lt; so <75 would be &lt;75)
+>= (i.e., greater than or equal to)
+<= (i.e., less than or equal to; note < must be escaped with &lt; so <=75 would be &lt;=75)
+== (i.e., equals)
+!= (i.e., not equals)
+The .check method can also check multiple conditions, separating them with a comma. For example, to check that the number entered in an age question is greater than or equal to 18 and less than or equal to 75, you can use the following:
+q1.check("18-75")
+q1.check(">=18,<=75")

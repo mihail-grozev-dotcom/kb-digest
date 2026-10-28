@@ -1,0 +1,11 @@
+Title: 153.39 Release Notes
+Release Date: August 27, 2024
+Release Version: 153.39
+New Features
+Survey
+Survey Editor
+In non-Live surveys, when a datasource element is deleted, its corresponding data-upload- and merged- files will now be deleted as well. Note that using Undo, or reverting the XML, will not restore the deleted files.
+Bug Fixes
+Responses
+Response Summary
+The counts displayed on the Campaigns tab of Response Summary for New Company Opt-Outs and New Global Opt-Outs now reflect the number of opt-outs that occurred up to 30 days after the initial send. This window was increased from 14 to 30 days in order to capture more new opt-outs. This change is not retroactive for existing campaigns, so older campaigns will continue to reflect the 14 day window. To see all opt-outs, including those that happened more than 30 days after the send, the entire list may be downloaded by using the "Export Opt-Outs" option from the drop down menu on the Campaign Manager List page.

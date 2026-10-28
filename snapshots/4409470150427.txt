@@ -1,0 +1,170 @@
+Title: Using XML to Edit Crosstabs
+You can use XML to edit any report you have created or saved within Crosstabs.
+1: Accessing the XML in Crosstabs
+1.1: For Saved Crosstabs
+To access the XML for a saved crosstab, first navigate to the report within Crosstabs and click the pencil icon to open the crosstab editor.
+Then click </>XML at the top left of the page.
+1.2: For New Crosstabs
+To access the XML for a new crosstab, first click the New Crosstab button.
+Then click </>XML at the top left of the page.
+2: Editing the XML in Crosstabs
+If you are familiar with XML or any other programming language, this is an easier way to edit or modify the report and find errors that are not always visible in the Crosstabs graphical user interface.
+Use the XML editor to enter any custom XML code you would like to apply to your report. Once you have completed your edits, click Update to apply them to the crosstab. If you make a mistake or decide to abandon your XML changes, you can click Cancel or the "x" at the top right of the editor to revert your code back to its previous content (any changes you made will be lost).
+3: Logic Syntax
+Note: Labels referenced within the XML are case sensitive.
+All tags that are open must also be closed using a forward-slash ( / ). The sections below detail the XML tags and condition logic available for various report elements.
+3.1: XML Tags and their Attributes
+XML Tag
+Definition
+Attributes
+<xtab>
+The outer-most tag that defines your crosstab.
+name: The crosstab name (default: "New Crosstab").
+description: The description of the crosstab (default: none).
+<group>
+Creates a group heading and can contain multiple segments <seg>.
+name: The group name (default: "New Group").
+showHeader: Show or hide the group as a heading in the report table (set to true or false; default: true).
+<seg>
+Defines a specific banner point within your custom crosstab.
+name: The segment name (default: "New Segment").
+<cond>
+Outlines the specific logic (condition) that defines a specific banner point.
+Tag Totals:
+<cond>(ALL): The segment logic represents all participants in the crosstab.
+<cond> (ALL_IN_GROUP): The segment logic represents the count or percentages of the segments within a group. Otherwise, count or percentages are based on all segments in the crosstab.
+Tag joiners:
+<and />: Joins two <cond> tags with AND, which filters participant data where both conditions must be true.
+<or />: Joins two <cond> tags with OR, which filters participant data where either condition can be true.
+<and-not />: Joins two <cond> tags with AND NOT, which filters participant data where the first condition must be true and the second condition must be false.
+<or-not />: Joins two <cond> tags with OR NOT, which filters participant data where the first condition can be true or the second condition can be false.
+3.2: Logic Syntax for Conditions
+3.2.1: Closed-end Questions
+Use the following syntax for one-dimensional Single Select, Multi-Select, or Dropdown menu questions:
+<cond>q3.r1</cond>
+Checks if "r1" is selected in q3.
+Use the following syntax for two-dimensional Single Select, Multi-Select or Dropdown menu questions:
+<cond>q3.r1.c1</cond>
+Checks if for r1 in q3, "c1" was selected.
+<cond>q4.r1.any</cond>
+Checks within r1 of q4 if any option was selected.
+<cond>q4.but(q4.r1).any</cond>
+Checks if anything within q4, but excluding q4.r1 was selected.
+Use the following syntax for a Multi-Select question:
+<cond>q4.count > 2</cond>
+Checks if the number of checkboxes checked was greater than 2.
+3.2.2: Open-ended Questions
+Use the following syntax for Text and Essay questions:
+<cond>Q2.search("some text")</cond>
+Matches Q2's textual value against this string (not case sensitive) within the question (ASCII character set only)
+Use the following syntax for Number and Float questions:
+<cond>(Q3.check('1-100')) or (Q3.check('>399')) or ( Q3.check('<50'))</cond>
+Checks for items within the range, 400 and above, or less than 50.
+<cond>Q5.sum > 25</cond>
+Checks if the sum of the numeric question is greater than 25.
+Use the following syntax for Number questions with blank input values:
+<cond>(q4.val is not None)</cond>
+Excludes empty data fields from the logic (when applicable). Otherwise, empty data fields are evaluated as "0" and included in the logic.
+3.2.3: Dates
+Use the following syntax for questions with date ranges:
+date_range(start, end)
+Checks whether the completion date is within that range, in the server's time zone.
+The date synatax can be either "01-mar-2013", "01-mar-2013 14:32" or "01-mar-2013 14:32:00".
+The month is case insensitive.
+The time is 24Hr time.
+If the end time is a day, it is assumed to be end of that day (so specifying 14-mar-2013 as end time means until the 23:59:59 on that day). Leave out end to default to the end of the start day.
+Use 'now' as a dynamic end date to reference "today". This logic is only accessible in the XML, it is not supported in the logic editor.
+Example of participants completing on 3/25/15:
+<cond>date_range("25-Mar-2015", "25-Mar-2015")</cond>
+date_days(start, end) checks for a rolling date range.
+"start" equal to 0 means the beginning of today, 14 means the beginning of the day 14 days ago.
+The end defaults to now if left out, otherwise, it is the end of the day specified as using the start syntax.
+This syntax correctly accounts for daylights saving time.
+Example of participants completing in the last 7 days:
+<cond>date_days(7)</cond>
+3.2.4: Nested Logic
+Segment logic can use parentheses or a logic joiner to change logic precedence, which creates nested boolean logic.
+The example below shows multiple ways that logic for Males (q1.r1) who selected either "Brand A" (q3.r1) or "is 35-44" (q2.r4) can be entered in the XML.
+Using a single condition:
+<cond> (q1.r1) and (q2.r4 or q3.r1)</cond>
+Using conditions separated with a logic joiner:
+<cond>(q1.r1)</cond>
+<and />
+<cond>(q2.r4 or q3.r1)</cond>
+3.3: Combining Tags & Conditions
+The XML for a crosstab report consists of a series of nested XML tags. There is only one set of <xtab> - </xtab> tags that surround all of your segments and groups.
+<xtab name="New Crosstab">
+<seg name="Total">
+<cond>(ALL)</cond>
+</seg>
+</xtab>
+Inside each report, you must use the <seg> - </seg> and <cond> - </cond> tags to define your banners. There is one <seg> - </seg> for each banner point you want to include in your report, and this tag must include a name (name=""). The <cond> - </cond> tags are then nested to define the logic for each banner point. You can have one or more <cond> - </cond> tags inside each <seg> - </seg> tag, linked with the condition joiners.
+<seg name="Male 18-34">
+<cond>(q1.r1)</cond>
+<and />
+<cond>(q2.r1 or q2.r2)</cond>
+</seg>
+<seg name="Male 44 or under">
+<cond>(q1.r1)</cond>
+<and-not/>
+<cond>(q2.r5)</cond>
+</seg>
+3.4: Defining the Variable Names
+In the above example using the <cond> - </cond> tags, the logic was defined using the syntax (q1.r1). These references, "q1" and "r1" are specific variable names used within the survey. To find the appropriate variable references, you can download the survey datamap using the Exports menu at the top of any crosstab report.
+To skip downloading a report, you can instead use the "direct to browser" option, which loads the datamap in your current browser. The datamap shows each question and its associated data label.
+Note: If your project utilizes alternate (alt) labels, you must instead reference the original question label.
+3.5: Examples
+The labels and conditions displayed within each datamap are used to create the proper logic for specifying each segment. Using a portion of a datamap, below is the description of custom segments using the <cond> - </cond> tags.
+Example #1
+[q1]
+Gender:
+r1 - Male
+r2 - Female
+XML:
+<seg name="Male">
+<cond>(q1.r1)</cond>
+</seg>
+Example #2
+[q2]
+Please select your age range:
+r1 - Under 18
+r2 - 18-24
+r3 - 25-34
+r4 - 35-44
+r5 - 45 or older
+XML: Male and not 45 years or older.
+<seg name="Male and not (45 or older)">
+<cond>(q1.r1)</cond>
+<and-not />
+<cond>(q2.r5)</cond>
+</seg>
+Example #3
+[q3]
+Which is your favorite brand?
+0 - Unchecked
+1 - Checked
+r1 - Brand A
+r2 - Brand B
+r3 - Brand C
+r4 - Brand D
+XML: Male and selected Brand A or Brand B.
+<seg name="Male and (Brand A or B)">
+<cond>(q1.r1)</cond>
+<and />
+<cond>(q3.r1 or q3.r2)</cond>
+</seg>
+XML: Male and selected Brand A and Brand B.
+<seg name="Male and (Brand A and B)">
+<cond>(q1.r1)</cond>
+<and />
+<cond>(q3.r1 and q3.r2)</cond>
+</seg>
+4: Tips & Tricks
+One of the best ways to learn the proper syntax is to build out custom reports using the report, then go back and review the code it generated.
+The XML editor also optimizes the code when you save it. You do not have to separate out the logic for the segment. For example, imagine you have entered the following conditional logic:
+<cond>(q1.r1 or q2.r1) and q3.r1</cond>
+The XML editor saves and updates it to the following nested logic:
+<cond>(q1.r1 or q2.r1)</cond>
+<and />
+<cond>q3.r1</cond>
+Tip: You can also use CTRL + ENTER to update the XML and close the editor.

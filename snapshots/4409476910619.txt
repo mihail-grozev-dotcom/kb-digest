@@ -1,0 +1,331 @@
+Title: Adding Virtual Questions to the Report
+A virtual question is a question that has the virtual attribute set to some value. Virtual questions are never shown to participants and cannot be used to create survey logic from. Virtual questions exist within the report and data downloads only.
+Virtual questions do not affect the data map and can be added to a survey at anytime (even when it is live). They are often used to:
+Categorize responses from previous questions.
+Aggregate responses from previous questions.
+Generate new information (e.g., sums, averages, counts, etc.) from previous questions.
+Append additional information from a tab-delimited file such as participant source data.
+This document details how to add virtual questions via the survey XML. See Adding Custom Tables in Crosstabs to learn how add virtual questions as custom tables using Crosstabs.
+1: Working of Virtual Questions
+Virtual questions are very similar to usual questions but are hidden from participants by setting where="execute". The biggest difference is that virtual questions are evaluated at the reporting time, not survey time. When you run a report, all questions with the virtual attribute are executed once for every participant in the data.
+In the example below, Question "vQ1" is a virtual question that stores the average age of all children provided at "Q1" for every participant.
+<number label="Q1" size="2" verify="range(0, 17)" optional="0">
+<title>What is the age of each of your children?</title>
+<row label="r1">Child 1</row>
+<row label="r2">Child 2</row>
+<row label="r3">Child 3</row>
+<row label="r4">Child 4</row>
+<row label="r5">Child 5</row>
+</number>
+<float label="vQ1" size="2">
+<title>AVERAGE AGE OF CHILDREN</title>
+<virtual>
+ages = [row.val for row in Q1.rows if row.val]
+average_age = float(sum(ages)) / len(ages)
+vQ1.val = average_age
+</virtual>
+</float>
+As shown below, "vQ1" can only be seen in the report and data downloads (just after "Q1"):
+1.1: Report
+Tip: The green "V" next to the question title stands for "Virtual".
+1.2: Data
+2: Virtual Question Syntax
+A virtual question is any question that has the virtual attribute set to some value. The syntax is shown in the example below. The two questions are virtual questions. They do not do much, but are indeed virtual questions.
+<radio label="vQ1" virtual="1">
+<title>I am a virtual question</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+</radio>
+<radio label="vQ2">
+<title>I am a virtual question</title>
+<virtual>
+1
+</virtual>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+</radio>
+Below is a more practical demonstration of the virtual question's syntax. In the code below, using an <exec when="virtualInit"> block, a function named some_fun() is declared. It returns a random integer from zero-three. Both virtual questions, "vQ1" and "vQ2", use this function to populate their values. "vQ2", however, only populates when "vQ1's" value is 1.
+<exec when="virtualInit">
+import random
+some_list = [0, 1, 2, 3]
+def some_fun():
+return random.choice(some_list)
+</exec>
+<number label="vQ1" size="1" virtual="vQ1.val = some_fun()" title="Virtual Demo!" />
+<number label="vQ2" size="1">
+<title>Virtual Demo!</title>
+<virtual>
+if vQ1.val == 1:
+vQ2.val = some_fun()
+</virtual>
+</number>
+Note: A virtual question can only refer another virtual question if its data already exists.
+In addition to all question and extraVariables variables, virtual questions have access to the following:
+Variable
+Description
+data
+This 2D array is where you can put the computed data.
+e.g., data[columnIndex][rowIndex] = 4
+The following are equivalent:
+Q1.r2.val == data[0][1] == data.r2.val
+Q1.c3.val == data[2][0] == data.c3.val
+Q1.r3.c4.val == data[3][2] == data.r3.c4.val.
+oedata
+This 1D array can contain any open-ended data for rows with open="1" specified.
+oedata[oeIndex] = "Some OE data"
+For example, given the following rows:
+<row label="r1" open="1">Other</row>
+<row label="r2" open="1">Other</row>
+<row label="r3" open="1">Other</row>
+We can populate "r3" OE data with the following:
+oedata[2] = "R3 OE data".
+shown
+The shown variable can be set to False to make this question un-answered.
+timestamp
+The timestamp variable returns the participant's completion timestamp.
+markers
+The markers variable contains all of the markers set on the participant.
+e.g., if 'qualified' in markers: # do something.
+uuid
+The uuid variable is the participant's unique identifier.
+recordIndex
+The recordIndex variable is the zero-based index of the participant's record. Just like the record variable, but -1.
+gv.request.path
+The survey path information (e.g., /survey/selfserve/9d3/proj1234).
+gv.request.fullpath
+The full survey path (with appended variables, e.g., /survey/selfserve/9d3/proj1234?var1=foo&var2=bar).
+Note: Every question has its data stored in a similar fashion. A question's data can be accessed with LABEL[0][0]. A question's OE data is stored as LABEL_oe[0]. The shown status of a question can be accessed with LABEL_shown.
+3: Built-In Virtual Question Functions
+There are several built-in functions that can be used within a virtual question.
+3.1: bucketize
+The bucketize function works by matching a variable's value to the cell labels of a question. For example, we can categorize all the possibilities of the decLang variable as below:
+<radio label="vdecLang" virtual="bucketize(decLang)">
+<title>LANGUAGE VARIABLE</title>
+<row label="none">English</row>
+<row label="french">French</row>
+<row label="german">German</row>
+<row label="spanish">Spanish</row>
+<row label="other">Other</row>
+</radio>
+If a participant entered the survey with decLang=french set, then the row for "French" would automatically populate. Bucketize works by matching the value (e.g., "french") with the cell labels (e.g., label="french").
+Tip: If the variable does not exist to bucketize or cannot be categorized, the cell labelled "none" will be populated (if provided). If no values could be matched, the cell labelled "other" will be populated (it should be the last option).
+A similar approach can be taken to categorize the list variable.
+<radio label="vList" virtual="bucketize(list)">
+<title>LIST VARIABLE</title>
+<row label="none">No List Variable</row>
+<row label="1">List 1</row>
+<row label="2">List 2</row>
+<row label="3">List 3</row>
+<row label="99">List 99</row>
+<row label="other">Other</row>
+</radio>
+In the code above, a participant entering the survey with list=99 will have the last row populated at question vList.
+3.2: labelSearch
+The labelSearch function matches variables to labels exactly. It is much faster than bucketize if you know exactly what values are acceptable and do not need any ranges.
+For example, given the following numerical rating question, you can categorize the ratings above with five different labels.
+<number label="Q1" size="1" verify="range(1, 5)">
+<title>Please rate your experience from 1 - 5:</title>
+</number>
+<radio label="vQ1" virtual="labelSearch(str(Q1.val))">
+<title>Experience</title>
+<row label="1">Worst</row>
+<row label="2">Bad</row>
+<row label="3">Neutral</row>
+<row label="4">Good</row>
+<row label="5">Best</row>
+</radio>
+The labelSearch function takes the value supplied at "Q1" and match it with the labels provided at "vQ1". The value and labels must match exactly.
+3.3: textSearch
+The textSearch function is just like the labelSearch function except that instead of matching a variable to the question's cell labels, it matches against the question's cell text.
+Below is the same example rewritten to use the textSearch function.
+<number label="Q1" size="1" verify="range(1, 5)">
+<title>Please rate your experience from 1 - 5:</title>
+</number>
+<radio label="vQ1" virtual="textSearch(str(Q1.val))">
+<title>Experience</title>
+<row label="worst" >1</row>
+<row label="bad" >2</row>
+<row label="neutral">3</row>
+<row label="good" >4</row>
+<row label="best" >5</row>
+</radio>
+The values provided at "Q1" will be matched against the row text at "vQ1". If four was provided at "Q1", then the row labelled "good" is selected because it matches that row's text, four.
+Below is the example, a mutator function is used. It creates rows from the responses provided at a question and automatically populates each participants' response using textSearch.
+<text label="Q1" optional="0">
+<title>Please tell us a bit more about your experience:</title>
+</text>
+<radio label="vQ1" onLoad="rowsFromAnswers('Q1')" virtual="textSearch(Q1.val)">
+<title>Responses from Q1</title>
+</radio>
+3.4: completionTimeFor
+The completionTimeFor function uses the uuid to extract the completion time for a participant. The function returns the total number of seconds the participant spent in the survey.
+For example:
+<float label="CompletionTimeFor">
+<title>Total number of minutes spent in survey.</title>
+<virtual>
+CompletionTimeFor.val = completionTimeFor(uuid) / 60
+</virtual>
+</float>
+3.5: surveyStartTime
+The surveyStartTime function uses the uuid to retrieve the actual time a participant started the survey.
+For example:
+<text label="StartTime" title="Survey Start Time">
+<virtual>
+s = surveyStartTime(uuid)
+if s:
+StartTime.val = gv.survey.root.transformDate(s)
+</virtual>
+</text>
+In the code above, the start date for a participant is stored in MM / DD / YYYY H:M format (e.g., 05/08/2014 10:07).
+Tip: The variables date and start_date are automatically added to the data set.
+4: Virtual Question Examples
+4.1: Track Countries by Country Variable
+Virtual questions have access to any of the variables specified in the <Survey> element's extraVariables attribute. In multi-language studies, the variable co is often used to track which country the participant is entering from (e.g., selfserve/9d3/proj1234?co=de).
+The virtual question below tracks the co variable and properly classifies the country it represents.
+<radio label="vco" virtual="bucketize(co)">
+<title>Country</title>
+<row label="none">No Country Variable</row>
+<row label="de">Germany</row>
+<row label="fr">France</row>
+<row label="sp">Spain</row>
+<row label="jp">Japan</row>
+</radio>
+4.2: Categorize a Question's Responses
+The bucketize function can also be used to classify a number question into specified ranges. For example:
+<number label="Q1" size="3" verify="range(1, 125)">
+<title>Enter your age below:</title>
+</number>
+<radio label="vQ1" title="AGE CATEGORY" virtual="bucketize(Q1.val)">
+<row label="1-17">Not an adult</row>
+<row label="18-24">Young adult</row>
+<row label="25-65">Super adult</row>
+<row label="66-125">Wise adult</row>
+</radio>
+Note: bucketize with ranges will not work in SECURE surveys. For more information about secure surveys, see Secure Surveys Overview.
+We can also manually accumulate values from previous questions and categorize them appropriately. In the example below, you can create a question to store a student's grade given their scores to each test.
+<number label="Q1" size="3" verify="range(1, 100)">
+<title>Please enter the score you received on each test below:</title>
+<row label="r1">Test #1</row>
+<row label="r2">Test #2</row>
+<row label="r3">Test #3</row>
+<row label="r4">Test #4</row>
+</number>
+<number label="vQ1_TotalScore" size="3">
+<title>TOTAL SCORE &amp; GRADE</title>
+<row label="r1">TOTAL</row>
+<row label="r2">GRADE</row>
+<virtual>
+total = sum(Q1.values)
+data.r1.val = total
+data.r2.val = total / len(Q1.rows)
+</virtual>
+</number>
+<radio label="vQ1_LetterGrade" virtual="bucketize(vQ1_TotalScore.r2.val)">
+<title>LETTER GRADE</title>
+<row label="90-100">A</row>
+<row label="80-89" >B</row>
+<row label="70-79" >C</row>
+<row label="60-69" >D</row>
+<row label="0-59" >F</row>
+</radio>
+4.3: Append Particpant Source Data From Tab-Delimited File
+It is possible to append data from a tab-delimited file to a virtual question using the File() function as discussed in Merging Data .
+For example, given the following tab-delimited file named "sampleData.txt":
+email first last id
+john@email.com John Doe 100
+jane@email.com Jane Dee 101
+clark.k@sm.com Super Man 102
+You can add this information to a survey using the File() function and a virtual question.
+<exec when="virtualInit">
+# first argument is the file we are using
+# second argument is the column name for the unique identifier
+dataFile = File("sampleData.txt", "id")
+</exec>
+<text label="vData">
+<title>Appended Data</title>
+<row label="r1">EMAIL</row>
+<row label="r2">FIRST</row>
+<row label="r3">LAST</row>
+<row label="r4">ID</row>
+<virtual>
+# retrieve the participant's data
+respondentData = dataFile.get(id)
+# if it exists
+if respondentData:
+# use it to populate the data for each row
+# different ways to populate data demonstrated below
+data.r1.val = respondentData["email"]
+data[0][1] = respondentData["first"]
+vData[0][2] = respondentData["last"]
+vData.r4.val = respondentData["id"]
+</virtual>
+</text>
+Learn more: Merging Data
+4.4: Combine Multiple Questions With Aggregate
+Also known as data aggregation or data stacking, there is a special <aggregate> element that can be used to create a virtual question that aggregates data from other questions.
+Note: Questions with the <aggregate> element only appears in the old Report (2010) and not in any of the data. See the end of this section for an alternative approach.
+In the following rating question below, you can aggregate the number of ratings selected at multiple questions.
+<radio label="Q1" type="rating" values="order">
+<title>How did you feel about the quality?</title>
+<row label="r1">Did not like it</row>
+<row label="r2">It was average</row>
+<row label="r3">I liked it</row>
+</radio>
+<radio label="Q2" type="rating" values="order">
+<title>How did you feel about the quantity?</title>
+<row label="r1">Did not like it</row>
+<row label="r2">It was average</row>
+<row label="r3">I liked it</row>
+</radio>
+<radio label="Q3" type="rating" values="order">
+<title>How did you feel about the value?</title>
+<row label="r1">Did not like it</row>
+<row label="r2">It was average</row>
+<row label="r3">I liked it</row>
+</radio>
+You can create a single question to count the number of ratings selected for each question using the <aggregate> element. The code below produces the a table in Report (2010) with a sum of all ratings selected for questions "Q1" - "Q3".
+<radio label="vQ1_Q3" type="rating" values="order" virtual="1">
+<title>Rating Aggregation</title>
+<row label="r1">Did not like it</row>
+<row label="r2">It was average</row>
+<row label="r3">I liked it</row>
+<aggregate>
+this.r1 = Q1.r1 + Q2.r1 + Q3.r1
+this.r2 = Q1.r2 + Q2.r2 + Q3.r2
+this.r3 = Q1.r3 + Q2.r3 + Q3.r3
+this.shown = Q1.shown + Q2.shown + Q3.shown
+this.answered = Q1.answered + Q2.answered + Q3.answered
+</aggregate>
+</radio>
+Since <aggregate> questions do not appear in the data, here is an alternative way to write the question above that produces a slightly different output but similar result. The code below counts the number of ratings made for each row.
+<number label="vQ1_Q3" size="6">
+<title>Rating Aggregation</title>
+<row label="r1">Did not like it</row>
+<row label="r2">It was average</row>
+<row label="r3">I liked it</row>
+<virtual>
+data.r1 = sum([Q1.r1, Q2.r1, Q3.r1])
+data.r2 = sum([Q1.r2, Q2.r2, Q3.r2])
+data.r3 = sum([Q1.r3, Q2.r3, Q3.r3])
+data.shown = Q1.shown + Q2.shown + Q3.shown
+data.answered = Q1.answered + Q2.answered + Q3.answered
+</virtual>
+</number>
+For example, if "r1" was selected 99 times in total for questions "Q1" - "Q3", then you may see the following output for "vQ1_Q3.r1".
+Where (48 * 1) + (21 * 2) + (3 * 3) = 99
+5: Virtual Question Performance Monitoring
+A file named virtual-timing.txt can be found in your project's directory. This file contains the time it takes to compute each virtual question, allowing you to gauge why your project is taking so long to load.
+In general, if a question takes over 100 micro-seconds to run, it may have a problem. An example of the output is shown below:
+== Timings for 509 records, in micro-seconds per record ==
+vstate 19192, 84.55
+626, 2.76
+xprob 219, 0.97
+varrival 151, 0.67
+vpid 134, 0.59
+vpida 101, 0.45
+vdepart 100, 0.44
+xcom 80, 0.36
+TOTAL 22699 (44.05 records per second)
+The important number is the number of records per second. You can divide the total number of records (e.g., 509) by this number (e.g., 44.05) to see the minimum time it will take to load the survey in the report after having made a change.
+6: Learn more:
+Check out the Exec Tag to learn more about executing Python code.

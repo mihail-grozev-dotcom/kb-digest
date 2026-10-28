@@ -1,0 +1,138 @@
+Title: Importing External Offline Data with File()
+This article details the process for importing offline data using the survey XML.
+Note: See Import Data Element to learn how to import data using the Survey Editor, or Including Campaign Manager Data Using the Automated Database System (ADB) to learn an alternative way to import sample data sent by the Campaign Manager.
+1: About Importing External Offline Data
+Importing external offline data is the process of adding data from a tab-delimited file into your project. Sometimes you will want the data available immediately, as the survey is fielding, or you may want it after the survey has closed for keyword coding, categorization, etc. Either way, you can use the File() function to accomplish this.
+2: Example of Importing External Offline Data
+In the following example, a tab-delimited file is loaded into a survey using the File() function.
+2.1: Sample Data to Load
+You can download the following tab-delimited file to practice using File() to load a set of sample data to your project:
+Sample Data File
+When saving the file, be sure to end it with a .dat extension. Then upload it directly to your project's root directory.
+Note: When uploading files using File(), use lowercase lettering throughout the file to avoid issues with column header conversion.
+2.2: Sample Survey
+The XML below will be the starting point for this example. All of the data in the file above can be loaded to this survey. One question below (q0) will be shown to the participant and the rest will be questions that can only be seen in the report and data downloads (i.e., <virtual> questions.
+<?xml version="1.0" encoding="UTF-8"?>
+<survey name="Survey"
+alt="External Data Import Demo"
+builderCompatible="1"
+extraVariables="source,list,url,record,ipAddress,userAgent"
+compat="127"
+state="testing"
+setup="time,quota,term">
+<samplesources default="1">
+<samplesource list="1" title="default">
+<var name="source" unique="1"/>
+<exit cond="1"><b>Thank you!</b></exit>
+</samplesource>
+</samplesources>
+<html label="intro" where="survey">Welcome to the survey!</html>
+<suspend/>
+<text label="q0" optional="0">
+<title>
+Does this information look correct? If not, please correct and click "Continue".
+</title>
+<row label="name">Name</row>
+<row label="email">Email</row>
+</text>
+<suspend/>
+<radio label="x1" virtual="1">
+<title>
+Radio Question
+</title>
+<row label="r1">Data Point 1</row>
+<row label="r2">Data Point 2</row>
+<row label="r3">Data Point 3</row>
+</radio>
+</survey>
+Note: In this example, a couple of different approaches are used for accomplishing the same task. This is purely for demonstration purposes to illustrate the different ways you can populate a question's data. For example, the question "first" compared to the question "last".
+3: Modifying the Survey to Load External Data
+You must make several modifications in your survey prior to loading the external data. These modifications are detailed in the following sections:
+3.1: Adding the External File for Hidden Questions
+3.2: Adding Logic for Hidden Questions
+3.3: Adding the External File for Virtual Questions
+3.4: Adding Logic for Virtual Questions
+3.1: Adding the External File for Hidden Questions
+First, load the file into your survey. To do that, add the following code above q0 in the example survey.
+<exec when="init">
+DataFile = File("include.dat", "source")
+</exec>
+In the above example, the DataFile variable calls the File() function with two arguments. The first is the name of your file, in this case "include.dat". The second is the column name in the Excel file that corresponds to the unique identifier that will be used to match participants.
+Note: When referencing data using File(), file header columns should be referenced using lowercase lettering.
+3.2: Adding Logic for Hidden Questions
+Once you have setup the file, you must then populate q0 with the participants' data when they come in.
+Below the previous <exec> block and above q0, add the following code block:
+<exec>
+respInfo = DataFile.get(source)
+if respInfo:
+q0.name.val = respInfo['name']
+q0.email.val = respInfo['email']
+</exec>
+In the exec block, you are accessing the corresponding source to pull the participants' data from the data file. From there, you are making sure that the record exists, and if it does, you are populating your hidden question. In this example, each participant's value is being pulled from the 'name' and 'email' columns and then assigned to the q0 rows labeled 'name' and 'email', respectively.
+3.3: Adding the External File for Virtual Questions
+The code you add to add the external file for virtual questions is very similar to what you did for hidden questions. The main difference is instead of your <exec> block running at initialization (init), it runs at virtual initialization (virtualInit).
+The following code can be placed anywhere, but for this example, place it before x1.
+<exec when="virtualInit">
+DataFile = File("include.dat", "source")
+</exec>
+3.4: Adding Logic for Virtual Questions
+Now that you have added the file to load at virtual initialization, you must add your code to populate x1.
+Inside x1, remove virtual="1" from the question tag and add the following code to replace it:
+<virtual>
+respInfo = DataFile.get(source)
+if respInfo:
+x1.val = int(respInfo['x1']) -1
+</virtual>
+In this code, you are again accessing the corresponding source to pull the participants' data from the data file and then check to see if that record exists. The next line is grabbing the value from the data file for the x1 column and assigning it to the value of the x1 question. Since the data from the data file is brought over as a string type, in order to assign it, you must first use the in( ) function to type cast it as an integer. The purpose of the -1 is to covert the data values 1-3 to the row indices 0-2 that are needed for assignment.
+4: Example Solution
+Making these edits will result in the following solution:
+<?xml version="1.0" encoding="UTF-8"?>
+<survey name="Survey"
+alt="External Data Import Demo"
+builderCompatible="1"
+extraVariables="source,list,url,record,ipAddress,userAgent"
+compat="127"
+state="testing"
+setup="time,quota,term">
+<samplesources default="1">
+<samplesource list="1" title="default">
+<var name="source" unique="1"/>
+<exit cond="1"><b>Thank you!</b></exit>
+</samplesource>
+</samplesources>
+<html label="intro" where="survey">Welcome to the survey!</html>
+<suspend/>
+<exec when="init">
+DataFile = File("include.dat", "source")
+</exec>
+<exec>
+respInfo = DataFile.get(source)
+if respInfo:
+q0.name.val = respInfo['name']
+q0.email.val = respInfo['email']
+</exec>
+<text label="q0" optional="0">
+<title>
+Does this information look correct? If not, please correct and click "Continue".
+</title>
+<row label="name">Name</row>
+<row label="email">Email</row>
+</text>
+<suspend/>
+<exec when="virtualInit">
+DataFile = File("include.dat", "source")
+</exec>
+<radio label="x1">
+<title>
+Radio Question
+</title>
+<virtual>
+respInfo = DataFile.get(source)
+if respInfo:
+x1.val = int(respInfo['x1']) -1
+</virtual>
+<row label="r1">Data Point 1</row>
+<row label="r2">Data Point 2</row>
+<row label="r3">Data Point 3</row>
+</radio>
+</survey>

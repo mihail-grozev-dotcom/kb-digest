@@ -1,0 +1,40 @@
+Title: 143.5 Release Notes
+Release Date: July 23, 2019
+Release Version: 143.5
+New Features
+Reporting
+Crosstabs
+Improved load times for large surveys by further optimizing the way Crosstabs handles numeric net data.
+Response Summary
+Improved performance for the Terminates tab by moving terminate calculations to the database.
+Survey
+Participant View
+Updated the default exit page that participants see when a survey contains no exit links.
+Added support for the following survey languages: Malayalam, Gujarati, Oriya.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue which caused a progress bar error when trying to run Crosstabs on large surveys with large numbers of participants.
+Dashboard
+Fixed an issue with the default="1" attribute not working for filters applied tochart groups.
+Usage Stats
+Fixed an error which prevented the detailed view from displaying timestamps for a survey’s first and last completes.
+Response Summary
+Fixed an issue with the Response Summary not working when the user’s language was set to French.
+Fixed an issue with Delphi-enabled surveys not displaying data when split by date or date range.
+Survey
+Survey Editor
+Fixed an error preventing users from performing further actions after changing the logic condition on a duplicated element.
+Fixed an issue causing the answer options Actions menu to close unexpectedly once accessed.
+Fixed an error preventing dashboards from loading when an HTML extension attempted to display some Unicode characters.
+Participant Sources
+Fixed an error caused by adding a participant source containing a mix of conditional and unconditional exit tags.
+Fixed an error causing the edit access warning to display when users with survey:view permission accessed the Participant Sources menu.
+Portal
+Fixed an issue causing new groups to be incorrectly evaluated as legacy groups after a recent server migration.
+Programming & Tools
+API
+Fixed an error caused by merging edits after adding data to a datasource in a live survey.
+Improved performance for the Data Feed API call.
+Custom Code Elements (Logic Nodes)
+Fixed an issue with scheduled logic node email sends not being rescheduled if a survey was relaunched.

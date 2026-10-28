@@ -1,0 +1,10 @@
+Title: Updating References
+1: Question and Answer Labels
+The Survey Editor performs limited updates when you change a question or answer label that is referenced in element conditions. Label changes will be reflected in "Show If" (cond) and "Answer Piping" (rowCond, colCond, or choiceCond) logic, as well as in quota cell definitions within the survey quota.xls file.
+Label references within the following locations will not be updated when labels are changed:
+Exec element (exec) logic
+Skip element (goto) targets
+Answer option logic in Autofill elements (autofill on rows)
+"Keep With" option (keepWith) targets
+2: Quota Titles
+The Survey Editor also performs updates when you change a quota title using logic based on other quotas (hasMarker).

@@ -1,0 +1,119 @@
+Title: Creating a Registration Survey Using Decipher
+Panel Management customers are able to create a Registration Survey directly in Decipher. Data captured by this survey will automatically become “datapoints” in Panel Management.
+1: What is a Registration Survey?
+A Registration Survey is an online survey that can be used to qualify and register potential panelists. The Registration Survey can also collect additional data for each panelist.
+2: Creating a Registration Survey
+To create a Registration Survey, you must first generate a special link within Panel Management. To generate your link, enter both your Decipher instance and company ID within the "Registration Survey" tab of your Panel Properties editor in Panel Management. Please contact SurveySupport@forsta.com or your account manager if you cannot locate this tab within your Panel Management account.
+Note: Each panel can only have one Registration Survey. If you have multiple panels, you will need to repeat this process for each panel individually.
+Once you create your link in Panel Management, you can click on that link to open a blank Registration Survey within the Decipher New Project window. To finalize creation of your Registration Survey, give your survey a Name, set the Primary Language, and then select Create Survey.
+Note: Languages stored for panelists within Panel Management will be sent to Decipher as part of the survey URL. If a panelist's language is not supported within Decipher, the default survey language will be used instead. For more information on setting languages for registration surveys in Decipher, see Compatible Languages for Decipher & Panel Management Surveys.
+3: Building Out a Registration Survey
+3.1: Required Question & Sample Sources
+Upon creation, your Registration Survey will appear in the Survey Editor. All necessary information will be included automatically for a Registration Survey to function. This includes two participant source elements (one for new panelists and one for existing panelists returning) and the first survey question called “register”.
+Note: Do not alter the “register” question configuration. You may change/format any text you wish and move to any location. “Email” must be the first row and “Password” must be the second. It should also include the condition to show if “not condition.isPanelist” to ensure that it is only shown to new participants and not existing panelists.
+3.2: Additional Questions & Datapoints
+To add datapoints to your Registration Survey, add questions through the Survey Elements Manager, as for any Decipher survey. You can also add structural elements, such as the terminate element, and apply logic to screen out participants you do not want to qualify for your panel. You may also set up quotas.
+If you have never built a survey within Decipher before, see Getting Started with Decipher for more information on how to use the Survey Editor.
+Any questions you add to a Registration Survey within the Elements Manager will be created as datapoints within Panel Management once the survey is launched. Deleting or removing a question does not remove its associated datapoint from Panel Management. You must manually remove the datapoint using the Datapoint Manager within Panel Management after a question is created.
+To add a survey question without also creating a Panel Management datapoint, you can add kinesis:nokdp="1" to the question via the XML Editor.
+3.3: Incentives
+It is also possible to provide participants with an incentive for referring a friend to a panel. New registration surveys automatically include this functionality, but existing surveys can be updated as well.
+To update an existing survey with incentive functionality, add the "New Panelists" (list 0) sample source and include the optional variable
+"referrer_hash".
+3.4: Retrieving Variables from Community Portal OpenID Connect Integration
+You can retrieve variables from the Community Portal OpenID Connect (OIDC) Login Integration (Facebook) during your registration survey to skip certain questions.
+Set up a Login Integration within the Community Portal. See Community Settings.
+Add OIDC as a participant sources for registering new panelists.
+Add the auth_id variable as a Custom URL Variable. The auth_id variable is required for the new OpenID Connect (OIDC) integration. It identifies the panelist and allows the panelist to return to the Community Portal after completing registration.
+Add any other OIDC variables that you want to capture:
+family_name: equivalent to last name from OIDC
+given_name: equivalent to first name from OIDC
+openid_email: panelist email from OIDC
+sub: OIDC identifier
+Capturing these variables allows you to use their values to automatically populate questions or control whether questions are displayed.
+Add the following condition to the survey XML. This condition identifies new panelists using the OIDC flow based on the captured auth_id value.
+<condition label="isOIDC" cond="bool(auth_id)">OIDC Panelist</condition>
+Use condition.isOIDC as needed to control whether question elements are displayed.
+Add an exit condition for OIDC panelists to the new panelist participant source. The exit condition redirects the panelist to the Community Portal after registration is complete.
+<samplesource builder:lock="remove" list="0">
+<title>New Panelists</title>
+<invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+<completed>It seems you have already completed this survey.</completed>
+<exit cond="terminated">Thank you for taking our survey.</exit>
+<exit cond="qualified and condition.isOIDC" url="https://loginfeatures.panel.dev.focusvision.com/portal/finalize/${auth_id}">Thank you for taking our survey. Your efforts are greatly appreciated!</exit>
+<exit cond="qualified">Thank you for taking our survey. Your efforts are greatly appreciated!</exit>
+<exit cond="overquota">Thank you for taking our survey.</exit>
+<var name="referrer_hash"/>
+<var name="family_name"/>
+<var name="given_name"/>
+<var name="openid_email"/>
+<var name="sub"/>
+<var name="auth_id"/>
+</samplesource>
+The OIDC exit condition must be added before the existing qualified exit tag. Update the URL as appropriate.
+<exit cond="qualified and condition.isOIDC" url="https://loginfeatures.panel.dev.focusvision.com/portal/finalize/${auth_id}">Thank you for taking our survey. Your efforts are greatly appreciated!</exit>
+You can also hide the register email and password question for panelists using Facebook to login. These panelists do not need a separate email address and password to sign in to the Community Portal.
+<text
+label="register"
+cond="not(condition.isPanelist) and not(condition.isOIDC)"
+builder:lock="remove,copy"
+optional="0"
+sst="0"
+where="survey,notdp">
+Test your integration works to confirm it works as expected:
+The expected OIDC variables are captured.
+The appropriate registration questions are displayed or hidden.
+Qualified OIDC panelists are redirected to the Community Portal after completing registration.
+3.5: Limitations
+While there are many options available for building out a Registration Survey, there are also some limitations on question types that can be added due to datapoint functionality within Panel Management.
+The following question types cannot be used within Registration Surveys:
+2-Dimensional or 3-Dimensional question types (grid questions)
+Multiple input open-ends questions ( more than one text box)
+Row/column modifiers (“Open End”, “noanswer”)
+Loops
+Autofill
+Dynamic questions with any of the above data structures
+Multi-Media questions
+Note: You can use Dynamic Questions in Registration Surveys if they use the supported data structures.
+Additionally, question labels for Registration Surveys cannot contain underscore characters, as these are reserved within Panel Management to denote choice options.
+If you try to add any incompatible elements while building out your Registration Survey, an error message will display within the Survey Editor. You will not be able to launch your survey until the error is corrected or removed.
+4: Launching a Registration Survey
+You can launch your Registration Survey using the same process that as for a normal Decipher survey. If you have never launched a Decipher survey before, see Launching a Survey for a guided walkthrough.
+Once your Registration Survey is live, you will see your new datapoints and their associated questions appear in the Panel Management Datapoint Manager under your panel.
+Note: Registration survey datapoints only appear in your Panel Management panel after your survey is set live.
+5: Participant Experience Considerations
+Both new and existing panelists can enter a Registration Survey. The registration experiences differs for new and existing panelists. This article describes the registration experience for new panelists. . For information regarding existing panelists, see Creating a Registration Update Survey Using Decipher.
+5.1: Survey URLs
+Once a new sample source is added, a new survey URL for it will automatically be created within the Project Summary page to be used for fielding.
+For more information on locating your survey link(s), see Survey Summary.
+5.2: New Panelists
+New panelists must enter a Registration Survey through the “New Panelist” sample source URL. Other URL variables may be appended for data collection.
+Note: URL variables will not pass to Panel Management. These will be stored in Decipher only.
+Participants answer questions as in any survey.
+After qualified panelists complete the Registration Survey, they receive an automated email to confirm their opt-in to your panel, and are saved as new panelists within your Panel Management.
+6: FAQs
+Q: If I wanted to add additional contact information fields for my panelists, would I add that to the “register” question?
+A: No, the “register” question will only store the “email” and “password” per panelist within Panel Management and must not be changed/altered. To track additional panelist details, you will need to create a new question with row options for each piece of information.
+Note: The “email” and “password” fields are only stored within Panel Management once the panelist clicks Continue. These fields are not available within any Decipher reports.
+Q: Do I need to add page breaks around the “register” question?
+A: No, the “register” question can be positioned anywhere within the Registration Survey, and does not require page breaks; it can be included on the same page with other questions without losing any functionality.
+Q: What if I already have a Registration Survey in place for my panel?
+A: You will not be able to add a new Registration Survey to your panel if you already have one for it. For information about transferring an existing Kinesis Registration Survey to Decipher, see Pulling Panel Management Datapoints into a Decipher Survey.
+Q: Can I add new datapoints to an existing Decipher Registration Survey?
+A: Yes. You can add new questions to your Decipher survey any time the survey is re-launched and/or live changes are merged, and these will automatically be added to Panel Management as datapoints. For more information on editing a live survey within Decipher, see Editing a Live or Closed Survey.
+Q: Can I remove datapoints from an existing Decipher Registration Survey?
+A: While you can remove questions from your Decipher survey at any time, the datapoints will still exist within Panel Management once they are created; to remove the datapoints, you will need to manually delete them using the Datapoint Manager within Panel Management.
+Note: Deleting datapoints within Panel Management is not recommended within previously run surveys, as you will lose all collected data for that datapoint.
+Q: Can I hide questions from participants from within my Registration Survey?
+A: Yes. To hide a question from panelists within the Registration Survey, but keep the Panel Management datapoint for it, add skip logic to the question using the Elements Manager. This is particularly useful for creating a profiling survey, where certain demographics may change over time.
+Note: You can also hide questions using the “where” question attribute within the survey XML. Click Question Attributes for more information on using where.
+Q: Can I update my panelists’ data within the Registration Survey?
+A: Yes. See Creating a Registration Update Survey Using Decipher.
+Q: Can I change the survey theme for my Registration Survey?
+A: Yes, you can change the survey theme and add any styles you wish; there are no limitations on survey style elements.
+Q: What happens if a participant attempts to register twice?
+A: If a participant already has a panel account within Panel Management and they try to re-register their email address, they will receive an immediate error message stating “Registration failed: Duplicate email”.
+Q: What happens if a participant leaves the survey after completing just the “register” question?
+A: If a participant leaves the survey after completing only the “register” question, they will be tagged as an “unconfirmed” panelist within Panel Management and still receive an opt-in follow up email. For more information on managing Panel Management panelists, see the Panelist Manager.
+Q: What happens if there is an error submitting data or a Panel Management server cannot be reached when creating a Registration Survey?
+A: Any issues with connectivity should be displayed within the project warnings report prior to launching your Registration Survey.

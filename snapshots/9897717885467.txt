@@ -1,0 +1,21 @@
+Title: 144.6 Release Notes
+Release Date: February 11, 2020
+Release Version: 144.6
+Bug Fixes
+Portal
+Fixed an issue preventing the survey.xml and edit tracking links from changing colors once selected in the Version Control menu.
+Survey
+Survey Editor
+Fixed an error occurring when attempting to save non-ASCII characters in an ad-hoc database for a survey with delphi="1".
+Participant View
+Fixed an asset error occurring when attempting to load the Date Picker Dynamic Question type.
+Responses
+View/Edit Responses
+Fixed an issue which caused rows and/or columns to appear blank for checkbox questions in surveys with rightOf and delphi="1".
+Reporting
+Data Downloads
+Fixed an issue causing inaccurate data to be displayed when survey data and datasources were added via API.
+Programming & Tools
+API
+Fixed an issue preventing Panel Management surveys from being imported if they contained a Google reCaptcha element.
+Fixed an issue preventing survey data from updating when making an API call to a custom datasource in surveys with delphi="1".

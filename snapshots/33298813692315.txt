@@ -1,0 +1,33 @@
+Title: 153.47 Release Notes
+Release Date: January 28, 2025
+Release Version: 153.47
+New Features
+Survey
+Integration
+The Surveys - Panel Management integration now allows users to dynamically override reward points and survey activity names displayed to panelists based on logic conditions, providing greater flexibility beyond the default reward points set for exit conditions.
+Learn More: Setting Custom Terminates with Custom Points for Panel Management
+Language Manager
+Added Kyrgyz language support in Language Manager.
+Learn More: Available Survey Languages
+Survey Testing Tools
+The "Send to Phone" button for sharing a survey's URL has been replaced with "Generate QR Code".
+Learn More: Testing an Online Survey
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+An issue preventing successful exit link redirection for some Pure Spectrum participants has been resolved.
+Architecture and DevTools
+Single Sign-On between Forsta Viz and Forsta Surveys is now possible through the App Switcher Menu. Contact your Viz Account Manager to gain access to instantly switch to your corresponding Viz server. Note that Viz access to Decipher no longer requires API keys.
+Learn More: Quick Switch App
+API
+The JSON Datamap API (format=json and format=json_stacked) now supports the language parameter to select another language for the questions and variables
+Bug Fixes
+Portal
+Usage Statistics
+An issue preventing global reports from running properly has been resolved.
+Survey
+Language Manager
+An issue preventing use of DeepL AI translation has been resolved.
+Reporting
+Crosstabs
+For the previous version of Media Evaluator (bcme.6 and bcme_weight.2): an issue preventing video export has been resolved.
+For the latest version of media evaluator (bcme.7 and bcme_weight.3): an issue affecting the analyzer graph that displays over the video thumbnail has been resolved.

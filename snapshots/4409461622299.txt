@@ -1,0 +1,18 @@
+Title: Pinning Tables and the Whiteboard
+Pinning tables allows you to select specific tables and charts and pin them to your whiteboard to create your own static reports from them.
+1: Pinning Tables
+To pin a table, click the "..." menu located at the top right of the table and select Pin to Whiteboard from the drop-down.
+When you pin a table, it is automatically saved to your whiteboard. Your whiteboard is where you can store any tables and charts that you want to use to create custom reports.
+Note: When you pin a table, the current report configuration for the table is pinned. One table can be pinned multiple times if you want to track different configurations for the same table (for example: charts, banner splits, filters, weights, etc.)
+Pinned tables will only show as pinned during the current session.
+If you apply new report configurations, the pins are reset so you can choose if you want to also pin the updated tables. The whiteboard is used to store all of your pinned tables. You will not lose previously pinned tables in your whiteboard when a new configuration is applied.
+2: Viewing Your Whiteboard
+Once you have pinned tables to your whiteboard, you can view them by selecting View Whiteboard from the Actions menu at the top left of any report.
+The whiteboard contains a list of your pinned tables. Viewing the whiteboard allows you to review the tables you have pinned and delete any you no longer want in your whiteboard. The following options are configurable:
+1. Pinned tables: All pinned tables are included in the whiteboard.
+2.Select All / None: Select all or none of the tables.
+3.Sort: Sort by newly added pins or oldest pins first.
+4.Delete Selected: Delete selected items from the whiteboard, if multiple tables are selected.
+5.Delete: Delete a specific individual table to remove them from the whiteboard.
+6.Select: Check the box for tables in order to delete multiple tables at once.
+Click the "x" located at the top-right corner to close the whiteboard.

@@ -1,0 +1,30 @@
+Title: Importing Data Using the Decipher API
+Note: The below article uses examples of accessing Decipher API from a Unix system that has the Beacon library package installed. See Decipher REST API to learn more about accessing the Decipher REST API.
+You can use the Decipher API to import externally collected data as part of a datasource in your survey. This allows you to pull corresponding data from the datasource element for each participant that comes into your survey via hidden or virtual questions. This process works similarly to the Import Data Element and the Datasource Tag.
+Note: While the Import Data element and Datasource tag are visible in the Survey Editor and XML Editor, the datasources created via the Datasource API call create these files in a separate file in the project. Accessing and modifying these files outside of API calls requires a Decipher Cloud Server.
+Using the Datasources API call, you can retrieve a list of the datasources included in a project, create new datasources, or delete existing ones. After setting up a datasource, you can use additional calls to add or append data to it, as well as to download already appended data, or completely clear the data for a datasource.
+You can use the following API calls to retrieve a list of the datasources included in a project, create new datasources, or delete existing ones. Click any call name to view more information.
+Call Name
+Description
+Create Datasource
+Creates a datasource or update an existing datasource.
+Retrieve Datasource
+Retrieves a list of the existing datasources for a survey.
+Delete Datasource
+Deletes an existing datasource.
+Append Datasource Data
+Appends data to a datasource element.
+Replace Datasource Data
+Replaces the existing data in a datasource element with a new set of data.
+Delete Datasource Data
+Removes all data from a datasource element.
+Retrieve Datasource Data
+Retrieves all data for a datasource element.
+Note: By default, API calls in the shell output information directly to the console screen. If you want to reuse that output, you will want to save it to a file.
+Note: If you are using a web call method to access the API, you will need to have a way of providing your API key. See Decipher REST API for more information.
+Note: You will need to change v2.decipherinc.com to the domain that you use to log into the Decipher platform.
+1: Viewing Returned Data
+You can use the global select parameter to retrieve a subset of any GET call's returned data. You can pass in select as an argument set to a comma-separated list of properties to return.
+For example, select=id, login, active will only retrieve these three specific fields when calling in the User List API:
+beacon get rh/users select=id,login,active
+Note: The select parameter should only be used on GET method API calls to filter information retrieved via an API call, and not information that you send (e.g., via a PUT or POST method) to Decipher.

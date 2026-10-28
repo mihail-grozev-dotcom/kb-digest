@@ -1,0 +1,8 @@
+Title: DQ3 Release Notes
+Release date: October 9, 2013
+New Dynamic Questions
+Video Player
+Media Evaluator
+Image Map
+Text Highlighter
+#16400 - added mobile warnings in builder for relevant DQ’s

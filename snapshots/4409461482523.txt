@@ -1,0 +1,66 @@
+Title: Multi-Select Element
+1: About the Multi-Select Element
+The Multi-Select element allows participants to select multiple answers. This element can have multiple rows and/or columns.
+Mobile Optimized: Yes
+2: Adding a Multi-Select Element
+To add a Multi-Select element, first click the "+ Element" button to add a new survey element. Then click "Single and Multi Select" under Question Types and select the "Multi-Select" element. Then click "Add".
+In the staging area, enter the question text and instructions, add your desired response options, and configure the question's style settings.
+2.1: Adding Rows
+Click "+ New Row" to add each new row, then enter the answer option in the text field.
+Note: Do not number the answer options unless you want that numeric text to appear for the participant. The system will automatically provide labels with the prefix "r" and/or numbers for the rows which you can edit later in "View Options."
+2.2: Adding Columns
+Click "Add Columns" to add a new column, then enter the answer option in the text field. If the question already contains columns, click "+ New Column" to add a new column.
+Note: Do not number the answer options unless you want that numeric text to appear for the participant. The system will automatically provide labels with the prefix "c" and/or numbers for the columns which you can edit later in "View Options."
+2.3: Customizing Response Options
+Click "Row/Column Actions" to perform the following actions for selected response options:
+Import Answers
+Save Answers to Library
+Copy All Answer Text
+Insert Reusable Answer List (only available if you have previously saved
+an answer list)
+Create Reusable Answer List
+Add Answer Group
+Answer Piping
+Reverse Values
+Reset Values
+Reset Labels
+Delete All Answers
+Edit All Answers
+3: Configuring Style Settings
+To configure the style settings, click the "..." button at the top right of the element in the staging area and select Update Styling.
+Learn more: Editing Question Styles
+4: Configuring Question Settings
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it. Options vary based on the item selected.
+4.1: Question Options
+Select the question to set the following options:
+Label: The label assigned to the element. You may edit the default label for the multi-select here.
+Show If: Allows you to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Select what languages will the element be shown in if the survey has multiple languages. The default is "all languages."
+Min Answers: This option allows you to define the minimum number of answers the participant must select in order to complete the question.
+Max Answers: This option allows you to define the maximum number of answers the participant may select.
+Randomize: Show answer options in random order. Check Rows, Columns, and/or Groups or Groups Only to randomize.
+More Options: Use the drop-down menu to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.2: Row Options
+Select a row to set the following options for that specific row:
+Label: The label assigned to the row. You may edit the default label for the row here.
+Data Value: The value assigned to the row in the data. You may edit the default value for the row here if the option is available.
+Show If: Allows you to create a new logic condition or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: Select what languages will the row be shown in if the survey has multiple languages. The default is "all languages."
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Checking this box will force the row to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. When checked it will allow for the row to become optional and non-mandatory.
+Exclusive: When checked this option will make the row exclusive. The participant will not be able to select the "exclusive" row with any other options in the row.
+Open End: Allows you to add an open end response box to the row by selecting "mandatory" or "optional" from the drop-down menu. "Mandatory" means the participant must enter feedback in the response box to continue if the row is selected, "optional" means that feedback is not required.
+Hidden: This option will hide the row from participants.
+No Answer: If checked, the participant will not be able to select the row with any other row or column (if the question is 2-dimensional). It is primarily used if there is a "Don't know" or "None of these" answer choice in the question.
+More Options: Use the drop-down menu to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.3: Column Options
+Select a column to set the following options for that specific column:
+Label: The label assigned to the column. You may edit the default label for the column here.
+Data Value: The value assigned to the column in the data. You may edit the default value for the column here if the option is available.
+Show If: Allows you to create a new logic condition or select an existing logic condition for the column. For more information, see Adding Logic to a Question or Response Option.
+Languages: Select what languages will the column be shown in if the survey has multiple languages. The default is "all languages."
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Checking this box will force the column to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. When checked it will allow for the column to become optional and non-mandatory.
+Exclusive: When checked this option will make the column exclusive. The participant will not be able to select the "Exclusive" column with any other options in the column.
+Hidden: This option will hide the column from participants.
+More Options: Use the drop-down menu to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.

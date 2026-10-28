@@ -1,0 +1,129 @@
+Title: Uploading System Files
+Note: You must have at least survey:edit permission to upload files via the file manager.
+The file manager available in Decipher gives users with survey:edit permission the ability to upload files needed for project creation in bulk. This includes image files you may want to use within the XML, HTML or PDF files for including as add-ons, CSS files for updating the look and feel of the survey, or perhaps this could be complex quota files for adding even more power to your project. The file manager opens up many new possibilities in project design and setup.
+Important: Usage fees apply for video files. Please contact your Account Manager for pricing specifics.
+1: Accessing the File Manager
+To add files using the file manager, locate your project in the Portal and click the project name to access its project page.
+In the navigation menu at the top of the project page, click Build to display your survey tools. Then click More Tools and select Upload System Files. The Supporting Files tab should be selected. (To learn about the Video Files tab, see 3: Viewing Video Files below).
+Tip: Click any of the headers to sort the files by that field.
+Add Files: Allows you to select a file from your computer to upload to the file manager. Alternatively, drag and drop the file into the space below this button.
+Learn More: Links to a supporting KB article for additional information.
+Kind: Reflects the file type.
+Name: Contains the name of the file.
+Access: The location where the file can be accessed
+Size: The size of the file
+Date: The date the file was last modified
+Actions: Allows you to view additional file management options.
+Export: Download the file to your device.
+Delete: Remove the file from the survey.
+2: Uploading Supporting Files
+Note: You must have at least survey:edit permission to upload system files.
+In the file manager, click the Add Files button to select the file, or simply drag and drop the file into the space below the button. Multiple files can be added at once. Once the file has been selected, it will appear in the file manager. Select the desired location of the file (Publicly Available (static) or System Only (Root)), then click Upload.
+Tip: Once the file has been uploaded, you can click the link to open the file, or click the Access icon to copy the file location.
+Note: Spaces in the filename are replaced with underscores when uploaded. For example, "image 1.png" is changed to "image_1.png".
+Characters that are not letters, numbers, or dashes are removed.
+You may also add or replace files using the Upload/Replace API call. Learn more about using the Decipher REST API.. Learn more about using the Decipher REST API.
+2.1: Types of Files Allowed
+The following types of files can be successfully uploaded via the file manager. If you would like to upload an unlisted file type, please contact your Forsta representative for assistance.
+2.1.1: Static Directory
+.css
+.csv
+.eot
+.gif
+.jpeg
+.jpg
+.js
+.json
+.htm
+.html
+.less
+.mp3
+.pdf
+.png
+.svg
+.swf
+.ttf
+.vtt
+.woff
+.woff2
+Note: Images included in .svg files may not be accessible via the XML Editor.
+2.1.2: Survey Directory
+acl.txt*
+.csv
+.dat
+.htm
+.html
+.json
+.ppt
+.pptx
+.txt (Staff roles only)
+.xls
+.xlsx
+.xml
+File types marked with an asterisk (*) contain special permissions which supersede any rules set by other file types uploaded to the same directory.
+2.1.3: Size Limit
+Video Files: up to 2GB
+Other Files: up to 50MB
+3: Viewing Video Files
+Select the Video Files to view video files.
+Important: Usage fees apply for video files. Please contact your Account Manager for pricing specifics.
+Tip: Click any of the headers to sort the files by that field.
+Add Files: Allows you to select a file from your computer to upload to the file manager. Alternatively, you can drag and drop the file into the space below this button.
+Name: Contains the name of the file.
+Video ID: The reference ID required by the media player.
+Location: The selected location of the file.
+Uploaded By: The name of user who uploaded the file.
+Uploaded On: The date the file was uploaded.
+Play Count: Counts updated daily (not in realtime)
+Status: Status of the video. An email will be sent once the video has been processed and is ready to use.
+3.1: Types of Files Allowed
+The following video formats are permitted:
+.mp4 (mobile compatible)
+.mov (mobile compatible)
+The size limit for video files is 2GB.
+3.2: Uploading Video Files
+In the file manager, click the Add Files button to select the file, or simply drag and drop the file into the space below the button. Multiple files can by added at once.
+Once the file has been selected, it will appear in the file manager. Select the desired location of the file (Current Project Folder or Company Folder), then click Upload.
+Important: Once a video file has been uploaded, it cannot be removed or deleted. Click Remove to remove the file before it is uploaded.
+Note: Spaces in the filename are replaced changed with to underscores when uploaded. For example, "image 1.png" is changed to "image_1.png".
+Characters that are not letters, numbers, or dashes are removed.
+Once the file has been uploaded the status will be "Pending". An email will be sent once the video is ready for use.
+4: Deleting Uploaded Files
+Note: You must have at least survey:edit permission to delete system files.
+If you need to delete a file, you can remove it at any time using the Delete option located in the “...” actions menu.
+You may also delete files using the Delete File API call. Learn more about using the Decipher REST API.
+4.1: Types of Files Allowed (for Deletion)
+4.1.1: Static Directory
+.css
+.csv
+.eot
+.gif
+.jpeg
+.jpg
+.js
+.json
+.htm
+.html
+.less
+.mp3
+.pdf
+.png
+.svg
+.swf
+.ttf
+.woff
+.woff2
+4.1.2: Survey Directory
+acl.txt*
+.csv
+.dat
+.htm
+.html
+.index
+.json
+.ppt
+.pptx
+.txt
+.xls
+.xlsx
+.xml

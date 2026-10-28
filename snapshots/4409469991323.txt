@@ -1,0 +1,14 @@
+Title: Form Image Replacement (FIR) Question Style
+1: FIR Overview
+Form Image Replacement is a unique style that can be applied to single select and multi-select questions in the Survey Editor, thus creating a more visually engaging experience for participants. This style is mobile and tablet compatible too.
+See Configuring Survey Display Settings to learn how to define the global FIR settings for your project.
+The following examples highlight the default format of Form Image Replacement (color and style may be configured in the Display Settings menu):
+Example of Form Image Replacement applied to a single select question:
+Example of Form Image Replacement applied to a multi-select question:
+2: Setting FIR for a Question
+To apply the Form Image Replacement style to a question, select the question so it appears in the staging area. Then click "Update Styling" under the "..." button at the top right corner of the question.
+Locate "Use FIR for This Question" and select one of the following options:
+Inherit: Automatically apply FIR to the question, based on the global settings.
+On: Enable FIR for this question.
+Off: Do not apply FIR to this question.
+You can preview the element at any time by clicking the "Save and Preview" button at the bottom right in the "Update Styling" window or the "Preview" button located at the top right of the question in the staging area. See Previewing a Question to learn more about previewing an element.

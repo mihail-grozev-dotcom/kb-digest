@@ -1,0 +1,279 @@
+Title: MaxDiff Element
+You can use the MaxDiff element to automatically create a MaxDiff exercise
+within your survey.
+MaxDiff elements use “Best-Worst" scaling to help you determine participants’
+preferences on large lists of items without using large, complex grid tables.
+Asking participants to rank or rate a large list of items in one question can
+be overwhelming and can potentially introduce scaling bias. MaxDiffs resolve
+these issues by breaking up large lists of items into smaller, more digestible
+groups. Item groups can be defined by brands or other shared characteristics.
+In a MaxDiff element, participants will be asked the same question multiple
+times, but each time, they will see a different subset of items to rate. By asking
+participants to rate items this way, MaxDiffs allow you to simplify the question,
+eliminate any bias, and test a much larger number of items than you would otherwise
+be able to.
+In addition to generating a MaxDiff exercise, the MaxDiff element appends a raw
+utility score to the report for each of the items included in the question.
+1: How it Works
+Each MaxDiff element includes multiple versions of the question, or “tasks”,
+with a different subset of answer items, or “attributes” for participants to
+rate. Each participant is randomly assigned to one of these versions at the start
+of the exercise, and will only see the tasks and attributes in that version.
+Which attributes are displayed in each version, and the order that tasks appear
+are controlled by a design that is automatically built based on the number of
+attributes added to the element.
+1.1: Versions
+Each MaxDiff design contains 300 versions. The version seen by a participant
+is assigned to that participant using a special survey marker to ensure that all versions
+are distributed equally and randomly.
+MaxDiff survey markers will include the element’s question label and a “vX” value,
+where “X” is the version number seen by the participant. For example, the marker
+/de/maxdiff/Q12/v1 would appear for a participant who saw version 1
+of the exercise from the element labeled Q12.
+1.2: Utility Scores
+Utility scores are calculated and appended to the report after participants have
+completed the MaxDiff exercise. The following formula is used to calculate the
+utility score for each attribute:
+Utility Score = 50 + (50 * (B-W)) /N
+Variables are defined as follows:
+B: The number of times the attribute was selected as “Best” (c1) by
+participants.
+W: The number of times the attribute was selected as “Worst” (c2) by
+participants.
+N: The number of times the attribute was shown to participants across the
+exercise.
+For example, if an attribute was selected as “Best” every time it was shown,
+its utility score would be 100. It was selected as “Worst” every time it was
+shown, its score would be 0. If that same attribute was never selected, its score
+would be 50.
+Note: Crosstabs utility scores are calculated using only the formula outlined
+above and are not indicative of an attribute’s probability of being selected.
+If you need to run advanced analytics on your MaxDiff results in another
+tool or platform, you will want to use the raw attribute data rather than
+the scores provided here.
+2: Adding the MaxDiff Element Via the Survey Editor
+Note: You can set the "Show" filter to display only elements that are compatible
+or optimized for the devices allowed for your project. Learn how to
+verify your project settings.
+To add a MaxDiff element, first click the + Element button to add a new survey
+element. Then click Rate, Rank, and Sort under Question Types and select the
+MaxDiff element. Then click Add.
+Enter the question and instruction text in the areas provided. Then use the Options
+menu to the right of the staging area to customize the MaxDiff element.
+Important: Do not edit column labels. Column labels should be c1 and c2 for the utility score calculation to work correctly.
+2.1: Adding Attributes
+MaxDiff elements can contain between 8 and 20 attributes. Click into an existing
+attribute row to get started or click + New Attribute to add the first row
+for your exercise. Then click into that row field and enter your attribute text.
+Repeat the steps above to continue adding attributes.
+2.2: Viewing Attribute Actions
+Click Attribute Actions to access the following edit options:
+Import Answers
+Save Answers to Library
+Copy All Answer Text
+Insert Reusable Answer List (only available if you have previously saved
+an answer list)
+Create Reusable Answer List
+Add Answer Group
+Answer Piping
+Reverse Values
+Reset Values
+Reset Labels
+Delete All Answers
+Edit All Answers
+2.3: Adding Columns
+MaxDiff elements must contain exactly two columns, with the first column indicating
+the “best” or most preferable option, and the second column indicating the
+“worst” or least preferable option. Click into a column field to customize the
+name for that column.
+Important: Do not edit the column labels. Column labels should be c1 and c2 for the utility score calculation to work correctly.
+2.4: Configuring Style Settings
+To configure the style settings for the MaxDiff element, click the "..." button
+at the top right of the element in the staging area and select Update Styling.
+In the Question Display Options menu, configure the settings for the element
+using the options on the left. Additional information about each feature will
+appear on the right when you mouse-over the text. You may also click Save and
+Preview to preview the settings.
+The following display settings are available:
+Style Option
+Description
+Randomize Tasks
+Randomizes the order in which tasks are displayed in the exercise.
+If not selected, the order of the tasks is determined by the
+design file.
+Randomize Attributes
+Randomizes the order in which attributes are displayed in the
+exercise. If not selected, the order of the attributes is determined
+by the design fiIe.
+Note: Attributes are randomized by default to create the different versions
+of the question seen by participants. Enabling randomization here will introduce
+further unpredictability of the order in which they are seen.
+Once you are satisfied with your settings, click Save and Close to apply them
+to the element.
+2.5: Configuring Question Options
+The general options available for the MaxDiff element are located to the right
+of the staging area. You can set rules for the entire element by clicking near
+the question text or set rules for individual attributes by clicking the attribute
+you wish to edit. The Options menu will show the question or attribute label
+and type for the option you have selected to edit.
+2.5.1: Question Options
+When altered, each of the following options affects all attributes within the
+Maxdiff element.
+Label: The label assigned to the element. Click to edit
+the default label for the MaxDiff element.
+Show if: Click to create new logic conditions or select
+an existing logic condition for the element. Learn more about
+Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will
+be shown in if the survey has multiple languages. The default is "all".
+Mandatory: The MaxDiff question is always mandatory. Even when unchecked, participants will be unable to continue through the survey without completing the question.
+Randomize: Check the boxes to randomize items by type. Items
+can be randomized by rows or columns.
+Note: Randomizing columns can negatively impact tracking between the ‘best’
+and ‘worst’ rankings. If you would like to randomize your exercise’s tasks
+or attributes, use the style options outlined in 2.4: Configuring Style Settings above.
+More options: Click to select less commonly used options.
+Once selected, you will be able to specify the setting for that option. Learn
+more about the
+available options.
+2.5.2: Attribute Options
+When altered, each of the following options only affects specific attribute options.
+Label: The label assigned to the attribute. Click to edit
+the default label for the attribute.
+Show if: Click to create new logic conditions or select
+an existing logic condition for the row. Learn more about
+Adding Logic to a Question or Response Option.
+Note: For best results, show all rows at all times in MaxDiff
+exercises.
+Languages: Click to select what languages the response option
+will be shown in if the survey has multiple languages. The default is "all".
+Note: For best results, use all languages in MaxDiff exercises.
+Do not randomize: This option is only available if the "Randomize"
+general option is selected. Check the box to force the product to remain
+stationary.
+Open End: Not applicable to the MaxDiff element.
+Hidden: Click to hide the response options from participants.
+Note: Show all response options to ensure that participants
+fully complete the exercise before moving forward in the survey.
+More options: Click to select less commonly used options.
+Once selected, you will be able to specify the setting for that option. Learn
+more about the
+available options.
+Important: Do not edit the column labels. Column labels should remain c1 and c2 for the utility score calculation to work correctly.
+3: Adding the MaxDiff Element Via the XML
+To add a MaxDiff element via the survey XML, first create a radio question in
+the desired location. Then add uses="de_maxdiff.1" to the question
+tag, along with values="order" and
+where="execute,survey":
+<radio
+label="Q12"
+uses="de_maxdiff.1"
+values="order"
+where="execute,survey">
+</radio>
+Next, add your question text and instructions, as well as the columns and rows
+for your exercise.
+3.1: Adding Columns
+MaxDiff elements must contain exactly two columns, with the first column indicating
+the “best” or most preferable option (<col label="c1">Best Fit</col>), and the second column to indicating the
+“worst” or least preferable option (<col label="c2">Worst Fit</col>). Add these two columns, setting the text for
+each one as you would like it to appear within the exercise.
+Important: Column labels should be c1 for the most preferable option and c2 for the least preferable option in order for the utility score calculation to work correctly.
+3.2: Adding Attributes
+MaxDiff elements can contain between 8 and 20 attributes. Add one row per attribute,
+setting the row text as you would like the attribute to appear within the exercise.
+3.3: Customizing the Exercise
+If desired, you can change the way the MaxDiff exercise appears within the survey.
+Use the following optional attributes to customize your exercise:
+Attribute
+Type
+Description
+de_maxdiff:randomizeTasks
+boolean
+Set to 1 to randomize the order in which tasks are displayed
+in the exercise. By default, the order of the tasks is determined
+by the design file (set to 0).
+de_maxdiff:randomizeAttributes
+boolean
+Set to 1 to randomize the order in which attributes are displayed
+in the exercise. By default, the order of the attributes is determined
+by the design fiIe (set to 0).
+Note: The MaxDiff element is not affected by the accordion style attribute. Setting ss:accordionDisplay="1" at the survey or question level has no effect on its appearance.
+3.4: Example
+The following example exercise asks users to rate the best and worst descriptors
+for an ad. It contains 14 attributes and will randomize the order of both its
+tasks and attributes:
+<radio
+label="Q12"
+de_maxdiff:randomizeTasks="1"
+de_maxdiff:randomizeAttributes="1"
+optional="1"
+uses="de_maxdiff.1"
+values="order"
+where="execute,survey">
+<title>Which adjective would you say best describes the ad you just saw, and which adjective least describes it?</title>
+<comment>Please select one from each column</comment>
+<col label="c1">Best Fit</col>
+<col label="c2">Worst Fit</col>
+<row label="r1" value="1">Stylish</row>
+<row label="r2" value="2">Sleek</row>
+<row label="r3" value="3">Modern</row>
+<row label="r4" value="4">Trendy</row>
+<row label="r5" value="5">Unique</row>
+<row label="r6" value="6">Basic</row>
+<row label="r7" value="7">Cool</row>
+<row label="r9" value="8">Slick</row>
+<row label="r10" value="9">Retro</row>
+<row label="r11" value="10">Artistic</row>
+<row label="r12" value="11">Rustic</row>
+<row label="r13" value="12">Inspiring</row>
+<row label="r14" value="13">Awful</row>
+</radio>
+4: Viewing the Survey
+The MaxDiff element controls how the exercise appears to participants and is
+not displayed within the survey. Instead, participants will see a copy of the
+question for each task that has been assigned to them within the design file.
+In addition, a hidden question is created within the survey and reports that
+tracks which version was seen by each participant. This question is not seen
+by participants and can only be viewed from within the survey if you have enabled
+QA testing tools.
+5: Viewing the Report
+Once you have closed your survey, you may review the utility scores for your
+MaxDiff question in Crosstabs.
+5.1: Report Tables
+When viewing the report, you will notice that MaxDiff elements include several
+report tables. These tables contain the element’s utility scores, version information,
+and other data.
+Note: The “x” in each table name will be replaced with the question number
+of the MaxDiff element as it appears in your survey.
+The following summary tables are available for each MaxDiff.
+5.1.1: Utility Scores
+The report will contain two different types of utility score tables. Both
+of these table types will be labeled as “Qx_score”, with the “x” value replaced
+by the question label for the MaxDiff element.
+The first table type is a Mean Summary table with the mean utility scores for
+all attributes.
+The second is a Mean Summary table with the mean utility scores for an individual
+attribute. There will be one of these tables for each attribute in the MaxDiff.
+5.1.2: Versions
+The report will also contain a version table, which includes a list of all the
+different versions of the MaxDiff and a count of how many participants saw each
+one. This table will be labeled as “Qx_version”, with the “x” value replaced
+by the question label for the MaxDiff element.
+5.1.3: Times Selected
+Finally, the report will include two additional tables for every attribute that
+indicate how many times that attribute was selected for each column. These tables
+will be listed in pairs and will all be labeled as “Qx_y”, with the “x” value
+replaced by the question label for the MaxDiff element and the “y” replace by
+the row number for the attribute.
+All attributes will also be listed in order by column. For example, if you had
+just two attributes in your MaxDiff with the Q12 question label, you would have
+the following four report tables:
+Q12_1: The number of times column 1 was selected for attribute
+1.
+Q12_1: The number of times column 2 was selected for attribute
+1.
+Q12_2: The number of times column 1 was selected for attribute
+2.
+Q12_2: The number of times column 2 was selected for attribute
+2.

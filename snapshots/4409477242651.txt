@@ -1,0 +1,46 @@
+Title: Testing an Online Survey
+The survey testing system allows you to review your survey and check each question for errors before it goes live. It is designed to show you every detail of the survey including the field settings and extra variables that are hidden to participants.
+You can use the survey testing system to check the logic, skip paths, question settings and text. The survey testing toolbar allows you to make direct text changes as well as add change suggestions for survey programmers to review and update. You can also test the survey as participants will see it, with all structural elements and the testing toolbar hidden.
+1: Accessing the Testing Environment
+To test a survey using the survey testing system, select Test Survey from the PREVIEW drop-down in the navigation menu located at the top of any project page.
+In the Survey Testing Environment window, you can configure the following settings (where applicable) when testing your survey:
+Note: Depending on your project setup, not all of the settings may be available (e.g., if you have not added multiple languages to your project, you will not be able to adjust that setting in the testing environment).
+1. Participant Source: Select a participant source.
+2. Language: Select a survey language.
+3. Participant Source Variables: Enter a value for any variables that appear for the selected participant source.
+4. Global Variables: Enter a value for any global variables you have configured for the survey.
+5. Survey Link: Review the survey link to be tested. The link is automatically updated with any specified variables.
+6. Generate QR Code: Generates a QR code that you can use to open the survey link on your phone. The QR Code can be copied and shared.
+7. Show Participant View: Select to view the survey as participants will see it, with structural elements and testing tools hidden.
+8. Show Survey with Tools: Select to include hidden elements and the testing toolbar in your survey view.
+2: Viewing the Testing Environment
+Once you are done configuring your test survey, you can choose which testing view you would like to apply.
+2.1: Show Participant View
+Select to view the survey as participants see it, with the testing toolbar, question and response labels, "Answer for me" button, and structural elements like quotas and skips hidden.
+2.2: Show Survey with Tools
+Select to include hidden elements, questions and response labels, and the testing toolbar in your survey view.
+The following tools are available when you select "Show Survey with Tools":
+Survey Mode: Indicates the mode the survey is in (i.e., testing, live or closed).
+Tasks: Click to enter feedback or changes for a question.
+Edit: Click to edit and format the survey text.
+Recorder: View the last survey path taken during testing, (i.e., the questions viewed and how they were answered).
+QA Codes: Click to turn on / off Decipher QA codes: the default setting is "Off". QA codes include question and response option labels, settings, conditions, and the "Answer for me" button.
+The “Answer for me” button is tied to simulated data. Checkboxes with a minimum response (atleast) and maximum response (atmost) will randomly insert a number of answers within that range.
+One Page: Click to turn on / off the one-page setting. The default setting is "Off". When set to "On", the entire survey appears vertically within the window, allowing you to scroll up or down to view all elements together. Page breaks are indicated by dotted lines.
+Spell Check: Click to turn on / off Decipher’s spell check feature. When set to "On", all translatable text on the page is checked for spelling errors. Misspelled words are highlighted in yellow.
+Actions: Click to view the testing Actions menu. This menu contains additional links that may be useful during testing. From here, you can restart the survey, access the Forsta Knowledge Base, jump to your project Portal, or log out.
+Quick Links: Click to view the project navigation menu (similar to the navigation menu that appears at the top of every project page in the Portal). This menu allows you to easily navigate through the different phases of your project, from building and testing to reviewing the report and downloading your data.
+Learn more:
+About the Survey Testing Toolbar
+Survey Recorder
+Using Tasks to Provide Feedback
+Editing Text in the Test Environment
+About QA Codes
+Language Options
+3: Testing the Survey
+You can use the survey testing system to spot check your survey or perform a full diagnostic test.
+To run a full diagnostic, first create a path through the survey either by running simulated data or by manually answering each question. Once you have created your survey path, review how your responses were recorded for each question using the tools outlined above. Be sure to pay attention to any applicable QA codes, dynamic questions, and survey logic.
+Note: If you have any custom elements or algorithms, you must test through your survey using multiple paths with different responses to ensure a holistic review.
+Tip: When testing a survey with tools on, you can use the following keyboard shortcuts to auto-complete and submit survey questions based on your device OS:
+Windows: ctrl + Right arrow
+Mac: ctrl + cmd + Right arrow

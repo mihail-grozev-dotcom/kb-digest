@@ -1,0 +1,54 @@
+Title: May 15th Technical Release Notes
+Release Date: May 15, 2018
+New Features
+Reporting
+Crosstabs: Single Table Export
+Added the option within Crosstabs to export a single table to PowerPoint, Excel, or PDF
+Dashboards
+Added the ability to export hollow pie charts (those with a donut/ring shape) using plotOptions.pie.innerSize
+View/Edit Responses Report
+Updated the View/Edit Responses report to allow multi-variable questions (i.e., checkboxes and looped questions), to be added using a single variable
+Survey
+Survey Editor
+Added Pure Spectrum to the list of pre-programmed sample sources. Use of Pure Spectrum requires that the survey has signed exit links
+Programming & Tools
+Added new flags to the live script to allow users to bypass warnings (similar to the launch survey API)
+Custom Elements (Logic Nodes)
+Added support for custom headers within the API Integration logic node
+Bug Fixes
+Reporting
+Added browser detection for Chrome on iOS
+Crosstabs
+Fixed an issue where nets programmed in the survey.xml file could be out of order when using the table editor
+Fixed an error shown when saving a custom base and a table net in the table editor
+Dashboards
+Fixed an issue where legends were not exporting properly in charts with stack options
+Fixed an issue where some HTML tags were showing up in chart bases within PowerPoint exports
+Fixed an issue where local filters used incorrect logic across filtergroups
+Field Report
+Fixed an issue with the quota reassignment modal not allowing users to change multiple tables
+Usage Statistics
+Fixed an issue in the company selector where long company names made the "Cancel" and "Apply" buttons inaccessible
+Survey
+Fixed an issue where users were not able to access style variables for Dynamic Questions when working in a specific access order
+Survey Editor
+Fixed an issue with users not being able to scroll long lists of targets within Skip elements
+Updated various styles
+Made various updates to project load performance
+Participant View
+Fixed an issue where question text would be read multiple times when using the JAWS screen reader (in surveys with compat 134+)
+Fixed an issue with protected images not always centering the watermark
+Portal
+Made various styling updates for modals, the navigation menu, and display within Internet Explorer
+Fixed an issue where logout URL's were not applied on user session timeout when using SAML
+Updated search functionality to better handle multi-word search terms
+Fixed an issue in the Edit User modal where supervisors did not appear as supervisors
+Programming & Tools
+Custom Elements (Logic Nodes)
+Fixed an issue where scheduled elements would continue to send emails after they were removed from a survey
+Note: This fix is not retroactive and will apply only to elements removed after the release of the fix.
+Misc / Custom Projects
+Updated the performance of the "Getting Started" videos
+Updated the branding for the login title shown within browser tabs
+Updated the Survey Editor demo links
+Added the ability to customize a dynamic proxy configuration per server

@@ -1,0 +1,63 @@
+Title: Cronwrap
+Requires Decipher Cloud
+If you have shell access, you can use the cronwrap script to run automated background jobs based on code you have specified within a config file. You can go to http://v2.decipherinc.com/apps/automations/ to check the status of any jobs you have run in the past seven days.
+1: Setting Up a config File
+First, navigate to the Hermes/v2/data/cronwrap.d/ directory, where all config files are stored. Then open an existing config file or create your own, and input all the information about each job you would like to run using cronwrap.
+The following is an example of a typical job in a config file:
+#Group name
+[foo]
+comments = foo project
+#Job name
+[[foo-task1]]
+name = job for foo-task1
+#Script or command you need to run
+command = python2.5 ~v2/foo/foo09001/data-export.py
+#If the job doesn't finish on given maxtime, the process will get killed
+maxtime = 1200 #seconds
+#Recipients who will get an email ONLY if job fails
+fail_only_recipients = foo-fail@decipherinc.com bar-fail@decipherinc.com
+#Recipients who will get an email all the time
+all_recipients = foo@decipherinc.com bar@decipherinc.com
+#Job will fail if these strings are matched in stdout. They can be regular expressions
+error_list = "Traceback Error", "failed"
+#Job will fail if these strings are NOT found in stdout. They can be regular expressions
+success_list = "[0-9]* participants completed", "process completed"
+#Job name
+[[foo-task2]]
+name = job for foo-task1
+#Script or command you need to run
+command = bash ~v2/foo/foo09001/foo-send
+#If the job doesn't finish on given maxtime, the process will get killed
+maxtime = 60 #seconds
+#Recipients who will get an email ONLY if job fails
+fail_only_recipients = foo-fail@decipherinc.com bar-fail@decipherinc.com
+#Recipients who will get an email all the time
+all_recipients = foo@decipherinc.com bar@decipherinc.com
+#Job will fail if these strings are matched in stdout. They can be regular expressions
+error_list = "Traceback Error", "failed"
+#Job will fail if these strings are NOT found in stdout. They can be regular expressions
+success_list = "[0-9]* participants completed", "process completed"
+Note: Ad-hoc projects are included in 01projects.conf.
+Tip: When specifying a maxtime, it is important to have a fair idea of how long the process would normally take to run.
+2: Running cronwrap
+After creating a job / group, run cronwrap -c to make sure there are no errors in the config file. It is important to run this every time you make a change to ensure other jobs do not fail.
+~/v2$ cronwrap -c
+The following options are also available:
+-d, --no-update-database: Do NOT update the database, which shows the status of the task in the status page of automated background jobs.
+-c, --check-config: Check for errors in the config file.
+-g, --group=: Group to which the task belongs (e.g., 'ebay').
+-n, --task-name=: Task name of the job (e.g., 'eby_email_send').
+--version: Display the version and exit.
+--help: Display this help menu and exit.
+Once you have confirmed that there are no errors in the file, use the following command to run your jobs / groups:
+cronwrap --group=XXX --task-name=XXX
+Remember to run cronwrap -c to check for errors any time you make a change or addition to your config file.
+2.1: Manually Running a Job
+Below is the code you can use if you want to manually run a job.
+~/v2$ cronwrap --group=foo --task-name=foo-task1 #runs the job and updates the database
+~/v2$ cronwrap --group=foo --task-name=foo-task1 --no-update-database #runs the job and without updating the database(not recommended unless testing)
+2.2: Setting Up a cronjob With cronwrap
+Below is the code you can use if you want to set up a cronjob with cronwrap.
+# bug NNNN: foo group of jobs
+00 07 * * * cronwrap -g foo -n foo-task1
+10 12 * * mon cronwrap --group=foo --task-name=foo-task2

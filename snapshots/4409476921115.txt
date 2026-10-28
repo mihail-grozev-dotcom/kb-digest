@@ -1,0 +1,150 @@
+Title: Customizing Button Select Grid Elements
+The button select grid question type has large, easily clickable answer options. Selecting answers requires very little effort because of the large hit area, significantly reducing both cognitive and kinematic load (click fatigue). The button select grid question type comes in both single- and multi-select options.
+1: Underlying Question Architecture
+Behind the scenes, button select grid questions are <radio> and <checkbox> questions for single- and multi-select questions, respectively. Most of the options that can be applied to single- or multi-select questions can also be applied to button select grid questions, including row/column shuffling, exclusive answers, mandatory vs. optional, etc.
+Example:
+XML:
+<radio label="q1">
+<title>How was the weather during your vacation?</title>
+<col label="c1">Terrible &lt;br /&gt; 1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">Awesome &lt;br /&gt; 5</col>
+</radio>
+2: Converting to Button Select Grid
+To convert the above question to a button select grid, add uses="atmtable.7" to the question tag.
+Example:
+XML:
+<radio label="q1" uses="atmtable.7">
+<title>How was the weather during your vacation?</title>
+<col label="c1">Terrible&lt;br /&gt; 1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">Awesome&lt;br /&gt; 5</col>
+</radio>
+Notice that in the above example, the phrases "Terrible" and "Awesome" are included as button text, along with the column header text. In the button select grid, the button text can be separated from the column header text. Rows are still treated as rows, but the columns become the buttons.
+To add column legends, use the atmtable:col_legend_text attribute on the columns to be affected. The example below shows the “Terrible” and “Awesome” scale anchor labels moved up into the column legend.
+Example:
+XML:
+<radio label="q1" uses="atmtable.7">
+<title>How was the weather during your vacation?</title>
+<col atmtable:col_legend_text="Terrible" label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col atmtable:col_legend_text="Awesome" label="c5">5</col>
+</radio>
+Notice that the words “Terrible” and “Awesome” are moved into the new attribute, but the number remains inside the <col> tag.
+Making the change in Survey Editor is a bit easier: put the column legend text after the pipe symbol (for example, 1 | Terrible or 5 | Awesome) and it will automatically move the content after the pipe symbol | into the atmtable:col_legend_text variable.
+3: Customization
+Listed below are all of the attributes available for this element. You can use them to create a custom look and feel for your text highlighter element.
+Attribute
+Type
+Description
+Example
+atmtable:btn_css
+CSS
+Customize the look of the clickable button.
+Note: If you customize atmtable:btn_css, consider also customizing atmtable:btn_selected_css.
+atmtable:btn_css="font-size: 36px;" would set the font size inside the button to 36px.
+atmtable:btn_selected_css
+CSS
+Customize the look of a selected button / hovered button.
+This inherits the styling of the atmtable:btn_css and should be customized if atmtable:btn_css is customized.
+Note: If atmtable:btn_selected_css is not customized and atmtable:btn_css is customized, there will be no difference between the default and selected states, potentially confusing the participant.
+atmtable:btn_selected_css="background: #662d91;" would set the background of the button to be #662d91 when the button is selected / hovered
+atmtable:btn_disabled_css
+CSS
+Customize the look of a disabled button. Answers can become disabled when used with a noanswer option, for example.
+atmtable:btn_disabled_css="background: #ddd;" would set the background to a very light grey, making it look disabled.
+atmtable:col_legend_css
+CSS
+Customize the container for the column legends
+atmtable:col_legend_css="font-size: 18px" would set the column legend font size to 18px.
+atmtable:col_legend_text
+string
+Adds a text label that will appear at the top of the columns
+Unlike the other configurable elements, this tag is applied on the <col> tags, rather than the question tag
+<col label="c1" atmtable:col_legend_text="Love This">5</col> would result in “5” appearing in the clickable button and “Love This” would appear above the column containing the buttons that show “5” inside them.
+atmtable:row_legend_css
+CSS
+Customize the container for the row legends
+atmtable:row_legend_css="color: blue" would turn the row legend text blue
+atmtable:inputs
+bool
+Toggles showing the raw inputs (radio or checkbox forms)
+Default: 0
+atmtable:inputs="1" would set it to show the raw radio or checkbox forms.
+atmtable:row_dividers
+bool
+Toggles row dividers.
+Default: 0
+atmtable:row_dividers="1" would turn on row dividers.
+atmtable:row_dividers_css
+CSS
+Customize the look of the row dividers.
+atmtable:row_dividers_css="border: 5px solid red" would make 5px red borders between each row.
+atmtable:table_css
+CSS
+Customize the overall table for the question grid.
+Useful for setting a width for the question. Be sure to use great care when setting widths, especially for surveys that allow mobile devices.
+atmtable:table_css="width: 70%" would set the entire grid to be 70% wide.
+4: Customization Examples
+Several examples of customization for the button select grid are shown below.
+4.1: Example 1 (More Customized Rating Scale)
+XML:
+<radio label="q3"
+atmtable:btn_css="border-radius: 10px; background: #fff; color: #444; border: 4px solid #888; font-family: 'Times New Roman', Times, serif; font-size: 36px; padding: 0; width: 12%;"
+atmtable:btn_selected_css="border-color: #f80"
+atmtable:row_dividers="1"
+atmtable:row_dividers_css="background: #888; height: 1px"
+uses="atmtable.7">
+<title>How interested are you in the following movies?</title>
+<col label="c1" atmtable:col_legend_text="Not at All">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5" atmtable:col_legend_text="Very Much">5</col>
+<row label="r1">Flight</row>
+<row label="r2">Argo</row>
+<row label="r4">Skyfall</row>
+</radio>
+In this example, the buttons are styled using the atmtable:btn_css variable by changing the default state of the:
+background color
+border
+size
+Remember, when the atmtable:btn_css variable is customized, the atmtable:btn_selected_css also needs to be customized. The atmtable:btn_selected_css inherits the styling from the default state. If nothing is changed, it would be impossible for users to tell which answer is selected. In this example, the border is changed to orange when selected.
+4.2: Example 2 (Image Question with Light Customization)
+XML:
+<radio label="q3" atmtable:table_css="width: 30%;" uses="atmtable.7">
+<title>Are you...?</title>
+<col label="c1">&lt;img class="survey_image" src="[rel male-2.png]" title="survey image" constrain="true" alt="male-2.png" height="178" width="83" /&gt;</col>
+<col label="c2">&lt;img class="survey_image" src="[rel female-2.png]" title="survey image" constrain="true" alt="female-2.png" height="178" width="83" /&gt;</col>
+</radio>
+This question simply uses images in the columns. The only customization here is to set the table to be narrower than normal. If left alone, the images would be much wider.
+4.3: Example 3 (Image Question with More Customization)
+XML:
+<radio label="q4"
+atmtable:btn_css="background: #fff; border: 1px solid #f80; border-radius: 100px;"
+atmtable:btn_selected_css="background: #f80"
+atmtable:table_css="width: 35%;"
+uses="atmtable.6">
+In this example, the actual button is changed using the atmtable:btn_css variable to give it a white background and a thin orange border. The border-radius is set to 100px to make the button round. Take care when using CSS3 properties – only modern browsers may render those properties. In this case, old browsers might see a rectangular button, so the border-radius change will not prevent participants from answering the question.
+Again, the atmtable:btn_selected_css needs changing as it inherits the styling from the default state. If nothing is changed, it would be impossible for users to tell which answer is selected. In this example, the background is changed to orange when selected.
+5: Some Considerations
+5.1: Instant Recognition
+Most people recognize radio and checkbox forms, which means they will not need guidance to use them.
+Radio buttons are usually round and have clear selected/unselected states. When someone sees a radio button, they know that it will allow a single selection and that clicking a different item will change their answer.
+Checkboxes are generally square or more squared off and also have very distinct checked/unchecked states. A checkbox indicates that it can be toggled on/off and if there are multiple, it usually means that you can select more than one.
+Changing something that people are familiar with runs the risk of confusing your participants. By removing the visual cues of square vs. round, for example, they might not realize the distinction of single select vs. multi-select. Try to make the button select grid buttons look clickable and "button-y".
+Remember that participants may struggle to recognize which button select grid buttons are single select vs. multi-select. When choosing this question type, consider telling participants in the instructions if the question is single select or multi-select.
+5.2: Avoid Interference Effects
+Most populations have learned that green means go and red means stop. A red checkmark graphic could result in what's called the "Stroop Effect", where the mind can automatically determine a semantic meaning based on the color. In this case users might incorrectly associate red, and think they are un-selecting an option. A green "X" could produce similar negative interference effects. Prevent interference by avoiding designs that create conflicting mental processes.
+6: References
+CSS Help:
+CSS Cheat Sheet
+CSS3 Generator
+CSS Gradients
+Color Scheme Generator

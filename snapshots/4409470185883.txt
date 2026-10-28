@@ -1,0 +1,9 @@
+Title: Relaunching a Survey
+You can relaunch closed surveys at any time using the survey actions menu.
+To relaunch a survey via the Portal: First locate your project in the Portal and click the "..." button under Actions to open the project actions menu. Then select Relaunch Survey.
+To relaunch a survey via the Project Overview: Click Actions at the top left of the page. Then select Relaunch Survey.
+Note: Relaunching a project does not disrupt existing data.
+In the Launching Survey window, click Launch. The Survey Editor will automatically run test data through the survey to check for errors. This will not interfere with existing data.
+Note: To skip running test data through the survey on relaunch, use the Streamline Launch module.
+The survey will be launched and a confirmation message will appear in the window. In the Portal, the "State" of the project will be updated to "LIVE".
+Note: Contact Technical Support if your survey does not relaunch in a reasonable amount of time.

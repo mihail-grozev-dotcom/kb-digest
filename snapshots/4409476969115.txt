@@ -1,0 +1,49 @@
+Title: Row Tag: Create Rows
+1: Overview
+The <row> element can be added to any question type to expand the number selections available in a question. For example:
+<checkbox label="Q1" atleast="1">
+<title>Which of the following brands are you aware of?</title>
+<row label="r1">Brand 1</row>
+<row label="r2">Brand 2</row>
+<row label="r3">Brand 3</row>
+<row label="r4">Brand 4</row>
+</checkbox>
+The code above produces the following result:
+2: Attributes
+In addition to the Cell Attributes available, the <row> element has access to the following attributes:
+2.1: legend - Set the Row's Legend Position
+The legend attribute can be set to "default", "right", "both" or "none" to control which side the row's legend text is presented.
+By default, legend="default" is set and the row text will appear on the left side.
+For example:
+<radio label="Q1" optional="0">
+<title>Radio Question</title>
+<row label="r1">Row 1</row>
+<row label="r2" legend="right">Row 2</row>
+<row label="r3" legend="both">Row 3</row>
+<row label="r4" legend="none">Row 4</row>
+</radio>
+The code above produces the following result:
+As shown below, if we specify legend="right" for all of the <row> elements, the legend text will appear on the right side only:
+<radio label="Q1" optional="0">
+<title>Radio Question</title>
+<row label="r1" legend="right">Row 1</row>
+<row label="r2" legend="right">Row 2</row>
+<row label="r3" legend="right">Row 3</row>
+<row label="r4" legend="right">Row 4</row>
+Use the question attribute, rowLegend, to override the placement of row legends across the entire question.
+2.2: rightLegend - Set the Row's Right Legend Text
+The rightLegend attribute controls the text to display on the right legend of a question.
+This attribute only applies if legend is set to right or both.
+For example:
+<radio label="Q1" optional="0">
+<title>Which of the following do you prefer?</title>
+<col label="c1">This</col>
+<col label="c2">That</col>
+<row label="r1" legend="both" rightLegend="Dog">Cat</row>
+<row label="r2" legend="both" rightLegend="Coke">Pepsi</row>
+<row label="r3" legend="both" rightLegend="Rollerblades">Skateboards</row>
+</radio>
+The code above produces the following result:
+The rightLegend attribute is often used with the Left Right Shuffle question style.
+3: What's Next?
+<row> elements can be shown conditionally based on a number of variables. See Adding Condition / Skip Logic.

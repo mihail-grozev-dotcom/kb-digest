@@ -1,0 +1,34 @@
+Title: Creating a Registration Update Survey Using Decipher
+Panel Management customers are able to create a Registration Update Survey within Decipher using Panel Management datapoints.
+1: What is a Registration Update Survey?
+A Registration Update Survey (Update Survey) is an online survey that uses Panel Management datapoints to allow existing panelists to adjust the responses they provided earlier within their Registration Survey.
+Note: Because Update Surveys rely on Panel Management datapoints, you will need to have already fielded a Registration Survey in order to use one. For more information on creating and fielding a Registration Survey, see Creating a Registration Survey Using Decipher.
+2: Creating an Update Survey
+To create an Update Survey, you will need to start with a standard Decipher survey by clicking on the “+ New Survey” button within your company portal page:
+In the “New Survey” menu, enter your project name, type, and primary language using the boxes provided. Then click on “Build”:
+3: Building Out an Update Survey
+Once created, your Update Survey will appear in the Survey Editor where you can start building it out using predefined Panel Management sample sources and datapoints. The building process functions very similarly to a standard Decipher survey, but all questions should be added using datasources from a previously fielded Registration Survey.
+Any questions that need to be available for update (age, zipcode, etc.) should also be set to show within the survey so that panelists can update their data as needed:
+For more information on adding Panel Management sample sources and datapoints to a Decipher survey, see Pulling Panel Management Datapoints into a Decipher Survey.
+Note: Non-Panel Management Datapoint questions can be added to the survey but will NOT update or get added to your Panel Management Datapoint manager.
+3.1: Allowing Duplicate Respondents
+Decipher blocks duplicate participants by default. In order to allow existing panelists in to take your Update Survey, you will need to turn off the duplicate checker within Decipher.
+To turn off the duplicate checker, go to the “Project Settings” menu under “Build”:
+Then click on the Field Settings menu to adjust your live project settings. From here, select “No Checking” from the drop-down menu under “Verify Unique Respondents”:
+4: Launching an Update Survey
+To launch an Update Survey, you will first need to set it live within Decipher. You can set your Update Survey live using the same process that you would for a normal Decipher survey. If you have never launched a Decipher survey before, see Launching a Survey for a guided walkthrough.
+Once your Update Survey is live, you can distribute the URL through either Panel Management or Decipher.
+4.1: Distributing an Update Survey via Panel Management
+Before you can distribute your survey through Panel Management, you will need to connect the Decipher survey to your project in Panel Management. For more information on creating a project in Panel Management, see Create/Change Project (Panel).
+Once your survey is set live in Decipher, it will appear in the “Link to Decipher survey” drop-down menu within Panel Management for your project. You will need to select the name of your Update Survey here to allow the Decipher system to verify that all existing datapoints are compatible with Panel Management and publish the survey to Panel Management:
+After you have linked your survey within Panel Management, you can send panelists through the survey using Panel Management.
+5: Participant Experience
+When a panelist enters a live Update Survey URL, all of their previous responses will be pre-populated in any questions that are shown to them, and they can make changes directly to these responses while reading through the survey.
+Once panelists have completed the Update Survey, any adjustments they make to their responses will automatically be saved within Decipher and applied to their data within the Panel Management Datapoint manager.
+6: Additional Considerations
+6.1: Making Changes to the Data Using Decipher
+As a researcher, you can make changes to existing panelist records by using panelists’ unique panelist_hash values within the Update Survey URL. By inputting this value within the URL, you will be able to enter the Update Survey as a panelist would, and update their responses yourself.
+Any changes made in a live Update Survey by the panelist or researcher will automatically be applied within Panel Management once the survey is re-submitted.
+Note: Changes will not be saved if the panelist or researcher drops out of the Update Survey before clicking on the “Finish” button at the end of the survey.
+6.2: Making Changes to the Data Using Panel Management
+It is also possible to apply changes to panelist records by updating their data fields within the “system fields” menu in Panel Management. For more information on editing data within Panel Management, see the Panelist Manager.

@@ -1,0 +1,869 @@
+Title: Email Sends with Bulk
+Requires Decipher Cloud
+Tip: Using the Survey Editor? Learn more about the Campaign Manager.
+This document is a comprehensive guide for sending emails from the command line. In the details below, you will find the ingredients for creating an email invitation, preparing sample lists, sending email invitations for every phase of distribution (i.e., soft, full, reminder), and various other testing techniques to ensure smooth sailing throughout the entire process.
+For more technical details about the bulk function, see Bulk Details, or, for more technical details about bulk-prepare, see Bulk Prepare Technical Details.
+Note: There are federal rules and regulations that you must comply with when sending out marketing emails. Please do not forget to include a physical address and opt-out link in your email invitation.
+When creating your email campaign, be sure to place all email and sample files in your project's /mail subdirectory. For example, /selfserve/9d3/proj1234/mail/.
+1: Setting up the Email Invitation
+Email invitations are composed of several parts and usually begin as an initial design in a Word document, Photoshop file, or image.
+Before you begin creating the email invitation, confirm that you have answers to the following questions:
+Will this email be branded or unbranded?
+Branded emails usually contain a company logo, alternative survey CNAME (e.g., http://surveys.company.com/survey/), and custom design.
+Unbranded emails usually conceal and generalize who the email / survey is from (e.g., http://v2.decipherinc.com/survey/) and do not contain a custom logo or design.
+Who is this email from?
+The sender's email address and name must be included in the email's "From:" address. If the sender would like any replies delivered to a different email address, then find out which email address to use for the "Reply-To:" field.
+It is mandatory to include a physical address in the email invitation, so find out which company address to use.
+What is the subject line?
+For example, "We would love to hear from you".
+Which variables need to be included in the survey's URL?
+The source variable is almost always included. Check to see if there should be any others (e.g., list, id, wave, etc.).
+Where should the opt-out / unsubscribe link point to?
+It is mandatory to include a way for people to opt-out of future email sends. If a /remove survey does not already exist, you might need to create one.
+Is there an existing template for this email?
+If a similar email has gone out in the past, you can save time by using it as your starting point.
+1.1: Creating the Email
+Below is a basic template for creating an email invitation. You may use this as the starting point for your invite.
+Tip: If a similar email has gone out in the past, copy that one instead and use it as a starting point.
+From: RESEARCH CO. <invite@research.co.com>
+Subject: SUBJECT LINE
+To: [email]
+List-Unsubscribe: <opt-out-url>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Precedence: bulk
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+boundary="----=_NextPart_001_001F_01C26331.F7121560"
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/plain; charset="utf-8"
+PLAINTEXT EMAIL
+* DON'T FORGET OPT-OUT LINK & PHYSICAL ADDRESS *
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/html; charset="utf-8"
+<html>
+<body>
+<table border="0" width="500" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<font style="color: black; font-size: 8pt;">
+HTML EMAIL
+* DON'T FORGET OPT-OUT LINK & PHYSICAL ADDRESS *
+</font>
+<img src='http://survey.cname.com/tracker/[source]/[client-dir]/[project]/file.gif' align='right'/>
+</td>
+</tr>
+</table>
+</body>
+</html>
+------=_NextPart_001_001F_01C26331.F7121560--
+There are three sections to set up for any email invitation:
+The header (To, From, Subject, etc.).
+The plaintext body / message.
+The HTML body / message.
+Note: Make sure there is a blank line immediately following each "Content-Type: ..." line.
+1.1.1: The Header
+Add the sender's name and email address to the "From:" field, as illustrated below.
+From: RESEARCH CO. <invite@research.co.com>
+Subject: SUBJECT LINE
+To: [email]
+List-Unsubscribe: <opt-out-url>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Precedence: bulk
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+boundary="----=_NextPart_001_001F_01C26331.F7121560"
+The fields “List-Unsubscribe:” and “List-Unsubscribe-Post:” are mandatory to conform with Google and Yahoo!’s one-click unsubscribe policies to avoid email invites being marked as SPAM. The “List-Unsubscribe:” is your company opt-out URL / removed directory. The url must be wrapped in angle brackets (<>). See Section 1.1.5 to learn how to get an opt-out link.
+Example:
+List-Unsubscribe: <https://[brand_domain]/survey/selfserve/[client_dir]/remove?email=[email_urlencoded]&msid=[messageid]&source=[source]
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+The optional field for a "Reply-To:" email address is not included in the template above. The "Reply-To:" should be used if the sender would like people to reply to an email address that is different than the "From:" address (e.g., Reply-To: survey-feedback@company.com).
+Take a look at the "To:" field above. Anything inside square brackets [] is a variable that the system will automatically populate. The "To: [email]" should not be modified unless the name of the email address column / variable is something other than "email". Variables are discussed more thoroughly in section 1.1.4 below.
+1.1.2: The Plaintext Body
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/plain; charset="utf-8"
+PLAINTEXT EMAIL
+* DON'T FORGET OPT-OUT LINK & PHYSICAL ADDRESS *
+------=_NextPart_001_001F_01C26331.F7121560
+The plaintext body is the main message of the email invitation without any formatting or structure (i.e., strictly text and zero HTML elements). Many older devices and email clients will see only this version of the email.
+When creating your email invitation, it is often easier to begin with the plaintext version of the email before moving onto the HTML version. Once you have added the message, paragraph spacing, survey link, sender contact information, and an opt-out link, you can simply copy this text over to the HTML version and add the necessary formatting / structure.
+1.1.3: The HTML Body
+Content-Type: text/html; charset="utf-8"
+<html>
+<body>
+<table border="0" width="500" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<font style="color: black; font-size: 8pt;">
+HTML EMAIL
+* DON'T FORGET OPT-OUT LINK & PHYSICAL ADDRESS *
+</font>
+<img src='http://survey.cname.com/tracker/[source]/[client-dir]/[project]/file.gif' align='right'/>
+</td>
+</tr>
+</table>
+</body>
+</html>
+------=_NextPart_001_001F_01C26331.F7121560--
+The HTML version of the email invitation can be structured, styled and formatted with CSS in countless ways. Most modern devices and email clients are able to view emails in HTML, so this is the most visible part of the email invitation.
+However, not all devices nor email clients interpret HTML formatting the same way. There are several best practices you should know about and incorporate when creating the HTML portion of your email invite. Here are a few helpful resources:
+Litmus Email Testing & Preview
+Email Client CSS Support by CampaignMonitor
+HTML Email Basics by MailChimp
+20 Email Best Practices by TutsPlus
+HTML Email Design Guide by ActiveCampaign
+Tip: Using CSS styles inline is usually discouraged. HTML emails, however, require that you write all CSS inline. (e.g., <p style="font-size: large;">...</p>)
+The <img> element added to the bottom of the email is a status tracker / web bug. This is discussed in section 1.1.6 below.
+1.1.4: Adding Variables to the Email Invite
+An email invitation almost always contains an email and source variable. For example, the source variable is used to uniquely identify participants and should be appended to the URL that links back to the survey. For example, http://surveys.co.com/survey/selfserve/9d3/proj1234?source=[source]
+The system will replace the source variable with the value provided under the "source" column in the sample file. Sample files will be discussed in section 2, but they typically look similar to the following tab-delimited file:
+email first last source list
+johnd@place.com John Doe x3kf8sl2xa 1
+jane@warmmail.com Jane Dee 38kao2iruf 2
+clarkk@cave.com Clark Kent Ss00p3rm4n 2
+You can use any of the variables provided in the header of the sample file to pipe into your email using the [VARIABLE] syntax. For instance, in the example invite below, all four variables will be replaced with values that exist inside the sample file (i.e., [first] becomes "John", [last] becomes "Doe").
+From: Acme Research Inc. <acme.research@acme.com>
+Subject: We would appreciate your feedback.
+To: [email]
+Precedence: bulk
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+boundary="----=_NextPart_001_001F_01C26331.F7121560"
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/plain; charset="utf-8"
+Hello [first] [last]:
+We appreciate you as a customer.
+Please take our survey:
+http://acme.com/survey/selfserve/9d3/proj1234?source=[source]&list=[list]
+...
+...
+In addition to piping in variables from the sample files, you may also write Python code using the ${...} syntax. For example, in the example invite below, the date (e.g., May 20, 2019) is included dynamically at the top of the email and the main message is written dynamically based on the participant's list variable.
+From: Acme Research Inc. <acme.research@acme.com>
+Subject: We would appreciate your feedback.
+To: [email]
+Precedence: bulk
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+boundary="----=_NextPart_001_001F_01C26331.F7121560"
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/plain; charset="utf-8"
+${date()}
+Hello [first] [last]:
+We appreciate you as ${"a customer" if [list] == 1 else "an employee"}.
+Please take our survey:
+http://acme.com/survey/selfserve/9d3/proj1234?source=[source]&list=[list]
+...
+...
+If a [variable] exists in your email invitation text and not the sample file, an error will be thrown when attempting to send the invite.
+1.1.5: Set up an Opt-out / Unsubscribe Link
+In compliance with USA federal regulations, you must provide a way for people to opt-out / unsubscribe from future email sends. This message is typically included in the footer of all email invitations and looks like the following:
+Research Company | 1234 N. Main St. | Anytown, CA 22313
+If you no longer wish to receive these emails, you may unsubscribe by clicking here: http://acme.com/survey/selfserve/9d3/remove?email=[email_urlencoded]
+There should be a directory named "remove" located in your company's directory (e.g., selfserve/9d3/remove) to capture participants who wish to opt-out of future sends.
+Depending on your email invite, you will need to adjust the opt-out link to one of the options below, based on if it’s branded or unbranded.
+Note: An error message will appear, if you do not use the correct opt-out link when trying to send.
+Branded (Company) Opt-out link:
+https://[branded_domain]/survey/selfserve/[client_dir]/remove?email=[email_urlencoded]&msgid=[messageid]&source=[source]
+Unbranded (Global) Opt-out link (Forsta Opt-out Link)
+https://release.decipherinc.com/survey/selfserve/53a/email-preferences?list=1&email=[email_urlencoded]&server=[server]&survey=[survey]&msgid=[messageid]&source=[source]
+Variables to capture for Unbranded Opt-out (Global Email Preference List):
+Variable
+Required?
+Description
+email
+mandatory
+Recipient email piped from the recipient list. The value [email_urlencoded] automatically pulls from the email variable.
+server
+mandatory
+Server that the survey is hosted on.
+survey
+mandatory
+Survey path of the survey (i.e. selfserve/abc/220810).
+msgid
+optional
+Message id
+source
+mandatory
+Identifier matching participant to the list file.
+As shown below, when a participant clicks the link to unsubscribe, their email address will automatically be populated in the text field.
+When a participant submits their email address to the remove list, the system will automatically add them to the system's suppression list that will prevent them from receiving survey invitations in the future.
+If your company does not have a /remove survey, you can automatically create one by following these steps:
+Create a new dummy project from the Portal.
+On the "Overview" page, click "Campaigns" and then click "+ New Campaign".
+Add your email address to the "Seed List".
+Click the "Send Test Email" button and send a test email to yourself.
+Your /remove survey is present in your company's directory now.
+1.1.6: Configuring the Status Tracker
+The status tracker (or "web bug") is an invisible image within the HTML portion of the invite that lets the sender (you) know when the recipient has opened the email.
+You can modify the following <img> element below to reflect your project's settings.
+<img src='http://survey.cname.com/tracker/[source]/[client-dir]/[project]/file.gif' align='right'/>
+For example:
+<img src='http://acme.com/tracker/[source]/selfserve/9d3/proj1234/file.gif' align='right'/>
+Tip: If source is not the unique variable you are using to identify participants, replace source with the name of your variable (e.g., [uid]).
+When a participant opens their invitation and loads this invisible image, the server will log the participant's unique source variable and update the Campaigns tab in the Response Summary.
+1.2: Example Email Invite
+Pasted below is a very simple example of an email invitation to send to the following sample list:
+1.2.1: Sample List
+Below is how a sample list looks like:
+email first last list source
+iLuv@me.com Isaac Luv 2 xxakdhe9zlm
+wlson@sea.com Wilson Volley 2 091kdd8zh2l
+...
+...
+1.2.2: Invitation
+Below is an example of an e-mail invite:
+From: Survey Co. <invite@survey.co.com>
+Subject: Help us help you.
+To: [email]
+Precedence: bulk
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+boundary="----=_NextPart_001_001F_01C26331.F7121560"
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/plain; charset="utf-8"
+Hi [first],
+We want to improve what we do to better serve you.
+If you have 15 minutes to spare, please take the time to take the
+following survey:
+http://survey.co.com/survey/selfserve/9d3/proj1234?source=[source]&list=[list]
+Thank you,
+Survey Co. Management
+_____________________________________________________________________
+We respect your email privacy. If you wish to unsubscribe from future emails,
+please click here.
+(http://survey.co.com/survey/selfserve/9d3/remove?email=[email])
+Survey Co.
+555 Triple Five Rd.
+High Five, CO 99995
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/html; charset="utf-8"
+<html>
+<body>
+<table border="0" width="500" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<font style="color: black; font-size: 11pt;">
+<p>Hi [first],</p>
+<p style="font-weight: bold;">We want to improve what we do to better serve you.</p>
+<p>If you have 15 minutes to spare, please take the time to take the following survey:</p>
+<p><a href="http://survey.co.com/survey/selfserve/9d3/proj1234?source=[source]&list=[list]">http://survey.co.com/survey/selfserve/9d3/proj1234?source=[source]&list=[list]</a></p>
+<p>Thank you, <br/>
+Survey Co. Management</p>
+</font>
+<hr/>
+<font style="font-size:8pt; color: #6d6d6d;">
+<p>We respect your email privacy. If you wish to unsubscribe from future emails, please click <a href="http://survey.co.com/survey/selfserve/9d3/remove?email=[email]">here</a>.</p>
+<p>Survey Co. <br/>
+555 Triple Five Rd. <br/>
+High Five, CO 99995</p>
+</font>
+<img src='http://survey.co.com/tracker/[source]/selfserve/9d3/proj1234/file.gif' align='right'/>
+</td>
+</tr>
+</table>
+</body>
+</html>
+------=_NextPart_001_001F_01C26331.F7121560--
+The invitation above produces the following results:
+1.2.3: HTML Result
+1.2.4: Plaintext Result
+1.2.5: Opt-Out Link
+On clicking the opt-out link, participants are redirected to a page that looks like this:
+1.3: Test the Email Invite
+When the email invitation is complete and saved to your project's /mail subdirectory, you can begin testing the invitation. You should send the email invitation to your own inbox and confirm that everything looks and works as expected.
+Note: It is highly recommended that you also test using a service like Litmus to ensure that your email invitation looks good on all devices and email clients.
+To send the invitation to your own inbox, you need to create a test sample list or "seed list" and name this file with the prefixes "test" or "seed" (e.g., test-me.txt, seed-list.txt, etc.).
+Note: For surveys using the ADB feature (ADB=1), survey links in Campaign Manager seed email sends will only open the survey if those recipients can test the survey (that is, the recipient is logged in, or the survey is in testing mode).
+For example, given an invitation with the variables source and list, the following test sample file will work:
+1.3.1: Test Sample List: test-me.txt
+email list source
+your@email.com 1 test123
+To send the email invitation to your self for review, use the following command:
+bulk send email.txt test-me.txt
+Tip: The bulk command is discussed in detail in section 3.
+You should see something like this if the send was successful:
+[selfserve/9d3/proj1234]$ bulk send email.txt test-me.txt
+* Loaded additional remove list 'selfserve/9d3/proj1234' - 16 (cached)
+Loaded 43,354,735 email adresses in 148 remove lists. 0/1 conditionally loaded.
+Total
+List Total: 1
+Malformed: 0
+Duplicate Addresses: 0
+Opt-Outs: 0
+Bounce-backs: 0
+Blocks: 0
+Additional Suppression: 0
+Throttled (client): 0
+Throttled (survey): 0
+Total Sent: 1
+Rest of List: 0 already sent, 0 more sendable
+WARNING: Survey selfserve/9d3/proj1234 is in state=testing rather than live
+Currently in the normal queue: 25,203 emails.
+Send emails? Y)es, N)o, V)iew send list: y
+Once the email is delivered to your inbox, review the HTML and plaintext version to confirm that all variables, links, and formatting work and look as expected.
+If you need to make revisions to the email invitation and resend to yourself for confirmation, you will need to remove the test sample file list log files (e.g., test-list.txt.log) before running the bulk send command again.
+Use the following command to remove all test list log files:
+rm test-*.txt.log
+Once everything looks fine, you may proceed to send the email invite to your account manager for further verification. You can either append your account manager's email to the existing test list or create a new test list using the same steps as described above.
+2: Setting up the Sample List
+Tip: Using the Survey Editor? Learn about Creating a Recipient List.
+A sample list is a file containing all of the participants that will be invited to the survey via email invitation. It should be tab-delimited file and contain, at the very minimum, an email address to send to for each person in the sample. Variables in the sample list should only use ASCII characters.
+A sample file typically looks something like this:
+email name dept uid
+jdoe@abc.com John Doe 1 x8916
+jdee@def.com Jane Dee 3 x9912
+abe@wh.gov Abe. Lincoln 10 x1337
+neil@cosmos.edu Neil D. Tyson 1 x0001
+...
+...
+Important: Sample lists should be handled with extreme care. These lists often contain large amounts of very personal information and should not be shared or copied excessively. If a sample file is sent to you in an encrypted format, you should respect these security measures and keep the file's footprint to a minimum.
+In many cases, you will have multiple sample files to send invitations to. If the sample files contain the same number of columns with matching variables, then you can combine them into a single sample file for convenience. However, it is usually easier to treat each sample file individually.
+If you choose to combine the sample files into a single file, make sure there is a way to differentiate the sample lists in case you need to send invitations out at different times. You can do this by adding an extra variable to the end of each sample group (e.g., list) or by adding a few extra special letters to the source variable (e.g., xx1_bUlKpr3P4r3 where xx1_ are special characters to you).
+Naming your sample files in a human-readable fashion goes a long way. If you have multiple sample lists for different countries, use a naming convention that includes the country names (e.g., list-us.txt, list-japanese.txt, etc.). If you have multiple lists for different types of sample, try to include the type in your naming convention (e.g., list-employees-us.txt, list-clients-1.txt, etc.).
+In the section below, are the steps on how you can use these human-readable lists to your advantage when creating the match.txt file to prevent list mixups.
+With the sample files uploaded to your project's /mail subdirectory, you need to take the following steps before the sample is ready to be invited to the survey:
+Append unique source IDs to each person using bulk-prepare.
+Lock down the survey by all unique source IDs.
+(Optional) Create additional verification files to perform functional checks.
+Append the sample data to your survey's dataset.
+2.1: Preparing the Sample List with bulk-prepare
+The command, bulk-prepare, makes it a lot easier to create / modify sample files.
+Without using any additional options, bulk-prepare appends a unique source value to each person in a sample file and output to a file named "list-source.txt". For example, given the sample file list below named "list-main.txt":
+email name dept uid
+jdoe@abc.com John Doe 1 x8916
+jdee@def.com Jane Dee 3 x9912
+abe@wh.gov Abe. Lincoln 10 x1337
+neil@cosmos.edu Neil D. Tyson 1 x0001
+Running bulk-prepare on this list will append a new source column to the end.
+bulk-prepare list-main.txt
+This will create a new file, "list-source.txt", containing the following information:
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 eKs7yZ0yh2
+jdee@def.com Jane Dee 3 x9912 alL02nz87a
+abe@wh.gov Abe. Lincoln 10 x1337 l9h4MNzh2t
+neil@cosmos.edu Neil D. Tyson 1 x0001 qwWe1Xgh2L
+If you have multiple sample lists, then running bulk-prepare on each additional list will create a new "list-source.txt" file with a number appended to the end (e.g., list-source.02.txt, list-source.03.txt, etc.).
+The bulk-prepare command has additional options, including:
+Appending additional static variables to the sample file (e.g., list, co, batch, etc.).
+Output to a different filename other than "list-source.txt".
+Can automatically create an invited.txt file.
+Adjust the unique source variable.
+Selectively choose which variables in the sample file to keep / remove.
+Learn more: Bulk Prepare Technical Details
+2.2: Locking Down the Survey by Unique IDs
+A locked-down survey is one that only allows participants to take the survey if their unique identifier exists inside the file of allowed identifiers.
+For example, given the following sample list:
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 eKs7yZ0yh2
+jdee@def.com Jane Dee 3 x9912 alL02nz87a
+abe@wh.gov Abe. Lincoln 10 x1337 l9h4MNzh2t
+neil@cosmos.edu Neil D. Tyson 1 x0001 qwWe1Xgh2L
+If these are the only participants that you want to take the survey, then you can create a new file named "invited.txt" containing only their source values:
+2.2.1: invited.txt
+eKs7yZ0yh2
+alL02nz87a
+l9h4MNzh2t
+qwWe1Xgh2L
+Place the "invited.txt" file inside your project's main directory and lock the survey down by these variables using the <samplesource> and <var> element:
+<samplesources default="1">
+<samplesource list="1" title="Sample">
+<var name="source" unique="1" filename="invited.txt"/>
+<exec cond="qualified">Thank you for your feedback!</exec>
+<exec cond="terminated">Thank you for your feedback!</exec>
+<exec cond="overquota">Thank you for your feedback!</exec>
+</samplesource>
+</samplesources>
+Using the filename attribute, you can specify any filename containing unique identifier values and only allow participants who exist in this file to take the survey. If a participant enters the survey with a unique identifier that is not in this file, they will see the following error message:
+Learn more:
+Locking Down a Survey by Unique Variables
+Configuring Participant Sources
+Unique - Specify a Required Unique Variable
+2.3: Appending Participant Data
+Given the following tab-delimited file named "list-source.txt":
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 eKs7yZ0yh2
+jdee@def.com Jane Dee 3 x9912 alL02nz87a
+abe@wh.gov Abe. Lincoln 10 x1337 l9h4MNzh2t1G
+neil@cosmos.edu Neil D. Tyson 1 x0001 qwWe1Xgh2L
+You can create a hidden question to capture this information as each participant enters the survey.
+<exec when="init">
+dataFile = File("list-source.txt", "source")
+</exec>
+<text label="vSAMPLE" title="HIDDEN: SAMPLE DATA" where="execute">
+<exec>
+sampleData = dataFile.get(source)
+if sampleData:
+vSAMPLE.r1.val = sampleData['email']
+vSAMPLE.r2.val = sampleData['name']
+vSAMPLE.r3.val = sampleData['dept']
+vSAMPLE.r4.val = sampleData['uid']
+vSAMPLE.r5.val = sampleData['source']
+</exec>
+<row label="r1">email</row>
+<row label="r2">name</row>
+<row label="r3">dept</row>
+<row label="r4">uid</row>
+<row label="r5">source</row>
+</text>
+Tip: If you need to append sample data after the survey has already been set live, you can create a <virtual> question using a similar method. For example, <exec when="virtuallnit> and <virtual>.
+See Importing External Offline Data with File() to learn more about using File(...).
+3: Sending out the Email with Bulk
+Once you have created your email invitation, set up the sample list files, locked down the survey and set the survey live, then you are ready to distribute the email!
+To send out the email invitation, you can use the bulk command. The syntax for the bulk command is below:
+bulk [options] <test,send,report> email.txt list.txt
+Tip: Run bulk -h from the command line to see the full syntax.
+3.1: Bulk Options
+The bulk command is smart and does the following tasks automatically:
+Respects existing suppression lists.
+Automatically excludes participants who have responded to the survey.
+Sends reminder emails only to those who received an initial email invitation.
+Creates two log files: list.txt.report and list.txt.log.
+You can safely run the following test command to see how bulk will process your email and list files:
+bulk test email.txt list.txt
+3.1.1: Sending the First Invitation
+Given an email invitation named "email.txt" and a sample list file named "list-us.txt", you can send the email to all the participants with the following command:
+bulk send email.txt list-us.txt
+If you need to control the number of participants to send to (soft send), you can use the -n option.
+bulk -n 500 send email.txt list-us.txt
+After submitting either of the commands above, you will see something like this:
+[user@server]$ bulk send email.txt list-us.txt
+* Loaded additional remove list 'selfserve/9d3/proj1234' - 0 (cached)
+Loaded 43,371,860 email addresses in 148 remove lists. 0/1 conditionally loaded.
+Total
+List Total: 9001
+Malformed: 0
+Duplicate Addresses: 0
+Opt-Outs: 10
+Bounce-backs: 3
+Blocks: 0
+Additional Suppression: 0
+Throttled (client): 0
+Throttled (survey): 0
+Total Sent: 8998
+Rest of List: 0 already sent, 0 more sendable
+WARNING: Survey selfserve/9d3/proj1234 is in state=testing rather than live
+Currently in the normal queue: 8,374 emails.
+Send emails? Y)es, N)o, V)iew send list:
+The screen above includes some helpful information about the send, including:
+The total number of participants in the list.
+The number of emails that were not sent out due to being malformed, duplicated, opt-out, rejected from the email server, or throttled / suppressed.
+The total number of emails to be sent out.
+The total number of emails already sent and available to be sent out.
+Note: If the spam or bounceback rate exceeds the following thresholds, you must confirm that you want to continue with the send:
+0.35% spam
+5% bounceback
+3.1.2: Sending Reminders
+Reminder sends can only be sent to people who have successfully received a previous send ("ok") and/or were marked as a "block". For example, if send is set for a soft send of 100 emails out (e.g., bulk -n 100 send email.txt send) then only 100 people will be eligible for a reminder.
+To send out a reminder email, use -R# syntax.
+bulk -R1 send reminder-email.txt list.txt
+If additional reminders need to be sent out, increment the "#" for each reminder send (e.g., -R1 followed by -R2, then -R3, etc.).
+Each reminder send will generate a new log relative to the send (e.g., list.txt.rem1.log).
+Use the --reminder-for=X,Y,Z syntax to limit the reminder send only to users in send numbers X, Y or Z in the previous send / reminder. See the list.txt.report file or Campaigns tab for the send numbers that start at "1".
+Note: Any scheduled sends using --reminder-for must be at least 15 minutes apart or bulk will return an error because the list is already in use.
+3.1.3: Segmenting the List by Variables
+Using the -l option, you can split bulk's output by some variable in your list file. The syntax for this option is below:
+bulk -lFIELD:VALUE:COUNT <test,send,report> email.txt list.txt
+For example, given the following sample list named "list.txt":
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 eKs7yZ0yh2
+jdee@def.com Jane Dee 3 x9912 alL02nz87a
+abe@wh.gov Abe. Lincoln 10 x1337 l9h4MNzh2t1G
+neil@cosmos.edu Neil D. Tyson 1 x0001 qwWe1Xgh2L
+You can use the -l option to segment this list and view how many people exist with a dept value set to "1" using the following command:
+bulk -ldept:1 report list.txt
+The command above generates the following result:
+[user@server]$ bulk -ldept:1 report list.txt
+Remaining unsent emails:
+Total dept=1
+Total Unsent 2 2
+If you do not specify a value for the variable, you will see all of the possible segments for that variable.
+bulk -ldept report list.txt
+The command above produces the following result:
+[user@server]$ bulk -ldept report list.txt
+Remaining unsent emails:
+Total dept=1 dept=10 dept=3
+Total Unsent: 4 2 1 1
+Similarly, you can view how many people exist with a dept value set to 1, 2 or 3.
+bulk -ldept:1 -ldept:2 -ldept:3 report list.txt
+The command above generates the following result:
+[user@server]$ bulk -ldept:1 -ldept:2 -ldept:3 report list.txt
+Remaining unsent emails:
+Total dept=1 dept=2 dept=3
+Total Unsent: 3 2 0 1
+You can view how many people exist with a dept value set to 1, 2 and 3.
+bulk -ldept,dept,dept:1,2,3 report list.txt
+The command above generates the following result:
+[user@server]$ bulk -ldept,dept,dept:1,2,3 report list.txt
+Remaining unsent emails:
+Total dept=1,dept=2,dept=3
+Total Unsent: 0 0
+You can use the -l option to specify a specific number of emails to send out on a per-variable basis. For example:
+bulk -ldept:1:50% -ldept:10:1 send email.txt list.txt
+As shown below, the command above will send an email out to half of the people with a dept value of 1 and one email to those with a dept value of 10.
+[user@server]$ bulk -ldept:1:50% -ldept:10:1 send email.txt list.txt
+* Loaded additional remove list 'selfserve/9d3/proj1234' - 16 (cached)
+Loaded 43,398,248 email adresses in 148 remove lists. 0/1 conditionally loaded.
+Total dept=1 dept=10
+List Total: 2 1 1
+Malformed: 0 0 0
+Duplicate Addresses: 0 0 0
+Opt-Outs: 0 0 0
+Bounce-backs: 0 0 0
+Blocks: 0 0 0
+Additional Suppression: 0 0 0
+Throttled (client): 0 0 0
+Throttled (survey): 0 0 0
+Total Sent: 2 1 1
+Rest of List: 0 already sent, 2 more sendable
+You can also split on multiple variables to further control who an email is sent out to. For example:
+bulk -ldept,uid:1,x0001 -ldept,uid:10,x1338 send email.txt list.txt
+The command above will send out to two groups of people:
+Everyone who has a dept value of 1 and a uid value of "x0001".
+Everyone who has a dept value of 10 and a uid value of "x1338".
+[user@server]$ bulk -ldept,uid:1,x0001 -ldept,uid:10,x1338 send email.txt test-list.txt
+* Loaded additional remove list 'selfserve/9d3/proj1234' - 16 (cached)
+Loaded 43,398,282 email adresses in 148 remove lists. 0/1 conditionally loaded.
+Total dept=1,uid=x0001 dept=10,uid=x1338
+List Total: 1 1 0
+Malformed: 0 0 0
+Duplicate Addresses: 0 0 0
+Opt-Outs: 0 0 0
+Bounce-backs: 0 0 0
+Blocks: 0 0 0
+Additional Suppression: 0 0 0
+Throttled (client): 0 0 0
+Throttled (survey): 0 0 0
+Total Sent: 1 1 0
+Rest of List: 0 already sent, 3 more sendable
+If you want to evenly distribute the sends across all sample with a dept variable, you can run the following command:
+bulk -ldept:*:1 send email.txt list.txt
+The command above produces the following result:
+[user@server]$ bulk -ldept:*:1 send email.txt list.txt
+* Loaded additional remove list 'selfserve/9d3/proj1234' - 16 (cached)
+Loaded 43,398,261 email adresses in 148 remove lists. 0/1 conditionally loaded.
+Total dept=1 dept=10 dept=3
+List Total: 3 1 1 1
+Malformed: 0 0 0 0
+Duplicate Addresses: 0 0 0 0
+Opt-Outs: 0 0 0 0
+Bounce-backs: 0 0 0 0
+Blocks: 0 0 0 0
+Additional Suppression: 0 0 0 0
+Throttled (client): 0 0 0 0
+Throttled (survey): 0 0 0 0
+Total Sent: 3 1 1 1
+Rest of List: 0 already sent, 1 more sendable
+Finally, if you want to evenly split the sends based on some -n, you can use the following command:
+bulk -n3 -ldept:*:* send email.txt list.txt
+The command above will evenly distribute a total of three emails across all of the dept variables. Considering that there are only three unique dept variables, the send will send out a single email to each dept".
+[user@server]$ bulk -n3 -ldept:*:* send email.txt list.txt
+* Loaded additional remove list 'selfserve/9d3/proj1234' - 16 (cached)
+Loaded 43,398,261 email adresses in 148 remove lists. 0/1 conditionally loaded.
+Total dept=1 dept=10 dept=3
+List Total: 3 1 1 1
+Malformed: 0 0 0 0
+Duplicate Addresses: 0 0 0 0
+Opt-Outs: 0 0 0 0
+Bounce-backs: 0 0 0 0
+Blocks: 0 0 0 0
+Additional Suppression: 0 0 0 0
+Throttled (client): 0 0 0 0
+Throttled (survey): 0 0 0 0
+Total Sent: 3 1 1 1
+Rest of List: 0 already sent, 1 more sendable
+3.1.4: Scheduling / Queueing Email Sends
+To schedule an email send to go out sometime in the future, you can use the --at or -a options. The syntax for this option is below:
+bulk --at "TIME DATE" send email.txt list.txt
+For example, the command below will go through the usual tests to validate the email and list files before scheduling the send. Additionally, this also logs information about the send with the other scheduled sends in the mailqueue. View this table and consider updating the schedule time if there are conflicting sends (e.g., someone is sending 100,000 emails out at the same time).
+bulk --at "5:30am 05/30/2014" send email.txt list.txt
+Note: You cannot schedule a send less than 15 minutes from the current time.
+Tip: Check out the mailqueue or use the command bulk pending to view all scheduled sends.
+Here are a few examples:
+3.1.5: Scheduled Soft Send
+bulk --at "7am may 30" -n 500 send email.txt list.txt
+3.1.6: Scheduled Regular Send
+bulk --at "7:00am 06/07/14" send email.txt list.txt
+3.1.7: Scheduled Reminder Send
+bulk --at "7:00am 06/14/2014" -R1 send email.txt list.txt
+Here are the valid formats for specifying a TIME and DATE:
+TIME can be in the formats: 1pm or 1:30pm.
+YEAR can be in the formats: 14 or 2014.
+DATE can be specified in a couple of ways: may 24 or 05/24/2014.
+the DATE keywords "today" and "tomorrow" can be used: e.g., 1pm tomorrow.
+the TIME keyword "now" is also available: e.g., "now+20 minutes".
+For example:
+5pm may 30 2014
+5:00pm may 30 2014
+5pm 05/30/2014
+5:00pm 05/30/2014
+5pm today
+5:00pm tomorrow
+now+16minutes
+If the time format entered is invalid, you will see the following error message after confirming the send with "Y":
+error: *DATE FORMAT IS INVALID!!!
+If you need to remove and prevent a scheduled send, use the command atq to view all of the job IDs created by you and the command atrm JOBID to stop the send.
+For example:
+[user@server]$ atq
+60282 2014-05-27 12:26 a user
+[user@server]$ atrm 60282
+[user@server]$ atq
+[user@server]$
+Note: If you remove an email send from the queue, it will only update the queue as seen from the command line and not the normal mailqueue used to monitor all sends.
+3.1.8: Setting the Total Number of Emails to Send (Soft Send)
+Use the -n option to specify an exact number of emails to send out.
+For example, the command below will send out 100 emails.
+bulk -n 100 send email.txt list.txt
+3.1.9: Controlling the Rate of Email Distribution
+Use the --rate option to control the number of emails that will go out per hour.
+For example, the command below will wait for a second before sending each email.
+bulk --rate=3600 send email.txt list.txt
+Tip: 3600 emails per hour / 60 minutes in an hour = 60 emails per minute / 60 seconds per minute = 1 email per second
+The --rate option sets the minimum delay in which an email can arrive at a participant's inbox. There are many other factors that could cause this time to be higher.
+3.1.10: Adding Attachments
+Using the bulk build command, you can build an MIME-compliant email invitation from multiple parts and include additional files as attachments. The syntax for this command is below:
+bulk [-e encoding] build output-email.txt directory
+The command above will create a file named "output-email.txt" from all of the necessary parts in /directory. To use this command, you must create the following files in the /directory specified (defaults to the current, /mail subdirectory of not specified):
+mail.txt : the text version of the email.
+mail.html : the HTML version of the email.
+headers.txt : From, Subject, To, (optional) Reply-To.
+Any inline attachments (e.g., file.gif, file.pdf, or file.zip).
+If your mail.html file contains an <img src="..."/> element, then these are included as "inline attachments". The src attribute will be modified accordingly to tell email clients that the file can be found as an inline attachment instead of downloading it from some other website. The file(s) should be located in the same, /mail subdirectory.
+You can specify additional attachments to add to the email by referencing them with their pathname. For example, the commands below will look inside the /email directory for the multiple email parts and add "somefile.pdf" and "somefile.zip" to the email as attachments.
+bulk build email.txt email email/somefile.pdf email/somefile.zip
+# or if all files are together in the /mail subdirectory
+bulk build email.txt . somefile.pdf somefile.zip
+By default, the encoding is assumed to be utf-8 or ASCII (depending on the characters within). If you want to encode to something else, use the -e option:
+bulk -e japan build ... # selects iso-2022-jp encoding
+bulk -e china build ... # selects gb18030 encoding
+However, most email clients will understand the "utf-8" default.
+3.1.11: Ignoring Email Suppression
+Email suppression happens when an email address exists inside a "remove list" (e.g., they have opted-out of email sends). When sending to an email that exists within a suppression list, you will see an output like this:
+[user@server]$ bulk send email.txt test-me.txt
+...
+Remove list name Total
+Total 1
+proj/path/remove 1
+Total
+List Total: 1
+Malformed: 0
+Duplicate Addresses: 0
+Opt-Outs: 1
+Bounce-backs: 0
+Blocks: 0
+Additional Suppression: 0
+Throttled (client): 0
+Throttled (survey): 0
+Total Sent: 0
+Rest of List: 0 already sent, 0 more sendable
+You can override the opt-out list "proj/path/remove" by appending it to the end of your bulk command prefixed with a hyphen.
+[user@server]$ bulk send email.txt test-me.txt -proj/path/remove
+...
+Total
+List Total: 1
+Malformed: 0
+Duplicate Addresses: 0
+Opt-Outs: 0
+Bounce-backs: 0
+Blocks: 0
+Additional Suppression: 0
+Throttled (client): 0
+Throttled (survey): 0
+Total Sent: 1
+Rest of List: 0 already sent, 0 more sendable
+In addition to these regular remove lists, there are also time-limited per-client and per-survey remove lists that will throttle email sends. By default, the options --throttle-survey=360 is specified. This means that each time you send an email invitation to a person, they cannot be recontacted until 360 hours (14 days) have passed. You can, however, send the first invitation and a reminder three days later with -R1, but you cannot send another invitation or -R1 reminder before the 14-day period.
+You can override the defaults by specifying --throttle-client=XXX and --throttle-survey=XXX where XXX is the number of hours before a person can be sent an email invitation. Specify "no" to stop throttling of this type altogether (e.g., --throttle-survey=no).
+Finally, there is a --full-throttle or -F option that turns "off" throttling entirely.
+3.2: Other Options
+3.2.1: Randomization
+Use the --shuffle or -S option to randomize the list before examining it. The randomization order will stay the same as long as the list file does not change. If you do a bulk test one day and a bulk send the next day, the emails selected will remain the same.
+3.2.2: Verbose
+Use the -v option to display all remove lists as they are loaded. Usually, only additional remove lists are displayed.
+3.2.3: Controlling Which Invited File to Use
+Use the --invited or -I option to control which invited.txt file bulk should scan for unique source identifiers. For example:
+bulk -I sources.txt send email.txt list.txt
+3.2.4: Viewing List Value Frequencies
+Use the bulk freq command to view the top frequently appearing values in a sample list file. By default, the top 10 values will be shown. Use the -n option to show more values.
+For example:
+bulk freq list.txt
+3.2.5: Filtering Sample List into Good / Bad Parts
+Use the bulk filter command to filter an email sample file into separate files. For example:
+bulk [--dupes] filter list.txt good.txt bad.txt [additional remove lists]
+The command above will produce 6 additional files:
+good.txt : People that will be sent to normally.
+bad.txt : People that will not be sent to (e.g., opt-outs, dupes, malformed, etc.).
+bad.txt.bounce : People who would not be sent to due to bouncebacks.
+bad.txt.malformed : People who would not be sent to due to the email address being malformed.
+bad.txt.dupe : People who would not be sent to due to duplicate email addresses.
+bad.txt.optout : People who would not be sent to due to because they unsubscribed.
+Tip: The bulk filter command will ignore throttling.
+3.2.6: Sending Email with Specific Type
+To send an email invitation through an unbranded IP address, use the --type=unbranded option. For example:
+bulk --type=unbranded send email.txt list.txt
+To send an email invitation through a priority queue (only for small sends that should go out fast), use the --type=priority option. For example:
+bulk --type=priority send email.txt list.txt
+To allow outgoing IP address selection for your send, add the --type=IP attribute to your command. For example:
+bulk --type=IP send email.txt list.txt
+Tip: Developers Only: Use --via=test to write emails out to sendmail.out rather than sending them.
+3.2.7: Allowing Outgoing IP Address Selection via --type
+To allow outgoing IP address selection for your send you must do the following:
+1. Add the following to your email header:
+x-target: fixed
+2. Add the --type=IP attribute to your command. For example:
+bulk --type=IP send email.txt list.txt
+3.2.8: Allowing Duplicate Email Addresses
+To allow an email invitation to be sent to duplicate email addresses, use the --dupes option. For example:
+bulk --dupes send email.txt list.txt
+Tip: Do not use this option in a soft send. A duplicate may appear in the first send that would not be sent to in the second send. In such a case, split the list manually.
+3.2.9: Allowing Blank Values
+To allow an email invitation to be sent to a list that has missing values, use the --ignore-blank option. These participants will be skipped, but the send will still go through. For example:
+bulk --ignore-blank send email.txt list.txt
+3.2.10: Finding Out Who Was Sent What Email
+When a bulk send is done, the list.txt.log file is generated. As of M29, this file now generates the hash variant of the email addresses to which an email was sent. This file does not contain email addresses any longer. The main list.txt file should use encryption to protect the data as well. You can use the bulk status command to decrypt the hash variant and check the status of an email. The Campaign Manager or normal bulk usage is not affected.
+If you know an email address, you can compare it to the hashed variant. However, you cannot take the hashed variant and turn back into the email address.
+The global database with email sends also contains this hash. Note that the bulk search command does not support wildcard matching any longer due to this update (e.g., bulk search *@domain.com).
+To check the status of your email list, run the bulk status command as follows:
+bulk status list.txt
+bulk -R1 status list.txt
+bulk -s bounce -R1 status list.txt
+This outputs the email, source columns from the original list file, the date on which the user was sent an email (if any), the send status (e.g., bounceback, ok, unsent) and a run heading which is the send / batch number. The -s bounceback extracts only emails with that status, and the -R1 option uses the first reminder log instead of the initial send log.
+3.2.11: Reading the Complaints File
+You can use the bulk unhash command to reverse the email addresses hashes in a file. This is useful for reading the complaints.txt file listing the email addresses of those peopled who complained that the email invite was spam. When executing this command, specify a filename as an argument. All lists in this file's directory are read and hashes in these files are reversed.
+bulk unhash complaints.txt
+3.2.12: Sendgrid Support
+Use the --sendgrid command to send emails through the SendGrid service.
+For example:
+bulk --sendgrid send email.txt list.txt
+You can also send emails through SendGrid using the --sendgrid-direct option.
+For example:
+bulk --sendgrid-direct send email.txt list.txt
+The sender email address can be any address supported by both SendGrid and the company containing the survey.
+Note: Sending emails through SendGrid requires some additional server configuration. Please contact SurveySupport@forsta.com for assistance.
+Note: Configurations using the --sendgrid option will function the same way as those using --sendgrid-direct.
+3.2.13: Blacklisting Domains
+If you wish to suppress email invitations to certain domain names, you can create a file named "blacklist.txt" in your /mail subdirectory containing the domain names you wish to suppress. For example:
+domain.com
+aol.com
+rr.com
+Tip: The "blacklist.txt" file affects all directories below it. For example, selfserve/9d3/blacklist.txt affects project selfserve/9d3/proj1234.
+3.2.14: Remove Lists
+The bulk filter, send and test commands can take any number of additional remove lists as parameters. A remove list can be a:
+A survey name (e.g., selfserve/9d3/proj1234) where every stand-along variable that looks like an email address and all extra variables are used for removal.
+A flat text file where each line represents a value to remove from the send.
+A panel manager database.
+For example, given the following flat file named "dont-send.txt":
+john@domain.com
+jane@email.com
+You can remove these email addresses from the send with the following command:
+bulk send email.txt list.txt +dont-send.txt
+If the flat file had a column name that you needed to reference like below:
+id removals
+1 john@domain.com
+2 jane@email.com
+You can specify the column name with the following syntax:
+bulk send email.txt list.txt flat:dont-send.txt:removals
+By default, only the source and email columns from the sample list are checked against the removal lists. If you need to specify an additional column to check, use the --check=COLUMN syntax. For example:
+bulk --check=alt_email send email.txt list.txt
+Tip: If you receive a memory error because your flat file is too large, run the following command:
+make-hash-database file.txt
+Then run the same send command again. (Rerun this command if the sample file changes).
+3.2.15: Exclude Drop-Outs
+Use the --exclude-clickthrough command to suppress emails to participants who have entered the survey but dropped out before completing it. Without this command, only participants who have entered and completed the survey are excluded. For example:
+bulk -R1 --exclude-clickthrough send email.txt list.txt
+3.3: (Recommended) Preventing List Mixups with the match.txt File
+When you have multiple emails and / or sample lists to send to, it is possible to send the wrong email invitation out to the wrong sample list. To prevent this, you can create a file, named "match.txt", containing rules and place it in your project's /mail subdirectory.
+For example, given the following email invitation files and sample lists:
+Invitation (Email) Files
+List of Participants
+U.S. Participants
+email-us-soft.txt
+email-us-full.txt
+list-us.txt
+Spanish Participants
+email-sp-soft.txt
+email-sp-full.txt
+list-sp.txt
+You can use the match.txt file to prevent you from making the following mistake:
+bulk send email-us-soft.txt list-sp.txt
+You can prevent this by creating simple rules to prohibit sends to mismatched lists / invites.
+To ensure the correct sample list receives the correct email address for the example above, add the following lines to the match.txt file:
+3.3.1: match.txt
+list-us email-us-*
+list-sp email-sp-*
+With these rules in place, you will get the following error message when you attempt to perform the same, bad send command above:
+bulk send email-us-soft.txt list-sp.txt
+!!! EMAIL MATCH WARNING !!!
+Send of 'email-us-soft.txt' to 'list-sp.txt' not allowed by any of the rules in match.txt
+Continue?? (Y/N)
+Tip: Sample list files that are named "test" or "seed" will be ignored by the match system and can be sent to without providing a rule (e.g., test-me.txt).
+3.4: (Optional) Creating a Verification File
+You can create a file named verify.py to force the bulk command to verify any lists before sending or testing (e.g., bulk <send,test> ...). This can be used to verify some fields are unique, exactly so many characters long, are not blank, etc.
+For example, given the following tab-delimited list file below named "list-source.txt":
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 eKs7yZ0yh2
+jdee@def.com Jane Dee 3 x9912 alL02nz87a
+abe@wh.gov Abe. Lincoln 10 x1337 l9h4MNzh2t1G
+neil@cosmos.edu Neil D. Tyson 1 x0001 qwWe1Xgh2L
+You can use the verify.py file to run Python code and check the following things:
+No one named "John" is receiving an email (should Fail).
+The dept variable is exactly 1 character long (should Fail).
+The source variable is at least 5 - 10 characters long (should Fail).
+The source variable consists of alphanumeric characters (should Pass).
+The source variable is unique (should Pass).
+The dept variable is an integer (should Pass).
+The uid variable starts with an "x" (should Pass).
+All email addresses contain only a single "@" symbol (should Pass).
+All email addresses exist (should Pass).
+Below is the verify.py file to check all of the things above:
+3.4.1: verify.py
+def verify():
+# no one named "John" is receiving an email
+assert "John" not in name, "Found John"
+# the dept variable is exactly 1 character long
+check_len(dept, 1)
+# the source variable is at least 5 - 10 characters long
+check_len(source, 5, 10)
+# the source variable consists of alphanumeric characters
+check_alnum(source)
+# the source variable is unique
+check_unique(source)
+# the dept variable is an integer
+check_digit(dept)
+# the uid variable starts with an "x"
+assert uid.startswith("x"), "{} does not start with 'x'".format(uid)
+# all email addresses contain only a single "@" symbol
+assert email.count("@") == 1, "@ symbol error: {}".format(email)
+# all email addresses exist
+assert email != "", "Email address missing for {}".format(name)
+With the verify file above, you will see the following output when attempting to send an email invitation:
+[user@server]$ bulk send email.txt list-source.txt
+...
+There were 2 errors while verifying the list using /selfserve/9d3/proj1234/mail/verify.py:
+jdoe@abc.com Found John
+abe@wh.gov dept '10': more than 1 characters long
+abe@wh.gov source 'l9h4MNzh2t1G': more than 10 characters long
+4: The Campaigns Tab
+Note: The Campaigns tab only exists for projects that have a /mail subdirectory.
+The Campaigns tab can be found in the Response Summary and contains useful information regarding your project's email sends, including:
+Time and dates for each email send.
+Total number of emails sent.
+Total number of people in the sample lists.
+The number of bounce-backs, suppressions, throttled addresses, etc.
+The number of emails opened.
+Click-through and response rate.
+In order for the campaigns tab to properly calculate email send statistics, your sample list files must be named with "list" as the prefix (e.g., list-us.txt, list-1.txt).
+To track emails that were opened, the status tracker must be properly configured to the project.
+Learn more:
+Monitoring Campaigns in Field
+Identifying Email Recipients
+Open Rates
+5: Federal Rules & Regulations (CAN-SPAM Act of 2003)
+The CAN-SPAM Act of 2003 establishes national standards for the sending of commercial email and requires the Federal Trade Commission (FTC) to enforce its provisions. In short, you must:
+Include a visible and operable unsubscribe mechanism in all email invitations.
+Include accurate header information (e.g., "From:" should truly reflect who the email is from).
+Include a relevant subject line.
+Include a legitimate physical address.
+References:
+CAN-SPAM Act: A Compliance Guide for Business
+CAN-SPAM Act: Bill Text [PDF][TEXT]
+6: Canceling an Email Send
+You can cancel an email send from the command line. Run bulk pending to view them, and bulk cancel <id> to cancel it. This is preferable to using atq. The send is known to be canceled to the system and you can also cancel the send of someone on vacation.
+Note: Cancellations are logged.

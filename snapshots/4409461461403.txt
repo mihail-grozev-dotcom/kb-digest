@@ -1,0 +1,90 @@
+Title: About the Libraries
+1: Overview
+The element and answers libraries within the Survey Editor allow you to store commonly used elements and answers for future use in your current survey or other projects, making it easy to re-use common questions or answer options (for example, demographic questions, screener questions or brand lists).
+Together, the libraries allow you to save:
+An entire question/element
+Multiple questions to create a template
+Answer options or text that contain images
+Text that contains a pipe (e.g., "[pipe:q1]")
+Block elements
+Python logic in an exec statement
+1.1: Element Library
+To access the element library, click the "+ Element" button in the Survey Editor. Then select "Library" from the navigation pane.
+Below you will find an overview of the element library, along with a short description of each of its primary features.
+1. Survey Elements: Return to the Survey Elements menu.
+2. Library Settings: Settings menu that contains options for inserting elements (see Library Settings).
+3. Source: Select the library source: Company Library (available to each survey author) or Other Projects (load the survey elements for any project that's available to you).
+4. Groups: Select a tab to view elements within that group.
+Elements: View all elements in the selected source.
+Templates: View element sets (two or more elements) in the selected source.
+Favorites: View elements that are marked as favorites in the selected source.
+5. Search: Filter elements in the list for the selected group (see Search).
+6. Browse Tags: Click to show / hide a list of tags used for filtering the element list (see Browse by Tag).
+7. Elements: List of elements in the selected source. You can:
+Hover over an element to preview it.
+Click to select a single element.
+Press CTRL or SHIFT and click to make additional selections.
+Double-click to insert elements while keeping the library open.
+8. Locked: Element is locked. You cannot edit or delete a locked element (see Lock).
+9. Elements Selected: The number of elements selected for insertion.
+10. Content: Click to view the content of the selected elements in a scrollable list.
+11. Preview: Click to view how the element displays to a participant.
+12. Element Options:
+Favorite: Add/remove an element as a Favorite. You can access them from the Favorites tab.
+Edit: Edit the element's name, tags, and sharing (restrictions apply to locked elements).
+Delete: Permanently delete the element from the library (restrictions apply to locked elements).
+13. Element View: Displays the selected elements in a scrollable list in the order of your selection. Elements are inserted in this order.
+14. Tags: In "Content" view, displays an element's tags.
+15. Element ID: In "Content" view, displays the element's unique library ID.
+16. Sharing: In "Content" view, displays the element's sharing setting.
+17. Add to Survey: Click to insert the element(s) into the survey in the order of your selection.
+1.1.1: Library Settings
+Click to show/hide additional options for how elements are inserted.
+Avoid Label Conflicts
+This option:
+Automatically updates the labels of your elements when inserting into the survey to avoid duplication.
+Makes a best-effort attempt to update any condition logic based on the updated labels to maintain consistency.
+If you would like to make these updates manually, uncheck this option to prohibit any changes to the labels of the elements you are inserting.
+Wrap Elements in a Block
+Select this option to insert the selected elements wrapped inside of a block. Inserting elements in a block allows you easily move/remove them.
+1.1.2: Search
+You can use search to find an element in the library by name, tags, element ID, and XML.
+Regular Expressions
+All searches beginning with the /character use JavaScript's regular expressions to search. If the expression is invalid, the search reverts back to a regular search.
+Note: To match new lines use .* instead of [^]*
+For example:
+Regular Expression
+Finds
+/row.*r10
+An element with a row and the label r10
+/Male.*Female
+An element with Male followed by Female
+/<style.*\.foobar>
+A style element using the .foobar class
+1.1.3: Browse by Tag
+Click to show/hide the library's tags that have been assigned to the elements. You can click a tag to display the elements with that tag assignment. The tags are ordered according to the most frequently assigned tag to the least assigned.
+Note any key values assigned to any metadata tag (e.g. a tag separated by "=" like "foo = bar" for instance) display in the tag list and not the meta data value. For the example, the tag would show "foo" (not "bar").
+Additionally, tags work with search so you can narrow your search even further based on the selected tag and the search criteria.
+1.2: Answers Library
+To access the answers library, first add a new element. Then click either "Row Actions" or "Column Actions", as appropriate, and select "Import Rows / Columns".
+Any saved answer options are listed here. The answer library also includes standard industry questions (i.e., commonly used demographic questions). Below you will find an overview of the answers library, along with a short description of each of its primary features.
+1. Survey Elements: Return to the Survey Elements menu.
+2. Library Settings: Settings menu that contains options for inserting elements (see Library Settings).
+3. Source: Select the library source: Company Library (available to each survey author) or Other Projects (load the survey elements for any project that's available to you).
+4. Groups: Select a tab to view elements within that group.
+Answers: View all answers in the selected source.
+Favorites: View answers that are marked as favorites in the selected group.
+5. Search: Filters answers in the list (see Search).
+6. Browse Tags: Click to show / hide a list of tags used for filtering the answer list (see Browse by Tag).
+7. Answers: List of Answers in the selected source. You can:
+Hover over an answer to preview it.
+Click to select an answer.
+Double-click to insert answers while keeping the library open.
+8. Answer Options:
+Favorite: Add/remove an answer as a Favorite. Favorite answers are listed in the Favorites tab.
+Edit: Edit the answer and tags
+Delete: Permanently delete the answers from the library.
+9. Tags: Displays the element's tags.
+10. Element ID: Displays the element's unique library ID.
+11. Sharing: Displays the element's sharing setting.
+12. Add to Survey: Click to insert the element(s) into the survey in the order of your selection.

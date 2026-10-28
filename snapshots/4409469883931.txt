@@ -1,0 +1,63 @@
+Title: Term Tag: Terminate/Screen Out Participants
+The <term> element is used to terminate participants. Use the cond attribute to create condition logic that will terminate participants if evaluated to "True".
+<term label="te1" cond="Q1.r6">Q1: Selected "None of the above" at Q1</term>
+Use legible, descriptive text within the body of the <term> element that shows up in the "Terminates" tab of the Response Summary. This helps you better understand why a participant was terminated.
+You can use the mutator function, createTerminateTables(), to automatically generate a <virtual> question capturing all of the terminates for a particular project.
+1: Attributes
+The <term> element has access to the following attributes. Click each attribute to read about it in detail.
+Attribute
+Type
+Description
+cond
+string
+Python expression that must be "True" in order to execute.
+dupeCheck
+string
+Checks for duplicate data and terminates if found (cannot be used with cond).
+Note: This attribute is not usable in surveys with delphi="1".
+incidence
+bool
+Include in incidence count (default is 1).
+markers
+slist
+Comma-separated list of markers to set before terminating.
+label
+string
+Unique symbolic identifier for the element.
+1.1: cond - Set the Terminate Condition
+The cond attribute controls whether or not the participant should terminate. If the condition evaluates to "True", the <term> element will execute and the participant will be terminated.
+For example, see below for a survey that is fielded for females only.
+<radio label="Q1" optional="0">
+<title>Are you...</title>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<term label="te1" cond="Q1.r1">Q1: Male participant</term>
+1.2: dupeCheck - Terminate Based on Duplicate Values
+Note: This attribute cannot be used in surveys with delphi="1".
+The dupeCheck attribute will terminate if the value provided already exists within the dataset. This includes qualified, terminated, and partial participants.
+In the example below, if anyone enters an email address that has already been provided (i.e., duplicate e-mail address) at Q1, even if terminated or partial, then they will be terminated.
+<text label="Q1" optional="0">
+<title>Please enter your email address below:</title>
+</text>
+<suspend/>
+<term label="te2" label="Email_Check" dupeCheck="Q1.val">Q1: Duplicate Email Address</term>
+You can also use the below code to terminate anyone who enters the survey with an extraVariable that has already been seen.
+<term label="te3" label="Duplicate_ID" dupeCheck="ID" incidence="0">ID Check: Duplicate ID</term>
+1.3: incidence - Control Incidence Counts Based on Termination
+The incidence attribute controls whether or not to record the terminated participant in the incidence count.
+If incidence="0" is specified, the participant will not appear in the incidence calculation.
+Note: The incidence calculation is: (qualified + overquote) / (click-through - partial - excluded).
+For example:
+<term label="te4" cond="QDisclaimer.r2" incidence="0">Disclaimer: Disagreed to disclaimer</term>
+1.4: markers - Set a Marker When Terminated
+The markers attribute enables you to set additional markers when terminating the participant.
+For example:
+<term label="te5" cond="Q1.c1.all" markers="straightliner,Q1_SL">Q1: Straightlined at Q1</term>
+<term label="te6" cond="(timeSpent() < 300) and not gv.isSST()" markers="speeder,lt_5minutes">Speeder: Less than 5 minutes</term>
+1.5: label - Set the Terminate Name
+The label attribute is the unique identifier for the <term> element. When using the Survey Editor, the label attribute is label="te1" for the first terminate, label="te2" for the second terminate, and so on.
+<term dupeCheck="Email.val" label="Email_Checker">Email: Duplicate Email Entered</term>
+2: Learn More
+Adding Condition / Skip Logic

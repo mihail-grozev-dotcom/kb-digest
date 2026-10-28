@@ -1,0 +1,146 @@
+Title: Creating a Survey from a Word Document (Scripting Agent)
+The Scripting Agent uses artificial intelligence (AI) to analyze a Microsoft Word document and convert the questionnaire content into a Decipher survey. It identifies supported questions, response options, logic, formatting, and other survey content from the document.
+Because AI is used to interpret the document, always review and test the imported survey before using it.
+Note: To enable the Scripting Agent, please contact Technical Support.
+1: Before You Start
+Before creating a survey with the Scripting Agent, review the following requirements:
+You must have survey:build permission to access the Scripting Agent.
+The questionnaire must be a Microsoft Word (.docx) document.
+The Scripting Agent is available only when creating a new survey.
+The Scripting Agent does not translate questionnaire content. Non-English questionnaires are supported, but their text remains in the original language.
+If you do not have access to the Scripting Agent, please reach out to your Forsta Account Representative.
+2: Creating a Survey From a Word Document
+To create a survey from a Word document:
+In the Portal, select New Survey. Then select Start with Word.
+Drag and drop the Word document into the file field, or select Browse and select the file from your device.
+Enter a name for the survey.
+Note: The survey name appears in the Portal and associated reports.
+Select Survey Options to configure the survey language, Portal, and URL settings. For more information about these options, see Creating a New Survey.
+Select Create Survey. The Scripting Agent begins analyzing the document.
+After the document is analyzed, the Scripting Agent processes the questionnaire content and creates the survey.
+When processing is complete, review the imported survey in the Survey Editor.
+3: Reviewing the Imported Survey
+The Scripting Agent converts recognized questionnaire content into compatible Decipher elements and response options.
+Content that the Scripting Agent does not recognize is converted into tasks. Tasks appear in the Survey Editor but are not visible in the survey or reports.
+Review the imported survey to confirm that its questions, response options, logic, attributes, and other content match the original questionnaire.
+After reviewing and testing the survey, you can edit and launch it using the standard Survey Editor workflow.
+4: Supported Content
+The Scripting Agent can identify and apply a range of survey content from a Word document.
+4.1: Questions and Survey Elements
+The Scripting Agent can detect the following question types:
+Single Select
+Multi-Select
+Text
+Essay
+Number
+Float
+Drop-down
+The Scripting Agent can detect the following question layouts:
+One-dimensional
+Two-dimensional
+Three-dimensional
+4.2: Labels and Attributes
+The Scripting Agent identifies labels and can adjust duplicate labels during import.
+If two questions use the same label, an underscore and number are added to the duplicate label. For example, if two questions are labeled Q1, the first remains Q1 and the second becomes Q1_2.
+The same behavior applies to duplicate row, column, and choice labels. For example, a second occurrence of r1 becomes r1_2.
+The Scripting Agent can also apply the following attributes when they are identified from the questionnaire:
+Attribute
+Application
+randomize="0"
+Anchors response options that should not be randomized.
+atleast="1"
+Requires at least one response for a Multi-Select question.
+atleast, atmost, and exactly
+Applies selection requirements to Multi-Select questions.
+optional="1"
+Marks question or response elements as optional.
+open="1"
+Adds an open-ended field to supported response elements. In drop-down questions, open-ended fields are limited to rows.
+exclusive="1"
+Marks an exclusive response option in a Multi-Select question.
+verify="range(0,100)"
+Applies a recognized minimum and maximum range to a Number question where a minimum and maximum are listed.
+where="execute"
+Applies to hidden questions.
+where="report"
+Applies to a row, column, or choice using strikethrough formatting.
+The Scripting Agent can also apply the following survey element attributes when they are identified from the questionnaire:
+Answer randomizations for rows, columns, choices
+Autosum for numeric questions that require a running total
+minRanks for Drop-down elements used as ranking questions
+Email validation to email questions
+ZIP code validation to ZIP code questions
+Support for answer groups to rows / columns / choices
+Support for noanswer rows
+4.3: Logic and Validation
+The Scripting Agent supports simple conditional logic (not written in an exec element but with a cond attribute) at the question, row, column, or choice level.
+and
+or
+not
+but
+.check
+For example, questionnaire instructions such as "Item 1 [SHOW IF A1=1 AND Q2=1]" and "Item 2 [SHOW IF Q1=2 OR Q2=2]" can be converted into conditional logic on the corresponding survey element.
+The two examples become:
+<row label="r1" cond="A1.r1 and A2.r1">Item 1</row>
+<row label="r2" cond="A1.r2 or A2.r2">Item 2</row>
+The Scripting agent can handle not logic:
+<term label="term8" cond="not RH4.r2">not RH4.r2</term>
+The Scripting Agent can also interpret exclusion logic (.but vector). For example, an instruction to show a question when exactly two options are selected in Q2, excluding option item 3 and option item 7, results in:
+cond="Q2.but(Q2.r3, Q2.r7).count == 2"
+A range-based termination instruction can result in .check logic. For example, "[TERMINATE YOUNGER THAN 18 or OLDER THAN 54]" results in:
+<term label="term1" cond="Q2.check('&lt;18,&gt;54')">Q2.check('&lt;18,&gt;54')</term>
+The Scripting Agent can also create terminate elements from recognized conditions. For example "Under 18 [Screenout] if D2=0-17" leads to:
+<term label="term1" cond="D2.val &lt;= 34 or D2.val &gt;= 86">D2.val &lt;= 34 or D2.val &gt;= 86</term>
+For a Multi-Select question, terminate logic can reference selected response options:
+<term label="term2" cond="D4.r1 or D4.r2 or D4.r3 or D4.r4 or D4.r5">D4.r1 or D4.r2 or D4.r3 or D4.r4 or D4.r5</term>
+4.4: Document Content and Formatting
+The Scripting Agent recognizes and includes the following text formatting:
+Bold
+Italics
+Underline
+Emoji icons
+Strikethrough formatting is recognized as described in 4.4.1: Strikethrough Text.
+Images in the Word document are recognized, uploaded, and referenced in the survey.
+The Scripting Agent will follow instructions that specify which elements should remain on the same survey page. For example, an instruction to keep Q1 and Q2 on the same page causes those questions to be structured accordingly.
+Programming notes are added as Tasks to the survey or related question elements.
+4.4.1: Strikethrough Text
+Strikethrough formatting affects imported content as follows:
+Strikethrough text within a larger block of text is excluded.
+If all text for a row, column, or choice uses strikethrough formatting, the response element is hidden and where="report" is applied.
+If the entire question text or question uses strikethrough formatting, the question is not added to the survey.
+5: Unsupported Content
+The Scripting Agent does not automatically apply or create the following content:
+Dynamic Questions
+Skip Element
+Quota Element
+Piping is not supported
+Loop Element
+Custom values for answer attributes are not supported
+For rating questions, the attribute type="rating" is not applied to the question element
+Hybrid Questions
+Advanced validation
+Review questionnaires that contain these features and add the required functionality in the survey after import.
+6: Learn More
+For more information, see:
+Creating a New Survey
+Note Element
+Using Tasks to Provide Feedback
+Adding Answer Groups
+Ranking Questions
+Data Verifiers
+Terminate Element
+Adding a "Prefer Not to Say" Option
+Scripting Agent FAQ
+If you have additional questions or need assistance with the Scripting Agent, contact your Forsta account representative or the appropriate Forsta Helpdesk team.
+7: Data Privacy
+The OpenAI service is part of Forsta's Azure subscription. Once data (survey questionnaire text) has been submitted to Azure, it is governed by their data policy.
+The AI service is hosted on U.S. Azure OpenAI region.
+Data (survey questionnaire text) are not used for training (including improvements of OpenAI models, any Microsoft or 3rd party products or services, etc).
+Decipher does not store any data as it utilizes the survey questionnaire text to convert into survey elements.
+A copy of the uploaded survey questionnaire is stored in the Project Overview Shared Document Uploads.
+Survey questionnaire data stored on the Decipher side:
+follows standard Decipher data retention and security including encryption at rest.
+logging for OpenAI service (such as request and response) is retained for 5 weeks separate from the retention for the survey questionnaire.
+ISO certification notes: Microsoft Azure undergoes ISO/IEC 27017 audit for compliance. You can download the list of certifications undergone by it on the Microsoft portal: https://learn.microsoft.com/en-us/azure/compliance/offerings/cloud-services-in-audit-scope
+Third party: Data (survey questionnaire text) sent to Azure OpenAI is retained by Azure only for abuse monitoring, if certain indicators trigger possible abuse attempts; see the Data Privacy note for Azure OpenAI above.
+Data Flow:

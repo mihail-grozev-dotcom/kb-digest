@@ -1,0 +1,56 @@
+Title: Beacon M16z Release Notes
+Release Date: May 15, 2013
+New Features
+Advanced weighting
+You can upload multiple weight variables. In the file you upload, just create multiple columns starting with weight, e.g. weight_popa, weight_popb
+When applying weight, you can choose any of the multiple weighting variables to apply to all your segments
+When previewing a banner, you can also select per segment weighting which allows you to weight your first segment by “popa” while the other is weighted by “popb”
+Even when not using multiple variables, you can view all participants weighted in one banner segment, while the other banner segment remains unweighted
+You can set individual weights for segments in the banner editor
+Download values: a new option in “View Options” let you see data download values in tables. These values will be used to create downloads (but may be configured differently from values used for averages in tables).
+Other changes
+The “PowerPoint with charts” option is now available to clients
+If you access Crosstabs but do not Apply you can still download data: you’ll get all qualified participants
+#15545 Surveys that have trackVars=checkbox set now support a “Total Shown Variable” Percentage Base option, like in the old reporting system.
+#15436 If you jump to a table and apply different settings (e.g. show All participants rather than qualified), the view will remain on the table.
+#15269 Can now create a banner with “all participants”
+Bug fixes
+#15527 Exported versions of the tables (PowerPoint or Excel) are both named based on the project ID.
+#15472 Creating banners off “completion time” could fail
+#15412 Certain surveys that used national characters could error on when exporting PowerPoint
+#15533 Reports that used “random order” virtuals could fail to run in the new reporting system
+#15492 Using “Excel” export on a question where the row title was the same as table title could fail
+#15459 Adding a net and then changing chart configuration in the same session could lose your net configuration
+#15425 On occasions, net and stat charts could show 0 data
+#15476 Segments from newly-created banners did not appear in the filter dropdown until a refresh
+#15632 After clicking “create as banner”, doing “save and apply” and then refreshing the page would cause the banner to no longer be selected in the config header
+#15609 Deleting the first split when you had two splits would sometimes cause the second split to not display
+#15619 The banner preview sometimes showed the segments in the wrong order
+#15436 Jump feature would stop working after hitting apply a second time
+#15477 “Across all” was not selected in row/column dropdowns by default
+#15637 Two total columns would sometimes show up in the tables
+#15323 Table headers were wrong when applying a banner that was made by clicking “create as banner” on a nested split
+#15578 No values would show up for certain questions in the net editor portion of table editor
+#15646 Deleted banners would show up again in the split dropdown sometimes
+Example weighting configurations
+If you have a single weight, put either uuid or one of your extraVariables (e.g. “source”) as the first column, and weight as the other. This must be a tab delimitered file:
+uuid
+weight
+p658pgr9ttrbk441
+1.0005345
+777rf7z3rzmzffrp
+0.8995124
+If you have multiple weights, each weighting column must start with weight. Whatever comes after that can let you help decide what weight to apply to all or one segments:
+uuid
+weight_global
+weight_local
+weight_special
+p658pgr9ttrbk441
+1.0005345
+1.31243
+1.11231
+777rf7z3rzmzffrp
+0.8995124
+0.9951
+0.8683
+Here, 3 weighting variables will be available, named “global”, “local” and “special”.

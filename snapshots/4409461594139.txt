@@ -1,0 +1,9 @@
+Title: Decipher Essentials Training Series
+Welcome to the Decipher Essentials Training Series.
+This training series is designed to teach you survey basics. Each tutorial provides basic knowledge with the ability to do it yourself and as you get further along in the series, the tasks get more complex. We believe that all levels of users will benefit from continued practice and review of the system's basic functionality, so there will be an exercise for you to complete at the end of each section. It's important to go in order as well, as each exercise builds on top of the previous exercise.
+During this training series, you will learn how to program a simple survey, apply logic, create your own look & feel, run simulated data and analyze real data.
+Training Videos
+Click on the links below for training videos on the following subjects:
+Survey Building
+Testing and Launching
+Reporting

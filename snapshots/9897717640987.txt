@@ -1,0 +1,15 @@
+Title: 144.4 Release Notes
+Release Date: January 14, 2020
+Release Version: 144.4
+New Features
+Participant Sources
+Sample Marketplace
+Added various qualification questions to the target audience menu displayed when purchasing project sample.
+Bug Fixes
+Reporting
+Data Downloads
+Fixed an issue causing misplaced SPSS data when importing from a stacked fixed-width file.
+Programming & Tools
+API
+Fixed an issue causing video watermarks to not be unique when videos were uploaded using the Video Upload API call.
+Fixed an issue which prevented usage statistics data from being collected on certain servers.

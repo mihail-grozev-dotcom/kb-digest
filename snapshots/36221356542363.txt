@@ -1,0 +1,40 @@
+Title: 153.51 Release Notes
+Release Date: April 22, 2025
+Release Version: 153.51
+New Features
+Portal
+Login
+In addition to app-based two-factor authentication, an email-based option is now available.
+Learn More: Managing Two Factor Authentication
+Responses
+View/Edit Responses
+A new "Convert to Delphi" button has been added to View/Edit Responses. It allows conversion of an existing non-delphi survey to delphi.
+Learn More: About the View / Edit Responses Report
+Bug Fixes
+Portal
+Project Overview
+An issue preventing some areas of the page from displaying in a freshly duplicated project has been resolved.
+Style Library
+An issue preventing some dynamic question meta attributes from appearing on the apps/stylelib page has been resolved.
+An issue preventing Forsta Surveys users from navigating to Forsta Visualizations via the Quick Switch app has been resolved.
+Survey
+Dynamic Questions
+An issue preventing video export from Media Evaluator responses has been resolved.
+Participant View
+An issue preventing the accessibility and help links from appearing in the footer of surveys using autosave has been resolved.
+Survey Testing Tools
+For Media Testimonial questions: an issue affecting the visibility of the Survey Test Environment modal while playback/recording toolbars were present, has been resolved.
+Responses
+Participant Sources
+An issue that prevented deletion of custom saved sources has been resolved.
+Reporting
+Data Downloads
+The Odata link is now enabled for any layout.
+Report (2010)
+An issue preventing Excel data downloads via Report (2010) has been resolved.
+Programming and Tools
+An issue that prevented restricted shell users on some servers from using scripts that access the database (such as copy-survey) has been resolved.
+API
+A rare issue preventing the retrieval of survey elements from some surveys has been resolved.
+Custom Code Elements (Logic Nodes)
+Surveys using Research Defender logic nodes with incorrectly scoped encrypted key values now load and display error messages in Builder and XML Editor.

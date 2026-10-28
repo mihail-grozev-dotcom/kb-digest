@@ -1,0 +1,69 @@
+Title: Goto Tag: Jump to a Different Section
+The <goto> element forces the execution of the survey to continue elsewhere. You can use this element to go back to a specific question so that a participant can change their answers, or go forward and skip sections of the survey.
+For example, in the code below, if the participant selects "No" at the question "Q1_FollowUp", indicating that the answer they provided at Q1 was incorrect, the <goto> element will redirect them back to Q1 so that they can change their response. The process will repeat until "Yes" is selected at "Q1_FollowUp".
+<number label="Q1" size="2">
+<title>How many children live with you in your household?</title>
+</number>
+<suspend/>
+<radio label="Q1_FollowUp" optional="0">
+<title>You said that you have <b>[pipe: Q1]</b> children in your household. Is that correct?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<goto target="Q1" cond="Q1_FollowUp.r2" />
+1: Attributes
+There are two attributes available in the <goto> element.
+Attribute
+Type
+Description
+target
+string
+The label of the element to which to jump.
+cond
+string
+The condition in which the <goto> element should be executed.
+1.1: target - Specify a Jump Label
+The target attribute controls where the <goto> element should redirect the survey execution. It can be set to any element's label attribute. For example, the code below demonstrates that a <goto> element's target attribute can be set to any label to jump to that location.
+<radio label="Q1" optional="0">
+<title>Where would you like to go to?</title>
+<row label="r1">Here</row>
+<row label="r2">There</row>
+<row label="r3">Everywhere</row>
+</radio>
+<suspend/>
+<goto target="here" cond="Q1.r1" />
+<goto target="there" cond="Q1.r2" />
+<goto target="everywhere" cond="Q1.r3" />
+<html label="SkippedComment">You won't see this...</html>
+<suspend/>
+<html label="here">YOU ARE HERE!</html>
+<suspend/>
+<number label="there" size="3" title="YOU ARE THERE!" />
+<suspend/>
+<label label="everywhere" />
+<html label="SeenComment">YOU ARE EVERYWHERE!</html>
+<suspend/>
+<goto target="Q1" />
+1.2: cond - Set the Condition
+The cond attribute controls the execution of the <goto> element. If the condition evaluates to "True", the <goto> element will be executed.
+For example, in the code below, if a participant selects "Yes" at question Q1, then question Q2 will be skipped and Q3 will be seen. If "No" is selected at Q1, then the <goto> element will not be executed because of the condition (e.g., cond="Q1.r1") will evaluate to "False" and question Q2 will be the next question seen.
+<radio label="Q1" optional="0">
+<title>Would you like to skip the next question?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<goto target="Q3" cond="Q1.r1"/>
+<checkbox label="Q2" atleast="1" optional="0">
+<title>Please select all that apply:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</checkbox>
+<suspend/>
+<text label="Q3" optional="0">
+<title>Please be as specific as possible:</title>
+</text>
+Tip: See Block Tag: Create Sections to learn more about creating sections with the Block tag.

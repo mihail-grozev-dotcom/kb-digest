@@ -1,0 +1,37 @@
+Title: 141.2 Release Notes
+Release Date: November 13, 2018
+Release Version: 141.2
+New Features
+Portal Updates
+Added survey path and directory options to the "Sort By" menu in the Portal. Both options offer useful information to users with customized project numbers or subdirectories.
+Reporting
+Crosstabs
+Added "OR" net and nested row support to the "Hide Rows" option in the table editor.
+Updated the Powerpoint export file (template.pptx) to include custom question bases.
+Survey
+Dynamic Questions
+Added the ability to specify multiple values for the same required attribute in meta.xmlfiles.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue where editing certain net rows prevented the report from loading.
+Fixed an issue where including unicode characters in answer text prevented crosstabs reports from loading.
+Fixed an issue where the new custom base description was not displayed for pinned tables in the whiteboard or in saved reports.
+Fixed an issue where the new custom base description was not shown within exports (Crosstabs only).
+Dashboard
+Fixed an issue where sorting rows by any column would sort by the first column instead.
+Survey
+Survey Editor
+Fixed an issue where the editor could not be accessed when a survey had an XML error.
+Fixed an issue where removing a "where" attribute value in certain dynamic questions would cause an error in the editor.
+Participant View
+Fixed an issue where the language translations for Danish, Italian, Spanish, and Spanish (Mexico) were not displayed correctly.
+Portal
+Fixed an issue where dates would not be displayed when selected in the "Sort By" menu.
+Fixed an error shown when using the search bar to search for no value with "Project Content" options selected.
+Navigation Menu
+Fixed an issue preventing users from navigating to the Theme Editor, Language Manager, or Upload System Files menu in a live project, when a temp-edit-live project did not already exist.
+Fixed an issue with "View Survey Setup" and "View XML" links being displayed when the project was not editable in the Survey Editor.
+Programming & Tools
+API
+Updated the company management API to now return the ID of the last user to edit company settings.

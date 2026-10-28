@@ -1,0 +1,49 @@
+Title: Legacy Video Player Element
+Important: Usage fees apply for video files. Please contact your Account Manager for pricing specifics.
+Tip: See Customizing the Legacy Video Player Element to learn how to customize the Legacy Video Player element in the XML.
+The Legacy Video Player element utilizes a multi-select form without traditional response options. Videos are hosted through Brightcove. The Legacy Video Player uses HTML 5, and and can be used in surveys with a compat level of 131+.
+Adding a Video Player Element
+Note: You can set the "Show " filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Video Player element, first click the "+ Element" button to add a new survey element. Then click "Stimulus" under Question Types and select the "Video Player" element. Then click "Add".
+Enter the question and instruction text in the areas provided. Then use the “Options” menu to the right of the staging area to customize the Legacy Video Player element.
+Note: Adding only a single Legacy Video Player element per page is recommended due to potential bugs and complications from differing stylevars and settings.
+Tip: Do not use the word "ad" for your labeling. If a question label contains the word "ad," it will be blocked with Adblock.
+Uploading a Video File
+Videos must be uploaded to the Legacy Video Player element using the file manager. See Uploading System Files to find out how to access the file manager and upload your video file.
+Important: Usage fees apply for video files. Please contact your Account Manager for pricing specifics.
+The video file must be in one of the following supported formats:
+.mp4 (mobile compatible).
+.mov (mobile compatible).
+Note: Be sure to note your video ID, as this name is required in the setup of the Video Player element.
+Style Settings
+To configure the style settings for the Legacy Video Player element, click the "..." button at the top right of the question in the staging area and select "Update Styling".
+In the "Question Display Options" window, configure the settings for the element using the options on the left. Additional information about each feature will appear when you mouse-over the text.
+The following options are available:
+Video ID: Enter the unique video ID provided in the file manager. For complete instructions on how to upload videos, see Uploading System Files.
+Video Width: Enter the width of the video in pixels. E.g., 640
+Video Height: Enter the height of the video in pixels. E.g., 360
+Allow Pause: Check to allow the participant to pause the video.
+Allow Replay: Check to allow the participant to replay the video.
+Allow Auto-Start (Desktop): When checked, the video auto-starts on desktop computers. When unchecked, video is manually started on desktop (i.e., the participant must click "play"). Due to mobile browser limitations, auto-start is only available for desktop browsers.
+Auto Advance: When checked, the participant is automatically advanced to the next page when the video is finished playing. When unchecked, the participant will be required to click continue / finish to advance to the next page.
+Allow Fullscreen: When checked, the video can be viewed in fullscreen mode. However, if this is used, the watermark feature will not be available. When unchecked, the video is not available in fullscreen mode.
+Hide Volume Controls: Check to hide the volume controls
+Hide Poster on Pause / Finish: Check to hide the poster on pause / finish.
+Must Watch Video: When checked, customizes whether the user is allowed to continue in the survey before the video has completed playing.
+Enable Continue button after: Enter the duration after which the "Continue" button will be enabled.
+Watermark: Enter the value to be used for watermarking. If left blank, no watermark is included. For example, ${uuid} will use the participant's unique ID as a watermark, unique to each participant. ${gv.request.getRemote()} will use the participant's IP address as a watermark. You may also simply enter text to show one word as the watermark for every participant (e.g., ACME).
+Watermark Position: Select the position of the watermark. This becomes the starting position if the watermark is animated.
+Click "Save and Preview" to preview the settings. Once you are satisfied with your settings, click "Save and Close".
+Note: Watermarks cannot accept the following character: ’
+Limitations
+The Legacy Video Player element has some limitations in certain instances. For best compatibility on desktop / tablet / mobile devices, use only the HTTP protocol when sending out survey links. Using HTTPS with the Legacy Video Player element does transfer videos securely when the survey / page is loaded via HTTPS on mobile (Android / iOS devices).
+Please note that when using HTTPS, the JS console will sometimes contain mixed content warnings, but the video is transferred securely. The warnings are related to Brightcove's API, and not critical. You will not be able to resolve those warnings on your end.
+Note: The size of the video file shown in the video player must be less than 2GB.
+When viewed in full screen:
+Watermarks are not supported for iOS devices.
+A different player is used for iPhones (iOS).
+Fullscreen mode enables pause and replay by default, overriding any settings for iPhones (iOS).
+On mobile:
+iPhones (iOS) will play in fullscreen mode by default and enable the seekbar.
+Autostart:
+Autostart is only available for desktop browsers.

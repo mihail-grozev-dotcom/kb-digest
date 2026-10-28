@@ -1,0 +1,54 @@
+Title: Generic API Call
+You can use the Logic Library to suspend a survey and execute an API call via HTTP/HTTPS to a remote server.
+This can be done using either the "API Integration" element in the Survey Editor or the "api" logic node in the survey XML.
+Note: Using the Decipher API requires users with shell access to whitelist survey URLs. Contact your Project Manager or the Decipher Support team to initiate.
+1: Using the Survey Editor
+To add an API Call using the Survey Editor, first click "+ Element" to open the Element Library. In the Element Library, click "Advanced" and select the "API Integration" element. Then click "Add".
+The new element will appear in the staging area, where you can add a title and configure the following API call parameters:
+URL: The base URL on the remote endpoint.
+Method: The API call type. Can be set to GET, POST, PUT, or DELETE.
+Headers: One or more dictionaries containing URL parameters.
+Parameters: The call parameters.
+Data: Any additional payload data.
+2: Using the XML
+There are two steps you will need to follow when formatting any API call:
+Create a variable that will define the call parameters. Call parameters include what gets passed in the URL (in the GET request).
+Write the following exec code, specifying a label for your API call, along with your preset variable name (api:params) and its URL (api:url):
+<logic uses="api.1" label="xxxx" api:params="yyyy" api:url="http://api.exampledomain.com"/>
+2.1: Parameters
+The following parameters can be passed using the API logic node:
+Attribute
+Description
+api:url
+This attribute is required and is the base URL to access. The hostname must exist in the api.txt file located in the company directory (selfserve/XXX) or be white-listed within the api.1 logic node.
+api:params
+This attribute is optional. It is the name of a variable that contains the URL parameters and must be a dictionary. For example, if you specify api:params="weather_data" and you've run the code weather_data = {"q": "Copenhagen", "when" : "yesterday"}, then the API call will have ?q=Copenhagen&when=yesterday added to it, along with any special characters.
+api:data
+This attribute is the same as api:param, but uses large data sent in the body of a HTTP POST request.
+api:method
+This attribute specifies the call method. It can be set to GET (default), POST, DELETE, or PUT.
+api:headers
+This attribute is optional. It allows you to pass through custom headers for your call.
+Tip: The Logic Library is continually growing and new logic nodes are being added all the time. If you are looking for more functionality with your call, contact your support team to inquire about development of new custom logic nodes for specific API calls.
+Once you execute the code above, your survey will be suspended and you can check your variable name on the next page for the HTTP status code.
+2.2: Interpreting Call Results
+To determine whether your API call was successful, you will want to check your node:status and node.r values. The node:status value will be your HTTP status code. If your API call is successful, you should see a status code of "200" here. If the server responds with any other code, there are likely errors in your call; for example, an invalid URL will result in a "500" status code.
+If you receive an error code, you will want to check both your logic syntax and the results of the call.
+Note: If you are running simulated data, node.status will return 500.
+The node.r value will be the response value of your call. If the API call returned JSON data, this is automatically decoded. Otherwise, you should see raw text here. If your call was successful, you will not need to do anything; the request and response will be logged automatically.
+2.3: Example
+If you wanted to open a page in your survey that showed the weather in participants' current locations, you might use something like the following:
+<exec>
+p.weather_data = dict(q=city.val)
+</exec>
+<logic uses="api.1" label="weather" api:params="p.weather_data"
+api:url="http://api.openweathermap.org/data/2.5/weather"
+/>
+<exec>
+if weather.status == 200 and weather.r["cod"] == 200:
+p.temperature = str(weather.r["main"]["temp"] - 273.15)
+else:
+p.temperature = None
+</exec>
+In this example, the api:url is the "Open Weather" weather map webpage and q is the participant's response to "q", which might be a survey question asking them "In what city do you currently reside?".
+Note: Each API may have a different way of returning errors, and OpenWeather will have a "cod" field in place of the "node:status" value with either "200" or another status code. Similarly, instead of "node:r", this call will show the weather.r value as the result.

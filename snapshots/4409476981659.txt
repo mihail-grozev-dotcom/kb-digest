@@ -1,0 +1,59 @@
+Title: Survey XML Tags
+Every survey-specific XML tag in Decipher is equipped with a supporting document containing more information. Please use the list below to learn more about any of our available survey XML tags.
+You may click on a tag name to jump to its article.
+Element Tags
+The following tags can be used to create different types of survey elements and response options, and will generally support most element attributes.
+Question Tags
+In addition to element attributes, these tags accept question attributes.
+Checkbox
+Float
+Logic
+Number
+Note
+Radio
+Select
+Text
+Textarea
+Virtual
+Cell Tags
+In addition to element attributes, these tags accept cell attributes.
+Choice
+Col
+Noanswer
+Row
+Control Tags
+The following tags can be used to organize and control various survey elements, and will also generally accept most element attributes.
+Alert
+Block
+Condition
+Datasource
+Define
+Exec
+Exit
+Finish
+Goto
+HTML
+Insert
+Loop
+Looprow
+Pipe
+Quota
+Term
+Title
+Other Tags
+The following tags can be used to customize survey pathing and design, as well as the display of various report data.
+Group
+Marker
+Net
+Res
+Samplesource
+Samplesources
+Script
+Style
+Stylevar
+Survey
+Suspend
+Theme
+Themevars
+Validate
+Var

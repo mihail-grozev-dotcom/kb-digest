@@ -1,0 +1,18 @@
+Title: Configuring Secure Samples
+You can configure Secure Samples (S2S) at a company-wide level for Dynata, Innovate MR, Azure,RepData, Sago, and Toluna. You will need your provider's API key prior to configuring the secure sample. This will minimize risk for link fraud and “ghost completes” and will give the most accurate quota reflection.
+Note: To configure secure sample for Lucid / CINT per survey, see Cint Secure Sample Integration.
+1: Secure Sample Overview
+Once you have configured your secure sample, the Secure Samples page will display the secure samples you have set up.
+You can review the Sample Provider, who added the provider, and when they added the provider. You can also Delete the provider to update the API key.
+2: Configuring Secure Sample
+On the
+Company Page
+in Forsta Surveys, under Integration Settings, click Secure Samples.
+Select a sample provider from the drop-down menu, then select Add.
+In the Add Secure Sample Entry modal, add your provider's API key. Select Ok.
+The provider has now been added.
+3: Notes and Limitations
+You can only have one API key per provider per company.
+If you add the wrong API key, you must delete the existing API key to re-add the correct one.
+When the API key is configured, Participant Sources will display an S2S checkbox.
+Providers that are S2S only will not display in Participant Sources until the API key is configured.

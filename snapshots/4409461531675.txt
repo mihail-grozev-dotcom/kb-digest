@@ -1,0 +1,14 @@
+Title: Project Parameters
+Enabling project parameters in a company allows you to organize its projects using company-defined metadata. Project parameter content is searchable through the Portal and exportable through Decipher's standard data downloads.
+See Adding Project Parameters to learn how to enable project parameters in a company.
+1: Setting Project Parameters
+Once project parameters have been enabled for a company, the “Edit Project Parameters” window will open upon creating a new project within that company.
+To set parameters for a project, enter the required information in the fields provided and click “Save Project Parameters”.
+If information for any field is not currently known, it can be left blank but any required fields not specified will need to be filled out before launching.
+Note: If any required fields are left blank, an error message will appear when attempting to launch the project.
+After adding project parameters to your company, you can use the following search syntax to filter your projects by a parameter title or value:
+question title=option value or title
+For example, if you wanted to see all projects with "answer 2" for "question 2", you would enter the following in the portal search bar:
+parameter:('question 2=answer 2')
+2: Accessing and Editing Project Parameters
+Once you have added parameters to a project, you can access them at any time by clicking the "Edit Project Parameters" button on the project page or via the navigation menu. To access your project parameters from the navigation menu, click "More Tools" under "Build" and then select "Project Parameters".

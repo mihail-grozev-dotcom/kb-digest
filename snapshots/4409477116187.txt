@@ -1,0 +1,127 @@
+Title: Using Style Variables in the Survey XML
+The style variables system allows users to create configurable attributes that can be applied to questions or their rows and columns to control the way they behave. The style variables system also gives users greater flexibility in creating custom question attributes, which can be used for calculations and logic.
+1: Defining a Style Variable
+To define a style variable, you will need to use the <stylevar> tag. The <stylevar> tag is self-closing and requires two main attributes to be specified - the name for the style variable and its type.
+For example, you would add the following tag to apply the 'cs:custom_stylevar' style to a question:
+<stylevar name="cs:custom_stylevar" type="string"/>
+1.1: The name attribute
+Although you can give your stylevars any name you'd like, you do need to follow a specific naming convention when creating a stylevar. The name attribute should be specified in the following way: namespace:name, where namespace is the namespace that the style variable belongs to, and name is the actual name of the style variable you are defining. Adding the namespace convention to a stylevar’s name allows you to create multiple style variables with the same name, but use them separately in different questions.
+For example, you can define two style variables named "brand" using different namespaces - one for soft drinks, and one for fast food chains:
+<stylevar name="sd:brand" type="string"/>
+<stylevar name="ff:brand" type="string"/>
+Once these variables have been defined, you can then use them in questions related to each specified brand. In this case, the soft drinks brand (sd:brand) stylevar could be used for soft drink questions, and the fast food brand (ff:brand) stylevar for fast food questions.
+1.2: The type attribute
+Each style variable requires an appropriate type to be defined for it in order to restrict the types of values a style variable can have. The allowed types are int, string, res, bool, and enum:
+int: The int type only allows digits to be input as values when using a style variable
+string: The string type allows any text to be input as values when using a style variable
+res: The res type attribute allows us to use pre-defined resource tags to be input as values when using a style variable
+bool: The bool type attribute allows us to use any boolean condition that evaluates to either True or False (boolean 1 or boolean 0) to be input as a value when using a style variable
+2: Using Style Variables
+Once you have defined a style variable within your survey XML, you can use its name as an attribute and add it either in the survey tag, the question tag, or at the row/column level, depending on the need for it.
+2.1: In the Survey Tag
+You can add style variables as survey tag attributes to add additional information to a project. Adding style variables to a survey tag also allows you to access this information from the survey tag at any time and use it to base logic on. The following example illustrates this:
+<survey
+alt="Stylevars"
+builder:wizardCompleted="1"
+builderCompatible="1"
+compat="137"
+extraVariables="source,record,ipAddress,decLang,list,userAgent"
+fir="on"
+html:showNumber="0"
+mobile="compat"
+mobileDevices="smartphone,tablet,featurephone,desktop"
+name="Survey"
+cs:brand="Brand B"
+setup="term,decLang,quota,time"
+state="testing">
+<stylevar name="cs:brand" type="string"/>
+2.2: At the Question Level
+Similarly to the survey tag, you can add in a predefined style variable as a question attribute:
+<stylevar name="cs:brand" type="string"/>
+<checkbox
+label="q1"
+cs:brand="brand_a"
+atleast="1">
+<title>Which of these brands have you used ?</title>
+<comment>Select all that apply</comment>
+<row label="r1">Brand A USA</row>
+<row label="r2">Brand A Germany</row>
+<row label="r3">Brand A France</row>
+<row label="r4">Brand A Bulgaria</row>
+</checkbox>
+2.3: At the Row Level
+Style variables can be added to a row/column or choice tag in the same way you would add them in the survey and question tags:
+<stylevar name="cs:brand" type="string"/>
+<checkbox
+label="q1"
+atleast="1">
+<title>Which of these brands have you used ?</title>
+<comment>Select all that apply</comment>
+<row label="r1" cs:brand="brand_a">Brand A USA</row>
+<row label="r2" cs:brand="brand_b">Brand B USA</row>
+<row label="r3" cs:brand="brand_a">Brand A Germany</row>
+<row label="r4" cs:brand="brand_b">Brand B Germany</row>
+<row label="r5" cs:brand="brand_a">Brand A France</row>
+<row label="r6" cs:brand="brand_b">Brand B France</row>
+<row label="r7" cs:brand="brand_a">Brand A Bulgaria</row>
+<row label="r8" cs:brand="brand_b">Brand B Bulgaria</row>
+</checkbox>
+Within this example, all of the Brand A rows for different countries have been grouped under the same cs:brand="brand_a" style attribute.
+3: Accessing Style Variables
+3.1: From the Survey Tag
+To access the value of a style variable defined within the survey tag, you can use the gv syntax to access the survey object, and drill down its attributes:
+<survey
+alt="Stylevars"
+builder:wizardCompleted="1"
+builderCompatible="1"
+compat="137"
+extraVariables="source,record,ipAddress,decLang,list,userAgent"
+fir="on"
+html:showNumber="0"
+mobile="compat"
+mobileDevices="smartphone,tablet,featurephone,desktop"
+name="Survey"
+cs:brand="Brand B"
+setup="term,decLang,quota,time"
+state="testing">
+<stylevar name="cs:brand" type="string"/>
+<exec>
+print gv.survey.root.styles.cs.brand
+</exec>
+3.2: From a Question
+To access the value of a stylevar used in a question tag, you can use the below syntax:
+<stylevar name="cs:brand" type="string"/>
+<checkbox
+label="q1"
+cs:brand="brand_a"
+atleast="1">
+<title>Which of these brands have you used ?</title>
+<comment>Select all that apply</comment>
+<row label="r1">Brand A USA</row>
+<row label="r2">Brand A Germany</row>
+<row label="r3">Brand A France</row>
+<row label="r4">Brand A Bulgaria</row>
+</checkbox>
+<exec>
+print q1.styles.cs.brand
+</exec>
+3.3: From a Question Row/Column
+To access the value of a style variable defined at the row/column level, you can use the below syntax:
+<stylevar name="cs:brand" type="string"/>
+<checkbox
+label="q1"
+atleast="1">
+<title>Which of these brands have you used ?</title>
+<comment>Select all that apply</comment>
+<row label="r1" cs:brand="brand_a">Brand A USA</row>
+<row label="r2" cs:brand="brand_b">Brand B USA</row>
+<row label="r3" cs:brand="brand_a">Brand A Germany</row>
+<row label="r4" cs:brand="brand_b">Brand B Germany</row>
+<row label="r5" cs:brand="brand_a">Brand A France</row>
+<row label="r6" cs:brand="brand_b">Brand B France</row>
+<row label="r7" cs:brand="brand_a">Brand A Bulgaria</row>
+<row label="r8" cs:brand="brand_b">Brand B Bulgaria</row>
+</checkbox>
+<exec>
+print q1.r1.styles.cs.brand
+</exec>

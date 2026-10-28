@@ -1,0 +1,50 @@
+Title: Customizing a Powerpoint Template
+When exporting data into PowerPoint, there is a default PowerPoint template which is applied. To customize the look and feel of your project’s template follow the instructions below.
+1: Overview
+There are two different templates and each template is used by different reporting systems. Report 2010 and Crosstabs share a template called “template.pptx” while Dashboards use a template called “dashboard.pptx”. These are pre-defined names that are looked for explicitly.
+The two template files are very similar, but do contain slight differences. Having two different files controlling the look and feel allows for two different styles to be applied between Dashboards and Crosstabs/Report 2010.
+To customize a template, download the corresponding file below, edit the contents and upload to your project's root directory.
+Here are the templates:
+Dashboards: dashboard.pptx
+Report 2010 and Crosstabs: template.pptx
+Note: This article has been created using PowerPoint 365. For other versions of PowerPoint, use comparable menu options.
+2: Editing the Template
+This PowerPoint template will contain text that will pull in survey information dynamically. Below is a description of each of the code snippets that you will see in the template.
+$(surveyTitle): Name of the project as shown in the portal
+$(closeDate): Date of Survey close or current date PowerPoint exported
+[$(label)] $(title): Question label/text
+Column, Data: Where data is filtered into for tables
+[$(label)] $(full): Question label/text for the footer
+$(base): Question base count
+$(custombase): Custom question base as entered in the table editor
+Note: The prefix [$(label)] and $(closeDate) appear only on the "template.pptx". The "dashboards.pptx" will not show these codes.
+2.1: Edit the Table
+To edit the color scheme of this table:
+1. Select the table.
+2. Click Table Design in the PowerPoint menu.
+3. Select a new style from the Table Styles menu.
+Visit Microsoft Support to learn more about editing tables in PowerPoint.
+2.2: Edit the Background Image
+The template uses different background images in the normal view for slide 1 and slide 2. Editing the Slide Master within PowerPoint will not override either of these images. You can replace these images with your own images or change them to use different images, gradient colors or solid colors.
+To edit the background image:
+1. Right-click the background and select Format Background.
+2. Select FILL and choose Solid, Gradient or Picture fill.
+Visit Microsoft Support to learn more about editing backgrounds in PowerPoint.
+2.3: Edit the Slide Master
+You can use the Slide Master to change the default size for all slides.
+Click View in the PowerPoint menu. Then select Slide Master from the Master Views menu. In the Slide Master, select either Standard or Widescreen under Slide Size.
+After you are finished with your Slide Master edits, click View in the toolbar, and select Normal from the Presentation Views menu.
+Visit Microsoft Support to learn more about editing slides in PowerPoint.
+2.4: Save the Template
+To save your customized template, select Save from the File menu within PowerPoint.
+Note: Make sure that the filename is saved as either template.pptx or dashboard.pptx, depending on the template type.
+2.5: Upload the Template
+Upload the template file for your Decipher project to the project's main directory.
+Open the project you want to upload the template to. In the navigation menu, click BUILD. In the More Tools drop-down menu, select Upload System Files.
+Click + Add Files. Add your "template.pptx" or your "dashboards.pptx"to the System File (root) folder. Click Upload.
+To learn more about uploading system files in Decipher, see Uploading System Files.
+Note: If you are a shell user and have shell access to your own server, you can upload a template to a client directory which will then be used as the default for all the client directory's projects.
+2.6: Verify the Template
+Export your crosstabs report or dashboard to PowerPoint to verify that the template is customized as desired.
+If additional changes are needed, make those changes in your template, and upload the file again to overwrite your previous upload.
+Note: If you are encountering errors, check the template's properties to verify that none have been specified. In PowerPoint, select File>Info to view Properties. Open Advanced Properties and verify that the information fields on the Summary tab are empty (blank), especially the "author" field as this is known to cause errors.

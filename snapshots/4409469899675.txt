@@ -1,0 +1,95 @@
+Title: Page Turner Element
+With the Page Turner element, participants interact with a magazine-like layout, while the system tracks the time they spent on each page. The Page Turner element utilizes a number form and must contain multiple pages (i.e., rows). It is compatible with desktop and tablet devices but is incompatible with smartphones and feature phones. It does not utilize Flash.
+1: Adding a Page Turner Element
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Page Turner element via the Survey Editor, first click the "+ Element" button to add a new survey element. Then click "Stimulus" under Question Types and select the "Page Turner" element. Then click "Add".
+Once you have added the Page Turner element, enter your desired question text, instructions, and response options.
+Click "Add Pages" to add the pages to be used for the element display. Then click into the product field and click the image icon in the Rich Text Editor (RTE) to add images.
+See Adding and Managing Images to learn about adding images.
+Here are a few tips for adding images to the Page Turner element:
+All images should be the same size, and the ratio of the images should match the ratio set in the element's style settings. If the ratios are off, the image may look distorted.
+Images should be large enough to read the text when a participants zooms in (e.g., 1188px (height) by 918px (width).
+Images should be compressed as much as possible for the web while maintaining a good resolution (e.g., 72px / inch).
+1.1: Adding Images
+Select the image(s) you want to insert in the image manager. Then click "Insert Image(s)".
+Each image must be added on a new line, so click "Enter" and repeat the process until all of the images have been added with each on a new line.
+1.1.1: Page Actions
+Click "Page Actions" to access the following edit options:
+Import Answers
+Save Answers to Library
+Copy All Answer Text
+Insert Reusable Answer List (only available if you have previously saved
+an answer list)
+Create Reusable Answer List
+Add Answer Group
+Answer Piping
+Reverse Values
+Reset Values
+Reset Labels
+Delete All Answers
+Edit All Answers
+2: Configuring Style Settings
+To configure the style settings for the Page Turner element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Question Display Options" window, configure the settings for the element using the options on the left. Additional information about each feature will appear when you mouse-over the text. Click "Save and Preview" to preview the settings. Once you are satisfied with your settings, click "Save and Close".
+The following display settings are available:
+Style Option
+Description
+Magazine Width
+Enter a whole number to set the total width of the open magazine (i.e., "2" for two pages, side by side) in pixels.
+Example: 800, for an open magazine with images that are 400px wide.
+Magazine Height
+Enter a whole number to set the height of the magazine in pixels.
+Example: 500
+Required Pages to View
+Set the number of pages each participant must view before the "Continue" / "Finish" button is enabled. Enter a whole number.
+Example: "5" means the participant must view five pages before they can continue to the next question.
+Display Side
+Allows you to control which side(s) of the magazine has content.
+Both Sides: Display content on the left and right side of the magazine.
+Right Side: Display content only on the right side of the magazine.
+Peel Corner
+Allows you to specify where the initial peel is shown. The peel curls back the corner of the page to show the participant that they can flip to the next page.
+None: Do not peel any corner.
+Top Right Corner: Curl / peel back the page at the top-right corner.
+Bottom Right Corner: Curl / peel back the page at the bottom-right corner.
+Navigation Position
+Allows you to specify where the magazine's navigation bar is positioned.
+None: Do not show a navigation bar.
+Above Magazine: Display the navigation bar above the magazine.
+Below Magazine: Display the navigation bar below the magazine.
+Back Button Text
+Allows you to change the text shown in the button that lets participants flip back to the previous page in the magazine.
+Example: Go Back
+Note: Not shown when "None" is selected for Navigation Position.
+Left Button Text
+Allows you to change the text shown in the button that lets participants enlarge the left page of the magazine.
+Example: Zoom Left
+Note: Not shown when "None" is selected for Navigation Position.
+Right Button Text
+Allows you to change the text shown in the button that lets participants enlarge the right page of the magazine.
+Example: Zoom Right
+Note: Not shown when "None" is selected for Navigation Position.
+Next Button Text
+Allows you to change the text shown in the button that lets participants flip forward to the next page in the magazine.
+Example: Next Page
+Note: Not shown when "None" is selected for Navigation Position.
+3: Configuring Question Options
+The general options available for the Page Turner element are located to the right of the staging area. You can set rules for the entire question by clicking near the question text or set rules for individual rows by clicking the row you wish to edit. The "Options" menu will show the question or row label and type of the option you have selected to edit.
+3.1: General Options
+When altered, each of the following options affects all attributes within the Page Turner element.
+Label:The label assigned to the element. Click to edit the default label for the Page Turner element.
+Show if:Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages:Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory:Check the box to force participants to provide a response. When checked, participants will be unable to continue the survey without completing the question.
+Randomize: Check the boxes to randomize items by type. Items can only be randomized by rows.
+Randomize groups: This option is available if there are row groups. "Randomize" must be enabled in order for this to function. When checked this option will randomize the groups.
+More options: Click to select less commonly used options. Once selected, you will be able to specify the settings for that option. For more information on each option, see More Options - Advanced Features.
+The rest of the options do not apply to this element.
+3.2: Page Options
+When altered, each of the following options only affects specific page options.
+Label:The label assigned to the page. Click to edit the default label for the page.
+Show If:Click to create new logic conditions or select an existing logic condition for the page. For more information, see Adding Logic to a Question or Response Option.
+Languages:Click to select what languages the response option will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize:This option is only available if the "Randomize" general option is selected. Check the box to force the page to remain stationary.
+Hidden:Check the box to hide the page from participants.
+The rest of the options do not apply to this element.

@@ -1,0 +1,61 @@
+Title: Decipher (previously Decipher) M36 General Release Notes
+This document contains the general release notes for the Decipher M36 (2017) milestone.
+Release Date: January 24, 2017
+Highlights of Decipher M36 Release
+New Features
+Image Upload
+Ability to add an image upload question to any survey
+Allows participants to upload an existing image or capture and upload a new image
+Uploaded images are tracked in reports, along with individual user responses
+Language Selector
+Ability to add a language selection question to any survey with multiple languages
+Participant language selection is tracked in reports
+Application Translations
+Several application interfaces are now available in Japanese, French, Spanish, German, Russian, and Portuguese
+Reporting
+Crosstabs, ability to choose which nested rows to display and export
+Dashboards, page names will become scrollable if links exceed the navigation space
+Survey Functionality
+Language Manager
+Azerbaijani and Georgian languages now available
+Languages can be imported/exported in XML format
+Summary and Resource tables now include “Identical” flags for translations that match original survey text
+Quick link available in System Survey Resources page to view default survey text for any language
+Omit blank resource option available for language file export
+New Features
+Image Upload
+The new Image Upload dynamic question encourages a more interactive participant experience, allowing users to upload image files to your survey from their desktop or mobile devices. The upload functionality works for both existing image files and new images taken directly on their mobile device.
+The new question is available in the Survey Editor and can be added, moved, or removed just like any other survey element:
+Similar to the Video Testimonial dynamic question, all participant results from Image Upload can be viewed in Crosstabs with links to view individual responses, download the image, or mark it as a favorite:
+Language Selector
+The Language Selector dynamic question makes it easier than ever to allow participants a choice in what language they would like to view your survey.
+The new question is available in the Survey Editor and can be added, moved, or removed just like any other survey element:
+Once added, each uploaded survey language is displayed as an option in the translated version of that language:
+Application Translations
+The Decipher Portal is taking a world tour! New translations have been added to allow portal users to view some of our most popular tools in several new languages. The following application interfaces are now available in Japanese, French, Spanish, German, Russian, and Portuguese:
+Language Manager
+Survey Library
+Response Summary
+Crosstabs
+View/Edit Responses
+Campaign Manager
+CATI Mode
+If you or a member of your team would prefer to view these tools in another language, just go to the target user’s account and click on “Edit Profile”:
+Then select the preferred interface language from the drop-down menu, and click “Save Changes” at the bottom of the profile screen:
+Once your new option is applied, all portal menus and information screens should appear translated in the preferred language for that account.
+For more information on creating a new user or setting user preferences within the Portal, see Create and Manage Users.
+Reporting
+Crosstabs
+Row netting functionality has been improved to allow you more control over the display of your Crosstabs tables. Now you can choose how Crosstabs displays and exports nested rows, by showing or hiding any rows you wish:
+The export tool will respect the option you have applied to your table. Of course, Crosstabs will still show all rows by default, so no need to make any adjustments if you would prefer to view or share everything at once.
+Dashboards
+Dashboard display has become even more dynamic with the introduction of scrollable tabs. Now, when a dashboard’s page headers exceed the viewable navigation space, these links are shown as scrollable tabs rather than in a drop-down menu:
+If you would prefer to see a drop-down menu, you can add the dashboard code scrollabletabs 0 to return to the original look:
+Survey Functionality
+Language Manager
+Language Manager usability has greatly improved with two more system languages to choose from, and a bundle of added functionality. Azerbaijani and Georgian are now available within the language menu and can be added to any survey:
+Translation files can now also be exported/imported in XML format:
+The Summary Table has an ‘Identical’ column that lists when imported translation text matches the original text in the survey:
+Similarly, the Resource Table now has a new ‘Identical’ filter option that allows you to easily see and/or edit text in translation file that matches original text in the survey:
+A quick link has been added to the System Survey Resources page to easily view the default text displayed for a language:
+An option to omit blank resource from exported language files has also been added:

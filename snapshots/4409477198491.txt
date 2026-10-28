@@ -1,0 +1,153 @@
+Title: Editing Tables in Crosstabs
+By default, Crosstabs includes a report table for each survey question. Both the size and content of each table depends on the overall complexity of the associated survey question, but users do have the option to change the way the data is displayed in the report and exports. This article will guide you through the table editing functions available within Crosstabs.
+1: Accessing the Table Editor
+Question tables can be configured using the Table Editor in Crosstabs. To edit the table for a survey question, click the Menu button at the top-right of that question in the report and select Edit Table.
+The Table Editor will appear, where you can start making changes. Tables contain the following configuration options:
+1. Question Label: This is the system label for the question; it can be used to find the question in the report.
+2. Edit Question Text: Enter alternative question text for the report. The participant view is not changed.
+3. View Question: View a preview of the question as it is/will be shown in the survey.
+4. Reset Table: Reset the table to its defaults.
+Note: As with other table changes, you must click Save to apply a table reset to the report.
+5. Nest Rows under Nets: Check this box to show or hide options in nested rows.
+6. Hide Rows with: If available, open the drop-down menu to select a threshold to hide rows. If this option is selected, a new checkbox appears to confirm whether to include hidden rows in the question base. If you have multiple levels of nested nets, the top-level net type determines when the nets/rows should be displayed. Additionally, the following restrictions apply:
+If the top-level net is an "OR" net with a value below the selected threshold, all of its nested nets are hidden as well.
+The value for an "OR" net cannot be less than its nested nets based on the "OR" net logic. This applies to any "OR" and “AND” nets nested under a hidden “OR” net.
+If the values for the rows nested under a top-level "OR" net are below the selected threshold but the top-level net's value is not, then only the top-level net is displayed.
+If the top-level net is an "AND" net, all row/net hiding under it is excluded.
+Note: Hidden rows are removed only from the Crosstabs table view and not from pinned / saved reports.
+7. Dynamic Sorting: Open the drop-down menu to select a sorting scheme.
+Note: Saved sorting schemes will be applied to reports exported from both the Crosstabs entry page and the individual table. To remove a sorting scheme, you must unselect it from the table editor and click Save.
+8. + Table Row: Create and add nets or statistical summaries to the table. Availability of nets and stat options will depend on the question type.
+Note: Any nets predefined in the survey.xml and standards.xml files will automatically be included in the table.
+9. Show/Hide Answers: Hide any answer option by unchecking the box.
+You can hide a row, but still keep it included in the total base by checking the Include in Base box for a hidden row.
+If hiding a row that's included in a net, be sure to Include in Base so the percentages make sense.
+Note: Hidden rows are removed only from the Crosstabs table view and not from pinned / saved reports.
+10. Nets/Subnets: This is where nets and subnets will appear that you have created using the + Table Row function (see 4: Adding/Editing Nets below).
+11. Edit Answer Text: Enter alternative text for the answer option for the report. The participant view is not changed.
+12. Stat Values: Edit the statistical value for any answer option.
+13. Sort Lock: Click the "lock" icon to lock or unlock rows when sorting.
+14. Include in Base: Uncheck the box to exclude an answer option from the base count. The base is a numeric value that represents the total number of participants who saw or answered the question (depending on the option selected).
+15. Edit Nets: Edit any nets and subnets already applied to the table.
+16. + Table Filter: Select a saved segment or date range to apply a custom filter to the question. This only applies the selected filter to the selected question.
+Tip: Applying the Total segment will not change the data.
+17. + Table % Base: Calculate percentages based on participants' question/segment status.
+18. Base Description: Enter a description for the current custom base.
+19. Save: Save the changes for the table.
+Note: Changes made in the table editor are visible to all users and apply to all Crosstabs reports for the project.
+Note: The Table Editor for multi-dimensional questions and number questions has additional options. See 5: Question Type Considerations below.
+2: Adding Filters
+You can add filters to a table based on date range or other response criteria. To add a table filter, click + Table Filter and select the desired filter from the list of available options.
+To remove an applied filter, hover over the filter and click the "x" that appears.
+3: Setting the Base
+To apply a % base, click + Table % Base and select the desired base from the list of available options. You can view any table based on the following options:
+Total Answering: Based on the "total" row, the total for the table row is updated for a participant if at least one visible row is true (excluding aggregated and nets).
+Total Shown: Based on the number of participants shown any part of the question.
+Total in Segment: Any participant who falls into the segment's condition (e.g., qualified and male).
+Total Shown Variable: Based on the number of participants shown a specific variable.
+Count of Responses: Based on the number of responses (instead of the number of participants). Only available for multi-select (checkbox) elements.
+To remove a base you have already applied, hover over the base and click the "x" that appears.
+4: Adding/Editing Nets
+4.1: Adding a Row Net
+When creating nets, there are options available for selecting a type of net and the position of the net. To create a new net, first click the + Table Row button in the Table Editor.
+Then select a row type, enter a title, and check the boxes for any rows you would like to use for the net.
+Row Types:
+OR Net: Add the vertical frequency percentages and counts, when any of the included rows was selected in the survey.
+AND Net: Add the vertical frequency percentages and counts, when all of the included rows were selected in the survey.
+Mean: The average of all measured values for the included rows.
+Median: The middle value for the included rows.
+Standard Deviation (Stddev): The measure of variability or dispersion around the mean for the included rows.
+Standard Error (Se): Represents the confidence of the Standard Deviation for the included rows.
+Sum: The total based on the sum of the included rows.
+Count: The number of checkboxes from the included rows that were checked
+Minimum (min): The minimum value given for the included rows.
+Maximum (max): The maximum value given for the included rows.
+Add multiple Statistics: Will open an additional option to add multiple stat rows with the same row inclusions.
+Finally, select where you would like your net to appear using the Position drop-down menu and click Save.
+Position Options:
+Above first included row: Displays the net before the first included row
+Below last included row: Displays the net after the first included row
+Above [row]: Displays the net before the selected option
+Below [row]: Displays the net after the selected option
+4.2: Adding Multiple Row Nets
+If you want to include multiple statistics for the same rows, select Add Multiple Statistics in the Row Type drop-down menu.
+This can be quicker than adding the nets one-by-one.
+Regardless of the method you have used, once you have finished adding all of your nets, these will appear in your question table.
+4.3: Adding Subnets
+It is also possible to create subnets for any row net by nesting nets you have already configured into new nets. To create a new AND/OR subnet, first click the + Table Row button in the Table Editor.
+Note: Subnets can only be created using the "AND"/"OR" row types. The system will not accept any statistical rows as subnets.
+Then select a row type, enter a title, and check the boxes for any rows you would like to use for the parent net. Any row nets you have already configured will be displayed under Nets to Include. Check the box for the nets you would like to use as subnets.
+Finally, select where you would like your net and subnets to appear using the Position drop-down menu and click Save. Once saved, subnets will appear in the Table Editor with numbers in superscript, indicating the order in which they were created.
+Note: Subnet nesting is limited to four layers (for example, you can add only three subnets to each row net).
+4.3.1: Moving Row Nets
+The Crosstabs table editor also has a drag and drop feature enabled, which allows you to quickly reorder any row in that table. Any row or table with the six-dot icon will allow it to be dragged and dropped.
+Note: Nets will inherit the order of the rows that are selected, even when you move the rows or nets around.
+4.4: In the Report
+4.4.1: Viewing Row Nets
+When you add a net to the question, a net summary row is added to each selected table in Crosstabs. When Nest Rows under Nets is checked, nets are collapsed by default and can be expanded to show all the included table rows and subnets using the arrow to the left.
+Note: Subnets will always be shown above the rows included in the parent net.
+5: Question Type Considerations
+5.1: Multi-Dimensional Questions
+The process for adding nets to multi-dimensional questions is the same, but the configuration option set for a multi-dimensional question has two sections.
+The left section of the Table Editor displays a list of tables that you can view in crosstabs. The table list depends on the grouping of the question (typically question rows).
+The right section typically displays the question columns. If the question is grouped by columns instead of rows, then the table list (left section) will display columns, and the right section will display question rows..
+5.1.1: Setting an Alternative Dimension
+Changing the primary dimension of a question will change how your data is grouped. If Show a Table for Each Question Column is selected, this will display a table for each column choice in that question. If Show a Table for Each Question Row is selected, this will display a table for each row in that question.
+By default, the primary dimension is based on survey setup (using question grouping or the adim attribute). Rotating from data grouped by column or row will also recalculate the data in each table and only be applied once it is saved.
+Note: Changing the primary dimension of a two-dimensional radio question will remove it from any custom table sets.
+5.1.2: Adding/Editing Summary Tables
+You can take your multi-dimensional questions one step further by adding summary tables. Summary tables are distinct from nets. Summary Tables provide a statistical summary of ALL tables within each question. Both regular report tables and summary tables include drag-and-drop functionality, as well as custom grid table settings and table nets.
+Here is a quick guide of what summary tables are available for each question type:
+Multi-Select
+(Checkbox)
+Single Select
+(Radio / Dropdown)
+OR Net
+Yes
+Yes
+AND Net
+Yes
+No
+Mean
+No
+Yes
+Median
+No
+Yes
+Std Dev
+No
+Yes
+Std Error
+No
+Yes
+Sum
+No
+Yes
+Count
+Yes
+No
+Minimum
+No
+Yes
+Maximum
+No
+Yes
+By default, all individual tables for multi-dimensional questions will be toggled off and only the grid table will be shown within Crosstabs. Manually turning all grid tables on/off via the View Options menu will only affect default grid tables. Any custom grid tables will remain as is. See Configuring Crosstab View Options to learn more.
+5.1.3: Adding a Summary Table
+To add a summary table, first click on + Table Row at the top right of the table rows section. Then select the summary table you would like to include for your net.
+The *(value) is shown in tooltip logic when hovering over a stat net type. Also, when setting the specifications for your table rows, keep in mind that the following definitions apply to each option:
+Grid Tables: A table that combines the scale and attributes for 2-dimensional question types. Uses the segments as filters instead of a banner.
+Net Table: Creates a new table (or column in a grid table) that combines attributes from a 2-dimensional style question.
+Once enabled in the Table Editor, the net summary tables will appear in grid format in the question table.
+All table segments are automatically assigned a stat testing letter (starting with "A" and incrementing). The stat testing letters are used for comparisons between the different segments within the grid table.
+See Statistical Testing in Crosstabs to learn more about stat testing within Crosstabs.
+5.2: Numerical Questions
+When you click + Table Row for a numerical question, a new row displays for you to specify the details of the net. Specify a Row Title and Net Values to include in the net. Then click Save"
+For example, if you enter "Young Adult" and a "Net Value" of 18-25 for an age question, the resulting net row displays "Young Adult" and then aggregates participants who entered 18-25 for their age.
+For the net value you can also use the form, number+. For example, if you specify a "Row Title" of "Senior" and "Net values" of 65+, the resulting net row displays "Senior" and aggregates participants who entered an age of 65 and older.
+Entering an invalid range displays all participants.
+Important: Be sure to specify a numeric "Net Value." Otherwise, you may be locked out of the table editor for that question. If you are locked out of the table editor, contact Technical Support.
+5.2.1: Adding Sum Summary Tables
+Adding "sum" summary tables to numerical questions will allow you to view both the sum of participants for each row and the percentage that each row contributes to the total.
+These percentages can be particularly useful for volumetric reporting, as they allow you to base data frequency calculations on the sum of counts or values, rather than the number of participants.
+Note: Sum percentages will be shown alongside counts within data exports as well.

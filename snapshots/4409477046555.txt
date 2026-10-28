@@ -1,0 +1,13 @@
+Title: Adding Saved Sources to a Survey
+You can save participant sources for use in any Decipher survey. This document provides a step-by-step guide for saving participant sources and adding saved sources to surveys.
+1: Saving Participant Sources
+To save a participant source for future use, first navigate to the Participant Sources menu by selecting “Participant Sources” under “RESPONSES”. Then click the “…” button next to the desired source and select “Save as Custom Source”.
+Finally, enter a name and description for your source, select a permission setting and click “Add”. There are two permission settings:
+Me: Only you can view and select the participant source in the Participant Sources menu for any project.
+People in This Company: All company users can view and select the participant source in the Participant Sources menu for any project.
+Note: Saving a custom participant sources does not also save its language settings. These must be applied manually for each individual survey.
+2: Adding Saved Participant Sources
+To add a saved participant source to a survey, first navigate to the Participant Sources menu by selecting “Participant Sources” under “RESPONSES”. Then click the “+ Participant Source” button.
+Next, click the “Custom Samples” tile in the list of source types.
+3: Reviewing Participant Sources
+Once clicked, you can view the participant source or grab its custom survey links at any time via the “Participant Sources” tab of your survey’s Response Summary.

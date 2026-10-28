@@ -1,0 +1,98 @@
+Title: Video Testimonial Element
+Important: Video Testimonial is now closed. Existing Video Testimonial elements will continue working normally until September 30, 2025. The Media Testimonial Element is available for capturing participant video and audio.
+Important: Usage fees apply for video recordings. Please contact your Forsta representative for pricing specifics.
+The Video Testimonial element utilizes an essay form without the traditional response options and allows participants to provide feedback to a question using a video recording.
+Through the video testimonial, the true voice of the participant is captured because with a video recording, you can additionally read voice tone, volume, and even the facial expression of the participant.
+The video testimonial element is desktop, tablet, and mobile compatible. It currently supports the following languages:
+Arabic
+Azerbaijani
+Bulgarian
+Canadian French
+Chinese (Simplified)
+Chinese (Traditional)
+Croatian
+Czech
+Danish
+Dutch
+Finnish
+French
+German
+Greek
+Hindi
+Hungarian
+Indonesian
+Italian
+Japanese
+Macedonian
+Norwegian
+Polish
+Portuguese
+Romanian
+Russian
+Serbian
+Spanish
+Slovak
+Slovenian
+Swedish
+Tagalog
+Turkish
+Note: The Video Testimonial language is based on the survey language (set using the decLang variable).
+1: Adding a Video Testimonial Element
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Video Testimonial element, first click the "+ Element" button to add a new survey element. Then click "Participant Upload" under Question Types and select the "Video Testimonial" element. Then click "Add".
+Enter the question and instruction text in the areas provided.
+2: Configuring Style Settings
+To configure the style settings for the Video Testimonial question, click the ellipsis ("...") button at the top right of the element in the staging area and select "Update Styling".
+The Question Display Options window opens for you to specify how the question is displayed to participants. Mouse-over a feature on the left to view information about that feature at the right. The following options are available:
+Hosting: By default, recorded videos are hosted on servers located within the United States (US). Select “EU” if you would prefer to have your recordings hosted on a server located in the European Union (EU). Select the same hosting region for all video testimonial questions in the same survey.
+Recording Time Limit: The maximum time allowed for the video recording.
+Skip Option: Adds a checkbox to the question, allowing participants to continue through the survey without uploading a video.
+Skip Option Text: If the question is skippable, the text displayed to participants next to the checkbox for the skip option.
+Note: We strongly recommend allowing participants to skip uploading a video due to any compatibility issues they might experience with their current hardware / software.
+Important: The hosting region must be set to the same location for all video testimonial questions in the survey.
+Important: If you switch a survey’s video hosting location after that survey has already begun collecting responses, only videos uploaded after the change will be stored in the new location. Videos recorded prior to the change will remain stored in their original location and will no longer be available within Crosstabs.
+Note: Once collected, videos cannot be moved from one location to another.
+After you have selected the styles you want, click “Save and Preview” to preview your changes or "Save and Close" to apply your changes and close the menu.
+3: Configuring Question Options
+The options available for the Video Testimonial element are located to the right of the staging area. You can set rules for the entire question by clicking near the question text. The "Options" menu will show the question label and type for the element you have selected to edit.
+Label: The label assigned to the element. Click to edit the default label for the Video Testimonial element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: Check the box to force participants to provide a response. When checked, participants will be unable to continue the survey without completing the question.
+Randomize: Check the boxes to randomize items by type. Items can be randomized by rows or none.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+Learn more: Customizing the Video Testimonial Element
+4: Recording a Video Testimonial
+While taking the survey, the Video Testimonial question appears to the participant as shown below.
+The participant can click "Record Video" or "Upload Video" to provide their video testimonial. The participant can also check the box under these buttons to skip the question, if needed. This is a default setting available in the question's style settings.
+4.1: Recording a Video
+The participant clicks "Record" to start the testimonial and can record for the recording time set for the question. Two minutes is the maximum recording time. The recording is truncated according to the recording time specified.
+The participant clicks "Stop" when recording is complete and the video is automatically uploaded. Afterward, the participant can playback the video and even re-record it, if desired.
+4.2: Uploading a Video
+If the participant clicks "Upload your Video", an existing video can be uploaded instead. The following video formats are accepted for uploading:
+.mp4
+.mpg
+.mov
+.avi
+.mkv
+.ogv
+.webm
+.flv
+Note: All video files are stored on Ziggeo servers.
+5: Viewing Results in Crosstabs
+You can use Crosstabs to retrieve video testimonials and to filter the video thumbnails by the segments that you have defined.
+5.1: Retrieving Video Testimonials
+After your survey has collected data, you can retrieve the video testimonials in Crosstabs. Below shows the video testimonial question in a total frequency report.
+Note: If the message "Could not display cover shot" displays in place of the thumbnail, an error occurred while uploading the recording.
+From Crosstabs, you can:
+Playback the testimonials.
+Mark a testimonial as a favorite. Favorites are used for filtering in the Dynamic Questions chart.
+View the "Responses" report to see all participants' answers.
+Download the testimonial to your device in FLV or .mp4 format.
+Use "Download All" to bulk download all video testimonials. Videos are split into different directories based on segment.
+Use "Only Favorites" to bulk download only favorite video testimonials.
+Use "Current Segment" to bulk download only the selected segment of video testimonials.
+Learn more: Running a Total Crosstab
+5.2: Filtering Thumbnails by Segment
+Once you have setup some saved crosstabs with segments, you can filter the video thumbnails for the segments that have been defined.
+Learn more: Building a Crosstab

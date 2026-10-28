@@ -1,0 +1,35 @@
+Title: reCaptcha Integration
+You can use the Logic Library to integrate a survey with Google's human verification system, reCaptcha.
+This can be done using either the "Google Recaptcha" element in the Survey Editor or the "recaptcha" logic node in the survey XML.
+1: Using the Survey Editor
+To add reCaptcha verification using the Survey Editor, click "+ Add Survey Element" under the staging area:
+In the Element Library, click "Advanced" and select the "Google Recaptcha" element from the list. Then click "Add":
+The new element will appear in the staging area. It consists of four separate selectable elements in the element tree:
+1. The reCaptcha configuration panel.
+2. The messaging participants will see for a successful validation.
+3. The messaging participants will see for an unsuccessful validation.
+4. A single select hidden question tracking the counts for successful and unsuccessful attempts.
+If desired, you can enter the site key and secret key codes you received from Google into the appropriate text-boxes in the "New Recaptcha" element (ln1).
+Additionally, you can adjust the text provided within the two comment elements (ln1_h, ln1_nh) or the hidden question (ln1_results).
+2: Using the XML
+To include reCaptcha verification in a survey, you will need to add a <logic> tag to your survey XML, specifying both a label and uses="recaptcha.2":
+<logic uses="recaptcha.2" label="recaptcha"/>
+Additionally, you can include the following HTML code to add success/failure messaging to your reCaptcha:
+<html cond="recaptcha.human" label="h1" where="survey">
+You are human
+</html>
+<html cond="not recaptcha.human" label="h2" final="1" where="survey">
+You are not human!
+</html>
+As soon as the survey encounters the recaptcha logic node, it will stop executing and present the participant with a Google reCaptcha test:
+The text "I'm not a robot" displays in the participant's browser-selected language, along with the reCaptcha logo. After clicking the check-box, the participant may be presented with a number of images, where certain selection responses are required - in the example below, the user is asked to select images featuring sandwiches:
+This check is not always performed; Google attaches persistent data to each browser that tracks whether the participant has seen a reCaptcha test on any other page.
+3: How it Works
+After the user submits the page, Forsta servers contact Google to independently verify the user's claim. You can call recaptcha.human in your survey to check whether the user was confirmed.
+Note: If you are running simulated data, there is a 90% chance that recaptcha.human is True. Google's servers are not contacted when running simulated data.
+reCaptcha is only usable on decipherinc.com and focusvision.com domains. If you would like to add reCaptcha to a survey on another domain, please contact your Account Manager or support team for assistance.
+Alternatively, you can sign up for your own reCaptcha account to use on any domain. Once you sign up for reCaptcha, Google will issue you both a "site key" and a "secret" code. To start using your reCaptcha tests, add the following logic tag to your survey, specifying these two values as provided within your Google site:
+<logic uses="recaptcha.2"
+recaptcha:sitekey="12342"
+recaptcha:secret='12341234'
+label="recaptcha"/>

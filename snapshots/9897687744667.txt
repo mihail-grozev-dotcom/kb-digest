@@ -1,0 +1,36 @@
+Title: 139.2 Technical Release Notes
+Release Date: July 24, 2018
+Release Version: 139.2
+New Features
+Crosstabs
+Updated the "Transpose Table" option to transpose only the selected table, instead of all tables for the selected question.
+Survey Editor
+Improved performance when editing elements in surveys with questions containing large response sets (i.e., questions with up to 2,700 rows).
+When editing the large question:
+Saving question options is ~2.8x faster
+Saving question text is ~10x faster
+Editing an answer option is ~5.5x faster
+When editing another element in the survey (not the large question):
+Changing the order of elements in the element tree is ~5.3x faster
+Adding an element to the survey is ~2.6x faster
+Removing an element form the survey is ~2.9x faster
+Updated various parts of the Survey Editor interface :
+Notifications: Notifications are now shown when changes are being saved and once saving is completed. Notifications are not updated when in an error state.
+State View: Question, instruction, and answer text is saved shortly after entering text and does not require clicking outside the input field.
+Options Panel: Saving selections no longer requires clicking outside the input field. Editing labels works best when keying 'Enter' to change the label (vs. clicking outside the input field). For text questions, the "Custom" verify option is no longer available.
+Element Tree: Project name, which opened project settings, is no longer available.
+Actions Menu: The Undo / Redo options are now available on the secondary menu (also available within the XML Editor). The open resource tag option is no longer available.
+Dynamic Questions
+Button Select: The new version (v9) allows for the use of protected images in the question buttons.
+Panel Management Integration
+Registration Surveys: Added the kinesis:nokdp="1" attribute, which allows questions to be added without being created as datapoints in Panel Management.
+Updated language sharing. When stored in decLang, the Decipher survey language is automatically set as the panelist's default language within Panel Management.
+Programming & Tools
+copy-survey: Improved performance when copying surveys with large files.
+state-dump: Optimized survey output for radio questions.
+Bug Fixes
+Reporting
+Field Report
+Intercepts: Fixed an issue where the "View Intercepts Code" option for custom intercepts would not open the code menu
+Portal
+Fixed an issue where duplicating projects with two or more user groups would not copy all groups to the new project

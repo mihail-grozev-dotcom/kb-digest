@@ -1,0 +1,35 @@
+Title: Word Importer FAQ
+See below for answers to some of our most frequently asked questions regarding the Word Importer.
+Note: Decipher has various AI features that rely on AI Models. New versions of these models are frequently released and older versions are retired. When new models are used, there may be variances in responses based on the newer models.
+Q: What is the Word Importer?
+A: The Word Importer allows you to import survey questionnaires directly into Decipher as Microsoft Word documents. Imported questionnaires are automatically converted into online surveys using machine algorithms which detect question types and common patterns.
+Q: What Word documents are supported?
+A: Only Word documents with the .docx extension are supported at this time.
+Q: What types of content can the Word Importer detect?
+A: The Word Importer can detect the following survey features:
+Single Select, Multi-Select, Text, Essay, and Number question types
+Question instructional text
+Researcher / programmer comments and questionnaire notes
+Response options (including raw text, bulleted lists, and Word tables)
+Page breaks
+Any undetected features will be flagged as “unidentified content”.
+Q: What types of content can it not detect?
+A: The Word Importer cannot detect the following types of content:
+Survey logic / pathing
+Quota tables and definitions
+Termination points
+Question grouping
+Response option grouping
+Q: What happens to survey features that are flagged as “unidentified content”?
+A: You can decide whether to include unidentified content when importing your questionnaire. If you choose to include it, you can then manually identify any survey features during content review.
+Q: What changes can I make from the Content Review page?
+A: The Content Review page allows you to review and edit what content the importer has detected. The in-page editor has full controls for changing the importer’s predictions and also contains a free-form text editor that allows you to add more response options, questions, and page breaks, if desired.
+Once you are satisfied with your review, you can import your revised content into the Survey Editor where you can resume editing using Decipher’s full suite of survey tools.
+Q: What if I don’t finish reviewing and importing?
+A: If you do not finish your review / import, you can resume your session by navigating back to the importer using the “Build” icon in the Portal. This will reload your session and allow you to continue reviewing.
+Q: Can I access the Content Review page after importing my content into the Survey Editor?
+A: No. Once you have imported your project into the Survey Editor, you cannot go back to the Content Review page. You must finish editing your survey in the Survey Editor using the tools available there.
+Q: What happens to my Word questionnaire after it’s been imported?
+A: Once you have imported your Word file, it is automatically deleted. Only the resulting project with the imported content will remain.
+Q: Can I launch my survey without importing it into the Survey Editor?
+A: No. Surveys imported from Word documents must be launched using the Survey Editor.

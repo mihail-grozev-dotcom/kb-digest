@@ -1,0 +1,33 @@
+Title: Managing Server-Specific Participant Sources
+Requires Decipher Cloud & Server Admin
+With a Decipher Cloud server, you can replace or modify the participant sources available for your company within the Survey Editor. You can also append new participant sources if desired.
+1: Modifying Participant Sources
+Modifying a company's participant sources requires overwriting its existing sampleProviders variable, which is a list of dictionaries. This process differs depending on whether you are replacing the default participant sources, editing the existing specifications, or appending additional participant sources.
+1.1: Appending Participant Sources
+To append additional participant sources to the available defaults, modify the following template to reflect the new participant sources' names, variables, exit links, etc.:
+newSampleProviders = [
+{
+'index' : 200,
+'setupSampleSource': 'yes',
+'sampleName' : 'NEW PARTICIPANT SOURCE NAME',
+'unique' : 'yes',
+'sourceName' : 'RESP_UNIQUE_ID_VAR',
+'extraVariables': ['EXTRAVAR'],
+'requireUnique' : True,
+'invalidText' : 'You are missing information in the URL. Please verify the URL with the original invite.',
+'completedText' : 'It seems you have already entered this survey.',
+'qual' : 'link',
+'msgQualified' : 'Thank you for taking our survey. Your efforts are greatly appreciated!',
+'linkQualified' : 'http://sample.source.com?status=qual&id=${id}',
+'term' : 'link',
+'msgTerminated' : 'Thank you for taking our survey.',
+'linkTerminated': 'http://sample.source.com?status=term&id=${id}',
+'over' : 'message',
+'msgOver' : 'Thank you for taking our survey.',
+'linkOver' : '',
+'xsapi' : 'UNIQUE-SAMPLE-SOURCE-DATA-API-KEY'
+}
+]
+sampleProviders.extend(newSampleProviders)
+Once you have created your new participant sources, add them to the sampleproviders.py file located in the data/ directory of your company server (i.e., using /home/Hermes/v2/data/sampleproviders.py). Ensure to make any necessary edits to merge it with the current file. If the file does not already exist, send it to the support team to review and upload the initial file.
+The new participant sources will appear alongside the defaults and be available within the Participant Sources tab in the Survey Editor.

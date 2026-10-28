@@ -1,0 +1,17 @@
+Title: Inserting a Link in Survey Text
+You can use the Rich Text Editor (RTE) to insert a link within the text contained in survey questions and elements. This document describes how to insert the following types of links into survey text:
+A hyperlink (URL).
+An email link (mailto:).
+1: Inserting a Hyperlink
+To insert a hyperlink, select the desired text, then click the link icon in the RTE toolbar.
+Next, specify the link settings in the "Insert link" window and click "Ok".
+Url: Enter a valid URL
+Text to display: Enter the text that opens the link.
+Title: Enter tooltip text (i.e., the text shown when a participant mouses-over the link).
+Target: Specify how the link opens:
+New window (Recommended): Opens the link in a new window.
+None: Opens the link in the same window, which may cause the participant to lose their place in the survey.
+Click the "Preview" link to view the question as a participant would see it and test the link.
+2: Inserting an Email Link
+To add an email link, select the desired text, then click the link icon in the RTE toolbar. In the "Url" field, enter "mailto:" followed by the email address you want to provide, specify the link settings in the "Insert link" window, and then click "Ok".
+Click the "Preview" link to view the question as a participant would see it and test the e-mail link.

@@ -1,0 +1,33 @@
+Title: Appending a Recipient List using Import Data
+You can use the Import Data element to include participant data you have collected in one survey in another survey. Data imported into a survey can be used to append information to the report and data-set, pipe in new variables, or control the flow of participants through the survey with logic conditions.
+1: About the Data File
+You can import recipient list files using the following formats:
+Excel (.xls, .xlsx)
+Text / Comma-Separated / Tab-Delimited (.txt)
+When importing recipient list files, the data importer reads the first line in the file and creates variables based on its content. This line must contain an identifier variable with a unique value for each recipient so that the importer can identify and match these records to the participants in the survey. It may also contain additional variables to append.
+See Creating a Recipient List for more information on creating a recipient list.
+2: Using the Import Data Method
+The following example provides step-by-step instructions for appending recipient list data from one survey into another using the Import Data element.
+2.1: Exporting the Recipient List
+Start by navigating to the survey from which you would like to append the data. Select “Email Campaigns” under "Responses" in the navigation menu at the top of any project page. In the Email Campaign Manager, click the name of the desired data file under "Recipient list" and select "Export List" to export the list as an Excel or text file.
+Below is an example of an Excel data file that was created by the Email Campaign Manager. It contains the unique identifier variable source along with some additional variables.
+2.2: Appending Data
+Once the data file has been exported, it is ready to be appended to the new survey using the Import Data element.
+In order to match imported data with participants in the new survey, the participant source(s) in the new survey must be set up with a unique variable.
+In the Survey Editor, select “Participant Sources” from the question tree and click “Add New Participant Source”. You can include a unique variable by selecting the custom participant source in the question tree and clicking “Add Variable” in the URL Variables section. Below, the unique variable source was included as a URL variable. This variable can be used to identify and match participants in the imported data file with those in the survey.
+To append the data file to the new survey, add an Import Data Element. To add an Import Data element, first click the "+ Element" button to add a new survey element. Then click "Structural Elements" under Question Types and select the "Import Data" element. Then click "Add".
+Next, select “Upload Data File”, locate the desired data file on your computer, and click “Upload”.
+After the data file is uploaded, it appears in the "Datasources" section of the Import Data menu. The "Datasource Options" section allows you to rename the datasource, set its Key Variables, and select additional variables to include.
+In the below example, the datasource was named “Upload File” and the Key Variable source (the unique variable set up in the participant source) was matched with the imported source variable to identify participants.
+Note: Once a variable has been selected as a Key Variable, it is automatically included in the append.
+After datasource options have been set, click “Apply Options” to update the Import Data element in the survey. The appended data appears in the survey’s question tree and a summary of included variables is shown in the staging area.
+2.3: Piping a Variable from Imported Data
+Variables from the appended data can be piped into the new survey using the Piping Tool in the Survey Editor. The piping tool provides a list of options from which to pipe content. In order for variables from the imported data to be available, the pipe must come after the imported data elements and on a separate page.
+Once the desired variable is selected, click "Apply" to insert the variable into the pipe. In the following example, the name variable is selected to pipe the participant's first name into the survey introduction.
+2.4: Setting Logic Conditions with Imported Data
+Logic conditions can also be set based on the appended data. The question to which you want to add the logic must be inserted in the survey after the imported data elements and on a separate page. Click "+ New Condition" and set up the logic in the "Logic Condition Setup" window.
+2.5: Testing the Appended Data
+After data has been appended, test the survey to ensure that any imported variables are being piped in properly and any logic conditions are working as intended.
+To test an individual participant, first select a participant from the data file that fits the conditions to be tested. Then select "Test Survey" from the "Preview" drop-down in the navigation menu. In the Survey Test Environment menu, check that the correct participant source is selected, then enter the unique identifying variable for the test participant.
+Once the participant source and unique identifying variables are set, test the survey and click “Show Survey with Tools” to test that data is being imported properly. Using the Survey Testing Toolbar, check that QA Codes are enabled.
+When you reach the Import Data element, the appended data for your selected participant should be populated in a hidden question.

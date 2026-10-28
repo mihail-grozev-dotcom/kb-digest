@@ -1,0 +1,45 @@
+Title: Adding Dashboard Weights
+You can add Dashboard weights as global per-record weights or as per-segment weights.
+1: Adding Global Per-Record Weights
+1.1: Applying a Single Weighting Scheme
+Per-record weighting requires that each participant has a float-type question that contains the record weight to be applied. If you are using Crosstabs, you can create a weighting scheme to use via the RIM Weighting Tool. The weighting scheme created this way will be stored in a virtual question called nweight.
+The above question contains the per-participant weighting coefficients, and can be applied as a weight to a specific segment in your dashboard. In the below example, the nweight question is used to apply a 50:50 gender split for your data.
+weight nweight.val
+table id=db-1 Gender Weights
+rows s1.r1-r2
+The above example produces the following result:
+1.2: Working with Multiple Weighting Schemes
+While a single weighting scheme can be easily applied by referencing nweight.val, multiple weighting schemes created via Crosstabs change the way your nweight question works. Instead of being a number question with no explicit rows, it will have one row created for each weighting scheme you create, with each row taking the weighting scheme name as its label.
+Thus, you cannot apply multiple global weights to a dashboard. If you specify multiple weight attributes, only the last defined weight will be applied.
+For example, if you want an equal distribution across both age and gender, use the following:
+weight nweight.AgeGroups.val
+weight nweight.Gender.val
+table id=db-1 Gender Weights
+rows s1.r1-r2
+table id=db-2 Age Weights
+rows GEN.r1-r3
+This will produce the following result, where only your gender weight is applied, as it was defined last:
+2: Adding Per-Segment Weights
+The weight attribute can also be applied to a specific segment in your banner split to apply per-record weighting in a specific table.
+Note: See Creating Dashboard Banners to learn more about Creating Dashboard Banners.
+Example:
+table id=db-1 Multiple Weighting schemes - Gender
+banner.local
+segment weight=nweight.AgeGroups.val qualified Age Weighting
+segment weight=nweight.Gender.val qualified Gender Weighting
+rows s1.r1-r2
+table id=db-2 Multiple Weighting schemes - Age
+banner.local
+segment weight=nweight.AgeGroups.val qualified Age Weighting
+segment weight=nweight.Gender.val qualified Gender Weighting
+rows GEN.r1-r3
+The above example allows you to apply different weighting schemes to the different segments that you’ve defined. As displayed in the table below, only the "Gender Weight" segment is affected in the first table, as you are applying a weighting scheme based on your gender question, while the "Age Weighting" segment in the second table has an equal distribution:
+Note: Configuring weights on a segment will override any global weight configuration. This is mostly used when you want to compare weighted and unweighted data for the same survey.
+Additionally, you can combine weighted and unweighted segments together to compare weighted and unweighted totals.
+table id=db-1 Weighted vs. Unweighted Counts
+banner.local
+segment qualified Unweighted Data
+segment weight=nweight.Gender.val qualified Weighted Data
+total
+rows s1.r1-r2
+This produces the following table:

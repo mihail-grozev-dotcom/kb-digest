@@ -1,0 +1,39 @@
+Title: Survey Branching with Question Logic
+Survey branching is used to route certain participants to a question or set of questions based on how they answer a prior question in the survey. This article will discuss how to use question logic to create branching in a survey.
+1: Adding the Control Question
+The question in the example below will send participants to different blocks of relevant questions depending on which of the activities they indicate they use their smartphone for on a daily basis.
+First, add the control question. A control question acts as a starting point of the branching. Participants will be routed to different questions based on how they answer the control question. Typically, the control question functions to sort participants into different categories.
+In the above example, a multi-select question (q5) acts as the control question. Participants will be routed to questions about their shopping habits if they select “Shopping”, gaming habits if they select “Games”, and music habits if they select “Music”.
+2: Adding Question Blocks
+After the control question is programmed, the question blocks (or individual questions) to which participants will be routed must be added. The questions or question blocks should be relevant to the response given in the control question.
+To add a block element, first click "+ Element", then click "Structural Elements" under "Question Types" and select the "Block" element. Then click "Add".
+Learn More: Block Element
+Questions can be added to a block using the add to block button appearing at the bottom right of the staging area.
+Blocks can also be added by selecting multiple survey elements. With multiple elements selected, a + Add to Block button becomes available. Click the + Add to Block button to add the selected elements to a block.
+Tip: You can select multiple elements by holding the ctrl or shift key and clicking each element in the question tree.
+Note: Each block can be considered a branch in the survey.
+3: Restricting Blocks by Logic Conditions
+Once the blocks of questions are built, they need to be restricted by logic conditions so that only participants who provide the appropriate response(s) in the control question will be shown the corresponding block(s) of questions.
+If questions are placed in blocks, logic conditions can be set for the entire block rather than each question individually. To set the conditions for the entire block, first ensure that the block element is selected. Logic conditions can then be accessed in the options panel to the right of the staging area by expanding the Show if drop-down and selecting + New Condition.
+Learn More: Adding Logic to a Question or Response Option
+First, select the control question from the drop-down in the logic conditions menu, then set the appropriate conditions for each block.
+4: Testing the Survey Branching
+Once you have finished programming the survey, you should test the survey branching functionality to ensure that your logic conditions are set up correctly. There are two methods for testing the logic conditions:
+Testing the survey manually.
+Running simulated data and checking the conditions in Crosstabs.
+4.1: Testing the Survey Manually
+To begin testing the survey manually, click "Preview" in the navigation menu at the top of any project page and select Test Survey.
+Then, set up the test environment and select Show Survey with Tools.
+Finally, test the survey branching using all possible conditions to ensure that your logic conditions are set up correctly and participants are being routed to the appropriate questions.
+In the above example, the “Shopping” option is selected. As a result, the test participant should only be shown the "Shopping" blocks and no other block, as illustrated below.
+This process can be repeated to check all possible conditions in the survey branching.
+Learn More: Testing an Online Survey
+4.2: Checking Conditions in Crosstabs
+Survey branching can also be tested using a combination of simulated data and Crosstabs. To run simulated data, click "Preview" in the navigation menu at the top of any project page and select Run Simulated Data.
+In the test data window, click "Run Test Data".
+Learn More: Running Simulated Data
+Next, navigate to Crosstabs by clicking "Crosstabs" under "Report" in the navigation menu. Then, create a new crosstab with a segment for each answer to the control question.
+In the report, check each segment against the "Total" for each question in the corresponding branch.
+Verify that the segment numbers match the Total numbers. Matching numbers indicate that only participants who selected that particular option in the control question are being shown the associated follow-up question.
+This process can be repeated for each answer in the control question and the question block(s) associated with it.
+Learn More: Checking Crosstabs Condition Logic

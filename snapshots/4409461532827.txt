@@ -1,0 +1,6 @@
+Title: Renaming a Survey
+        
+You can change the name of an existing survey at any time using the survey actions menu.
+To rename a survey via the Portal: First locate your project in the Portal and click the "..." button under "Actions" to open the project actions menu. Then select "Rename Survey".
+To rename a survey via the Project Overview: Click "Actions" at the top left of the page. Then select "Rename Survey".
+In the "Rename Survey" window, enter a new name and click "Apply". Once applied, your new project name will appear in all project menus and report pages.

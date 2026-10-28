@@ -1,0 +1,6 @@
+Title: Terminate Element
+The Terminate element screens out participants based on their responses to survey questions. This element is hidden from participants and appears only in the report.
+To add a Terminate element, first click the "+ Element" button to add a new survey element. Then click "Logic Elements" under Question Types and select the "Terminate" element. Then click "Add".
+Add an appropriate title in the area provided. The title will identify the terminate point in the Response Summary. Next, define the logic condition(s) for the terminate by selecting the "Show If" icon in the options panel to the right of the staging area.
+Select the question containing the desired termination criteria from the drop-down menu and select the rows and/or columns that will terminate or provide the condition for termination. Then click "Save", or "Save As" if you wish to save the condition for later use.
+Once saved, the terminate condition will display in both the element window and the "show if" logic field in the options section. For more information on adding logic, see Adding Logic to a Question or Response Option.

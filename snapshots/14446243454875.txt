@@ -1,0 +1,13 @@
+Title: 153.5 Release Notes
+Release Date: April 11, 2023
+Release Version: 153.5
+New Features
+Programming and Tools
+API
+Added the API endpoint GET rh/surveys/archived that displays a list of archived projects if the user has at least edit permissions.
+Bug Fixes
+Responses
+Campaign Manager
+Attempting a seedlist send immediately after uploading a recipient list no longer causes an error.
+View/Edit Responses
+The 'date' filter, when using slashes, now persists as entered by the user instead of being truncated on reload.

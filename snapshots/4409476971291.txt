@@ -1,0 +1,22 @@
+Title: Scheduling a Command Line Task
+Requires Decipher Cloud
+The at, atq and atrm commands let you schedule, review and remove jobs to be run at a specified time in the future.
+These are built-in UNIX commands and not Decipher-specific commands. If you are using these commands for email sends, you must use bulk directly, which lets the job you schedule show up in the https://v2.decipherinc.com/admin/mailqueue page.
+1: Scheduling a Task
+To schedule a job, go to the appropriate directory. Then run at with the date specification. You can run man at for a full list of formats, however, it's best to explicitly specify both time and date rather than using shortcuts. Then enter the commands to execute, and press Control+D on an empty line.
+Example (with your input in bold):
+cd to the correct directory
+at 11:59am Jan 31 2009at> command
+at> another command
+at> (control-d)
+job 1341 at 2009-01-31 11:59
+This is typically used to schedule live and closed survey executions. For bulk email, use the -a option of bulk only.
+1.1: Viewing Scheduled Tasks
+To view what jobs you have pending, run atq.
+The results will include the job IDs and the date it will be executed.
+1.2: Viewing Task Details
+To see what is in a job, run at -c jobid. You can ignore the first part of the result, which just sets up the environment; the main content is included at the bottom.
+Note: You may only view your own jobs.
+If you have many jobs, run bulkq to view all the job numbers plus the bulk command line in each one.
+2: Removing a Task
+To cancel a job, run atrm jobid.

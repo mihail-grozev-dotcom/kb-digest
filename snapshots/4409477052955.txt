@@ -1,0 +1,47 @@
+Title: Quota Reassignment
+Note: Quota reassignment functionality is only available in survey compat 108 or above.
+Quota changes made to a survey while it is live in field can greatly impact its quota structure and assignment. Whenever a quota cell is affected by a live edit, the Quota Reassignment tool allows users to choose whether to reassign completes to new quota buckets based on data edits or changes to quota definitions, or to let participants remain in their original state.
+Note: The Quota Reassignment tool will not work on quotas referencing persistent variables. If a project has any quota referencing a persistent variable, quota reassignment is not performed.
+1: How it Works
+When you attempt to re-launch a survey after either making a live change or recoding data within the Survey Editor, the system will automatically check for changed quota cells. If any quota cells have been affected, you will receive a notification in the Response Summary with the option to view the changes to your quotas.
+To view the changes, click the Review Quota Changes button within the notification.
+Note: When re-launching a survey from the Shell environment, run --check-quotas to review any reassigned quotas.
+2: Reviewing Quota Changes
+The quota review window will display all of the quota cells within an affected quota table, with details on which cells were affected and how they will change:
+1. Affected records: A count of all affected records will be displayed at the top of the review window.
+2. Existing: The total number of qualified participants within each quota cell will be displayed in this column.
+3. Updated: The total number of affected participants within each quota cell will be displayed in this column. Green "up" arrows will appear where counts will increase when changed, while red "down" arrows will appear where counts will decrease when changed.
+4. Quota cells: All affected quota tables and their individual cells will be displayed on the left side of the window.
+5. Remind Me Later: Selecting this option for any table will leave the notification visible within the Response Summary and protect all cells within that table.
+6. Select for all tables: Selecting either option here will apply that choice to all tables.
+7. Do Not Update: Selecting this option for any table will protect all cells within it. Selecting this option for all tables will remove the notification from the Response Summary without applying any quota changes.
+8. Update: Selecting this option for any table will apply all of the changes within it. Selecting this option for all tables will remove the notification from the Response Summary and apply all quota changes.
+Note: If "Do Not Update" is applied for a table, that table will be shown again if another notification is triggered during a new change.
+Once you have finished reviewing each table and are satisfied with your choices, click "Apply" to apply any changes and close the review window.
+3: Additional Considerations
+3.1: Notifications
+Notifications for live surveys are only shown to users who have data:edit permission, and will appear when any of the following conditions are met:
+The survey has been re-launched (there has been a change to the survey.xml or quota.xls file)
+Data has been edited in the View/Edit Responses tool, or via tabimport or transform commands.
+Records have been re-qualified in the View/Edit Responses tool, or via tabimport or transform commands (after a change has been made to the survey.xml or quota.xls file).
+Notifications are not shown when performing the following actions:
+Adding/editing data via API PUT/POST survey commands.
+Uploading a quota.xls file via the SFTP, shell, or File Manager.
+3.2: Marker Changes
+Once any changes are applied, the affected quota tables will be updated to reflect the new quota structure. Quota limits are ignored during this process, and participants within a changed cell will not become overquota.
+Only qualified records will be checked to verify the new quota structure, and no currently qualified participants will become NQ (non-qualified). Any pre-existing markers are chosen if still valid, and all cells with invalid markers will have their markers removed.
+In addition, the quota reassignment system respects the following parameters when re-coding markers:
+Any quota table with a plus marker is skipped
+Quota table where one axis contains 2+ cells and all cells in the axis use logic of 1 (conditional random) is skipped
+Any quota table with cells:2 or more is skipped
+conds on the <quota> and parent blocks are checked.
+gotos are ignored
+In the event that a re-code of markers where a participant can qualify for multiple quota cells in a single table, the participant is assigned to the first cell in the table (assuming no existing marker) - this does not follow least percentage filled assigned like participant view.
+hasMarker logic is based on currently assigned markers not any potential markers assigned from the re-coding. If quota logic using hasMarker is based on a quota that is being re-coded, the update must be performed twice.
+When multiple assignments can be made, priority is respected for cell selection (assuming they have no pre-existing marker).
+3.3: Logs
+API calls for quota marker updates are logged in the survey.log folder along with the user audit log, which will include tablesBySheet and test parameters.
+3.4: Quota Mismatch Warning
+This warning occurs during re-launch of a survey when there is a quota mismatch between the temporary version and the live version because the quotas in the live version are newer than the temp-edit-live quotas. This indicates that while changes were being made in the temp version, another user may have changed the quotas in the live version.
+The mismatch warning will not occur if only the temp-edit-live quotas were changed as the user is expected to be making those changes.
+See Editing a Live or Closed Survey to learn more.

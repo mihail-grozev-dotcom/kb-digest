@@ -1,0 +1,150 @@
+Title: Running Simulated Data from the Command Line
+Requires Decipher Cloud
+The command-line tool, tsst can be used to run simulated data to test survey validity and performance. The tool simulates a virtual participant that randomly chooses answers at each question.
+When running the tsst command, you will see something similar to:
+[proj1234]$ tsst . 100
+Assuming . refers to selfserve/9d3/proj1234
+Loading survey selfserve/9d3/proj1234.
+Survey changed since last SST run; clearing out old data first (data.clear)
+Running test 97/100: ************************************************..
+All done. 100/100 succeeded. CPU usage per page: 9
+This survey has enough progress data to go live.
+Before you can set a survey "LIVE", you must obtain at least 100 qualified completes using simulated data.
+Note: Running simulated data will clear the current survey data if a change has been made to the survey.
+1: Usage & Syntax
+The tsst tool can be configured in several ways to change the way it processes your survey.
+1.1: Basic Syntax
+tsst [-q] [-v] [-n] [-N] [-o] SURVEY #_OF_ATTEMPTS [alternate sst.txt]
+1.2: Optional Configurations
+The following tsst modifiers are optional, but sometimes useful when your survey has complex logic.
+Option
+Short Name
+Default
+Description
+-q
+Qualified only
+False
+Use -q to run simulated data in a way that will attempt to avoid terminate conditions and aim to provide answers that will result in qualified completes.
+-v
+Skip <validate>
+False
+Use -v to ignore <validate> checks.
+This is considered cheating. The preferred method is to create a good sst.txt file to specify acceptable responses.
+-N
+No clear data
+False
+Use -N if you do not want to clear the existing data in the survey.
+-o
+Respect optional
+False
+Use -o if you want a twenty percent chance that an optional question is skipped. By default, all questions are answered regardless of optional="0" or atleast="#" attributes.
+Advanced Options
+--quota
+Divide quotas
+1,1
+Use --quota 5 to divide quota limits by five when running simulated data. Use --quota 7,4 to divide by seven to a minimum of four rather than one. For example, attempting 11 qualified simulated data runs with a quota limit of 100 with --quota 10 specified, the last attempt will OQ.
+--quota-increase=#
+Multiply quotas
+1
+Use --quota-increase=10 to multiply all quota limits by 10. For example, attempting 100 qualified simulated data runs with a quota limit of 10 will result in a 100 qualified completes instead of 90 overquotas.
+--retry=#
+Try again
+5
+Use --retry=8 to attempt a simulated data run eight times before terminating. This will submit the page eight times with different data if the survey is terminating. The maximum number of retry attempts is 10 and you can set --retry=0 to disable.
+--styles
+Apply styles
+0
+Use --styles to generate HTML from the project's nstyles file when running the simulated tests.
+By default, custom styles are ignored, resulting in a significant speedup. Because logic embedded within styles is not executed by default, programming errors could be overlooked.
+--profile
+Profiling
+False
+Use --profile to help narrow down which questions are taking a long time to execute. This is often due to complex logic.
+Note: For developers only; use --cprof=qlabel to run profiler when executing that question.
+-f#
+Parallel processing
+4
+Use -f1 to run simulated data attempts one-at-a-time.
+Use -f0 to not run SST in parallel. This is only useful if you are trying to troubleshoot an error within SST.
+This feature is rarely necessary. You should not increase value beyond four unless you are running on a Level 3 (or higher) server.
+-r
+Realistic Run
+False
+Do not skip the generation of state data and field data for surveys without delphi="1" enabled. This will significantly slow down the run but will allow the Response Summary output to be realistic.
+No effect for current surveys where delphi="1" is enabled.
+--dropout
+Chance to generate dropout
+0
+Normally each participant continues to be simulated until they finish the survey or terminate. This will apply a percentage chance to drop out after loading a page, so a more realistic Dropouts page in the Response Summary can be populated.
+--ignore-cpu-warning
+Ignore CPU Warning
+False
+By default, a survey which does too much computation or has extremely large questions will not be allowed to go live and the SST run will fail. Use this option to override the warning, if you plan to carefully control the number of participants that start the survey.
+1.3: Examples
+tsst -qv . 100 will run 100 simulated data attempts without terminating and ignoring <validate> elements.
+tsst -qvoNn . 500 will run 500 simulated data attempts without terminating, ignoring <validate> elements, attempting to skip optional questions without clearing current data, and ignoring question styles.
+2: Specifying Answers
+You can use the sst.txt file in your project's directory to manually declare values for questions and variables in your survey.
+For example:
+/selfserve/9d3/proj1234/sst.txt
+If your simulated data attempts result in more terminates than qualified completes, then the sst.txt file can help provide valid data for those questions with complex logic.
+For example:
+<number label="Q1" size="3" verify="range(1, 125)">
+<title>Please enter your age below.</title>
+</number>
+<suspend/>
+<term cond="not Q1.check('18-64')">Q1: Age less than 18 or greater than 64</term>
+In the code above, any value that is not within the range "18 - 64" will result in termination. To avoid wasting simulated data attempts on terminates, you can manually specify the value(s) to use at question "Q1" in the file sst.txt:
+Q1: 18 24 34 44 54 64
+Now, simulated data will only use the values provided and supply answers that will avoid the termination logic altogether.
+Here are some other examples:
+list: 1 2 3 # specify values for extraVariables (e.g. list)
+co: us fr br # specify values for extraVariables (e.g. co)
+Q1: c1 c2 # specify columns to select for a radio question
+Q2: r1 r2 r3 # specify rows to select for a radio question
+Q3.r1: c1 c2 c3 # specify columns to select for a specific row in a radio question
+Q4.c2: r1 r2 # specify rows to select for a specific column in a radio question
+Q5.r1: ch1 ch2 # specify choices to select for a specific row in a select question
+Q6.c1: 100% # specify which column to select in a checkbox question
+Q7.r1: 50% # specify that r1 will be checked 50% of the time in a checkbox question
+Q7.r2.c1: 100% # specify that c1 will be checked for r2 100% of the time in a checkbox question
+Q8: 5 10 20-50 # specify numbers or number ranges for number questions
+timeSpent: 50-200 # override the default 30s per question returned
+For more information, check out Specifying Answers for Simulated Data.
+2.1: Skipping an Element
+You can specify to skip any element with the sst attribute. This prevents the survey stress tester from testing that element. When sst="0" is set, the simulated data system ignores the element.
+For example:
+<number label="Q1" size="3" verify="range(1, 125)" sst="0">
+<title>Please enter your age below.</title>
+</number>
+Additional example:
+<term cond="not Q1.check('18-64')" sst="0">Q1: Age less than 18 or greater than 64</term>
+For more information on the element attributes, see Element Attributes.
+3: Specifying Time Frames
+You can also use the sst.txt file in your project's directory to manually declare the timeframe from which to run simulated data. The default timeframe is a random offset between the test date and seven days prior.
+To customize the timeframe for your simulated data, add the sstDaysOffset key to the file, specifying one or more numeric values. Each number specified is the value for a prior date that may be used.
+Examples:
+sstDaysOffset: <##> # - Dates will be ## days before the date the test data is run.
+sstDaysOffset: 1 2 3 # - Dates will be the last three days before the date the test data is run.
+sstDaysOffset: 7 14 21 # - Dates will be one, two, and three weeks before the date the test data is run.
+4: Additional Components
+When simulated data is run, the following components of your project are affected:
+4.1: Test Data History & Report
+A full report of all simulated data attempts is stored at admin/sst/list. You can access your project's test data report using the following link (update the highlighted part with your project):
+https://v2.decipherinc.com/admin/sst/list?survey=selfserve/abc/proj1234
+The test data report includes:
+A list of all simulated data sessions initiated.
+The number of simulated data attempts per session.
+The status of each attempt (finished, fatal, fail, loop).
+Fatal error message.
+Survey view of the pages seen.
+Question coverage.
+Page time and traffic load.
+For more information about the test data report, see About the Simulated Data History Report.
+4.2: Coverage Report
+The Coverage Report shows how many questions have been seen. You can access your project's coverage report by selecting "Coverage" beneath the Direct to Browser column in the Other Data Formats under Data Downloads menu.
+You should use this tool to verify that there are no errors in logic. If there are questions in your survey that have been seen few times or never, this may indicate an error.
+Tip: To account for complex logic, you may need to configure the project's sst.txt file to simulate the correct answers in order to traverse those complex paths. See Specifying Answers above to learn more.
+4.3: Progress Bar
+The progress bar relies on simulated data. In order for the percentage to line up correctly, it is suggested that you run at least 200 simulated data attempts through the final version of your survey. This helps establish all of the possible paths that a participant can take.
+Tip: If your survey is especially complex, consider running more simulated data to account for those complex paths.

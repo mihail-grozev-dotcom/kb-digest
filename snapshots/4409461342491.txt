@@ -1,0 +1,95 @@
+Title: HTML Tag: Create a Comment Element
+The <html> element is sometimes referred to as a survey comment and is used to display text or HTML in your survey (e.g., "Now we're going to ask you about...").
+Information can be added directly to the tag or referenced from an external file using the source attribute.
+<html label="Introduction" where="survey">
+<p class="large-font">Welcome to the survey!</p>
+<p>Please click "Continue".</p>
+</html>
+<suspend/>
+<html label="Disclaimer" source="disclaimer.html" where="survey"/>
+...
+<style name='respview.client.css'> <![CDATA[
+<style>
+.large-font { font-size: x-large; }
+</style>
+]]></style>
+The code above produces the following result:
+Note: By default, information written within the <html> element is wrapped inside an <h3> header tag.
+The following HTML tags can be used inside the element and should be written in valid XML syntax (e.g., properly balanced and no missing tags):
+b, i, em, u, a, div, ul, table, tr, td, span, font, small, big, br , p, li, img
+1: Attributes
+1.1: source - Display Contents of an External File
+The source attribute can be used to read the contents of a file located in your project's directory into the survey.
+For example, imagine that the following file (welcome_message.html) is located in your project's directory (e.g., selfserve/9d3/proj1234/welcome_message.html).
+1.1.1: External File:
+<style>
+.large { font-size: 24pt; }
+.centered { text-align: center; }
+</style>
+<div class="centered">
+<p class="large">Welcome to the survey!</p>
+<p>
+<img src="[rel logo.png]" alt="Brand Logo"/>
+</p>
+<small>Please click "Continue" to proceed to the next page.</small>
+</div>
+The <html> element can be used to display the HTML above using the source attribute.
+1.1.2: Survey XML
+<html label="Welcome" source="welcome_message.html" where="survey" />
+<suspend/>
+This produces the following result:
+1.2: final - End the Survey Without Saving Data
+The final attribute can be used to end the survey immediately without saving the participant's data. This is often used to show an error message indicating that something is missing and ending the survey on the spot.
+Note: To save the partial response data for "final" participants, you can enable the Partial Recovery System for your survey.
+For example, if a participant enters the survey without one of the required variables, the message they are shown (e.g., "You are missing a variable. Please check the URL and try again.") is considered a final message. The participant will still have the opportunity to fix the URL and try again without having to wait fifteen minutes.
+For example:
+<radio label="Q1" optional="0">
+<title>Before we continue the survey, have you finished reading the Employee Handbook Manual sent to you via mail?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<html label="EmployeeHandbook_EndSurvey" final="1" cond="Q1.r2">
+Please finish reading the Employee Handbook Manual before continuing this survey. Once you've finished the reading, you may complete this survey using the same URL sent to your employee email address.
+</html>
+<suspend/>
+<radio label="Q2" optional="0" type="rating" values="order">
+<title>How would you rate the Employee Handbook Manual?</title>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+Here, participants will not be able to take the survey if they respond "No" to having read the Employee Handbook Manual at question Q1. They will see the message "Please finish reading..." and not be allowed to continue the survey.
+1.3: label - Set the HTML Tag's Name
+The label attribute is used to create a unique symbolic name for the <html> element.
+<html label="Introduction" where="survey">
+Welcome to the survey. Please click "Continue >>".
+</html>
+1.4: where - Set Where to Display the HTML
+The where attribute can be set to "survey", "report" or "none" to control where the element should be shown.
+By default, where="survey,report" is specified and the elements will be displayed in both the survey and report.
+If where="survey" is specified, the content will only be shown in the survey and not in the report. If where="none" is specified, the element will not be displayed anywhere.
+For example:
+<html label="Section_3" where="report">
+Beginning of Section 3: Brand Awareness
+</html>
+<html label="Brand_Awareness_Introduction" where="survey">
+Please answer the next few questions with those brands that you've used in the <b>past 6 months</b> in mind.
+</html>
+<suspend/>
+1.5: cond - Set the Condition to Display the HTML
+The cond attribute controls when the element is to be shown. If the condition specified evaluates to "True", then the element is shown.
+For example:
+<html label="CurrentCustomers" where="survey" cond="list == '1'">
+<p>Thank you for being one of our valued customers. We look forward to hearing from you again soon!</p>
+<p>Please click "Finish" to end the survey.</p>
+</html>
+<html label="ProspectiveCustomers" where="survey" cond="list != '1'">
+<p>Thank you for taking this survey! We'd love to have you as a customer. Please call us anytime: 1.800.421.4321</p>
+<p>Please click "Finish" to end the survey.</p>
+</html>
+2: Learn more
+Adding Condition / Skip Logic
+Descriptive Content Element (Survey Editor)

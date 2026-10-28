@@ -1,0 +1,13 @@
+Title: 149.2 Release Notes
+Release Date: October 26, 2021
+Release Version: 149.2
+New Features
+Programming & Tools
+API
+Added the api/v1/survey/{survey}/terms API endpoint, which will return a list of all terminate (<term>) elements in a given survey.
+Bug Fixes
+Portal
+Fixed an issue causing some archived surveys to fail to appear in the Portal when unarchived.
+Responses
+View/Edit Responses
+Fixed an issue causing a participant’s record number to change when taking a survey with loadData multiple times.

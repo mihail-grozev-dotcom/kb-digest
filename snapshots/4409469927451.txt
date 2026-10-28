@@ -1,0 +1,418 @@
+Title: Available Survey Languages
+Decipher supports a large variety of languages that can be added to surveys using either the Language Manager Overview or the decLang variable in the XML Editor.
+Adding a language to a survey will automatically translate its "Continue" and "Back" buttons, as well as its default error messages into that language. Survey question text, instructions, response options, and any additional language resources must be updated manually using the Language Manager.
+The table below lists all the languages available for use within Decipher surveys. It also identifies if the language is available for AI translation.
+Note: If you would like to add a language that is not included on this list, please contact your Account Manager or the Decipher Support team for assistance.
+Note: To use Decipher's AI translation services, reach out to your Forsta representative to enable the Translate button. See Language Manager Overview--4: DeepL AI Translations for details.
+Variations of supported source languages are translated using the main source language. For example, “Spanish (Costa Rica)” is translated using the supported source language “Spanish”.
+Variations of supported target languages are translated using the main target language. For example, “Traditional Chinese (Taiwan)” is translated using the supported target language “Chinese (traditional)”.
+Language
+Language Code (decLang)
+AI Translation Available?
+Afrikaans
+afrikaans
+Albanian
+albanian
+Arabic
+arabic
+Modern Standard Arabic (MSA)
+Arabic (Generic 1)
+arabic_g1
+Modern Standard Arabic (MSA)
+Arabic (Generic 2)
+arabic_g2
+Modern Standard Arabic (MSA)
+Arabic (Generic 3)
+arabic_g3
+Modern Standard Arabic (MSA)
+Arabic (Generic 4)
+arabic_g4
+Modern Standard Arabic (MSA)
+Arabic (Egypt)
+arabic_egypt
+Modern Standard Arabic (MSA)
+Arabic (Iraq)
+arabic_iraq
+Modern Standard Arabic (MSA)
+Arabic (Jordan)
+arabic_jordan
+Modern Standard Arabic (MSA)
+Arabic (Kuwait)
+arabic_kuwait
+Modern Standard Arabic (MSA)
+Arabic (Lebanon)
+arabic_lebanon
+Modern Standard Arabic (MSA)
+Arabic (Morocco)
+arabic_morocco
+Modern Standard Arabic (MSA)
+Arabic (Qatar)
+arabic_qatar
+Modern Standard Arabic (MSA)
+Arabic (Saudi Arabia)
+arabic_saudiarabia
+Modern Standard Arabic (MSA)
+Arabic (UAE)
+arabic_uae
+Modern Standard Arabic (MSA)
+Assamese
+assamese
+Azerbaijani
+azerbaijani
+Bengali
+bengali
+Bosnian
+bosnian
+Bulgarian
+bulgarian
+Yes
+Burmese (Myanmar)
+burmese
+Chinese (Simplified)
+simplifiedchinese
+Yes
+Chinese (Traditional)
+traditionalchinese
+Yes
+Croatian
+croatian
+Czech
+czech
+Yes
+Danish
+danish
+Yes
+Dutch
+dutch
+Yes
+Dutch (Belgium)
+dutch_belgium
+English (USA)
+english
+English (American)
+English (Australia)
+aus
+English (unspecified)
+English (Canada)
+english_ca
+English (unspecified)
+English (China)
+english_china
+English (unspecified)
+English (Generic 1)
+english_g1
+English (unspecified)
+English (Generic 2)
+english_g2
+English (unspecified)
+English (Generic 3)
+english_g3
+English (unspecified)
+English (Generic 4)
+english_g4
+English (unspecified)
+English (Generic 5)
+english_g5
+English (unspecified)
+English (Generic 6)
+english_g6
+English (unspecified)
+English (Generic 7)
+english_g7
+English (unspecified)
+English (Generic 8)
+english_g8
+English (unspecified)
+English (Generic 9)
+english_g9
+English (unspecified)
+English (Generic 10)
+english_g10
+English (unspecified)
+English (Hong Kong)
+english_hk
+English (unspecified)
+English (India)
+english_india
+English (unspecified)
+English (Indonesia)
+english_id
+English (unspecified)
+English (Ireland)
+english_ireland
+English (unspecified)
+English (Malaysia)
+english_my
+English (unspecified)
+English (New Zealand)
+english_nz
+English (unspecified)
+English (Nigeria)
+english_nigeria
+English (unspecified)
+English (Philippines)
+english_philippines
+English (unspecified)
+English (Saudi Arabia)
+english_saudiarabia
+English (unspecified)
+English (Singapore)
+english_sg
+English (unspecified)
+English (South Africa)
+english_za
+English (unspecified)
+English (Taiwan)
+english_tw
+English (unspecified)
+English (UAE)
+english_ae
+English (unspecified)
+English (UK)
+uk
+English (British)
+Estonian
+estonian
+Yes
+Finnish
+finnish
+Yes
+French
+french
+French
+French (Belgium)
+french_belgium
+French
+French (Canadian)
+canadian
+French
+French (Luxemborg)
+french_lu
+French
+French (Switzerland)
+french_ch
+French
+Georgian
+georgian
+German
+german
+German
+German (Austria)
+german_austria
+German
+German (Luxemborg)
+german_lu
+German
+German (Switzerland)
+german_ch
+Greek
+greek
+Greek
+Greek (Cyprus)
+greek_cyprus
+Greek
+Gujarati
+gujarati
+Hebrew
+hebrew
+Hindi
+hindi
+Hungarian
+hungarian
+Yes
+Icelandic
+icelandic
+Indonesian
+indonesian
+Yes
+Italian
+italian
+Italian
+Italian (Switzerland)
+italian_ch
+Italian
+Japanese
+japanese
+Yes
+Kannada
+kannada
+Kazakh
+kazakh
+Khmer
+khmer
+Korean
+korean
+Yes
+Kyrgyz
+kyrgyz
+Lao
+lao
+Latvian
+latvian
+Yes
+Lithunian
+lithuanian
+Yes
+Macedonian
+macedonian
+Malay
+malay
+Malay (Singapore)
+malay_sg
+Malayalam
+malayalam
+Maltese
+maltese
+Marathi
+marathi
+Mongolian
+mongolian
+Norwegian
+norwegian
+Norwegian (bokmål only)
+Oriya
+oriya
+Persian
+persian
+Polish
+polish
+Yes
+Portuguese
+portuguese
+Yes
+Portuguese (Brazil)
+portuguese_br
+Portuguese (Brazilian)
+Punjabi
+punjabi
+Romanian
+romanian
+Yes
+Russian
+russian
+Russian
+Russian (Belarus)
+russian_belarus
+Russian
+Russian (Estonia)
+russian_estonia
+Russian
+Russian (Kazakhstan)
+russian_kazakhstan
+Russian
+Russian (Latvia)
+russian_latvia
+Russian
+Russian (Ukraine)
+russian_ukraine
+Russian
+Samoan
+samoan
+Serbian
+serbian
+Simplified Chinese (Malaysia)
+simplifiedchinese_my
+Chinese (simplified)
+Simplified Chinese (Singapore)
+simplifiedchinese_sg
+Chinese (simplified)
+Sinhala
+sinhala
+Slovak
+slovak
+Yes
+Slovene
+slovene
+Slovenian
+slovenian
+Yes
+Spanish
+spanish
+Spanish
+Spanish (Argentina)
+spanish_argentina
+Spanish
+Spanish (Brazil)
+spanish_brazil
+Spanish
+Spanish (Chile)
+spanish_chile
+Spanish
+Spanish (Colombia)
+spanish_colombia
+Spanish
+Spanish (Costa Rica)
+spanish_costarica
+Spanish
+Spanish (Dominican Republic)
+spanish_dominicanrepublic
+Spanish
+Spanish (Ecuador)
+spanish_ecuador
+Spanish
+Spanish (EU)
+spanish_eu
+Spanish
+Spanish (Latin America)
+spanish_latin
+Spanish
+Spanish (Mexico)
+spanish_mexico
+Spanish
+Spanish (Paraguay)
+spanish_paraguay
+Spanish
+Spanish (Peru)
+spanish_peru
+Spanish
+Spanish (Puerto Rico)
+spanish_puertorico
+Spanish
+Spanish (South America)
+spanish_south
+Spanish
+Spanish (Uruguay)
+spanish_uruguay
+Spanish
+Spanish (USA)
+spanish_usa
+Spanish
+Spanish (Venezuela)
+spanish_venezuela
+Spanish
+Swahili
+swahili
+Swedish
+swedish
+Yes
+Tagalog
+tagalog
+Tamil
+tamil
+Telugu
+telugu
+Tetum
+tetum
+Thai
+thai
+Tongan
+tongan
+Traditional Chinese (Taiwan)
+traditionalchinese_tw
+Chinese (traditional)
+Turkish
+turkish
+Yes
+Ukrainian
+ukrainian
+Yes
+Urdu (India)
+urdu_india
+Urdu (Islamic Republic of Pakistan)
+urdu
+Uzbek
+uzbek
+Vietnamese
+vietnamese
+Welsh
+welsh

@@ -1,0 +1,31 @@
+Title: M49 Release Notes
+Release Date: September 28, 2021
+Release Version: 149
+Survey Versioning
+The new survey compatibility level is 149. The system automatically uses compat="149" for all new surveys. This improves compliance with global digital accessibility standards and WCAG 2.1 A/AA guidelines by enabling the following changes:
+Enforcing the use of screen reader-friendly labels for most basic and advanced question types.
+Requiring labels to be unique for most basic and advanced question types so that legends and responses are easier to distinguish when using screen readers.
+Adding support for keyboard controls to most basic and advanced question types.
+Adding the role=”alert” HTML attribute, ensuring that all error messages shown to participants are supported by screen readers.
+Adding screen reader-friendly notifications in the following situations:
+When participants complete the Card Sort element.
+When there are changes to totals within the Autosum element.
+Requiring that the survey progress bar is distinguishable from the page load progress indicator by screen readers.
+Improving screen reader functionality in Select, Number, and Text questions by removing the radiogroups label from elements which do not use radio buttons.
+Learn more: Survey Compat Levels, Survey Accessibility and ADA Compliance
+New Features
+Architecture/DevTools
+Added the dev/fake script, which can be used to run a request within a shell script without involving the application server. This allows for better monitoring of profiling, memory usage, etc.
+Bug Fixes
+Portal
+Fixed an issue preventing certain Crosstabs preferences from being saved via the Company Settings page.
+Fixed an issue causing the server to become unresponsive when one or more Portal requests had failed.
+Survey
+Dynamic Questions
+Fixed a typo in the XML for the Net Promoter Score element (changed the net label promotor to promoter).
+Responses
+Participant Sources
+Fixed an issue preventing updates made to datasource values via the API from being displayed properly in reports.
+Reporting
+Data Downloads
+Fixed an issue causing an error in the OData report configuration menu when a custom data layout was available, and no layout was selected.

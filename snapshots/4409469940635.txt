@@ -1,0 +1,686 @@
+Title: Sending an Email
+You can use the Logic Library to send out a single email from your survey. This can be done using either the "Send An Email" element in the Survey Editor or the "email" logic node in the survey XML, and because it is only run once, can be a great way to follow up with congratulatory offers or other messaging for participants completing a live survey.
+1: Using the Survey Editor
+To add email sending using the Survey Editor, click + Add Survey Element under the staging area.
+In the Element Library, select Advanced and select the Send An Email element. Then click Add.
+The new element will appear in the staging area, where you can specify who to send the email to and when.
+The following options are configurable:
+RECIPIENT:
+Recipient: Who will receive the email. Enter the email address for the intended recipient.
+Subject: The messaging to appear in the subject line of the email sent to the recipient.
+Body: HTML content of the email sent to the recipient. Click into the text-box to view the text toolbar and enter content.
+SENDER:
+Sender: The name of the email sender (for example, your name or company name).
+Sender Email: The email address belonging to the email sender. Using a different sender email address can improve your email’s deliverability rates.
+Note: Sender addresses must use a SendGrid enabled domain only; contact Technical Support for assistance.
+Company Information: The company name and physical address to be shown in the email footer. This information is required for emails to comply with CAN-SPAM regulations.
+Reply-To: The email address recipients should reply-to with queries or issues.
+Schedule Send: The number of seconds to wait before sending the email to a participant who has completed the survey. The maximum wait time is 3 days (259,200 seconds). Click into the text-box to enter a number or hover over it to display and use the single-digit increase arrows.
+CALENDAR INVITE (OPTIONAL):
+Summary: The name for the event as it will appear in recipient's emails and calendars, if accepted (for example, "Employee Appreciation Party").
+Description: The description of the event as it will appear in recipient's emails and calendars, if accepted.
+Location: The location for the event described in the calendar invite (for example, "740 Evergreen Terrace, Springfield").
+Start Date: The event start time (for example, 2017-10-31 11:30:00 or 11:30AM 2017-10-31).
+End Date: The event end time (for example, 2017-10-31 12:30:00 or 12:30PM 2017-10-31).
+Timezone: The event timezone (for example, US/Pacific or US/Eastern).
+2: Using the XML
+To send out an automated email, you will need to add a <logic> tag to your survey XML, specifying both a label and uses="email.1":
+<logic label="email" uses="email.1" />
+2.1: Parameters
+The following parameters can be passed to the email logic node:node:
+Attribute
+Description
+email:senderEmail
+The email address belonging to the email sender.
+Note: Sender addresses must use a SendGrid enabled domain only; contact Technical Support for assistance.
+email:recipient
+The recipient's email address.
+email:subject
+The subject of the email.
+email:content
+The HTML content of the email.
+email:company
+The name of the company shown in the email footer as its sender (you should also include physical address for CAN-SPAM compliance).
+email:sender
+The name shown in the "From" field on the email (the sender address will always be nobody@decipherinc.com)
+email:reply
+The name shown in the "Reply-To" field on the email.
+email:delay
+Sets a delay on sending the email (in seconds); the email is not sent out until the specified amount of time has passed.
+Note: Any remove list, etc., using bulk is ignored due to the computer resources required. See Email Sends with Bulk for more information about bulk emails sends.
+2.2: Example
+<text label="q0" title="What is your email?" verify="email"/>
+<res label="content">
+<h3>Congratulations on completing the survey!</h3>
+Great work clicking on all those:
+<ul>
+<li>Radio Buttons</li>
+<li>Checkboxes</li>
+<li>Submit buttons</li>
+</ul>
+&lt;hr/&gt;
+This email was sent from <physical mailing address here>.
+</res>
+<suspend/>
+<logic label="email"
+email:recipient="${q0.val}"
+email:subject="Confirmation on completing the survey"
+email:content="${res.content}"
+uses="email.1"/>
+<text
+label="q1">
+<title>q1</title>
+</text>
+2.3: Additional Considerations
+2.3.1: Customizing the Email
+The email sent by the email logic node is blank by default and requires manual input of all text and styling. You can use HTML and CSS to customize your email, but keep in mind that all emails should comply with CAN-SPAM laws and best practices.
+The email logic node will now include an optout link upon sending of the email logic node. The opt-out link will automatically adjust based on whether the email logic node is branded or unbranded.
+Branded email logic nodes will not have any reference of Forsta (Decipher, FocusVision) in the following fields below:
+Note: The opt-out link will adjust to the company remove list upon sending an email.
+Subject
+Body
+Sender
+Company Information
+Reply-To:
+Summary
+Description
+Unbranded email logic nodes have references to Forsta (Decipher, FocusVision) in the listed fields above. All unbranded opt-out links will automatically be adjusted to Forsta opt-out link.
+2.3.2: Including a Calendar Invite
+You can include an optional calendar invite with any email by adding the following attributes:
+Attribute
+Description
+email:calendar_summary
+A brief summary of the calendar invite ("Employee appreciation party").
+email:calendar_description
+A detailed description of the calendar invite.
+email:calendar_start
+The start time for the calendar invite. Must be in one of the following formats:
+YYYY-MM-DD HH:MM:SS
+HH:MM:AM/PM YYYY-MM-DD
+For example, to start the invite at 11:30am on October 31, 2017, you would enter 2017-10-31 11:30:00 or 11:30AM 2017-10-31.
+email:calendar_end
+The end time for the calendar invite. Must be in one of the following formats:
+YYYY-MM-DD HH:MM:SS
+HH:MM:AM/PM YYYY-MM-DD
+For example, to end the invite at 12:30pm on October 31, 2017, you would enter 2017-10-31 12:30:00 or 12:30PM 2017-10-31.
+email:calendar_timezone
+Calendar invite timezone (e.g., "US/Pacific" or "US/Eastern", etc.). See below for a list of available timezones.
+email:calendar_location
+Provide a location for the calendar invite ("740 Evergreen Terrace, Springfield").
+2.3.3: Available Timezones
+The calendar invite can be set to any of the following timezones:
+Africa/Abidjan
+America/Santarem
+Etc/GMT+3
+Africa/Accra
+America/Santiago
+Etc/GMT+4
+Africa/Addis_Ababa
+America/Santo_Domingo
+Etc/GMT+5
+Africa/Algiers
+America/Sao_Paulo
+Etc/GMT+6
+Africa/Asmara
+America/Scoresbysund
+Etc/GMT+7
+Africa/Asmera
+America/Shiprock
+Etc/GMT+8
+Africa/Bamako
+America/Sitka
+Etc/GMT+9
+Africa/Bangui
+America/St_Barthelemy
+Etc/GMT-0
+Africa/Banjul
+America/St_Johns
+Etc/GMT-1
+Africa/Bissau
+America/St_Kitts
+Etc/GMT-10
+Africa/Blantyre
+America/St_Lucia
+Etc/GMT-11
+Africa/Brazzaville
+America/St_Thomas
+Etc/GMT-12
+Africa/Bujumbura
+America/St_Vincent
+Etc/GMT-13
+Africa/Cairo
+America/Swift_Current
+Etc/GMT-14
+Africa/Casablanca
+America/Tegucigalpa
+Etc/GMT-2
+Africa/Ceuta
+America/Thule
+Etc/GMT-3
+Africa/Conakry
+America/Thunder_Bay
+Etc/GMT-4
+Africa/Dakar
+America/Tijuana
+Etc/GMT-5
+Africa/Dar_es_Salaam
+America/Toronto
+Etc/GMT-6
+Africa/Djibouti
+America/Tortola
+Etc/GMT-7
+Africa/Douala
+America/Vancouver
+Etc/GMT-8
+Africa/El_Aaiun
+America/Virgin
+Etc/GMT-9
+Africa/Freetown
+America/Whitehorse
+Etc/GMT0
+Africa/Gaborone
+America/Winnipeg
+Etc/Greenwich
+Africa/Harare
+America/Yakutat
+Etc/UCT
+Africa/Johannesburg
+America/Yellowknife
+Etc/UTC
+Africa/Juba
+Antarctica/Casey
+Etc/Universal
+Africa/Kampala
+Antarctica/Davis
+Etc/Zulu
+Africa/Khartoum
+Antarctica/DumontDUrville
+Europe/Amsterdam
+Africa/Kigali
+Antarctica/Macquarie
+Europe/Andorra
+Africa/Kinshasa
+Antarctica/Mawson
+Europe/Athens
+Africa/Lagos
+Antarctica/McMurdo
+Europe/Belfast
+Africa/Libreville
+Antarctica/Palmer
+Europe/Belgrade
+Africa/Lome
+Antarctica/Rothera
+Europe/Berlin
+Africa/Luanda
+Antarctica/South_Pole
+Europe/Bratislava
+Africa/Lubumbashi
+Antarctica/Syowa
+Europe/Brussels
+Africa/Lusaka
+Antarctica/Vostok
+Europe/Bucharest
+Africa/Malabo
+Arctic/Longyearbyen
+Europe/Budapest
+Africa/Maputo
+Asia/Aden
+Europe/Chisinau
+Africa/Maseru
+Asia/Almaty
+Europe/Copenhagen
+Africa/Mbabane
+Asia/Amman
+Europe/Dublin
+Africa/Mogadishu
+Asia/Anadyr
+Europe/Gibraltar
+Africa/Monrovia
+Asia/Aqtau
+Europe/Guernsey
+Africa/Nairobi
+Asia/Aqtobe
+Europe/Helsinki
+Africa/Ndjamena
+Asia/Ashgabat
+Europe/Isle_of_Man
+Africa/Niamey
+Asia/Ashkhabad
+Europe/Istanbul
+Africa/Nouakchott
+Asia/Baghdad
+Europe/Jersey
+Africa/Ouagadougou
+Asia/Bahrain
+Europe/Kaliningrad
+Africa/Porto-Novo
+Asia/Baku
+Europe/Kiev
+Africa/Sao_Tome
+Asia/Bangkok
+Europe/Lisbon
+Africa/Timbuktu
+Asia/Beirut
+Europe/Ljubljana
+Africa/Tripoli
+Asia/Bishkek
+Europe/London
+Africa/Tunis
+Asia/Brunei
+Europe/Luxembourg
+Africa/Windhoek
+Asia/Calcutta
+Europe/Madrid
+America/Adak
+Asia/Choibalsan
+Europe/Malta
+America/Anchorage
+Asia/Chongqing
+Europe/Mariehamn
+America/Anguilla
+Asia/Chungking
+Europe/Minsk
+America/Antigua
+Asia/Colombo
+Europe/Monaco
+America/Araguaina
+Asia/Dacca
+Europe/Moscow
+America/Argentina/Buenos_Aires
+Asia/Damascus
+Europe/Nicosia
+America/Argentina/Catamarca
+Asia/Dhaka
+Europe/Oslo
+America/Argentina/ComodRivadavia
+Asia/Dili
+Europe/Paris
+America/Argentina/Cordoba
+Asia/Dubai
+Europe/Podgorica
+America/Argentina/Jujuy
+Asia/Dushanbe
+Europe/Prague
+America/Argentina/La_Rioja
+Asia/Gaza
+Europe/Riga
+America/Argentina/Mendoza
+Asia/Harbin
+Europe/Rome
+America/Argentina/Rio_Gallegos
+Asia/Hebron
+Europe/Samara
+America/Argentina/Salta
+Asia/Ho_Chi_Minh
+Europe/San_Marino
+America/Argentina/San_Juan
+Asia/Hong_Kong
+Europe/Sarajevo
+America/Argentina/San_Luis
+Asia/Hovd
+Europe/Simferopol
+America/Argentina/Tucuman
+Asia/Irkutsk
+Europe/Skopje
+America/Argentina/Ushuaia
+Asia/Istanbul
+Europe/Sofia
+America/Aruba
+Asia/Jakarta
+Europe/Stockholm
+America/Asuncion
+Asia/Jayapura
+Europe/Tallinn
+America/Atikokan
+Asia/Jerusalem
+Europe/Tirane
+America/Atka
+Asia/Kabul
+Europe/Tiraspol
+America/Bahia
+Asia/Kamchatka
+Europe/Uzhgorod
+America/Bahia_Banderas
+Asia/Karachi
+Europe/Vaduz
+America/Barbados
+Asia/Kashgar
+Europe/Vatican
+America/Belem
+Asia/Kathmandu
+Europe/Vienna
+America/Belize
+Asia/Katmandu
+Europe/Vilnius
+America/Blanc-Sablon
+Asia/Kolkata
+Europe/Volgograd
+America/Boa_Vista
+Asia/Krasnoyarsk
+Europe/Warsaw
+America/Bogota
+Asia/Kuala_Lumpur
+Europe/Zagreb
+America/Boise
+Asia/Kuching
+Europe/Zaporozhye
+America/Buenos_Aires
+Asia/Kuwait
+Europe/Zurich
+America/Cambridge_Bay
+Asia/Macao
+GB
+America/Campo_Grande
+Asia/Macau
+GB-Eire
+America/Cancun
+Asia/Magadan
+GMT
+America/Caracas
+Asia/Makassar
+GMT+0
+America/Catamarca
+Asia/Manila
+GMT-0
+America/Cayenne
+Asia/Muscat
+GMT0
+America/Cayman
+Asia/Nicosia
+Greenwich
+America/Chicago
+Asia/Novokuznetsk
+HST
+America/Chihuahua
+Asia/Novosibirsk
+Hongkong
+America/Coral_Harbour
+Asia/Omsk
+Iceland
+America/Cordoba
+Asia/Oral
+Indian/Antananarivo
+America/Costa_Rica
+Asia/Phnom_Penh
+Indian/Chagos
+America/Creston
+Asia/Pontianak
+Indian/Christmas
+America/Cuiaba
+Asia/Pyongyang
+Indian/Cocos
+America/Curacao
+Asia/Qatar
+Indian/Comoro
+America/Danmarkshavn
+Asia/Qyzylorda
+Indian/Kerguelen
+America/Dawson
+Asia/Rangoon
+Indian/Mahe
+America/Dawson_Creek
+Asia/Riyadh
+Indian/Maldives
+America/Denver
+Asia/Saigon
+Indian/Mauritius
+America/Detroit
+Asia/Sakhalin
+Indian/Mayotte
+America/Dominica
+Asia/Samarkand
+Indian/Reunion
+America/Edmonton
+Asia/Seoul
+Iran
+America/Eirunepe
+Asia/Shanghai
+Israel
+America/El_Salvador
+Asia/Singapore
+Jamaica
+America/Ensenada
+Asia/Taipei
+Japan
+America/Fort_Wayne
+Asia/Tashkent
+Kwajalein
+America/Fortaleza
+Asia/Tbilisi
+Libya
+America/Glace_Bay
+Asia/Tehran
+MET
+America/Godthab
+Asia/Tel_Aviv
+MST
+America/Goose_Bay
+Asia/Thimbu
+MST7MDT
+America/Grand_Turk
+Asia/Thimphu
+Mexico/BajaNorte
+America/Grenada
+Asia/Tokyo
+Mexico/BajaSur
+America/Guadeloupe
+Asia/Ujung_Pandang
+Mexico/General
+America/Guatemala
+Asia/Ulaanbaatar
+NZ
+America/Guayaquil
+Asia/Ulan_Bator
+NZ-CHAT
+America/Guyana
+Asia/Urumqi
+Navajo
+America/Halifax
+Asia/Vientiane
+PRC
+America/Havana
+Asia/Vladivostok
+PST8PDT
+America/Hermosillo
+Asia/Yakutsk
+Pacific/Apia
+America/Indiana/Indianapolis
+Asia/Yekaterinburg
+Pacific/Auckland
+America/Indiana/Knox
+Asia/Yerevan
+Pacific/Chatham
+America/Indiana/Marengo
+Atlantic/Azores
+Pacific/Chuuk
+America/Indiana/Petersburg
+Atlantic/Bermuda
+Pacific/Easter
+America/Indiana/Tell_City
+Atlantic/Canary
+Pacific/Efate
+America/Indiana/Vevay
+Atlantic/Cape_Verde
+Pacific/Enderbury
+America/Indiana/Vincennes
+Atlantic/Faeroe
+Pacific/Fakaofo
+America/Indiana/Winamac
+Atlantic/Faroe
+Pacific/Fiji
+America/Indianapolis
+Atlantic/Jan_Mayen
+Pacific/Funafuti
+America/Inuvik
+Atlantic/Madeira
+Pacific/Galapagos
+America/Iqaluit
+Atlantic/Reykjavik
+Pacific/Gambier
+America/Jamaica
+Atlantic/South_Georgia
+Pacific/Guadalcanal
+America/Jujuy
+Atlantic/St_Helena
+Pacific/Guam
+America/Juneau
+Atlantic/Stanley
+Pacific/Honolulu
+America/Kentucky/Louisville
+Australia/ACT
+Pacific/Johnston
+America/Kentucky/Monticello
+Australia/Adelaide
+Pacific/Kiritimati
+America/Knox_IN
+Australia/Brisbane
+Pacific/Kosrae
+America/Kralendijk
+Australia/Broken_Hill
+Pacific/Kwajalein
+America/La_Paz
+Australia/Canberra
+Pacific/Majuro
+America/Lima
+Australia/Currie
+Pacific/Marquesas
+America/Los_Angeles
+Australia/Darwin
+Pacific/Midway
+America/Louisville
+Australia/Eucla
+Pacific/Nauru
+America/Lower_Princes
+Australia/Hobart
+Pacific/Niue
+America/Maceio
+Australia/LHI
+Pacific/Norfolk
+America/Managua
+Australia/Lindeman
+Pacific/Noumea
+America/Manaus
+Australia/Lord_Howe
+Pacific/Pago_Pago
+America/Marigot
+Australia/Melbourne
+Pacific/Palau
+America/Martinique
+Australia/NSW
+Pacific/Pitcairn
+America/Matamoros
+Australia/North
+Pacific/Pohnpei
+America/Mazatlan
+Australia/Perth
+Pacific/Ponape
+America/Mendoza
+Australia/Queensland
+Pacific/Port_Moresby
+America/Menominee
+Australia/South
+Pacific/Rarotonga
+America/Merida
+Australia/Sydney
+Pacific/Saipan
+America/Metlakatla
+Australia/Tasmania
+Pacific/Samoa
+America/Mexico_City
+Australia/Victoria
+Pacific/Tahiti
+America/Miquelon
+Australia/West
+Pacific/Tarawa
+America/Moncton
+Australia/Yancowinna
+Pacific/Tongatapu
+America/Monterrey
+Brazil/Acre
+Pacific/Truk
+America/Montevideo
+Brazil/DeNoronha
+Pacific/Wake
+America/Montreal
+Brazil/East
+Pacific/Wallis
+America/Montserrat
+Brazil/West
+Pacific/Yap
+America/Nassau
+CET
+Poland
+America/New_York
+CST6CDT
+Portugal
+America/Nipigon
+Canada/Atlantic
+ROC
+America/Nome
+Canada/Central
+ROK
+America/Noronha
+Canada/East-Saskatchewan
+Singapore
+America/North_Dakota/Beulah
+Canada/Eastern
+Turkey
+America/North_Dakota/Center
+Canada/Mountain
+UCT
+America/North_Dakota/New_Salem
+Canada/Newfoundland
+US/Alaska
+America/Ojinaga
+Canada/Pacific
+US/Aleutian
+America/Panama
+Canada/Saskatchewan
+US/Arizona
+America/Pangnirtung
+Canada/Yukon
+US/Central
+America/Paramaribo
+Chile/Continental
+US/East-Indiana
+America/Phoenix
+Chile/EasterIsland
+US/Eastern
+America/Port-au-Prince
+Cuba
+US/Hawaii
+America/Port_of_Spain
+EET
+US/Indiana-Starke
+America/Porto_Acre
+EST
+US/Michigan
+America/Porto_Velho
+EST5EDT
+US/Mountain
+America/Puerto_Rico
+Egypt
+US/Pacific
+America/Rainy_River
+Eire
+US/Pacific-New
+America/Rankin_Inlet
+Etc/GMT
+US/Samoa
+America/Recife
+Etc/GMT+0
+UTC
+America/Regina
+Etc/GMT+1
+Universal
+America/Resolute
+Etc/GMT+10
+W-SU
+America/Rio_Branco
+Etc/GMT+11
+WET
+America/Rosario
+Etc/GMT+12
+Zulu
+America/Santa_Isabel
+Etc/GMT+2

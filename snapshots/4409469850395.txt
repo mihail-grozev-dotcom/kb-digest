@@ -1,0 +1,243 @@
+Title: Crosstabs Technical Considerations
+The Crosstabs reporting system uses its own configuration file, allowing you to control report settings directly from the report rather than making updates to the survey's survey.xml file.
+1: Transferring legacy configuration
+The first time a project is accessed in Crosstabs, all system reports and any existing report banners are automatically converted to the Crosstabs reports.json file. Any changes made to the original reports.xml file after accessing the Crosstabs reporting system are not transferred. Question configuration is continuously converted until the table editor is used to save the settings for that table. After the table editor has been used to save settings for a table, only the settings created within Crosstabs will apply while using the Crosstabs reporting system.
+Note: The first access to a project in Crosstabs creates the reports.json file. When projects are copied, the Crosstabs files reports.json and pinned.json are included. Any edits made in the table editor are in reports.json and are also transferred to the new project.
+The following settings are converted:
+From the reports.xml, each <report> becomes a saved Crosstab with the same name, segments names and conditions (when reports.json does not exist in the project folder).
+Previous Banners, Table Sets and Saved Crosstabs are converted to the new Crosstab format with the same name, segments, conditions, permissions and report settings (if applicable).
+The value attribute, if set in the survey.xml determines the initial statistical value when calculating averages (downloads use the value field in the XML).
+The alt attribute is used as the reporting text for the item or element.
+Any <net> will transfer over creating nets within one or more tables or new tables. This includes nets implicitly added for questions using type="rating" in the XML.
+The adim attribute determines the grouping of the variables in the question.
+Questions / Rows using where="survey" or where="none" are converted as 'not shown' but can be enabled using the table editor.
+Items with aggregate="0" are convert to exclude from base settings in the table editor.
+Rows using where="none,notdp" cannot be accessed in any way.
+The above settings are stored in reports.json and can be removed to reset the transfer.
+The following settings are not transferred:
+Saved Crosstabs that were corrupted (i.e., would not run the saved selection).
+Any chart-related configuration (i.e., whether a chart is displayed for a table, any palette or font settings).
+Custom stat testing levels configured in styles (for staff only).
+Groups (<group> tags) are not shown in the report.
+2: Crosstabs Interface Areas
+The information provided in the sections below details the technical considerations for specific Crosstabs interface areas. Crosstabs is currently supported on the following browsers:
+Google Chrome
+Firefox
+2.1: Landing Page
+When first entering Crosstabs, project resources are being loaded and there may be a slight delay while performing the following tasks:
+Build a Crosstab
+Quick Split by Question
+Edit a Crosstab
+Edit Settings
+Searching and Exporting data is not affected.
+Once reports have been created, saved crosstabs are displayed in an alpha ascending sort order.
+2.1.1: Searching
+The search field only matches the entered value against crosstab names and descriptions.
+2.1.2: Exports
+Exports that match crosstab tables will reflect the selected table set. Raw data downloads do not limit data exported by table set. To limit exported data, use a custom data layout.
+2.2: Settings
+2.2.1: Date Range
+Preset date filters are dynamic and will update when running a crosstab. "All" will update to "First Participant - Last Participant" by matching the survey's field dates. Using a custom date range will apply a static filter.
+When pinning a table, only the "All" date filter is dynamic.
+2.2.2: Participant Status
+Surveys with autoRecover enabled (i.e., autoRecover="1") will add an "All and Partials" status.
+2.2.3: Percent Base
+Surveys with blank checkbox tracking enabled (trackVars="checkbox") will add a "Total Shown Variable" base.
+2.2.4: Favorites Table Set
+When using the Favorites table set, the crosstab's permission is set to "Private". The Favorites table set is dynamic for each user and creates a different report per user in a saved crosstab.
+2.3: Editor
+Crosstabs logic supports the dot operator, including .label, .attr(label), .any, .all, .but(), .count , .sum, .search('[term]'), .check, and .val,.shown, as well as the following date logic: date_range(start,end), date_days(start,end). .shown checks if the question was shown to survey participants.
+Other Crosstabs logic matches against vector logic. This logic is supported in both the segment logic and coding added for virtual questions when using "Create Table". Any logic that cannot be used in the logic editor will prompt an error message.
+When a segment is being edited in the staging area, each logic node creates logic inside a <cond> tag in the XML. There are some cases where the logic parser tries to simplify logic. For example, when using the logic joiners "and not" or "or not", the XML may update the logic to use a joiner of "and" / "or" and wrap the logic node logic with not(). Similarly, when logic uses "all.Across All" (i.e., to add .any), the logic may be broken out into several logic nodes for each answer choice that was selected.
+You can create precedence in logic using the "Merge Logic" and "Unmerge Logic" buttons. Merging follows these rules:
+You can merge adjacent sibling nodes at the same level.
+You can unmerge merged sibling nodes.
+When there are only two sibling nodes in a container, you can only unmerge them.
+When three or more sibling nodes appear in a container, it becomes possible to merge them into a deeper nested container.
+When you mouse over the "Merge Logic" button, the two logic nodes that will be merged are highlighted with green borders and this creates logic similar to wrapping those nodes with parentheses. When you mouse over the "Unmerge Logic" button, the logic nodes that will be removed from the parent container are highlighted with red borders and this creates logic similar to moving the node outside the parentheses. There may be multiple "+ Logic" buttons shown when logic nodes are nested. When you mouse over the "+ Logic" button, the parent container is highlighted to show where the logic node will be added.
+Neither the XML nor the logic editor validates segment logic. An error message is shown when running a crosstab if its logic is invalid.
+Learn more: Using XML to Edit Crosstabs
+2.4: Report
+Edits made to chart settings (e.g., color scheme, data values, and which type to display), grid table settings, and table settings are global settings for all crosstabs in a project and are stored in reports.json.
+The view options “Show / Hide QA Codes”, “Show / Hide Tables with No Participants”, “Show / Hide Download Data Values”, and "Show / Hide Unweighted Total Count” are user preferences that carry over from project to project.
+2.4.1: Table Editor
+Numeric nets are value ranges. "-100" means a range starting with negative infinity and ending with "+100". Using an invalid numeric net (i.e., a text value), will create an error when trying to open the table editor for that question. The net can be removed from reports.json to correct the issue.
+2.4.2: Weighting
+Crosstabs supports fast per-record weighting. The access to weighting data is hard-coded to a variable named nweight. If a nweight.txt file is placed in the survey directory, the weights in that file are matched via uuid. nweight.txt is a tab-delimited file which contains at least two columns, the key (uuid) in the first column and weights in the column labeled "weight".
+Weighting uses a double-precision floating binary point. This gives about fifteen digits of precision (12.34 requires 4) before any calculations are made.
+2.4.3: Aggregate Support - Grid Tables
+For surveys with a compat level of 128+, closed-ended multi-dimensional questions in newly created projects (or projects accessed in Crosstabs for the first time) will have grid tables automatically enabled by default. Any projects accessed in or copied from surveys with a compat level lower than 128 will not have grid tables enabled.
+Grid tables can be enabled or disabled per question in the table editor, or for all questions using the "View Options" option, but are limited to the single target format shown below. Three kinds of limited grid tables can be created by modifying the reports.json file located in the project directory. The syntax is below:
+"reports": [
+"settings": {
+"aggregate": [
+{ AGGREGATE 1 },
+{ AGGREGATE 2 },
+...
+{ AGGREGATE 5 }
+],
+...
+}
+}
+The { AGGREGATE 1 } code above is a placeholder for objects of the following form:
+{ "fun": "grid", "targets": ["q1"] }
+{ "fun": "grid", "targets": ["q1", "q2"] }
+{ "fun": "grid", "targets": ["q1", "q2"], "title": "Combined Table Title" }
+{ "fun": "grid", "targets": ["q3_[looprow: label]"], "title": "Combined Loop Table", "pipe": "product" }
+The "fun" key must be "grid". The "targets" is a list of questions to combine. When a simple / net aggregate table is generated from a list of questions, its columns are extracted and moved into the first matching table. Not all tables with extracted columns will be shown.
+If you specify multiple targets, they are all combined into a single table. For example, you can combine q1 and q2 if they are asking about the same rows.
+Loop questions can also be aggregated by providing the loop's label template name (e.g., q4_[loopvar: label]) and it will be expanded to include all questions. You may also specify a "pipe" with the name of the variable to be used as the column's title.
+Tip: The loop syntax above is optional. You may also use the "targets" keyword to specify any of the expanded loop tables. (e.g., q4_1, q4_4, etc.)
+The aggregation of tables into a grid table happens after table sets have been applied. This means that if q1 has five subtables for five attributes but your table set shows only two subtables, then the aggregated q1 will also display only two columns.
+The following restrictions apply when creating aggregate tables in Crosstabs using reports.json:
+A two dimensional single or multi-select question can be turned into a single table where the individual tables are sliced into columns. If the report is split by multiple segments, one grid table is created for each segment.
+Tables from multiple, unrelated questions can be turned into a single table. This makes sense only if the rows in those tables are identical.
+All the instances of a looped question can be turned into a single question.
+Favoriting is not supported.
+Do not attempt to use this syntax for aggregating text / number questions or questions with OE data (e.g., open="1"). Only single and multi-select questions are supported (e.g., radio, checkbox, select).
+If multiple unrelated question tables are merged into one, it will not be possible to use the table editor to modify all questions simultaneously.
+The Text Highlighter (hottext) DQ chart does not support grid tables.
+Excel, PPT and PDF exports will correctly generate the tables.
+2.4.4: Virtual Question - Saved Variables
+Users with report:edit project permission have the ability to create a virtual question using the "Create Table" link in the Actions menu.
+Behind the scenes
+In append.xml, a virtual checkbox question is added with after="survey" appended after the survey questions and source="crosstabs". The virtual question labels typically start with "vrxq1", or something similar, and increment. The crosstab name becomes the table question text, each segment of the crosstab becomes a table row, and a group becomes a net in the table referencing the grouped segments. If the crosstab is saved, reports.json is updated to set segmentsTable to True for the crosstab.
+What does the user see in Crosstabs?
+After the virtual question has been added, the "Create Table" link becomes disabled for that saved crosstab. The user will not have an option to remove the virtual question but will have the option to hide the virtual question via table sets. The virtual question will be available to use for logic in the quick split / editor under "Question Logic". The "Create Table" link will re-enable if there is a change that would cause a change in the table (i.e., adding rows or changing logic), but not changes to a report setting. Once created, the virtual question is not modified and any additional use of the "Create Table" link creates another virtual question.
+Note: The virtual question is automatically included in the crosstab's data exports and there is no way to remove the virtual question in Crosstabs (virtual questions are appended to the survey's append.xml file and not rewritten).
+2.4.5: Statistical Testing
+Users have the option to include a "Total" base, and by default, the statistical testing group suggestion does not include "Total". Statistical testing groups set the sg property for a segment in reports.json. If a segment belongs to multiple groups, the groups are separated by commas in the sg property, and segments with matching sg values are tested against each other.
+For example, imagine that segments B, C, D are being tested against each other, and that they each have the same sg value of BCD. In the settings modal, this is shown as B-D. A stat grouping of BC,BD would test B in two groups. Segment B's sg value would be BC,BD, Segment C's sg value would be BC, and Segment D's sg value would be BD.
+~ is a special sg value that indicates no stat testing. This sg value is assigned to segments that are not included in the statistical testing groups in the settings modal. For example, the auto-generated "Total" segment, by default, is assigned an sg value of ~.
+Statistical testing is limited to twenty-six segments. A crosstab with more than twenty-six segments will have statistical testing groups and levels disabled in its settings.
+Statistical testing groups have no effect on the statistical testing of the columns in a grid table but will use the same red stat testing identifiers.
+2.4.6: Error Messages
+When a segment is flagged as invalid, one of the following error messages may be shown:
+Error in segment "[segment name]". Error code: "#[CODE]". Segment condition: "[segment condition]".
+Can be SYNTAXERROR, CUSTOM, or quota. Indicates that the logic cannot be displayed in Crosstabs or that there is a syntax error in the XML.
+"Report configuration is invalid. Contact support. Error: Unknown question '[question label]'.
+Indicated that the question referenced in the segment logic condition cannot be found in the survey.
+"Syntax error in condition for segment #[index]Total: '[bad
+logic]'. Indicates that the index of the segment as shown in the preview starts with zero.
+2.4.7: Restricting Values - minimumSegment
+In Crosstabs, minimumSegment support is applied to segments with report filters such as "Date Range", "Participant Status", and "Additional Filter". Table filters which may change the segment total for only that table do not affect the hiding of segment data. For a grid table, each segment is shown as a separate table, and when the segment total is less than the minimum segment, the entire table is hidden. There is no indication of minimum segment restrictions being applied when running a crosstab or saved report.
+3: Crosstab & Project Permissions
+Most actions require users to have report:edit permission for the project. Shared users will always have read-only permission.
+3.1: Crosstab and table set permissions
+Permission
+Description
+Private
+Default permission. Only the owner is shown the crosstab or table set.
+Editable
+The crosstab or table set is shown to all users. The crosstab tab or table set can be edited or deleted by user with report:edit access.
+View Only
+The crosstab or table set is shown to all users. Only the owner can edit or delete the crosstab or table set.
+Note: A crosstab saved with a private table set will be usable to any non-owners, but non-owners will not be able to select the private table set in a different crosstab.
+3.2: Permission needed to perform specific actions
+Action
+Crosstab Permission
+User Project Permission
+Build Crosstab / Create New Crosstab
+report:edit
+Edit Crosstab (in the editor)
+Editable or user is owner
+report:edit
+Save (from settings or report)
+Editable or user is owner
+report:edit
+Duplicate Crosstab
+report:edit
+Download Raw Data
+data:download or data:edit
+Delete Crosstab
+Editable or user is owner
+report:edit
++ New Table Set
+report:edit
+Edit Table Set
+Editable or user is owner
+report:edit
+Delete Table Set
+Editable or user is owner
+report:edit
++ Upload Weighting Scheme
+report:edit
+Delete Weighting Scheme
+report:edit
+Create Table
+report:edit
+View Chart Options
+report:edit
+Turn All Grid Tables On / Off
+report:edit
+Table Editor
+report:edit
+Add / Edit Charts
+report:edit
+View Open End Data
+data:download or data:edit
+Transpose Table
+report:edit
+View Question
+survey:view
+4: Configuration beyond the user interface
+Requires Decipher Cloud
+The user interface does not allow access to all report configurations. Use the rconf command to modify the reports.json file in a safe way:
+rconf <path/to/survey> [option] [option/value]
+For example, running the following command shows the current value:
+rconf path/to/survey verySmallSample
+Running the following command will set the value to 50:
+rconf path/to/survey verySmallSample 50
+Option
+Value
+Description
+verySmallSample
+30
+The threshold when the ** warning is shown.
+smallSample
+100
+The threshold when the * warning is shown.
+sigtestMajor
+95
+The global default testing level (in percentage) of the upper-case statistical testing indicator, used for new crosstabs. This setting can be also set per crosstab in the settings model.
+sigtestMinor
+90
+The global default testing level (in percentage) of the minor statistical testing indicator used for new crosstabs. This setting can be also set per crosstab in the settings model.
+stats.prec
+2
+Precision for statistics.
+pct
+0 (rounded)
+Precision for vertical percentages.
+verySmallSample and smallSample can be set to 0 to disable showing ** or *.
+sigtestMajor or sigtestMinor can be set to 100 to disable.
+5: Additional Considerations and Limitations
+5.1: General User Interface
+The links shared include applied banners and filters, but not table sorting. Use saved reports to allow public and private sharing of crosstabs.
+The inline open-ended answers feature is not supported.
+Table sets are only inclusive. Thus, a saved table set can only decide what questions and tables to include and will not change as new questions or tables are added.
+The XML editor limits editing to a single crosstab and can modify the crosstab's name, description, groups, and segment logic.
+Rolling dates cannot be added to segments directly from Crosstabs, but can be added in the XML editor.
+Number questions with amount= set on them are not available.
+A subset of Python syntax is used, but Crosstabs does not run this as actual Python code. Rather, it is compiled into a Virtual Machine that can evaluate the conditions at 500x the speed of Python. Each of the table rows and each of the segments contains such a logic condition on the backend.
+5.2: Survey.xml Settings
+Adding the sort attribute to questions could automatically sort table rows by row text (ascending or descending) or request that sorting be based on counts or percentages. Crosstabs supports sorting only as a view option and not as a saved setting.
+The horizontalPercentage attribute does not transfer to Crosstabs.
+The aggregate tag on questions where functions like stack() are used to create a stacked table is not supported.
+Any weighting configuration created via a <weight> tag is not used. Crosstabs instead offers a RIM weighting tool for applying weights.
+Question nets are not included for selection in the logic editor.
+5.3: Exports
+There is no print view or e-mail feature.
+There is no Word (RTF) export.
+The Excel export generates Excel OOXML files that require Excel 2007+.
+The PowerPoint export generates PPTX files that require PowerPoint 2007+.
+To control the tables the PPT export generates, a custom table set must be created; the PPTX export will generate what is seen.
+5.4: Customization via styles
+The user interface cannot be customized via styles (i.e., cells or precision on certain cells or question).
+The structure or format of exports cannot be customized via styles.
+The word cloud reporting presentation output is not supported.
+The extremely custom basing system is not supported (report.main.customfilters style).
+Local Javascript customizations are not supported (report.config.local style).
+sigtest.levels (providing default significance testing levels) is not supported.
+5.5: Chart settings
+A set of chart options is available.

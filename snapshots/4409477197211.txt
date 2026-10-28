@@ -1,0 +1,38 @@
+Title: Creating and Uploading a Weighting Scheme
+Crosstabs uses Random Iterative Method (RIM) Weighting to apply weighting schemes to report data. RIM Weighting allows researchers to adjust multiple characteristics in a dataset while keeping the characteristics proportionate as a whole. This means that you can run separate weights by data subsets and tailor your weighting schemes by wave, country, or any other data segment within your survey.
+In Crosstabs, you have two options for adding RIM Weighting to your survey data:
+You can create a Weighting Scheme Editor to create a weighting scheme by selecting questions and assigning weighting percentages to each of their response options.
+You can upload a pre-configured weighting file directly to Crosstabs.
+This article details how to create and upload a weighting scheme directly to Crosstabs. See Applying RIM Weighting for instructions on applying a weighting scheme using the Weighting Scheme Editor.
+1: Creating a Tab-Delimited Weighting Scheme
+The weighting scheme must be in a .txt file in tab-delimited format (each item in a row is separated by a tab). The first row of the file is the header and must contain labels for the following columns:
+The first column must be labeled with the variable name "uuid".
+If you are only applying one weight, the second column must be labeled "weight". This column will display as "Global Weighting" in the Weighting drop-down menu.
+If you are applying more than one weight, each column must be labeled "weight_x", where x is a unique name for each weight (for example, "weight_global", "weight_local", "weight_special"). These columns will display in the in the Weighting drop-down menu with the unique name you provided (for example, "global", "local", "special").
+Note: Header labels must be lowercase alpha-numeric strings and cannot contain spaces. Use an underscore (_) in place of a space.
+The first column must contain the values you wish to use to match users in the file to survey participants ("uuid"). The weight columns must contain the numeric weights you wish to assign to those records, from 0.0 up to any factor.
+Important: Be sure to use a unique name for each weight. Re-using an existing label name results in an error that requires Technical Support assistance to resolve.
+2: Uploading the Weighting Scheme
+Once you have prepared your tab-delimited weighting file, there are two locations where you can upload the file in Crosstabs:
+The crosstab's Settings menu.
+The crosstab's Actions menu.
+To upload a weighting scheme from the crosstab's Settings menu, open the Settings menu for the desired crosstab. Under Weighting, click Upload.
+To upload the weighting scheme from the Actions menu (available after you have run the crosstab), select Upload Weighting Scheme from the Actions menu drop-down.
+Click Choose File and select the file on your computer.
+Then click Upload to upload the selected file.
+If the file does not contain any errors, you will receive a "Success!" notification. Click Done to save the weighting scheme and return to Crosstabs.
+2.1: Trouble-shooting Upload Errors
+If the file contains errors or invalid values, you will receive an "Error!" notification, along with an explanation of the issue.
+Listed below are some possible problems to look for in your file:
+The "weight" label must be lowercase.
+Your file must include the valid identifier variable "uuid".
+Variable names (i.e., header labels) cannot contain spaces. Use an underscore (_) in place of a space.
+Every weight column must have a corresponding header label.
+The headers consist of alpha-numeric strings.
+Once you have reviewed the message, click the "X" to close the message and upload a new weighting scheme. Alternatively, you can select Close to exit the uploader.
+3: Applying a Weighting Scheme
+Once you have uploaded a weighting scheme, the weighting options from your file are available in the crosstab's Settings menu, under Weighting.
+3.1: Global Weighting
+To apply a weighting scheme to all report segments, open the crosstab's Settings menu and select the desired weighting scheme from the Weighting menu. Then click Save.
+3.2: Per Segment Weighting
+To apply a weighting scheme to individual report segments, open the crosstab's Settings menu and select Per Segment Weighting in the Weighting menu. The weighting menu will appear for each segment in the crosstab preview. Select the desired weighting scheme for each segment, then click Save.

@@ -1,0 +1,40 @@
+Title: Managing Salesforce Connections
+You can identify your connected Salesforce accounts by clicking
+Salesforce under “Integration Settings” on the
+Company Page
+in Forsta Surveys.
+If no connections are listed on this page, visit
+Connecting Decipher with Salesforce
+to learn how to add a connection.
+Note: If you do not see the
+Integration Settings > Salesforce option, please contact
+your Forsta account representative or
+Technical Support.
+1: Overview
+The Salesforce Integration page includes:
+User Name: The username entered for the integration
+Description: The description was entered when you
+selected the folder
+Report Folder Name: The Salesforce name of the selected
+folder
+Account Type: Either production or sandbox
+Connection Status: Active or Inactive
+Latest Usage: When the connection was last used
+Actions: When you click the ellipsis under “Actions”,
+the following options are available for managing each connection:
+Edit Details: Allows you to change the description
+and choose a different folder.
+Test Connection: Verifies that the existing
+credentials are working.
+Reauthorize: Can be used to reauthorize a
+connection when the status of that connection is not indicated by
+a green checkmark. Clicking Reauthorize will redirect
+you to the Salesforce login screen to provide your account credentials.
+Delete Connection: Disables and removes the
+connection.
+2: Learn More
+Connecting Decipher with Salesforce
+Importing Recipients from Salesforce
+Salesforce Integration FAQ
+Creating an Email Campaign
+Sending Emails in the Campaign Manager

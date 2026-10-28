@@ -1,0 +1,30 @@
+Title: Suggested Reading for Scripting
+Decipher is a very robust and free flowing platform allowing xml and python access to control survey flow. Here is a primer to help get started. There are many more documents to help get started outside of these.
+1: Advanced logic
+Logic can be added and referenced in various ways. Below are a few of the advanced options.
+Streamline Conditions with Vector Logic
+Adding Condition / Skip Logic
+Validate Tag: Custom Data Quality Checks
+2: Python
+Python is the basis for the advanced scripting in Decipher. Many functions have been transferred and pre-coded into survey attributes and included in the standard Decipher library. However, Python can be used to create custom functionality as needed within a survey.
+Decipher Technology: Python
+Python Expressions
+Python Functions
+Python Tutorial
+Secure Surveys Overview
+3: Survey Attributes
+Many typical tasks within a survey have been pre-coded into a attribute library, making it easy to create questions and functionality without the need to custom script solutions. Some of these are explained below.
+Overview of the Survey Tag and Quick Links
+Question Attributes
+Single Select Question Attributes
+Multi-Select Question Attributes
+Each element type will have a matching doc. See Question and Element Types for links to each element type.
+4: Helpful Survey Editor Resources
+The survey editor, though an efficient UI, is tied into the back end scripting as well. Through the use of the attributes and XML editor, you can tie in the needed functionality.
+Editing XML
+More Options - Advanced Features
+Exec Element
+5: XML
+Decipher uses an XML syntax for survey structure. Here you can learn more about the syntax and the ways you can modify structure a survey or modify the look and feel.
+XML Syntax
+XML Style System

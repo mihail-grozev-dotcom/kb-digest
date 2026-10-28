@@ -1,0 +1,53 @@
+Title: Translating Multi-Language Studies
+If you've never created a multi-language project, be sure to read the Guide to Programming Multi-Language Studies.
+1: About The Translation Process
+A translation file gets created for each language that you add to your project when programming. This translation file or translation file is in excel format and it contains all of the text for your survey that needs to be translated.
+Download the translation file, make the necessary translations, and then upload the new translations into your project.
+Test the translations to make sure no errors exist and then launch your multi-language study!
+You will need the most finalized version of your survey when starting the translation process, so make sure all final survey changes are implemented and working as expected.
+Note: To use Decipher's AI translation services, reach out to your Forsta representative to enable the Translate button. See Language Manager Overview--4: DeepL AI Translations for details.
+1.1: Pull the Original Text From the Survey
+Using the XML Editor? See Xlate: Pulling Survey Translation Files to learn more.
+To pull all original translations from your project, access the Language Manager by selecting "Language Manager" under "Build" in the navigation menu.
+From here, you can quickly export all of the original text from your project to an XLATE File by clicking the arrow under 'Export' for the desired language:
+Repeat this process for each language in your project.
+The section below is for informational purposes only.
+The export file contains three different columns of information:
+Resource: contains the text's location in the survey. See some common label descriptors are below:
+Title: corresponds with question text
+comment: corresponds with instruction text
+cdata: represents answer options
+Primary Language: contains all of the original (English) text for your survey.
+Translation: Contains text to be translated.
+The highlighted XML syntax below should not be translated:
+1.2: Send/Receive Translations
+After pulling the original translations into an XLATE file, get them translated by sending the file(s) out to a translation team or translating them internally.
+Don't have a translation team? Email G3 for your all of your translation survey needs.
+The returned file should looks something like this, with all updated translations in the 'Translation' column of the translation file:
+Note: The text from the "Resource" column in the translation file should not be updated.
+XML syntax should NOT be changed (for example, [pipe: p1]). Translating or changing this text causes errors when you re-upload your translations to your project.
+1.3: Upload the Updated Translation Files
+Once you have received your updated XLATE file, you can easily upload it back into your project using the Language Manager.
+To upload your updated translations to your project, access the Language Manager by selecting "Language Manager" under "Build" in the navigation menu.
+From here, select the arrow under 'Import' for the desired language:
+Note: survey:view users cannot import translated files.
+Then click on 'Choose File' in the dialogue box and select your file for import:
+Once you have a file selected, click on 'Import File' to import that XLATE file:
+After you've added the translations to your projects, a corresponding LANGUAGE.xml file is created in the project's directory. This file contains the translation for every element in your project and it looks something like this:
+TRANSLATED TEXT
+For example, our french.xml file would contain the following:
+enquÃªteVous manquez d'informations dans l'URL.
+S'il vous plaÃ®t vÃ©rifier l'URL avec l'original inviter.
+Il semble que vous avez dÃ©jÃ saisi cette enquÃªte.
+Nos dossiers indiquent que vous prenez dÃ©jÃ de cette enquÃªte.
+Si cela ne correctes, s'il vous plaÃ®t attendre 15 minutes et rafraÃ®chir cette page. Merci.Please choose your language preference:EnglishFranÃ§aisDeutschEs-tu ...?sÃ©lectionnez unemÃ¢lefemelleQuel Ã¢ge as-tu?entrez un numÃ©ro
+1.4: Best Practices for Translating Your Project
+1.4.1: Only Update Translations For Changes
+When you upload a new translation file it overwrites any previous translations that contain the same original text as you new file. We recommended that you only upload new translations or translation changes.
+To do this, strip the file down, so that it only contains the column header labels and rows with the new/changed translations. See the example below:
+Once you've completed updating the XLATE file, save it, and upload it to the system by using the Import feature in the Language Manager.
+1.4.2: Don't Change Element Resources After Adding Translations
+Once you've uploaded and translated your project, it's important that the element resources remain the same. The language files (e.g. french.xml) reference each element by their unique resource name (e.g. Q1,r1,cdata).
+If you change a resource name, then you need to manually update the translation file and use the Language Manager to import the changes into your survey or use the Edit Translations function in the Language Manager.
+2: Learn More
+Testing Survey Translations

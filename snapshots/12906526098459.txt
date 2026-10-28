@@ -1,0 +1,36 @@
+Title: 153.1 Release Notes
+Release Date: February 14, 2023
+Release Version: 153.01
+New Features
+Portal
+The survey audit log now records when a survey is abandoned. Survey audit logs are stored indefinitely even when the survey is abandoned or archived.
+Navigation Menu
+Users with Edit permissions or higher for a survey can now access that survey's Audit Log via Report -> More Tools, instead of via Report (2010).
+Added new option “Simulated Data History” in the Preview menu to access SST data run details. Users must have Survey edit permissions or higher.
+Usage Statistics
+Added the survey scaling attribute to the Light Scoreboard's Most Intensive Surveys table and renamed the column heading "Top 5%" to "Slowest 5%" for clarity.
+Learn More: Evaluating Recent Survey Performance
+Survey
+Dynamic Questions
+Added support for open-end answers in Rank Sort elements.
+Learn More: Rank Sort Element
+Responses
+Campaign Manager
+All email sends now use SendGrid for delivery.
+Reporting
+Removed reports available elsewhere in Forsta Surveys from the "Other Reports" menu in Report (2010).
+Programming and Tools
+API
+Added new API endpoint (/api/v1/rh/users/{id}/audit-log) to retrieve a user's audit log.
+Added new API endpoint (/api/v1/rh/surveys/{survey}/audit-log) to retrieve a survey's audit log.
+Bug Fixes
+Survey
+For compat 153 surveys having questions with grouped rows, running simulated data or launching the project no longer causes a fatal error.
+Participant View
+In survey compat 152+, selecting a noanswer row in a number question now clears other answers as expected.
+Responses
+View and Edit Responses
+Non-ASCII characters in the Data Edit summary page no longer cause a fatal error.
+Reporting
+Data Downloads
+SPSS data file generation with multiple segments no longer duplicates records in the Total segment.

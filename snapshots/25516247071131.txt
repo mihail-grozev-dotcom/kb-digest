@@ -1,0 +1,27 @@
+Title: 153.31 Release Notes
+Release Date: May 7, 2024
+Release Version: 153.31
+New Features
+Survey
+Dynamic Questions
+The new version (2) of Date Picker features improved accessibility, support for additional languages, and a new attribute suggestedDate.
+Learn More: Date Picker Element
+Language Manager
+Uzbek is now available as a survey language.
+Learn More: Available Survey Languages
+The survey:view permission set now also provides view only access to Language Manager.
+Learn More: Language Manager Overview
+Programming and Tools
+API
+API documentation for the import survey data endpoint now correctly shows the expected value type for question indices.
+Campaign Manager endpoints' successful responses now include a new value: oneClickOptOutURL.
+Learn More: Forsta Surveys API - getSurveyCampaign
+Bug Fixes
+Survey
+Integration
+The kinesis:sid for surveys with a Kinesis panel samplesource is no longer adjusted when the survey is updated using a non-standard temporary file.
+Participant View
+Participants returning to a survey using a signed link can now choose to start the survey from the beginning, without errors.
+Responses
+Campaign Manager
+Campaign Manager and bulk now support sending from email addresses that differ only in capitalization from the configured domains.

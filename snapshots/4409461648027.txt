@@ -1,0 +1,8 @@
+Title: Customizing Dynamic Proxies
+Overview
+Decipher allows users to setup and use a "proxy remap", or dynamic proxy configuration, to work around country-specific firewalls. The proxy remap is enabled at the server level and is used as a content distribution network (CDN).
+Enabling the Remap
+To enable a proxy remap, add the following to your server's data/config.py file:
+ProxyRemap = { "proxy.com" : "proxy-cdn.com"}
+Once this is added, proxy-cdn.com will automatically be used as the CDN for any survey requests sent via proxy.com. This replaces the normal “server.surveyfiles.com” CDN.
+Note: This is particularly useful if a custom CDN (e.g., specific to your country) has higher performance for you as compared to the standard Cloudflare CDN.

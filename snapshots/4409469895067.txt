@@ -1,0 +1,63 @@
+Title: Managing Device Compatibility Warnings
+Some mobile devices cannot display certain types of survey elements due to the limitations of their user interface. To ensure that your survey functions correctly for all participants, Decipher provides device feedback that notifies you when elements in your survey are incompatible with the devices you have allowed for the project.
+The device feedback system also provides options to correct compatibility issues.
+Note: When you start a new survey, certain devices are automatically selected for your project. You should check the project settings to verify which devices participants are allowed to use to complete the survey.
+Project Settings Summary
+Device Settings
+1: Viewing Device Feedback Notifications
+You may see device feedback notifications when:
+Adding an element to your survey from the Surqvey Elements menu in the Survey Editor.
+Editing your survey in the Survey Editor (warnings display in both the element tree and staging area).
+Viewing the "Device Settings" category of the Project Settings Summary.
+Launching your survey.
+Tip: Shell users will view a list of labels for incompatible elements but can continue the launch process, if desired.
+Note: All device feedback notifications must be resolved before you can launch your survey. See Managing Device Compatibility Warnings for more information.
+1.1: Survey Elements Menu
+The Survey Elements menu opens when adding elements to your survey in the Survey Editor using "+ Element".
+You can use the "Show" filters on the left to control the elements displayed on the right to ensure that you are adding only elements that are compatible with your project settings. The following filter options are available:
+Show All Elements: Displays all available elements regardless of their compatibility with your project settings. Elements that are incompatible are highlighted in red as you mouse over them. The table below the element description provides compatibility details.
+Only Show Compatible Elements: Displays only compatible elements while hiding those that are incompatible based on your project settings. Note that compatible elements may work on some mobile devices but are not specifically optimized and may incur horizontal scrolling. While you can use compatible elements on mobile-enabled surveys, participants on mobile devices may have difficulty answering these questions.
+Only Show Optimized Elements: Displays only elements that have been optimized based on the allowed devices. Content may re-arrange to display in proportion with smaller screens and includes only elements that are optimized for touch-based input.
+Note: To avoid adding incompatible elements to your survey, set the Survey Elements menu to display only compatible or optimized elements.
+If you want to add an incompatible element to your survey, click the "Incompatible Element - Insert Anyway?" button on the bottom right of the element. See Managing Device Compatibility Warnings to learn how to resolve further incompatibility warnings.
+1.2: Element Tree and Staging Area
+If you have added an incompatible element to your survey, device feedback warnings display in both the element tree and staging area of the Survey Editor. Any element displayed in red in the element tree is incompatible with your project settings. You can click an incompatible element in the element tree to open it in the staging area and resolve the incompatibility warning.
+The following options are available for resolving incompatibility warnings:
+Restrict to Compatible Devices: Adds skip logic to the question, so that only participants using compatible devices see the question.
+Open Project Settings: Opens the Project Settings Summary, where you can adjust what devices are allowed for the survey.
+1.3: Device Settings
+Device notification warnings also display in the "Device Settings" window of your Project Settings Summary. Any devices that are incompatible with elements that you added are highlighted in red.
+1.4: Launch Warning
+Device notification warnings are also displayed in the launcher window if you attempt to launch your survey with incompatible elements. The following options are available to help you resolve any incompatibilities.
+Go edit survey content: Opens the Survey Editor, where you can resolve the device notification warnings.
+Open project settings: Opens Project Settings Summary, where you can make adjustments to the project's allowed devices.
+2: Resolving Device Compatibility Warnings
+You can use any of the following methods to resolve the compatibility warnings so you can launch your survey.
+2.1: Change Your Device Settings
+Modify the "Device Settings" category of the Project Settings Summary to include only those devices that are compatible with the survey's included elements.
+To change your device settings:
+1. Open the "Device Settings" category of your Project Settings Summary.
+2. Uncheck the boxes for any devices displayed in red.
+3. Click "Save".
+Once saved, the unselected devices are no longer allowed for the survey and their associated device feedback warnings are automatically cleared.
+2.2: Substitute Compatible Elements
+Substitute compatible elements for incompatible elements to ensure that all participants are allowed to complete the survey with mobile devices.
+To substitute compatible elements:
+1. In the Survey Editor, delete any elements highlighted in red in the element tree.
+2. Click the "+ Element" button to open the Survey Elements menu.
+3. Select the "Only Show Compatible Elements" or "Only Show Optimized Elements" filters and select a substitution.
+4. Repeat these steps to make substitutions for any additional incompatible elements.
+Once saved, the incompatible elements are removed and their associated device feedback warnings are automatically cleared.
+2.3: Add Logic to Incompatible Element(s)
+Logic can be added to an incompatible element so that that question gets skipped for participants using incompatible devices.
+Tip: You might consider offering the participants who skip a question a different version of the question if that is an acceptable solution.
+To add logic to incompatible element(s):
+1. In the Survey Editor, click an incompatible element in the element tree.
+2. Click "Restrict to Compatible Devices".
+This restricts the question to only participants using compatible devices. Participants using incompatible devices will not see this question.
+Skip logic is automatically added to the question and the device notification warning is cleared for the incompatible element.
+3. Repeat these steps to add skip logic for any additional incompatible elements.
+Note: Logic detection makes a best effort to add logic to skip an incompatible question. However, conflicts may occur if you additionally have added your own question logic. To avoid any issues during field, make sure that you thoroughly test your survey on all allowed devices prior to launch.
+3: Delete the Incompatible Element(s)
+To delete the incompatible element(s) in your survey, right-click each incompatible element (highlighted in red) in the element tree and select "Delete Element".
+Once all incompatible elements have been removed from your survey, the associated device feedback warnings are automatically cleared.

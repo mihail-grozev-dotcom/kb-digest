@@ -1,0 +1,43 @@
+Title: 151.1 Release Notes
+Release Date: August 30, 2022
+Release Version: 151.1
+New Features
+Company Settings
+Added a company audit log within the company settings page, visible in Company Changes log. This audit log can only be viewed by staff / supervisors.
+This new log will include:
+Renaming a company
+Changing the company's domain, security, or archival settings
+Two company entry logs when a user is reassigned from one company to another
+Creation of a user via the web UI or the umanage shell script
+Deactivations of users through the web UI, API, or umanage shell script (temporary security lockouts are not included)
+Granting of the supervisor role to a user
+Portal
+Updated the system that manages encryption of archived surveys and all email lists. This system is now fully managed and monitored by the operations team, and all previous notifications that affect clients have been removed. (Example: messages like “Notice - Server Reboot”)
+Participant Sources
+Added support for Forsta Digital Feedback. Utilize this tool to add a highly configurable intercept page on any of your websites. After adding the script to your site, you can control everything about the intercept straight from your Digital Feedback control panel. The <style> tag which allows you to override styles, now allows override of sys.thankspage style.
+Sample Marketplace
+Updated Sample Marketplace database to include qualified counts when a purchased sample is paused.
+Campaign Manager
+Added a new template manager where you can edit, duplicate, delete, and create email templates from scratch, saving you time and effort.
+Bug Fixes
+Portal
+Fixed the positioning of the tooltip validation message, which appears when trying to add invalid characters to a custom survey path.
+Fixed an error where thecompany selection when creating a new user was sometimes not respected.
+Survey
+Survey Editor
+Fixed the broken "Learn More" links in Survey Editor's Project Settings.
+Logic Nodes
+Fixed a bug with the email logic node that caused an error when python variable interpolation was used.
+Dynamic Questions
+Fixed an error where a survey’s primary language was being shown in the language selector question even when added to the unused language list.
+Fixed an error where hitting space bar on an open-ended Button Single Select or Button Multi Select question would hide the previously typed answer.
+Fixed a highlighting error on Button Multi-select and Single-select Grid questions with grouped rows. When a participant tries to advance without selecting an answer, the error highlighting is removed accordingly when a selection is made.
+Participant Sources
+Updated the CAPI knowledge base link in the CAPI participant source tile to reflect the recent rebranding.
+Campaign Manager
+Fixed an issue with the email preview in campaign manager where the global opt-out link was not signed.
+Fixed a bug in the campaign manager email editor where the survey link was not being considered when determining if the email was fully branded.
+Fixed a bug in the campaign manager email editor where the content of the initial campaign email was being considered during the validation of the reminder email.
+Reporting
+Data Downloads
+The “Deleted participants” report in Reporting 2010 no longer shows up for Delphi surveys (which do not support this report).

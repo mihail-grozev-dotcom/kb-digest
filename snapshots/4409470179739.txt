@@ -1,0 +1,35 @@
+Title: Email Send Usage Specifications
+The following sections outline Forsta's usage specifications for email sends.
+1: Send Delays
+All new sends are delayed by 20 minutes to allow time for you to cancel the scheduled send. Contacts in the seed list (test list) will receive the email immediately to allow time to preview the email prior to the 20-minute deadline. An email send can only be canceled during the 20-minute delay and a countdown timer is displayed in the Campaign Manager.
+Note: For surveys using the ADB feature (ADB=1), survey links in Campaign Manager seed email sends will only open the survey if those recipients can test the survey (that is, the recipient is logged in, or the survey is in testing mode).
+2: Forced Soft Launch
+A maximum of 10,000 invites is allowed for a project during an initial send. If a list contains more than 10,000 invites, the remaining contacts are held for a 12-hour spam assessment delay. After the 12-hour delay, if spam rates are within acceptable levels, then the remainder of the invites over 10,000 are released. Reminders are subject to the initial 20-minute delay but are not restricted by the 12-hour spam assessment.
+3: Spam Lock
+Internet Service Providers generally require spam complaints to be held at 0.1% (measured as the number of complaints per send). Forsta allows up to 1% of spam complaints per send. If more than three spam complaints arrive, and they exceed 1% of the list, further emails from that send are blocked.
+Exceeding the 1% threshold could indicate one of the following:
+Poorly designed email content: You are not telling the user how you got their email, and / or the user does not know you or your brand well enough.
+Poor incentives: The survey is of no interest to the user or may look like a scam. This especially applies to online surveys, where money is involved.
+Bad emails: Have you personally gathered the email addresses, and used double-opt-in to verify your recipients' identities / get their consent to marketing emails?
+Obsolete emails: If it has been more than a year since the double opt-in took place, recipients might not remember consenting to participate in your research campaign.
+Once a list is locked during the initial "soft send" or full send, no further sends or reminders from it will be possible.
+If three sends exceed your allotted 1% spam complaints in a single month, your account will be permanently blocked for any further sends. Qualifying to be unblocked requires further discussion in terms of usage, along with guarantees in updated processes and / or list management. It is at Forsta’s sole discretion if your account may be unblocked or not.
+4: From Addresses
+When delivering mail on a client's behalf, it is important that the messages you put their name on actually come from them. For this reason, only sends from domains that are associated with your account are allowed. Using a domain other than decipherinc.com requires a CNAME or ARECORD be setup to allow the proper routing.
+You may send from the following types of "from" addresses:
+Decipher's default invite address (invite@decipherinc.com).
+Any address on a domain that has been set up in advance to be an email send domain alias for Decipher.
+Note: To use a different from address other than invite@decipherinc.com, please contact your Forsta customer success or account manager. Additional fees may apply.
+Currently, there are no restrictions on the "Reply-To" email address.
+5: File Allowances
+Decipher accepts lists in Excel (.xls and .xlsx), tab-delimited (.txt), and comma-seperated (.csv) formats.
+The first row must contain headers with the name of each column. There must be one "email" column.
+Each row must have the same number of columns.
+Each row must have a valid email address in the "email" column. No two rows should contain the same email address.
+Fields may not contain newlines.
+If there is a column named "source", it will be renamed to "source1". Decipher generates new values of "source" for the system.
+6: Opt-In Lists
+Invites sent from Decipher require that the list of users be opted-in. To be opted-in the participant must have agreed explicitly that the client has the right to contact them via email for marketing or research purposes. Sending invites within Decipher with lists that are non-opt-in, including purchases lists of email addresses is not allowed, and may lead to permanent blocking of Campaign Manager use.
+7: Branded vs. Unbranded
+Branded sends explicitly state who the sender is, making it clear where the participant's email address would have been provided from. For example, in a branded email from Toyota, the invite has a Toyota logo and CNAME, and says "This is a Toyota survey about vehicle purchasing habits".
+Alternatively, the invite that is unbranded might have no logo and use a Decipher iURL or a client URL that is not the source of the participant. So an unbranded email from Toyota would have a Decipher logo and say "This is a survey about your vehicle purchasing habits". Since the list still comes from Toyota, but the participant does not know this, he / she is more likely to click spam. Both Branded and Unbranded sends are restricted to the spam standards as described within this document.

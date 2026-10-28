@@ -1,0 +1,194 @@
+Title: Dynamic Question Versioning
+1: Latest Versions
+The latest version for a dynamic question should always be used when converting a regular question to a dynamic question through XML. Converting the question will require adding uses="style.version", where style is the question style name and version is the number of the latest version of that style.
+The table below contains the latest versions for supported dynamic question styles. The version number listed under "LIVE Version" is the latest and preferred version for each style. All versions before the LIVE version are available for use but will support fewer features.
+Question Style
+XML Style Name
+LIVE Version
+XML Reference
+Smartphone / Tablet Optimized?
+Audio Player
+audio
+4
+audio.4
+Yes / Yes
+Autosum
+autosum
+6
+autosum.6
+Yes / Yes
+Autosuggest
+autosuggest
+4
+autosuggest.4
+Yes / Yes
+Button Rating
+atmrating
+7
+atmrating.7
+Yes / Yes
+Button Select
+atm1d
+11
+atm1d.11
+Yes / Yes
+Button Select Grid
+atmtable
+7
+atmtable.7
+No / Yes
+Card Sort
+cardsort
+11
+cardsort.11
+Yes / Yes
+Card Rating
+cardrating
+1
+cardrating.1
+Yes / Yes
+Date Picker
+fvdatepicker
+3
+fvdatepicker.3
+No / No
+Form Image Replacement
+fir
+2
+fir.2
+Yes / Yes
+Grid Separator
+separator
+5
+separator.5
+No / Yes
+Image Map
+imgmap
+6
+imgmap.6
+No / Yes
+Media Evaluator
+bcme
+8
+bcme.8
+No / Yes
+Media Testimonial
+mediatestimonial
+2
+mediatestimonial.2
+Yes / Yes
+Multiple Column Layout
+multicol
+7
+multicol.7
+Yes / Yes
+One Row At A Time
+onerowatatime
+4
+onerowatatime.4
+No / Yes
+Page Timer
+timertest
+4
+timertest.4
+Yes / Yes
+Page Turner
+pageturner
+5
+pageturner.5
+No / Yes
+Rank Sort
+ranksort
+10
+ranksort.10
+Yes / Yes
+Rating Scale
+ratingscale
+7
+ratingscale.7
+No / Yes
+Slider Decimal
+sliderdecimal
+4
+sliderdecimal.4
+Yes / Yes
+Slider
+slidernumber
+7
+slidernumber.7
+Yes / Yes
+Slider Rating
+sliderpoints
+4
+sliderpoints.4
+Yes / Yes
+Shopping Cart
+shoppingcart
+3
+shoppingcart.3
+Yes / Yes
+Star Rating
+starrating
+6
+starrating.6
+Yes / Yes
+Text Highlighter
+hottext
+4
+hottext.4
+No / Yes
+This or That
+leftright
+1
+leftright.1
+Yes / Yes
+Legacy Video Player
+bcvideo
+5
+bcvideo.5
+Yes / Yes
+Video Player
+videoplayer
+4
+videoplayer.4
+Yes / Yes
+Video Player (YouTube/Vimeo)
+videoembed
+5
+videoembed.5
+Yes / Yes
+Video Testimonial
+(deprecated; use Media Testimonial)
+videocapture
+(deprecated; use Media Testimonial)
+3
+videocapture.3
+Yes / Yes
+Note: When a new survey compatibility level is introduced, the dynamic questions available in the Element Library will reflect only the most recent version. Questions from earlier compatibility levels will no longer appear in the list. Your existing survey will continue to function as expected. However, to access and select dynamic questions from the Element Library, you will need to update your survey to the latest compatibility level.
+2: Upgrading to the Latest Version
+Using multiple versions of a dynamic question style will result in a fatal error. If you need to upgrade a style from a previous version (for example, cardsort.9) to the most recent version (cardsort.10), you have two options:
+Reset the styles for all older versions to the "Basic" style using the Survey Editor.
+Use the XML Editor to manually update the question's version number.
+3: Resetting Old Styles
+To reset the style using the Survey Editor, select "Update Styling" from the "..." menu at the top right corner of the question in the staging area. In the "Question Display Options" window, select "Basic" from the drop-down menu and then click the "Save and Close" button.
+Do this for each question using the older version.
+4: Updating the Question Version
+The second approach requires you to enter the XML Editor and manually update the question's version number.
+Click here to learn more: Editing XML
+First locate all the questions which use an older version and change the version number for these to the most up-to-date, LIVE version.
+Tip: You can use the editor's Find & Replace tool ( CTRL+SHIFT+F ) to help you find and update version numbers.
+For example, given the question below that uses an old version of the Form Image Replacement question:
+<checkbox label="Q1" builder:styleManagerName="fir.1" uses="fir.1">
+<title>Please check all that apply</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</checkbox>
+You would update both attributes that reference "fir.1" to the LIVE version, "fir.2":
+<checkbox label="Q1" builder:styleManagerName="fir.2" uses="fir.2">
+<title>Please check all that apply</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</checkbox>
+Note: Newer versions of the dynamic question style may not include attributes present in older versions, so an error may occur if unknown attributes still exist. You will need to remove any old, outdated attributes before continuing.

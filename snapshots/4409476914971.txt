@@ -1,0 +1,161 @@
+Title: Bulk Prepare Technical Details
+Requires Decipher Cloud
+Tip: For full training and a walkthrough on sending emails via the shell, see Email Sends with Bulk.
+The bulk-prepare command is used when you want to create sample list files for email sends. It makes it easy to add unique and static variables to each person in a sample file.
+By default, running bulk-prepare will output a file named "list-source.txt" and append a unique, 10-digit alphanumeric source variable to the end of each row in the file. A Python script named "python.py" can be used to add conditions and logic for bulk-prepare's processing.
+If all you need to do is generate a file with N unique identifiers, bulk-prepare can do that too.
+Note: The head command used below is a Unix command like cat and outputs the first 10 lines of a file.
+1: Bulk-Prepare Options
+Given the following sample file named "list-main.txt":
+email name dept uid
+jdoe@abc.com John Doe 1 x8916
+jdee@def.com Jane Dee 3 x9912
+abe@wh.gov Abe. Lincoln 10 x1337
+neil@cosmos.edu Neil D. Tyson 1 x0001
+Run this command:
+bulk-prepare list-main.txt
+The following file named "list-source.txt" is generated.
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 eKs7yZ0yh2
+jdee@def.com Jane Dee 3 x9912 alL02nz87a
+abe@wh.gov Abe. Lincoln 10 x1337 l9h4MNzh2t
+neil@cosmos.edu Neil D. Tyson 1 x0001 qwWe1Xgh2L
+The bulk-prepare command is equipped with many more options to perform additional tasks.
+1.1: -h: Display Usage & Options
+Use the -h option to view the bulk-prepare syntax, options, and usage.
+[user@server]$ bulk-prepare -h
+Usage:
+bulk-prepare -i 5000
+bulk-prepare -a _1 -i 5000
+bulk-prepare -p 1_ <fname>
+bulk-prepare <fname>
+bulk-prepare <fname1> <fname2> <fname3>
+bulk-prepare -s <fname1> <fname2> <fname3>
+Options:
+-h, --help show this help message and exit
+-v Set extra variables to add to list
+-f FILENAME, --file=FILENAME
+Assign a file to write to
+-i NUMBER_OF_IDS Generates a user supplied number of unique IDs
+-a STRING_TO_APPEND Appends user supplied string to IDs
+-p STRING_TO_PREPEND Prepends user supplied string to IDs
+-s Creates list.txt file that contains columns specified
+by user
+-l ID_LENGTH Assign lengh of unique ID
+-d, --debug Turn on debug mode
+1.2: -v: Adding Static Variables
+The source variable is always added when running bulk-prepare. You can add additional static variables by using the -v option.
+[user@server]$ bulk-prepare -v list-main.txt:list=5:batch=1:co=us
+[user@server]$ head list-source.txt
+email name dept uid list batch co source
+jdoe@abc.com John Doe 1 x8916 5 1 us ySLCBna5Ai
+jdee@def.com Jane Dee 3 x9912 5 1 us uhFQLb58KW
+abe@wh.gov Abe. Lincoln 10 x1337 5 1 us EGXzVeGu6W
+neil@cosmos.edu Neil D. Tyson 1 x0001 5 1 us 2V0ECaK2CZ
+1.3: -f : Changing the Output Filename
+Instead of the default filename, "list-source.txt", you can change the output filename with the -f option.
+[user@server]$ bulk-prepare list-main.txt -f list-us.txt
+[user@server]$ head list-us.txt
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 eKs7yZ0yh2
+jdee@def.com Jane Dee 3 x9912 alL02nz87a
+abe@wh.gov Abe. Lincoln 10 x1337 l9h4MNzh2t
+neil@cosmos.edu Neil D. Tyson 1 x0001 qwWe1Xgh2L
+1.4: -i :Generating an invited.txt File
+Use the -i option to create a file named "invited.txt" with N number of unique IDs.
+[user@server]$ bulk-prepare -i 10
+Creating 10 unique IDs
+[user@server]$ head invited.txt
+PtITqT4NUn
+i88LL0fUld
+6oPllFuyUu
+WPl4t6S6ZZ
+vwtf1GP6hR
+inK3Mzq3WP
+tJED6vjzhw
+tW4BtV5QbV
+WG0vJZGCFT
+8X9RYffgVo
+1.5: -a : Appending a Common String to Unique Source
+You can append additional characters to each unique source value with the -a option.
+[user@server]$ bulk-prepare -a _123 list-main.txt
+[user@server]$ head list-source.txt
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 eKs7yZ0yh2_123
+jdee@def.com Jane Dee 3 x9912 alL02nz87a_123
+abe@wh.gov Abe. Lincoln 10 x1337 l9h4MNzh2t_123
+neil@cosmos.edu Neil D. Tyson 1 x0001 qwWe1Xgh2L_123
+1.6: -p : Prepending a Common String to Unique Source
+You can prepend additional characters to each unique source value with the -p option.
+[user@server]$ bulk-prepare -p xx1 list-main.txt
+[user@server]$ head list-source.txt
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 xx1eKs7yZ0yh2
+jdee@def.com Jane Dee 3 x9912 xx1alL02nz87a
+abe@wh.gov Abe. Lincoln 10 x1337 xx1l9h4MNzh2t
+neil@cosmos.edu Neil D. Tyson 1 x0001 xx1qwWe1Xgh2L
+1.7: -l : Setting the Length of the Unique Source
+By default, each unique source value generated is of length 10. You can override this number with the -l option.
+[user@server]$ bulk-prepare -l 3 list-main.txt
+[user@server]$ head list-source.txt
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 s7y
+jdee@def.com Jane Dee 3 x9912 L02
+abe@wh.gov Abe. Lincoln 10 x1337 9h4
+neil@cosmos.edu Neil D. Tyson 1 x0001 qwW
+1.8: -s : Selecting Which Variables to Keep / Remove
+It is a best practice to only include the variables needed for your email invitation in each sample file. To control which columns / variables are to be kept when running bulk-prepare, use the -s option.
+Note: This will automatically generate three new files: "list.txt", "invited.txt", and "list-source.txt".
+[user@server]$ bulk-prepare -s list-main.txt
+1) email
+2) name
+3) dept
+4) uid
+5) source
+You can now select the variables you would like to keep as well as the order you would like them to appear.
+Enter the numbers that correspond to the variables you want to keep, in the order you want them to appear,
+separated by commas (i.e. 4, 2, 3, 1): 1,2,5
+This generates the following files:
+1.8.1: list.txt
+This is the file you should use for sending email.
+[user@server]$ head list.txt
+email name source
+jdoe@abc.com John Doe pwXOLgdU1F
+jdee@def.com Jane Dee Nz83h75Snx
+abe@wh.gov Abe. Lincoln S7BpBzgX3h
+neil@cosmos.edu Neil D. Tyson 3tlpuWLrI5
+1.8.2: list-source.txt
+Use this file for appending data to your survey.
+[user@server]$ head list-source.txt
+email name dept uid source
+jdoe@abc.com John Doe 1 x8916 pwXOLgdU1F
+jdee@def.com Jane Dee 3 x9912 Nz83h75Snx
+abe@wh.gov Abe. Lincoln 10 x1337 S7BpBzgX3h
+neil@cosmos.edu Neil D. Tyson 1 x0001 3tlpuWLrI5
+1.8.3: invited.txt
+Use this file to lock down your survey by the unique values.
+Tip: If you have multiple lists, you will need to concatenate all of the unique source values into a single "invited.txt" file.
+[user@server]$ head invited.txt
+Nz83h75Snx
+pwXOLgdU1F
+S7BpBzgX3h
+3tlpuWLrI5
+2: Controlling Bulk-Prepare Processing with prepare.py
+Optionally, you can create a file named "prepare.py" to utilize Python logic to conditionally add or create new variables for each record.
+For example, given the following "prepare.py" file:
+# SKIPS ANY RECORDS WITHOUT AN EMAIL ADDRESS
+assert email != "", "MISSING EMAIL FOR {}".format(source)
+# CREATES A NEW LIST VARIABLE DEPENDING ON THE
+# VALUE FOR THE dept COLUMN
+if dept == 1:
+row.list = 1
+else:
+row.list = 2
+Running bulk-prepare will generate the following new output:
+[user@server]$ bulk-prepare list-main.txt
+[user@server]$ head list-source.txt
+email name dept uid source list
+jdoe@abc.com John Doe 1 x8916 x93m4s6zoS 1
+jdee@def.com Jane Dee 3 x9912 WadJF8qvzk 2
+abe@wh.gov Abe. Lincoln 10 x1337 ZSKFqd4nfh 2
+neil@cosmos.edu Neil D. Tyson 1 x0001 Si1Rmx3A2B 1

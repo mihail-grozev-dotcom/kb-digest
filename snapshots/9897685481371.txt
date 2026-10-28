@@ -1,0 +1,128 @@
+Title: Decipher (previously Decipher) M32 Technical Release Notes
+Release Date: March 8, 2016
+Mission Statement
+New survey compat level is 132. Use compat="132" for all new surveys. This enables:
+<span> with corresponding class ("pre-text"/"post-text") when ss:preText or ss:postText are used
+Participant View - removal of select2 styling for <select> elements
+New Features
+Card Rating
+This new DQ utilizes cards to rate elements utilizing a single select form. To interact with this question, the participant views the cards one at a time and selects one button below to rate (or categorize) the card. Once rated, the carousel of cards automatically advances to display the next card.
+View/Edit Responses
+The View/Edit Responses Report allows you to view and edit the responses of every participant in a survey. Edits can be performed on individuals or groups of participants. The View/Edit Responses Report provides tools for filtering and searching based on survey variables to make finding participants easy.
+Reporting
+Crosstabs
+#21560: When Total(Net) segment is added to a group, it displays the count/percentages within the group
+#18274: Show sigtests in Mean Summary Tables in Crosstabs.
+#21858: Numeric questions include a minimum and maximum stat
+#21320: A new logic option "Has a Value" is available for numeric questions (when applicable). In xml, this is the same as using questionLabel.val is not None.
+Dashboard
+#21696: Place an image inside a pie chart and dynamically show/hide it based on a survey variable.
+#21766: Scatter Plots and Bubble charts can be centered as it scales with the x/y axis point 0,0.
+#21750: Charts can have a prefix and suffix string added to the tooltip.
+#21764: Use Exclusive on local filters so that filter sections are displayed as a radio button.
+#21698: Use FloatTable to display “net” stats above column charts.
+#21796: dataprefix support for chart and table values. datapostfix support for table values.
+#21808: Use dataformat currency to format table values as currency.
+#21033: Specify a list of words to filter from the word cloud using cloud.filter.
+Survey
+Survey Builder
+#19945: Languages can now be set using the logic gui as well as quick quotas. These options are available only when 1 or more languages are added via the language manager.
+#21852: New Language: Khmer
+Participant View
+#21768: Added device property "family"
+#21790: When a question contains Pre-Text or Post-Text (ss:preText/ss:postText) the content is wrapped in a <span> and corresponding class ("pre-text"/"post-text") is added.
+#21677 Replaced Select2 plugin to replace with Normal HTML drop-down. Allowing us to become more ADA compliant in and provide a better response view experience
+XML Editor
+#20659: Removal of auto indenting
+Portal
+#21876: A new walkthrough video
+Programming & Tools
+#21759: survey.log add information about autosave restoring and UUID now contains a time stamp.
+#21774: Added a -d option to the maketoken script so you can specify the number of days a token is active (default is 7).
+#21815: Integrate G-Lock API with bulk script to test a email for deliverability/SPAM.
+#21819: Added email.1 logic node to the logic library. The email.1 logic node sends out a single email.
+#21964: Added support for using sendgrid with bulk.
+Bug Fixes
+Survey Builder
+#21739: Fixed issue in Library where first answer elements were not selected when importing
+#21771: Library API: Added check for at least one node
+#21780: Fixed issue with Library not stripping xml declaration for preview
+#21767: Fixes issue in element library where saving similarly named images aren’t properly renamed
+#21754: Fixed meta tags
+#21702: RTE add <br/> instead of using <p>
+#6693: Fixed fatal error when switching to number question type
+#17909: Builder no longer strips rowConds referencing multiple questions.
+#21890: Fixes issue were error messages are out of order when using below=””
+#14534: Fixes an issue where builder would move some tags outside of blocks
+#21813: Fixes an issue when the trackVars="checkbox" created an error
+XML Editor
+#10011: Fixed issue with ids being stripped from html tags
+Simulated Data
+#5068: Fixed an issue where simulated data would fail if "minRanks" was incorrect
+#21463: Fixed an issue where simulated data would fail if 'unique' was used
+Participant View
+#21752: Fixed "One Row at a Time" issue in compat 131
+#21784: Fixed "One Row at a Time" issue with groups
+#21806: fixed issue with FIR on android
+#21069: Fixes issues for Open Ends not been highlights when errors occurred
+#21859: Fixes an issue that let users enter a survey with invalid variables.
+#21884: Fixed an issue with participant view grid did not break down.
+Theme Editor
+#21720: Fixed issue with preview not loading when double clicking a survey preview option
+#21728: Fixed various issues with undoing, canceling and selecting colors
+#21738: Fixes issue where a system theme name could be changed
+#21712: Fixed issue with theme preview not matching selected theme
+Survey Testing Tools
+#21831: Fixed issue with spell check hiding misspelled words in textarea question.
+SPSS Importer
+#21095: Fixed issue with date variables being imported as "UNKNOWN" instead of text
+Campaign Manager
+#18593: Fixed issue with foreground color being lost when editing source code
+#21897: Fixed issue where scheduling a send at noon would not schedule correctly
+#21928: Fixed issue where reminder sends were unable to be scheduled due to JS error
+Dashboard
+#21765: Fixes issue with legend not matching bar chart when displaying negative values
+#21755: Fixed issue with numeric rows and transpose having incorrect base
+#21775: Fixed issue with nets not working with rows that use cond
+#21776: Fixed issue with exports not showing negative bar charts correctly
+#21814: Fixed issue with PDF exports showing overlapping negative values
+#21696: Fixed issue with pie charts not working in compat 1
+#21678: Fixed an issue where the export icons showing on charts without tabs [RWR - 02/23/2016]
+Crosstabs
+#21510: Fixed issue with editing Total crosstab
+#21465: Fixed issue where you could not remove a table filter in Crosstabs
+#21842: Line Chart data labels are rounded and include %
+#21880: Remove stat options in table editor for textarea questions
+#21595: Added low sample indicators into Excel export
+#21902: Fixed issue where stat testing was still calculated when disabled in UI
+Responses Report
+#21919: Fixed an issue where viewing individual responses for 2d checkbox questions would display incorrectly
+Downloads
+#11365: Fixed a custom export issue when it had too many columns
+#21948: Fixed a custom export issue where it was showing variables hidden from the datamap
+Portal
+#21786: Do not allow project paths with leading slash
+#21741: Fixed issue with new project customized path not working
+#21786: Fixed bug where custom project path could lead with a slash
+#21707: Old KB link is removed and Helpdesk target is updated too
+Programming Tools
+#20892: Fixed issue with generate where xlsx output a blank sheet
+#21730 Fixed issue with logic nodes closing database
+21789: Fixed a bug where bulk would schedule a send in the past
+#21801: Fixed issue with logic nodes not being scheduled
+#21632: Fixed a bug where copy-survey would update a questions <alt> tag
+#19135: Fixed an issue where [rel] breaks on change manager edit
+#21840: Fixed issue where logic node clear.1 did not clear variables for terminated participants
+#21642: Remove count will now update for “optout” surveys as well as “remove”
+#21870: Fixes an issue where the layout export script would throw errors when providing a path argument
+Architecture/DevTools
+#21856: Add high-end unicode character support for surveys/../data/edit
+#21918: Improve logging when data is truncated due to survey changes
+#21921: Data will no longer be wiped in live surveys when there is a data format mismatch and a complete happens (This change doesn’t affect dev/testing state)
+Misc / Custom Projects
+#21461: Single sign on (SSO) so users can leave feedback in the new KB system without logging in
+Developer Features
+Devops Tools
+#19316: Adds new decorator to limit the number of accepted requests per hour -- this is currently applied to all /support requests, limiting 5 GET/POST requests each per hour per IP address -- when the limit is exceeded, the following error is returned:
+Your browser has sent too many requests. This action has been logged.
+#21800: Appropriately handle requests containing an invalid IP

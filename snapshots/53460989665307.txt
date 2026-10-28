@@ -1,0 +1,10 @@
+Title: 155.3 Release Notes
+Release Date: July 14, 2026
+Release Version: 155.3
+Bug Fixes
+Survey
+Participant View
+An issue with the link in the timeout redirect text when Hungarian language was applied has been resolved.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+An issue preventing Cint Secure Sample participants with an invalid status from successfully sending their status to Cint has been resolved.

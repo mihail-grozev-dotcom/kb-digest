@@ -1,0 +1,59 @@
+Title: Assigning Interviewers to an Offline Survey
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+Administering a live offline survey requires that a user has interviewer permission and access to the survey via the Decipher CAPI App. Once you have prepared your offline survey, you will need to assign interviewers to the project and get them setup with the Decipher CAPI app.
+Note: Once assigned to a project, interviewers can be managed directly from the "Offline" tab of the project's Response Summary.
+1: Adding Decipher Users as Interviewers
+There are two ways to assign a Decipher user interviewer permission: by adding them to the project with "Interviewer Only" permission, or by adding them as an interviewer within the "Offline" tab in the project's Response Summary.
+1.1: Via the Portal
+Users with admin:full access can add Decipher users as interviewers via the "Users" menu within their project Portal. To add a Decipher user as an interviewer from the Portal, first click the "Users" tab at the top right. Then click "+ Add User / Group":
+Then select the user you would like to make an interviewer from the "User / User Group" list:
+In the 'Add Users' menu, select "Interviewer Only" from the "Permission Level" drop-down menu:
+Then click "Add to Project":
+1.2: Via the Response Summary
+Only users with Survey:View or higher access can be added to the Response Summary as interviewers and access the offline application/CAPI app.
+To add Decipher users in the Response Summary, click "+ Add Interviewer":
+Then click in the box to view a list of available user accounts. If needed, you can start typing the name or email address of the user you'd like to add to narrow the list of accounts. When you find the user you need, select them from the drop-down. Then click the green checkmark to the right of the box:
+Tip: To add multiple interviewers at once, you can paste a tab or comma-delimited list into the entry box.
+Once an interviewer is saved, an application link will appear automatically for this user in the Response Summary. Additionally, the following field criteria will be tracked for each interviewer through the life of the project:
+Total Completes: Total complete count for the interviewer.
+Valid Completes: Number of complete participants whose data matches the current dataset format.
+Uploaded Partials: Number of partial records uploaded.
+Latest Upload: The date and time of the interviewer's last upload.
+Note: Adding users with "Interviewer Only" permission in the portal will automatically add them as interviewers in the offline Response Summary.
+1.2.1: Additional Considerations
+The following permission limitations apply when adding Decipher users via the Response Summary:
+While adding users to the Portal does add them to the survey, it does not automatically grant them permission as an interviewer (unless they are added with "Interviewer Only" permission).
+Users with Survey:View or higher permission can access the offline survey, regardless of whether they are shown in the Response Summary.
+All project users will be displayed in the "+ Interviewer" drop-down and be explicitly added to the offline Response Summary as interviewers (regardless of their permission level).
+2: Adding Temp Users as Interviewers
+Interviewers without a Decipher account are known as Temporary or "Temp" users, and will only have access to the Decipher CAPI App when added via the Response Summary.
+To add a Temp user, type their name or email address into the "+ Add Interviewer" box and press the "Enter" key. Then click the green checkmark:
+A link and access code will be granted to this user, and appear automatically in the Response Summary. The remaining field criteria will also be tracked for each Temp user (Total Completes, Valid Completes, etc.):
+Tip: To add multiple interviewers at once, you can paste a tab or comma-delimited list into the entry box.
+3: Removing Interviewers from a Project
+Note: Interviewers can only be removed from the offline Response Summary if they haven't yet collected any complete data and/or the survey is in testing mode. If data has been collected, interviewers can only be deactivated, and will remain visible in the Response Summary.
+You can permanently remove interviewers freely before the survey is launched. Once the survey is live, you can only remove interviewers with no logged counts. To delete an interviewer, click the "-" icon next to their status in the Response Summary:
+In the confirmation pop-up box, click "Remove Interviewer":
+After the survey has launched, interviewers cannot be deleted. Instead, the above action simply sets their status to "Inactive." In the confirmation box for a live interviewer, click "Deactivate Interviewer".
+Note: Once a user is deactivated, any of their previously collected data is automatically uploaded the next time they come online. They are also prevented from collecting any further participant data while online.
+3.1: Additional Considerations and Limitations
+The following conditions also apply when removing interviewers:
+Deactivating interviewers in the Response Summary will only revoke their access to the survey. They will still have access to the company/account in the Portal.
+Individuals part of User Groups added via the Portal cannot be removed or disabled via the offline Response Summary.
+Note: Individuals part of User Groups added via the offline Response Summary can be removed or disabled as individuals.
+Only interviewers explicitly added in the Response Summary will remain after launching. Any interviewers added implicitly (e.g., Portal users testing the offline survey in testing mode will be removed at launch).
+Interviewers added either implicitly or explicitly to the offline Response Summary cannot be deleted if there is data associated with their interviewer ID.
+4: Distributing Links to Interviewers
+Before starting field on any offline survey, you will need to make sure that all of your interviewers have links to the offline application.
+Decipher users with Survey:View permission can access their link from the "Offline" tab of the Response Summary:
+For more information about project permissions, see Create and Manage Users.
+You can distribute the application links to all other interviewers from the Response Summary. To view and distribute application links to interviewers, click the "Download Interviewer List" link in the "Offline" tab of the Response Summary, click:
+This file contains the name of each active interviewer and their application URL. For Temp users, it also includes their unique "access code" for logging in.
+In addition to the link, you can send interviewers the following PDF file, which provides instructions for using the offline application:
+Managing Offline Surveys with the CAPI App
+4.1: Interviewer Login Considerations
+While Temp Users will be able to login to the application using just their uniquely generated "access code", Decipher Users will need to supply their associated username and password.
+Additionally:
+Users with "Interviewer Only" permission will only have access to the offline app (web and mobile) and not the full project portal.
+Post account creation, users are redirected to the Offline login, rather than the project's server login.
+Users with Survey:View or higher access do not have access to the offline app by default; to view the offline app, these users must be added to the survey via the Response Summary.

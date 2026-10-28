@@ -1,0 +1,62 @@
+Title: Adding Logic to a Question or Response Option
+You can add simple survey logic directly to a question or response option using the Survey Editor.
+1: How to Add a Logic Condition
+First, select the question, row, column or choice to which you wish to add logic and click "Show If" in the options menu. Then, click "+ New Condition" to create new logic for the question.
+Logic conditions can only be created using elements that occur before the question, row, column or choice to which you are adding logic. In the "Logic Condition Setup" window, select the desired question from the question drop-down.
+Then select “is” or “is NOT” from the logic drop-down and check the boxes next to the response options that define the logic.
+2: Adding Logic Based on Question Type
+2.1: One-Dimensional Questions
+Note: A one-dimensional question has only one type of response option (i.e., only rows, columns, or choices).
+In the “Logic Conditions Setup” window, select the question from the question drop-down. Then, select "is" or "is NOT" from the logic drop-down and check the boxes next to the response options that define the logic.
+Once you have applied all the required logics, select "Save" or "Save As" if you wish to name the condition for later use in the Survey Editor.
+Example 1: Conditional logic for a one-dimensional Single Select element:
+Result: The question is shown only to females.
+Example 2: Conditional logic for a one-dimensional Multi-Select element:
+Note: Additionally, you can control whether the checked options are to be considered as "or" or "and" from the drop-down located to the right of the options.
+Result: The question is shown only to cricket and baseball fans.
+2.2: Two-Dimensional Questions
+Note: A two-dimensional question has two types of response options (i.e., both rows and columns, rows and choices, or columns and choices).
+In the “Logic Conditions Setup” window, select the question from the question drop-down. Then, select "is" or "is NOT" from the logic drop-down and check the boxes next to the response options that start the logic.
+If the question is "grouped by" rows, the row choices appear in the drop-down. Likewise, if the question is "grouped by" columns, the column choices appear in the drop-down.
+Once you have selected the first response options, the second set of options appears. Check the boxes next to the options that finish the logic. If you want to add more logic, click "+ Add More Logic".
+A summary of the logic that you have created appears, along with a new box similar to the one pictured above. This box allows you to select the question you want to use for additional logic. Select "is" or "is NOT" from the logic drop-down, and select the row or column from the option drop-down.
+Then select "and" or "or" from the drop-down menu to the left of the question in the second block. This applies "and" or "or" logic between the two response options.
+If you have more than one checked option, you can control whether the checked options are to be considered as "or" or "and" from the drop-down located to the right of the options.
+Once your logic is complete, select "Save" or "Save As" if you wish to name the condition for later use in the Survey Editor.
+2.3: Three-Dimensional Questions
+Note: A three-dimensional question has three types of response options (i.e., rows, columns, and choices).
+In the “Logic Conditions Setup” window, select the question from the question drop-down. Then, select "is" or "is NOT" from the logic drop-down menu and check the boxes next to the row options that start the logic.
+If the question is "grouped by" rows, the row choices are grouped with the question and appear in the first drop-down menu. Likewise, if the question is "grouped by" columns, the column choices are grouped with the question and appear in the first drop-down menu (in the example below, the question is grouped by rows).
+Next, select "is" or "is NOT" from the logic drop-down, and select the column option from the option drop-down.
+Once the column is selected, the choices appear. Check the choice(s) that finish the logic. If you have selected more than one choice, you can control whether the checked options are to be considered as "or" or "and" from the drop-down located to the right of the options.
+At this point you may either add more logic or select "Save" or "Save As" if you wish to name the condition for later use in the Survey Editor.
+2.4: Number Elements
+In the “Logic Conditions Setup” window, select the question from the question drop-down. Then, select "is" or "is NOT" from the logic drop-down and enter the number or range for each response option that defines the logic.
+If you have selected more than one option, you can control whether the checked options are to be considered as "or" or "and" from the drop-down located to the right of the options.
+Once you have applied all the required logic, select "Save" or "Save As" if you wish to name the condition for later use in the Survey Editor.
+If needed, you can hover over a question mark icon to view examples of the possible number entries you may use to define the logic.
+2.5: Quota Elements
+Note: A Quota element can be one- or two-dimensional.
+In the “Logic Conditions Setup” window, select the quota you want to use for the logic from the question drop-down, and select "is" or "is NOT" from the logic drop-down. Then select the quota cell(s) that define the logic.
+Finally, select "Save" or "Save As" if you wish to name the condition for later use in the Survey Editor.
+3: Adding Logic Based on Multiple Questions
+In the “Logic Conditions Setup” window, select the quota you want to use for the logic from the question drop-down, and select "is" or "is NOT" from the logic drop-down, then check the boxes next to the response options that define the logic.
+Finally, select "Save" or "Save As" if you wish to name the condition for later use in the Survey Editor. To add additional logic conditions, click the "+ add more logic" icon.
+4: Adding Logic Based on Mobile Device Type
+In the “Logic Conditions Setup” window, select the mobile device type (i.e., category type or OS type) you want to use for the logic from the question drop-down, and select "is" or "is NOT" from the logic drop-down. Then select the option(s) that define the logic.
+Select "Save" or "Save As" if you wish to name the condition for later use in the Survey Editor.
+Example: Logic based on a smartphone device:
+Result: The question is shown only to smartphone users.
+5: Adding Logic Based on Participant Source
+In the “Logic Conditions Setup” window, select "participant source" from the question drop-down, and select "is" or "is NOT" from the logic drop-down. Then select the participant source(s) that define the logic.
+Finally, select "Save" or "Save As" if you wish to name the condition for later use in the Survey Editor.
+6: Adding Logic Based on Language
+The language option for defining a logic condition is available only when one or more language is added via the Language Manager.
+In the “Logic Conditions Setup” window, select "languages" from the question drop-down, and select "is" or "is NOT" from the logic drop-down. Then select the language(s) that define the logic.
+Finally, select "Save" or "Save As" if you wish to name the condition for later use in the Survey Editor.
+7: Viewing Logic Conditions
+Once you save the logic condition for an element, it appears at the top of the element window and under the options section.
+The condition also appears under the options panel when the row, column, or choice is selected.
+8: Additional Considerations
+Limited warnings are displayed when reordering elements in the element tree when there are conditional logic references for those elements, such as "Show If" logic and answer piping.
+Learn more: Adding Survey Logic

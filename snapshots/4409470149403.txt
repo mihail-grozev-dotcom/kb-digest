@@ -1,0 +1,69 @@
+Title: Using Advanced RIM Weighting
+The Advanced Weight Editor allows you to programmatically create and apply a data weighting scheme within Crosstabs. It also offers a variety of tools to help you further customize any weights created using the Weighting Scheme Editor, and run test cases to ensure that your final reports are calculated exactly as needed.
+The Advanced Weight Editor can be used to create a more advanced weighting setup than is possible using the Weighting Scheme Editor. The following criteria are considered advanced setup:
+Dimension logic based on grid (multiple dimension) questions.
+Dimension logic based on open-end questions or date logic.
+Dimensions using not, nested, or vector logic.
+Dimensions using multiple groups (with separate filter logic per dimension).
+Custom filter logic that does not match a previously saved crosstab banner.
+1: Accessing the Advanced Weight Editor
+The Advanced Weight Editor can only be accessed from the Weighting Scheme Editor within Crosstabs.
+Click Edit Settings near the top-right of a crosstab report.
+In the Crosstabs report settings menu, click New under Weighting.
+The Weighting Scheme Editor appears in a new window. Then click Switch to Advanced Weight Editor at the bottom-left of the Weighting Scheme Editor.
+2: Overview of the Advanced Weight Editor
+Here is a quick outline of the functions available within the Advanced Weight Editor.
+1. Data Map: This panel displays the survey datamap, including all questions, row, and column labels. Double-click any question label to add the logic for each of its response options to your weighting scheme. Double-click any response option directly to add logic for just that option.
+For example, double-clicking “Q1” will add the following logic to your weights:
+Q1.r1
+Q1.r2
+Q1.r3
+Whereas double-clicking “r1” will only add Q1.r1.
+Note: The Data Map panel has a limit of 199 questions and will not be displayed for surveys with 200+ questions.
+2. Variable Name: The name for your weighting scheme as it appears in Crosstabs. Click into the text-box to add or edit the scheme name.
+3. Filter: Click into the text-box to add filters to apply weighting to only certain question, row, or column data.
+4. Qualified Participants Only: Check the box to apply weighting to only qualified participants (will exclude terminates and overquotas from weighting).
+5. Weighting Dimensions: Click into the text-box to manually build out your weighting scheme.
+6. Compute Weights: Compute all weights listed in the “Weighting Dimensions” box. You can use the details in the "Results" box to preview the results of a weighting scheme.
+7. Results: The results of computed weights. Updates automatically when weights are computed.
+8. Switch to Basic Weight Editor: Return to the Weighting Scheme Editor, with any weights and filters you have added in the Advanced editor still intact.
+Note: This link is disabled if the weighting scheme you create within the Advanced editor is too complex for editing within the Weighting Scheme Editor.
+9. Save: Add your weighting scheme to the Crosstabs Weighting menu, where it can be applied to the report at any time.
+3: Adding Weights & Filters
+Use the Weighting Dimensions box to begin building out your weighting scheme.
+Each weighting dimension should be added as a logic condition, with the logic listed first and the weighting percentage second, including a single space between each value. See Using XML to Edit Crosstabs for more information on adding logic conditions within a report.
+Note: When using decimal values, there must be a number in front of the period (even if it is zero), and no zeros can be added to the end of the number. For example, "0.5" will work, while ".5" and "0.50" will not.
+Each individual weighting dimension should be applied on a new line. An empty line defines the start of a new logic set.
+Note: Each logic set needs to total to 100, and each set not prefixed with "@group" will be used in the calculation.
+You can also use the Filter box to add filters for applying weights only to a certain question, row, or column data.
+3.1: Running Weights
+You can run your weighting dimension at any time during the editing process to verify that the calculation is correct. Once you have finished entering all the weighting dimensions you would like applied, click Compute Weights to see a preview of what your applied weighting scheme will look like within the Results box.
+Running weights will not apply them to your survey data and there is no limit to how many schemes you can compute. Re-calculate your weights as many times as needed for the desired result.
+Note: If you do not want to overwrite an existing weight, create a new weight scheme before re-running the weighting scheme that you have created.
+3.2: Evaluating the Efficiency Output
+The Results box also provides you with the Weight Factor Efficiency Output ("Efficiency") for your weighting scheme.
+The Weight Factor Efficiency Output indicates how balanced the sample is. If the output is low, then the data is not well balanced and needs to be weighted either higher or lower. If the output is high, then the data is well balanced.
+If the output is not what you expected, you can adjust your weighting scheme and re-calculate it until the output is acceptable.
+Note: The system will calculate the Weight Factor Efficiency Output as close as possible, so the maximum difference will never be more than 0.5%.
+3.3: Evaluating the Root Mean Square (RMS)
+After computing weights, the Results box provides the Root Mean Square and number of iterations. The Decipher weighting tool runs a maximum of 50 iterations of the RIM weighting algorithm but stops if convergence is reached. Convergence is reached once the RMS is less than 0.000005.
+For example, the results of the weighting scheme illustrated below indicate convergence was met after three iterations, and therefore, the weighting scheme is considered a success.
+If the weighting scheme does not reach convergence after 50 iterations, it is considered a failure. When convergence fails, the system will display a warning message with details of the failure.
+A failed weighting scheme can still be applied, but researchers should be cautious about drawing conclusions from a data set with a failed weighting scheme.
+4: Applying Weights
+Once you are satisfied with your weighting scheme, click the Save button at the bottom right to add your new weighting scheme to Crosstabs.
+You will be redirected back to the report settings page within Crosstabs. To apply your weights, select your new weighting scheme under the Weighting menu and click the Apply button.
+After you have added your weighting scheme using the Weighting Scheme Editor, it is available within the Crosstabs report settings menu, and you can toggle it on or apply a different weighting scheme at any time. To create another weighting scheme, repeat this process for each individual scheme.
+5: Additional Considerations
+5.1: Editing Existing Weighting Schemes
+Once you have applied a weighting scheme within Crosstabs, you can edit or delete it at any time. To view the options for existing weighting schemes, mouse over the scheme name within the Weighting drop-down in the report settings menu. Click the pencil icon to edit. Click the "x" icon to delete.
+5.2: Weighting by Groups
+The Weighting Scheme Editor also allows you to weight by groups of data, which is particularly helpful when trying to weight data for tracking studies. To weight data by group, add an "@” symbol before the logic set that you want to apply to each group. This makes the weight call exclusive to the code below it, and it automatically combines with any filters you have applied.
+For example, if you want to apply your 50-50% gender split to two separate waves of data within a project, you can use the following code, where “@wave.r1” and “@wave.r2” are pointing to the rows for a tracking virtual called “wave”.
+@wave.r1
+q1.r1 50
+q1.r2 50
+@wave.r2
+q1.r1 50
+q1.r2 50
+Note: For group weighting, the logic for each group cannot overlap (for example, group logic cannot be based on a multiple-choice (checkbox) question, where a participant could fall into multiple groups simultaneously).

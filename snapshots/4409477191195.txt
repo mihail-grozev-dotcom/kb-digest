@@ -1,0 +1,15 @@
+Title: Application Languages
+While Decipher is presented in English by default, most of its tools and features are available in a variety of different languages. This document outlines the process for setting your preferred application language.
+1: Setting a Preferred Language
+If you or a member of your team would prefer to view the Decipher application tools in a language other than English, click “Edit Profile” in the user account menu.
+Then select the preferred interface language from the drop-down menu, and click “Save Changes” at the bottom of the profile screen.
+Note: Supervisors can also change application languages when creating or editing users in the company portal page.
+Once your new language is applied, all menus and information screens for the following tools should appear translated in that language:
+Language Manager
+Survey Library
+Response Summary
+Crosstabs
+View/Edit Responses
+Campaign Manager
+CATI Mode
+Note: Company and project names will not be affected when translations are applied.

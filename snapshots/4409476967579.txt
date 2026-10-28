@@ -1,0 +1,80 @@
+Title: Reloading Participant Data Using loadData
+Our system will not allow a completed record to re-enter a survey by default. However, sometimes you may need to override this functionality in order to allow a participant back into a survey to make changes to their original responses. To allow participants back into a completed survey, you will need to use the loadData option.
+1: What is loadData?
+loadData is a key-based XML variable that will allow users to return to a completed survey and update their previous answers. When loadData is applied, any participants repeating the survey will have their original session data overwritten once they click on the “Finish” button at the end of the survey.
+The following data is restored for any participant re-entering a survey:
+All closed- and open-ended answers previously entered, including noAnswer responses
+The uuid from their previous session
+All set markers
+All extra variables except for session, url, and userAgent
+Any markers that have been set in surveys with delphi="1" (see 4: Other considerations below)
+Note: The loadData variable does not restore the following data:
+Any persistent data (i.e., set with p.something = …)
+Persistent question changes (e.g., random order, modified question text, disabled data)
+The survey completion time is reset each time the survey is entered, so qtime will not be increasing. You can setup your own total_qtime that, when you finish the survey, sets total_qtime.ival = total_qtime.ival + timeSpent()
+The start_date is set to the date of the new entry into the survey
+2: Enabling loadData
+To enable loadData, you will need to add it to the <survey> XML tag and set it to the key variable you would like to use for tracking user data:
+loadData="some_extra_variable"
+For example, if the extra variable you would like to use is “source”, your survey tag may look like the following:
+<survey
+autosave="0"
+browserDupes=""
+compat="134"
+extraVariables="source,record,ipAddress,decLang,list,userAgent"
+loadData="source"
+name="Survey"
+</survey>
+You will also need to ensure that the follow parameters are met:
+browserDupes="" must also be set in the <survey> tag to the survey tag so that participants are able to enter the survey multiple times
+The survey is not using the <var unique="1"> setting in participant sources, nor does unique="source"
+Normal uuid duplicate checking is disabled (i.e., the participant can finish the survey, press the “Back” button, and finish again)
+A non-blank key value is supplied; otherwise, the user will be denied access
+Because the loadData value is the key to viewing all the previously entered data, you must use a sufficiently long and random key (i.e., do not do source=00001, source=00002, etc.)
+3: Limitations
+Anytime a participant completes a survey with loadData applied, they will reset all of their virtual data. Consider minimizing the use of virtual questions in surveys where loadData is required.
+The “Completions” tab in the Response Summary will not display accurate data with loadData enabled.
+When running simulated data, the system will try to load 20% old data and will generate 80% new data, to ensure that both cases are properly handled. It does that by assigning a random 10-character value to the variable specified by loadData. If you are validating the extra variable against a list, you should turn it off before running simulated data.
+When a participant finishes the survey for a second time, their old markers are removed before the new ones are saved (markers are only kept the same if the alwaysSaveData attribute is also enabled).
+4: Other considerations
+4.1: Updating records at each question
+If you would like to allow users’ records to be updated at each question instead of at the end of a repeated survey, you can additionally apply the alwaysSaveData attribute. With alwaysSaveData applied, markers and responses are saved each time a participant selects the “Continue” button or submits a page in the survey.
+Used in conjunction with loadData, the alwaysSaveData attribute will continuously recover a participant’s record and mark it as complete, making their data for any question immediately available in the report.
+Note: The alwaysSaveData attribute is only available for loadData enabled surveys.
+4.1.1: Enabling alwaysSaveData
+This attribute should only be used for smaller diary-type studies (i.e., those with less than 100k participants or 100 mb of data).
+To enable this feature, add alwaysSaveData="1" to the survey tag in the XML:
+<survey
+autosave="0"
+browserDupes=""
+compat="134"
+extraVariables="source,record,ipAddress,decLang,list,userAgent"
+loadData="source"
+alwaysSaveData="1"
+name="Survey"
+</survey>
+Once applied, any participants re-entering the survey will have their latest data loaded, and they will start over from the beginning. To have users resume the survey where they left off, use autosave="1" and autosaveKey="unique_id" where the unique_id is the same key variable passed to loadData:
+Note: Surveys with delphi="1" have autosave="1" on by default.
+<survey
+browserDupes=""
+compat="134"
+extraVariables="source,record,ipAddress,decLang,list,userAgent"
+loadData="source"
+alwaysSaveData="1"
+autosave="1"
+autosaveKey="source"
+name="Survey"
+</survey>
+4.1.2: Limitations with using alwaysSaveData
+Surveys with this attribute will have diminished performance in comparison to other surveys. The maximum throughput for the survey will be approximately half of its normal value.
+Markers are always saved after every page. There are no temporary markers like those for autorecover, and the markerTimeout setting has no effect.
+Any markers set must be manually cleared using the removeMarker function if you would like to reassign them. This is especially important when considering quota assignment. If a participant changes their answer at a question with a quota, you will need to manually clear any quota markers before the quota call happens so that it can reassign the quota.
+If a question has conditional logic and was previously seen, it will retain its original data unless manually cleared, even if on re-entry it was not seen after a change in response.
+If data edits are made to a question, those will be reflected the next time a participant sees the question.
+4.2: Saving partial data
+When using loadData, the use of autosave is only recommended if you also set autosaveKey to the same variable that you use with loadData, as cookie-based autosave may result in data loss if the survey is entered from multiple browsers.
+Similarly, the Partial Recovery System is not useful for surveys with loadData applied. While it will recover data for someone who never managed to finish the survey, since it only works on partial data, it will not recover participants who completed and then restarted the survey.
+4.2.1: Limitation with saving partial data
+When using loadData with autosave and autosaveKey, you will not be able to assign values to a question in an exec block with the attribute when=”autosaveReturning”.
+4.3: Blocking reentry for terminates and overquotas
+Once loadData is enabled, all participants with a valid key will be able to re-enter a survey, including terminate and overquota users. To block these latter participant types from re-entering, you will need to manually lock them out using a Database System and an html final="1" tag.

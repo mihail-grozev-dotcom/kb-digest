@@ -1,0 +1,43 @@
+Title: 147.12 Release Notes
+Release Date: August 3, 2021
+Release Version: 147.12
+New Features
+Survey
+Panel Management (previously Kinesis) Integration
+Improved the integration logging process by adding events for launching and closing registration surveys.
+Programming & Tools
+Custom Code Elements (Logic Nodes)
+Added a new version of the RelevantID logic node (version 4), which enables use of Imperium's new "CustomFactor" parameter within surveys.
+This new version is automatically applied to all new logic nodes and can be applied to old logic nodes by setting uses="relevantid.4" within the node’s <logic> tag.
+The "CustomFactor" parameter is optional. If set, it returns some additional fields for each participant record which indicate whether that participant was a duplicate of a previous record.
+Learn More: Imperium RelevantID Integration
+Bug Fixes
+Portal
+Overview Page
+Fixed an issue preventing users from accessing some options within the Actions drop-down menu.
+Upload System Files
+Fixed an issue causing the Actions menu to disappear when the files list contained more than one page of files.
+Fixed an issue preventing the horizontal scrollbar from appearing for some files containing content which stretched beyond the viewable table area in the File Manager.
+Usage Statistics
+Fixed an issue causing decreased performance and long load times when attempting to run Usage Statistics reports for questions containing large datasets.
+Survey
+Survey Editor
+Fixed an issue preventing users from accessing the month selector for some survey elements when zooming in or using a smaller screen/browser window.
+Fixed an issue causing multiple copies of some error messages to appear when attempting to save a live survey containing errors.
+Fixed an issue causing multiple copies of the same image to appear within the Image Manager when attempting to upload several images at the same time.
+Fixed an issue causing date ranges to revert back to their default values when attempting to set a new date using the “Specific Date” feature for Date Range and Date Picker elements.
+Fixed an issue preventing users from moving survey elements around within the element tree when Multi-User Editing is enabled.
+Fixed an issue preventing users from saving logic conditions using the “Save As...” feature when Multi-User Editing is disabled at the company level.
+Fixed an issue preventing users from editing datasources that were added to surveys via the shell.
+Fixed an issue causing an error when attempting to preview a survey containing an <exec> element with special characters (e.g., \n, \r, or \t).
+XML Editor
+Fixed an issue causing an error when attempting to add a nets attribute or tag to a Number element that is located within a loop.
+Fixed an issue causing an error when attempting to save a survey after copying an element that was previously deleted.
+Participant View
+Fixed an issue causing the check box from one question to be selected when interacting with the other question in hybrid elements consisting of two merged questions.
+Fixed an issue causing some <noanswer> rows to be replaced with empty rectangles within Image Upload elements.
+Responses
+View/Edit Responses
+Fixed an issue preventing users from filtering data in reports when using a system language that contained Unicode characters.
+Architecture/DevTools
+Fixed an issue causing an error when attempting to decrypt a file during a migration using the umigrate command.

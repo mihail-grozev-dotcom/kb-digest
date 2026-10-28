@@ -1,0 +1,44 @@
+Title: Finish Tag: Stop the Survey
+The <finish> element can be used to prematurely stop a survey.
+This element will not show in the question tree and should not be used often. Consider using a <block> element instead to create sections in your survey. See Block Tag: Create Sections.
+<radio label="Q1" optional="0">
+<title>Please choose one:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+<suspend/>
+<block label="One_more_question" cond="Q1.r1">
+<checkbox label="Q1_1" atleast="1">
+<title>Please select all that apply:</title>
+<row label="r1">Brand 1</row>
+<row label="r2">Brand 2</row>
+<row label="r3">Brand 3</row>
+<row label="r4">Brand 4</row>
+</checkbox>
+<finish />
+<suspend/>
+</block>
+...
+...
+In the example above, participants who select "Item 1" at Q1 will see one more question before the survey is ended. These participants are recorded as qualified completes.
+1: Attributes
+The <finish> element has access to the following attribute:
+1.1: now
+The now attribute is a boolean value that controls when to end the survey.
+By default, the survey will end when the page is submitted. If now="1" is specified, the survey will end as soon as the element is reached.
+For example:
+<radio label="Q1" optional="0">
+<title>Would you like to see one last message?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<block label="EndNow" cond="Q1.r2">
+<finish now="1"/>
+</block>
+<html label="OneLastMessage" where="survey">
+<p>This is the last message! Thank you!</p>
+</html>
+<finish/>
+<suspend/>

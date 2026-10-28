@@ -1,0 +1,9 @@
+Title: Decipher Cloud User Training Series
+Requires Decipher Cloud
+Welcome to the Decipher Cloud User Training series.
+This training series is designed to teach you how to work in the shell environment on a Decipher Cloud server. In this series, we will go over the basics of navigating and using the shell as wells as building customizations and tools specific to your Decipher Cloud instance.
+Training Videos
+Click on the tiles below to get started:
+Cloud Basics
+Server Administration
+Server Customization

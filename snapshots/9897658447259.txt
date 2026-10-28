@@ -1,0 +1,123 @@
+Title: Decipher (previously Decipher)M35 Technical Release Notes
+Release Date: October 18, 2016
+Mission Statement
+New survey compat level is 135. Use compat=”135” for all new surveys. This enables:
+Crosstabs weighting files require using uuid as the key variable.
+New Features
+Language Manager
+Translation manager fundamentally overhauls the old language management application and allows users to edit and review status of translations with improved efficiency
+Primary Language function allows the user to select the default language in which a survey will be shown
++ Language function allows the user to select the language(s) they wish to add to a survey
+Allows direct importing/exporting of xls files to a survey
+Xls file headers have been changed
+Search bar has been added
+Crosstabs Table Enhancements
+Improvements to table functionality have been expanded greatly
+Drag & drop functionality has been enabled on tables and rows
+There is an improved display of nesting, as well as new and custom net/stat rows
+Transpose feature has been added, allowing for rotating rows and columns within table (without affecting data calculations)
+Rotating primary dimension functionality has been added for multi-dimensional questions within the table editor (previously only available while building a project or via live survey changes)
+Getting Started Videos
+The portal now includes Getting Started Videos. These provide an improved user experience for those seeking quick access to Knowledge Base articles, and offer video tutorials for all major features within the Decipher platform. New users specifically will have an improved first-time entry into the Decipher system with a catered walkthrough of the platform.
+Video Player Element
+New Video Player version 5 uses HTML 5. The new version is only available in survey compats 131+
+New Options
+Must Watch Video (bcvideo:disable_continue) - customizes whether the user is allowed to continue in the survey before the video has completed playing
+Options no longer available:
+Show Chromeless Video (bcvideo:chromeless_video)
+Animate Watermark (bcvideo:watermark_animated)
+Container CSS (bcvideo:containerCSS)
+Watermark CSS (bcvideo:watermarkCSS)
+Overlay content CSS (bcvideo:overlayContentCSS)
+Play button CSS (bcvideo:playButtonBigCSS)
+Media controls CSS (bcvideo:mediaControlsCSS)
+Media controls hide CSS (bcvideo:mediaControlsHideCSS)
+Play button CSS (bcvideo:playButtonContainerCSS)
+Play button icon CSS (bcvideo:playButtonIconCSS)
+Video position CSS (bcvideo:videoPositionCSS)
+Position container CSS (bcvideo:positionContainerCSS)
+Position indicator CSS (bcvideo:positionIndicatorCSS)
+Video length CSS (bcvideo:videoLengthCSS)
+Limitations:
+When viewed in full-screen:
+Watermark is not supported for iOS
+Different player is used for iPhone (iOS)
+Enables replay by default, overriding any settings for iPhone (iOS)
+On mobile:
+iPhone (iOS) will play in fullscreen by default. This enables the seekbar.
+Other Notes:
+Watermarks can no longer accept the character: '
+A single Video Player question per page is recommended due to potential bugs and complications from differing stylevars and settings.
+Audio Player Element
+New Audio Player version 3 uses HTML 5. The new version is only available in survey compats 131+
+Options no longer available:
+Audio Player Type (audio:player)
+Enable Volume Controls (audio:enable_volume)
+Reporting
+Crosstabs
+Weighting now requires use of uuid for key variable
+Survey
+Survey Builder
+Users can now set the primary survey language in the project settings menu of the survey builder
+Removed Research Now (VOP), Research Now Mobile – US sample sources, updates Research Now (eRewards) to Research Now and updated samplesource variables and exit links to use rnid and study
+Participant View
+Various LIVE or Closed DQ versions are limited to a max compat of 134 if the version is not the latest
+Portal
+Users can now set the primary survey language when creating a new project
+Link to Dashboard added to project controls. Requires: Application View access for dashboards and Research Dashboards
+Architecture/DevTools
+All Cloud Servers support archival now, as described in the support site, i.e. temporary surveys/data copies only. Archiving and unarchiving can be done manually through the use of the archive and maint/unarchive scripts.
+Bug Fixes
+Survey Builder
+Fixed issue, where logo in Display settings would not be kept after saving [ 8/09/16]
+Fixed an issue where you could not start row labels with digits [8/11/16]
+Fixed various offline elements that were incorrectly flagged or correctly flagged but had no way to resolve for the offline warnings system [8/15/16]
+Fixed an issue where survey builder would appear to hang with the message “retrieving information from the server, please wait” after changing the project type from Online to Offline [8/17/16]
+Offline survey link to KB goes to offline compatibility page
+Participant View
+Fixed escaping of '<' or '>' for open end data used with jsexport [8/5/16]
+Fixed an issue where two arrows would be shown for a drop-down box on Internet Explorer [8/3/16]
+Fixed text boxes will resize to fit the screen on mobile on compats 129+ [8/9/2016]
+Fixed an issue where single select and multi-select inputs could become invisible on smaller screens or browser windows [8/16/16]
+Dynamic Questions
+Video Player - fixed an issue where the play button could reappear over the video player before the video had finished playing [7/27/16]
+Button Select(atm1.d) - will not show duplicate font-awesome icons when there is no text in the rows [08/08/2016]
+SPSS Importer
+Fixed an issue where the SPSS data importer would give an error when importing a file [8/16/16]
+Fixed an issue where the SPSS data importer on multiple tabs would tie up system resources and cause fatal errors [9/8/16]
+Campaign Manager
+Fixed an issue where you were unable to export a list of bounce-backs from your email campaigns if on a cloud server [8/20/16]
+Fixed an issue where you were unable to export a list of bounce-backs unless you were a staff user [9/16/16]
+Dashboard
+Fixed an issue where longer tables would appear to be cut off in the PowerPoint export of a dashboard [8/11/16]
+Fixed an issue where images were not being included in any dashboard export [8/17/16]
+Fixed an issue where summary view and detailed view show different numbers for published dashboards [9/9/16]
+Crosstabs
+Error messages in Crosstabs will now include an error code which can be used to lookup the full error log [7/21/16]
+Fixed an issue where the dates used for date logic when creating segments would change depending on your local timezone [8/11/16]
+Fixed an issue where the export button wasn’t showing up to save crosstab reports [9/15/16]
+Fixed issue where export button would not appear when first segment had no data for the media evaluator chart [9/15/16]
+Fixed an issue where the row label was not shown on the Crosstabs report for a question with one row
+Fixed an issue where Crosstabs did not display the text for a single item noanswer table (i.e. there is only one noanswer row in the survey)
+Fixed issue where percentages on graphs were repeating
+Fixed an issue where users cannot save a table when the net value or row title (net name) is left blank
+Fixed an issue where you had to click twice for a net position to be selected
+Fixed issue where charts were pulling data from other chart properties in the frequencies table
+Fixed issue to show stat charts on number questions
+Fixed issue duplicating changes to crosstabs
+Portal
+Fixed an issue where user/group name was not shown in a directory for automatic permissions [7/25/2016]
+You can now whitelabel the domain of the URL used in the Password Security email similar to how you can do so for Password Reset emails [8/2/16]
+Fixed an issue where CNAMEs couldn’t be added to a live survey [9/9/16]
+Fixed an issue where angular code could be executed from the login page [9/01/16]
+Offline
+Fixed an issue where autofill elements could not be added to an offline project [9/14/16]
+Fixed an issue where offline survey with incompatible elements can be launched via the command line
+Fixed an issue with grid breakdown for a grid table - the grid broke down when there was less or no room on the screen to show the grid table [9/28/16]
+Programming Tools
+Fixed an issue where the ADB would not work for multiple levels of temp directories [8/11/16]
+Architecture/DevTools
+When servers get overloaded, this logging tool will help administrators address the issue [9/28/16]
+CATI
+Fixed an issue so that recall sample would not be called outside the calling hours [8/17/2016]
+The CATI server is now automatically started when the Decipher server is started [8/24/16]

@@ -1,0 +1,57 @@
+Title: Decipher Limits and Capacity
+1: Data Limits
+This section outlines the maximum amount of data and number of files you can have on Decipher's main v2 server.
+1.1: Data Files
+There is no limit to the amount of data that can be stored for surveys with delphi="1" .
+In surveys without delphi="1", the maximum total amount of real or virtual text data cannot exceed 2 GB. This type of data is stored in the data/results.strings file in the survey directory. If it exceeds the 2 GB limit, the survey will no longer accept new participants.
+Additionally, partial data (data/state.db files) for surveys without delphi="1" cannot exceed 1024 GB and must be cleared out before reaching this limit. This is usually not a problem unless you have more than 10 million completes or a exceptionally high amount of persistent data.
+Note: Certain operations, like running reports and downloading exports may take longer for surveys with large numbers of participants, regardless of whether the surveys have delphi="1" enabled.
+1.1.1: Compacting Data
+Requires Decipher Cloud
+Surveys with delphi="1" automatically compact data by default.
+For surveys without delphi="1", you can use the compact-results script to reduce the utilized disk space. Follow the syntax below to use the compact-results script:
+here dev/compact-results <survey> [variables]
+Note: There's no advantage in using the compact-results script unless the textual data is close to the limit.
+If desired, you can also supply a list of extra variables to be cleared from the data. For example, the following command would purge the url, ipAddress, and userAgent data from a survey:
+here dev/compact-results <survey> url ipAddress userAgent
+Tip: url, ipAddress, and userAgent are non-essential extra variables that can be purged to regain disk space. If purging userAgent data, vos / vbrowser data will be affected.
+Note: While compacting survey data, the survey will be locked and no participants will be able to complete.
+1.2: Timeouts
+The following timeouts apply to the runtimes of survey and report requests (beyond these limits, timeouts are subject to your browser/proxy server settings).
+Reloading a survey: 4 minutes
+Performing an action in the Portal: 1 minute
+Running a report: 1 hour (allows long virtual questions to continue running after the browser has timed out)
+Certain background processes: 2 hours
+All other ordinary requests time out after 30 minutes.
+1.3: Surveys
+Surveys have the following limits:
+8192 of each type of question (virtual/real) [Increased to 8192 as of September 2013]
+1 million data cells (e.g., rows multiplied by columns) per question
+20,000 quota cells and markers (beyond that, executing the quota is going to take a rather long time and you have to greatly limit the amount of participants in the survey)
+500 iterations for each loop (includes the number of iterations of any nested loops)
+1.4: API Calls
+The following limits apply when using the Surveys API:
+Up to 3 API calls can be made concurrently per user
+Up to 3 API calls can be made concurrently per survey
+No concurrent Data API calls can be made to the same survey
+Note: To avoid the 30 minute timeout for large data file exports, include the forceTask parameter to turn the API call into an asynchronous task.
+2: Participant Capacity
+This section provides information about the limits of the participant process capacity of Decipher and offers guidelines to participant infusion limits.
+2.1: Technical Introduction
+Surveys execute on a number of "backend processes." A backend process can only do one survey at a time. There are 24 processes and 24 computing units (CPUs).
+A single survey can be loaded on up to 4 backend processes by default; this can increase up to 5 through the scaling='5' parameter. Beyond 5, payoff is limited as processes have to wait for each other to synchronize data access.
+A single process can generally show 30 survey pages per second however this can vary greatly depending on survey.
+You can find our current average traffic load at: http://v2.decipherinc.com/scoreboard
+Requires Decipher Cloud
+The "howfast" script can be used to determine likely performance. It requires a complete survey and a simulated data run.
+2.2: Calculating Simultaneous Participants
+Requires Decipher Cloud
+The "howfast" script performs this calculation: if a simulated data run reports simulated data can show a page in 0.012 seconds then dividing 5000 by this number gives the rough number of page views that our system can display. Divide this number of page views again by number of pages in the survey (there are always 2: start and exit page) to get the number of completes per hour.
+This assumes the following: the completes are evenly divided and that the shared processes are not overwhelmed with other surveys. To be sure, keep a safety margin.
+Clients that expect high capacity can be moved on the secondary survey system dedicated to high-traffic clients. That allows better throughput without disturbing the main clients.
+2.3: Hosting Static Files
+As for hosting static client files (images, javascript files, etc.), we have a caching server that can offset the load of our main server. That server is used automatically if [versioned ...] or [image] is used in the survey. The serving can take some load off the main server however at this point the bandwidth capacity we have is beyond that of Rackspace in 2014 - around 30 megabytes per second.
+2.4: What's Our Capacity?
+How many participants we can handle depends on complexity of the survey and number of pages in the survey. We can handle about 800 survey page views per second all in all. A specific survey can be served at a rate of about 100 page views per second. If a participant needs to view just 2 pages (the minimum to finish a survey), we could handle 50 new participants per second. In practice we have not seen more than 150 pages per second served by our system total over the last year.
+2.5: Decipher Email Campaigns
+There are email campaign volume limitations / restrictions, which vary based on your server location and account settings. Please contact your Forsta representative for specific details regarding campaign limitations.

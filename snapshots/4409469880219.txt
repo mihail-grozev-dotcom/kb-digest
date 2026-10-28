@@ -1,0 +1,92 @@
+Title: Survey Transformation System
+Requires Decipher Cloud
+The Survey Transformation System allows you to run a script to modify survey content in reaction to completes or other events. It is similar to the transform command, but runs on the survey or quotas rather than actual participants. It also contains the Survey Database (surveyDB), which is a database tied to the survey itself rather than a specific participant.
+1: Survey Transformation
+1.1: Creating the Script
+To use the Survey Transformation System, you must first create a Python file with your script that can be called from your survey directory.
+1.1.1: Script Requirements
+To call your script into a survey, the Python file must be named strans.py and be located in the root directory. Additionally:
+All surveys using the Survey Transformation System must include a quota element.
+All transformation scripts must have at least one "run" function:
+def run():
+quota["/some/Marker"].q = "666" # Modify quotas
+save() # save them
+1.1.2: Running a Report
+Once you have created your script, you can run a crosstabs report using the report() function. The report() function takes two attributes - both of which are required and need to be lists.
+If you put:
+data = report( ["q1.r1", "q1.r2"], ["ALL","qualified and q2.r1"]
+You could then call your data like this:
+data[0][0] = ALL completes that selected q1.r1
+data[0][1] = Qualified completes that selected q2.r1 and q1.r1
+data[1][0] = ALL completes that selected q1.r2
+data[1][1] = Qualified completes that selected q2.r1 and q1.r2
+You can also use logic in each of these conditions as you would in Crosstabs. See Checking Crosstabs Condition Logic for more information on using logic conditions within Crosstabs.
+1.1.3: Accessing Quotas
+You can use the quota dictionary to find information about a quota cell. To pull information about a quota, you must use the full marker name to get it (e.g., quota["/Sheet_Name/Marker_Name"]).
+Once you have the quota cell, you can read the following attributes:
+current -- the current number of completed and pending participants in this cell
+complete -- all completed participants
+pending -- all pending participants
+limit -- the current limit for this cell (taking into account soft quotas)
+quota -- the quota configuration for this cell as in the quota.xls file -- e..g "20", "20-40", or "inf". You may also assign this attribute.
+If you assign the .quota attribute to a cell, you must then save your changes. To save your changes, call save() after changing the attribute. This will validate that the changes work, and if not, it will generate an error and abort the script.
+For example:
+def run():
+newQuota = quota["/Overall/Male/Age1"]
+print newQuota.complete
+newQuota.quota = int(newQuota.quota) + 10
+save()
+The script above pulls information from the "Overall" quota sheet for males under the "Age1" group as defined by the quota markers. It then prints out the number of completes fitting that criteria. Finally, it increases the quota configuration to allow for 10 more participants and saves the change.
+1.1.4: Emailing Subscribers
+You can email anyone subscribed to a project using the mail(message,subject) function. The mail function takes two string attributes: the message found in the email, and the subject of the email. You can also use the changes() function, which will return a list of all changed quotas.
+For example:
+mail("""
+Automatically changed quotas:
+%s
+""" % changes(), "Quota Change Update!")
+The script above sends an email to anyone who is subscribed to the survey with the subject line “[project directory] Quota Change Update”.
+1.2: Calling the Script
+1.2.1: From the Command Line
+To call your script from the command line, run the following command:
+here strans <flags> <project-directory> <script name>
+The following flags can be added to the above command to further customize your script:
+Flag
+Effect
+-n
+When specified, does not run the mail() or save() functions in your script. Instead, the script will output what would have been done.
+-x
+If a fatal occurs during the running of the script, anyone subscribed to the project will be notified.
+1.2.2: From the Survey
+Processing a survey transformation script is resource intensive and should only be called periodically. It is not recommended that you run it for every participant.
+To call a strans.py script in your survey, use the callSurveyTransform() function. The function takes one argument, an integer that signifies the number of qualified completes before the script is run. For example, if you run callSurveyTransform(50), it will run every 50 completes (50,100,150, etc…). The count is not affected by edits in the data.
+2: SurveyDB
+The surveyDB is generated for every survey at creation, and can store a variety of data types, including integers, strings, lists, and dictionaries.
+2.1: Getting a Value
+To get data out of a surveyDB, you will first need to assign a "key". The "key" is similar to a dictionary. It does not need to be defined before being used, and will not show up in the database until data is actually stored in it.
+To pull data from a "key", run the following command:
+surveyDB.get("key", default_value)
+default_value is the value that will be returned if a "key" does not already exist.
+Tip: If you are storing string data in the surveyDB, we recommend encoding the string as utf8 before displaying.
+2.2: Setting a Value
+To set a value using a surveyDB, run the following command:
+surveyDB["key"] = value
+This will overwrite the surveyDB key with whatever value you specify. If you are storing a list in a dictionary inside of the key and do not want your data overwritten, you first need to append it to the original value. For example, if you were keeping a list of Q1 responses across participants in a surveyDB, you would want to input the following before setting your value (assuming Q1 is a mandatory text question):
+<exec>
+serializeAccess('responses')
+oeResponses = surveyDB.get('responses', [])
+oeResponses.append(Q1.val.encode("utf8", "ignore"))
+surveyDB['responses'] = oeResponses
+</exec>
+You will want to use serializeAccess() before you get or set values in surveyDB to make sure only one copy of a survey is making modifications at a time. The serializeAccess() function takes one attribute, the name of the database you want to restrict access to.
+In the code above, .encode("utf8", "ignore") is used on Q1.val due to it being an open-ended response. You must encode open-ends as UTF-8 in order to properly store the strings in the surveyDB.
+2.3: Editing Data
+2.3.1: Clearing Data
+You can only clear data from a surveyDB when clearing all of the data from the survey. These processes run simultaneously, and it is not possible to clear only the data within a surveyDB without removing all of the data from the survey.
+2.3.2: Editing Data
+To edit data in a surveyDB, you should take advantage of the Survey Transformation System by running a Python file with strans in the shell:
+def run():
+count = survey.env['surveyDB'].get('counter', 0)
+print count
+If count > 0:
+survey.env['surveyDB']['counter'] = 0
+The above example uses survey.env['surveyDB'] just as you would use surveyDB in the survey.xml. It pulls the surveyDB counter into a variable called count and outputs the information. If the count variable has a value greater than 0, then it changes the value of the surveyDB counter to 0.

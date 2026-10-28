@@ -1,0 +1,45 @@
+Title: Survey Scripting Capabilities
+Decipher's proprietary survey engine boasts a robust scripting library capable of handling even the most complex of projects. Below are details of some of the primary scripting features available with our system.
+Surveys are described using XML where user instructions, questions and question contents are XML elements. Most basic functionality can be achieved by just using XML such as validation of input data (e.g. check at least 2 items, do not allow a specific item to be checked with another, ensure text input is an email, ensure a total of exactly 100 points are input within the fields of the question).
+<checkbox label="S5" title="Please indicate whether you or anyone in your family is employed by any of the following:" atleast="1">
+<row label="r1">The advertising industry</row>
+<row label="r2">A market research company</row>
+<row label="r3">The entertainment industry </row>
+<row label="r4">Retail industries (any category)</row>
+<row label="r5">Computer technology and internet industries</row>
+<row exclusive="1" label="r0">None of these</row>
+</checkbox>
+Question types include:
+checkbox (boolean)
+radio/dropdown (single choice)
+number/float
+text
+multi-line text
+These can be arranged with any amount of rows or columns (e.g. a radio question with both rows and columns would be used for rating) and also merged together horizontally and vertically (e.g. a question asking for the name and gender of each of a number of children).
+The simplest level of scripting can happen using conditional logic where answers to questions can be checked, for example:
+<term cond="S5.r3">Works for the entertainment industry</term>
+Would terminate a user which in the S5 question answered r3 (Entertainment industry). This condition can be put almost anywhere: questions can have conditional logic on them to display only to certain users and rows within questions can also appear just to specific users.
+More advanced conditional logic queries can easily express questions like:
+Except for rows r4 and r5, was there anything checked in question S3?
+How many checkboxes were checked in S4 but only in the second column?
+Did the user check r3 in S5 but NOT r4 in S6?
+is the user using Internet Explorer?
+did they start the survey with list=3 in the URL?
+is it Friday yet?
+Did the user spend more than 10 minutes on the survey so far?
+The conditional logic, like any scripting within the application is written using Python, a popular general purpose scripting language (one of the 3 main programming languages used by Google, along Java and C++). Thus there are no artificial limits to the complexity of the logic used and the extensive library of standard functions available to Python is also available to the scripting code.
+The conditional logic can also be applied to all rows within a question, for example displaying a row in Q4 only if the corresponding labelled row in Q3 was checked. Smart autopopulation ensures users are not shown question with no possible options or just one possible non-optional choice.
+At a more complex level, the survey programmer can use an exec block to run freeform Python code. This can be used for more complex calculations. Example capabilities:
+Check the unique ID of a participant quickly against any test file (supporting millions of records) and verify its validity and that this participant has not yet completed the survey.
+Modify the value of any question (this allows for autopopulated questions, preset values etc.)
+Merge data from a tab delimited file based on some value entered by the user (e.g. based on a unique ID, present the user with his physical address information which the user can confirm or adjust).
+Set a flag (marker) based on some complex logic which later can be used to hide certain questions or rows
+Apply discriminant function analysis based on question data to assign the user to certain participant groups
+Modify text of future questions displayed to just that user
+Read in some other custom data file and decide some logic based on its contents
+Order of rows or columns within a question can also be shuffled randomly, but you can also ensure that an answer list with the same answers is shuffled in the same way between questions. This shuffle order can be controlled using scripting allowing for example some HTML to be displayed for each of 4 products in random order, then a question being asked about each of the 4 products in the same order.
+Custom validation allows easy data validation via scripting where the built-in validation will not suffice, displaying errors to the users in exactly the same way as built-in validation.
+The quota system allows tight control over who gets in the survey: the quotas are defined by any number of arbitrarily dimensioned tables (e.g. one dimension could be gender and the other 3 age group creating 6 separate quota cells). Quotas can also be used to assign users to any number of equally sized groups (for testing multiple scenarios). When a user is assigned to a quota group he will continue to take up a spot there unless he times out, where another user can take his place. After assignment to a quota, the user's quota cell can be checked using conditional logic. Quotas can be hard or soft (specifying a range where the current maximum for the quota is adjusted dynamically based on participants in other quota cells of this quota table).
+Piping of user data can happen in several ways: the simplest using syntax such as [pipe: q5] puts in user's answer in q5 in a question's title or row text. Scripting can also decide exactly what is displayed in the pipe, or direct use of Python code, e.g. ${"boy" if q5.r1 else "girl"} for the maximum level of control.
+The style of questions can be customized by built in customization parameters (e.g. display this row in a larger font). Many such tweakable settings are available. For the ultimate customization needs custom HTML code can be written for each individual questions. Our highly modular customization system allows you to customize only the bits that need changing rather than much complex HTML.
+Multiple languages can seamlessly be supported within one survey; you can change between languages based on URL parameters or user decision and display questions or rows only to certain countries or regions. Text resources within the survey are exported in a spreadsheet which can be translated and imported back.

@@ -1,0 +1,9 @@
+Title: 139.4 General Release Notes
+Release Date: August 21, 2018
+Release Version: 139.4
+Highlights of August 21st Release
+New Features
+CINT Panel Integration
+With the CINT panel integration, CINT users can retrieve and update their panelists' data directly from a Decipher survey. Panelists' data can be accessed using a new custom code element, available in both the Survey Editor and the survey XML.
+Compacting Data
+Occasionally, the textual data in older surveys can reach the 2 GB limit due to heavy recovery efforts or data edits. If that happens, users now have the ability to run a script to compact their text data and reduce the utilized disk space.

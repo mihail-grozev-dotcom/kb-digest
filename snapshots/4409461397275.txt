@@ -1,0 +1,126 @@
+Title: Media Evaluator Element
+Important: Usage fees apply for video files. Please contact your Account Manager for pricing specifics.
+The Media Evaluator element allows participants to actively engage with a video by entering a feedback rating as it plays. This element uses a textarea type question and requires that the survey contains:
+A compat level of 129+
+No rows
+No columns
+The sst="0" attribute
+Additionally, the following considerations should be made when adding the Media Evaluator element to any survey:
+This element is incompatible with feature phones. It is smartphone compatible, but not optimized for mobile.
+Fullscreen mode is not supported because participant interaction is required during video playback.
+The Video Analyzer feature is only supported in Crosstabs.
+Videos may be removed after being inactive (no views) for more than six months.
+1: Adding a Media Evaluator Element
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to check your project settings.
+To add a Media Evaluator element, first click the + Element button to add a new survey element. Then select Stimulus under Question Types and select the Media Evaluator element. Then select Add.
+Enter the question and instruction text in the areas provided. Then use the Options menu to the right of the staging area to customize the Media Evaluator element.
+1.1: Uploading the Video
+Videos must be uploaded to the file manager. To access the file manager, select Upload System Files from the More Tools drop-down under Build. See Uploading System Files to learn how to use the file manager and upload your video file.
+Important: Usage fees apply for video files. Contact your Account Manager for pricing specifics.
+The video file must be in one of the following supported formats:
+.mp4 (mobile compatible)
+.mov (mobile compatible)
+Once you have uploaded your video, copy the Video ID or click the copy icon to copy it to your clipboard. The video ID is required in the next step of the setup.
+To return to the Survey Editor, click Build and select Survey Editor. Then locate your Media Evaluator element to continue the setup.
+2: Style Settings
+To configure the display settings for the Media Evaluator element, click the "..." button at the top right of the question in the staging area and select Update Styling.
+In the Question Display Options window, configure the settings for the element using the options on the left. Additional information about each feature will appear when you mouse-over the text. Select Save and Preview to preview the settings. Once you are satisfied with your settings, select Save and Close.
+The following settings are available:
+Style Setting
+Description
+Video ID (Mandatory)
+Enter the unique video ID provided in the file manager. The video ID must not be an evaluated expression (that is, it must not be a resource tag or pipe).
+Video Width
+Enter the width of the video in pixels.
+Example: 640
+Video Height
+Enter the height of the video in pixels.
+Example: 360
+Allow Pause
+When checked, the video can be paused.
+When unchecked, pausing is not available
+Auto Advance
+When checked, each participant is automatically advanced to the next page when the video is finished playing.
+When unchecked, each participant is required to click "Continue" / "Finish" to advance to the next page.
+Watermark
+Enter a value to use as a watermark. If left blank, no watermark is added.
+Example:
+${uuid} will use the participant's unique ID as a watermark.
+${gv.request.getRemote()} will use the participant's IP address as a watermark.
+ACME will display "ACME" as the watermark for all participants.
+Watermark Position
+Select the position of the watermark. This becomes the starting point if the watermark is animated.
+Top Left
+Top Right
+Bottom Left
+Bottom Right
+Slider Orientation
+Select the orientation of the slider.
+Horizontal displays the slider horizontally below the video.
+Vertical displays the slider vertically and to the right of the video.
+Slider Minimum
+Enter the minimum value for the slider. This value must be less than the slider maximum.
+Example:
+If the slider maximum is 50, the slider minimum can be set to 10.
+Note: The Media Evaluator works best with a minimum of at least 6.
+Slider Maximum
+Enter the maximum value for the slider. This value must be greater than the slider minimum.
+Example:
+If the slider minimum is 10, the slider maximum can be set to 50.
+Slider Fill Range
+Select whether the slider track will have a color-filled track or not.
+None results in no coloring of the slider track.
+Min adds a color-filled track from the left side or bottom of the slider to the slider handle.
+Max adds a color-filled track from the slider handle to the right side or top of the track.
+Slider Scale Interval
+Enter a whole number to set the interval of each slider point on the slider scale. The value range of the slider (maximum - minimum) should be evenly divisible by the interval.
+Slider Minimum Legend
+Enter the text to be displayed for the left-most slider point.
+Example:
+Completely Dissatisfied
+Slider Middle Legend
+Enter the text to be displayed for the middle slider point.
+Example:
+Neither Satisfied nor Dissatisfied
+Slider Maximum Legend
+Enter the text to be displayed for the right-most slider point.
+Example:
+Completely Satisfied
+Engagement Text
+Enter the text displayed after the engagement time to remind the participant to engage with the video by moving the slider.
+Example:
+Please use the slider to indicate your preference for the video.
+Engagement Time (Seconds)
+Enter the time in seconds for which the slider handle is inactive before the engagement text is displayed.
+Example:
+10
+Engagement Skin
+Select the style (skin) for the engagement text. Styles available: black, blue, cloud, dark, facebook, lavender, light, lime, liquid, salmon, and yellow.
+Allow Tune Out
+When checked, a 'tune out' button is shown, allowing participants to virtually tune out of the video.
+When unchecked, no 'tune out' button is shown.
+Tune Out Button Text
+Enter the text for the 'tune out' button, if enabled.
+Tune Out Value
+When a participant clicks the 'tune out' button (if enabled), a rating is assigned for the tune out time, and that rating continues until the participant moves the slider.
+Select Keep to assign the previous slider value for the duration of the tune out.
+Select Min to assign the slider minimum value for the duration of the tune out.
+3: General Options
+The general options available for the Media Evaluator element are located to the right of the staging area. You can set rules for the entire question by clicking near the question text. The "Options" menu will show the question label and type for the element you have selected to edit.
+Label: The label assigned to the element. Click to edit the default label for the Media Evaluator element.
+Show if: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory:Check the box to force participants to provide a response. When checked, participants will be unable to continue the survey without completing the question.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4: Charting in Crosstabs
+Note: Only logged-in users can view Crosstabs reports.
+You can use the Video Analyzer in Crosstabs to view the results of your Media Evaluator element. Once you have applied your desired crosstabs, locate the Media Evaluator element. Select Add/Edit Charts from the Menu, check the Custom box, and select Video Analyzer from the drop-down. Then click Save.
+Tip: If the Video Analyzer does not display after clicking Save, refresh your browser.
+Note: To export the video with chart overlay, the video length must not exceed 30 minutes and participant count must not exceed 200.
+1. Play: Click play to watch the video with an overlay of the results.
+2. Chart: The red line indicates the current point in the video when played. You can move this line to skip to any position in the video. You can also split by segments or mouse-over a point in the chart to view the exact counts at that time.
+3. Take Snapshot: Take a snapshot of the video and chart overlay at any point in .png format.
+4. Export Video: Export the video and chart overlay in .avi format.
+5. Chart Options: Print chart, or download as a .png image, .jpeg image, PDF document, or SVG vector image.
+Note: The Video Analyzer chart is not affected by the Crosstabs' Chart Options Color Palette.
+To learn how to customize the Media Evaluator element in XML, see Customizing the Media Evaluator Element.

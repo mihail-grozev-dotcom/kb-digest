@@ -1,0 +1,63 @@
+Title: Star Rating Element
+Tip: See Customizing the Star Rating Element to learn how to customize the Star Rating element in the XML Editor.
+1: About the Star Rating Element
+The Star Rating element utilizes a select form and must contain star values, as well as rows and / or columns. This element is mobile compatible and does not utilize Flash.
+Note: Usability degrades on mobile devices as the number of columns in a question increases.
+Tip: It is not a guarantee that participants will trigger (i.e., hover-over) and read each star value (tooltip) before answering the question. A legend should be shown as part of the question text (or instructions) if each star value represents an especially unique rating.
+2: Adding a Star Rating Element
+Note: You can set the "Show if" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Star Rating element, first click the "+ Element" button to add a new survey element. Then click "Rate, Rank, and Sort" under Question Types and select the "Star Rating" element. Then click "Add".
+Enter the question and instruction text in the areas provided.
+2.1: Adding Star Tool Tips
+Click "+ New Star Tool Tip" to add each new star tool tip, then enter the text for the response option in the text field.
+2.2: Adding Rows
+Click "+ New Row" to add each new row, then enter the text for the response option in the text field.
+If required, you can add columns as well. Do not number any response options unless you want that numeric text to appear for survey participants. The system automatically provides labels / numbers for the response options, which you can edit later in "Options".
+2.3: Configuring Star Tool Tip Actions
+All answers appear in the question box with labels (e.g., ch1, ch2, ch3, or r1, r2, r3, or c1, c2, c3). Labels with the "ch" prefix indicate choices (i.e., star values). Labels with the "r" prefix indicate rows. Labels with the "c" prefix indicate columns / buttons. You may edit the response options by selecting "Star Tooltip Actions", "Row Actions" and / or "Column Actions". Click "Answer Piping" to show rows based on the answers to a previous question. See Answer Piping to learn more.
+You can preview the element at any time by clicking the "Preview" button located at the top right corner of the element. To find out more about previewing an element, see Previewing a Question.
+3: Style Settings
+To edit the display settings for a Star Rating element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Question Display Options" window, use the options on the left to specify how the question displays. When you mouse-over an option, information about the feature displays on the right.
+Click "Save and Preview" to preview the settings. Once you are satisfied with the style options settings, click "Save and Close".
+4: Question Options
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it.
+4.1: General Options
+When altered, each of the following options affects all attributes within the Star Rating element.
+Label: The label assigned to the element. Click to edit the default label for the Star Rating element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: This is required and the box is checked by default.
+Randomize: Check the boxes to randomize items by type. Items can be randomized by rows, columns, groups, or all.
+Rating/Scale: Enables nets in the report. To learn how to set up your rating scale preferences in the report, see Editing Tables in Crosstabs.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.2: Choice (Star Rating) Options
+When altered, each of the following options only affects specific choice attributes.
+Label: The label assigned to the choice. Click to edit the default label for the choice.
+Data value: The value assigned to the choice in the data. You may edit the default value for the column here if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the choice. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the choice will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the choice to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the choice optional and non-mandatory.
+Hidden: Click to hide the choice from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.3: Row Options
+When altered, each of the following options only affects specific row attributes.
+Label: The label assigned to the row. Click to edit the default label for the row.
+Show If: Click to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the row will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the row to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the row optional and non-mandatory.
+Open End: Click to add an open-end response box to the row by selecting "Mandatory" or "Optional" from the drop-down menu. "Mandatory" means the participant must enter feedback in the response box to continue if the row is selected, "optional" means that feedback is not required.
+Hidden: Click to hide the row from participants.
+No Answer: This option will replace the star rating form with an exclusive checkbox form. It is primarily used if there is a "Don't Know" or "None of These" response option in the question.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.4: Column Options
+These options only affect specific column line attributes.
+Label: The label assigned to the column. Click to edit the default label for the column.
+Show If: Click to create new logic conditions or select an existing logic condition for the column. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the column will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the column to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the column optional and non-mandatory.
+Hidden: Click to hide the column from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.

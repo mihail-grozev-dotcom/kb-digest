@@ -1,0 +1,26 @@
+Title: 145.3 Release Notes
+Release Date: October 13, 2020
+Release Version: 145.3
+New Features
+Programming & Tools
+API
+Added the following parameters for the Get Campaign endpoint:
+subject: Retrieves the subject lines for invite emails.
+reminder_subject: Retrieves the subject lines for reminder emails.
+Added the following parameters for the Edit Campaign endpoint:
+subject: Changes the subject line for invite emails to the supplied text.
+reminder_subject: Changes the subject line for reminder emails to the supplied text.
+Bug Fixes
+Survey
+Survey Editor
+Fixed an issue preventing custom logic nodes from generating datamaps.
+Reporting
+Crosstabs
+Fixed an error preventing crosstabs from being exported into PowerPoint format for surveys without chartsigtesting enabled.
+Fixed an error preventing crosstabs with column, area, or line charts from being exported into PowerPoint format when the “Show Sig Testing in Charts” report option was unselected.
+Responses
+Sample Marketplace
+Fixed an issue causing some surveys to be displayed in the wrong language.
+Campaign Manager
+Fixed an issue causing the file uploader to stall and timeout when uploading larger recipient list files.
+Fixed an issue causing the file uploader to create an extra file when uploading some recipient list files.

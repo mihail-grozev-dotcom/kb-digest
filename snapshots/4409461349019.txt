@@ -1,0 +1,127 @@
+Title: Data Export: JSON Formatting
+The primary output for the Decipher API is JSON. This output provides both a question-oriented approach (mapping to our survey.xml file) and a variable-oriented approach (mapping to a plain datamap).
+The JSON object response has two attributes:
+questions -- this is an array of data in the survey, grouped by question. It is the preferred method of integrating the data, as it gives meaning to the arrangement of 1- and 2-dimensional variables
+variables -- this is an array of variables in the download that maps back to the question
+Note: JSON also uses a few different labels than those found in other programming languages, so you will want to note the following when using the Decipher REST API:
+The JSON term "array" will be used for what may be known as a "list" or "vector" in other programming languages. For example, [1,2,3,4] is an "array" of 4 values.
+The JSON term "object" will be used for what may be known as a "dictionary", "hash" or "map" in other languages. For example, {"label": "q3", "type" : "single"} is an "object" with the attribute label set to the value "q3" and the attribute type set to the value "single". JSON "objects" always use strings as keys.
+JSON values also include floating point numbers, strings, boolean literals (true, false) and the special value null.
+1: Questions
+Each of the objects in JSON questions have the following properties:
+The qlabel is the original label of the question, as coded in the survey. Those may differ if a custom layout is used (e.g., if your survey.xml has question label “q1”, but you relabelled it to “X1” in the export).
+The qtitle is the title of the question.
+The attribue rating: true displays when the value dimension on a Radio or a Select element have an explicit value set (such as a value="XX" attribute or values="order").
+The values is an array of how exported values will map to the the answers -- each array element is an object with a value and a title:
+"values": [
+{ "value": 1, "title": "Row r1" },
+{ "value": 2, "title": "Row r2" },
+The grouping is based on either rows or cols depending on how a two-dimensional question has its elements grouped. See Grouping Answer Options in the Report to learn more about element grouping in the report.
+The type can be set to one of the following options:
+single: original survey.xml tag of "radio" / "select"
+multiple: original survey.xml type of "checkbox" / "autofill"
+number: integer number
+float: floating point number
+text: textual input (text/textarea) or image file name
+Questions may have one or multiple variables stored in the variables attribute, depending on how many rows or columns they have. For example, let’s say we have the following XML check-box question called "q3" with 3 rows (2 of which are visible):
+<checkbox
+label="q3">
+<title>q3</title>
+<row label="r1">Row r1</row>
+<row label="r2">Row r2</row>
+<row label="r3">Row r3</row>
+</checkbox>
+Viewing this in JSON, the value for each row would appear in the tab-delimited variables q3r1 & q3r2. For each variable, it shows the label of the row in the row attribute, and the title of the row in rowTitle.
+{
+"qlabel": "q3",
+"qtitle": "q3",
+"type": "multiple",
+"grouping": "cols"
+"variables": [
+{
+"vgroup": "q3",
+"title": "Row r1 - q3",
+"type": "multiple",
+"qtitle": "q3",
+"rowTitle": "Row r1",
+"label": "q3r1",
+"qlabel": "q3",
+"colTitle": null,
+"col": null,
+"row": "r1"
+},
+{
+"vgroup": "q3",
+"title": "Row r2 - q3",
+"type": "multiple",
+"qtitle": "q3",
+"rowTitle": "Row r2",
+"label": "q3r2",
+"qlabel": "q3",
+"colTitle": null,
+"col": null,
+"row": "r2"
+},
+],
+},
+A two-dimensional question is also possible. For example, let’s say we have the following two-dimensional XML question:
+<number
+label="q9"
+size="4">
+<title>q9</title>
+<row label="r1">Row r1</row>
+<row label="r2">Row r2</row>
+<col label="c1">Col c1</col>
+<col label="c2">Col c2</col>
+<col label="c3">Col c3</col>
+</number>
+Row 1, columns 1 and 2, would appear per the below:
+"variables": [
+{
+"vgroup": "q9r1",
+"title": "Col c1 - Row r1 - q9",
+"type": "number",
+"qtitle": "q9",
+"rowTitle": "Row r1",
+"label": "q9r1c1",
+"qlabel": "q9",
+"colTitle": "Col c1",
+"col": "c1",
+"row": "r1"
+},
+{
+"vgroup": "q9r1",
+"title": "Col c2 - Row r1 - q9",
+"type": "number",
+"qtitle": "q9",
+"rowTitle": "Row r1",
+"label": "q9r1c2",
+"qlabel": "q9",
+"colTitle": "Col c2",
+"col": "c2",
+"row": "r1"
+},
+For each variable, it displays the title, which is composed of the title of the row and the title of the column. The row and column titles are also included separately.
+2: Variables
+Rather than a question-oriented examination, you may also choose to look at the raw variable data. This is an output that corresponds more precisely to our datamaps, but makes it more difficult to reason about the question structure.
+Each exported variable is an object with this structure:
+{
+"qlabel": "q3",
+"label": "q3r1",
+"type": "multiple",
+"qtitle": "Question 3",
+"title": "Row r1 - Question 3",
+"vgroup": "q3",
+"rowTitle": "Row r1",
+"colTitle": null,
+"col": null,
+"row": "r1"
+},
+qlabel is the question label. Multiple variables may belong to one question.
+label is the data label in the data file.
+type is as listed above. Note that for a question using an "open=1" option, there may be mixed variable types.
+qtitle is the question’s title, shared among all variables for that question.
+title is the variable’s title as it would appear in a variable-based download. It will include the question's title and the titles of any rows/columns.
+row and col can be used to find the rows' and columns' labels (they may be null if the question is not two-dimensional).
+rowTitle and colTitle will be the title of the row and column, respectively.
+vgroup is used to group related variables into multiple groups within one question.

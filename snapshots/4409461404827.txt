@@ -1,0 +1,26 @@
+Title: Adding a "Prefer Not to Say" Option
+Overview
+In Decipher, you can add a "Prefer not to say" option to any question by converting its existing rows into no-answer rows. Converting rows into no-answer rows transforms them into exclusive, anchored rows in the question. No-answer rows are excluded from statistical calculations in Crosstabs, and adding a no-answer row also creates a separate table in Crosstabs, which tracks each "Prefer not to say" option in the survey.
+1: Converting a Normal Row into a No-Answer Row
+1.1: Through the Survey Editor
+To convert a normal row into a no-answer row, first select the row so that the Row Options menu displays to the right of the staging area. From the Row Options menu, select the “No Answer” check-box.
+Note: This will automatically anchor the no-answer row at the bottom of the question, even if randomization is turned on. For closed-ended and number question types, this will also exclude the row from any statistical calculations within Crosstabs.
+1.2: XML Representation
+While defining no-answer rows within the XML, you will need to use the <noanswer> tag in place of the regular <row> tag. The <noanswer> tag requires only one attribute - the label attribute.
+<noanswer label="r99">Prefer not to say</noanswer>
+For example, a "Prefer not to say" option in a number question might have the following XML representation:
+<number
+label="Q11"
+optional="0"
+size="3"
+verify="range(18,99)">
+<title>What is your age?</title>
+<comment>Please enter a whole number</comment>
+<noanswer label="r99">Prefer not to say</noanswer>
+</number>
+Note: Open-ended questions have implied rows, so even though only the noanswer is defined in the question above, it will have both an open-ended field and the no-answer option.
+2: No Answer Reporting
+No-answer rows are displayed as part of the question table but have a separate count in addition to the "Total" row. No-answer rows are also not counted towards a question’s base, nor towards any statistical calculations performed within the Crosstabs tool.
+In the example above, even though there are 201 total participants, only 200 of them are counted towards the "Total" row and the following statistical calculations, since users input an actual value in the question. The leftover participant is counted separately.
+Adding a no-answer row to a question also creates a separate "No Answer" table within the Crosstabs report, which tracks “Prefer not to say” responses across all questions that have one.
+When exporting the raw data from Crosstabs, any no-answer options' data will be exported from this table, and will have its datapoints named accordingly (e.g., noanswerq1_r1, nonaswerq2_r1, etc.).

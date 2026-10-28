@@ -1,0 +1,34 @@
+Title: Resetting Lost Passwords
+Whether you have lost your password or you would like to create a new one, Decipher has several password reset options available so you will always have access to your projects.
+Company supervisors also have the ability to set and reset passwords for other company users.
+1: Resetting Your Own Password
+To reset your password, first click the "Forgot your password?" link on the login screen. Then enter the email address you used to set up your account and click "Send Password".
+After a few minutes, check your inbox for an email from nobody@decipherinc.com. This email will contain a link for you to reset your password. Click the link and follow the prompts to reset your password.
+After resetting and confirming your new password, you will be automatically directed to the home page of your research hub.
+2: Resetting Other Users' Passwords
+2.1: Via the Company Page
+To reset another user's password from the company page, first click your company name/logo to access your company page. Then select “Users”.
+In the Users menu, locate the user and click their name or email address to open the Edit User window.
+In the Edit User window, click "Reset Password":
+An email is automatically sent to the user with instructions to reset their password.
+2.2: Via the Command Line
+Requires Decipher Cloud
+The script reset-links.py can be used to generate password reset links for an arbitrary number of Research Hub email addresses.
+Similar to clicking "Forgot your password?" at the main login screen, this script generates password reset URLs that can be used to create a new password for a given email address.
+Note: The temporary password reset link expires after one hour of its creation.
+2.2.1: Syntax
+The syntax for the reset-links.py script is below:
+here reset-links.py EMAIL EMAIL EMAIL
+For example:
+here reset-links.py user@domain.com someone@here.com anyone@thisdomain.com
+The above command will generate the following results:
+user@domain.com: https://v2.decipherinc.com/login/reset?token=q9jmdfvwgm7du939
+someone@here.com: https://v2.decipherinc.com/login/reset?token=z7k3eydnaleivzzi
+anyone@thisdomain.com: https://v2.decipherinc.com/login/reset?token=lsken38ghal12igK
+The owners of these email addresses can use the generated URLs to access the following page where they can create a new password.
+2.3: Via the umanage Script
+Requires Decipher Cloud
+You can reset the password of a SSH/shell user account using the following umanage script:
+umanage password user
+Where "user" is the shell username.
+Note: This will not reset the user's Portal password.

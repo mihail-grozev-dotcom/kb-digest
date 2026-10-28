@@ -1,0 +1,38 @@
+Title: Automatic Partial Recovery Technical Considerations
+1: How it Works
+Around every 15 minutes, every survey that has automatic recovery enabled that is LIVE or CLOSED will recover all partials that have not submitted data for the last 15 minutes (or the markerTimeout setting in the survey.xml) and have not yet completed the survey. Automatic recover can be added to a survey in any state. For a CLOSED survey, partial data must exist for recovery to be effective. If the partially recovered participant completes the surveys previous partial data entry is updated with new data.
+Automatically recovered participants will have an autorecover marker set and are excluded whenever the system normally considers completes, thus:
+In the report, partial data is included when selecting "all with partials" or "partials only" in the Respondents filter.The main report page does not show them, but shows a total count of partials.
+The downloads will follow the report settings (showing status "4" for partials).
+The portal shows only non-partials in the "total" and "today" columns.
+When using the generate command all does not include partials; use partials for partials only and everything to get all normal+partial participants.
+In email sends partials will receive a reminder (bulk email will not consider partials as complete).
+2: XML Configuration
+Partials can be enabled via editing the survey tag in the XML.
+Tip: This can also be enabled using the Field Settings in the project settings of a Survey Editor compatible project.
+2.1: Enabling
+Add autoRecover="1" to the survey tag. A compat level of 109+ is required. Automatic recovery will begin around 5-10 minutes from being enabled.
+Note: Surveys with delphi="1" have this attribute on by default.
+Note: With autoRecover enabled, the [vdropout] Last seen question table is available for reports. To learn more about virtual questions, see Default Meta Variables.
+2.2: Disabling
+Remove autoRecover="1" from the survey tag, wait 15 minutes for any pending autorecovery to complete, then manually delete any already recovered partials. All automatically recovered participants will have an autorecover marker set.
+2.3: Incompatible surveys
+The automatic recover feature is not compatible with loadData, allowDupe or sql due to complexity.
+2.4: Logging
+Global information -- This includes type of autorecovery, when autorecover ran, and the number of surveys.
+v2/logs/autorecover.log
+Survey specific information
+v2/path/to/survey/survey.log
+3: Data Edits
+Participant's partial data can be edited using the edit data tool. If the participant returns to the survey again without completing the participant is not auto-recovered again.
+If the participant returns and completes the survey, their data and status is updated and overwrites any previous changes made via the data editor.
+Note: This only applies when editing partial participant records. Deleting partial records will result in a new record being created for that participant once they return to the survey.
+4: Disadvantages
+When saving a partial record, the data file must be locked. A high-throughput survey with many participants may be negatively affected.
+4.1: Unsupported features
+Deduping by source or another extraVariable. This includes participants that were logged into v2 which cannot complete the survey.
+5: Manual Usage for Debugging
+To force an auto-recover on a survey without wait or checking survey state run:
+here maint/autorecover path/to/survey
+This can be used for debugging purposes and will display copious amount of debug output.
+Note: Requires Decipher Cloud access image as the UI client will not be able to run this script without SSH cloud access.

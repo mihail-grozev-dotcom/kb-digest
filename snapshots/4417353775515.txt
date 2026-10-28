@@ -1,0 +1,51 @@
+Title: Email Campaign Manager Overview
+The Email Campaign Manager allows you to schedule and send email campaigns for your Decipher survey or project. This document describes how to access the Email Campaign Manager and navigate its unique tools and features.
+1: Accessing the Campaign Manager
+To access and manage email campaigns for your project, first select your project in the Portal and click "Email Campaigns" under "Responses" in the navigation menu.
+Then click "New Campaign" to create your first campaign and email invitation.
+2: Viewing the Campaign Manager
+1. Project Information: The project name and directory information.
+2. Campaign Report: View the "Campaigns" tab in the project's Response Summary.
+3. Tempate Manager: View the project's Template Manager. See Email Template Manager Overview for additional information.
+4. New Campaign: Add a new campaign. See Creating an Email Campaign for additional information.
+5. Campaigns: View the campaign name. If desired, you can also use this to sort campaigns by name in ascending or descending order.
+6. Recipient List: Add a recipient list or access the options menu to select an existing list.
+7. Status: View the status for the campaign (i.e., saved, seed send done, soft / full / reminder send done, etc.). Click "more" to view the campaign's full status history.
+8. Date Created: View the date the campaign was created. If desired, you can also use this to sort campaigns by date.
+9. Total Invites: View the total number of invites for the campaign. If desired, you can also use this to sort campaigns by their invite totals.
+10. Spam Rating: View the spam rating for the campaign (spam complaints/total email sends for that campaign). If desired, you can also use this to sort campaigns by their spam rating.
+3: Configuring Campaign Options
+Click a campaign name to view the options for the campaign.
+3.1: Editing the Campaign Email
+Select to edit the campaign invite email. See Editing a Campaign for an overview of email editing procedures.
+3.2: Launching the Campaign
+Select to launch the email campaign. See Sending Emails in the Campaign Manager for complete instructions about launching an email campaign.
+3.3: Editing the Reminder Email
+Click to edit the email for a reminder send. See Editing a Reminder for additional instructions.
+3.4: Launching Reminders
+Select to send out reminder emails. See Sending Reminders for complete instructions on launching reminders.
+4: Configuring Recipient List Options
+If a recipient has not been uploaded, click the "Add" link and follow the instructions provided found in Uploading a Recipient List.
+If a recipient list has been uploaded for the campaign, click the list file name to access the options for the list.
+4.1: Viewing the List
+Click "View List" to review the contents of your recipient list. The "Filter" field allows you to quickly locate specific information. This view also allows you to perform the following options:
+Export List: Export the list in .txt format
+Export Bounce-Backs: Export a list of participant opt-outs and permanent bounce back emails.
+Replace List: Replace the existing list with a new one.
+Share List: Enter a name for the list and share it among others within the same project.
+4.2: Editing the List
+Select "Edit List" to edit the contents of your recipient list. Click the item you wish to edit and enter the new text. This also offers the option to delete recipients from the list by clicking the "x" icon. Once the edits are complete, click "Save".
+4.2.1: Viewing List Actions
+The Actions menu offers the following options:
+Undo: Undo the last change (ctrl+z).
+Redo: Redo the last change (ctrl+shift+z).
+Restore to Original List: Restore the list to its original state.
+4.3: Replacing Lists
+Select "Replace List" to replace the existing list with a new one.
+4.4: Sharing Lists
+Select "Share List" to name the list and share it among others within the same project. Click "Share" once a name has been entered.
+4.5: Exporting Lists
+Select "Export List" to export the list in .txt format.
+4.6: Exporting Bounce-Backs and Opt-Outs
+Select "Export Bounce-Backs and Opt-Outs" to export a list of participant opt-outs and permanent bounce-back emails. The report is a text list that shows all the email addresses that participants have submitted for opting out of future surveys or that have been determined to be a permanent bounce-back.
+Participants opt-out of receiving future emails using a link you include within the email.

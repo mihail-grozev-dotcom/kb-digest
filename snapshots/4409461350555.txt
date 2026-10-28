@@ -1,0 +1,165 @@
+Title: Loading Data from an Existing Survey
+To pass survey data from an existing survey into a new project, use the loadRecord() function. This built-in function can pull participant data from a previous Decipher survey (or one that is currently fielding) and populate that data within the current survey.
+This example will walk through the process of setting up two surveys to communicate with one another using the loadRecord function in Decipher. The existing survey contains the data to pass to the current survey. These projects must contain the same participants identified by a unique variable.
+Before data from the existing survey can be loaded into the current survey, changes to both the existing survey and current survey must be made.
+1: Preparing the Existing Survey
+First, changes must be made to the existing survey from which data will be loaded. The existing survey must collect a unique variable to identify participants. This variable must be shared between both surveys involved in the loadRecord process. Additionally, two attributes must be modified within the survey tag and an access control list must be uploaded to the existing survey.
+1.1: Adding a Unique Identifier
+A unique identifier variable must be present for participants in both surveys. This unique identifier will be used as the key variable for passing data from one survey to the other.
+In this example, the myID variable, added to the sample source as a unique URL variable, will serve as the unique identifier.
+<samplesources>
+<samplesource list="1">
+<title>Client Sample</title>
+<completed>It seems you have already entered this survey.</completed>
+<invalid>You are missing information in the URL. Please verify the URL with the original invite
+</invalid>
+<var name="myID" unique="1"/>
+<exit cond="terminated">Thank you for taking our survey.</exit>
+<exit cond="overquota">Thank you for taking our survey.</exit>
+<exit cond="qualified">Thank you for taking our survey. Your efforts are greatly appreciated!</exit>
+</samplesource>
+</samplesources>
+1.2: Updating Survey Attributes
+In addition to including a unique identifier, two attributes must be updated to reference the variable as an attribute. The indexed attribute must be included in the <survey> tag, with the identifying variable as the value, and the unique identifier must be distinguished as part of the extraVariable survey attribute.
+1.2.1: indexed
+Note: In surveys with delphi="1", records are automatically indexed by uuid and any extraVariable identifiers.
+The indexed attribute specifies the variable(s) used to index the survey. For a unique identifier to be used as the key variable for the loadRecord function, it must be passed as a value for the indexed attribute.
+indexed="myID"
+1.2.2: extraVariables
+Because the indexed attribute can only reference extra variables, the unique identifying variable must be passed through as an extraVariable in the <survey> tag in order. Simply including the unique identifier in the comma-separated list will make it accessible.
+extraVariables="source,record,ipAddress,decLang,list,userAgent,myID"
+1.2.3: acl.txt
+The final update required for the existing survey is to include an access control list file. This file specifies all projects that can load data from the existing survey. To add an access control list, upload a text file containing the survey paths of all projects with permission to load data into the project’s Root Directory with the filename "acl.txt".
+Learn More: Uploading System Files
+Adding the Survey Path
+The path to the current project can be taken from the URL in the "Project Overview". An example path is provided below.
+selfserve/XYZ/123456
+Adding this line to the acl.txt will give project "123456" in the "XYZ" directory permission to load records from the existing survey.
+Multiple projects can be granted access to load data by adding additional lines with the corresponding survey paths.
+Using Wildcards
+Wildcards can be used to give permission to multiple projects in the same line of an access control list. In the following example, the first line will grant permission to all projects in the "XYZ" directory, while the second line will allow all projects in the "abc" subdirectory to load data from the existing survey.
+selfserve/XYZ/*
+selfserve/XYZ/abc/*
+2: Preparing the Current Survey
+The current survey is the project that you are loading survey data into. Like the existing survey, it must include a unique identifier and its data must be organized into Decipher questions.
+2.1: Adding a Unique Identifier
+As before, the unique identifier should be passed through the URL using the sample sources tag. Once added, participants entering the survey with a unique identifier value, which matches a record that completed the existing survey, will have their data loaded into the current survey.
+In this case, the myID variable is once again added to the <var> tag as a unique variable.
+<samplesources>
+<samplesource list="1">
+<title>Client Sample</title>
+<completed>It seems you have already entered this survey.</completed>
+<invalid>You are missing information in the URL. Please verify the URL with the original invite
+</invalid>
+<var name="myID" unique="1"/>
+<exit cond="terminated">Thank you for taking our survey.</exit>
+<exit cond="overquota">Thank you for taking our survey.</exit>
+<exit cond="qualified">Thank you for taking our survey. Your efforts are greatly appreciated!</exit>
+</samplesource>
+</samplesources>
+2.2: Creating Survey Questions
+Before loading data from another project, questions must be included to store the external survey data. These questions should maintain the same structure as their counterparts in the existing survey. Frequently, the questions' XML can be copied from the existing survey into the current survey or created using the Survey Editor.
+While the question labels don’t need to match those used in the existing survey, they must be unique to those present in the survey.
+Including where="execute" within the question tag hides a question from participants, but still populates the question for the sake of the reports and raw data. Likewise, these questions can be referenced in logic conditions and piping, in the same manner as any other question.
+An example of three questions copied from the existing survey’s XML is provided below:
+<radio
+label="S1"
+where="execute">
+<title>Gender:</title>
+<comment>Select one</comment>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<number
+label="S2"
+optional="0"
+size="10"
+verify="range(0,120)"
+where="execute">
+<title>Age:</title>
+<comment>Enter a number</comment>
+</number>
+<suspend/>
+<checkbox
+label="q9"
+atleast="1">
+<title>Which activities do you do?</title>
+<comment>Select all that apply</comment>
+<row label="r1">Biking</row>
+<row label="r2">Walking</row>
+<row label="r3">Running</row>
+<row label="r4">Hiking</row>
+<row label="r5">Skiing</row>
+</checkbox>
+2.3: Adding the loadRecord Function
+The loadRecord() function accepts three parameters:
+The path to the existing survey to load data form.
+The variable to index the existing survey.
+The value of the variable in the current survey to use as the key.
+For ease of reference, it is recommended that loadRecord is stored in a variable, as shown below.
+rec = loadRecord("selfserve/XYZ/98765", "myID", myID)
+2.3.1: Checking for Data
+loadRecord returns a false value if it does not find any matching data. As such, running the if check before populating questions with the loadRecord data is recommended to avoid fatal errors.
+if rec:
+2.3.2: Populating Questions
+When the loadRecord function does find matching data for a given unique identifier, that data can be accessed using the question label (from the existing survey) as the key. The data can then be assigned to the corresponding question(s) in the current survey:
+S1.val = rec.S1.val
+S2.val = rec.S2.val
+q9.vals = rec.q9.vals
+Pulling it all together, the following Python code can be placed at the beginning of the survey XML to populate questions S1 and S2 with the loaded records:
+<exec>
+rec = loadRecord("selfserve/XYZ/98765", "myID", myID)
+if rec:
+S1.val = rec.S1.val
+S2.val = rec.S2.val
+q9.vals = rec.q9.vals
+</exec>
+2.4: Adding Virtual Questions
+The example above will load data as participants are progressing through the current survey. This means it must be setup before the survey begins fielding. In situations where it is necessary to load records after the survey has started fielding, the loadRecord function can be used with virtual questions.
+To do so, the loadRecord function must be implemented in an <exec> tag with when="virtual".
+<exec when="virtual">
+rec = loadRecord("selfserve/XYZ/98765", "myID", myID)
+</exec>
+Likewise, the Python code to populate questions must be moved into a <virtual> tag within the corresponding question tags, as shown below.
+<radio
+label="S1">
+<title>Gender:</title>
+<virtual> S1.val = rec.S1.val
+</virtual>
+<comment>Select one</comment>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<number
+label="S2"
+optional="0"
+size="10"
+verify="range(0,120)"> <virtual> S2.val = rec.S2.val
+</virtual>
+<title>Age:</title>
+<comment>Enter a number</comment>
+</number>
+<checkbox
+label="q9"
+atleast="1">
+<title>Which activities do you do?</title>
+<comment>Select all that apply</comment>
+<row label="r1">Biking</row>
+<row label="r2">Walking</row>
+<row label="r3">Running</row>
+<row label="r4">Hiking</row>
+<row label="r5">Skiing</row>
+</checkbox>
+Read More: Adding Virtual Questions to the Report
+2.5: Testing the loadRecord Function
+Testing is recommended to ensure data is populating correctly in the current survey. To do so, use a value for the unique identifier that has already completed the existing survey and select "Test Survey with Tools":
+If the current survey is setup correctly, loaded data will populate on a crinkled sheet of paper in the appropriate questions:
+Note: The testing toolbar will not display for virtual questions. Virtual questions must be checked using reports.
+3: Limitations and Additional Considerations
+While the loadRecord function is a solution for passing data between surveys, the following limitations apply:
+It is resource intensive - Retrieving the record data must load the survey and the record into memory. This process can be somewhat resource intensive in certain projects. If your survey is large, this may cause a participant timeout error. As a rule of thumb, if after you modify your survey.xml and reload a page it takes more than 10 seconds for the page to come up, your survey is too large to be used as a loadRecord data source.
+It only loads survey data - Only data from survey questions can be loaded. This means that meta variables, such as uuid or markers, cannot be retrieved. Because virtual questions are executed upon running the report, they cannot be loaded either.
+The data is read-only - Data retrieved through the loadRecord function is read-only and cannot be modified in the existing survey.
+You must use an extra variable as a key - Only extra variables can be passed as values through the indexed attribute. In order to use a variable as the key, it must be specified as an extraVariable.
+Cannot be used with autoRecover="1" - Using loadRecord with autorecover enabled may create conflicts due to multiple records with the same unique identifier. As such, autoRecover should be avoided when using the loadRecord function.

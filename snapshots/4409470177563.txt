@@ -1,0 +1,9 @@
+Title: Actions in the Campaign Editor
+The Actions menu contains the available actions for an email campaign. To access these options, click Actions and select the desired option.
+1: Save as Template
+Saving a campaign as a template will make it available for use in future projects. To do this, select Save as Template in the Actions menu and the window below will appear. Enter a name for the template and click Save.
+2: Duplicate Campaign
+To duplicate a campaign, select Duplicate Campaign in the Actions menu. A duplicate copy will be created. Click OK and you will be redirected to the email campaign manager page. The copy will appear as Copy of [campaign name].
+3: Delete Campaign
+To delete a campaign, select Delete Campaign in the Actions menu and the window below will appear. Click Delete to delete the campaign. Deleting an email campaign will also delete associated invites and recipient lists.
+Note: If a campaign relies on data stored in the Automated Database Management (ADB) system, you will need to remove the ADB system integration to delete that campaign.

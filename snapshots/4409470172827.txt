@@ -1,0 +1,84 @@
+Title: CATI Management Console
+The CATI management console is available for Manual and ProTS sample. The following steps must be completed in order to use the management console:
+CATI Sample has been enabled for your company
+You have added CATI Manual or ProTS sample to your survey
+Your survey has been built, tested, and set "Live" (i.e., launched)
+Note: This is not a comprehensive list for fielding a CATI project, but the minimum steps required to view the management console.
+1: Accessing the CATI Management Console
+Once you have activated the CATI management console, you can access it via either the “Participant Sources” menu, or the navigation menu appearing at the top of any project page.
+To access the console from the “Participant Sources” menu, locate the CATI participant source and click the “CATI Management Console” link.
+To access the console from the navigation menu, select “CATI Management” under “Responses”.
+2: Start or Stop the ProTS Dialer
+The dialer can be controlled from the CATI management console. In the CATI management console, the dialer is located in the "Project Configuration" tab and its status is indicated by its icon color.
+Red: Indicates that the dialer is OFF. Click the icon to start the dialer.
+Green: Indicates that the dialer is ON. Click the icon to stop the dialer.
+Grey: Indicates that there isn't any sample available. Add more sample or adjust the filters to enable the dialer.
+Note: The dialer does not automatically dial people who have a status of “No Answer”, “Busy Signal” or "Callback". These people need to be manually re-dialed.
+3: Project Configuration
+This page mirrors the settings configured for the CATI participant source, allowing you to modify the project configuration while the project is in field. The options differ for ProTS and Manual. For more information on what options are available for each sample type, click the links below to skip to those sections:
+3.1: CATI ProTS Settings
+3.2: CATI Manual Settings
+3.1: CATI ProTS Settings
+Intro Script: Read by the interviewers to each contact they call before beginning the survey
+Dial Mode:
+Predictive Dial Mode: Several numbers are dialed simultaneously, based on available interviewers and the abandonment rate. This mode maximizes the interviewer talk time and minimizes potential abandonment by utilizing a standard line ratio of 1:5:1. This ratio is dynamically adjusted on a study-by-study basis by ProTS to deliver optimum dialing performance.
+Power Dial Mode: Dials the participant's number and places the call into a queue that pairs it with the next available interviewer, ensuring that an interviewer is available to handle the call.
+Note: The dialer does not automatically dial people who have a status of “No Answer”, “Busy Signal” or "Callback". These people need to be manually re-dialed.
+Contact Hours: Set the time frame in which the dialer may make calls to participants. The time zone is set for the interviewer's local time and adjusted to the participant's time zone.
+Number of Rings: Set the maximum number of rings before a disposition is logged for the participant (i.e., "No Answer").
+Number of Attempts: Set the maximum number of attempts that may be made to contact a potential participant before a disqualification disposition is logged.
+Abandonment Rate: (Only available with the Predictive Dial Mode)
+Set the acceptable rate at which otherwise connected calls will be dropped due to an interviewer not being available. If set to 0, no calls will be abandoned (i.e., 1 in 10,000, or 0.01% abandonment rate).
+The abandonment rate is calculated as the value/1,000. For example, a value of 20 means 20 in 1,000 calls may be abandoned, making it a 2% abandonment rate.
+Recording Settings: Choose whether to record the calls or not. If enabled, use the start/stop settings to specify what section of the survey to record.
+Off: The dialer will not record any part of the interview.
+On: The dialer will record the interview according to the selected start and stop settings.
+Start: Select when the recording will begin, i.e., at the beginning of the survey or a specific question.
+Stop: Select when the recording will end, i.e., at the end of the survey or a specific question.
+Redial Delay: Set the amount of time, in minutes, before an attempt to redial may be made when a disposition of "No Answer," "Answering machine detected," "Busy" or "Circuit busy signal" is logged.
+Caller ID: Enter the number that will be shown on the participant's phone when they receive the call.
+Job Code: The job code is used for telephone billing.
+No Job Code: No job code added to the dialed numbers.
+Prefix: Adds the job code before the participant's phone number.
+Suffix: Adds the job code after the participant's phone number.
+If changes are made to any of these settings, click "Save."
+3.2: CATI Manual Settings
+Intro Script: Read by the interviewers to each contact they call before beginning the survey
+Contact Hours: Set the time frame in which the dialer may make calls to participants. The time zone is set for the interviewer's local time and adjusted to the participant's time zone.
+Number of Attempts: Set the maximum number of attempts that may be made to contact a potential participant before a disqualification disposition is logged.
+If changes are made to any of these settings, click "Save."
+4: Filter Sample
+Apply filters to limit the sample used when auto-dialing.
+Region: Select a region from the menu. These are generated based on the participant's area code.
+Add New Filter: (Only available if the phone list file contained additional variables) Select a filter from the menu, then enter the condition(s).
+E.g., In the image above, "US/Hawaii" is specified for "Region". To choose multiple conditions, you can enter the conditions in comma-separated form (e.g., "East,West,North").
+Note: Text values are case-sensitive.
+If changes are made to any of the settings, click "Save."
+5: Manage Sample
+View and manage your sample.
+Add Sample: Click this button to upload more sample to your project. The phone list must follow the same format used in the participant source. Click here for instructions for CATI Manual, or click here for a ProTS project.
+If a duplicate phone number is uploaded, all information is updated except the disposition and history.
+Remove Sample: Click this button to remove all sample.
+Show Available Sample: Check this box to display the available sample, accounting for filters and sample used.
+6: Callbacks
+The "Callbacks" tab contains participants who are tagged as "Call back later." This tab lists the name, phone number, status, requested call back time, interviewer and any additional information.
+"View Other Data" displays any additional information included in the phone list file, used for filtering.
+7: Interviewers & Stations
+Allows you to view and manage your interviewers and stations.
+Replace Interviewers/Stations: Click this button to upload a new list of interviewers and stations. The list must follow the same format used in the participant source. Click here for instructions for CATI Manual, or click here for a ProTS project.
+Interviewers: Lists information about the interviewers and their activities.
+ID and Name: Pulled from the interviewer file
+Last Activity
+Hook Status:
+ON-HOOK: Updated when an interviewer is connected with a phone number
+Green phone icon + phone number: The interviewer is interacting with a participant at that number
+Stations: Lists information about the stations.
+Station ID and Extension: Pulled from the interviewer files.
+8: Disposition Report
+The "Disposition Report" tab allows you to view your available dispositions and call breakdown. Counts are displayed for total sample, currently available numbers, and records already dialed.
+Dialed records and available numbers will also be shown split by disposition, as well as any other specified fields:
+Split Field: Select from the drop-down and apply to split the report by time zone or interviewer.
+Restrict by date: Check the box, enter your desired dates, and apply to display only calls from a specific time frame.
+9: Call History
+The "Call History" tab displays the interviewer details and metadata recorded for each call. Tracked fields include the call time and disposition, as well as the participant's name, phone number, time zone, and call back information.
+This tab also allows you to split the report by date, or download all call of your call data by clicking "Download All Call History":

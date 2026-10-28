@@ -1,0 +1,28 @@
+Title: 150.2 Release Notes
+Release Date: April 26, 2022
+Release Version: 150.2
+Bug Fixes
+Portal
+Updated styles on the newsflash page. Clients with customized CSS on the
+newsflash page may experience style changes.
+Survey
+Survey Editor
+The theme editor example survey now shows the correct behavior (not disabling
+other rows) for the exclusive option in a multi-select question.
+Respondent View
+Refreshing a final page containing multiple questions in a survey with delphi
+and autosave enabled no longer breaks the last page into two separate pages.
+All questions on the final page remain on the same page, even after refreshing.
+Entering a survey that has restricted compatibility with mobile devices as
+a participant with a user-agent string containing non-UTF8 characters no
+longer causes a fatal error.
+Dynamic Questions
+Existing maxdiff questions with translations in the Language Manager will
+now display the translated text to the respondent instead of the original
+text.
+Responses
+View/Edit Responses
+Radio questions with “noanswer” selected are marked as “not shown” when saved
+in surveys with delphi enabled. This allows the Show filter in Crosstabs
+to display correctly and multiple “noanswer” variables on a given radio question
+to save correctly. This change does not apply retroactively.

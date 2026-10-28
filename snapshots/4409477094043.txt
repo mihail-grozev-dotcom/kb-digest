@@ -1,0 +1,15 @@
+Title: Setting the Height and Width of an Answer Field
+If a question contains multiple answer options, you can set the height and width for each of its response fields individually.
+1: Setting the Field Height
+The Survey Editor allows you to define the number of lines in the response field, therefore adjusting the height of the field for text elements.
+Note: Only available for text elements.
+Example:
+To set the height of the response field, first, select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right corner of the question and select "Update Styling".
+The "Question Display Options" window will appear. Locate the "Field Height" field and enter the desired height (i.e., number of lines). Then click "Save and Close" and the field height will be set for the question.
+2: Setting the Field Width
+The Survey Editor allows you to define the width of the response field in text or number elements.
+Note: Only available for text and number elements.
+Example:
+To set the width of the response field, first, select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right corner of the question and select "Update Styling".
+The "Question Display Options" window will appear. Locate the "Field Width" field and enter the desired width (i.e., the number of characters the participant can visibly enter). Then select "Save and Close" and the field width will be set for the question.
+Note: Setting the width of a response field does not limit the number of characters permitted in a response.

@@ -1,0 +1,37 @@
+Title: 145.6 Release Notes
+Release Date: December 8, 2020
+Release Version: 145.6
+New Features
+Survey
+Survey Editor
+Added an "Accordion” style option for displaying single select grid questions on mobile devices.
+One row is shown at a time with all columns listed as possible response options.
+Once a response is selected for a row, that row is hidden and the next row is shown.
+Logic Nodes
+Added the ability to exclude a numerical Net Promoter Score (NPS) value when sending text data via the Lumoa logic node.
+Reporting
+Crosstabs
+Updated the T-testing process to make effective base approximations more precise for conjugate segments.
+Updated the “Significance testing” option to include significance labels within chart legends in Power Point (PPTX) exports.
+Bug Fixes
+Portal
+Fixed an issue preventing error messages from appearing in rare cases when page scripts failed to load.
+Start from Template
+Fixed an issue preventing the system from using the latest compat level when creating surveys using the following templates:
+Brand Perception
+Copy Test (Video Ad)
+Exploratory Pricing
+Survey
+Language Manager
+Fixed an issue causing outdated resources to display untranslated text when exported.
+CATI ProTS
+Fixed an issue causing certain valid phone numbers to be excluded from dialable sample.
+Fixed an issue preventing Canadian phone numbers from being dialed.
+Responses
+Campaign Manager
+Fixed an issue preventing some seed sends from being sent for reminder emails.
+Reporting
+Crosstabs
+Fixed an issue causing some T-test significance testing indicators to appear as lowercase letters instead of capital letters.
+Dashboard
+Fixed an issue causing the bars in bar charts to display in reverse order for compat level 5 dashboards.

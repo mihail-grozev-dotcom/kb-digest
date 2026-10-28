@@ -1,0 +1,13 @@
+Title: M40 Release Notes
+Release Date: September 5, 2018
+Release Version: 140
+New survey compat level is 140.
+New Features
+Survey Editor Guardrails
+Changing question labels now automatically updates references to those labels within survey logic and quotas.
+Some survey logic requires questions to be separated by pages. Users will now receive an alert when attempting to delete a page or page break that is required for other elements to function.
+Bug Fixes
+Portal
+Optimized performance for memory usage specific to translation files. This reduces base system memory usage (memory before loading any surveys) by 15%
+Fixed a potential issue where reporting requests could be sent through the portal process
+Added a check for a potential memory error

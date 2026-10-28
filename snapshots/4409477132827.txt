@@ -1,0 +1,47 @@
+Title: SPSS Data Importer
+The SPSS Data Importer can be used to import existing offline data into Crosstabs. This document outlines all of the options for importing SPSS data using the importer.
+1: Importing an SPSS File
+Tip: It is best to clean your SPSS file prior to uploading:
+Remove any notes from labels
+Be sure to specify the correct data type and value labels
+Remove any unwanted variables
+To upload an SPSS file, first log into the Portal and click the New Survey button. In the New Survey window, click More Options and select Import File.
+Then drag and drop your SPSS file into the box or click or Browse to locate and upload the file from your device.
+Next, scroll down to enter a project name and click Create Survey.
+Note: You will only see the Start with Word option if you have the Word Importer tool enabled for your company.
+If desired, you can also add a short description and tags for your survey, as well as specify a particular directory or path. See Creating a New Survey to learn more about creating a project in Decipher.
+When the file is loaded successfully, the data will appear in the Data Importer, allowing you to edit and manage your data before saving it as a report.
+Tip: If your file does not load, please review the Limitations & Assistance section below for tips on troubleshooting.
+2: Data Importer Overview
+The Data Importer allows you to view and edit your SPSS data within Decipher. It includes the following tools and features.
+1. Project Name: The name of the project that's used in the Portal. To edit the project name, simply click the text and enter a new name in the field.
+2. File Name: The name of the imported file. To permanently remove or replace, click the x and follow the instructions.
+3. File Size: Lists the size of the file.
+4. Variables: The number of variables in the file.
+5. Respondents: The number of participants in the file.
+Note: All participants are imported as "qualified" for the purposes of reporting.
+6. Selected Variables: When variables are selected, the total is shown here. Check the boxes next to the variables to select them or check the box at the very top to select all variables. When one or more variables are selected you can add them to new or existing groups, change the question type or include/exclude them from the import.
+7. New Group: Select variables of the same type, click New Group and enter the group label and question text to create a new group. Then click Save.
+8. Add to Group: Allows you to add the selected variables to an existing group. The importer will place variables into a group if those variables are similar (for example, if the variables reference the same question number).
+9. Change Question Type: When multiple variables are selected, this allows you to change the question type of all selected variables. You must choose from the available question types. If the question type is "unknown," the file will not be accepted.
+10. Ungroup: Select a grouped variable and click ungroup to break down the group.
+11. Include: Select an excluded variable and click Include to include it in the data that is imported to crosstabs.
+12. Exclude: Allows you to exclude the selected variable(s) when the data is imported to the report.
+13. Show/Hide Excluded Variables: Excluded variables are shown in grey font. Uncheck the box to hide them from view completely.
+14. Variable: Contains the variable name. To edit the variable label, click on the question text and enter the change.
+15. Question Text: Contains the question text. To edit, click on the question text for a variable and make changes to the variable label, question type or question text, and choose if you want it included in the report. If changes are made, click Save.
+16. Question Type: Contains the type of question. The importer applies a question type to each variable in the SPSS file. To edit the question type, click on the dropdown menu and selecting the desired type.
+Single Select: A question that permits one response.
+Multi-Select: A question that permits multiple responses.
+Text: An open-ended question that permits an alpha-numeric response.
+Number: An open-ended question that permits a numeric response.
+Float: An open-ended number question that allows decimal places or negative numbers.
+17. Values: Contains the reporting values. Hover-over the values for a variable to view the corresponding answer options. (Not editable.)
+2.1: Save & Import
+Click Save to save your changes as you edit the data. Once the changes are complete, click Import to import the data to Crosstabs.
+3: Edit an SPSS Project
+To edit the SPSS variables for a project, first click the project's name in the Portal to access its project page. From the navigation menu, click More Tools under Reports. Then select Edit SPSS Variables.
+The Data Importer opens, where you can view and edit your data using the options outlined above.
+4: Limitations
+SPSS files may not always upload the first time around as SPSS files can vary greatly depending on vendor and SPSS version.
+If one of your imported variables has the same name as a system variable, the importer adds a $ sign at the end of the name to differentiate it from the system variable. For example, uuid becomes uuid$.

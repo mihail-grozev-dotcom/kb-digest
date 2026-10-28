@@ -1,0 +1,62 @@
+Title: Condition Tag: Create Simpler References to Condition Logic
+The <condition> element enables you to declare a named condition. Instead of rewriting condition logic across your entire survey, you can use the <condition> element to write it once and then refer to the condition using the element's label.
+For example, in the code below, specifying condition.male is the same as specifying Q1.r1. This means that the "Male_Section" <block> will only be shown to those who are condition.male or Q1.r1.
+<radio label="Q1" optional="0">
+<title>Are you...</title>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<condition label="male" cond="Q1.r1">Is Male</condition>
+<condition label="female" cond="Q1.r2">Is Female</condition>
+<block label="Male_Section" cond="condition.male">
+...
+...
+</block>
+<block label="Female_Section" cond="condition.female">
+...
+...
+</block>
+The <condition> element may be added anywhere within the survey's XML, but it is best practice to write them at the top of the file (just below the <samplesources> element).
+Tip: Click here to learn more about creating sections with the Block tag.
+1: Attributes
+There are two attributes available for <condition> elements.
+Attribute
+Type
+Description
+cond
+string
+This is the condition logic. This should be a Python expression that will evaluate to True or False.
+label
+string
+This is the condition's name. This is what you will use to refer to the condition's logic.
+If desired, you can also add builder:warning="unsupported" to flag an element as unsupported and prevent a project from launching.
+1.1: cond - Setting the Condition
+The cond attribute is the logic for the <condition> element. Instead of rewriting the same condition logic across the survey, you can specify the logic inside the cond attribute of a <condition> element and refer to it instead.
+For example, instead of writing the condition Q2.ival ge 18 for both questions Q3 and Q4, you can declare a <condition> element named "isAdult" and write the condition inside of the cond attribute:
+<number label="Q2" size="3" verify="range(1, 125)">
+<title>Please enter your age below:</title>
+</number>
+<suspend/>
+<condition label="isAdult" cond="Q2.ival ge 18">Age is 18 or older</condition>
+<radio label="Q3" optional="0" cond="condition.isAdult">
+<title>Have you ever been to a casino before?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<radio label="Q4" optiona="0" cond="condition.isAdult">
+<title>Have you ever been to a bar before?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+With this <condition> element in place, you can refer to the logic using the condition.label syntax (e.g., condition.isAdult) and show both questions Q3 and Q4 appropriately.
+1.2: label - Specifying the Condition's Name
+The label attribute is the <condition> element's name. It is best to set this attribute to a human-readable string that can be easily remembered and typed out.
+For example:
+<condition label="maleTV" cond="Q1.r1 and Q2.r3 and (Q3.r1 or Q3.r2 or Q3.r3)">Males who frequently watch TV</condition>
+<condition label="maleGamers" cond="Q1.r1 and (Q2.r4 or Q2.r5)">Males who game via console or PC</condition>
+<condition label="femaleTV" cond="Q1.r2 and Q2.r3 and (Q3.r1 or Q3.r2 or Q3.r3)">Females who frequently watch TV</condition>
+<condition label="femaleGamers" cond="Q1.r2 and (Q2.r4 or Q2.r5)">Females who game via console or PC</condition>
+2: Viewing Conditions Table in the Report
+A table named "Conditions" gets created automatically in the report containing a row for every <condition> element in a survey. Run the "Total" report in Crosstabs to access the conditions table.
+Note: This information is also available in the data downloads. Since this creates a new variable, moving, deleting or adding new <condition> elements would require an hmerge.

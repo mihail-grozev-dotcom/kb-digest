@@ -1,0 +1,43 @@
+Title: Editing a Live or Closed Survey
+The Survey Editor uses a special process to manage changes to a survey that is live and actively collecting data, or a survey that has been closed. This process creates a temporary copy of the survey that you can edit. Editing a closed survey is especially useful for upgrading the survey's compat level and adding virtual questions for data processing.
+Once you've completed your edits, you can save and merge the temporary copy with the live or closed survey without affecting its fielding. All previously collected data is maintained, and a live survey can continue collecting data throughout the process.
+1: Editing a Live or Closed Survey
+To edit a live or closed survey:
+Go to Build > Survey Editor in the navigation menu at the top of any project page.
+Read the warning message about the risks of editing a live or closed survey, including the changes you should avoid.
+Click OK to proceed.
+A temporary copy of your survey appears in the staging area of the Survey Editor, along with another warning message. This message reminds you that you're working with a copy of the survey and provides a link to discard your changes and return to the original version.
+Make your changes and test them in the temporary version of the survey.
+Note: If changes are made to the original survey outside of the Survey Editor after you create the temporary copy, returning to the original survey restores the updated original, not the version that existed when you created the temporary copy.
+2: What to Edit and What to Avoid
+Any changes you make will be merged into the live or closed survey, so it's important to avoid changes that may negatively affect existing survey logic or data.
+You can safely make the following changes without affecting the survey's live functionality:
+Update question text.
+Fix spelling errors.
+Add new questions.
+Add new rows.
+Edit skip patterns.
+Avoid the following changes because they may affect the survey's live functionality:
+Do not change the question labels of existing questions. Existing labels must match those in the original survey to maintain previously collected data.
+Do not delete questions.
+Do not delete response options.
+Do not change question types.
+Do not delete participant sources.
+Do not delete named conditions.
+2.1: Editing Quotas
+You can also edit quotas in a live or closed survey using the temporary copy process. You can add and remove quotas, add rows and columns, and change the logic of a row or column. However, you cannot change the title (sheet name) of a quota that exists in a live project.
+Important: Editing quotas in a live or closed survey can change the survey flow, invalidate logic for participants who have already entered the survey, or result in data loss. Proceed with caution.
+3: Relaunching the Survey
+Once you've completed your changes and are ready to merge them with the live or closed survey:
+Click Save to Live Survey or Save to Closed Survey in the upper-right corner of the Survey Editor staging area.
+If streamlined launch is enabled for your company or survey, the Launch Options window opens.
+For more information, see Launching a Survey.
+Click Update in the Update Survey window to update the existing survey.
+The system tests the updated survey for errors. If the survey passes, the changes are applied to the live or closed version, replacing the existing survey. The original survey link and all previously collected data are maintained.
+3.1: Quota Mismatch Warning
+If the quotas in the live survey are newer than those in the temporary version, a quota mismatch warning may appear. This warning indicates that another user may have changed the live survey's quotas while you were editing the temporary version. This can happen if another user saves their temporary changes first or edits the quotas in the Response Summary.
+The warning doesn't appear if only the temporary version's quotas have changed, because those changes are expected.
+To overwrite the live survey's quotas with those from the temporary version:
+Check the box to acknowledge responsibility for overwriting the quotas.
+Click Launch without reverting.
+To return to the temporary survey and edit its quotas, click Cancel.

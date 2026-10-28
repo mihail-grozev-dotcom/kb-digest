@@ -1,0 +1,85 @@
+Title: Net Tag: Aggregate Data
+1: Overview
+The <net> element allows you to aggregate the totals for rows, columns or choices. Nets only appear in the report and provide a great way to create groups like Top 2, Bottom 3, or by genre.
+<radio label="Q1" optional="0" type="rating" values="order">
+<title>How would you rate your experience with us?</title>
+<row label="r1">1 - Not great</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">5 - Great</row>
+<net labels="r1,r2,r3">Bottom 3</net>
+<net values="2,3,4">Middle 3</net>
+<net indices="2,3,4">Top 3</net>
+</radio>
+The code above produces the following table in the report:
+2: Attributes
+The <net> element has access to the following attributes:
+2.1: label - Set the Net Name
+The label attribute is the <net> element's unique identifier. This attribute is optional.
+<net label="top_3" values="3,4,5">Top 3</net>
+2.2: labels - Assign Answer Options to the Net by Label
+The labels attribute is a comma-separated list of cell labels to include in the net. For example:
+<checkbox label="Q1" atleast="1">
+<title>Which of the following artists do you listen to?</title>
+<row label="r1">AC/DC</row>
+<row label="r2">Led Zeppelin</row>
+<row label="r3">Jimmy Hendrix</row>
+<row label="r4">Daft Punk</row>
+<row label="r5">Avicii</row>
+<net labels="r1,r2,r3">Rock</net>
+<net labels="r4,r5">Techno</net>
+</checkbox>
+The labels attribute can be used to aggregate totals in a <number> question as well:
+<number label="Q1" size="3">
+<title>How many hours have you spent doing the following?</title>
+<row label="r1">Driving</row>
+<row label="r2">Flying</row>
+<row label="r3">Traveling via Train</row>
+<row label="r4">Walking</row>
+<row label="r5">Running</row>
+<net labels="r1,r2,r3">Commuting</net>
+<net labels="r4,r5">Exercising</net>
+</number>
+2.3: values - Assign Answer Options to the Net by Values
+The values attribute is a comma-separated list of cell values to include in the net. For example:
+<radio label="Q1" optional="0">
+<title>Which of the following artists is your favorite?</title>
+<row label="r1" value="1">AC/DC</row>
+<row label="r2" value="2">Led Zeppelin</row>
+<row label="r3" value="3">Jimmy Hendrix</row>
+<row label="r4" value="4">Daft Punk</row>
+<row label="r5" value="5">Avicii</row>
+<net values="1,2,3">Rock</net>
+<net values="4,5">Techno</net>
+</radio>
+The values attribute is also useful for netting values provided in a <number> question:
+<number label="Q1" size="3" verify="range(1, 125)">
+<title>What is your age?</title>
+<net values="1-12">Pre-teen</net>
+<net values="13-19">Teen</net>
+<net values="20-29">20s</net>
+<net values="30-39">30s</net>
+<net values="40-49">40s</net>
+<net values="50+">50s +</net>
+</number>
+Tip: This is similar to using Numeric Nets with the <nets> element.
+2.4: indices - Assign Answer Options to the Net by Index
+The indices attribute is a comma-separated list of cell indices/indexes to include in the net. For example:
+<radio label="Q1" optional="0">
+<title>Which of the following artists is your favorite?</title>
+<row label="r1">AC/DC</row>
+<row label="r2">Led Zeppelin</row>
+<row label="r3">Jimmy Hendrix</row>
+<row label="r4">Daft Punk</row>
+<row label="r5">Avicii</row>
+<net indices="0,1,2">Rock</net>
+<net indices="3,4">Techno</net>
+</radio>
+2.5: pos - Set the Net Position in the Report
+The pos attribute can be set to "above" or "below" to control where to display the netted row in the report table.
+By default, pos="above" is specified and the <net> will appear above the first row it corresponds to:
+If pos="below" is specified, the <net> will appear below the last row it corresponds to:
+2.6: where - Set Where the Net Can Be Seen
+The where attribute can be set to "report", "summary" or "none" to control where the individual net should be appear.
+By default, where="report" is specified and the net will appear in the report table. Specify where="report,summary" to display a net in both the report and summary tables. Specify where="none" to hide the net from the report altogether.

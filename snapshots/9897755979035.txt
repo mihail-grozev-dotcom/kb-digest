@@ -1,0 +1,34 @@
+Title: 149.9 Release Notes
+Release Date: February 15, 2022
+Release Version: 149.9
+New Features
+Updated the privacy policy hyperlink to reflect the recent rebranding from FocusVision to Forsta.
+Survey
+Survey Editor
+Updated the Knowledge Base hyperlinks in the Project Settings modal.
+CATI
+Updated the allowed area codes list.
+Improved the automatic start/restart process.
+Responses
+Sample Marketplace
+Disabled “Purchase Sample” option in temp-edit-live projects. Sample can be purchased in either an unpublished or live survey.
+Learn More: Purchasing Survey Sample
+Campaign Manager
+Added campaign email files and template files to the Change Management and Version Control system.
+Learn More: Change Management and Version Control System
+Reporting
+Project Warnings
+Users with editing permission for a survey can now view Project Warnings for that survey.
+Programming & Tools
+The survey request processing queuing algorithm now permits tuning to accept a lower minimum threshold of pending participants in order to open a new queue. Previously, the least busy queue required at least nine pending participants before opening a new queue. A lower minimum threshold can now be set, allowing a new queue to be opened with less pending participants.
+API
+Added archived project(s) that were deleted in the previous 90 days to the archival and deletion e-mail notification.
+Bug Fixes
+Portal
+Fixed a style issue on the Salesforce Integration page.
+Fixed an issue that prevented the default Date Range filter from including the current day.
+XML Editor
+Fixed an issue where adding the Khmer language to a survey using the mls ='khmer' attribute in the XML Editor caused a fatal error.
+Programming & Tools
+API
+Fixed an issue where the deleted archives API endpoint was incorrectly limiting its output. The deleted archives API endpoint now uses days_since_deletion instead of days_since_archival.

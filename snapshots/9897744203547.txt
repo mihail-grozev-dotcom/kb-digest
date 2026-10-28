@@ -1,0 +1,23 @@
+Title: M44 Release Notes
+Release Date: October 29, 2019
+Release Version: 144
+New Features
+Survey
+Participant Sources
+Updated the “+ Participant Source” button to display a tiled view of available participant sources by type.
+Updated the participant sources list to display participant sources grouped by type.
+Added support for CATI and email campaign participant sources.
+Added response and status fields to sources displayed in the participant sources list.
+Updated survey URL variables and exit links for the pre-defined Dynata participant source.
+Survey Editor
+Updated survey URL variables and exit links for the pre-defined Dynata participant source.
+Other Updates
+The new survey compat level is 144. Use compat="144" for all new surveys. This disables the legacy Chinese (chinese) survey language.
+Bug Fixes
+Survey
+Fixed an issue causing <exec> commands using suspendExternal redirects to not redirect users returning to a survey with both autosave="1" and delphi="1".
+Response Summary
+Fixed an issue causing partial participants to be counted in quotas even if they never returned to complete a survey with delphi="1" and loadData enabled.
+Participant Sources
+Fixed an error caused by navigating to this menu from a project not located on a selfserve directory.
+Fixed an issue causing a tooltip to not be displayed when mousing over the “copy” icon for a participant source.

@@ -1,0 +1,6 @@
+Title: How do I download all my data?
+You can download your survey data in one of three ways:
+1. Via the Project Overview page: Click "REPORT", then "Data Downloads" and select the type of download you desire. If your download is not available, select “Other Data Formats”.
+2. Via Crosstabs: Click “Exports” and select the type of download you desire. If your download is not available, select “View All Data Formats”. See Data Downloads and Formatting Options to learn more about the Data Downloads menu in Decipher.
+3. Via the View/Edit Responses report: Click "Export Data" at the top right of the report. An Excel file with the raw survey data will automatically download.
+You also have the option to export your survey in questionnaire form. To export a questionnaire version of your survey, first locate the survey in the Portal. Then click the "..." button under "Actions". From here, click "Export Survey" and select the type of download you desire.

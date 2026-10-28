@@ -1,0 +1,80 @@
+Title: Viewing Crosstab Reports
+Once you have run a report in Crosstabs, you will see the report data displayed across all applied banners, tables, and charts. Tables are generated for all questions specified in the Table Set and by the segment criteria specified within the crosstab.
+1: Viewing the Report
+The following tools and features are available when viewing active crosstab reports:
+1. All Crosstabs: Return to the Crosstabs overview, where you can create or select a new crosstab.
+2. Actions: View the actions available within Crosstabs.
+3. View Options: View the viewing options available within Crosstabs.
+4. Exports: View crosstab export methods for both aggregated and raw data.
+5. Search: Search for or jump to any element by selecting it from the drop-down. You can only type in the search bar when there are more than 15 tables in the crosstab; if there are less than 15 tables in the report, you will need to select the element to jump to it.
+Tip: Press CTRL+F (on Windows) or CMD+F (on a Mac) to open the Search dropdown in the upper right corner of the page. Type any part of the question label or text to quickly jump to that question. Question labels for built-in questions such as qtime, status, and vdropout are shown in the list as well for easier searching.
+6. Quick Split: View the report split by total, a saved crosstab, or other criteria by selecting it in the drop-down.
+7. Edit Crosstab: Edit the current crosstab using survey questions, elements, and dates.
+8. Save: Save all settings for the current crosstab.
+9. Settings: Displays a summary of the crosstab settings.
+10. Edit Settings: Edit settings for the current crosstab.
+11. Date Range: Select a date range by which to filter the crosstab data.
+12. Additional Filter: Apply another saved crosstab by which to filter the data.
+13. Segment Summary: Displays the totals for each segment applied within the current crosstab. Click "Total" for any segment to view its defined logic in a readable format.
+14. Segments: Segments applied to the current crosstab. Mouse over a segment title to view its defined logic. Click segment titles to sort table rows in ascending or descending order.
+Note: Any rows set to not randomize in the survey will not be randomized when sorting.
+15. Totals: Displays total counts for individual and combined segments. Totals may be marked with following notations:
+* Indicates a small sample size - the default is 100.
+** Indicates a very small sample size - the default is 30.
+Note: The default base size can be customized with the rconf command.
+16. Favorite: Mark the table as a favorite.
+17. Question / Element Title: Each table includes its question or element title and label.
+18. Export: View table export methods.
+19. Menu: View the available table actions.
+20. Total Row: Displays the total count and vertical frequency percentage for the table.
+21. Question / Element Rows: The total count and vertical frequency percentage for each table row.
+2: Table Options
+Each report table contains both Export and Menu buttons. These buttons provide more control over how you view the data contained in your question and element tables.
+2.1: Export
+Click Export to download the question or element table data via Excel, Powerpoint, or PDF.
+2.2: Menu
+Click Menu to view and apply the following table actions:
+Transpose Table: Flip the data so that the rows are applied as columns and the columns as rows (requires Edit access to Reporting / Crosstabs).
+Edit Table: Allows users to edit the table. See Editing Tables in Crosstabs to learn more about editing tables (requires Edit access to Reporting / Crosstabs).
+Add/Edit Charts: Add / edit charts using the available menu settings. See Adding or Editing Charts to learn more about adding and editing charts (requires Edit access to Reporting / Crosstabs).
+Pin to Whiteboard: Pin the table to your whiteboard.
+Show Question in Survey: View the question as it appears within the survey (requires View access to Survey, and that the question is displayed within the survey).
+Note: Automatic stat-testing is indicated by uppercase letters and lowercase letters signifying confidence levels corresponding to the built-in segment (i.e., column) indicators.
+3: Additional Considerations
+3.1: Rating/Scale Questions
+By default, only "Top" and "Bottom" ranking statistics are applied to Rating / Scale questions. Any additional statistics need to be added manually. To add statistics to a rating question, click Menu for the desired question table and select Edit Table.
+Then click + Table Row to bring up the table row editor.
+From the row editor, you can add statistic rows and apply summary tables as needed. See Editing Tables in Crosstabs for more information on how to use the table and row editors.
+3.2: Open-ended Questions
+Open-ended question responses can be viewed by clicking the count for the question or segment.
+Clicking the count opens a new window for both Text and Number questions, where you have the following viewing options:
+1. Consolidate Answers: Check to group matching responses together and view a count for each response group.
+2. Split Results: Select a question or segment by which to split the open-ended data.
+3. Sort Responses: Click the arrows to sort responses alpha-numerically by response or by count or label.
+3.3: Questions with Images
+Any images included within response options are displayed as thumbnails for table rows, segments, grid table split-by segments, and chart legends.
+Note: Thumbnails are not displayed within the Crosstabs editor, quick-split report, table editor, or PowerPoint exports.
+3.3.1: Requirements
+In order to display image thumbnails in Crosstabs, the following requirements must be met:
+The project must be a selfserve project.
+The images must be uploaded via the Image Manager or the Upload System Files feature and use the following syntax:
+<img src="path/to/image.ext">
+[image file.ext]
+[protected file.ext]
+Images must be added as survey answers only.
+3.3.2: Limitations
+Additionally, the following limitations apply:
+Images using the syntax <img src="[rel image.ext]"> are not supported.
+Images using protected syntax (e.g., [protected file.ext]) display in the same way as unprotected images. To view a protected image, use the "Show Question in Survey" function.
+Images uploaded via SFTP or copied via shell commands are not supported.
+When answers contain only thumbnails, there are no visual indicators where links were shown previously (i.e., for segment sorting, summary table jump-to links, or open-end links). This is a visual limitation only.
+Dynamic sorting based on text will not consider thumbnails when sorting rows.
+Thumbnails are not shown for table filters or custom base descriptions.
+Adding attributes to images in a Crosstabs report table via the table editor will prevent those thumbnails from being saved to the library.
+4: View Options
+Additional view options are available for tables through the View Options menu in the report's main setup section.
+By default, the Crosstabs View Options menu includes the following options:
+Hide QA codes: Show or hide the question and response labels for easier reference, and the QA codes to contextually highlight key programming settings.
+Hide Tables with No Participants: Show or hide any table that has zero completes.
+Hide Download Data Values: Display or hide data values in the crosstabs report.
+Hide Unweighted Total Count: If you are applying weights, you may choose to show or hide the unweighted total row in your tables.

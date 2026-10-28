@@ -1,0 +1,152 @@
+Title: Beacon M17 Release News
+Release date: August 28, 2013
+New survey compat level is 117. Use compat=”117” for all new surveys. That compat level introduces additional validation of question labels, forbidding a question named e.g. “int” from generating confusing survey errors.
+New Features
+#14731 Portal, Builder and Crosstabs now have accelerated downloads using Amazon’s Cloudfront Content Delivery Network. This feature downloads Javascript and images from a server close to you and accelerates access to those apps. This is currently available only for our main (v2) server only.
+#13840 We have completely re-translated all of our language resources. However, the languages: afrikaans, chinese (use simplfied/traditionalchinese instead), kannada, malay, malay_sg, punjabi, samoan, slovenian, tamil, tongan are no longer supported and only have partial translations. They will no longer appear in Builder. Certain error messages may not be displayed correctly in those languages.
+All non-US English variants are now properly derived from British English, not American English
+The “syslang” page that shows all languages has been improved, and show mismatches between variables. You can put your survey URL to see the language resources specific to your survey and verify that you aren’t using e.g. $(count) where you need $(max).
+UI Changes
+All buttons, with the exception of dialog/modal buttons, have been updated.
+Email Campaigns, Dashboards, XML Editor, File Manager, Update Personal Information, Enable Shell Access, View Audit Log, Change Management, and the Changes pages have all been updated to be consistent in design.
+All input fields have been updated as well. When focus, they contain a yellow-ish color.
+Survey Editor
+#13378 Users that can edit a survey will see better feedback than just a general “fatal error” screen in more cases
+#15461 a “live edit” on a survey, as well as launching and closing it will better display the user responsible in the survey version history, rather than just “jaminb” or “hermes”.
+Options Added to Project Settings > Field Options:
+#15257 Display a “Back” button on every (except first) page of the survey. Must have ‘enable browser back button’ checked.
+#15261 Specify autosaveKey attribute when “Remember Participant’s Place” input is checked.
+#15259 Allow user to specify level of deduplication (replaces “Allow Multiple Respondents” option). Option can be set to one of...
+No Checking
+Cookie Only
+Advanced Detection
+Strict Detection
+#15258 Project Settings > Display Options: Users now have the ability to rewrite and apply logic to the support footer of surveys via a rich text editor. Default settings for adding a new support footer:
+Text/links: Privacy Policy - Help
+Condition: “1” (everyone)
+#14528 When continuing a live edit, you are notified about who last changed the temporary copy and when
+#15251 Everyone who subscribes to a selfserve/ survey receives a support email
+#15963 Quota support for (0/1-dimensional) numeric questions.
+#15911 Builder will now respect “inf” as a value when entered by quota editor or field settings, for that cell, a quota limit will not be reached. A warning is shown to the user if a total is specified and a cell includes “inf” as a value: “Overall table limits are not enforced when cells are set to infinite.”
+#13119 style manager style select
+only allows styles valid for current compat level
+shows only most recent version of styles
+won’t add newer version of style if older already exists in survey
+#15959 New “notes” feature add support for a new <note>..</note> elements and allows builder users to leave notes / comments about the survey that are displayed in builder only. They appear in the builder tree and have a stage element that allows for entering text. Not displayed to participants. Should replace usage of xml comments like <!-- my comment here -->
+#15918 Fulcrum Integration
+Only applies to builder users with a fulcrum license (must be enabled by Decipher)
+A new sample source that allows for synchronizing Decipher questions, quotas and terms with Fulcrum counterparts.
+To enable a project with Fulcrum:
+add the Fulcrum Automatic sample source
+add questions from the Fulcrum Question Library
+apply terminate logic / quotas based on Fulcrum questions
+When viewing project summary / launching the project the sync with fulcrum occurs.
+Fulcrum generated objects will be shown in the project summary for verification of the project in the Fulcrum system.
+When the project is launched, the Fulcrum project is set to live, and you will begin receiving sample.
+#15109 When testing a survey, you can now send the link directly to your phone via SMS. Only US phone numbers are currently supported.
+XML Editor
+Updated footer buttons
+Portal
+#15835 While logging in or changing your Beacon password, the password is checked against a list of 60+ million known leaked passwords. This are password that have been made available on the Internet due to security breaches at other companies. If you have a such a password, you will have to change it before logging in (this applies to all non-shared accounts, staff or client both).
+#15540 We are optimizing Javascript content on several application (not survey) pages. The new Crosstabs reporting loads 30 bigger instead of 150 smaller files, which can make it load in 5 seconds less. See Extended Documentation for developer information. This applies to Ares, Gemini only currently.
+#15414 If you access the KB and are not logged in, you will be redirected to v2.decipherinc.com -- but that login page is now aware of other Cloud servers and will search out your accounts on those. If you are e.g. a GMI user or iModerate user, you will receive a suggestion that you can login via those servers, rather than v2 (where you might have no account) [KB: system level configuration mentioned in [staff only]
+#14121 Staff users are highlighted with a green S when showing in the portal. As we have many virtual servers, it may not be apparently who besides @decipherinc.com addresses have full permissions on the server.
+#5857 Non-staff users that wish to change their own email address to another must confirm the new email address. Non-staff users cannot change an existing account’s email address.
+#15601 Chrome supports the “Back” button in portal now: your URL bar updates with the portal’s current state (selected folder, search string etc.)
+#15826 If you are logging in to any Beacon server remotely (i.e. not from Fresno, London offices), you must use Google Login to log in, and can no longer use a password.
+#15776 Projects are always copied, not moved, when dragging them to a public folder
+#16096 The qualified page shows qualified completes per client per month, updating daily.
+Survey & CMS
+#6943 The support form has been translated to the supported languages. When called with e.g. ?decLang=french as parameter, it will load French resources. The retranslated resources have all a support link that passes the current language (however legacy surveys that just link to /support will not pass the language)
+#12726 A number of names are no longer allowed as label names (starting at compat=117):
+map id input len iter locals globals vars enumerate open file round set dict quote js qjs djs
+type hasattr getattr eval min max p _p int goto setMarker getMarker removeMarker uqjs
+this sum filter gv float timing ord chr range reduce str dollar inf
+#15719 We now emit the x-xss survey header, as per best security requirements. This means a browser will refuse to display pages on which it considers there to be an XSS vulnerability. This should not affect you unless you actually had an XSS vulnerable survey, for example taking in an extraVariable and on the first page displaying it as HTML, and that HTML contained potentially vulnerable tags (e.g. <script>).
+#15726 We now have a security protection system in place, that will allow calls to system functions only from authorized pages. This is to prevent a “Reflected XSS” attack: an evil user would create a special survey and send it to a Decipher staff; while viewing the survey the Decipher staff would grant the evil user additional permission. Effectively, this means any request coming off a /survey/ URLs is limited to running CMS-related Ajax functions. Also, the “Referer” header must be sent (this is not a problem unless you have some special browser plugin disabling it)
+readonly attribute on questions -- DJ/Greg to document what it means outside of Builder
+eid attribute on questions/cells/vars? samplesources? -- need to document
+samplesource vars values -- have descriptions now (also simulated data support) @greg
+Survey Styles
+#14032 <style> tag override now supports: question.group-column-cell, question.group-column, question.group , question.col-legend-row-item, question.group-2 and question.group-3. This allows AQs to better manage row/column groups displayed in the survey
+Dynamic Questions Update
+Slider (v2) - #15790 - now supports aqtheme from Theme Builder (slidernumber.2)
+Card Sort (v2) - #14569 - now supports aqtheme from Theme Builder (cardsort.2)
+Multiple Column Layout (v2) - Removed column setup in QEM. This style doesn’t support columns. (multicol.2)
+atm1d (v2) - Removed column setup in QEM. This style doesn’t support columns.
+old versions of the above DQ’s were hidden from Dynamic tab.
+Crosstabs & Classic Reporting
+#15981 Alternative Questions can generate custom charts in Crosstabs. See “Extended Documentation” for syntax. You can use this for Word Cloud questions, custom US maps, interactive charts -- the sky’s the limit.
+#15822 The configuration format for reports has changed from using reports.yaml to reports.json. This makes many large reports much faster. The reports.yaml file is loaded only if reports.json does not exist.
+#15972 If you used trackvars=”checkbox” and your checkbox did not start with r1, r2, r3 etc. as labels, you could not run a crosstabs report using “Total Shown Variable” option. This was fixed in compat=117 surveys. It is not safe to change 116 to 117 on existing live studies.
+The staggerColsWithTotal aggregate takes a across=1 option that sums up the totals of all segments to generate the Total-Total.
+15980: UI to customize PowerPoint and Excel Exports.
+#15817 Unweighted total row view option. If you are using weights, you may choose whether or not to display the unweighted total row in your tables.
+New Feature: Pinned Reports
+#15896: Pinned Reports. In a nutshell, this allows users to select specific tables & charts and create static reports from them. To use:
+A “pushpin” icon with checkbox will appear next to each table header. Toggle this checkbox and your table/chart combo will be pinned to your “whiteboard”
+Once you have selected several items, choose “Create Saved Report” from the Actions menu.
+This will open a new screen and dialog which will allow you to choose items to add to the report. To add all of them, click “select all” then click the “insert” button.
+You will now be in the custom report editor. You can freely move and delete items here. You may also toggle whether or not to display a chart/table for each item. Items that did not originally have a chart will not be able to toggle a chart; if you would like a chart, go back into crosstabs, create a chart for your table, and pin again. You can then return to your report editor and re-insert from your “whiteboard”
+You may rename your report and change its permission levels here. What the permissions mean:
+Public: Anonymous users can view this report; logged-in users can edit it.
+Protected: Anonymous users cannot view this report; logged-in users can view it.
+Private: Only you can view this report.
+When you are done, click the “save” button.
+You may then view your report by clicking the “view report” link, which will then render your report.
+To get back to your report, either find the “edit report” link on your pinned report, or navigate to the “View Saved Reports” item in the Actions menu. If you do this you will be presented with a list of reports, which you can then edit/view/delete/etc.
+New Feature: Favorites
+By each pinning button in the table view, there will be a “star” toggle that denotes a favorite
+Clicking on the star add the item to your favorites. Click again and it is removed.
+A “dynamic tableset” is be created called Favorites, which is not editable, which will display only your favorite items.
+A “pin favorites to whiteboard” link is available in the actions menu; clicking this will pin all of your favorites to the whiteboard
+New Feature: Banner & Table Set Access Levels
+#16040: Banners and Table Sets now have access levels. You can choose them when creating or editing. What they mean:
+Editable: Any logged-in user can edit this banner/table set
+View Only: Any logged-in user can view (use) this banner or table set, but they may not edit it
+Private: Only you can use/edit this banner/table set
+Dashboard
+#15798 Dashboard editor / list view being reskinned for consistency with all other applications.
+#15793 Dashboard editor will utilize the codemirror editor which will allow for syntax highlighting, indentation, code hinting, and an api reference
+#15818 To aid in dashboard development, a simple api reference will be added to quickly let you view the available keywords and their options.
+A survey reference has been added in the form of a tree on the left hand side of the dashboard editor. This lets you easily see your project structure, labels, etc...at a glance.
+Field report & Campaign Manager
+#15187 A “Dupe (cookie)” line under Terminates tab will show number of participants that were terminated after trying to complete twice with the same cookie. This is possible only if you start a survey twice, and only then complete it twice.
+#13547 Globally registered remove lists which no longer exist won’t stop all bulk email sends
+#15797 When you have a tracker or another study with many email lists, the Campaigns tab will have better performance, as its stores its calculate split data per list rather than for the entire survey
+#15891 edit sample file. Users can remove or edit sample content.
+#15738 users can add multiple filters. It functions similar to ex: bulk -llist:1 -llist:2... or bulk -llist,co:1,us -list,co:2,uk...
+#15564 workflow has been improved. The layout has been completely redone to make it more user friendly. Campaigns can be launched from edit campaign.
+#16065 simple mobile support is added. The email preview will give the option to preview in desktop size and mobile size. CSS is set to handle a min width of 320px in a mobile device.
+#15782 When previewing an email, you can now toggle between a desktop view and mobile view, which will display how the content will render on smaller smartphones. CSS updates to email will also optimize default content for smaller screens.
+Programming & Tools
+#15538 Launching a survey can run some Python code via the “hooks” system. This can be used to e.g. erase variables.xls files created.
+The ccd script can take an URL to a survey or old report
+File Uploader
+Redesigned to look more like the other new apps for consistency
+#15786 Video files (mp4, mov, flv) will be uploaded to Brightcove’s video cloud service. Once added to the upload queue, the user can choose whether the file will be displayed in only the project’s file upload page (default) or to all of the directories tied to the project’s company directory.
+Views per video are collected every night at 1AM and can be displayed per client id over a date range by running the following command: here maint/brightcove-collect-views.py client_id start_date(MM/DD/YYYY) end_date(MM/DD/YYYY)
+Bugfixes
+#10940 Increased portal resilience to unknown errors
+Using recover -k... would under certain circumstances not pick the latest un-logged in user for that key (e.g. unique source), leaving out some partials (this was fast tracked)
+#15816 The Quota tab, when split and downloaded as Excel, would look bad
+#15789 A style like “This or That” will no longer leave strange <exec> tags in your XML.
+#15888 Questions with adim=choices show tables properly (this affected both crosstabs and the old report)
+#16084 Campaign Manager to handle filters with uppercase headers or headers with spaces.
+#15833 Virtual code using noanswer elements works correctly
+#14240 A compat=117+ survey that has a <completed> override for a sample source will use that message when a cookie or advanced dupe error is shown
+#15446 - allow for 1 explicit row in ratingscale.1
+#15841 - Added Slider Track CSS stylevar to Slider AQ
+#15807 rank sort: added missing attribute for .sq-ranksort-answers-container
+#15841 Slider Number - Track has now has a default CSS option
+#15853 slider stylevar input_css updated to affect CSS
+Misc
+Internet Explorer users will see (since Jun 28th) a speedup on our application
+#15727 You can no longer “frame” any part of our application (exception are the intercept, survey and panel pages). This is a necessary security measure to prevent clickjacking
+#15466 Edit Data can edit and qualify automatically recovered partial data. Such participants will not be auto-recovered again if they return to the survey (without completing). However if they do complete, their update data and status will overwrite your changes.
+#14397 The legacy “preauth” system has been removed.
+The <rank> tag no longer exists. This question type was never really used.
+#15795 You can inline small inline images in pages. This requires IE8+ and currently is done only in the portal, further reducing load times.
+#15444 “allgrep” is available on the cloud servers
+Security
+#15728 All new applications use a “strict quoting” system by default. This alleviates XSS attacks.

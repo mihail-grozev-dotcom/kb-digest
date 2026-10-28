@@ -1,0 +1,65 @@
+Title: 149.3 Release Notes
+Release Date: November 9, 2021
+Release Version: 149.3
+New Features
+Programming & Tools
+API
+Updated the default value of the aggregateDupes parameter from
+true to false for the following API endpoints:
+GET
+api/v1/translation/delta
+POST
+api/v1/translation
+GET
+api/v1/translation
+Corrected spelling errors in the
+API documentation site.
+Logic Nodes
+Updated the Imperium RelevantID Integration element to support the latest
+version (V4.3). Added three new RelevantID variables:
+Domain
+FraudFlagCount
+ErrorCode
+Learn More:
+Imperium RelevantID Integration
+Custom Code Elements
+Added the umerge command to append, merge, and delete data between
+surveys, regardless of whether one or both surveys have
+delphi="1". umerge combines the functionality of
+hmerge, tabimport, transform and
+generate.
+Learn More:
+Managing Data with the umerge Command
+Bug Fixes
+Portal
+Fixed an issue where sometimes the Portal would only partially load, causing
+all future requests to fail.
+Fixed an issue where sometimes opening the User Group editing menu would
+not display that group's users.
+Survey
+Survey Editor
+Fixed an issue where Multi-User Editing allowed adding Quota and Import Data
+elements to a checked-out block.
+Dynamic Questions
+Fixed a typo in the XML for the Net Promoter Score element (changed the net
+label promotor to promoter).
+Reporting
+Data Downloads
+Fixed an issue causing some <noanswer> elements to be
+ignored when using loadData or LoadRecord in a
+survey with more than one <noanswer> element and
+delphi="1".
+Programming & Tools
+API
+Fixed an issue causing an error when running too many API requests at one
+time. The following limitations now apply:
+Each user can run up to three requests at the same time.
+Only three requests are allowed to run at the same time per survey.
+Fixed an issue causing the file upload API endpoint PUT
+api/v1/surveys/{survey}/files/{filename}
+to fail when survey.xml contained non-ascii characters.
+Architecture/DevTools
+Fixed an issue where allgrep would not return results for new
+projects. allgrep will only search the content of surveys visible
+in the Portal.
+Learn More: Allgrep

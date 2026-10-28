@@ -1,0 +1,14 @@
+Title: January 14, 2025 Release Notes
+Release Date: The following items were released between January 7, 2025 and January 14, 2025.
+New Features
+Survey
+Dynamic Questions
+Adds the Open Assist element. Open Assist is a text area question with an AI prompt that encourages the participant to add more details to their answer
+Learn More: Open Assist Element, Customizing the Open Assist Element
+Bug Fixes
+Responses
+Campaign Manager
+Email addresses with domains ending in .online are now usable as "From" addresses in Campaign Manager and Bulk.
+Architecture and DevTools
+Data Retention
+An error preventing some projects from being archived has been resolved.

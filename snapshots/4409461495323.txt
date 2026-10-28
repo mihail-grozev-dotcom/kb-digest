@@ -1,0 +1,26 @@
+Title: Removing Survey Elements
+The Survey Editor allows you to delete one or more survey elements at a time using options available within the staging area.
+1: Deleting a Single Element
+To delete an element in the Survey Editor, select the element, then click the "..." button at the top right of the element in the staging area and select Delete.
+Alternatively, you can delete an element directly from the question tree. To delete an element in the tree, locate the element and right-click its label or question text. Then select Delete Element from the drop-down.
+Note: The element and any surrounding page breaks are also deleted from your survey and no longer appear in the question tree.
+Next, delete any extra page breaks by de-selecting the appropriate Page Break button.
+To learn more about removing page breaks, see Adding or Removing a Page Break.
+2: Deleting Multiple Elements
+To delete two or more elements from your survey, you can follow the steps above for each element, or you can use the question tree to delete multiple elements at once.
+To select multiple elements in the question tree, hold the ctrl key (or the cmd key for Mac devices), and click the elements in the question tree that you wish to remove. Each element you select appears to be highlighted in the question tree and a menu appears at the top of the window. Select Delete from the menu to remove the highlighted questions from your survey.
+Next, delete any extra page breaks by de-selecting the appropriate Page Break button(s).
+To learn more about removing page breaks, see Adding or Removing a Page Break.
+3: Additional Considerations
+When deleting survey elements, always verify that they are not connected to any dependent elements or survey logic. If there are any questions or elements that are dependent upon the elements you are removing, you will need to update the logic for those items as well.
+The Survey Editor displays limited warnings when you attempt to delete questions or answers which are referenced in element conditions such as "Show if" logic (cond) or "Answer Piping" (rowCond, colCond, and choiceCond).
+Warnings are also shown when:
+Deleting a standalone or parent element, such as a block or loop, which contains a question or answer that is referenced in element conditions
+Deleting the only page break between elements that have dependent logic
+Warnings are not shown when logic references are made:
+Within quota cell logic (a quota.xls file)
+Within an Autofill row
+Within looped element labels
+Additionally, the following actions do not trigger warnings:
+Editing via "Edit all answers"
+Deleting a reference used within a saved condition, where the saved condition is not also used

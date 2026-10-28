@@ -1,0 +1,52 @@
+Title: Audio Player Element
+The Audio Player element allows survey participants to listen to an audio clip. The Audio Player element utilizes a multi-select form, with no response options. The Audio Player uses HTML 5 and and can be used in surveys with a compat level of 143+. It is desktop, tablet and smartphone compatible.
+1: Adding an Audio Player Element
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add an Audio Player element, first click the "+ Element" button to add a new survey element. Then click "Stimulus" under Question Types and select the "Audio Player" element. Then click "Add".
+Enter the question and instruction text in the areas provided. Then use the “Options” menu to the right of the staging area to customize the Audio Player element.
+1.1: Uploading the Audio Clip
+The audio clip for the element can be uploaded via the file manager or hosted on a separate domain.
+To access the file manager, select "Upload System Files" from the "More Tools" drop-down under "Build" in the navigation menu. See Uploading System Files to learn how to use the file manager and upload your audio clip.
+Note: The audio clip must be in .mp3 format.
+Once uploaded, click the copy icon to copy the audio file path to your clipboard. The path is required in the next step of the setup.
+At this point, you can return to the Survey Editor. To do this, click "Build" and select "Survey Editor". Then locate your Audio Player element to continue the setup.
+2: Configuring Style Settings
+To configure the style settings for the Audio Player element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Question Display Options" window, configure the settings for the element using the options on the left. Additional information about each feature will appear when you mouse-over the text.
+The following settings are available:
+Style Setting
+Description
+Audio Path (mp3)
+Enter the path of the .mp3 audio file uploaded to the file manager. You may also provide a full link to the .mp3 audio file.
+Example:
+/survey/[path]/file.mp3 or http://www.domain.com/file.mp3 or [rel file.mp3]
+Must Listen
+When checked, the audio clip must be played through to the end in order for participants to continue to the next question. The button will not be clickable until the audio clip is over.
+When unchecked, participants may skip the audio clip and continue to the next question at any point.
+Tip: When forcing participants to listen to the entire audio track, disable seeking so participants can not jump to the end of the audio track using the slider.
+Allow Seek
+When checked, participants can jump to different points in the audio clip with the slider.
+When unchecked, participants cannot jump to different points in the audio clip with the slider.
+Allow Pause
+When checked, the audio clip can be paused.
+When unchecked, pausing is not available.
+Allow Replay
+When checked, the participant can replay the audio clip.
+When unchecked, replaying is not available.
+Auto-Start
+When checked, the audio clip will automatically play for the participant.
+When unchecked, the participant must click the play button to play the audio clip.
+Note: To ensure that Auto-Start works in Google Chrome, add at least one page before the Audio Player element in the survey.
+Note: Auto-Start only works on desktop devices. Mobile users must press "Play" to start the audio clip.
+Note: Auto-Start may not work on Mozilla Firefox. Autoplay is only allowed when approved by the user, the site is activated by the user, or media is muted. Firefox users must press "Play" to start the audio clip or enable autoplay.
+Auto-Advance
+When checked, the participant is automatically advanced to the next page when the audio clip is finished playing.
+When unchecked, the participant will be required to click continue / finish to advance to the next page.
+Click "Save and Preview" to preview the settings. Once you are satisfied with your settings, click "Save and Close". To find out more about previewing an element, see Previewing a Question.
+3: Configuring Question Options
+The general options available for the Audio Player element are located to the right of the staging area. You can set rules for the entire question by clicking near the question text. The "Options" menu will show the question text, label, and type of the option you have selected to edit.
+3.1: General Options
+When altered, each of the following options affects all attributes within the Audio Player element.
+Label: The label assigned to the element. Click to edit the default label for the Audio Player element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".

@@ -1,0 +1,134 @@
+Title: Decipher (previously Decipher) M29 Release Notes
+Release Date: August 11, 2015
+Privacy & Security
+Data Encryption: List files uploaded to Campaign Manager, shared project files uploaded to portal and other files you choose can now be stored encrypted. On the main server, Decipher manages the encryption keys. On a cloud server, clients are responsible for enabling encryption and keep a passphrase safe. The passphrase only needs to be re-entered after system restart. The encryptions keys are only stored in memory while the system is running, and cannot be compromised by someone copying files around
+Escrow procedures: a client that enters a passphrase to enable encryption and forgets it can have it reset with operations team help only.
+OE encryption: open-ended data stored in a survey can be encrypted if you set encryptData="1" on the survey prior to launch.
+Bulk log encryption: When a bulk send is done, the list.txt.log file no longer contains email addresses but an encrypted version of them. Your main list.txt file should use encryption to protect the data. The bulk status command can be used to find out who was sent what email. This does not affect Campaign Manager or normal bulk usage.
+The encryption protects against the following scenarios:
+A backup is stolen and all the files on the server compromised. The encrypted files cannot be read by an attacker and the key is NOT stored with the files. To access them, the encryption service must be started and someone must enter the correct pass phrase.
+An attacker compromises the server and is able to copy arbitrary files out of the system. The encrypted files cannot be decrypted without the encryption keys (which themselves are encrypted with the passphrase).
+This does not protect against:
+A legitimate user account with a weak password or one where the user has shared the password being used by an unauthorized user to access the data.
+Crosstab & Classic Reporting
+#20647: Crosstabs now supports the minimumSegment survey attribute so any segments below the minimumSegment value will appear as blank in each table.
+#20791 Miscellaneous backend optimizations improve backend speed by up to 60% in case of large report with 12 segments
+#16642: Crosstabs now displays the altlabel instead for a question if an altlabel exists
+#20155: Crosstabs will not count requalified terms as terms. They will be counted as qualified
+#20614: Grid tables can be toggled on and off for the entire project in the “View” menu for Crosstabs
+#20634: Crosstabs will correctly report field dates when later data has an earlier timestamp the previous data
+#20649: You can now drag segment groups into another group to build nested segments. Dragging directly onto another group will result in the nested segments with separate headers, while dragging into a group (between segments) will result in a single header.
+The tes_timestamp variable when used within crosstabs code will return the UNIX timestamp of the complete. This is mostly of use in APIs and automation wanting to reference records by timestamp.
+#20908: The "OE Data (Excel)" downloads (in Crosstabs and Reporting 2010) now use Excel 2007 rather than Excel 97.
+#20878: Adds a segment summary table, which displays each segment count. Each segment displays the "Human Readable" logic when clicking on the segment title. Raw segment logic will still be displayed on hover.
+#20690: Pinning is now enabled for grid tables
+#20842: Fix for crosstabs legacy logic when using not and .attr() in the same condition
+#20817: Very minor performance improvements
+#20950: Excel exports should now show the correct date range in the summary
+#20667: Group headers are now included in saved reports
+#20763: Load table set editor faster [PERFORMANCE]
+#20767: Segments can now be in multiple stat test groups
+#20889: Users with only report.view can now correctly export data
+#20713: Grid table toggle is not available for saved reports
+#20904: Only edited tables are rendered instead of rendering entire report again [PERFORMANCE]
+#20751: Tables are only loaded when needed [PERFORMACE]
+#15705: HTML entities are decoded throughout crosstabs and downloads
+#20898: Removed duplicate error modal
+Theme Editor
+The “Theme Editor” is a easy to use tool that allows users to customize themes for their surveys. There are default system themes, which can be customized and saved as Company, User or survey specific themes.
+Theme Editor has the ability to preview in desktop, tablet and smartphone sizes to get a easy preview of how your survey will display.
+Theme editor allows for users to use either our generic Example Survey that includes the most common question types, or use “My Survey” which allows users to actually see what the theme will look like with their survey.
+There are 12 default system themes that can be used with a survey. Each theme is compatible with theme editor and be be used just as it is, or used as a base to create a new custom theme.
+Theme Editor allows for theme customization of each theme.
+Change the theme colors, background, text, progress, buttons etc.
+Change the font family for the text.
+Change the font size to increase or decrease.
+Compatibility
+Theme Editor requires a minimum compat level of 129 in order to work.
+Compat 128 and below themes will not function with Theme Editor.
+Theme Editor allows users to make changes and then Undo/Redo those changes.
+Custom themes can be saved as new themes or if it is not a System theme, it can overwrite the original theme that was started with. Themes overwritten can not be recovered.
+Research Hub / Portal
+#20654: Bug fixed where User Group permissions could not be set after adding to a project
+#20509: Users can edit the expiration time for per-project permissions assuming they have the permissions needed (staff, supervisor, admin). Group-level permissions can now expire per-project similar to user-level permissions.
+#20637: Newsflash is now shown as a message bar at the top of the portal only and must be dismissed by the user; also, the news page has undergone some style updates
+#20807: Fixed an issue where portal users could lose access to projects their group belonged to
+Builder
+#20355: Radio and checkbox Grid Questions can have separate default "comment" and "optional" attributes than 1D radio / checkbox questions. These are applied when the questions are added via the Pan Menu (including elements saved to the Library).
+#20700: Fixed issue with how the configured survey URLs were being re-rendered on the Project Summary / Launch Project modals
+#19269 / #20185: Survey parse errors (including DQ errors) are ignored when accessing the imagemanager or loading email campaigns
+#20785: “font-size” is no longer retained when pasting into rte fields
+#19452: Fixes issue where XML code isn’t displayed in XML Editor
+Dashboard
+#20588: Filters in a filtergroup can now be joined by "OR" logic rather than the default "AND". Two new keyword arguments were added to filtergroup to support this:
+multi=[and,or]: the logical relation between filters in a filtergroup (i.e., how filter conditions are joined). (Defaults to “and”)
+exclusive=[0,1]: A UI setting only. Display the filters in a filtergroup as mutually exclusive (whether or not they actually are) and allow the User to select at most one. (Defaults to 0)
+View Responses Report
+#20944: A variable search option has been added to the filters menu in the view responses report to search by answers given to survey questions
+Data Downloads
+#20814: Pipe delimited with text download option added to data downloads.
+Survey & CMS
+#20217: 51-Degrees mobile detection database updated; iPods classified as "smartphones"
+#20808: Using the Tab key in participant view will successfully navigate the FIR answer inputs
+#20800: With FIR turned on, default select/drop down inputs are now styled via select2 4.0.0
+Dynamic Questions / Tookit Updates
+Button Select 8 will be available beginning with compat 129. It boasts a fully responsive user interface and integrates directly with the enhanced document object model structure. Each of the visual elements can be individually customized using the new Theme Editor.
+#20378: Media Evaluator 3 and 4 no longer throw a fatal exception for invalid video_id entries.
+#20689, #20717: Card Sort 4 and 5 card dragging and dropping issues are fixed. Dragging and dropping large cards falls into the correct bucket now.
+#20749: Page Turner - changed algorithm for activation of ‘Next’ button after moving on to the next page.
+#20759: Multiple Dynamic Questions - edited classes, styles and settings to match the requirements of the M29 / Theme Editor.
+#20834: YouTuber/Vimeo Video Player - disabled mustWatch setting to keep the consistency between YouTube and Vimeo videos.
+#20853: Fix broken images for Shopping Cart 2. Update the image location parser to properly extract the image location for preloading.
+#20859: Card Sort v4 - cards are centered again instead of being aligned to the left. (FastTrack)
+#20864: The API key (token) has been replaced for Media Evaluator 3 and 4.
+#20943: The issue with Media Evaluator 4 incorrectly calculating time of rating for videos sixty minutes or longer has been fixed. Any surveys using the unfixed version for videos sixty minutes or over will have incorrectly recorded data.
+#20954: Fix broken images for Image Map 3. Update the image location parser to properly extract the image location for preloading.
+#20955: The Text Highlighter 2 chart has been updated to integrate with the new Crosstabs reporting system.
+#20956: The Media Evaluator 4 chart and export option have been updated to integrate with the new Crosstabs reporting system.
+#20964: The Image Map 3 chart has been updated to integrate with the new Crosstabs reporting system.
+Field Report & Campaign Manager
+#6063 The "autosave" / “Remember Participant’s Place” feature kicks in already on the first page now. Previously the user would have to submit some data to autosave. This will decrease duplicate clickthrough counts in the field report.
+NOTE: This also means that with autosave enabled and autosaveKey set to source rather than session, you will never see the "source ID in use" message. If two people start the survey with the same source ID, the second one will restore the autosave of the first and continue that way. However, there's a dupe check at the end of the survey that will terminate the second user to finish.
+Programming & Tools
+#20642 the umanage command has a demote option which remove staff permissions from a user, but does not disable the v2 nor shell account.
+#20385: Using delete() in the transform script has been fixed.
+#20661: Validation script autofillvalidator can be used to reduce likelihood of tracker survey changes breaking autofill-style questions (spec/doc)
+#20772: Using beacon eval you can test and debug Python conditions within a specific participant's survey state from your shell.
+#20836 If a line in the bulk-options file starts with "-- " the remainder is added to the end of the command line. For example, "-- -selfserve/abc/1234" will remove the normal suppression of completes in the survey.
+#20865 The bulk --bypass option ignores all remove lists but the bad-emails list. This allows fast bulk startup for when you need to send only a single transactional email (typical usage is panel double-opt in email)
+#20924: Advanced "Quota Hooks" let you filter or reorder list of cells generated by quota programmatically. This can be used to avoid certain cells in certain conditions.
+Operational Tools
+#20734: a stuck process can be aborted by sending a signal, i.e. using kill -PWR pid by the system user. This will stop the current request but not all the other requests. It's most useful when you have multiple reports waiting.
+#20281 The Umanage tool accepts user@focusvision.com just as like it accepts user@decipherinc.com
+Bugfixes
+#20601: SPSS importer now sorts rows to be ordered by their values
+#20602: Fix SPSS importer issue where multiple data points would be made for a single participant with multiple line breaks in a data field.
+#20663: The Edit data tool now loads a subset of the survey’s variables. This increases browser performance on studies with a large amount of variables.
+#20728: Filter settings are restored when returning to View Responses report from participant detail view
+#20705: Support request emails are no longer sent from submitting participant (M28 regression)
+#20919: Support request emails no longer include debug stateful link as improper use resulted in data loss
+#20735: When using edit data to qualify partial participants their autorecover marker is removed automatically
+#20725: Essay type questions should not be selectable in the logic dialog (Builder)
+#20599 Using the Data Edit tool and request a record to be modified yet without changing it would occasionally change its status (Fast Track)
+#20600 Using the PII hooks while also using layouts would render some PII hooks ineffective
+#20606 Spurious system error messages were sent to the error mailing lists when autoRecover removed
+#20641 Autorecover performance further improved (FT) [PERFORMANCE]
+#20720 The Usage report used time periods that were off 1 day for the per-device qualified split
+#20784 Editing data where you did not delete records but disqualified or modified them will allow virtual to be refreshed partially rather than from scratch. [PERFORMANCE]
+#20774 SPSS conversion performance has been increased for extremely large files
+#20716 Data for dashboard chart exports now matches the precision provided in the dashboard
+#20530: List edits would now save properly even when unicode characters are found.
+#20012: Crosstabs Excel exports with nested headers are fixed.
+#20613: Issue with generate script running with conditions is fixed.
+#20626: Crosstabs legacy pinned reports to export properly.
+#20626: Crosstabs PPTX exports to include segment groups in table titles.
+#20673: Crosstabs PPTX exports will export column charts without flipping.
+#20673: Dashboard Excel exports to include correct column chart ordering.
+#20415: Dragging elements to the first position of a block has been made easier
+#20994: Auxiliary database files (data.db) will avoid collecting unnecessary random order for blocks that didn't have randomizeChildren set. This will reduce data.db size.
+#15530: Clicking "set to survey order" in Data Layout Editor respects questions hidden via the survey XML
+#20735: the “autorecover” marker is now removed when qualifying participants with the edit data tool
+#18500: The “Uploaded files” download option now correctly works when a date filter is applied
+#20906, 20911, 20663: Performance improvements to the edit data tool
+#20852 Exporting a JSON datamap could be extremely slow in some cases (Fast Track)
+#20158: Open-ended textboxes would disappear in some scenarios (Fast Track)

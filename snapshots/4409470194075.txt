@@ -1,0 +1,67 @@
+Title: Open Rates
+Overview
+During the course of our daily routine, we often get asked about open rate and why it is important. Because open rate is an important indicator of your campaign performance, we have compiled some useful information below about what it is, how it can be useful to your survey and how you can go about improving your open rate.
+What is the open rate?
+The open rate is the number of tracked email invites opened divided by the total number of good invites sent.
+open rate = opened / potential
+Unless specified, Decipher tracks the unique IDs sent with each invite, allowing for a unique open rate. This unique open rate excludes participants who open the invite more than once, allowing for a more accurate count for analyzing your send results. Below we can see the campaign statistics for an example study, including the unique open rate:
+* This number is based on the best available information. Not all servers return bounce reports or may not report them in a timely fashion. Any statistics based on this information are also estimates.
+** This number is also based on the best available information. Not all email clients support the HTML format, which is required in order to return this information. Any statistics based on this information are also estimates.
+Why is open rate important?
+Open rate can be a good indicator of how well your campaign is performing. For example, if you have a low participation rate, examining and analyzing your open rate can help determine why so few participants are participating. If you have a low open rate, you can look at the content of the invitation or the quality of the distribution list to determine what steps might be needed to improve participation. Alternatively, a high open rate could be linked to survey topic, length of interview, sample targeting or incentive.
+Do I have a high or low open rate?
+Open rates will vary for each sample group. Getting to know your user group is the best resource for starting to understand your open rate. We suggest tracking the open rate for each survey to start building a pattern to use as a base. You can then use this base for identifying issues in your email campaigns, allowing you to know when your open rate is high or low. Additionally, if you want to compare your open rate with others in your industry, MailerMailer does an annual study on open rates by industry which resulted in the below percentages in 2009:
+Industry
+Open Rate
+Religious/Spiritual
+25.75%
+Telecommunications
+22.63%
+Transportation/Travel
+20.75%
+Banking/Finance
+20.35%
+Government
+19.68%
+Nonprofit/Trade Association
+17.43%
+Wholesale/Distribution
+17.34%
+Real Estate
+15.31%
+Media/Publishing
+14.32%
+Large Business: General
+14.09%
+Retail Establishment
+14.04%
+Consumers: General
+13.65%
+Education/Training
+13.46%
+Small Business: General
+12.42%
+Manufacturing
+11.66%
+Marketing/Advertising
+10.72%
+Consulting
+10.36%
+Restaurant/Food Service
+9.58%
+Computer/Internet
+9.53%
+Entertainment
+8.75%
+Medical/Dental/Healthcare
+7.11%
+What factors are challenging open rates?
+While open rate continues to be a useful indicator of campaign performance, there has been an overall decline in open rates across industries. However, this decline is not directly related to the click-through rate (the percentage of participants who open your survey). While the overall open rate has declined, the participation rate may have actually maintained or even increased. This phenomenon is instead inversely correlated to increased security in email programs.
+To better understand this, we need to understand how open rates are tracked. An invite is considered opened once a small, invisible image is loaded into the participants email program for reading. This image is hosted on a remote server and increments the count for each unique image that is opened. Modern email programs have begun allowing users to choose to block the loading of images, preventing the increment of the open rate, even if they do in fact open and read the invite.
+What can I do to increase my open rate?
+While trackable open rates may continue to battle with technology, you can work to increase your overall open rate through good practice standards in campaign management. To put it simply, if more people see your invite, you have more potential participants to complete your survey. You can accomplish this in a few ways:
+1. Adhere to spam laws and write content less likely to be snagged in filters. Due to the abuse by many email marketers, spam traps look for key words that appear most in hoax spam mail. Avoiding these commonly used words and phrases can drastically increase the number of inboxes you reach; resulting in an increased potential in open rate. You can find more details on how to better filter your content in our article "Email Invite Etiquette to Reduce Spam Scoring".
+2. Plan campaigns around your participant's schedules. Different groups will respond better on work days versus weekends. Holidays and special events (Superbowl, for example) may affect your open rate as well. Be sure to consider your target before planning your campaign.
+3. Craft targeted subject lines. Once you have reached a participant's inbox, the only persuasion you have to trigger an Open is through the content in your subject line. Creating a subject that is targeted, honest and compelling greatly increases the potential for your participant to open and read your invite. Look for our upcoming article on composing effective subject lines.
+What should I take away from all of this?
+While using open rate may not be an exact science, it can be an effective indicator of campaign health and a useful tool when troubleshooting campaign performance.

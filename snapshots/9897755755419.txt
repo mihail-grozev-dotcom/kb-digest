@@ -1,0 +1,7 @@
+Title: 149.7 Release Notes
+Release Date: January 18, 2022
+Release Version: 149.7
+Bug Fixes
+Reporting
+Archival/Deletion
+Improved tracking when archives are completely removed by storing the deletion time instead of removing database records about the archive.

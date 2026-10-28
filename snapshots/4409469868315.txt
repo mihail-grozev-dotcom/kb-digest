@@ -1,0 +1,703 @@
+Title: Overview of Question and Element Tags
+1: Overview
+All elements in the system are object-oriented. This means that each one is a refinement of a more general element. For example, the radio element is a part of the of the question object, and the question element is a part of the element object. This means that all elements like the <radio> element will have unique attributes and attributes derived from its parent object, like the question and element object.
+With that, it's probably best to begin by describing the element object. However, let's take a look at the different types available in the system so you understand what kinds of values are available for each attribute.
+2: Survey Attribute Types
+The survey system is strict in regards to what values can be provided for each attribute. Unknown arguments such as passing "yes" to an argument when "1" was expected will throw an error. There are 6 different types of attributes in total:
+Type
+Description
+Example
+integer
+a number
+minRanks="5"
+string
+alpha-numeric characters
+altlabel="CustomerSat_1"
+bool
+1 (true) or 0 (false)
+optional="1"
+slist
+(string-list) a comma-separated list of strings
+extraVariables="company,name,source,ID"
+enum
+one of a predefined list of values
+legend="(none, both, left, right)"
+set
+similar to enum, but multiple values may be supplied separated by commas
+averages="rows,cols,choices"
+3: Survey Elements
+3.1: Element Attributes
+All question and control elements have the following attributes in common:
+Attribute
+Type
+Default
+Description
+disabled
+bool
+0
+Disable and hide this element in the survey?
+randomize
+bool
+0
+Shuffle this element within a <block> tag?
+style
+string
+--
+Alternative search path for styles
+where
+set
+survey,report
+Where should this element appear? (execute,notdp,none,summary,survey,report,data)
+alt
+string
+--
+Alternative <title> text displayed in the report
+label
+string
+--
+Symbolic name that can be used as target and in Python expressions (must be valid Python identifier)
+altlabel
+string
+--
+Alternative label to be used everywhere except from within the survey XML
+translateable
+bool
+1
+Exclude text from translation file?
+id
+string
+--
+Unique ID of the element (used by the survey builder)
+sst
+bool
+1
+Should simulated data try to understand and/or populate this element?
+Learn more: Element Attributes
+3.2: Question Attributes
+The question attributes apply to <radio>, <select>, <checkbox>, <number>, <float>, <text> and <textarea> elements.
+Attribute
+Type
+Default
+Description
+adim
+enum
+auto
+The primary report dimension (rows,cols,choices,auto)
+aggregate
+string
+--
+Base the question on data from other questions
+alt
+string
+--
+Alternative <title> text displayed in the report
+altlabel
+string
+--
+Alternative label to be used everywhere except from within the survey XML
+averages
+set
+none
+What to show the average (mean) calculation for (none, rows, cols, choices, nosummary, summary)
+below
+string
+--
+The label of the question to place this question below
+blankIfZero
+bool
+0
+Output blank data if value is 0
+blankValue
+string
+0
+Sets the value for blank responses in the data file
+choiceCond
+string
+--
+Show each choice if this condition is true
+choiceGroups
+set
+report,survey,restrict
+Where should the choice groups show up? (report, survey, restrict)
+choiceShuffle
+string
+--
+Allows you to specify the permutations of the <choice> shuffling (flip, rflip, rotate, reverse-rotate, rrotate)
+colCond
+string
+--
+Show each column if this condition is true
+colGroups
+set
+report,survey,restrict
+Where should the col groups show up? (report, survey, restrict)
+colLegend
+enum
+default
+Placement of the legend for columns (default, none, both, top, bottom, group, beforeGroup)
+colLegendRows
+slist
+--
+Additional rows to have column legend
+colShuffle
+string
+--
+Allows you to specify the permutations of the <col> shuffling (flip, rflip, rotate, reverse-rotate, rrotate)
+cond
+string
+--
+Display the question if this condition is true
+comment
+string
+--
+Additional information displayed in the participant view beneath the title
+dataSource
+string
+--
+Label of the <datasource> element to get data from
+dataRef
+string
+--
+What <datasource> column to get data from
+exec
+string
+--
+Execute this Python code before displaying the question
+groupDepth
+int
+--
+When rows are grouped, displays nested group titles to participants
+grouping
+enum
+auto
+Grouping of the question's components (auto, rows, cols)
+horizontalPercentages
+bool
+0
+Calculate percentages across?
+keepWith
+string
+--
+Display these other questions on error
+label
+string
+--
+Symbolic name for the question
+open
+enum
+default
+Placement of the open-ended input field (default, left, right)
+optional
+bool
+0
+Should the user be allowed to skip this question?
+ratingDirection
+enum
+--
+Which end of the rating scale is the high end? (default, reverse)
+rightOf
+string
+--
+The label of the question to place this question to the right of
+rowCond
+string
+--
+Show each row if this condition is true
+rowGroups
+set
+report,survey,restrict
+Where should the row groups show up? (report, survey, restrict)
+rowLegend
+enum
+default
+Placement of the legend for rows (default, both, right, left)
+rowShuffle
+enum
+default
+Allows you to specify the permutations of the <row> shuffling (flip, rflip, rotate, reverse-rotate, rrotate)
+showSource
+bool
+0
+Display the source code of the question for logged-in users
+shuffle
+set
+none
+Elements to shuffle (none, rows, cols, choices)
+shuffleBy
+string
+--
+The label of the question to shuffle the elements by
+sort
+set
+none
+Sort the results in the report (none, rows, cols, choices, desc, asc, percentages)
+sortChoices
+set
+none
+Sort choices alphabetically (none, asc, desc, survey, report)
+sortCols
+set
+none
+Sort columns alphabetically (none, asc, desc, survey, report)
+sortRows
+set
+none
+Sort rows alphabetically (none, asc, desc, survey, report)
+style
+string
+--
+Alternative search path for styles
+title
+string
+--
+The displayed title of the question (required)
+type
+enum
+none
+The type of question (none, rating)
+uses
+string
+--
+The dynamic question (DQ) style to use
+values
+string
+none
+Sets the values for the question (none, order)
+virtual
+string
+--
+Python code to compute the data values
+Learn more: Question Attributes
+3.3: Project Settings Attributes
+The following attributes can be added and modified within the <survey> tag:
+Attribute
+Type
+Default
+Description
+agents
+enum
+normal
+Set "full" to show expanded vos/vbrowser tables. (Requires: "userAgent" in extraVariables) (normal, full)
+allowDupe
+bool
+0
+Allow multiple submissions from same user? (Requires: browserDupes="")
+Note: This attribute is not usable in surveys with delphi="1".
+allowedCountries
+slist
+--
+Limit access to these countries (ISO 3166)
+alt
+string
+--
+Alternative report name (this is where you name your project)
+alwaysSaveData
+bool
+--
+Set to allow data load at page submission rather than survey completion
+autoAddVariable
+bool
+0
+Automatically add new variables to layouts?
+autoRecover
+bool
+0
+Automatically recover partials?
+Note: Surveys with delphi="1" have this attribute on by default.
+autosave
+bool
+1
+Automatically save progress for participants?
+autosaveKey
+string
+session
+Alternate key for autosave
+blankValue
+string
+--
+Blank value output for tab-delimited files
+browserDupes
+set
+default
+How to handle browser dupes (default, cookie, safe, strict)
+builderCompatible
+bool
+0
+Allow survey builder access to survey? (still allows XML edits)
+capturePreciseTime
+bool
+0
+Capture precise timing for each survey page using Javascript?
+Note: Surveys with delphi="1" have this attribute on by default.
+cbUseFwidth
+bool
+0
+Obey variables.xls for extraVariables in column binary?
+checkboxBlankIfZero
+bool
+0
+Apply blankIfZero option to all <checkbox> questions?
+closed
+bool
+0
+Survey is closed for further participants?
+compat
+int
+119
+Survey compatibility level
+dashboard
+string
+--
+Space-separated list of segments to include in the Response Summary
+Note: This attribute is not usable in surveys with delphi="1".
+dashboardInclude
+string
+include.dat
+Filename to use for including data in the Response Summary
+Note: This attribute is not usable in surveys with delphi="1".
+dashboardIncludeKey
+string
+source
+Variable to reference for including data in the Response Summary
+desktopNotAllowedMessage
+string
+--
+Message to display when blocking desktops
+deviceNotAllowedMessage
+string
+--
+Message to display when blocking devices
+displayOnError
+enum
+bad
+What questions to display if any have error? (bad, all)
+emailInvitations
+int
+0
+Number of emails successfully sent out to compute incidence count
+extraVariables
+slist
+source
+Extra incoming variables that are saved in the results
+featurephoneNotAllowedMessage
+string
+--
+Message to display when blocking featurephones
+fingerprint
+set
+none
+Capture what fingerprinting information? (none, all, etag, browser, flash, html5)
+fixedWidth
+enum
+lax
+Size of fixed-width fields (lax, tight)
+flatKey
+slist
+record
+Key for the OE Data (Flat Form) data export
+flatShowEmpty
+bool
+1
+Show empty lines in OE Data (Flat Form) data export?
+forbiddenCountries
+slist
+--
+Forbid access to these countries (ISO 3166)
+forceDataChartset
+string
+--
+Downloaded data files will use this charset (encodings)
+fullService
+bool
+0
+Only allow staff to edit survey in survey builder?
+fwoe
+set
+--
+Show OE data in fixed-width files? (text, other, textarea)
+geoip
+set
+--
+Auto-generate geoIP question? (all)
+html:showNumber
+bool
+0
+Show question numbers?
+imagePrefix
+string
+record
+Prefix before filenames when downloading "Uploaded Files" data
+indexed
+slist
+--
+extraVariables to index
+lang
+string
+english
+Default language of the survey
+loadData
+string
+--
+Load previous data from this variable
+loggedInCanSubmit
+bool
+0
+Allow logged-in users to submit data?
+markerTimeout
+int
+900
+Timeout before marker is released
+minimumSegment
+int
+0
+Hide segments below this size
+mobile
+enum
+none
+Level of mobile device compatibility (none, compat, mobileOnly, noMobile, ignore)
+mobileDevices
+set
+--
+Allowed mobile devices (desktop, smartphone, featurephone, tablet, mobile)
+mobileOnlyMessage
+string
+--
+Message to display if mobile devices are not allowed
+name
+string
+Survey
+Name of the survey (displayed in browser tab)
+namingScheme
+string
+%L%R%C%H %L%R%C%Hoe
+Naming format for variables
+newStyle
+bool
+0
+Load nstyles and nstyles.local?
+newVirtual
+bool
+0
+Use new virtual objects (enables Python expressions)
+noMobileMessage
+string
+--
+Message to display if mobile devices are not allowed
+oldProgress
+bool
+0
+Use the old progress calculations
+otherLanguages
+slist
+--
+Additional languages used in the survey
+pipeAltLabels
+bool
+0
+Pipes should use altlabels?
+precision
+int
+2
+Number of digits to display after decimal point
+progressOnTop
+bool
+1
+Display progress on top rather than in footer?
+projectType
+enum
+beacon
+Type of Decipher project (beacon, info, email, spss)
+refcheck
+enum
+default
+Check code references (default, yes, no)
+requires
+set
+default
+Can enable Javascript requirement for < compat 111 surveys (default, javascript)
+secure
+bool
+0
+Force survey access to use HTTPS?
+setup
+string
+--
+Survey setup boilerplate
+smartphoneNotAllowedMessage
+string
+--
+Message to display when blocking smartphones
+spssSimpleCheckbox
+bool
+0
+Show simpler values labels in SPSS?
+sql
+bool
+0
+Store data in SQL? (Panel surveys)
+Note: This attribute is not usable in surveys with delphi="1".
+sqlRefreshTime
+int
+3600
+SQL database refresh time (Panel surveys)
+sqlTarget
+string
+--
+Path to save SQL data (Panel surveys)
+ss:customCSS
+string
+--
+Custom CSS filename (without .css) in /static directory
+ss:customJS
+string
+--
+Custom JS filename (without .js) in /static directory
+ss:disableBackButton
+bool
+1
+Disable the browser back button?
+ss:disableOfflineDetection
+bool
+0
+Disable the connectivity warning shown to smartphone devices?
+ss:includeCSS
+string
+--
+Comma separated list of CSS files to include
+ss:includeJS
+string
+--
+Comma separated list of JS files to include
+ss:logoFile
+string
+--
+Path to the survey logo file.
+ss:logoPosition
+string
+left
+Position of the survey logo (left, middle, right)
+ss:logoFile
+string
+--
+Path to the survey logo file.
+state
+enum
+none
+Survey lifecycle (none, dev, testing, live, closed)
+tabletNotAllowedMessage
+string
+--
+Message to display when blocking tablets
+trackCheckbox
+bool
+0
+Track visibility of checkbox cells?
+Note: Surveys with delphi="1" have this attribute on by default.
+trackVars
+set
+none
+Track visibility of certain variable types (none, checkbox)
+Note: Surveys with delphi="1" have this attribute on by default.
+unique
+string
+--
+Requires this extra variable to exist & be unique
+uniqueOnly
+bool
+0
+Variables in unique must be unique without using invited.txt?
+unmacro
+bool
+1
+Survey can be saved & edited in survey builder?
+uses
+slist
+--
+Load style library items
+weights
+string
+Weights for data weighting
+zeroPad
+bool
+0
+Enable leading zeroes for fixed width data files?
+Learn more: Overview of the Survey Tag and Quick Links
+3.4: Cell Attributes
+The following attributes can be added to <row>, <col> and <choice> elements:
+Attribute
+Type
+Default
+Description
+open
+bool
+0
+Item has an open-ended text field attached
+openSize
+int
+10
+Input size of the open-ended text field
+label
+string
+--
+Symbolic name used in Python code
+groups
+slist
+--
+Groups this item belongs to
+value
+int
+--
+Numeric value for this item
+exclusive
+bool
+0
+If this item is selected, it can be the only item selected
+aggregate
+bool
+1
+Calculate aggregate information?
+percentages
+bool
+1
+Display percentages?
+optional
+bool
+0
+Item should be optional?
+range
+string
+--
+Range for Number questions
+okUnique
+bool
+0
+Item doesn't have to follow unique="1" rule?
+openOptional
+bool
+0
+Open-ended response should be optional even if selected?
+colLegend
+bool
+0
+Force a column legend before this row?
+extraError
+bool
+1
+Display error if open-ended response provided even if not selected?
+amount
+int
+0
+Total sum must be this amount
+size
+int
+--
+Custom size for row or column
+averages
+bool
+0
+Exclude cell from average calculations?
+chartText
+string
+--
+Alternative text for this cell strictly for the public charts API
+Learn more: Cell Attributes

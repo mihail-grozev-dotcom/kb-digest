@@ -1,0 +1,34 @@
+Title: Video Player (YouTube / Vimeo) Element
+The Video Player (YouTube / Vimeo) element allows you to add videos to your survey from popular hosting services, such as YouTube or Vimeo. This element utilizes a number form and captures the number of seconds each participant spends on the video page.
+Note: No additional Decipher fees apply to play these videos as part of your survey experience.
+1: Adding a Video Player (YouTube/Vimeo) Element
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Video Player (YouTube/Vimeo) element, first click the "+ Element" button to add a new survey element. Then click "Stimulus" under Question Types and select the "Video Player (YouTube/Vimeo)" element. Then click "Add".
+Enter the question and instruction text in the areas provided. Then use the “Options” menu to the right of the staging area to customize the Video Player (YouTube/Vimeo) element.
+1.1: Copying the Embed Link
+Next, locate and copy the embed link for your video. Click below to learn how to do this for your preferred video source.
+YouTube instructions
+Vimeo instructions
+Note: The video size should fit within the survey page. For best results, keep the width at 900px or smaller.
+Tip: By default, the "Show suggested videos when video finishes" setting is enabled by YouTube. Disable this setting if you do not want video suggestions shown at the end.
+2: Configuring Style Settings
+To configure the display settings for the Video Player (YouTube/Vimeo) question, click the "..." button at the top right of the question in the staging area and select "Update Styling".
+In the "Question Display Options" window, configure the settings for the element using the options on the left. Additional information about each feature will appear when you mouse-over the text.
+Embed Link: (Required) Enter the embed link you copied from YouTube or Vimeo.
+Click "Save and Preview" to preview the settings. Once you are satisfied with your settings, click "Save and Close".
+3: Considerations & Limitations
+Even with "Must Watch Video" enabled, a participant may fast forward to the end and not watch the entire video. Adding controls=0 to the embedded URL now successfully disables the video's progress bar, volume control and other buttons.
+When controls=0 is added to the video URL:
+Users can still pause and resume the video
+Can still access YouTube’s “Picture-in-Picture” mode in Chromium- based browsers, whose controls cannot be disabled
+Can still skip forward and backward in YouTube videos by double-tapping the right or left areas of the video
+Can still utilize fullscreen mode
+Solutions:
+Use the data you have captured to identify participants who spent a shorter amount of time on the page.
+Consider using the Video Player Element (or the Legacy Video Player Element) instead.
+HTTP
+Only works on HTTP protocol. The API calls used require that HTTP be used.
+Smartphone / Tablet
+Will allow all controls currently seen on the standard video provider's website (i.e., pause, replay, fast forward, etc.)
+Desktop
+It's recommended that Flash is detected in the survey. The extra variable "flashDetected" may be used to capture the setting. While these video hosting services offer HTML5 fallback, not all browsers support HTML5 players (e.g., IE8, IE9). This will help you debug any issues that may arise.

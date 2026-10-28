@@ -1,0 +1,32 @@
+Title: M39 Technical Release Notes
+Release Date: June 16, 2018
+New survey compat level is 139. Using compat="139" for surveys enables the following:
+Language value validation when using the mls attribute
+IP address is no longer tracked when a survey contains a sample source. To collect IP address, ipAddress must be declared as a survey extraVariable
+CAPI / Panel Offline surveys now collect participant geolocation data and device ID's
+New Features
+CAPI 3.0
+This new version of CAPI includes the following features:
+The ability to collect geolocation participant data in compat 139+ surveys
+The ability to collect device ID information in compat 139+ surveys
+A progress bar in participant view for app-enabled projects
+A new loading screen after starting a survey and viewing the first element
+Support for using 'rel' and 'image' formats for survey image sources
+GDPR Compliance
+IP address collection in all surveys compat 139 and newer will be disabled by default. This can be turned back on in the survey's field settings
+Survey
+Adding an invalid language via the mls attribute will display an error for compats 139+
+Bug Fixes
+Reporting
+Downloads
+Fixed an issue where noanswer text was not showing within Excel
+Fixed an issue where the first noanswer element in a Triple-S export was different than subsequent noanswer elements
+Survey
+CAPI 3.0
+Fixed an issue where ad-hoc interviewers were unable to save survey languages
+Added a limit of 5MB in payload size for offline projects to limit server load
+Fixed an issue where the pipeMultiple attribute would not work in offline surveys
+Programming & Tools
+API
+Fixed an issue where adding a datasource with datasource PUT calls was causing a data mismatch error in reporting for compats 139+
+Fixed an issue where mixed-case data was not properly appending to a datasource with POST datasource data calls for compats 139+

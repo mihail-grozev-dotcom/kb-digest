@@ -1,0 +1,21 @@
+Title: Setting the Placement of Column Legends
+If your question contains columns, the Survey Editor allows you to customize the placement of the column legend headers. You can choose to show the legends at the top, bottom, both (top and bottom), or customize the placement by specifying the row above which you want them to appear.
+Note: The question must contain columns for these options to be available.
+1: Column Legends
+1.1: Column Legends: Top
+By default, the column legend shows along the top of the answer options, as shown in the example below.
+To have the column legends show along the top of the answer options in a question, select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right corner of the question and select "Update Styling".
+The "Question Display Options" window will appear. Locate the "Column Legends" drop-down and choose "Top". Then select "Save and Close" and the column legend will be set for the question.
+1.2: Column Legends: Bottom
+Example:
+To have the column legends show along the bottom of the answer options in a question, select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right corner of the question and select "Update Styling".
+The "Question Display Options" window will appear. Locate the "Column Legends" drop-down and choose "Bottom". Then click "Save and Close" and the column legend will be set for the question.
+1.3: Column Legends: Both (Top & Bottom)
+Example:
+To have the column legends show at both the top and bottom of the answer options in a question, select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right corner of the question and select "Update Styling".
+The "Question Display Options" window will appear. Locate the "Column Legends" drop-down and choose "Both". Then click "Save and Close" and the column legend will be set for the question.
+2: Custom Column Legends
+The Survey Editor allows you to choose exactly above which row(s) you want the column legend to be shown. A legend will always appear at the top of the answer options (unless the column legends have been reconfigured, as described in the examples above) and you can specify where to repeat additional legends. This is very useful for questions with a lot of rows that may require the participant to scroll down.
+Example:
+To have the column legends shown at specific rows within a question, select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right corner of the question and select "Update Styling".
+The "Question Display Options" window will appear. Locate the "Custom Column Legends" menu and enter the row number(s) above which you want the legend to appear. For example, enter 10 to show a legend above row 10. To enter multiple rows, separate the row numbers with a comma with no spaces (e.g., 5,10,15). Then click "Save and Close" and the column legend will be set for the question.

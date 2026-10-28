@@ -1,0 +1,29 @@
+Title: Managing Your Company Page
+If you have Supervisor access in Decipher, it is possible for you to edit your company page, add new users, and view project reports in the Portal. All of these options and more are available within the company page.
+1: Accessing the Company Page
+To access your company page, click your company name or logo at the top left of the Portal.
+2: Viewing the Company Page
+From the company page, you can view a summary of your company's access permissions, user lists, and even project tag performance. You can also view any active CNAME's or other subdirectories and edit your company settings.
+1. Settings & Preferences: Views and menus for configuring your company’s tool settings and preferences. The following options are available:
+Tip: You can click any of the options below to view more information about that view or menu.
+Company Settings: Make changes to your company’s information and security settings. These define the requirements for all members of your company.
+Users: Create and manage users.
+User Groups: Create and manage user groups.
+Project Tags: View a list of existing tags and the number of times each is used. Click a tag name to access all projects with that tag.
+Directories: View a list of existing directories and create new sub-directories. Directories allow for a higher level of organization, for example, sharing project assets like a survey theme. It also allows you to sandbox users, giving a specific group of users access to a directory instead of applying on a per-project basis.
+Crosstabs Preferences: Configure the question, response, and table preferences across all your company’s crosstab reports.
+2. Statistics & Reports: Your company’s usage statistics and other reports.
+Permissions Report: View all users within your company with all projects and permissions, which may be used for auditing of permission correctness.
+Usage Statistics: View the overall stats for your company by month, YTD or this month.
+Field Statistics: View query key field data across all your projects, including the number of click-throughs and drop-outs, as well as the incidence and participation rates. This report can be split by surveys, survey tags, mobile device types, countries, and extra variables.
+Project Warnings: View warnings for each project created in your company.
+Archived Surveys: View a list of archived projects in your company. Unarchive projects from this page.
+3. Integration Settings: Your company's integration settings.
+Salesforce: Set up and view Salesforce integrations for your company.
+Secure Samples: Configure and view secure samples for your company.
+4. Application Access: Decipher tools and features enabled for your company, as well as their expiration dates, if applicable.
+Note: Application access can also be restricted per user, so some users may not have access to all the tools and features enabled at the company level.
+5. Server Directories: Server directories and subdirectories configured for your company. Learn how to add subdirectories to your company.
+6. CNAME: If applicable, lists the CNAMEs configured for your company. Learn how to add a CNAME to your company.
+7. Account Expires: Your company’s expiration date. If your company does not have an expiration date, will display as “Never”.
+8. Storage: The current amount of storage your company is using. Amount displayed is in Gigabytes (GB), rounded down to the nearest whole number.

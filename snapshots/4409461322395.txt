@@ -1,0 +1,222 @@
+Title: Customizing the Slider Element
+1: Underlying Question Architecture
+The slider question uses a number question where rows represent each slider. The question style supports no rows, multiple rows, shuffling of rows, optional slider(s) and open-end answer fields. The question style does not support columns, noanswer option(s), groups or survey theme overriding.
+2: Converting to Slider
+The slider question requires:
+verify="range(low, high)" to set the low and high values of the slider.
+ignoreValues when setting Opt Out Text to designate the value of the checkbox.
+To apply the slider question style to a number question add uses="slidernumber.7" to the question tag. The current version is the number added after slidernumber. when adding the question via Survey Editor. It is recommended to add the question via Survey Editor so that the most current version number is applied and then customize via the XML. If your survey has an lower number than the current version the question was created before a new version was released. If the survey is in testing the version number can be changed to the current version. If the survey is LIVE it is not recommended to change the version as this could break the question.
+Note: To reference the latest slidernumber version, see Dynamic Question Versioning.
+Example XML
+<number label="B1" optional="0" size="3" uses="slidernumber.7" verify="range(0,100)">
+<title>Slider - No Rows; No Legends; Default Slider Behavior; Editable Value Above Slider</title>
+<comment>Drag the slider to answer the question</comment>
+</number>
+To add an "Opt-out" answer choice, specify ignoreValues="999" and slidernumber:OO_Text="SOME TEXT" inside the <number> element. For example:
+<number
+label="Q1"
+ignoreValues="999"
+size="10"
+slidernumber:OO_Text="Prefer not to say"
+uses="slidernumber.7"
+verify="range(0,100)">
+<title>Please answer the following:</title>
+<row label="r1">R1</row>
+<row label="r2">R2</row>
+<row label="r3">R3</row>
+</number>
+The example above produces the following result:
+3: Interaction
+The slider question allows dragging the slider handle along the slider track, clicking/tapping the slider track to move the slider handle, typing a value into the editable input to move the slider handle (when enabled), using left or down arrow key to move the slider handle to the left and right or up arrow keys to move the slider handle to the right. Entering a value not specified in the range in the editable input will move the slider to the starting position. Clicking the opt out check box moves slider handle to the starting slider position, clears the value and disables the slider handle/track. If a slider has on open-end answer option and the opt-out is checked the open-end answer field is autopopulated with "ignoredValues-Opt Out Text".
+4: Options
+slidernumber:offScaleAdjustment
+Sets number of pixels the slider handle should be offset. A negative value will move to the left and positive to the right.
+Type:string. Default: -30px
+Example: slidernumber:offScaleAdjustment="-50px" will increase the space between the slider handle and the track when slidernumber:sliderPostition is Off Scale.
+slidernumber:offScaleText
+Set the text to be shown on the slider handle when off the slider track.
+Type: string. Default: <i class="fa-icon-arrow-right"></i>
+Example: slidernumber:offScaleText="" would remove the right arrow icon. This could be useful if you are customizing the handle and do not want an arrow icon.
+5: Advanced Customization (CSS)
+The slider question can be customized by modifying the CSS in the XML. Each style variable is prepended with slidernumber:. For example, input_css becomes slidernumber:input_css to customize the style. The preview will highlight with a red border the section that can be customized.
+XML Style Variable
+Description
+Example
+slidernumber_desktop_margin_css
+The margins and legends for a slider on desktop.
+Adding slidernumber:slidernumber_desktop_margin_css ="color: #B3BD22; font-size:16px; font-weight:bold;" will change the legends to a bold green 16px font.
+slidernumber_mobile_margin_css
+The margins and legends for a slider on mobile.
+Adding slidernumber:slidernumber_mobile_margin_css ="color:#B3BD22;" will change the legends to a green.
+input_css
+The editable input.
+Adding slidernumber:input_css= "color:#B3BD22;" will change the value color to green.
+handle_css
+The slider handle that has been moved along the track.
+Adding slidernumber:handle_css ="background: #8de no-repeat; border-color:#8de;" will change the handle to a light blue circle.
+handle_offscale_css
+The slider handle before the slider has been moved onto the slider track.
+handle_focus_css
+The slider handle after being moved and before clicking on the page which loses focus.
+handle_hover_css
+The slider handle when hovered over.
+Adding slidernumber:handle_hover_css= "border-color:#71bbc9;" will change the outline of the circle to a darker blue when hovered.
+handle_active_css
+The slider handle when being moved or slider handle is active.
+Adding slidernumber:handle_active_css= "border-color:#71bbc9;background: #71bbc9 no-repeat;" will change the handle to a darker blue when moving the handle and while still in focus where the keys can move the slider.
+track_css
+The slider track when hovered and slider handle is not the focus.
+track_hover_css
+The slider track when hovered and slider handle is not the focus.
+Adding slidernumber:track_hover_css= "border-color:#8de;" will change the track border to a blue when hovered.
+track_active_css
+The slider track when moving the slider handle or slider handle is the focus.
+Adding slidernumber:track_active_css= "border-color:#8de;" will change the track border to a blue when active.
+track_range_css
+The slider track to the left of the slider handle.
+Adding slidernumber:track_range_css= "background-color:#8de;" will change the track filled color to a blue.
+5.1: Using an Image File
+Images can be uploaded to the survey using the image library or the file manager. Which can then be used for the handle, track or value background. When a slider question has multiple rows the handle, track and value have the same styling for all rows. To allow having a different image handle per slider each slider must be a separate question. Using the slidernumber:handle_css attribute the background url can be set to [rel filename.png], this will allow the survey to look for the image in current project. This example adds a soda bottle for the handle when off the scale and a smaller version of the soda bottle when moving along the slider track.
+<number label="q2DP" builder:styleManagerName="slidernumber.7" optional="0" size="10" slidernumber:editable="1"
+slidernumber:handle_active_css=""
+slidernumber:handle_css="background:transparent url([rel DrPepper20oz.png]) no-repeat center center; background-size:50%; height: 125px; width: 50px;margin-top:-75px; border:transparent; box-shadow:none;"
+slidernumber:handle_focus_css=""
+slidernumber:handle_hover_css=""
+slidernumber:handle_offscale_css="background:transparent url([rel DrPepper20oz.png]) no-repeat center center; margin-top:-100px; height:125px; width:50px;"
+slidernumber:input_css="color:#940D07;border-color:#940D07;"
+slidernumber:leftLegend="Not at All"
+slidernumber:legendPosition="Below Slider"
+slidernumber:offScaleAdjustment="-50px"
+slidernumber:offScaleText=""
+slidernumber:rightLegend="Very Often"
+slidernumber:showRange="1"
+slidernumber:showValue="Below Slider"
+slidernumber:sliderPosition="Off Scale"
+slidernumber:sliderWidth="75%"
+slidernumber:slidernumber_desktop_margin_css=""
+slidernumber:slidernumber_mobile_margin_css=""
+slidernumber:step="1"
+slidernumber:track_active_css="border-color:#940D07;-webkit-box-shadow: 1px 1px 5px 3px rgba(148, 13, 7, .3);box-shadow: 1px 1px 5px 3px rgba(148, 13, 7, .3);"
+slidernumber:track_css="margin-top:125px"
+slidernumber:track_hover_css="border-color:#940D07;-webkit-box-shadow: 1px 1px 5px 3px rgba(148, 13, 7, .3);box-shadow: 1px 1px 5px 3px rgba(148, 13, 7, .3);"
+slidernumber:track_range_css="background-color:#940D07;"
+uses="slidernumber.7" verify="range(0,10)">
+5.2: Using Custom CSS
+In addition to the slider style variables, custom CSS can be added through XML styles. Using the :before pseudo element and content property in the respview.client.css override the handle can be setup to use an icon from the font awesome font family which is already available through the slider question style. The content property is set to \ plus the unicode in the font awesome cheat sheet (after and before;). This setup allow changing the icon with CSS when the handle state changes instead of loading a different image per state.
+Note: Not all icons will be available as the website contains the newest icons.
+Below is example code of a slider using the truck icon. In this setup, the truck starts out grey and turns a light green when hovered or active. The truck is also rotated to face right. The slider handle is targeted using the CSS selector .ui-slider a.ui-slider-handle. Using this alone would affect all sliders on the page with q3. To limit the CSS to only q3, #question_q3 is added to match the id on the question element on the page.
+<style name="respview.client.css" with="q3"><![CDATA[
+<style>
+#question_q3 .ui-slider a.ui-slider-handle:before {
+font-family: FontAwesome;
+color: #999;
+content:'\f0d1';
+font-size:44px;
+-webkit-transform: scale(-1, 1);
+-moz-transform: scale(-1, 1);
+-ms-transform: scale(-1, 1);
+-o-transform: scale(-1, 1);
+transform: scale(-1, 1);
+display: inline-block;
+}
+#question_q3 .ui-slider a.ui-slider-handle.ui-state-hover:before, #question_q3 .ui-slider a.ui-slider-handle.ui-state-active:before {
+color: #B3BD22;
+}
+</style>
+]]>
+</style>
+<number label="q3" builder:styleManagerName="slidernumber.7" ignoreValues="999" optional="0" size="10"
+slidernumber:OO_Text="Not Applicable"
+slidernumber:editable="1"
+slidernumber:handle_active_css=""
+slidernumber:handle_css="background:transparent !important;border:transparent;box-shadow:none;"
+slidernumber:handle_focus_css=""
+slidernumber:handle_hover_css=""
+slidernumber:handle_offscale_css=""
+slidernumber:input_css="border-color:#B3BD22;color:#B3BD22;"
+slidernumber:legendPosition="Above Slider"
+slidernumber:offScaleAdjustment="-50px"
+slidernumber:offScaleText="&amp;nbsp;"
+slidernumber:postText=" miles"
+slidernumber:showRange="1"
+slidernumber:showValue="Below Slider"
+slidernumber:sliderPosition="Off Scale"
+slidernumber:sliderWidth="75%"
+slidernumber:slidernumber_desktop_margin_css="color:#B3BD22;"
+slidernumber:slidernumber_mobile_margin_css="color:#B3BD22;"
+slidernumber:step="10"
+slidernumber:track_active_css="border-color:#B3BD22;-webkit-box-shadow: 1px 1px 5px 3px rgba(179, 189, 34, .3);box-shadow: 1px 1px 5px 3px rgba(179, 189, 34, .3);"
+slidernumber:track_hover_css="border-color:#B3BD22;-webkit-box-shadow: 1px 1px 5px 3px rgba(179, 189, 34, .3);box-shadow: 1px 1px 5px 3px rgba(179, 189, 34, .3);"
+slidernumber:track_range_css="background-color:#B3BD22; opacity:.5;"
+uses="slidernumber.7" verify="range(0,100)">
+Below is example code of a slider using the remove icon. This question is setup with multiple sliders (rows) and a gradient coloring for the slider track.
+<style name="respview.client.css" with="q4"><![CDATA[
+<style>
+#question_q4 .ui-slider a.ui-slider-handle:before {
+font-family: FontAwesome;
+color: #999;
+content:'\f00d';
+font-size:44px;
+}
+</style>
+]]>
+</style>
+<number label="q4" builder:styleManagerName="slidernumber.7" ignoreValues="999" optional="0" size="10"
+slidernumber:OO_Text="?"
+slidernumber:editable="1"
+slidernumber:handle_active_css=""
+slidernumber:handle_css="background:transparent;border:transparent;box-shadow:none;"
+slidernumber:handle_focus_css=""
+slidernumber:handle_hover_css=""
+slidernumber:handle_offscale_css=""
+slidernumber:input_css="border-radius: 20px; color:#11f;"
+slidernumber:leftLegend="Not at All"
+slidernumber:legendPosition="Above Slider"
+slidernumber:midLegend=""
+slidernumber:offScaleAdjustment="-50px"
+slidernumber:offScaleText="&amp;nbsp;"
+slidernumber:rightLegend="A Lot"
+slidernumber:showRange="1"
+slidernumber:showValue="Below Slider"
+slidernumber:sliderPosition="Off Scale"
+slidernumber:sliderWidth="75%"
+slidernumber:slidernumber_desktop_margin_css=""
+slidernumber:slidernumber_mobile_margin_css=""
+slidernumber:step="1"
+slidernumber:track_active_css=""
+slidernumber:track_css="background: rgb(249,243,49); /* Old browsers */ background: -moz-linear-gradient(left, rgba(249,243,49,1) 0%, rgba(41,137,216,1) 66%, rgba(32,124,202,1) 70%, rgba(110,163,204,1) 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(249,243,49,1)), color-stop(66%,rgba(41,137,216,1)), color-stop(70%,rgba(32,124,202,1)), color-stop(100%,rgba(110,163,204,1))); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(left, rgba(249,243,49,1) 0%,rgba(41,137,216,1) 66%,rgba(32,124,202,1) 70%,rgba(110,163,204,1) 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(left, rgba(249,243,49,1) 0%,rgba(41,137,216,1) 66%,rgba(32,124,202,1) 70%,rgba(110,163,204,1) 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(left, rgba(249,243,49,1) 0%,rgba(41,137,216,1) 66%,rgba(32,124,202,1) 70%,rgba(110,163,204,1) 100%); /* IE10+ */ background: linear-gradient(to right, rgba(249,243,49,1) 0%,rgba(41,137,216,1) 66%,rgba(32,124,202,1) 70%,rgba(110,163,204,1) 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f331', endColorstr='#6ea3cc',GradientType=1 ); /* IE6-9 */ opacity:.7;"
+slidernumber:track_hover_css="border-color:#11f; "
+slidernumber:track_range_css="background:transparent;"
+uses="slidernumber.7" verify="range(0,100)">
+5.2.1: References
+CSS Help:
+CSS Cheat Sheet
+CSS3 Generator
+CSS Gradients
+Color Scheme Generator
+Note: The slider question style overrides page.head, el.text, survey.question.answers.start, survey.question.answers.end, question.row, question.left, question.element and question.after in XML styles.
+6: Customizing the Error Messages
+If you want to customize specific error messages for the slider element, you can do so using <code></code> tags.
+Example:
+XML:
+<number
+label="vpm1"
+cond="condition.skip_featurephone"
+ignoreValues="999"
+optional="0"
+size="10"
+uses="slidernumber.7"
+verify="range(0,100)">
+<title>New Slider Question</title>
+<comment>Drag the slider to a point on the scale.</comment>
+<res label="sys_noAnswerSelected">Please slide the handle to rate your response.</res>
+<row label="r1">Rating 1</row>
+<row label="r2">Rating 2</row>
+<row label="r3">Rating 3</row>
+<row label="r4">Rating 4</row>
+<row label="r5">Rating 5</row>
+</number>
+This is a list of all the available resource tags used to change the error messages in the slider question type:
+<res label="sys_notWhole">Please slide the bar to rate your response.</res>
+<res label="sys_notWholeNumber">Please slide the bar to rate your response.</res>
+<res label="sys_noAnswerSelected">Please slide the handle to rate your response.</res>

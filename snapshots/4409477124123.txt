@@ -1,0 +1,163 @@
+Title: Usage Statistics Report
+The Decipher system automatically collects usage data on every survey created in the Portal. This document outlines the process for accessing and viewing your usage data using your company's Usage Statistics report.
+Note: Projects containing imported completes and deleted participants in cleaned data are only tracked in the Usage Statistics report as of the M25 software release (Sept. 2014). Disqualified participants in cleaned data are tracked as of the M26 software release (Nov. 2014).
+Note: Only company Supervisors can access and manage the company page and usage statistics.
+1: Accessing the Usage Statistics Report
+To access your company's usage statistics, first click your company name or logo in the top left corner of the Portal to access your company page. Then click the "Usage Statistics" link in the left-hand panel of the page.
+There are four tabs in the usage statistics report, which are covered in detail below:
+All Clients Requires Decipher Cloud
+Summary
+Detail View
+Global View Requires Decipher Cloud
+2: All Clients
+Requires Decipher Cloud
+The "All Clients" tab contains a table displaying the main directory, as well as counts for total surveys and field data for every client on the server. It includes the following configurable options:
+1. Date: Filter the data by date.
+Custom: Use the From / To fields to enter a range with specific dates
+This Month
+Last 3 Months
+Last 6 Months
+YTD: Year to date
+2. Tags: Enter predefined project tag(s) to further refine the results.
+3. Export Table: Click to export the data as configured in Excel format.
+Once configured, click "Update" to apply the settings. To undo an edit before "Update" is selected, click "Reset Settings."
+4. Search: Search for a statistic with the stat name from the table and compare it against some value. For example, search for "Clickthrough" > 100 or "Clickthrough" == 5. Use any of the following:
+> (greater than)
+>=(greater than or equal to)
+< (less than)
+<= (less than or equal to
+== (equal to)
+!= (not equal to)
+You may also use and & or logic. For example: "Clickthrough" > 5 and "qualified completes" > 5.
+5. Table Settings: Click to select which stats to be shown in the table. All fields are checked by default. Uncheck a box to exclude that option from the table and export.
+The options are described in the section below. Once you are satisfied with your selections, click "Apply".
+6. Summary Table: Displays data for the options selected in the table settings and filters. Click any of the column headers to sort in ascending or descending order.
+Directory: The primary selfserve directory for the company.
+Surveys: The number of surveys included in the stat calculations (i.e., surveys that received participants).
+Clickthrough: The number of participants who entered a survey, calculated as the sum of partial, terminated, overquota or qualified completes.
+Total Completes: The total number of completes, calculated as the sum of terminates, overquotas and qualified.
+Qualified Completes: The number of qualified completes.
+Standard Completes: All non-mobile completes.
+Imported Completes: The number of completes from data imported with SPSS Import or tabimport, or from offline mode. This data does not count as active and is not counted in qualified and total completes.
+Users: The number of active users for the company.
+Launched Surveys: Number of surveys launched.
+Created Surveys: Number of surveys created.
+Email Campaigns: The total number of email sends done, including seed and reminder sends.
+Email Sends: The number of emails in the email sends that were submitted (excludes known bounce-backs and removed emails, but includes bounce-backs that occur after the send).
+Spam Rate: Proportion of spam complaints to the spam base.
+Cleaned Data: The number of participants that were qualified before, but were either:
+Deleted using the data editor tool, transform or tabimport only, and not by other methods, such as erasing the entire data directory.
+Disqualified using the data editor tool only and not by other methods, such tabimport or manually editing markers.
+Hub Storage: The average size of a company directory over the selected time period, measured in KB.
+Note: Qualified completes cleaned from the data are still considered qualified completes.
+Show Project Parameters Fields: Enable the display and export of all project parameters for the selected companies. This option will only show for companies with values saved within project parameters, and parameters will only be displayed if they are not hidden. Hidden parameters questions or answers will not be shown in Usage stats.
+Note: Parameters using the same label will be shown in the same column.
+Include Decipher-Launched Projects: Include data from projects launched within Decipher. By default, this box is always checked.
+3: Summary
+The "Summary" tab contains a table displaying the total counts for various project data. It includes the following configurable options:
+1. Date: Filter the data by date.
+Custom: Use the From / To fields to enter a range with specific dates
+This Month
+Last 3 Months
+Last 6 Months
+YTD: Year to date
+2. Split By: Split the results by the chosen amount for the selected range.
+All (No split)
+Day
+Week
+Month
+Quarter
+Year
+3. Tags: Enter predefined project tag(s) to further refine the results.
+4. Export Table: Click to export the data as configured in Excel format.
+5. Run Report: Click to apply the configured settings to the table.
+6. Reset Settings: Click to undo an edit.
+7. Search: Search for a statistic with the stat name from the table and compare it against some value. For example, search for "Clickthrough" > 100 or "Clickthrough" == 5. Use any of the following:
+> (greater than)
+>=(greater than or equal to)
+< (less than)
+<= (less than or equal to
+== (equal to)
+!= (not equal to)
+You may also use and & or logic. For example: "Clickthrough" > 5 and "qualified completes" > 5.
+8. Table Settings: Click to select which stats to be shown in the table. All fields are checked by default. Uncheck a box to exclude that option from the table and export.
+The options are described in the section below. Once you are satisfied with your selections, click "Apply".
+9. Summary Table: Displays data for the options selected in the table settings and filters.
+Surveys: The number of surveys included in the stat calculations (i.e., surveys that received participants).
+Clickthrough: The number of participants who entered a survey, calculated as the sum of partial, terminated, overquota or qualified completes.
+Total Completes: The sum of all completes, including qualified, terminated and overquota, as well as cleaned.
+Qualified Completes: Surveys completed by a participant that is not an overquota, terminate or dropout.
+Standard Completes: All non-mobile completes.
+Imported Completes: The number of completes from data imported with SPSS Import or tabimport, or from offline mode. This data does not count as active and is not counted in qualified and total completes.
+Users: The number of active users for the company.
+Launched Surveys: Number of surveys launched.
+Created Surveys: Number of surveys created. Does not include duplicated projects.
+Email Campaigns: The total number of email sends done, including seed and reminder sends.
+Email Sends: The number of emails in the email sends that were submitted (excludes known bounce-backs and removed emails, but includes bounce-backs that occur after the send).
+Spam Rate: Proportion of spam complaints to the spam base (automated complaints provided by Microsoft Live/Hotmail, AOL, Roadrunner, Comcast & Yahoo).
+Published Dashboards: The number of published research dashboards.
+Cleaned Data: The number of participants that were qualified before, but were either:
+Deleted using the data editor tool, transform or tabimport only, and not by other methods, such as erasing the entire data directory.
+Disqualified using the data editor tool only and not by other methods, such tabimport or manually editing markers.
+Hub Storage: The average size of a company directory over the selected time period, measured in KB.
+Note: Qualified completes cleaned from the data are still considered qualified completes.
+Show Project Parameters Fields: Enable the display and export of all project parameters for the selected companies. This option will only show for companies with values saved within project parameters, and parameters will only be displayed if they are not hidden. Hidden parameters questions or answers will not be shown in Usage stats.
+Note: Parameters using the same label will be shown in the same column.
+Include Decipher-Launched Projects: Include data from projects launched within Decipher.
+4: Detail View
+The "Detail View" tab contains a table displaying the project title, survey path, launcher email, and field counts for every project matching the specified criteria. It includes the following configurable options:
+1. Date: Filter the data by date.
+Custom: Use the From / To fields to enter a range with specific dates
+This Month
+Last 3 Months
+Last 6 Months
+YTD: Year to date
+2. Tags: Enter predefined project tag(s) to further refine the results.
+3. Export Table: Click to export the data as configured in Excel format.
+Once configured, click "Update" to apply the settings. To undo an edit before "Update" is selected, click "Reset Settings."
+4. Search: Search for a statistic with the stat name from the table and compare it against some value. For example, search for "Clickthrough" > 100 or "Clickthrough" == 5. Use any of the following:
+> (greater than)
+>=(greater than or equal to)
+< (less than)
+<= (less than or equal to
+== (equal to)
+!= (not equal to)
+You may also use and & or logic. For example: "Clickthrough" > 5 and "qualified completes" > 5.
+5. Table Settings: Click to select which stats to be shown in the table. All fields are checked by default. Uncheck a box to exclude that option from the table and export.
+The options are described in the section below. Once you are satisfied with your selections, click "Apply".
+6. Summary Table: Displays data for the options selected in the table settings and filters. Click any of the column headers to sort in ascending or descending order.
+Survey Path: The primary survey path.
+Launched By: Lists the person who launched the survey.
+Clickthroughs: The number of participants who entered the survey, calculated as the sum of partial, terminated, overquota and qualified.
+Total Completes: The sum of all completes, including qualified, terminated and overquota, as well as cleaned.
+Qualified Completes: The number of qualified completes.
+Standard Completes: All non-mobile completes.
+Imported Completes: The number of completes from data imported with SPSS Import or tabimport, or from offline mode. This data does not count as active and is not counted in qualified and total completes.
+First Complete: A time stamp for the first participant in the data file.
+Last Complete: A time stamp for the last participant in the data file.
+Source: Lists a code that indicates how the survey was generated.
+p -- Pure self-serve
+m -- Self-serve survey that was later moved out of selfserv/
+h -- No trace of builder found
+NQ: The number of visible questions.
+VT#: The number of Video Testimonial elements in live surveys.
+VT Responses Separated: The number of Video Testimonial responses per video in the live survey.
+IU #: The number of Image Upload elements in live surveys.
+IU Responses Separated: The number of Image Upload responses per image in the survey.
+Compat: Provides the compat level of the survey.
+Views (0-5 min.): The number of videos viewed, where the total length of the video file was less than 5 minutes.
+Views (5-10 min.): The number of videos viewed, where the total length of the video file was more than 5 minutes and less than 10 minutes.
+Views (10+ min.): The number of videos viewed, where the total length of the video file was more than 10 minutes.
+Email Campaigns: The total number of email sends done, including seed and reminder sends.
+Email Sends: The number of emails in the email sends that were submitted (excludes known bounce-backs and removed emails, but includes bounce-backs that occur after the send).
+Spam Rate: Proportion of spam complaints to the spam base (automated complaints provided by Microsoft Live/Hotmail, AOL, Roadrunner, Comcast & Yahoo).
+Cleaned Data: The number of participants that were qualified before, but were either:
+deleted using the data editor tool, transform or tabimport only, and not by other methods, such as erasing the entire data directory.
+or disqualified using the data editor tool only and not by other methods, such tabimport or manually editing markers.
+Note: Qualified completes cleaned from the data are still considered qualified completes.
+Show Project Parameters Fields: Enable the display and export of all project parameters for the selected companies. This option will only show for companies with values saved within project parameters, and parameters will only be displayed if they are not hidden. Hidden parameters questions or answers will not be shown in Usage stats.
+Note: Parameters using the same label will be shown in the same column.
+Include Decipher-Launched Projects: Include data from projects launched within Decipher. By default, this box is always checked.
+5: Global View
+Requires Decipher Cloud
+The "Global View" tab contains a table displaying the total user and survey count, as well as various field data for every server on the network.

@@ -1,0 +1,4 @@
+Title: Editing a Campaign
+To edit an existing email campaign, select the campaign name in the Campaign Manager and click "Edit Campaign Email".
+The campaign setup page appears, where you may edit the campaign. See Creating an Email Campaign for instructions on how to create an email campaign.
+Note: Changes are auto-saved during setup.

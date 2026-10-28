@@ -1,0 +1,3 @@
+Title: How can I access my data?
+You can access your data by clicking project control from your project page to get to Crosstabs. You will see Crosstabs under Report Pan Menu.
+See Crosstabs Overview to learn more about accessing project data.

@@ -1,0 +1,9 @@
+Title: Alphabetizing a Question's Answer Options
+You can alphabetize (ascending or descending) the answer options that a participant views in a survey. You can alphabetize rows, columns, or choices.
+1: Adding the Alphabetization
+First, create the question in the Survey Editor. Next, with no answer options selected, select "sortRows" from the More Options drop-down in the question options menu displayed to the right of the staging area. You may also select the answer options you want to alphabetize (choices, columns, or rows) from the More Options drop-down.
+Next, use the text box to specify how you want the answer options sorted in the survey:
+asc for ascending (A to Z)
+desc for descending (Z to A)
+If desired, you can then click "Preview" and test the survey to verify that the answer options are being alphabetized.
+Learn More: More Options - Advanced Features

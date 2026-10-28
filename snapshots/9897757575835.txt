@@ -1,0 +1,41 @@
+Title: M51 Release Notes
+Release Date: August 16, 2022
+Release Version: M51
+New Features
+Portal
+Removed the guided walkthrough functionality.
+Added text “No users” to display when there are no users present in the active and deactivated users list, under company settings.
+Survey
+We are now introducing Compat 151. The Delphi attribute is now strictly required on all surveys utilizing compat 151 and above.
+Learn More: Survey Compat Levels
+Campaign Manager
+A valid opt-out link represented by the [optOutLink] shortcode, is now required in campaign emails for all compats. When the email is sent, the shortcode will be replaced with a link to the company remove survey or the new global email preferences survey. The company remove survey is utilized if the email is fully customer branded, and the global email preferences survey will be used if the email references Forsta or any of our associated brands or domains
+Learn More: Creating an Email Campaign
+Updated the “Export Bounce-Backs” download for a list in Campaign Manager to now include opt-outs and renamed it “Export Bounce-Backs and Opt-Outs”. This provides visibility into recipients from the send list who have opted out using the company remove survey or the new global email preferences survey, if applicable.
+Learn More: Opt-Out Process
+Removed the old “Opt-Out Report” link from Campaign Manager and replaced it with the new “Export Bounce-Backs and Opt-Outs” ,which includes both company and global opt-outs.
+Programming & Tools
+API
+Custom Code Elements (Logic Nodes)
+Updated the email logic node to enforce opt-outs at the global or company level and included links to the appropriate opt-out survey in the footer of each email.
+Bug Fixes
+Portal
+Fixed an issue that caused an error when changing the project permissions for the top user listed in the Project Overview page.
+Survey
+Survey Editor
+Fixed an issue where the survey editor would not load if an answer was set to exclusive in a reusable answer list.
+Respondent View
+Fixed an issue where a fatal error was caused when selecting the back button on a survey which included an autosuggest question with no matched terms.
+Dynamic Questions
+Logic Nodes
+Fixed an issue where error tracebacks involving logic nodes had an encrypted token shown in the error.
+Reporting
+Data Downloads
+Fixed an issue where access to style variables in virtual questions could generate “KeyError” if downloading data.
+Programming & Tools
+API
+Fixed an issue where the image upload question element was not being included in survey element API calls.
+Custom Code Elements (Logic Nodes)
+Architecture/DevTools
+Fixed an issue with unarchiving a survey from the command line that abruptly stopped the unarchive process and also prevented the archived survey from populating its Delphi data.
+Learn More: Scripts for Managing Archived Projects

@@ -1,0 +1,687 @@
+Title: Survey Compat Levels
+The compat attribute in a <survey> tag determines what new features that may break old surveys are enabled. All surveys without it are assumed to have compat="0". You should generally set compatibility level to the highest currently available value when creating the survey: changing it while running should be done only after consulting the below table.
+Note: Setting compat="154" will enable levels 0-154.
+1: Available Survey Compat Levels
+Release
+Compat
+Changes
+Impact
+M55
+155
+Includes updates to several Dynamic Question versions, along with upgrades to jQuery and jQuery UI within the Participant View, helping to improve overall performance and compatibility.
+Surveys that include custom JavaScript should be carefully reviewed and tested after upgrading, as the underlying JavaScript engine has been updated.
+Tooltip behavior has been improved for a more consistent experience across modern browsers.
+In addition, expanded test coverage helps ensure more reliable and stable survey performance.
+M54
+154
+Removes maximum-scale=1 from viewport in surveys and from accessibility page. Adds more entries for respondent error messages in the System Language Manager. Adds accordion-style to desktop surveys.
+Allows users to zoom in and out while in Respondent View on mobile.
+Respondent error messages can be translated into different languages using the System Language Manager.
+Accordion-style for single-select grid questions can be used on both desktop and mobile.
+M53
+153
+Adds the ability to create nested answer groups and to order groups and subgroups using attributes and exec tags.
+Subgroup headers can be displayed to the participant using Group Depth. Parent and sub-group headers are separated with a backslash ("/") in list view.
+Questions can be shuffled by grouped answers, without shuffling the answers within each group, by checking Groups Only under the Randomize options for the question.
+Logic conditions can be applied to grouped rows of answers.
+M52
+152
+Improves compliance with global digital accessibility standards
+and WCAG 2.1 A/AA guidelines.
+Upgrades the Button Single Select and Button Multi-Select dynamic questions to be more compliant with accessibility standards (atm1d.11).
+Updates the Radio and Checkbox elements so that screen readers are less likely to provide duplicate readings.
+Updates the default input from keyboard to number pad for the mobile versions of number and float elements.
+M51
+151
+The bulk script validates that the appropriate opt-out link is present in the email invite. This validation is present in campaign manager for all compats, but the bulk script only validates surveys with compat 151+.
+Surveys are required to use (delphi="1").
+Opt-out links are required in email invites.
+Enforces compliance with the CAN-SPAM Act.
+Improves email reputation, email inbox penetration, and deliverability.
+M50
+150
+Improves the browser “Back” button disablement feature to include updated support for the latest versions of supported browsers.
+N/A
+M49
+149
+Improves compliance with global digital accessibility standards
+and WCAG 2.1 A/AA guidelines.
+Enforces the use of screen reader-friendly labels for most
+basic and advanced question types.
+Requires labels to be unique for most basic and advanced
+question types so that legends and responses are easier to
+distinguish when using screen readers.
+Adds support for keyboard controls to most basic and advanced
+question types.
+Adds the role="alert" HTML attribute, ensuring
+that all error messages shown to participants are supported
+by screen readers.
+Adds screen reader-friendly notifications in the following
+situations:
+When participants complete the Card Sort element.
+When there are changes to totals within the Autosum
+element.
+Requires that the survey progress bar is distinguishable
+from the page load progress indicator by screen readers.
+Improves screen reader functionality in Select, Number, and
+Text questions by removing the radiogroups label
+from elements which do not use radio buttons.
+M48
+148
+Disallows the use of reserved words in Execute (<exec>)
+elements.
+Execute (<exec>) elements are no longer allowed
+to assign values to reserved words which were previously only
+disallowed as question label names (for example, int
+and len).
+M47
+147
+Enforces secure links for all new surveys. Prevents use of
+secure="0".
+Forces participants to use a secure
+HTTPS
+connection at all times when taking the survey.
+M46
+146
+Enforces secure links for new surveys created using the Survey
+Editor. By default, “Force Secure Links” is enabled in the Field
+Settings summary.
+N/A
+M45
+145
+Enables the trackHiddenCheckbox
+Improves functionality of <pipe> elements.
+Users can control the display of conditional response options in
+hidden multi-select elements; unique values are now required for
+row labels when using capture="" in
+<pipe> elements.
+M44
+144
+Disables the Chinese (chinese) survey language.
+Removed support for the Chinese (chinese) survey language;
+Simplified Chinese (simplifiedchinese) and Traditional
+Chinese (traditionalchinese) languages are still available.
+M43
+143
+Enables use of the <quota> and
+<term> labels in the Recorder testing tool.
+Labels are now required for terminate and quota elements.
+M42
+142
+N/A
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M41
+141
+Enables use of the Date Picker dynamic question.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M40
+140
+Enhancement made to scoreboard for browser metric.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M39
+139
+Enabled language value validation when using the mls
+attribute.
+Disabled default IP address tracking. To collect IP address,
+ipAddress must be declared as a survey
+extraVariable.
+Enabled CAPI / Panel Offline surveys to collect geolocation
+data and device ID's.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M38
+138
+N/A
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M37
+137
+New <themes> tag available - allows the dynamic
+switching of themes.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Dynamically setting gv.survey.root.styles.ss.includeLESS
+is no longer allowed.
+M36
+136
+Image Upload element released.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M35
+135
+N/A
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Crosstabs weighting files now require using uuid as the key variable.
+Use delphi="1" to enable the new data management system
+M34
+134
+Element labels are limited to alphanumeric characters and underscore.
+Resource labels have a similar limitation but also allow
+. (period) and - (dash).
+Row/col/choice labels have additional label restrictions to prevent
+collision and can't use any of the following:
+empty, ival, val,
+search, map, any,
+all, count, sum,
+check, attr, unrestrict,
+displayed, styles, ownstyles,
+but, unsafe_val, values,
+unsafe_open, open, valName,
+disabled, text, page,
+selected, lget, autofill,
+rows, cols, choices,
+amount, minRanks, atmost,
+points, title
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Removed ability to import or use certain operating system-level
+(e.g., os, subprocess) Python modules
+in non-SECURE surveys.
+Label restrictions may cause errors that need correcting/updating.
+M33
+133
+Single select (radio) questions using FIR can be unselected.
+Compat 133+ surveys using setup="term" will generate
+a virtual question labeled "vterm", showing how each user
+was terminated.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Dropped support for uses="fir.2". Must use new
+fir="on" from survey tag.
+Extra data points in data file. Can only be excluded via XML
+Editor or data layout manager.
+M32
+132
+Card Rating DQ available.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M31
+131
+"vos" virtual question modified to include Windows 10.
+"vbrowser" virtual question modified to include MS Edge.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Internet Explorer 8 support dropped for compat 131+.
+"vbrowser"/"vos" values may not reflect historical values.
+M30
+130
+N/A
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M29
+129
+Theme Editor - An easy to use tool that allows users to customize
+themes for their surveys. Inbuilt DQ version upgrades.
+Theme Editor Export/Import: Ability to customize the
+theme.less file to edit a theme or create a new
+one.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Old themes are not compatible. You can downgrade to compat 128 to
+get old themes back.
+M28
+128
+List of illegal question labels greatly expanded. Prevents potential
+collision with built-in labels.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Surveys upgrading to 128+ may encounter some errors that need
+correcting.
+Changed list of theme variables.
+M27
+127
+Surveys replace the status variable with a "status"
+question. This question can be used to split and filter data
+in reports.
+Surveys have a "vdropout" question showing where a recovered
+participant dropped out.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+status is now a virtual question that cannot be
+edited or imported into. Must use a data edit tool to change
+status.
+Extra data points in data file. Can only be excluded via the
+XML Editor or Data Layout Manager.
+M26
+126
+Font Awesome 4.2.0 is loaded into the survey participant view.
+New DQ stylevar types added. Majority of standard DQs updated
+to use new toolkit from M25/M26.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+XML style survey.question.answers.start modified - may
+affect styling.
+M25
+125
+Survey themes and styles now use Less - more flexibility in styling.
+Responsive Layout - Mobile and desktop formatting now based on
+window size rather than device type.
+Survey back button saves submitted answers.
+DQ toolkit update - DQs updated to be CSS LESS-compatible.
+Allow inclusion of additional less stylesheets via
+ss:includeLess.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Old themes or nstyles files may not be compatible.
+Must be re-worked using latest layout blocks.
+Old HTML layout blocks changed.
+Dynamic questions may need to be re-worked.
+M24
+124
+N/A
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M23
+123
+N/A
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M22
+122
+N/A
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M21
+121
+N/A
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+N/A
+M20
+120
+userAgent variable is automatically added to surveys.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Extra data points in data file. Can only be excluded via the XML
+Editor or Data Layout Manager.
+M19
+119
+Offline detection is automatically added for smartphones.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+.unsafe_val and .unsafe_open introduced.
+On text/textarea/open=1,
+using .val will generate a "safe" string. For
+example, a "12/2017" will be a "12%2F2017". Usage of .val
+on these text type must be updated to .unsafe_val/.unsafe_open
+to receive similar effects.
+Using mixed versions of the same DQ will generate an error.
+M18
+118
+Raised question limit to 8192.
+vbrowser includes MSIE 11, vos
+includes Windows 8.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+vbrowser values may not match historical studies.
+Potential datamap value shift.
+Any instances where DQ version was not explicitly defined will
+need to be updated. e.g., bcvideo must be
+bcvideo.X
+M17
+117
+Security Update: Survey values use "strict quoting" by default.
+Additional names have been forbidden from being used as labels
+to prevent odd errors in programming:
+map, id, input,
+len, iter, locals,
+globals, vars, enumerate,
+open, file, round,
+set, dict, quote,
+js, qjs, djs, type,
+hasattr, getattr, eval,
+min, max, p, _p,
+int, goto, setMarker,
+getMarker, removeMarker, uqj,
+this, sum, filter,
+gv, float, timing,
+ord, chr, range,
+reduce, str, dollar,
+inf
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Surveys upgrading to 117+ may encounter some errors that need correcting.
+M16
+116
+The survey state attribute must be set explicitly in the survey tag.
+vbrowser now includes MSIE 10.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+vbrowser values may not match historical studies. Potential
+datamap value shift.
+M15
+115
+Mobile device category and OS are captured in the extra vairable
+dcua; allowing splits the field and ordinary reports
+("vmobiledevice" and "vmobileos"). These are virtual questions.
+The alerts system notifies users via email when certain data
+is entered in a survey or a marker goes over a threshold.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+Extra data points in data file. Can only be excluded via the XML
+Editor or Data Layout Manager.
+114
+Surveys will use jQuery 1.8.3
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+113
+Noanswer elements are moved after their question in the data
+downloads
+mobile.css is checked (to support mobile compatible themes)
+and will be loaded if it exists in the static directory
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+112
+Enables new dynamic questions
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+111
+Locks out all participants without Javascript (use requires="" to
+disable). Locks out IE6 participants.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+110
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+109
+Required for "fingerprinting" and advanced deduping support (browserDupes
+set to safe or strict)
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+108
+A number or float question's .val attribute will
+now always return either None or the numeric value, never a string.
+Also changes to quota.xls format: importance level are set on cells
+and all plus markers have to be declared in the Defines tab, not
+in the individual tables.
+Note: This compat level is deprecated. It will be retired on February 24, 2026.
+2: Deprecated Survey Compat Levels
+Surveys with compat levels that will be retired soon are considered deprecated. Deprecated surveys can still collect participant data and all reporting is available. Warnings are shown in the Portal and sent via email. You can filter for Deprecated Projects in the Portal for ease of viewing.
+To view deprecated surveys in the Portal, use survey filters to filter by deprecated surveys. Deprecated surveys have a “DEPRECATED” label in the State column of the Portal.
+Important: Once a survey is retired, all tools and functions associated with the retired survey will cease to function. This includes, but is not limited to, survey editing, usage of reporting tools, downloading data, and collecting participant responses for a retired survey.
+To prevent a deprecated survey from being retired, upgrade its compat level. Learn More: Upgrading Your Survey Compat Level
+On the first day of each month, an email will be sent to supervisor and staff users who have deprecated surveys that have had billable completes in the past six months. The email will provide a link to the list of deprecated surveys as well as links to more information about what it means for a survey to be retired and how to increase the compat level of their surveys if needed. To additionally send a notification to a single company user, see Create and Manage Companies--1.5: Notification Settings.
+Note: There are no deprecated survey compat levels at this time.
+3: Retired Survey Compat Levels
+Surveys with compat levels that have been retired can no longer be accessed by participants. Retired surveys cannot be accessed by users for editing or reporting, but can still be viewed in the Portal. Data collection is disabled for retired surveys. If a participant attempts to access a retired survey, an "SE-40 Survey retired" error message will display. You cannot downgrade a survey's compat level to a retired compat level.
+Important: Once a survey is retired, all tools and functions associated with the retired survey will cease to function. This includes, but is not limited to, survey editing, usage of reporting tools, downloading data, and collecting participant responses for a retired survey.
+To view retired surveys in the Portal, use survey filters to filter by retired filters.
+Compat Levels
+Retirement Date
+Changes (are not affected by retirement)
+0
+February 29, 2024
+1
+February 29, 2024
+ConditionLogic
+update, automatic hiding of empty questions.
+2
+February 29, 2024
+Automatic assignment of
+NetTag
+to rating questions. Labels required on most elements (questions,
+html, comment).
+3-6
+February 29, 2024
+Affects old CMS functionality and has no additional effect now.
+7
+February 29, 2024
+<exec> within a question will be execute even
+when the question is redisplayed with errors.
+8
+February 29, 2024
+Multiple responses from same browser are stopped per default; use
+browserDupes='' to disable.
+9
+February 29, 2024
+Stricter if tag verification: if tag errors out if no cond=
+is set or if where= is set, which makes no sense.
+References to common.js, style.css etc. in styles must use
+static. e,g, [static]/s/styles.css rather than just /s/style.css.
+New state.db (partial participants) database
+formats makes
+recover
+run 5-50x as fast
+10
+February 29, 2024
+Quota tables auto-generated by
+createQuotaTables
+restart their rows from r0 on each new quota table
+11
+February 29, 2024
+Obsoleted clients, sssoe, clientFeatures attributes.
+12
+February 29, 2024
+A
+SuspendTag
+is added before every QuotaTag and
+GotoTag
+that does not already have one.
+13
+February 29, 2024
+Automatically created
+condition table
+14
+February 29, 2024
+Flash files references must be referenced with a relative path (e.g.
+/something/flash.swf, NOT http://v2.decipherinc.com/something/flash.swf).
+15
+February 29, 2024
+System warning added to flag survey logic that uses data
+from unseen/unpopulated questions.
+16
+February 29, 2024
+A <suspend> is added before a
+<term>.
+17
+February 29, 2024
+Enables additional QA approval elements for selfserve surveys.
+18
+February 29, 2024
+unique="XXX" must refer to a valid extraVariable named XXX.
+19
+July 30, 2024
+virtual questions no longer require programmer/QA approval (if you upgrade to compat=19 from a previous level, you will have to re-approve the survey again).
+20
+July 30, 2024
+Extra variables can be added, removed or reordered as you like even when the survey is live. Do not modify a survey with data from compat=19 or lower to compat=20 -- you need to hmerge for that to work. Also, newVirtual=1 is the default.
+21
+August 27th, 2024
+nstyles file has been restructured to be easily configurable.
+22
+August 27th, 2024
+Survey markup has been revised to obey accessibility requirements.
+23
+August 27th, 2024
+Checkbox and Radio question with a single column show their legend
+on the right per default. This can still be overridden with rowLegend="left".
+24
+August 27th, 2024
+Sample sources, language selection XML elements are supported.
+UTF-8 is always used as a character set. <survey> tag verifies
+style attributes exist. New styles implicit and required.
+25
+August 27th, 2024
+Checkbox and Radio questions with a single column have their legend
+back on the left side. You can upgrade from compat="24" to 25 on
+any survey (since 2011.2).
+26
+August 27th, 2024
+Fixed width can be set on individual variables in variables.xls rather
+than only questions as a whole. Upgrading to this level in a
+live survey may shift your datamap.
+27
+August 27th, 2024
+Default table ordering in report is always based on grouping; start_date
+variable added to data file; date format is configurable per server.
+28
+August 27th, 2024
+Any participant that finishes the survey without OQ.., NQ, term: or
+DUPE markers will be marked as qualified automatically.
+29
+August 27th, 2024
+Random tags using count attribute apply conditions before counting
+the elements (see Block Tag: Create Sections).
+108
+February 24, 2026
+A number or float question's .val attribute will
+now always return either None or the numeric value, never a string.
+Also changes to quota.xls format: importance level are set on cells
+and all plus markers have to be declared in the Defines tab, not
+in the individual tables.
+109
+February 24, 2026
+Required for "fingerprinting" and advanced deduping support (browserDupes
+set to safe or strict)
+110
+February 24, 2026
+N/A
+111
+February 24, 2026
+Locks out all participants without Javascript (use requires="" to
+disable). Locks out IE6 participants.
+112
+February 24, 2026
+Enables new dynamic questions
+113
+February 24, 2026
+Noanswer elements are moved after their question in the data
+downloads
+mobile.css is checked (to support mobile compatible themes)
+and will be loaded if it exists in the static directory
+114
+February 24, 2026
+Surveys will use jQuery 1.8.3
+115
+February 24, 2026
+Mobile device category and OS are captured in the extra vairable
+dcua; allowing splits the field and ordinary reports
+("vmobiledevice" and "vmobileos"). These are virtual questions.
+The alerts system notifies users via email when certain data
+is entered in a survey or a marker goes over a threshold.
+116
+February 24, 2026
+The survey state attribute must be set explicitly in the survey tag.
+vbrowser now includes MSIE 10.
+117
+February 24, 2026
+Security Update: Survey values use "strict quoting" by default.
+Additional names have been forbidden from being used as labels
+to prevent odd errors in programming:
+map, id, input,
+len, iter, locals,
+globals, vars, enumerate,
+open, file, round,
+set, dict, quote,
+js, qjs, djs, type,
+hasattr, getattr, eval,
+min, max, p, _p,
+int, goto, setMarker,
+getMarker, removeMarker, uqj,
+this, sum, filter,
+gv, float, timing,
+ord, chr, range,
+reduce, str, dollar,
+inf
+118
+February 24, 2026
+Raised question limit to 8192.
+vbrowser includes MSIE 11, vos
+includes Windows 8.
+119
+February 24, 2026
+Offline detection is automatically added for smartphones.
+120
+February 24, 2026
+userAgent variable is automatically added to surveys.
+121
+February 24, 2026
+N/A
+122
+February 24, 2026
+N/A
+123
+February 24, 2026
+N/A
+124
+February 24, 2026
+N/A
+125
+February 24, 2026
+Survey themes and styles now use Less - more flexibility in styling.
+Responsive Layout - Mobile and desktop formatting now based on
+window size rather than device type.
+Survey back button saves submitted answers.
+DQ toolkit update - DQs updated to be CSS LESS-compatible.
+Allow inclusion of additional less stylesheets via
+ss:includeLess.
+126
+February 24, 2026
+Font Awesome 4.2.0 is loaded into the survey participant view.
+New DQ stylevar types added. Majority of standard DQs updated
+to use new toolkit from M25/M26.
+127
+February 24, 2026
+Surveys replace the status variable with a "status"
+question. This question can be used to split and filter data
+in reports.
+Surveys have a "vdropout" question showing where a recovered
+participant dropped out.
+128
+February 24, 2026
+List of illegal question labels greatly expanded. Prevents potential
+collision with built-in labels.
+129
+February 24, 2026
+Theme Editor - An easy to use tool that allows users to customize
+themes for their surveys. Inbuilt DQ version upgrades.
+Theme Editor Export/Import: Ability to customize the
+theme.less file to edit a theme or create a new
+one.
+130
+February 24, 2026
+N/A
+131
+February 24, 2026
+"vos" virtual question modified to include Windows 10.
+"vbrowser" virtual question modified to include MS Edge.
+132
+February 24, 2026
+Card Rating DQ available.
+133
+February 24, 2026
+Single select (radio) questions using FIR can be unselected.
+Compat 133+ surveys using setup="term" will generate
+a virtual question labeled "vterm", showing how each user
+was terminated.
+134
+February 24, 2026
+Element labels are limited to alphanumeric characters and underscore.
+Resource labels have a similar limitation but also allow
+. (period) and - (dash).
+Row/col/choice labels have additional label restrictions to prevent
+collision and can't use any of the following:
+empty, ival, val,
+search, map, any,
+all, count, sum,
+check, attr, unrestrict,
+displayed, styles, ownstyles,
+but, unsafe_val, values,
+unsafe_open, open, valName,
+disabled, text, page,
+selected, lget, autofill,
+rows, cols, choices,
+amount, minRanks, atmost,
+points, title
+135
+February 24, 2026
+N/A
+136
+February 24, 2026
+Image Upload element released.
+137
+February 24, 2026
+New <themes> tag available - allows the dynamic
+switching of themes.
+138
+February 24, 2026
+N/A
+139
+February 24, 2026
+Enabled language value validation when using the mls
+attribute.
+Disabled default IP address tracking. To collect IP address,
+ipAddress must be declared as a survey
+extraVariable.
+Enabled CAPI / Panel Offline surveys to collect geolocation
+data and device ID's.
+140
+February 24, 2026
+Enhancement made to scoreboard for browser metric.
+141
+February 24, 2026
+Enables use of the Date Picker dynamic question.
+142
+February 24, 2026
+N/A

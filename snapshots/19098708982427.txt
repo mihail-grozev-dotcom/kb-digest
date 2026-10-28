@@ -1,0 +1,28 @@
+Title: 153.17 Release Notes
+Release Date: September 26, 2023
+Release Version: 153.17
+New Features
+Portal
+Staff and users with the Supervisor role can archive a Survey from the Actions menu.
+Survey
+Themes
+Customizations for survey themes are now tracked in version control.
+Reporting
+Data Downloads
+"Search Data" link in Data Downloads now redirects to "View/Edit Responses" view instead of Report 2010.
+Programming and Tools
+API
+Added API documentation for the can-archive API endpoint.
+Bug Fixes
+Survey
+Survey Editor
+Using the target attribute on exec elements (such as when using Crosstabs' data aggregation feature) no longer prevents the use of Survey Editor.
+The Display Settings modal no longer prompts users to Save Changes if there aren't any changes to save.
+Responses
+Campaign Manager
+Long lists of sends now scroll vertically as expected in the Send Reminders modal.
+Reporting
+Crosstabs
+Bulk download for Video Testimonial videos hosted in the EU region now download successfully. The bulk download also includes a video_list.txt with a list of the videos that were downloaded.
+Data Downloads
+The help links in the OData URL configuration screen now point to the correct locations on the Knowledge Base.

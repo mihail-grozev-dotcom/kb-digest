@@ -1,0 +1,114 @@
+Title: Multi-Select Question XML
+The checkbox element is a multi-select question type that enables participants to choose multiple answers from a list of choices.
+By default, checkbox questions are not mandatory. You may supply the number of selections that must be made to continue with one of the following attributes: atleast, atmost or exactly.
+The examples below demonstrate the different layouts available when working with checkbox questions.
+1: 1-Dimensional
+A 1-dimensional checkbox question requires at least 1 selection to be made.
+1.1: With Rows Only
+When only row elements are provided, the checkbox question defaults to grouping by columns. This means that at least one selection must be made for each column.
+In this example, there are row elements and no column elements. If you do not need a column header, you do not need to explicitly define the column element.
+<checkbox label="Q1" atleast="1">
+<title>
+In the past 24 hours, which meals have you enjoyed?
+</title>
+<comment>Please select all that apply</comment>
+<row label="r1">Breakfast</row>
+<row label="r2">Brunch</row>
+<row label="r3">Lunch</row>
+<row label="r4">Afternoon Snack</row>
+<row label="r5">Dinner</row>
+<row label="r6">Midnight Snack</row>
+<row label="r7" exclusive="1"><b>None of the above</b></row>
+</checkbox>
+1.2: With Rows and a Column Header
+This example demonstrates the difference when a column element is defined. We now have the ability to define a column header.
+The question is grouped by columns and at least one selection must be made for the "Meals" column.
+<checkbox label="Q1" atleast="1">
+<title>
+In the past 24 hours, which meals have you enjoyed?
+</title>
+<comment>Please select all that apply</comment>
+<col label="c1">Meals</col>
+<row label="r1">Breakfast</row>
+<row label="r2">Brunch</row>
+<row label="r3">Lunch</row>
+<row label="r4">Afternoon Snack</row>
+<row label="r5">Dinner</row>
+<row label="r6">Midnight Snack</row>
+<row label="r7" exclusive="1"><b>None of the above</b></row>
+</checkbox>
+1.3: With Columns Only
+Here is the same example as above with the row elements specified as columns instead.
+In this example, the question contains only column elements and is grouped by rows. This means that at least one selection must be made for the entire row.
+<checkbox label="Q2" atleast="1">
+<title>
+In the past 24 hours, which meals have you enjoyed?
+</title>
+<comment>Please select all that apply</comment>
+<col label="c1">Breakfast</col>
+<col label="c2">Brunch</col>
+<col label="c3">Lunch</col>
+<col label="c4">Afternoon Snack</col>
+<col label="c5">Dinner</col>
+<col label="c6">Midnight Snack</col>
+<col label="c7" exclusive="1"><b>None of the above</b></col>
+</checkbox>
+1.4: With Columns and a Row Legend
+Here is the same example as above with the the addition of a row element. The row element allows us to specify text for a row legend.
+Since the question contains both column and row elements, it's grouped by rows and at least one selection must be made for the entire row.
+<checkbox label="Q2" atleast="1">
+<title>
+In the past 24 hours, which meals have you enjoyed?
+</title>
+<comment>Please select all that apply</comment>
+<row label="r1">Meals</row>
+<col label="c1">Breakfast</col>
+<col label="c2">Brunch</col>
+<col label="c3">Lunch</col>
+<col label="c4">Afternoon Snack</col>
+<col label="c5">Dinner</col>
+<col label="c6">Midnight Snack</col>
+<col label="c7" exclusive="1"><b>None of the above</b></col>
+</checkbox>
+2: 2-Dimensional
+A 2-dimensional checkbox question has multiple rows and columns, requiring at least one selection to be made on a per row or per column basis.
+2.1: Grouped by Rows
+When multiple rows and column elements are provided, the checkbox question defaults to grouping by rows. This means that at least one selection must be made for each row.
+This example asks the participant to indicate their favorite aspects of the car brands provided. At least one selection must be made for each car brand.
+<checkbox label="Q3" atleast="1">
+<title>
+Please indicate your favorite aspects of the following car brands.
+</title>
+<comment>Please select all that apply</comment>
+<row label="r1">Tesla</row>
+<row label="r2">Toyota</row>
+<row label="r3">BMW</row>
+<row label="r4">Ford</row>
+<col label="c1">Luxurious</col>
+<col label="c2">Fast</col>
+<col label="c3">Affordable</col>
+<col label="c4">Good MPG</col>
+<col label="c5" exclusive="1">None of these</col>
+</checkbox>
+2.2: Grouped by Columns
+This example is similar to the one above, but we have set the grouping to group by columns. This means that at least one selection must be made for each column.
+Since we are grouping by columns, the participant must specify at least one car that is "Luxurious", "Fast", "Affordable", and "Good MPG". Notice that the exclusive column has been switched to a row element. This is because an exclusive column element would not collect the proper data when grouped by columns.
+<checkbox label="Q3" atleast="1" grouping="cols">
+<title>
+Please indicate your favorite aspects of the following car brands.
+</title>
+<comment>Please select all that apply</comment>
+<row label="r1">Tesla</row>
+<row label="r2">Toyota</row>
+<row label="r3">BMW</row>
+<row label="r4">Ford</row>
+<row label="r5" exclusive="1">None of these</row>
+<col label="c1">Luxurious</col>
+<col label="c2">Fast</col>
+<col label="c3">Affordable</col>
+<col label="c4">Good MPG</col>
+</checkbox>
+3: What's Next?
+Learn more:
+Multi-Select Element
+Multi-Select Question Attributes

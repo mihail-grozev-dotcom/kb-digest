@@ -1,0 +1,18 @@
+Title: 145.2 Release Notes
+Release Date: September 22, 2020
+Release Version: 145.2
+New Features
+Reporting
+Crosstabs
+Added the option to include significance testing labels within PowerPoint exports.
+Bug Fixes
+Survey
+Simulated Data (SST)
+Fixed an issue preventing the Run Test Data feature from running simulated data if previous test runs had been stopped and cleared from the shell environment.
+Participant View
+Fixed an issue causing certain types of content to be duplicated within row options in Card Sort elements.
+Reporting
+Crosstabs
+Fixed an issue preventing significance testing labels from appearing in mean summary tables.
+Data Downloads
+Fixed an issue causing the Data Layout selector to automatically select the Standard layout after exporting a custom layout.

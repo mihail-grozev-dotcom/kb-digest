@@ -1,0 +1,45 @@
+Title: 147.6 Release Notes
+Release Date: May 11, 2021
+Release Version: 147.6
+New Features
+Portal
+Upload System Files
+Added the ability to export and delete files directly from the file manager.
+Learn More: Uploading System Files
+Survey
+Dynamic Questions
+Upgraded the Autosuggest element with some additional functionality.
+Hid the “Source File Settings” section until an answer file is uploaded and applied to the question.
+Updated the “Filter Values” input fields to save inputs even if users click away from those fields.
+Updated the “Save” button to become disabled when a filter column has been selected but no filter values are entered.
+Added support for the “One Row at a Time” question style.
+Added the ability to use asterisks (*) as wildcard characters to perform relevant matching in filter values (i.e., filtered values will not need to match exactly what is entered).
+Added the ability to use multiple filter values in a single cell within an answer file.
+Added the ability for participants to skip rows within the question (i.e., the question type will now support <noanswer>, functionality).
+Learn More: Autosuggest Element
+Updated the Video Testimonial element to support eight additional languages:
+Turkish
+Traditional Chinese
+Simplified Chinese
+Czech
+Japanese
+Macedonian
+Slovenian
+Greek
+Updated the Video Player element to better support custom video watermarks.
+Language Manager
+Added support for three new survey languages:
+Kazakh
+Maltese
+Welsh
+Bug Fixes
+Survey
+Participant View
+Fixed an issue causing the unique IDs for some answers to be reset if a participant used their browser’s “Back” button after entering those answers in an Autosuggest question.
+Dynamic Questions
+Fixed an issue preventing participants from viewing some videos in the Video Player element when using Google Chrome.
+Reporting
+Crosstabs
+Fixed an issue causing reports to fail when attempting to refresh them after making changes to survey quotas and other conditions.
+Data Downloads
+Updated the “exporting ODATA reports” hyperlink in the ODATA export menu to point to the correct knowledge base article.

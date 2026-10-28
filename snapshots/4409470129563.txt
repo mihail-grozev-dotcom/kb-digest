@@ -1,0 +1,199 @@
+Title: Setting User Permissions
+User permissions are defined by company administrators from the Company page in the Portal. The following tables provide descriptions of the permission level settings available for various Decipher tools and features.
+1: Portal
+1.1: Survey List
+Option
+Description
+Access Required
+Build
+Opens the project in the Survey Editor
+Survey:Build
+Responses
+Opens the project's Response Summary
+Response Summary:View
+Report
+Opens the project's Crosstabs
+Reporting:View
+1.2: Project Actions
+Option
+Description
+Access Required
+Preview Survey (previously "Test Survey")
+Opens the survey in a new window for testing. You may choose to view the survey in participant view or show the testing toolbar
+Survey:View
+Launch Survey
+Relaunch Survey
+Launches/Relaunches a survey
+Survey:Edit
+Close Survey
+Closes a survey
+Survey:Edit
+Admin:Full
+Rename Survey
+Updates the survey name in Portal
+Survey:Edit
+Duplicate Survey
+Creates a duplicate version of the survey
+Survey:Build
+Project creator or supervisor
+Export Survey
+Downloads a copy of the survey in PDF, Word, Text, HTML or OpenOffice ODT formats
+Report:View
+Data:Download
+Hide Survey
+Hides the survey from your Portal view
+Survey:Edit
+Archive and Deletion Settings
+Opens the Archive and Deletion Settings menu for the survey
+Note: This option is only available if the Archive and Delete Settings feature is enabled at the company level.
+Survey:Edit
+Delete Survey
+Deletes the survey
+Survey:Build
+2: Project Overview Page
+2.1: Actions Menu
+Option
+Description
+Access Required
+Launch Survey
+Relaunch Survey
+Launches/Relaunches a survey
+Survey:Edit
+Close Survey
+Closes a survey
+Survey:Edit
+Admin:Full
+Rename Survey
+Updates the survey name in Portal
+Survey:Edit
+Duplicate Survey
+Creates a duplicate version of the survey
+Survey:Build
+Project creator or supervisor
+Export Survey
+Downloads a copy of the survey in PDF, Word, Text, HTML or OpenOffice ODT formats
+Report:View
+Data:Download
+Hide Survey
+Hides the survey from your Portal view
+Survey:Edit
+Archive and Deletion Settings
+Opens the Archive and Deletion Settings menu for the survey
+Survey:Edit
+Subscribe
+Unsubscribe
+User will receive notifications when changes are made to the the survey
+Survey:View
+Run Simulated Data
+Will run test data through the survey to check for errors and populate the report
+Survey:Edit
+Change Survey State
+Changes the current "State" of the survey
+Staff User
+Start Dialer
+Stop Dialer
+Starts or stops the CATI dialer if a LIVE survey has a ProTS sample source
+Delete Survey
+Removes the survey
+Survey:Build
+State: draft/testing
+selfserve only
+2.2: Navigation Menu
+Option
+Description
+Access Required
+Survey Editor
+Opens Survey Editor
+Survey:Build
+Themes
+Opens Theme Editor
+Survey:Build
+Survey compat level 130+
+Language Manager
+Opens Language Manager
+Survey:Edit
+Edit XML
+Opens the Survey XML Editor
+Survey:Build
+View Survey Setup
+Opens Survey Editor in view-only mode
+Survey:Build
+View XML
+Opens Survey XML Editor in view-only mode
+Survey:Build
+Upload System Files
+Opens the File Manager
+Survey:Edit and SECURE survey
+Version Control
+Opens the survey version history report
+Survey:Edit
+Test Survey
+Opens the survey in a new window for testing. You may choose to view the survey in participant view or show the testing toolbar
+Survey:View
+Run Test Data
+Will run test data through the survey to check for errors and populate the report
+Survey:Edit
+State: draft/testing
+Response Summary
+Opens the project's Response Summary
+Response Summary:View
+Email Campaigns
+Opens the email campaign manager
+Application Access: Campaign Manager
+Campaign Manager:Build
+selfserve only
+Survey Summary
+(previously "Project Summary")
+View survey URLs, Exit links, quotas and settings for the survey
+Survey:View
+CATI Management
+Opens the CATI management console
+Survey:Edit
+Survey contains the CATI participant source
+CATI Mode
+Opens the login screen for interviewers
+Survey:Edit
+Survey contains the CATI participant source
+Alert Center
+Opens the alert center page
+Report:View
+Response Summary:View
+Project Warnings
+Opens the project warnings page
+Application Access: Project Warnings
+State: LIVE, Closed
+Crosstabs
+Opens the crosstabs entry page
+Report:View
+View Edit Responses
+Opens the view edit responses report
+Report:View and Data:Download
+Data Downloads - Excel
+Downloads the report in excel 2017
+Data:Download
+Data Downloads - SPSS
+Downloads the report in SPSS (16 + OE)
+Note: Setting blankValue as a string in the <survey> tag will cause an error when exporting an SPSS file. Use a numeric response for blankValue instead.
+Data:Download
+Data Downloads - Other Data Formats
+Opens the data downloads options
+Data:Download
+Edit SPSS Variables
+Opens the edit SPSS importer
+Survey:Build
+Project Type: SPSS
+State: Closed
+Dashboards
+Opens the survey dashboard list
+Application Access: Dashboards
+Research Dashboard:View
+Report 2010
+Opens the report 2010 page
+Application Access: Report 2010
+Report:View
+View Saved Reports
+Opens custom reports page
+Report:View
+Logic
+Opens debug page
+Survey contains at least one Custom Code element

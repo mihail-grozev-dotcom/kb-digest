@@ -1,0 +1,200 @@
+Title: Creating Custom DQ Charts in Crosstabs
+Dynamic questions can create custom charts or other interactive graphics accessible in Crosstabs. The custom charts will be selectable when the user selects "Edit Chart" for the table in Crosstabs. The custom chart is an additional option and will be shown under the frequency data chart options.
+If a question has a dynamic question chart enabled by a user, it may not be visible immediately when a report has run, but may only come into view when scrolled to.
+1: Configuring meta.xml
+To include a single custom chart, add the chart tag to the dynamic question meta.xml file.
+Example:
+<meta>
+...
+<chart>Name of Custom Chart Type</chart>
+</meta>
+If the custom chart should completely replace the table generated add the replaces attribute and set to 1:
+<meta>
+...
+<chart replaces="1">Name of Custom Chart Type</chart>
+</meta>
+2: Configuring styles.xml
+Reporting related functionality or CSS customization should be included in files separate from the survey files. Reference the files in an <include> adding where="report" to include the file in Crosstabs only.
+Example:
+<styles>
+...
+<include where="report" href="reporting.js"/>
+<include where="report" href="reporting.css"/>
+...
+</styles>
+Inlined JS/CSS can also be added using the nreport.page.head xml style.
+Example:
+<styles>
+...
+<style name="nreport.page.head"><![CDATA[
+<style>...</style>
+<script></script>
+]]>
+</style>
+...
+</styles>
+3: Reporting Javacript Requirements
+Inside reporting.js, a function named after the dynamic question must be insterted into the global aqfuncs object.
+Example
+aqfuncs.mydq = function (o) { ... }
+4: Access in Crosstabs
+If there are dynamic questions with charting enabled, all those questions' <include where="report"> and report.page.head styles are always generated on the main Crosstabs page, even when dynamic question charts are not enabled. Crosstabs will create a div prior to the table, as shown below:
+<aq id="unique_id" class="question_questionLabel aq_yourclass"></aq>
+The div will have a class of question_questionLabel (similar to questions in surveys) and aq_yourclass which allows using CSS rules to target the div. Once the div has scrolled into view, the reporting function defined by the dynamic question (e.g., aqfunc.textual) will be called given these parameters as a single object argument:
+element: A jQuery object representing the div container where it should render.
+table: The table data structure, containing rows and data.
+q: The underlying question configuration structure.
+oe: A callback function, allowing the dynamic question to acquire open-ended data given an oedata specification.
+4.1: The Question Structure
+The question configuration used by Crosstabs includes rows, choices, columns, adim, question type and question title. For each cell, its text and downloads value are included.
+4.2: The Table Structure
+The table given is a standard table object used by Crosstabs, containing:
+Segments active for this table:
+segment title
+segment condition
+Table rows:
+total rows (type: total)
+net rows (type: net)
+stat rows (type: stat)
+frequency rows (type: simple)
+Data rows:
+non-stat row: [percent, count, unweighted count, effective base, [stat testing data]]
+stat row: [statistic, count, [stat testing data]]
+Stat testing data is an array (e.g., 'a', 'B', 'E').
+4.2.1: Accessing Frequency Data Rows
+The table data structure contains data rows which contain frequency data, one list per row per segment.
+Here is an example of iterating over all the frequency data rows:
+$.each(o.table.rows, function(rowIndex, row){
+if (row.type == "simple") {
+write(escape(row.title));
+// there can be any amount of segments that can vary per table
+$.each(o.table.segments, function(segmentIndex, segment) {
+var cell = o.table.data[rowIndex][segmentIndex];
+write (cell[0]); // percentage
+write (cell[1]); // count
+});
+}
+});
+4.2.2: Accessing Open-Ended Data
+To access the open-ended data use the o.oe callback. When there are no answers for the oe, o.oe() will throw an alert and it is good practice to check if the table is empty first.
+Note: This interface does not return who had a specific open-end value (compared to the open-end popup which retrieves both record and open-end data).
+Here is an example of retrieving the open-ended data using the o.oe callback:
+/*global $*/
+window.aqfuncs.textual = function (o){
+'use strict';
+function callback(results) {
+var table=$(''),captured=results.data.captured,i,j,k,tr,td,maxLength=0,maxSegment;
+// determine largest segment
+i = captured.length;
+while (i--) {
+if (captured[i].length >= maxLength){
+maxSegment = i;
+maxLength = captured[i].length;
+}
+}
+for (j = 0; j < captured[maxSegment].length; j++){
+tr = $('');
+for (k = 0; k < captured.length; k++){
+td = $('');
+td.append($.type(captured[k][j])==='undefined'?'':captured[k][j].join(': '));
+tr.append(td);
+}
+table.append(tr);
+}
+o.element.append(table);
+}
+if (!o.table.isEmpty) {
+o.oe().then(callback);
+}
+};
+results.header will contains the HTTP request header information and results.data will contain the body of the response from the server. The data from the oe call will be in results.data.captured[0] when there is only one segment and in results.data.captured[0],results.data.captured[1],..., results.data.captured[n] when there are n segments.
+Note: When using a table append the report-table class to it. This will allow for the tables to stretch in relation to their content; otherwise tables maybe cutoff.
+oe() returns a jQuery deferred promise. When the promise is resolved (the AJAX request and any post-processing completes), the return value will be handed to the callback function passed to the then() function. Promises can be chained.
+Example:
+o.oe().then(function(result) {
+// do something with result
+return newResult;
+}).then(function(newResult) {
+// do something with newResult
+return newerResult;
+}).then(function(newerResult) {
+//do something with newerResult
+});
+4.3: Accessing the Color Palette
+The default color palette is 'PuBu'. The code below will return the name of the palette if the color has been changed from the 'view chart options' or the default.
+var palette = $('html').injector().get('Settings').settings().colorPalette | 'PuBu';
+To get the color list the global colorbrewer can be used. The colors should then have their luminance adjusted to match the coloring in Crosstabs.
+var palette = $('html').injector().get('Settings').settings().colorPalette | 'PuBu';
+// colors will return a list of color hex string after luminance has been adjusted
+var colors = window.colorbrewer[palette]['6'].map(function(color) {
+return $('html').injector().get('luminence')(color, -0.1);
+});
+5: Using a Reporting Template with AngularJS
+Custom charts can also be created by using AngularJS to write a plugin. In the styles.xml, add the following:
+<styles>
+...
+<include where="report" href="reporting.js"/>
+<include where="report" href="reporting.css"/>
+<include where="report" href="reporting.html"/>
+</styles>
+This will import javascript and a template. An example reporting.html looks like this:
+<!-- id of this template MUST MATCH module name. This MUST be a template! -->
+<script type="text/ng-template" id="aq.textual">
+<p ng-controller="TextualCtrl">
+<table>
+<tr ng-repeat="segment in segments">
+<!-- see ng-repeat docs for info on what "track by" is for -->
+<td ng-repeat="data in segment track by $index">
+<span ng-show="data">{{ data|formatOEData }}</span>
+</td>
+</tr>
+</table>
+</p>
+</script>
+An AngularJS reporting.js will look like the following:
+window.aqfuncs.textual = function textual(o){
+'use strict';
+// this module definition is required
+var textual = angular.module('aq.textual', []);
+// you will want a controller to handle your template 99% of the time.
+textual.controller('TextualCtrl', function ($scope) {
+$scope.segments = [];
+o.oe().then(function (results) {
+var captured = results.data.captured, i, j, k, maxLength = 0, maxSegment, data;
+// determine largest segment
+i = captured.length;
+while (i--) {
+if (captured[i].length >= maxLength) {
+maxSegment = i;
+maxLength = captured[i].length;
+}
+}
+for (j = 0; j < captured[maxSegment].length; j++) {
+data = [];
+for (k = 0; k < captured.length; k++) {
+data.push(captured[k][j]);
+}
+$scope.segments.push(data);
+}
+});
+});
+// this filter is just an example of a filter. it is not really necessary
+textual.filter('formatOEData', function () {
+return function (a) {
+if (angular.isDefined(a)) {
+return a.join(': ');
+}
+};
+});
+// required!
+o.bootstrap(textual);
+};
+The same object (o) is passed to this function as the jQuery version. However, another function within the o object, bootstrap() will be received. After defining an AngularJS module, pass the module object to the o.bootstrap() function. This will initialize the plugin; if module object is not passed to bootstrap() nothing will happen.
+There are many advantages to using AngularJS, but the main one for situations like this is use of a template and keeping the markup out of the JavaScript.
+To access the data which is in Crosstabs, use the following to get the Config service, where most of the data is stored:
+var Config = angular.element(‘html’).injector().get(‘Config’);
+$scope.reportName = Config.reportName; // for example; you can use this in your template
+Do not attempt to include the 'report' module in the module definition; this will likely cause performance problems. The report module does not need to be bootstrapped again; it already exists, and above is a way to get at its instance.
+Learn More: AngularJS.
+6: Limitations
+In Crosstabs, exactly one charting area is attached to a table and data spread over multiple tables cannot be unified into a single chart. The dynamic question is responsible for managing display of segments. For example, if there are five segments the dynamic question may need to display a select to toggle between which segments are shown.

@@ -1,0 +1,105 @@
+Title: Implementing the Image and Video Upload Question
+The Image and Video Upload question enables participants to select files from their device and upload them to your project.
+Note: This article describes adding the Image and Video Upload question via the survey XML. To learn how to add the Image Upload element via the Survey Editor, see Image Upload Element.
+Warning: This feature is not supported on all devices. Participant experience varies depending on device, operating system, external application used (e.g., camera), and other factors.
+Note: Upload time is dependent upon file size, which can be large for video, and upload speed, which is slow on most consumer Internet connections.
+1: Underlying Question Architecture
+This question style uses the <image> tag to create the input necessary for accepting images and videos. By default, this question will accept both images and videos. See below for the base XML required:
+<image label="Q1" optional="0">
+<title>Upload a file from your device</title>
+</image>
+The XML code above allows the participant to select and upload a file from their computer.
+With this setup, a participant may upload any file from their device. There are no restrictions set and all files from the participant's device are available for uploading.
+To limit the types of files that can be uploaded you will need to add a <validate> to your <image> element. For example:
+<image label="mediaUpload" optional="0">
+<title>Please update your favorite photo/video from your device.</title>
+<validate>
+if this.val:
+validExtensions = [ ".jpg", ".png", ".jpeg", ".tif", ".mov", ".mp4", ".flv", ".wmv", ".avi" ]
+if not any([this.val.endswith(extension) for extension in validExtensions]):
+error(res["mediaUpload,upload_extension_error"])
+</validate>
+<res label="upload_extension_error">You have uploaded an invalid file format. Please try again.</res>
+</image>
+1.1: Attributes
+In addition to the available question attributes, the <image> element has access to the following attributes:
+Attribute
+Type
+Description
+displayInline
+boolean
+Change the way files are displayed in reports.
+If displayInline="0" is specified, then a link to the uploaded file will be shown in the report instead of an image.
+If the files you're expecting to be uploaded are images, then the default (displayInline="1") will show the uploaded files as images inline in the report tables.
+Note: The displayInline attribute is only available for Report 2010. It is not available for Crosstabs.
+imagePrefix
+string
+Set the file name's prefix.
+Can be applied to the main <survey> element and controls the naming convention used to name uploaded files.
+By default, files will be renamed using the participant's record number, the question label, and the original name of the file (for example, 42_q10_my_cute_puppy.jpg ).
+Note: The imagePrefix attribute will only override the default prefix used for extraVariables (for example, source).
+2: Converting to the Image Upload Dynamic Question
+You can use the Image Upload dynamic question to limit the types of files allowed to image files and give the upload a more modern look. To change to the dynamic question, add uses="imgupload.3" to your <image> tag.
+<image label="Q1" optional="0" uses="imgupload.3">
+<title>Upload a file from your device</title>
+</image>
+The following image formats are accepted for uploading:
+JPEG
+PNG
+GIF
+SVG
+Note: The maximum file size for any image is 5 MB and only one upload is allowed per question.
+Warning: The Image Upload dynamic question is incompatible with feature phones.
+2.1: Attributes
+Name
+Description
+Default
+imgupload:providenoanswer
+Provide participants a (No Answer) option to skip the question if they are having problems adding and/or uploading an image
+1
+imgupload:noanswertext
+Text that will appear next to an option to skip the question
+I'm unable or don't want to upload an image
+imgupload:invalid_file
+Text warning will appear if the file is an invalid type or too large.
+Warning: Invalid file selected. Please select an image file sized 5 MB or smaller.
+imgupload:text_capture
+translatable text
+Take
+imgupload:text_mediatype
+translatable text
+Photo
+imgupload:text_gallery
+translatable text
+Select from Gallery
+imgupload:text_deviceerror
+translatable text
+Unable to complete action. Please check the app settings on your device to verify all camera permissions are enabled, and please try again.
+3: Converting to the Video Only Upload Question
+Requires Decipher Cloud
+This Video Upload question demonstrates restricting an upload to only allow video files on devices that allow this restriction. This setting helps the OS filter the types of files that are offered for upload. Also, the form element used for uploading (the “select from your library” area) is highly stylized for modern smartphones that have better HTML5 and CSS support.
+To accept only videos through the file uploader, update the <image> tag as follows:
+<image label="Q1" style="video">
+<title>Upload a file from your device</title>
+</image>
+In addition to adding the style attribute to the <image> tag, you must also include the following code in your nstyles file (for example, /selfserve/9d3/proj12345/nstyles):
+*video/el.image:
+@if data
+@if this.displayInline
+<video src='/survey/${gv.survey.path}/$(localFilename|q)' controls>Your browser doesn't suport HTML5 video.</video>
+@endif
+<INPUT type="hidden" name="old-$(name)" value="$(data)">
+<BR><BR>
+@endif
+<div class="uploader white">
+<INPUT type="file" name="$(name)" size="$(size)" class="upload video" accept="video/*">
+</div>
+With this setup, a participant will be allowed to upload a single video file.
+Note: Maximum video size is 2 GB.
+4: Downloading the Files
+For any survey that includes an <image> element, an option for downloading "Uploaded Files" is automatically added to the data downloads menu.
+Selecting this option will download a ZIP file containing all of the files uploaded with the following naming format: RECORD_QLABEL_FILENAME.
+5: Device Support
+Outlined below are operating systems that have been tested and the level of experience a participant is expected to have.
+iOS 6.0+: Excellent support. Default video format is MOV; image format is PNG.
+Android 2.2+: Excellent support. Newer Android devices use MPG as default video format; 3GP for older versions. Image file format varies (PNG, JPG, BMP).

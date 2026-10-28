@@ -1,0 +1,87 @@
+Title: Beacon M16 Release Notes
+        
+Release date: May 14, 2013
+New survey compat level is 116. Use compat=”116” for all new surveys. Such surveys will automatically create virtual questions for certain sample sources variables and show IE 10 in the browser list.
+New Features
+New reporting system
+Automatic recovery of partials: set autoRecover=”1” and see partials automatically appear (release notes)
+Builder
+#14806 Duplicating a survey updates all image references to point to the new directory. This allows the previous survey to be safely abandoned or removed.
+#14217 Sample sources vars with values attribute will now create virtual questions which will provide options for you in the take survey dialog when selecting a value for that variable.
+#15059 “Clear Voice” sample provider added
+#14880 “Auto Recover Data” added to project settings dialog (Field Settings)
+#14890 “Upload Files” link added to actions menu
+#15188 Simulated data now defaults to 200 runs and there is a new 2000 runs option.
+#14925 iModerate blackbox available to Builder; works in secure mode surveys
+#14822 non-staff blackboxes can now be made available to all clients; just add the blackbox to /int/client_blackbox.py [staff only]
+#13886 AQ’s can hide question sections (r/c/ch) in the Quick Editor; in the meta.xml, set <count name=”<row|col|choice>”>0</count>
+XML Editor
+#13712: Search and Replace functionality for xml editing
+Theme Builder
+#14010 12 new themes
+Survey & CMS
+#14183 The fullService flag if set to “1” on a builder survey allows only staff Builder access to that survey. Non-staff, even if they have Builder access and could normally edit the survey cannot edit in builder or edit its XML.
+#14821 (fasttracked) Participant answers retained when clicking the browser back button. Newer versions of Firefox prevent caching with secure (https) pages.
+Survey Styles
+#13967 In XML style configuration, you can use <count name=”row”>0</count> to disallow any explicit rows. This also disabled that part of QEM in Builder.
+#14555 Specify <require name=”something”>*</require> to require that “something” attribute is set, but to any value.
+Reporting & Dashboard
+#14529 The vbrowser table will show MSIE 10 for compat=116+
+#14902 The legacy reporting system can create extremely specialized charts where you write the Python code to draw exactly what you want (e.g. embed resized images of your account managers faced depending on their sales)
+#14762 The HTML datamaps will show question-level QA codes for the quest when shown in the browser or downloaded
+#14991 The / character is no longer replaced with - inside titles of SPSS
+#15336 The Downloads menu has been redesigned
+Field report & Campaign Manager
+#13990 Downloadable sample file will include a status variable which shows the send status of an email.
+#13878 Seed list entries can be deleted.
+#14863 Unabridged list option will disabled deduping and throttling.
+Programming & Tools
+#14440: number and float questions using the AQ toolkit will include data about validation (minValue, maxValue and ignoreValues) in the jsexport structure
+#14679 Run setfolder . while in a selfserve/XXX/YYY survey directory to move that project into the correspond system folder in the portal.
+The generate script can give you the data filtered by the new reporting system’s condition. Some examples:
+generate -p . ‘q1.r1 and not qualified’ tab
+generate -p ‘q3.r5.val < 40 and overquota’ tab
+generate -p ‘qualified and date_range(“01-jan-2013”, “31-jan-2013”)’ tab
+generate -p ‘qualified and date_days(14)’ tab
+Surveys using onLoad=preciseTimePerPage() generate the correct number of page in the question at compat=116+. That setting now also works properly in SECURE surveys.
+#13604 Secure surveys have access to lget which lets you access the language resources as overridden by this particular question. E.g. inside question <validate> tag you might write error(this.lget(“noAnswerSelected”)).
+#15277 Watermarks can now repeat. Repeateable watermarks are more configurable.
+File Manager
+#13651 (fasttracked) File Uploader page is now accessible to all users. Non-staff users are allowed to access the upload page for secure surveys only, and restricted to the following file types:
+Static Directory:
+media: jpg, png, gif, mp3, csv, swf
+styles/html: js, html, htm, css
+Survey Directory:
+xml, xls, html, dat
+Upload of survey.xml is not allowed when survey is live (non-staff users)
+uploading csv and swf files supported (static directory only)
+Bugfixes
+#14886 fixed qem improperly processing conditions with “<” “>” symbols
+#12446 fixed bi-html elements with no text node (e.g. <td></td>) from becoming self closed in xmlEditor
+#14680 dragging elements around in a block will no longer cause js exceptions
+#14252 creating/duplicating a survey with unicode characters no longer errors out
+#14251 saving element to library no longer errors out with unicode characters in title
+#15177 takesurvey dialog supports non-integer list values
+#14833 Memory usage of projects using many AQ styles improved (this was mostly an issues on the YouGov server)
+#15214 fixed blackbox search error when editing live surveys
+#14036 ignore syntax errors when trying to rebuild conditions in logic builder. Display custom code state instead
+#14839 allow unescaped ampersands as valid blackbox input
+#14711 alerts can now be duplicated from tree
+#14027 appending data with data importer now points to correct merged file
+Misc
+#14800 Shell Access and View Audit Log links now under the user menu
+Shell Access, View Audit Log, and Update Information have been redesigned
+Extended Documentation
+Developer Features
+#14980 Twilio helper library is now installed for use in scripts/apps. You can use Update Manager on Ubuntu to get the latest beacon packages. For non-Ubuntu installation you can use pip: $ pip install twilio
+If setuptools is installed, you can also install from the source and run: $ python setup.py install
+#14758 Top Bar now easy to include in new apps
+When creating a new app, if you want to include the global top bar seen on several apps, all you have to do is include the following three styles:
+[framework.topBar.css-dependencies]
+[framework.topBar.js-dependencies]
+[framework.topBar.content;page_class={{Name of App}}]
+[framework.topBar.css-dependencies] : has all the css includes for the top bar. Include it where you have your CSS files included.
+[framework.topBar.js-dependencies] : has all the js file includes used in top bar. Include it where you have your JS files include, but must be after jQuery as it uses it.
+[framework.topBar.content;page_class={{Name of App}}] : is the html content. Include it somewhere inside the <body> tag, it's recommended to be the first thing in <body>.
+The page_class can be left blank, but if you want to allow the top bar links to have an "active" state you must declare it and also add it to your app <body> tag's id attribute. In example: <body id="$(page_class)">
+You may also want to look at *framework.topBar.content: in nstyles and make any modifications particular to your new app. In example, maybe you don't want to show certain menus, you can use $(page_class) to add logic.

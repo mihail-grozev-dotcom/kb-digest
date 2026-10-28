@@ -1,0 +1,22 @@
+Title: Autofill Element
+The Autofill element is used for creating report segments, auto-punching response options, and advanced text piping. Participants will not see Autofill elements while taking the survey.
+1: Adding an Autofill Element
+To add an Autofill element, first click the "+ Element" button to add a new survey element. Then click "Logic Elements" under Question Types and select the "Autofill" element. Then click "Add".
+Add an appropriate title in the space provided. Then click "Edit Answers" to add your response classifications.
+Enter the response options for the Autofill element in the area provided. The options can also be a short description of the logic conditions that are used to populate the element (e.g., "Males"). Additionally, you can click "Add Answers from Library" to fetch any response options you have already saved to the library. Once done, click "Save".
+You can edit the classifications by again clicking the "Edit Answers" button you used while adding the classifications. To add logic to the classifications, select "all" from the "select if" drop-down.
+You can also select an existing logic condition or create new logic conditions for your classification. To add a new logic condition for a classification, select "+ condition" from the "select if" drop-down. The selected condition is applied only to the row that you are updating.
+In the "Logic Conditions Setup" window, select the question you want to use for the logic from the question drop-down. Then, select "is" or "is NOT" from the logic drop-down, and check the checkboxes next to the desired response options to define the logic.
+For more information on adding logic, see Adding Logic to a Question or Response Option.
+Click "Save", or "Save As..." if you wish to name the condition for later use in the Survey Editor.
+The classifications specified in the Autofill element appear in the report and track responses according to the logic specified.
+2: Advanced Piping With the Autofill Element
+Once created, the Autofill element allows you to insert a pipe based on the response options selected in a Multi-Select element by specifying the text to be piped based on the participant's selection. To pipe responses from the Autofill element, you must utilize the piping tool. See Using the Piping Tool to learn how to create advanced pipes using the Autofill element and the piping tool.
+3: Options for an Autofill Element
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it.
+Label: The label assigned to the element. Click to edit the default label for the Autofill element.
+Show If: Click to create new logic conditions or to select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+More Options: Click to select less commonly used options. Once selected, you can specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4: Learn More
+Creating Hidden Tracking Questions with Autofill
+Using the Piping Tool

@@ -1,0 +1,54 @@
+Title: Sharing the Response Summary
+You can use the Logic Library to share a survey's Response Summary with other users who may not have access to the Decipher portal. This can be done using either the ""Share A Response Summary Snapshot" element in the Survey Editor or the "fieldreport" logic node in the survey XML, either of which will take a snapshot of the current Response Summary and send it to one or more pre-specified recipients.
+1: Using the Survey Editor
+To share the Response Summary using the Survey Editor, click + Add Survey Element under the staging area:
+In the Element Library, click Advanced and select the "Share A Response Summary Snapshot" element. Then select Insert:
+Your new element will appear in the staging area, where you can specify who to send the report to and when:
+The following options are configurable:
+Recipient(s): Who will receive the report snapshot. Enter the email address for the intended recipient. If there will be multiple recipients, separate addresses by comma.
+Report(s): Which report tabs will be shared. By default, only the "Completion" tab will be shared with recipients. To send additional tabs, click into the box and select the desired tabs from the drop-down menu.
+Frequency: How often a report is sent to recipients. Can be set to share reports daily or hourly.
+Split By: The variables by which the shared report will be filtered. To add a variable, click into the text-box and type its name. The following variables can be specified, along with any custom survey variables:
+list
+OS
+browser
+Mobile OS
+Mobile Category
+When: When the snapshot will be sent. Must be entered in HH:MM (24-hour) format.
+Message: Optional message to the report recipient(s). Click into the text-box to include custom messaging in the report email.
+2: Using the XML
+The fieldreport logic node is periodic, meaning that it can be scheduled to send out the report out at pre-defined intervals. To learn more about periodic logic nodes, see Scheduling Logic Nodes.
+To start sharing your Response Summary, you will need to add a logic tag to your survey XML, specifying both the recipient(s) and delivery time:
+<logic label="fieldreport"
+fieldreport:period="daily"
+fieldreport:recipients="someone@decipherinc.com"
+fieldreport:time="23:02"
+fieldreport:tabs="completion,quota"
+uses="fieldreport.1"/>
+Acceptable Use Policy: All recipients of this report must have explicitly opted in to receive the message at the expected frequency and should expect to contact the survey author to be removed. Spam complaints from users may restrict your account's ability to use the logic nodes.
+2.1: Parameters
+The following parameters can be passed to the fieldreport.1 node:
+Attribute
+Description
+fieldreport:period
+Determines how often the report gets sent out. It can be set to one of the following:
+daily
+hourly
+fieldreport:recipients
+Designates the intended recipient email address(es).
+Note: Multiple recipients can be supplied and should be separated by comma.
+fieldreport:time
+Selects the time of day the report will be sent out. Use a 24-hour format with hours and minutes. If the logic node is added before 23:02, the send will happen the same day; otherwise the report will be sent out the next day.
+fieldreport:tabs
+Selects which of the following tabs will be included in the report:
+completion
+dropout
+quota
+terminate
+custom custom reports (e.g., custrep.txt)
+oldquota legacy quota report (i.e., hquota)
+Note: Separate multiple tabs with commas.
+fieldreport:message
+Can be added to include a message to the recipients.
+fieldreport:split
+Can be added to split the report by a specified survey variable (e.g., list).

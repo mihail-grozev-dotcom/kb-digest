@@ -1,0 +1,11 @@
+Title: 153.22 Release Notes
+Release Date: December 19, 2023
+Release Version: 153.22
+New Features
+Portal
+Usage Statistic
+Surveys launched without using the standard launch APIs will be marked as launched for the purpose of collecting future usage statistics data.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+Added Research Defender SEARCH Integration logic node.
+Learn More: Research Defender SEARCH Integration

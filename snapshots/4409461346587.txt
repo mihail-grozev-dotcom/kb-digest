@@ -1,0 +1,72 @@
+Title: Including JavaScript in a Survey
+Whether you are using JavaScript to implement client-side validation or to create a custom look and feel for your survey, you will need to take an extra step to ensure that the JavaScript is included in the survey. You can use either survey style attributes or the XML style system to verify JavaScript inclusion.
+If you are new to JavaScript or would like to learn more, you can find a variety of free coding tutorials at Codecademy.com.
+1: Survey Style Attributes
+There are two survey style attributes that allow you to include JavaScript in a survey: ss:customJS and ss:includeJS.
+1.1: Using ss:customJS
+When the JavaScript is contained in a single .js file, you can upload the file to the survey's static directory and then load it by adding the ss:customJS attribute in the main <survey> element.
+For example, if the script uploaded to the static directory is named customScript.js, you would specify ss:customJS="customScript" in the <survey> tag to load the file in the survey.
+1.2: Using ss:includeJS
+You can use the ss:includeJS attribute to load any number of .js files. These files can be located in your local static directory or a client level directory, or can be loaded externally. When using the ss:includeJS attribute, include each .js file in a comma-delimited list.
+For example, to load two .js files (script1 and script2) into the survey, you would add the following to the <survey> tag:
+ss:includeJS="/survey/selfserve/9d3/proj1234/script1.js, proj1234/script2.js"
+2: XML Style System
+Using the XML style system, you can add JavaScript to one or more pages of the survey by adding either the respview.client.js style, or the question.after style.
+2.1: Using the respview.client.js Style
+Inside the respview.client.js style, specify the JavaScript code.
+For example:
+<style name="respview.client.js" mode="after"> <![CDATA[
+<script>
+$ (document).ready(function() {
+console.log("Javascript is running");
+});
+</script>
+]]></style>
+Using the wrap argument, you can skip using the document.ready function. The following is an example of the same code using the wrap="ready" argument:
+<style name="respview.client.js" mode="after" wrap="ready"> <![CDATA[
+console.log("Javascript is running");
+]]></style>
+To apply this to only specific pages, you can use the with argument to specify the questions the code would run with in a comma-delimited list. You can use this style to link external .js files as well, similar to how they would be linked within HTML.
+2.2: Using the question.after Style
+Similar to respview.client.js, JS code can also be defined in the same way using the question.after style. For example, question.after would be defined inside a question for use on that question and can be used with or without the wrap="ready" attribute. An example of question.after with the wrap="ready" attribute is listed below:
+<style name="question.after" wrap="ready"> <![CDATA[
+console.log("Javascript is running");
+]]></style>
+Additionally, you can use the jsexport() function within the question.after style to return a JSON object of the question. To call this function within a survey, execute some Python code using the ${} syntax. Then, you can call this function to get a JavaScript JSON object of the question's properties.
+For example:
+<style name="question.after" wrap="ready"> <![CDATA[
+var qn = ${jsexport()}; //returns json object of the question
+console.log(qn) //loads question variables into a console tool
+]]></style>
+Given the code above, a browser's console log displays the object generated, as shown below:
+3: Survey-Specific Functions
+Once you have included JavaScript in your survey, you can use the following Decipher-specific functions in your survey as well as regular JavaScript functions.
+3.1: Using Survey.setPersistent('name','value')
+Sets a persistent variable in python via javascript/jquery.
+The following example displays two buttons on the survey page. It measures the time between clicking the Start button and the End button.
+In this example, After measuring, Survey.setPersistent() is called to schedule a save of this data to the server. You can only schedule one save per page. The name must start with client_. The value can be any JSON object.
+In this example, on the next page of the survey, the Python code p.client_timing is used to retrieve and display the data sent using the Javascript code.
+<html label="h1">
+<![CDATA[
+<p>Press Start, then exactly after 5 seconds, press End. Then submit the page.</p>
+<button id="startBtn" onclick="startTiming()" >Start</button>
+<button id="endBtn" onclick="endTiming()" disabled="disabled">End</button>
+<script>
+function startTiming() {
+startTime = new Date().getTime();
+document.getElementById('startBtn').disabled = true;
+document.getElementById('endBtn').disabled = false;
+}
+function endTiming() {
+event.preventDefault(); /* do not submit the form */
+const endTime = new Date().getTime();
+const elapsedTime = (endTime - startTime);
+/* persistent variabes must start with the client_ prefix */
+Survey.setPersistent("client_timing", elapsedTime);
+document.getElementById('endBtn').disabled = true;
+}
+</script>
+]]></html>
+<suspend />
+<!-- The p.client_timing can be any JSON object and can be saved in a question or just checked -->
+<html label="h2">It took ${p.client_timing} miliseconds between your 2 button presses.</html>

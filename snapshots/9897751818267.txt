@@ -1,0 +1,38 @@
+Title: 151.3 Release Notes
+Release Date: September 27, 2022
+Release Version: 151.3
+New Features
+Portal
+Created a rate limit now for Portal survey searches. A user is allowed to spend 10 computing seconds for portal searches before being limited; these are regained at a rate of 3 every minute.
+Audit Logs
+Added records for viewing, modifying, and exporting survey data in various audit logs.
+Survey
+Survey Testing Tools
+Removed the subscriber menu item for shared users.
+CAPI
+Removed the option to disable browser access for the CAPI participant source from the user interface. Browser access is enabled by default.
+Responses
+Participant Sources
+Updated the Custom URL Variables section in Participant Sources editing modal to prevent changes to variables which start with an underscore, while allowing non-custom sources to include those variables by default where applicable.
+Added Forsta Digital Feedback as a new tile in Participant Sources.
+Sample Marketplace
+Updated the name of trusted partner and sample provider MarketCube to Schlesinger Group.
+Campaign Manager
+Added support for non-ASCII characters in the name, body, and from name of email campaigns and templates.
+Fixed an error where email templates without an opt-out link were not successfully migrated.
+Reporting
+Crosstabs
+Created a new Download All link in Crosstabs for Video Testimonial questions. The report now splits the videos into different directories based on their segments.
+Expired and deleted Video Testimonial DQ videos will no longer show in Crosstabs.
+Programming & Tools
+API
+Updated the Datafeed API call, which is now more efficient for a specific list of surveys paths and data across all the surveys visible to you.
+Bug Fixes
+Portal
+Fixed an error caused by typing in a user's email when deleting them from multiple projects.
+Reporting
+Data Downloads
+Fixed an issue where access to style variables in virtuals (e.g. row.styles.some.var) could generate an error when downloading data.
+Architecture/DevTools
+Fixed the code option to modify merge data conditionally in umerge, accessing a checkbox variable using e.g. d.q1r1 which caused it to fail if q1 was not visible for a respondent.
+Fixed an issue where temp-edit-live surveys were being archived locally when S3 is enabled.

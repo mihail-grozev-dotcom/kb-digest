@@ -1,0 +1,25 @@
+Title: 154.6 Release Notes
+Release Date: October 7, 2025
+Release Version: 154.06
+New Features
+Survey
+Dynamic Questions
+The DCM element is now easier to style with custom CSS.
+Learn More: Customizing the DCM Conjoint Element
+The Video Testimonial element is replaced by the Media Testimonial element. Remove the Video Testimonial question from surveys to access that survey without errors by both editors and survey participants.
+Learn More: Media Testimonial Element
+Survey Editor
+When adding the Import Data element, it's now possible to select all data points with a single click.
+Bug Fixes
+Portal
+Project Overview
+An issue where a page refresh was required for newly added user groups to appear has been resolved.
+Survey
+Image Manager
+An issue preventing the Image Manager from properly updating file paths during survey duplication has been resolved.
+Responses
+Email Campaigns
+List files beginning with a UTF-8 byte order mark no longer cause sends to fail.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+RealAnswer v4 now provides additional debug logging, supports optional verbose debug logging, and has improved compatibility with custom JavaScript.

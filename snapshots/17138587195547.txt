@@ -1,0 +1,19 @@
+Title: Upgrading Your Survey Compat Level
+If you have a deprecated survey that is still Live, you will want to upgrade your survey compat level to allow participants to continue to take the survey once the deprecated compat level is retired.
+If you do not upgrade your survey compat level, once that compat level is retired, the survey cannot be accessed by participants. Participants attempting to access a retired survey will receive an error message.
+Additionally, retired surveys cannot be accessed by users for editing or reporting, but can still be viewed in the Portal. To save data from a deprecated survey, upgrade it to a current compat level, or export the data from Forsta Surveys.
+1: Identify Deprecated Projects
+Use the Portal to view deprecated surveys. Open the Survey Filters drop-down, and select Deprecated Surveys. Then click Apply.
+From the list of available surveys, open the survey for which you want to upgrade the survey compat level.
+If no surveys are displayed when you filter by Deprecated Surveys, then you do not have any surveys set to retire.
+2: Upgrade Survey Compat Level
+To upgrade your survey compat level, you will need to access your survey's XML.
+Once you have opened the survey, select BUILD in the navigation menu located at the top of any project page. In the drop-down menu, under More Tools, select Edit XML.
+In the XML editor, locate the <survey> tag.
+Inside the <survey> tag, identify the compat attribute.
+Change the number of the compat attribute to the desired survey compat level. For example, change compat="147" to compat="154".
+Note: Surveys with a compat level of 151 or above must use delphi="1". See About the View / Edit Responses Report--2.1: Convert to Delphi to learn how to upgrade your survey to use delphi="1".
+Important: With each new compat level, new features are added and some old features may be removed. To determine if you can safely upgrade your survey compat level, refer to the Survey Compat Levels table.
+When you are satisfied with your changes, click Save.
+Note: Changes may take a few minutes to be reflected in the Portal.
+Note: You cannot change a survey's compat level to a retired survey compat level. See Survey Compat Levels for a list of retired compat levels.

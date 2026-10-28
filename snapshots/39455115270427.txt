@@ -1,0 +1,30 @@
+Title: 154.1 Release Notes
+Release Date: July 29, 2025
+Release Version: 154.1
+New Features
+Survey
+Survey Editor
+"Learn More" link now appears for Media Testimonial element.
+"Learn More" link now appears for Open Assist element.
+The "Style Option Description" is now always visible when viewing elements with many style options in the "Update Styling" modal.
+Participant View
+A new S2S integration was added to the Cint Secure Sample element.
+Learn More: Cint Secure Sample Integration
+Architecture and DevTools
+Any old processes are now correctly killed in an event when Forsta Surveys is stopped and then restarted.
+Bug Fixes
+Portal
+Login
+A rare issue preventing some users from resetting their password has been resolved.
+Company Settings
+An issue preventing the Shared Users setting from being toggled has been resolved.
+User Profile
+An issue sometimes preventing users without a full name from disabling 2FA has been resolved.
+Survey
+Participant View
+Fixed an issue where the text field input did not immediately appear upon selecting an open-end row in an accordion-style question.
+Survey Editor
+Scratchpad error while doing data edit is now resolved when survey had quota hooks.
+Reporting
+Crosstabs
+"Reset Table" for a given question in the Crosstabs Table Editor no longer affects the grid table setting for other questions.

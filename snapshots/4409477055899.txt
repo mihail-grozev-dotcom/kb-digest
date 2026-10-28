@@ -1,0 +1,751 @@
+Title: Creating a Sample Source API
+Once you have created a custom participant provider and enabled the API system, you'll need to create an API endpoint that runs on your private server.
+e.g., http://server.client.com/api/provider/
+This document describes the methods used by the system and provides examples of how to properly work with the incoming / outgoing data.
+Note: You do not need to support the full API, just the ones configured in the "methods" variable when your API configurations were setup.
+A few notes about the format of incoming and outgoing data:
+The requests happen using HTTPS and POST
+The content type for the request and response is "application/json"
+The server should respond with the status "200 OK"
+If an error occurs, method calls will be retried after 5/30/60/300 seconds
+Return the error status "403" if there are any problems with validation (e.g., bad API key, email, IP address, etc.)
+Return the error status "404" if an invalid ID request is made
+Content should be encoded as UTF-8
+It is up to the you (the API provider) to determine if an API call is valid or not
+1: Function Descriptions & Parameters
+All of the API methods currently available are detailed below.
+Each API call starts with a base URL (e.g., http://client.server.com/api/provider) and adds on the lower-case name of the function (e.g., /questions).
+e.g., http://client.server.com/api/provider/questions
+1.1: /questions - Get Questions
+The questions method requests a list of possible questions provided by the sample provider.
+1.1.1: Request Parameters
+Parameter
+Description
+email
+Email address belonging to the person making the request through Decipher.
+survey
+ID of the requesting survey (e.g., selfserve/9d3/proj1234).
+1.1.2: Example Request
+{"survey":"selfserve/9d3/proj1234", "email":"name@domain.com"}
+1.1.3: Response Details
+The server should respond with a list of survey objects containing a list of questions to choose from. These questions will appear in the right panel in the Survey Editor.
+1.1.4: Example Response
+{
+"surveys" : [
+{
+"id" : "Unique survey ID",
+"name" : "Name of the survey",
+"notes" : "Optional information about the survey",
+"questions" : [ ... ],
+},
+]
+}
+Tip: See the /get method for more details about the "questions" variable.
+1.2: /list - List Samples
+The list method requests the available sample lists. The survey path or email sent in the request parameters may be used to restrict what information is made available.
+This method is called when the "Check for Available Lists" button is pressed:
+The lists will be shown as options in the modal screen that is shown after pressing the button:
+1.2.1: Request Parameters
+Parameter
+Description
+email
+Email address belonging to the person making the request through Decipher.
+survey
+ID of the requesting survey (e.g., selfserve/9d3/proj1234).
+1.2.2: Example Request
+{"survey":"selfserve/9d3/proj1234", "email":"name@domain.com"}
+1.2.3: Response Details
+The server should respond with a "lists" object containing all of the available sample lists and questions available. The "id" that is selected from the survey editor will initiate a call to the "/get" method, requesting the sample list and questions for the relevant "id".
+1.2.4: Example Response
+{
+"lists" : [
+{
+"id" : "Unique survey ID",
+"title" : "Description of the list",
+"comment" : "Additional information about the list",
+"parameters" : "Logic used to create the list",
+},
+]
+}
+1.3: /get - Get Sample
+The get method requests the sample list and questions for a given "id". This method is called immediately after clicking "Use Selected List" from the "Check for Available Lists" modal dialog.
+The sample list variables will be created with the questions supplied and a tab-delimited data file will be added containing the sample and their corresponding answers.
+1.3.1: Request Parameters
+Parameter
+Description
+id
+The unique survey ID retrieved from "List Samples".
+survey
+ID of the requesting survey (e.g., selfserve/9d3/proj1234).
+email
+Email address belonging to the person making the request through Decipher.
+questions
+A list of questions being requested.
+1.3.2: Example Request
+{"survey":"selfserve/9d3/proj1234", "id":"selfserve/9d3/proj1234", "questions":["Q1"],"email":"name@domain.com"}
+1.3.3: Response Details
+The server should respond with an object containing the "questions" and sample "data".
+The "questions" should contain a list of questions pertaining to the list of questions requested (if applicable). The "data" should contain a list of panelist and their corresponding answers split by unique IDs (e.g., "respondent1").
+1.3.4: Example Response
+{
+"questions" : [
+{
+"label": "q1",
+"title": "Are you...",
+"type" : "single",
+"scope": "url",
+"values" : [
+{"value" : "1", "title" : "Male" },
+{"value" : "2", "title" : "Female" }
+]
+},
+{
+"label": "q2",
+"title": "How many children of each age group live in your household?",
+"type": "single",
+"scope": "url",
+"variables": [
+{"label" : "q2_1", "title" : "Ages 0 to 2" },
+{"label" : "q2_2", "title" : "Ages 3 to 5" },
+{"label" : "q2_3", "title" : "Ages 6 to 8" },
+{"label" : "q2_4", "title" : "Ages 9 to 11" },
+{"label" : "q2_5", "title" : "Ages 12 to 14" },
+{"label" : "q2_6", "title" : "Ages 15 to 17" }
+],
+"values" : [
+{"value" : "1", "title" : "0"},
+{"value" : "2", "title" : "1"},
+{"value" : "3", "title" : "2"},
+{"value" : "4", "title" : "3+"}
+]
+},
+{
+"label": "q3",
+"title": "Which foods do you like?",
+"type": "multiple",
+"variables": [
+{"label": "q3_1", "title": "Apples"},
+{"label": "q3_2", "title": "Bananas"},
+{"label": "q3_3", "title": "Peaches"},
+]
+},
+],
+"data" : {
+"respondent1" : {
+"q1" : "1",
+"q2_1" : "0",
+"q2_2" : "0",
+"q2_3" : "2",
+"q2_4" : "1",
+"q2_5" : "0",
+"q2_6" : "0",
+"q3_1" : "1",
+"q3_2" : "1",
+"q3_3" : "0",
+},
+}
+}
+The scope variable used above can be set to one of the following:
+Value
+Description
+url
+Variables are passed in via the URL to the survey.
+initial
+Variables are passed in from the "Get Sample" method call (default).
+later
+Variables are passed in after the survey has launched (to integrate reporting-level data for "river").
+The following question types are available:
+Type
+Example
+single
+{
+"label": "q1",
+"title": "Are you...",
+"type" : "single",
+"scope": "url",
+"values" : [
+{"value" : "1", "title" : "Male" },
+{"value" : "2", "title" : "Female" }
+]
+},
+{
+"label": "q2",
+"title": "How many children of each age group live in your household?",
+"type": "single",
+"scope": "url",
+"variables": [
+{"label" : "q2_1", "title" : "Ages 0 to 2" },
+{"label" : "q2_2", "title" : "Ages 3 to 5" },
+{"label" : "q2_3", "title" : "Ages 6 to 8" },
+{"label" : "q2_4", "title" : "Ages 9 to 11" },
+{"label" : "q2_5", "title" : "Ages 12 to 14" },
+{"label" : "q2_6", "title" : "Ages 15 to 17" }
+],
+"values" : [
+{"value" : "1", "title" : "0"},
+{"value" : "2", "title" : "1"},
+{"value" : "3", "title" : "2"},
+{"value" : "4", "title" : "3+"}
+]
+},
+multiple
+{
+"label": "q3",
+"title": "Which foods do you like?",
+"type" : "multiple",
+"variables" : [
+{"label" : "q3_1", "title" : "Apples" },
+{"label" : "q3_2", "title" : "Bananas" },
+{"label" : "q3_3", "title" : "Peaches" }
+]
+},
+number, float or text
+{
+"label": "q4",
+"title": "Please provide a description for the following:",
+"type" : "text",
+"variables" : [
+{"label" : "q4_1", "title" : "Item 1" },
+{"label" : "q4_2", "title" : "Item 2" },
+{"label" : "q4_3", "title" : "Item 3" }
+]
+},
+A question with a label set to "email" will integrate with the Email Campaign Manager and automatically pull sample email addresses for email sends.
+1.4: /survey-state - Survey State
+The survey-state method is called when the state of the survey changes. Included in the parameters are the old-state and state variables that describe the survey's transition.
+This method does not expect a response in return and is for informational purposes only.
+1.4.1: Request Parameters
+Parameter
+Description
+survey
+ID of the requesting survey (e.g., selfserve/9d3/proj1234).
+title
+The participant title of the survey (e.g., "Survey").
+alt
+The alternative title of the survey.
+email
+Email address belonging to the person making the request through Decipher.
+timestamp
+ISO 8601 timestamp of when this event occurred.
+state
+The new state of the survey (e.g., "closed" or "live").
+old_state
+The old state of the survey.
+1.4.2: Example Request
+{"title":"Survey","timestamp":"2014-05-12T13:13:48.209077", "state":"live", "survey":"selfserve/9d3/proj1234", "old_state":"dev", "alt":"My Survey", "email":"name@domain.com"}
+1.4.3: Response Details
+There is no response needed for this request.
+1.5: /links - Survey Links
+The links method is called when the survey is set live. Included in the parameters is a links variable that will include the unique URL for each panelist in the sample.
+This method does not expect a response in return and is for informational purposes only.
+1.5.1: Request Parameters
+Parameter
+Description
+survey
+ID of the requesting survey (e.g., selfserve/9d3/proj1234).
+links
+An object list mapping the panelist IDs to the full URL link.
+1.5.2: Example Request
+{"survey":"selfserve/9d3/proj1234", "links":{"respondent1":"http://survey.cname.com/survey/selfserve/9d3/proj1234?id=respondent1&list=296"}}
+1.5.3: Response Details
+There is no response needed for this request.
+1.6: /disposition - Participant Disposition
+The disposition method is called whenever a panelist is recorded into the data set. Included in the parameters is the status variable that will indicate the participant's status (e.g. "partial", "qualified", "overquota", "terminated" or "denied").
+This method does not expect a response in return and is for informational purposes only.
+1.6.1: Request Parameters
+Parameter
+Description
+survey
+ID of the requesting survey (e.g., selfserve/9d3/proj1234).
+id
+The unique panelist ID of the participant.
+timestamp
+ISO 8601 timestamp of when this event occurred.
+status
+The participant's new status (e.g., "partial", "qualified", "overquota", "terminated", "denied").
+xsdata
+Optional. Extra data included from the survey itself.
+1.6.2: Example Request
+{"status":"qualified","timestamp":"2014-05-12T14:50:51.785232","survey":"selfserve/9d3/proj1234","id":"respondent1"}
+1.6.3: Response Details
+There is no response needed for this request.
+1.6.4: Include Extra Data
+To include additional data when the /disposition request is made, store the extra information in the persistent variable p.xsdata as a dictionary object. For example:
+<exec>
+p.xsdata = {"some": "data", "some_other": "information"}
+</exec>
+When the /disposition request is called for each participant, the data above will also be included in the xsdata variable sent with the request.
+1.7: /update - Updated Sample
+The update method is called to fetch new data for variables and participants that don't have existing data. Included in the parameters is a list of panelist ids for all new participants that have arrived to the survey since the last time.
+1.7.1: Request Parameters
+Parameter
+Description
+survey
+ID of the requesting survey (e.g., selfserve/9d3/proj1234).
+ids
+A list of new participants that have arrived in the survey since last time.
+1.7.2: Example Request
+{"survey":"selfserve/9d3/proj1234", "ids":["respondent3", "respondent5"]}
+1.7.3: Response Details
+There is no response needed for this request.
+1.8: /reserve - Reserve Sample
+The reserve method is called when the survey is made live. It should indicate to the sample provider that the list selected will definitely be used. The sample provider should not reserve the sample until this call is received.
+This method does not expect a response in return and is for informational purposes only.
+1.8.1: Request Parameters
+Parameter
+Description
+id
+An ID previously retrieved from "List Samples".
+survey
+ID of the requesting survey (e.g., selfserve/9d3/proj1234).
+email
+Email address belonging to the person making the request through Decipher.
+1.8.2: Example Request
+1.8.3: Response Details
+There is no response needed for this request.
+1.9: /refresh - Append New Data
+The refresh method can be called if the sample data previously obtained via the /get method needs to be appended to. This method is called immediately after clicking the blue " Refresh List" button.
+1.9.1: Request Parameters
+Parameter
+Description
+id
+The unique survey ID retrieved from "List Samples".
+survey
+ID of the requesting survey (e.g., selfserve/9d3/proj1234).
+email
+Email address belonging to the person making the request through Decipher.
+1.9.2: Example Request
+{"survey":"selfserve/9d3/proj1234", "id":"selfserve/9d3/proj1234", "email":"name@domain.com"}
+1.9.3: Response Details
+The server should respond with an object similar to the one returned via the /get method without the "questions" object (e.g. it should only contain the new sample "data" object).
+The "data" should contain a new list of panelist and their corresponding answers split by unique IDs (e.g. "respondent2"). This sample data will be appended to the original set of sample data originally received via the /get method.
+If duplicate sample data is appended to the dataset, then the most recent data is used.
+1.9.4: Example Response
+{
+"data" : {
+"respondent2" : {
+"q1" : "0",
+"q2_1" : "1",
+"q2_2" : "1",
+"q2_3" : "0",
+"q2_4" : "2",
+"q2_5" : "1",
+"q2_6" : "0",
+"q3_1" : "1",
+"q3_2" : "2",
+"q3_3" : "0",
+},
+"respondent3" : {
+"q1" : "1",
+"q2_1" : "0",
+"q2_2" : "0",
+"q2_3" : "0",
+"q2_4" : "2",
+"q2_5" : "1",
+"q2_6" : "0",
+"q3_1" : "1",
+"q3_2" : "2",
+"q3_3" : "0",
+},
+}
+}
+If there is an "email" field in the data, a new list will be created for the Email Campaign Manager that only includes the participants sent via this /refresh method.
+Every call to /refresh generates a new campaign manager sample list.
+2: API Configuration Examples
+The examples below do not include any logic or input validation and only demonstrate how to communicate with the sample source system.
+2.1: Node/Express Server
+Below is an example of the API configurations implementing using the express web application framework for node.
+Learn more: Express API Reference
+// Sample API Example
+var express = require('express');
+var app = express();
+// REQUEST
+function processRequest(request, requestData, callback) {
+request.on('data', function(data) {
+requestData += data;
+});
+request.on('end', function() {
+requestData = JSON.parse(requestData);
+console.log("INCOMING REQUEST DATA: " + JSON.stringify(requestData));
+callback(requestData);
+});
+}
+// RESPONSE
+function sendResponse(response, data, message) {
+console.log("OUTGOING RESPONSE DATA: " + message);
+response.json(data);
+}
+// API CONFIG
+app.post('/questions', function(req, res) {
+// incoming request parameters
+var email = "",
+survey = "",
+requestData = "";
+processRequest(req, requestData, do_something);
+function do_something(data) {
+// incoming parameters
+email = data.email;
+survey = data.email;
+// insert logic here
+// example response
+var responseData =
+{ "surveys" :
+[
+{
+"id" : "Unique survey ID",
+"name" : "Sample Co. List of Questions #1",
+"notes" : "Additional Notes",
+"questions" : [
+{
+"label": "Q1",
+"title": "Are you?",
+"type" : "single",
+"scope": "url",
+"values" : [
+{"value" : "1", "title" : "Male" },
+{"value" : "2", "title" : "Female" }
+]
+},
+{
+"label": "Q2",
+"title": "How many children of each age group live in your household?",
+"type": "single",
+"scope": "url",
+"variables": [
+{"label" : "Q2_1", "title" : "Ages 0 to 2" },
+{"label" : "Q2_2", "title" : "Ages 3 to 5" },
+{"label" : "Q2_3", "title" : "Ages 6 to 8" },
+{"label" : "Q2_4", "title" : "Ages 9 to 11" },
+{"label" : "Q2_5", "title" : "Ages 12 to 14" },
+{"label" : "Q2_6", "title" : "Ages 15 to 17" }
+],
+"values" : [
+{"value" : "1", "title" : "0"},
+{"value" : "2", "title" : "1"},
+{"value" : "3", "title" : "2"},
+{"value" : "4", "title" : "3+"}
+]
+},
+{
+"label": "Q3",
+"title": "Which foods do you like?",
+"type": "multiple",
+"scope": "url",
+"variables": [
+{"label" : "Q3_1", "title" : "Apples" },
+{"label" : "Q3_2", "title" : "Bananas" },
+{"label" : "Q3_3", "title" : "Peaches" },
+]
+}
+]
+}
+]
+};
+sendResponse(res, responseData, "QUESTIONS");
+}
+});
+app.post('/list', function(req, res) {
+// incoming request parameters
+var email = "",
+survey = "",
+requestData = "";
+processRequest(req, requestData, do_something);
+function do_something(data) {
+// incoming parameters
+email = data.email;
+survey = data.email;
+// insert logic here
+// example response
+var responseData = { "lists":
+[
+{
+"id" : "selfserve/9d3/proj1234",
+"title": "My Sample List of Questions #1",
+"comment": "Additional Comment",
+"parameters": "if 1"
+}
+]
+};
+sendResponse(res, responseData, "LIST");
+}
+});
+app.post('/get', function(req, res) {
+// incoming request parameters
+var id = "",
+survey = "",
+email = "",
+questions = "",
+requestData = "";
+processRequest(req, requestData, do_something);
+function do_something(data) {
+// incoming parameters
+id = data.id;
+survey = data.survey;
+email = data.email;
+questions = data.questions;
+// insert logic here
+// example response
+var responseData = {
+"questions" : [
+{
+"label": "Q1",
+"title": "Are you?",
+"type" : "single",
+"scope": "url",
+"values" : [
+{"value" : "1", "title" : "Male" },
+{"value" : "2", "title" : "Female" }
+]
+},
+{
+"label": "Q2",
+"title": "How many children of each age group live in your household?",
+"type": "single",
+"scope": "url",
+"variables": [
+{"label" : "Q2_1", "title" : "Ages 0 to 2" },
+{"label" : "Q2_2", "title" : "Ages 3 to 5" },
+{"label" : "Q2_3", "title" : "Ages 6 to 8" },
+{"label" : "Q2_4", "title" : "Ages 9 to 11" },
+{"label" : "Q2_5", "title" : "Ages 12 to 14" },
+{"label" : "Q2_6", "title" : "Ages 15 to 17" }
+],
+"values" : [
+{"value" : "1", "title" : "0"},
+{"value" : "2", "title" : "1"},
+{"value" : "3", "title" : "2"},
+{"value" : "4", "title" : "3+"}
+]
+},
+{
+"label": "Q3",
+"title": "Which foods do you like?",
+"type": "multiple",
+"scope": "url",
+"variables": [
+{"label" : "Q3_1", "title" : "Apples" },
+{"label" : "Q3_2", "title" : "Bananas" },
+{"label" : "Q3_3", "title" : "Peaches" },
+]
+}
+],
+"data" : {
+"respondent1" : {
+"Q1" : "1",
+"Q2_1" : "0",
+"Q2_2" : "0",
+"Q2_3" : "1",
+"Q2_4" : "2",
+"Q2_5" : "0",
+"Q2_6" : "0",
+"Q3_1" : "1",
+"Q3_2" : "1",
+"Q3_3" : "0",
+}
+}
+};
+sendResponse(res, responseData, "GET");
+}
+});
+app.post('/survey-state', function(req, res) {
+// incoming request parameters
+var survey = "",
+title = "",
+alt = "",
+email = "",
+timestamp = "",
+state = "",
+old_state = "",
+requestData = "";
+processRequest(req, requestData, do_something);
+function do_something(data) {
+// parameters
+survey = data.survey;
+title = data.title;
+alt = data.alt;
+email = data.email;
+timestamp = data.timestamp;
+state = data.state;
+old_state = data.old_state;
+// insert logic here
+console.log("RECEIVED: NEW-STATE = " + state);
+}
+});
+app.post('/links', function(req, res) {
+// incoming request parameters
+var survey = "",
+links = "",
+requestData = "";
+processRequest(req, requestData, do_something);
+function do_something(data) {
+// parameters
+survey = data.survey;
+links = data.links;
+// insert logic here
+console.log("RECEIVED: LINKS = " + links);
+}
+});
+app.post('/disposition', function(req, res) {
+// incoming request parameters
+var survey = "",
+id = "",
+timestamp = "",
+status = "",
+requestData = "";
+processRequest(req, requestData, do_something);
+function do_something(data) {
+// parameters
+survey = data.survey;
+id = data.id;
+timestamp = data.timestamp;
+status = data.status;
+// insert logic here
+console.log("RECEIVED: DISPOSITION = " + status);
+}
+});
+app.post('/update', function(req, res) {
+// incoming request parameters
+var survey = "",
+ids = "",
+requestData = "";
+processRequest(req, requestData, do_something);
+function do_something(data) {
+// parameters
+survey = requestData.survey;
+ids = requestData.ids;
+// insert logic here
+console.log("RECEIVED: UPDATE = " + ids);
+}
+});
+app.post('/reserve', function(req, res) {
+// incoming request parameters
+var id = "",
+survey = "",
+email = "",
+requestData = "";
+processRequest(req, requestData, do_something);
+function do_something(data) {
+// parameters
+id = requestData.id;
+survey = requestData.survey;
+email = requestData.email;
+// insert logic here
+console.log("RECEIVED: RESERVE = " + id);
+}
+});
+app.post('/refresh', function(req, res) {
+// incoming request parameters
+var id = "",
+survey = "",
+email = "",
+requestData = "";
+processRequest(req, requestData, do_something);
+function do_something(data) {
+// incoming parameters
+id = data.id;
+survey = data.survey;
+email = data.email;
+// insert logic here
+// example response
+var responseData = {
+"data" : {
+"respondent1" : {
+"Q1" : "1",
+"Q2_1" : "0",
+"Q2_2" : "0",
+"Q2_3" : "1",
+"Q2_4" : "2",
+"Q2_5" : "0",
+"Q2_6" : "0",
+"Q3_1" : "1",
+"Q3_2" : "1",
+"Q3_3" : "0",
+},
+"respondent2" : {
+"Q1" : "0",
+"Q2_1" : "0",
+"Q2_2" : "0",
+"Q2_3" : "1",
+"Q2_4" : "2",
+"Q2_5" : "0",
+"Q2_6" : "0",
+"Q3_1" : "1",
+"Q3_2" : "1",
+"Q3_3" : "0",
+}
+}
+};
+sendResponse(res, responseData, "REFRESH");
+}
+});
+// endpoint available on localhost:5400
+app.listen(5400);
+To run the server:
+node server.js
+2.2: Python/Flask
+Below is an example of the "questions" method call implemented using the Flask web application framework for Python.
+Learn more: Flask API documentation
+from flask import Flask, request, jsonify
+app = Flask(__name__)
+@app.route("/questions", methods=["POST"])
+def questions():
+# incoming request
+requestData = request.json
+print "RECEIVED:", requestData
+# logic goes here
+# outgoing response example
+response = { "surveys" : [
+{
+"id" : "Unique survey ID",
+"name" : "Sample Co. List of Questions #1",
+"notes" : "Additional Notes",
+"questions" : [
+{
+"label": "Q1",
+"title": "Are you?",
+"type" : "single",
+"scope": "url",
+"values" : [
+{"value" : "1", "title" : "Male" },
+{"value" : "2", "title" : "Female" }
+]
+},
+{
+"label": "Q2",
+"title": "How many children of each age group live in your household?",
+"type": "single",
+"scope": "url",
+"variables": [
+{"label" : "Q2_1", "title" : "Ages 0 to 2" },
+{"label" : "Q2_2", "title" : "Ages 3 to 5" },
+{"label" : "Q2_3", "title" : "Ages 6 to 8" },
+{"label" : "Q2_4", "title" : "Ages 9 to 11" },
+{"label" : "Q2_5", "title" : "Ages 12 to 14" },
+{"label" : "Q2_6", "title" : "Ages 15 to 17" }
+],
+"values" : [
+{"value" : "1", "title" : "0"},
+{"value" : "2", "title" : "1"},
+{"value" : "3", "title" : "2"},
+{"value" : "4", "title" : "3+"}
+]
+},
+{
+"label": "Q3",
+"title": "Which foods do you like?",
+"type": "multiple",
+"scope": "url",
+"variables": [
+{"label" : "Q3_1", "title" : "Apples" },
+{"label" : "Q3_2", "title" : "Bananas" },
+{"label" : "Q3_3", "title" : "Peaches" },
+]
+}
+]
+}
+]}
+return jsonify(response)
+if __name__ == "__main__":
+app.run(host="0.0.0.0", port=5500)
+To run the server:
+python server.py

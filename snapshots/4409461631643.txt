@@ -1,0 +1,13 @@
+Title: Enabling Statistical Testing for Dashboard Tables
+The keyword sigtest allows you to add significance testing to a dashboard. You can enable sigtest for the entire dashboard, or on a per-table basis.
+To enable significance testing, use the following code:
+sigtest 1
+This will produce the following table:
+For information on reading report statistics, see Reading the Report and Statistics.
+Note: When sigtest is enabled:
+Stat testing is enabled on the table row and shown when a table is split by multiple segments.
+Stat column identifies are show in the heading of the columns.
+Stat testing letters are shown in the applicable "square" matching Crosstabs.
+To disable significance testing, set sigtest to 0.
+Note: Stat testing levels in a dashboard are not configurable, and are set to 95% / 90%.
+Note: Statistical testing is only applicable to dashboard tables, and cannot be enabled for dashboard charts.

@@ -1,0 +1,62 @@
+Title: Loop Element
+The Loop element allows you to setup a series of options, either manually or copied from a previous element, and pipe those options individually through a series of shared questions. The Loop element also allows you to repeat each question for each option that a participant is either aware of or not aware of based on defined criteria. This feature replaces the need to create multiple questions for each option by using a shared set of questions.
+When repeating questions using the Loop element, each option will have its own output in the survey data and report.
+1: Adding a Source Question
+To create a loop in a survey, you must first add a source question. The source question will be used to pipe in variables for the looped elements. This question cannot be a one-dimensional Single Select question.
+Tip: It is possible to manually input the variables that pipe into looped elements; the variables used for the pipe do not have to be based on responses to a question. If you want to manually input the options, skip this step and start with step 2.
+Add a new survey element and enter the answer options. The answers the participant selects here will be used in the loop's follow-up questions.
+2: Adding the Follow-up Questions
+Note: The follow-up questions will be added to the loop in a later step.
+Next, add the follow-up questions. Start by adding the first follow-up question on a new page. You may add a marker or leave a blank space where you want the piped in option to appear. Then add each additional follow-up question in the same manner (page breaks are not required).
+3: Inserting the Loop Element
+The Loop element should be placed within the question tree after the source question and before the follow-up questions. Select the source question so it appears in the staging area and insert a page break after the question. Then add the Loop element.
+To add a Loop element, first click the "+ Element" button to add a new survey element. Then click "Logical Elements" under Question Types and select the "Loop" element. Then click "Add".
+For "manual input" (i.e., if you are not using a question for the source of the piped options), click the first of the follow-up questions and add the Loop element before it. In the "title" field, enter a title for the loop. Next, select "Edit Pipe Variables" to add the options you would like to pipe into the looped elements.
+4: Building the Loop
+4.1: Adding Pipe Options
+In the "Pipe Variables Setup" window, choose whether to manually input the loop source or select a question that occurs before the loop to use as the loop source.
+Note: Keep in mind that participants will have to answer each of the questions added to every loop iteration, so the more loop iterations you have, the longer your survey time will be.
+4.2: Manually Input the Loop Source
+In the "Loop Source" drop-down menu, select "manual input". Then configure your loop source options.
+Follow the numbered guide below to manually input the loop source.
+1. Label Suffix: A label suffix will automatically be assigned to each row (i.e., loop iteration). To edit a label, delete the default value and enter a new one.
+2. Condition: Assign a logic condition for individual loop iterations. By default, each row will show to "all" participants. To edit a condition, click the link for the row and define the condition. To learn more about building logic conditions, see Adding Logic to a Question or Response Option.
+3. Variable: The system generated variable label for each piped option. The Variable column contains a variable that is available inside each loop iteration.
+4. Add Variable: Add a new variable and specify alternate text for the loop iterations.
+5. Delete: Delete a row (i.e., loop iteration).
+6. Add Row / Value: Add a new row (i.e., loop iteration).
+7. Shuffle Variable Order: Check this box to randomize the order in which the loop iterations appear in the survey.
+8. Save: Save the settings.
+4.3: Use a Question for the Loop Source
+In the "loop source" drop-down menu, select a question. Questions that cannot be used as a loop source will appear in grey and those that can be selected appear in white.
+The answer options for the question will appear in the window. Follow the numbered guide below to setup the piped options.
+1. Loop if: Check this box to loop the rows based on how a participant answers the source question. Choose "selected" to loop only the answer options the participant selected in the source question; choose "not selected" to loop only the answer options the participant did not select in the source question.
+2. Label Suffix: A label suffix will automatically be assigned to each row (i.e., loop iteration). To edit a label, delete the default and enter a new value.
+3. Condition: Assign a logic condition for individual loop iterations. By default, each row will show to "all" participants if "loop if" is not enabled. To edit a condition, click the link for the row and define the condition. To learn more about building logic conditions, see Adding Logic to a Question or Response Option.
+4. Variable: The system generated variable label for each piped option. The Variable column contains a variable that is available inside each loop iteration.
+5. Add Variable: Add a new variable and specify alternate text for the loop iterations.
+6. Delete: Delete a row (i.e., loop iteration).
+7. Delete condition: If a logic condition is specified and you wish to remove it, click the "x" next to the condition and it will reset to "all".
+8. Add Row / Value: Add a new row (i.e., loop iteration).
+9. Shuffle Variable Order: Check this box to randomize the order in which the loop iterations appear in the survey.
+10. Save: Save the settings.
+5: Adding Looped Elements
+Once the pipe options have been setup, you can add the elements through which you would like participants to loop. Only elements that appear after the Loop element in the question tree can be added to it, and they must be added in descending order.
+In the "Looped Elements" section of the Loop element, click the "add to loop" button for each element you would like added to the loop. The changes are automatically applied in the question tree.
+6: Inserting the Pipes
+Once the loop elements have been setup, you can begin inserting the pipe options. To add a pipe to a follow-up question, first select the question in the question tree.
+In the staging area, click the position within the question text where you would like the piped option to appear. Then click the pipe tool in the toolbar and select the source question.
+The pipe will now appear in the question text. Repeat this step for each of the follow-up questions in the loop.
+7: Nesting Loop Elements
+You can also nest one loop element within another to randomize a second set of elements. To create a loop within a loop, follow the steps above, inserting the new loop after the first loop.
+7.1: Nested Loop Limitations and Considerations
+There are a few things to keep in mind when nesting loops:
+The maximum number of iterations supported for each loop is 500; this means that if you had three nested loops with 10 iterations each, you would receive an error message for exceeding the maximum (10 iterations * 10 iterations * 10 iterations = 1,000 iterations).
+While there is no limit on the number of nested loops you can have within a survey, each additional loop will increase survey load time.
+See Loop Tag: Cycle Through Questions for more nested loop customization options.
+8: Testing the Loop Element
+To test that a loop has been setup correctly, click "Preview" in the navigation menu at the top of any project page and select "Test Survey". Proceed through the survey to the Loop element and verify that all pipes are working as intended and that each follow-up question is being asked in the appropriate order.
+For example, if you wanted to ask follow-up questions about each soda brand a participant selects in a soda familiarity question (q14), you might experience the following when testing:
+You select Coke and Mountain Dew at q14:
+You then see the series of looped questions, which ask about the first brand you selected, Coke:
+Next, you are shown the same series of looped questions, which now ask about the second brand you selected, Mountain Dew:

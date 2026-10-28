@@ -1,0 +1,17 @@
+Title: 154.16 Release Notes 
+Release Date: March 10, 2026
+Release Version: 154.16
+New Features
+Portal
+The option to relaunch a closed survey has been restored to Response Summary.
+Survey
+Language Manager
+Added the Roman variant of Urdu and Nepali to Language Manager.
+Responses
+Participant Sources
+Server-to-server authentication (S2S) is now available for sample provider RepData and it requires an API key.
+Learn More: Configuring Secure Samples
+Bug Fixes
+Responses
+Campaign Manager
+Sending email via Bulk and Campaign Manager with non-ASCII characters in the sender name now works correctly in the latest production environment.

@@ -1,0 +1,34 @@
+Title: Piping Open-Ended Responses
+The pipe tool in the Survey Editor allows you to pipe open-ended responses from one question into another.
+Note: The pipe tool can only be utilized for Single Select elements, 1-dimensional Select elements, Text or Number elements with only one field, or the Autofill element. To pipe an open-ended response to a Text or Number element with multiple answer options or an "Other(Specify)" text field, you must define the pipe using HTML.
+1: Piping from a Text or Number Question
+The steps below explain how to add a question that shows the answer text entered in an open-end response box from a previous Text or Number question.
+1.1: Create the question that will be the source of the pipe
+First, create the Text or Number question and enter the answer options. There must be a page break between this question and the one that will contain the pipe. Make note of the question number and the labels for the answer options.
+Tip: If the row or column labels are not showing for your question, click the "View Options" menu and select "Show Labels".
+1.2: Create the question and the pipe
+Next, add the question that will contain the pipe. Then click "Row Options" and select "Edit All Rows" to add the answer options. Next, enter the following HTML with the appropriate question numbers and row or column labels for your question:
+${question label.row/col label.answer value}
+The pipe code will then appear as the answer options for the question.
+1.3: Test the Survey
+Once applied, the piping cannot occur until a response is provided to the previous question. To confirm that pipes are functioning as desired, test the survey using participant view.
+Select "Test Survey" under "Preview" in the navigation menu at the top of any project page. Then locate the question with the open-ended responses and enter your test responses.
+Next, continue through the survey until you reach the question containing the pipes. The text you entered in each of the rows of the previous question should appear as the answer options here.
+2: Piping From an "Other (Specify)" Answer Option
+The steps below explain how to add a question that shows the answer text entered in the "Other (Please specify)" row of a previous question. The question will display the text the participant enters in the "Other" text field if "Other" is selected.
+2.1: Create the question that will be the source of the pipe
+First, create the source question and enter the answer options, including an "Other (Specify)" row or column with an open-end text box. There must be a page break between this question and the one that will contain the pipe. Additionally, the open-end field should be set to "Mandatory".
+Make note of the question number and the labels for the answer options.
+Tip: If the question or answer option labels are not showing, click the "View Options" menu and select "Show Labels".
+2.2: Create the question and the pipe
+Add the question that will contain the pipe. Enter the question text, instructions, and answer options from the source question, including the "Other (please specify)" option. Next, from the "Row Actions" drop-down menu, select "Edit All Rows". In place of the "Other" answer option, enter the following HTML with the appropriate question number and row or column labels for your question (i.e., the question and answer option that is the source of the pipe):
+${question label.row/col label.open}
+To learn how to show the answer options based on response, see Answer Piping.
+The pipe code will appear with the answer options for the question.
+2.3: Add an "alt" label for the Report
+If desired, you can also set up an "alt" label for the "Other (Specify)" option, so that "Other" appears in the report. This step is not necessary; if an alternative label is not set up, the HTML for the pipe will show for the row in the report.
+To set up the alt label, click the "Other" row that is set up as the pipe, and in the row options panel click the "More Options" menu. Then select "alt" from the drop-down and enter the alternative text that you want to appear in the report.
+2.4: Testing the Survey
+Once applied, the piping cannot occur until a response is provided to the "Other (Specify)" option. To confirm that the pipes are functioning as desired, test the survey using participant view.
+Select "Test Survey" under "Preview" in the navigation menu at the top of any project page. Then locate the question with the "Other (Specify)" option and enter your test response in the open-end box.
+Next, continue through the survey until you reach the question containing the pipe. The text you entered in the open-end box should appear as the answer options here.

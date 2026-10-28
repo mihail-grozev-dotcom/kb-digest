@@ -1,0 +1,31 @@
+Title: 147.13 Release Notes
+Release Date: August 17, 2021
+Release Version: 147.13
+New Features
+Survey
+Survey Editor
+Updated the way errors are traced back within the system.
+Line numbers are now more likely to match up with the line of Python code which caused the error.
+Some unnecessary system variables and question attributes are now hidden in traceback messages (e.g., aqtheme).
+Internal system functions are skipped in traceback frames (e.g., execute and execCode functions).
+More traceback frames are displayed (from 15 to 25).
+System objects like resource tags, which are often created by Dynamic Questions are no longer hidden from view.
+Question objects which contain no data (e.g., virtuals or questions not seen by participants) are no longer displayed.
+Improved visibility for Python exceptions that happen within <exec> elements which are part of a loop, or for code that is auto-generated (e.g., when using the createTransient function within a Dynamic Question’s code.py file).
+Bug Fixes
+Portal
+Fixed an issue causing new password data to be visible in system exception errors when resetting a password.
+Survey
+Survey Editor
+Fixed an issue causing an error when testing a survey with an Autofill question containing images added via the Image Manager.
+Fixed an issue causing the text for multiple rows to appear on a single line for some Autofill questions.
+Responses
+Campaign Manager
+Fixed an issue preventing some images from being displayed to email recipients.
+Reporting
+Crosstabs
+Fixed an issue preventing question labels from displaying appropriately in the search bar when those labels contained references to system meta variables.
+Fixed an issue causing some chart bars to appear mismatched in the report and PowerPoint exports.
+Data Downloads
+Fixed an issue causing some records to be incorrectly omitted in exports for surveys with both redactData=”1” and delphi=”1” enabled.
+Fixed an issue causing an error when displaying custom styles which reference ${uuid} in closed surveys containing no participant records.

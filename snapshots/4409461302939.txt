@@ -1,0 +1,194 @@
+Title: Cell Attributes
+1: Cell Attributes
+The following cell attributes can be applied to <row>, <col> and <choice> elements:
+Attribute
+Type
+Default
+Description
+open
+bool
+0
+Item has an open-ended text field attached
+openSize
+int
+10
+Input size of the open-ended text field
+label
+string
+--
+Symbolic name used in Python code
+groups
+slist
+--
+Groups this item belongs to
+value
+int
+--
+Numeric value for this item
+exclusive
+bool
+0
+If this item is selected, it can be the only item selected
+aggregate
+bool
+1
+Calculate aggregate information?
+percentages
+bool
+1
+Display percentages?
+optional
+bool
+0
+Item should be optional?
+range
+string
+--
+Range for Number questions
+okUnique
+bool
+0
+Item doesn't have to follow unique="1" rule?
+openOptional
+bool
+0
+Open-ended response should be optional even if selected?
+colLegend
+bool
+0
+Force a column legend before this row?
+extraError
+bool
+1
+Display error if open-ended response provided even if not selected?
+amount
+int
+0
+Total sum must be this amount
+size
+int
+--
+Custom size for row or column
+averages
+bool
+0
+Exclude cell from average calculations?
+open
+The open attribute allows for an open-ended input field to be placed near the item. If the item is selected, the open-ended field must be filled out (unless openOptional="1" is specified). If the open-ended input field is filled out, the item must be selected (unless extraError="0" is specified).
+openSize
+The openSize attribute controls the precise visible size of the open-ended input field. For example, if openSize="20" is specified, the participant will see an input field equipped to handle 20 characters of input. If more characters are supplied, the input field will scroll horizontally to display the additional information.
+label
+The label attribute specifies the symbolic name for the element. For example, if the element is named "r5" and resides under a question labelled "Q10", then you may target this element with "Q10.r5". Learn more at Python Expressions.
+groups
+The groups attribute attaches the element to one or more groups. If more than one groups are provided, the first group listed will represent the cell's primary group and any additional groups will be secondary. Respondents will only see the item under its primary group. Learn more at Group Tag: Group Response Options.
+<radio label="Q1">
+<title>Please select one.</title>
+<group label="g1">Group 1</group>
+<group label="g2">Group 2</group>
+<group label="g3">Group 3</group>
+<row label="r1" groups="g1">Row 1</row>
+<row label="r2" groups="g2">Row 2</row>
+<row label="r3" groups="g2,g3">Row 3</row>
+<row label="r4" groups="g4">Row 4</row>
+</radio>
+value
+The value attribute assigns a numeric value to non-numeric cells. This value is used for report calculations (average and standard deviation) as well as the data outputted for tab-delimitted data files.
+<radio label="Q1" type="rating">
+<title>Please rate your experience.</title>
+<row label="r1" value="5">Excellent <br/>5</row>
+<row label="r2" value="4">4</row>
+<row label="r3" value="3">3</row>
+<row label="r4" value="2">2</row>
+<row label="r5" value="1">Poor <br/>1</row>
+</radio>
+exclusive
+The exclusive attribute controls whether an element can be selected with other elements. If exclusive="1" is specified, the element may not be selected with any other elements.
+<checkbox label="Q1" atleast="1">
+<title>Please select all that apply.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+<row label="r5" exclusive="1">None of the above</row>
+</checkbox>
+<checkbox label="Q2" atleast="1">
+<title>Which have you used before?</title>
+<col label="c1">This one</col>
+<col label="c2">That one</col>
+<col label="c2" exclusive="1">Both</col>
+<col label="c2" exclusive="1">None</col>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</checkbox>
+aggregate
+The aggregate attribute allows you to exclude elements from the aggregate and standard deviation calculations. This is often used to exclude "None of the above" or "Don't know" options. If aggregate="0" is specified, then the element will be excluded from the aggregate and standard deviation calculations as well as excluded from the total and base counts for the question.
+percentages
+The percentages attribute controls the display of percentages for the element. If aggregate="0" is specifed, then percentages will automatically be turned off. If percentages="1" is specified, then the percentages will be shown.
+optional
+The optional attribute controls whether or not it is mandatory to provide a selection for the element. If optional="1" is specified on a <row> or <col> element, then the corresponding element will not need to be answered even if the question is not optional.
+range
+The range attribute sets a range of acceptable values for an element within a <number> question. If range="1,2,5-8" is specified, then the element will only accept numbers 1, 2, 5, 6, 7 and 8.
+okUnique
+The okUnique attribute allows you to break the unique="1" rule specified for the question. If unique="1" is specified at the question level and okUnique="1" is specified on an element of that question, then a duplicate response may be supplied for that particular element.
+<radio label="Q1" unique="1">
+<title>Please prioritize this list of items.</title>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4" okUnique="1">Other</row>
+</radio>
+In the example above, rows "r1" - "r3" must select a unique column "c1" - "c3" (e.g. "r1" and "r2" can't both be "c1"). Row "r4", on the other hand, can provide a duplicate response "c1" - "c3" (e.g. "r1" and "r4" can both be "c1").
+openOptional
+The openOptional attribute controls the necessity to provide an open-ended response for a selected item. Normally, if open="1" is specified on an element, the open-ended input field is required. If openOptional="1" is specified, then the element can be selected without forcing an open-ended response.
+<radio label="Q1">
+<title>Please select one.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4" open="1" openSize="25" openOptional="1">Other</row>
+</radio>
+colLegend
+The colLegend attribute controls the placement of additional column legends. If colLegend="1" is specified on an element, then a column legend will be repeated just before the element.
+<radio label="Q1">
+<title>Please choose one for each.</title>
+<col label="c1">Option 1</col>
+<col label="c2">Option 2</col>
+<col label="c3">Option 3</col>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3" colLegend="1">Item 3</row>
+<row label="r4">Item 4</row>
+</radio>
+The code above produces the following result:
+extraError
+The extraError attribute controls the error message shown if open-ended data is provided for an element without having selected the element. If extraError="0" is specified, then a participant may provide open-ended data for an element without selecting the element. By default, this is not allowed and the participant will be shown an error if they attempt to provide open-ended data for an item without selecting it too.
+amount
+The amount attribute forces a participant to provide a numeric value totalling to the amount provided for the entire <row> or <col>.
+<number label="Q1" size="3">
+<title>Please distribute the following amounts for each item.</title>
+<col label="c1">Item 1</col>
+<col label="c2">Item 2</col>
+<col label="c3">Item 3</col>
+<row label="r1">Any amount</row>
+<row label="r2" amount="50">50</row>
+<row label="r3" amount="100">100</row>
+</number>
+In the example above, any amount can be provided for "r1". Row "r2" must sum up to 50 exactly and "r3" must total 100 exactly. The following error message will be shown if the amount is not met:
+size
+The size attribute controls the input size of a <text> or <number> element. Use the size attribute to individually modify the size for element input fields shown to the participant. The system looks for the size attribute specified on a <row> element, then a <col> element and lastly the question itself.
+<number label="Q1" size="1">
+<title>Please enter numbers.</title>
+<row label="r1">Number 1</row>
+<row label="r2">Number 2</row>
+<row label="r3" size="50">Number 3</row>
+</number>
+In the example above, "r3" will appear much larger than "r1" and "r2".
+averages
+The averages attribute controls the mean calculations for the element. If averages="0" is specified, then the element will be excluded from the average calculations.​
+2: What's Next?
+Learn more: Overview of Question and Element Tags

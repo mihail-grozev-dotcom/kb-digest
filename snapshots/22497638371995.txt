@@ -1,0 +1,24 @@
+Title: 153.24 Release Notes
+Release Date: January 30, 2024
+Release Version: 153.24
+New Features
+Survey
+Survey Editor
+The Note element's description and staging texts have been updated.
+Programming and Tools
+API
+GET rh/companies now includes all regional companies to which the user making the call has access.
+Bug Fixes
+Survey
+Dynamic Questions
+The new default version (5) of the Image Map element prevents the use of piped images.
+Survey Editor
+Setting a default Display Settings configuration in a live survey no longer causes an error during the creation of new surveys.
+Reporting
+Data Downloads
+Datamap exports now match the default language structure when another language is selected for export.
+Programming and Tools
+API: Crosstabs
+The API to export a saved report in PDF format now works for users with Crosstabs view or edit permissions even if the user is not a staff or supervisor.
+Custom Code Elements (Logic Nodes)
+The new version (2) of the Recaptcha element correctly handles 500 responses from Google.

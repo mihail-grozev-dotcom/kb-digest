@@ -1,0 +1,109 @@
+Title: Slider Decimal Element
+1: About the Slider Decimal Element
+The Slider Decimal element utilizes a number form and must contain a value range for its slider points. This element may contain multiple sliders (rows) and does not utilize Flash.
+Note: The Slider Decimal question is mobile compatible. The usability of this element decreases as multiple sliders are added.
+2: Adding a Slider Decimal Element
+Note: You can set the "Show if" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Slider Decimal element, first click the "+ Element" button to add a new survey element. Then click "Rate, Rank, and Sort" under Question Types and select the "Slider Decimal" element. Then click "Add".
+Enter the question and instruction text in the areas provided.
+3: Adding Sliders
+Click "Add Sliders" to enter the text for the sliders.
+Tip: If you only want to show one slider decimal with the question text, do not add any response options.
+Click "+ New Slider" to add multiple sliders. Each entry will be a new row and have its own slider.
+Do not number the response options unless you want the numeric text to appear for survey participants. The system automatically provides the labels / numbers for the response options. These response options can be edited later in "Options".
+4: Configuring Slider Options
+All response options appear in the question box with labels (e.g., r1, r2, r3), indicating rows / sliders. You may edit the response options by selecting the "Slider Actions" drop-down menu.
+Tip: Click "Answer Piping" to show rows based on the answers of a previous question; to learn more, see Answer Piping.
+Next, define the range for the slider bar. In the general options for the element, enter the desired range for the slider scale in the "Value Range" field.
+5: Style Settings
+To edit the display settings for a Slider Decimal element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Question Display Options" window, use the options on the left to configure the settings for the Slider Decimal element. When you mouse-over an option, information about the feature displays on the right. After you have selected the required styles, click "Save and Close".
+Display Option
+Description
+Initial Slider Position
+Allows you to specify where to start the slider handle.
+Off Scale: Start with the slider handle to the left of the slider scale.
+Left End: Start with the slider handle at the minimum value of the slider scale.
+Middle: Start with the slider handle at the middle value of the slider scale.
+Right End: Start with the slider handle at the maximum value of the slider scale.
+Scale Interval
+Enter the desired interval between each slider point on the slider scale.
+Example:
+If you enter .5 in the scale interval and the value range is set to 0-100, the slider jumps to points 0, 0.5, 1.0, 1.5, and so on.
+Decimal Places
+Enter a whole number to set the number of decimal places displayed on the slider value.
+Example:
+If you enter 1, the result shows the value to one decimal place (e.g., 1.5).
+Scale Legend Position
+Allows you to specify where the slider legend displays.
+Above Slider: Displays the legends above the slider scale.
+Below Slider: Displays the legends below the slider scale.
+Left Legend
+Allows you to enter text to display above the left-most slider point.
+Example:
+Completely Dissatisfied.
+Middle Legend
+Allows you to enter text to display above the middle slider point.
+Example:
+Neither Satisfied nor Dissatisfied.
+Right Legend
+Allows you to enter text to display above the right-most slider point.
+Example:
+Completely Satisfied.
+Slider Value
+Allows you to specify where the slider value is displayed.
+Above Slider: Shows the value above the slider scale.
+Below Slider: Shows the value below the slider scale.
+On Handle: Shows the value on the slider handle.
+Do Not Show Value: Hides the value completely.
+Pre-Text
+Allows you to enter a character to display before (i.e., to the left of) the slider value indicator.
+Example:
+$__
+Post-Text
+Allows you to enter a character to display after (i.e., to the right of) the slider value.
+Example:
+___%
+Editable Input
+If the "Slider Value" is set to Above Slider or Below slider, this option allows you to make the value indicator editable, meaning participants can click the value and enter a specific number.
+When checked, the value box is editable for participants.
+When unchecked, the value box is read-only. Only moving the slider updates the value.
+Color-Fill Track
+When checked, the track gets highlighted according to the action of the slider, from the minimum value to the slider handle.
+When unchecked the track does not get highlighted.
+Slider Container Width
+Allows you to modify the width of the slider scale bar by specifying the percentage of the window size it will occupy. The optimal setting for most sliders is 75%.
+Opt Out Text
+Allows you to create an "Opt-Out" option for the slider. Enter the desired text in this field and a checkbox is created automatically for each slider.
+Note: Additional steps are required to setup the opt-out option. See next section for instructions.
+Example:
+Enter Not Applicable in this field and a "Not Applicable" checkbox appears below the slider scale, allowing the participant to opt the response option if the slider points do not apply to their experience.
+5.1: Adding an Opt-Out Answer Option
+For data collection requirements, the "Opt-Out" checkbox needs to have a data value associated with it (the checkbox is automatically created when you add "Opt Out Text" in the question display options).
+In the "More Options" menu in the general options for the question, select "ignoreValues" and enter a value in the field. This value must be outside of the specified value range.
+6: Options for a Slider Decimal Element
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it.
+6.1: General Options
+When altered, each of the following options affects all attributes within the Slider Decimal element.
+Label: The label assigned to the element. Click to edit the default label for the Slider Decimal element.
+Show if: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: Check the box to force participants to provide a response. When checked, participants will be unable to continue the survey without completing the question.
+Randomize: Check the boxes to randomize items by type. Items can be randomized by rows, columns, groups, or all.
+Allow Decimals: Check the box to allow decimal entries in the numeric field. Keep this box checked for the Slider Decimal element.
+Value Range: Assigns a value range for each open-end number field in the question. For example, "1-200" will only allow the participant to enter numbers 1-200 in each open-end number field.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+6.2: Slider Options
+When altered, each of the following options only affects slider attributes.
+Label: The label assigned to the slider. Click to edit the default label for the slider.
+Data Value: The value assigned to the slider in the data. Click to edit the default value for the slider if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the slider. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the slider will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the slider to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the slider optional and non-mandatory.
+Open End: Click to add an open-end response box to the slider by selecting "Mandatory" or "Optional" from the drop-down menu. "Mandatory" means the participant must enter feedback in the response box to continue if the slider is selected, "optional" means that feedback is not required.
+Hidden: Click to hide the slider from participants.
+Row Pre-Text: Enter a value to appear before the answer field.
+Row Post-Text: Enter a value to appear after the answer field.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+Tip: See Customizing the Slider Decimal Element to learn how to customize the Slider Decimal element in the XML Editor.

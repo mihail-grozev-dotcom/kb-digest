@@ -1,0 +1,34 @@
+Title: Mobile Survey Design
+As researchers, we need to be sensitive to the additional challenges participants face when completing surveys on mobile devices. Small screens, inflexible, device-specific, user input methods, and potentially slow data transfer speeds all combine to make the survey completion process more difficult than on a typical computer.
+Couple those hindrances with reduced attention spans and a lower frustration threshold and it's clear that we must be very proactive in both the questionnaire and user-interface design in order to accommodate mobile participants and provide them an excellent survey experience.
+1: Guidelines for Mobile-Friendly Surveys
+1. Keep the survey short.
+It takes longer to navigate on mobile devices due limitations of the user interfaces and data transfer speeds.
+Minimize the number of pages. Each time the page refreshes, the participant has to wait. This wait time can range from a short to exceptionally long period of time depending on the network connection (with Wi-Fi at the fast end and regular cell data on a poor connection at the slow end).
+Take care not to put too many questions on a page though, as mobile devices also have less memory to work with, so a page with too many elements may cause the device to become slow or non-responsive.
+2. Keep the question types simple.
+Single dimension single select, multi-select, or select questions are better than multi-dimension grid questions, which could be difficult to complete due to the small screen sizes of mobile devices. Limit scrolling to a single dimension: rows are preferable to columns in order to minimize the need to scroll on both horizontal and vertical axes.
+Keep answer lists short to minimize scrolling. Consider putting long answer lists into select (drop-down) questions, but also be aware that these require more "clicks" to complete than single select questions. Select questions only allow a single response, so for multi-select questions, use the multi-select question-type.
+Keep question and answer text short. The small screen and space make it harder to read long options.
+Limit usage of open-end questions which require typing.
+3. Minimize all non-essential content.
+It takes extra load time and visual space for every single element that appears on the screen. Repetitious elements, innocuous for a typical web-based survey, add an undue burden on participants completing surveys on the mobile web, in addition to distracting from the purpose at hand: completing the survey.
+Logos: Limit logos to the first (and/or last, if absolutely necessary) page of the survey.
+Privacy policies, rules pages, etc.: If possible, also limit these to the first/last survey page.
+Progress bar: The progress bar can be very helpful for indicating a participant's position in the survey, however it also increases the load time and the need for vertical scrolling. Something to consider.
+4. Keep the look of the survey simple.
+Javascript support varies radically for mobile devices, so keep "interactivity" to a minimum. Flash is out for iPhone/iPad/iPod Touch devices.
+Some mobile devices also have limited color palettes. High contrast color schemes will work best.
+2: Considerations When Using Themes
+The following optimizations are automatically applied to the System survey themes:
+Survey content area is narrower without horizontal scrolling
+Colors are maintained from desktop theme
+Font sizes are increased for better legibility
+Background images are maintained
+Select and text boxes are sized properly to prevent "zooming" effect
+Grid cell heights adjusted for greater tappable area
+Large grids attempt to scale down when possible
+Row legend widths given lower priority than cell widths for accommodating wide grids
+Text boxes scale to container size, overriding default size setting
+Images scale down when appropriate, e.g., inside grids
+Continue/Final buttons use the same styling as desktop theme

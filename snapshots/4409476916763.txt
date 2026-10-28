@@ -1,0 +1,203 @@
+Title: Common Shell Commands
+Requires Decipher Cloud
+Shell users have access to an abundance of helpful commands. If you are connected to a UNIX system via PuTTY or SSH, you have access to the following UNIX commands.
+Tip: There are tons of UNIX-related resources on the web. Click here for some basic UNIX commands and here for a full list of UNIX commands.
+1: UNIX Commands
+Here are brief descriptions of some of the most common UNIX commands you might use.
+Tip: You can also use the following to access the documentation for these commands in the shell environment: [COMMAND] --help
+Command
+Example
+Description
+cd
+cd
+Go to the home directory.
+cd [PATH]
+cd ../parentDir
+Go to the path specified.
+clear
+clear
+Refresh shell screen.
+cp [FILE] [NEWFILE]
+cp survey.xml backup_survey.xml
+Copy file.
+ls
+ls
+List files.
+ls -l
+ls -l
+Long list files.
+ls -al
+ls -al
+Long list all files.
+mkdir [DIRNAME]
+mkdir static
+Create a new directory.
+mv [FILE] [PATH]
+mv quota.xls ..
+Move file somewhere.
+cat [FILE]
+cat file1.txt file2.txt
+Outputs file(s) content.
+nano [FILE]
+nano survey.xml
+Basic text editor.
+vim [FILE]
+vim survey.xml
+Awesome text editor.
+pwd
+pwd
+Print working directory.
+rm [FILE]
+rm SECURE
+Remove file.
+rm -r [DIR]
+rm -r static/
+Remove directory.
+unzip [FILE]
+unzip images.zip
+Unzip zipped file.
+who
+who
+List users currently online.
+grep "TEXT" [FILE]
+grep "Q1" survey.xml
+Search for text in file(s).
+du
+du -sh
+Disk usage - directory size.
+exit
+exit
+Exit shell session.
+>
+ls *jpg > images.txt
+Outputs to file.
+>>
+ls *png >> images.txt
+Appends to file.
+|
+ls | grep "txt"
+Pipes data for further processing.
+2: v2 Commands
+Decipher's v2 server has some built-in functions to help you manage projects.
+Command
+Description
+v2
+Go to the main v2 folder.
+copy-survey -d today
+Backup project data.
+copy-survey -m clear
+Clear project data.
+copy-survey temp-today
+Create project temp directory.
+copy-survey -s temp-today
+Create a project temp directory without data.
+tsst -q [PROJECT PATH] 100
+Run 100 qualified simulated data.
+tsst -v [PROJECT PATH] 100
+Run 100 simulated data, skipping <validate> logic.
+tsst -q 100
+Run 100 qualified simulated data in the current directory.
+update-virtuals
+Reloads the virtual report questions.
+reload .
+Same as running: touch survey.xml.
+live [PROJECT PATH]
+Clears data & sets project LIVE.
+closed [PROJECT PATH]
+Soft-close project (active participants have 1 hour to complete).
+closed [PROJECT PATH] now
+Hard close project (kicking out any active participants).
+tabcut list.txt email > emails.txt
+Copy "email" column from list.txt into emails.txt.
+tabmerge list.txt:source list2.txt:source > sources.txt
+Combines "source" columns file list.txt / list2.txt into sources.txt.
+allgrep survey.xml "onLoad"
+Search all project survey.xml files for "onLoad".
+3: Quick Tips
+Here are some quick tips that aim to help you increase your productivity.
+3.1: Command Aliases (.bashrc)
+The ~/.bashrc file is an individual shell startup file that you can use to enhance your shell experience.
+There are many references on the web regarding bash and the different profiles you can set up, so be sure to check them out if you get stuck.
+Here are a few aliases that you can consider using on Decipher's server.
+alias l="ls -al"
+alias xx="exit"
+alias vi="vim"
+alias vir="vim -R"
+alias vis="vim survey.xml"
+alias virs="vim -R survey.xml"
+alias vims="vim -O"
+alias ts="touch survey.xml"
+alias golive="live . && echo 'CHECK THE COVERAGE REPORT YOU FOOL'"
+alias testsurvey="tsst -qv ."
+alias clearsurvey="copy-survey -m clear"
+alias home="cd ~/"
+alias grep="grep --color=auto"
+This means that if you type "xx" in the shell, you will "exit" the session. Click here to learn more about aliases.
+3.2: Easy Directory Navigation
+When you are bouncing back and forth from directory to directory, constantly typing cd can be annoying. Here is a couple of tips to consider:
+The command, cd - , will take you back to your previous working directory.
+user@user:~$ cd Desktop
+user@user:~/Desktop$ cd -
+/home/user
+user@user:~$
+If you do not want to type out entire project paths when moving project files around on the server, you can store directories into a variable.
+In the example below, pwd is used to store the directory's path in variables, f and p. You can reference these paths with the dollar sign, $f and $p.
+[user@server tests]$ f=`pwd`
+[user@server tests]$ home
+[user@server ~]$ p=`pwd`
+[user@server ~]$ cd $f
+[user@server tests]$ cp -r test1 $p
+[user@server tests]$ cd $p
+[user@server ~]$ ls | grep test1
+test1
+3.3: Output to File
+Use the > and >> commands to output data to a file. The single > will write to a file, erasing the current content. The >> will append to a file. Consider the following examples:
+[user@server static]$ ls *jpg > images.txt
+[user@server static]$ cat images.txt
+1.jpg
+2.jpg
+3.jpg
+4.jpg
+decipher.jpg
+ok.jpg
+yes.jpg
+[user@server static]$ ls *png >> images.txt
+[user@server static]$ cat images.txt
+1.jpg
+2.jpg
+3.jpg
+4.jpg
+decipher.jpg
+ok.jpg
+yes.jpg
+back-to-top.png
+CurrentQ86.png
+decipher_transparent.png
+grid.png
+play.png
+press.png
+[user@server static]$ ls *png > images.txt
+[user@server static]$ cat images.txt
+back-to-top.png
+CurrentQ86.png
+decipher_transparent.png
+grid.png
+play.png
+press.png
+3.4: Listing Specific Files
+Use the wildcard asterisk * character to help specify bulk files when running UNIX commands. For example:
+[user@server test1]$ ls *txt
+file1.txt file2.txt sample-2.txt special-list.txt virtual-timing.txt
+[user@server test1]$ ls *xml
+reports.xml survey.xml
+[user@server test1]$ head -n1 *xml
+==> reports.xml <==
+<reports>
+==> survey.xml <==
+<?xml version="1.0" encoding="UTF-8"?>
+[user@server test1]$ rm *jpg
+rm: cannot remove `*jpg': No such file or directory
+[user@server test1]$ rm *log
+rm: remove regular file `debug.log'? y
+rm: remove regular file `survey.log'? y
+Learn more: Globbing

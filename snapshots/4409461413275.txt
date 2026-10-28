@@ -1,0 +1,38 @@
+Title: Integrating a Sawtooth Project into the Decipher Survey Platform
+1: About Integrating a Sawtooth Project
+You can integrate a project created in Sawtooth Software Incorporated (SSI) Web into the Decipher survey platform. After integration, participants can go from the survey to the module created in Sawtooth and then back to the survey.
+To complete the integration process you will:
+Work in SSI Web and prepare pass-by-value variables
+Work in SSI Web and specify a terminate link
+Work in survey.xml and specify the Sawtooth URL with the 3 variables defined (uuid, path, and state).
+2: Working in the SSI Web Environment
+After the Sawtooth questionnaire is complete and no more edits are required, perform these additional setup steps in Sawtooth to the get the questionnaire ready for integration with the Decipher survey platform.
+2.1: Specifying the Pass-through Values
+First, set the 3 pass-through-values. To do this, select Write Questionnaire from the Compose menu.
+Next, from the Write Questionnaire dialog, double-click "Start" and the Questionnaire Access and Passwords dialog opens.
+In Questionnaire Access and Passwords dialog, click the "Pass-In Fields" tab. Enter the "state", "uuid", and "path" field names with the "Text" data type and click OK.
+2.2: Specifying a Terminate/Link
+The next step in SSI Web is to specify a terminate link. From the Write Questionnaire dialog, click "Add."
+From the Add to Questionnaire dialog, click "Terminate / Link", enter a name and click OK.
+From the resulting Terminate / Link dialog, click the "Settings" tab and click "Terminate Participant" in the Terminate Settings section. In the Link Settings section, click "Link to a Questionnaire or Website." Then, in the "Web Address (URL)" box, paste the following link if you are using the main v2 server:
+http://v2.decipherinc.com/survey/[%path%]?state=[%state%]
+If you are using a CNAME or another server you can replace the start of the link as necessary.
+The path variable captures your survey path that was passed when entering the survey and the state variable stores the participants information so the participant can resume the survey after the Sawtooth call with all their information loaded. We will be setting those variables in the next section.
+3: Uploading the Sawtooth Study
+Next, upload the Sawtooth study to the web. Once it uploads to the web, save the resulting URL for linking the survey.
+4: Working in the survey.xml File
+In the survey.xml, locate the place in the survey where you want to redirect to Sawtooth. At this location, you will add a regular page break(<suspend/>), dummy comment, and another page break (<suspend>) that will be used for the sawtooth module. Use the url attribute within the second <suspend> tag with a value of the Sawtooth URL including the 3 specified variables defined (uuid, path, and state). An example link is:
+<suspend>
+<html label="dummy_comment1" where="survey">Please click Continue</html>
+<suspend sst="0" url="http://sawtooth.decipherinc.com/test_md/cgi_bin
+/ciwweb.pl?studyname=test_md&amp;uuid=${uuid}&amp;path=${gv.survey.path}" />
+In the above link we have escaped the & symbol in the URL and have included the system uuid and system path using the ${} syntax. The state variable, which is not defined, is appended automatically upon redirection and can be used to link the participant back to the survey where they left off.
+Note: The state variable is unique and generated automatically on each page of the survey.
+The Sawtooth integration is now complete. Now, when a participant reaches the page with <suspend url="..."/> specified, they will immediately redirect out of the survey to the Sawtooth link/URL that was provided.
+5: Additional Information
+In closing, here are some additional notes about Sawtooth integration:
+All data collected by the Sawtooth software can be downloaded from the admin module when needed.
+If any responses from that module are needed in real time, more variables will need to be added to pass back to the survey in the Sawtooth terminate link setup.
+If the Sawtooth software needs any information, an additional pass through variable can be added.
+6: What's Next?
+Learn more about the suspend tag: Suspend Tag: Adding a Page Break

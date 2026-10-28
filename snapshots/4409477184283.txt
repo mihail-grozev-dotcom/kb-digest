@@ -1,0 +1,34 @@
+Title: Cloud Basics
+Requires Decipher Cloud
+This section goes over how to navigate in the shell, as well as how to do things we would normally do through the software on the back-end and what added functionality we're given by doing so.
+Server Structure
+The first step in using our Decipher Cloud server is to know the structure of the server. We'll need to familiarize ourselves with where everything is found on our server, and how that relates to the portal and to our survey.
+Reference Materials:
+Common Shell Commands
+Shell Scripts
+Now that we know how to move around the server, we'll learn how to replicate software tasks through the shell. This includes tasks such as generating data files, setting the state of a survey, running test data, modifying data, and creating temp surveys.
+Reference Materials:
+Managing Data with the Tab Import Script
+Running Simulated Data from the Command Line
+Duplicating Surveys Using copy-survey
+Launching Surveys
+Closing Surveys
+Generating Data from the Command Line
+Recovering Data
+Managing Data with the Transform Command
+Crosstabs Technical Considerations
+Recovering Missing Data
+While it is a rare occurrence, sometimes user actions can lead to the corruption or loss of data from a survey. This generally happens as a result of removing questions from a survey, deleting data records, or making changes to a survey while it is in a live state. This training will cover how to restore that data.
+Reference Materials:
+Recovering Missing Data
+Sending Email Campaigns through the Shell
+bulk and bulk-prepare are powerful scripts that give us complete control on how our email sample is handled and how emails are sent out. This tutorial will explain how to use the bulk and bulk-prepare scripts, as well as all of the additional functionality using these scripts allows us. Additionally, we will discuss both creating invites to send using the bulk command and using invites created in Campaign Manager to be sent using bulk.
+Reference Materials:
+Bulk Details
+Email Sends with Bulk
+Bulk Prepare Technical Details
+Setting Up Automated Tasks in Decipher
+In some cases, we may be in need to automate a script we have created on our cloud server. In this tutorial, we will explain the proper way of setting up an automation on a Decipher cloud server, as well as best practices in setting up bash and Python scripts for automation purposes.
+Reference Materials:
+Setting Up Automated Tasks
+Cronwrap

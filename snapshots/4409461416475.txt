@@ -1,0 +1,13 @@
+Title: Making a Question Optional
+1: Making a Question Optional
+You can make various questions in your survey optional. When a question is made optional, participants are not required to answer it before navigating to the next question in the survey.
+The steps for making a question optional depend on the question type.
+1.1: Single Select, Dropdown menu, Number, Text or Essay Questions
+To make a Single Select, Dropdown menu, Number, Text, or Essay question optional, first select the question so it appears in the staging area of the Survey Editor. Then deselect the "Mandatory" checkbox in the options panel displayed to the right of the staging area.
+1.2: Multi-Select Questions
+To make a Multi-Select question optional, first select the question so it appears in the staging area of the Survey Editor. Then enter "0" in the "Min Answers" box in the options panel displayed to the right of the staging area.
+Note: If you set the minRanks attribute to anything other than 0, the question will be made mandatory, even if you have optional="1" applied to the same question.
+2: Making Questions Optional by Default
+To make questions optional by default, first select "Project Settings" from the "More Tools" drop-down under "Build" in the navigation menu at the top of any project page. In the Survey Summary window, select "Question Settings" from the "Summary" drop-down or click the blue "Question Settings" header on the left. Then make the desired changes and click "Save".
+Tip: You may choose to update all existing questions to the default settings or update the questions added hereafter to default settings.
+For step-by-step instructions, see Question Settings.

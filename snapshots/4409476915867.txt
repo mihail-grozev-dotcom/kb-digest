@@ -1,0 +1,26 @@
+Title: Choice Tag: Create Drop Down Selections
+1: Overview
+The <choice> element belongs only to the <select> question type. Adding <choice> elements to your question creates more options in the drop down menu.
+<select label="Q1" optional="0">
+<title>
+Please select your state:
+</title>
+<choice label="ch1">Alabama</choice>
+<choice label="ch2">Alaska</choice>
+<choice label="ch3">Arizona</choice>
+<choice label="ch4">Arkansas</choice>
+<choice label="ch5">California</choice>
+<choice label="ch6">Colorado</choice>
+<choice label="ch7">Connecticut</choice>
+<choice label="ch8">Delaware</choice>
+<choice label="ch9">Florida</choice>
+...
+...
+</select>
+2: Attributes
+The <choice> element is not equipped with any unique attributes. All attributes are specified as Cell Attributes and the <choice> element adds nothing more.
+3: Changing the Default "Select one..." Text
+By default, the initial blank option shown in the drop down menu reads, "Select one...". As shown below, you can easily modify this initial text using a Resource Tag.
+<res label="sys_select">Choose one of the following:</res>
+4: What's Next?
+Check out the Select Tag for more on the <choice> element.

@@ -1,0 +1,118 @@
+Title: Adding Quotas Using the Survey Editor
+Important: To avoid additional charges from oversampling, we recommend adding quotas for all surveys with purchased sample.
+This document describes the process for adding quotas to a survey using the Survey Editor. Using the XML Editor? Learn more about adding quotas via XML.
+Quotas are often used by researchers to obtain a sample of participants that is statistically significant to the population that they are analyzing. They are also used to track and monitor the number of qualified completes in a survey.
+The quotas for any given project can be viewed in the Quotas tab of the Response Summary.
+If quotas are used to target a sample of a specific size, then quota limits can be set to prevent an excess number of qualified completes for any given participant group. On the other hand, if quotas are only used to monitor the number of completes for a given category, then quota limits can be set to infinite.
+When a quota is called for a participant, that participant must fall into a quota bucket to continue the survey. If a participant does not qualify for a quota bucket, they are terminated and a special marker named "NQ" is set.
+1: About the Quota Element
+The Quota element allows you to control participant flow by restricting the number of participants allowed through the survey.
+Using the Quota element, you can limit participants based on their responses to survey questions as well as various participant source criteria.
+In surveys with purchased sample, quotas are particularly important, as they can be used to prevent oversampling and thus help protect you against incurring additional charges during field.
+Requirements:
+There must be a page break before the Quota element.
+Participants must pass through the Quota element in order to be counted in the quota. If a Skip element is added in the survey, do not skip around the quota if you want the participants to be included in the quota.
+For example, if a Skip element is added that skips some participants from the screener questions to the end of the survey and the Quota element is placed somewhere after the screener questions, the participants that are skipped to the end of the survey would not be counted in the quota. In this case, you could place the Quota element immediately after the screener questions and place the Skip element after the Quota element.
+2: Adding a Quota Element
+To add a Quota element, first click the "+ Element" button to add a new survey element. Then click "Logic Elements" under Question Types and select the "Quota" element. Then click "Add".
+Add a title to describe the quota, then click "Edit Quota" to add cells.
+Next, define the top-level quota settings, as described below.
+2.1: Maximum Number of Respondents
+Enter a numeric value that defines the maximum number of participants for the quota. For example, entering 1000 means that a maximum of 1000 participants can qualify for the entire quota.
+Note: Entering an asterisk(*) means the limit is infinite and it is an "open quota".
+2.2: Maximum Number of Cells to Assign
+Enter a numeric value that defines how many quota cells for which an individual participant can qualify. For example, a quota collecting age groups should only allow participants to qualify for one cell in the quota. In this case, you would enter 1 as the maximum number of cells to assign.
+Likewise, a quota with cells based on a Multi-Select question that asks which activities the participant enjoys should allow the participant to qualify for more than one cell. If the quota has 11 cells, enter 11 as the maximum number of cells to assign.
+2.3: Add Quota Cells
+Next, click "+ Add Row" to add cells to the quota.
+3: Methods for Creating Quota Cells
+3.1: Create Quotas From Question Answers (Quick Quotas)
+Quick quotas allow you to select quotas from the one-dimensional questions in your survey (excluding Text and Comment elements). Quota cells are created for each answer option in the question selected.
+To create a quota using a survey question, select "Question Answers (Quick Quotas)" from the drop-down menu and click the question you want to use to create the quota cells. Then click "OK".
+Next, set up your cells to represent your "Maximum Number of Respondents".
+Infinite (*): The cells split the maximum equally.
+Limit: Enter a number to define the maximum number of participants for the cell (e.g., 1000).
+For Number elements, you must specify the number or range for the cell in the field provided. The following entries may be used to set the cell limits:
+Single number - e.g., 25
+List of numbers (comma-separated, no spaces) - e.g., 25,26,32
+Range of numbers - e.g., 25-49
+Inequality signs - e.g., <50
+Combination of above - e.g., >25,30-50,75
+Cells names are created using text from the question's answer options. Once the quota is defined, click "Save".
+3.2: Create Quotas From Logic Conditions
+This option allows you to create quotas using the survey's logic conditions. You can either select from existing logic conditions or create new conditions for the quota cells.
+To create a quota using survey logic, select "logic conditions" from the drop-down menu. Then choose from the survey's existing logic conditions or click "+ new condition" to define your own.
+If you are adding a custom logic condition, you must first select the question you want to use for the logic from the drop-down menu. Then select "is" or "is NOT" from the drop-down menu and enter the number or range for each response that will define the logic. Next, select "Save" or "Save As..." if you wish to save the condition for later use in the Survey Editor.
+Repeat this process for each additional quota cell.
+Finally, set up your quota cells to represent your "Maximum Number of Respondents".
+Infinite (*): The cells split the maximum equally.
+Limit: Enter a number to define the maximum number of participants for the cell (e.g., 1000).
+The default labels for each group are named based on the text provided in the element.
+3.3: Create Quotas From Randomly Assigned Quotas
+This option allows you to enter the quota cells to which participants will be randomly assigned.
+To create a randomly assigned quota, select "Randomly Assign Quotas (+ Quotas)" from the drop-down menu. Enter the quota cells in the area provided and click "OK".
+Next, set up your cells to represent your "Maximum Number of Respondents".
+Infinite (*): The cells split the maximum equally.
+Limit: Enter a number to define the maximum number of participants for the cell (e.g., 1000).
+By default, the cells will split the maximum equally (if * is left in place), or you can specify the limit for each cell. The default labels for each group are named based on the text provided in the element. Click "Save" once the limit is set for each cell.
+3.4: Create Quotas from Sample Sources
+To create a quota based on sample sources, select "Question Answers (Quick Quotas)" from the drop-down menu and click "sample sources" to create the quota cells. Then click "OK".
+A cell is created for each sample source specified in the Survey Editor.
+Next, set up your cells to represent your "Maximum Number of Respondents".
+Infinite (*): The cells split the maximum equally.
+Limit: Enter a number to define the maximum number of participants for the cell (e.g., 2000).
+By default, the cells will split the maximum equally (if * is left in place), or you can specify the limit for each cell. Click "Save" once the limit is set for each cell.
+Optionally, you can click "+ Add Column" to create a two-dimensional quota that further defines the participants in your survey.
+3.5: Create Quotas from Languages
+Note: The language option for defining a quota is available only when one or more language is added via the Language Manager.
+To create a quota based on survey languages, select "Question Answers (Quick Quotas)" from the drop-down menu and click "languages" to create the quota cells. Then click "OK".
+A cell is created for each language specified in the Language Manager.
+Next, set up your cells to represent your "Maximum Number of Respondents".
+Infinite (*): The cells split the maximum equally.
+Limit: Enter a number to define the maximum number of participants for the cell (e.g., 4000).
+By default, the cells will split the maximum equally (if * is left in place), or you can specify the limit for each cell. Click "Save" once the limit is set for each cell.
+Optionally, you can click "+ Add Column" to create a two-dimensional quota that further defines the participants in your survey.
+4: Setting Limits for Cells
+This section describes the options available for defining quota cell limits.
+4.1: Hard Quotas
+Hard quotas allow you to specify the exact number of participants required to satisfy the cells in a quota.
+Enter an integer for the "Maximum Number of Respondents" for each cell.
+In the example below, each cell has a hard quota of 250 and the total quota is 500. In other words, each cell must collect 500 participants in order to satisfy the quota.
+This is how the above example appears in the QUOTAS tab of the Response Summary.
+4.2: Soft Quotas
+Soft quotas allow you to set minimum and maximum limits on cells, leaving a cushion. If you are using a soft quota for a cell, all cells in the quota must either be a range (e.g., 100-200) or an integer.
+The "Maximum Number of Respondents" must be an integer and cannot be a number less than the sum of the minimum number of completes for all cells, plus the maximum for the cell with the highest limit. This will provide the "float" number, which must allow for the total of any of the cells to be met, in addition to the minimum required for each of the cells.
+Note: The maximum number of participants cannot be a number greater than the sum of the top limits of the cells.
+In the example below, each cell has a soft quota of 100-400 and the total for the quota is 500. In other words, 100 is needed to satisfy each quota, 500 is the max, and there are 400 "floating" participants that can be used for either cell beyond its soft quota.
+During field, the maximum number for soft quotas will adjust as participants qualify for each cell. Using the same example, you might see the following breakout in the QUOTAS tab of the Response Summary:
+Here, the limit for "Male" remains 100-400 but the limit for "Female" has been adjusted to 100-390 and the Total now indicates that 290 more completes are required (+290). This is because there are currently 110 qualified males, which includes 10 completes over the minimum needed to satisfy that quota cell (100).
+Subsequently, there are 10 less "floating" participants needed to satisfy the total quota (500 total - 200 completed - 10 over = 290), and 10 less completes than the maximum for the "Female" quota (400 max - 10 over = 390).
+4.3: Percentage Quotas
+Percentage quotas allow you to split the quota cells by percentage. If you are using a percentage for a cell, all other cells must also be a percentage (e.g., 25%) or be set to 0, and the sum of all percentages must equal 100%. The total for the quota must be an integer.
+Note: The total for the quota must be an integer.
+In the example below, each cell has a limit of 50% of the total. In other words, 500 is needed to satisfy the total quota and 50% of the total will be males (250 participants), and 50% females (250 participants).
+This is how the above example appears in the QUOTAS tab of the Response Summary:
+4.4: Open Quotas
+Open quotas allow you to track cells in the quota sheet without placing a limit on the number of survey participants qualifying for the overall quota or for a specific quota cell. If you would like to create a standard open quota, enter an asterisk (*) in the total field and for each of the cells.
+If a quota has an integer specified for the "Maximum Number of Respondents" and each cell is set to (*), the maximum will be respected and qualifying participants will be distributed equally among the cells.
+Additionally, "inf" (i.e., infinite) can be used to create an open cell. If a quota has an integer specified for the "Maximum Number of Respondents" and "inf" has been entered for any of the cells, the "infinite" cell overrides the total to allow it to be truly open. Any limits set for other cells in the quota will still be respected.
+In the example below, the quota contains asterisks (*) in all fields, so it does not have a limit that is required to satisfy the quota.
+This is how the above example appears in the QUOTAS tab of the Response Summary:
+Note: When specifying cells in a quota with a predefined total limit, using the asterisk (*) notation will divide the specified total equally across each cell with an asterisk. To leave a cell open, use the "inf" notation for that cell.
+4.5: Setting Priorities
+Placing priorities on cells can be useful for soft quotas, or if a participant can qualify for more than one cell in a quota.
+For example, imagine you have a two-dimensional quota that includes the vacation spots males and females enjoy. The question that asks which spots the participant enjoys is a Multi-Select, therefore participants can qualify for more than one cell.
+Now, you want to set priorities on the cells so that Orlando has top priority for females, followed by Yosemite, then Yellowstone, with the lowest priority to Washington. What this means is that if a female likes both Yosemite and Yellowstone, she will qualify for the Yosemite cell unless that cell is full. If the Yosemite cell is full, she will qualify for the Yellowstone cell.
+The priorities on the cells are entered in this order:
+Top priority: Orlando (100:4)
+Yosemite (100:3)
+Yellowstone (100:2)
+Lowest priority: Washington D.C. (100)
+Note: The higher number gets first priority.
+The males in this example do not have a priority specified. If no priority is set and participants can qualify for more than one cell, the participant will fall into the cell with the lowest percentage of completes.
+This is how the above example appears in the QUOTAS tab of the Response Summary:
+5: Renaming a Quota
+To modify quota labels to be shorter or easier to understand, click "Edit Quota".
+Then click the text for the quota cell you would like to change.
+In the Logic Conditions setup window, click "Save As..." Then, enter an alternative name and click "Save".
+Once the cell is updated, save the quota.

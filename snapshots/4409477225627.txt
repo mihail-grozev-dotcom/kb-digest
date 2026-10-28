@@ -1,0 +1,29 @@
+Title: Creating and Running a Custom Report
+Custom reports allow you to view your survey results using cross tabs to compare data. Below is a step-by-step guide showing you how to utilize the report area to create highly customized reports based on various criteria including date restrictions, answer restrictions and segment restrictions.
+Step 1: Log in to the research hub and locate your project.
+Step 2: Click "REPORT" in the navigation bar. Then click "More Tools"and select "Report (2010)."
+Step 3: The "Standard" report is automatically selected as the default. Click the "New Report" button.
+Steps 4, 5 & 6: The banner points area is where you will build and refine the details of your custom report. The segment restrictions area is where you will select the specific data you want to see in the report and add it to the banner points window above. There are three options for building your segments:
+date restrictions
+answer restrictions
+segment restrictions
+Below is an overview of the three segment restrictions and how to use them.
+How to add a date restriction:
+In this area, you can select dates and filter your segment based on participants from a specific date or date range. Each date will show a number of participants who completed the survey on that particular date. The automatic default for the date range includes all participants to date. Once you have selected your desired date range, click the "add date restriction" button to the right. You will then see the new date restriction in the banner point window above. Click directly on the segment to add a name to this new date restriction. You can now build other restrictions on to your custom report.
+How to add answer restrictions:
+In this area you can add a restriction based on specific participant answers. For the example below, we want a custom report that restricts answers and shows participants who selected certain age ranges in the report. Find your specific question in the drop down list and click "Select Answers." A new window will open showing you the answer possibilities for that particular question. Check the participant answers you want to see in your report and click "add." The answers you checked will now appear in the banner point window above. In the drop-down next to each answer, be sure you select the correct or/and/not logic:
+Selecting "or" will show you grouped results for participants who selected any of the answers (i.e., show results for participants who selected age ranges "18-24" OR "25-34" OR "35-44").
+Selecting "and" will show you results for participants who selected each of the specific answers (i.e., show results for participants who selected the age range "18-24" AND who also selected "male" as a gender). For single select questions, be sure you do not select "and" for multiple answers or your report will display zero results (i.e., participants cannot select both 18-24 and 25-36 as an age range).
+Selecting "not" will show you results for participants who did select a specific answer but did not select another answer (i.e., show results for participants who selected the age range "18-24" but did NOT select "male" as a gender).
+After selecting your specific or/and/not logic, click to add a name for this new restriction.
+How to add segment restrictions:
+In this area, you can select segments and add answers as separate banner points. In the example below, we want to use cross tabs to compare data gathered from the gender question. First, select the question you want to compare data from and click "Add Segments." Every segment (possible answers for that question) will appear in the window above as separate banner points. Scroll through to see all segments and click directly to edit individual segments. You can click "Edit" to name each segment. You can also click "Remove" to delete any unwanted segments.
+Step 7: After adding and editing all of your segment restrictions and banner points, click the "save report" button at the bottom of the page. You can also cancel the report, edit the XML directly (to learn more about XML editing, see Using XML to Edit Reports) or run the report without saving.
+Step 8: After saving, a new window will appear prompting you to add a report name (mandatory) and a description (optional). The name you enter for the report must be a new, unique name or it will override your previous report with the same name. For more information regarding creating tables within your reports, see Automatic Report Segments.
+Step 9: Click "Save Report".
+Step 10: Back in your report screen, select the custom report you just created. In our example, we will select the custom report titled "Gender Report".
+Step 11: Click "Run Report".
+Your report will automatically configure and display a new window with your custom segments. In our example, we can view results for each question and compare them with our selected gender segments. In the section of the report shown below, we can now examine how gender correlates with the participants' answers to [q8] regarding mountaineering equipment.
+From this report screen, you can also edit the report, export the aggregate data in a variety of formats, download the raw data or jump to a specific question.
+For more information regarding understanding report statistics and symbols, see Reading the Report and Statistics
+For more information regarding choosing specific tables within your report, see Choosing Tables in a Custom Report.

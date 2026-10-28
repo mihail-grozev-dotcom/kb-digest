@@ -1,0 +1,115 @@
+Title: Programming Multi-Language Surveys
+Note: If you have never created a multi-language project, read the Guide to Programming Multi-Language Studies.
+You are able to program multi-language surveys by adding languages using the Language Manager or by directly altering the survey XML. The following sections outline the processes involved for using either option.
+1: Using the Language Manager
+The Language Manager allows you to add and manage multiple languages in your survey without using any XML. The Language Manager also allows you to import, export, and edit translations for your survey.
+Additionally, translations can be edited when a survey is being tested using the "Edit" link in the testing toolbar. Learn more about the toolbar's language options.
+To access the Language Manager, click "More Tools" under "BUILD" in the navigation menu and select "Language Manager".
+1.1: Setting the Primary Language
+The primary language in the Language Manager should match the language with which the survey was originally programmed. Setting the primary language does not automatically translate all of the text in your survey to that language. Rather, it translates the system language resources available for that language (e.g., the text for the survey’s “Continue” and “Back” buttons, help links, etc.).
+To set the primary language for your survey, click into the "Primary Language" drop-down menu and select a language from the list.
+Once the language is selected, the system will automatically save and apply the appropriate language resource changes.
+1.2: Enabling Multiple Languages
+You can also use the Language Manager to add multiple languages to your survey.
+Once you have added a primary language, select + Language to add another.
+Use the drop-down to select your desired language and click "Add Language" to enable the new language in your project.
+Repeat this process for every additional language you would like to add. Additional languages you add will appear below your survey’s primary language in the Language Manager.
+From here, you can edit your language translations, export their translation files, import them back into the system, or remove them from your project.
+Note: Adding a language does not translate the survey. System resources, such as the continue button and error messages, are automatically translated. Survey content should be translated through an exported XLATE file.
+1.3: Creating a Language Selection Question
+You can also create a Language Selection question in the survey using the Language Selector Element, which allows survey participants to select their preferred language. After the data for this question has been submitted, the survey automatically sets their language for the remainder of the survey.
+With this method, all initial system messages (e.g., error messages, support forms, etc.) are shown in the language with which the participant entered the survey, until the participant selects a different language at the Language Selection question.
+See Language Selector Element to learn more.
+2: Using the XML Editor
+You can add multiple survey languages while working in the XML Editor by utilizing the decLang and otherLanguages attributes.
+Note: Learn more about the language identifiers that might be accepted into the lang or otherLanguages attributes, the decLang variable, or a specific survey element. You will need to use the variable from the 'decLang' column for setting the language in your survey via the methods below.
+2.1: Setting the Default Language
+Note: If the base language for your project is English (US), then you can skip this step.
+The lang attribute controls the primary language for your project. Setting the primary language does not automatically update all of the text for your survey to that language. Rather, it translates the system language resources available for that language. By default, these resources are shown in English (US) to participants who enter the survey without a decLang variable.
+To change the primary language for your survey, add the lang attribute to the <survey> tag and assign it a language (e.g., ="somelanguage") as shown below:
+<survey
+alt="Apple Max Diff"
+autosave="0"
+builder:wizardCompleted="1"
+builderCompatible="1" compat="127" extraVariables="source,record,ipAddress,decLang,list,userAgent"
+fir="on"
+html:showNumber="0"
+lang="spanish_mexico"
+mobile="compat"
+mobileDevices="smartphone,tablet,featurephone,desktop"
+name="Survey"
+setup="term,decLang,quota,time"
+ss:disableBackButton="1"
+ss:enableNavigation="1"
+ss:hideProgressBar="0"
+state="dev">
+Search through the available languages to see what values can be accepted into the lang attribute.
+2.2: Enabling Multiple Languages
+You can use one or both of the following methods to enable multiple languages in your survey:
+1. Adding decLang to the survey link
+2. Creating a Language Selection question
+2.3: Adding decLang to the Survey Link
+decLang is a variable that gets added to the end of a participant's survey link. When entering the survey, the decLang variable overrides the survey's primary language to display all text and language resource messages in the required language.
+For this method, you need to add the otherLanguages attribute to your <survey> tag. You can use the otherLanguages attribute to allow multiple languages in your survey. This attribute contains a comma-separated list of all other allowed languages for your project.
+Additionally, adding otherLanguages creates an associated language.xls file for each attribute in the survey (e.g., otherLanguages="french,german,turkish" looks for french.xml, german.xml, and turkish.xml, respectively).
+Create a survey with multiple languages (e.g., English, French and German) by adding the otherLanguages attribute to the <survey> tag and include your additional languages (="language1,language2") as shown below:
+<survey name="Survey"
+alt="International Study Q4"
+autosave="0"
+extraVariables="source,list,url,record,ipAddress,userAgent"
+compat="119"
+state="testing"
+setup="time,quota,term"
+ss:disableBackButton="1"
+otherLanguages="french,german">
+Now you are ready to use the decLang variable, which is automatically added to your project.
+Note: This section is for information only. You should not copy any of the code below for use as-is in your survey.
+The decLang variable is located in the survey's extraVariables and setup attributes, as shown below. If this variable is missing, then add it in both locations.
+<?xml version="1.0" encoding="UTF-8"?>
+<survey name="Survey"
+alt="International Study Q4"
+autosave="0"
+extraVariables="source,list,url,record,ipAddress,userAgent,decLang"
+compat="119"
+state="testing"
+setup="time,quota,term,decLang"
+ss:disableBackButton="1"
+otherLanguages="french,german">
+With decLang in place, you can pass the desired language into the survey URL and the system will automatically set the language in the survey. For example, to set the survey to French, you can add decLang=french to the end of your survey link, as follows:
+/selfserve/9d3/proj1234?decLang=french
+2.4: Creating a Language Selection Question
+You can also create a Language Selection question which allows survey participants to select their preferred language. After the data for this question has been submitted, the setLanguage function automatically sets their language for the remainder of the survey.
+With this method, all initial system messages (e.g., error messages, support forms, etc.) are shown in the language with which the participant entered the survey, until the participant selects a different language at the Language Selection question.
+Note: setLanguage changes the language, but will not update decLang to match the new language. Use the setExtra variable to change the decLang (ex. setExtra('decLang', 'german')).
+Example:
+<radio label="Q0" optional="0">
+<title>Please choose your language preference:</title>
+<row label="r1">English</row>
+<row label="r2">Français</row>
+<row label="r3">Deutsch</row>
+<row label="r4">???</row>
+</radio>
+<suspend/>
+<exec>
+if Q0.r2:
+setLanguage('french')
+elif Q0.r3:
+setLanguage('german')
+elif Q0.r4:
+setLanguage('japanese')
+</exec>
+2.5: Adding Languages Written Right-to-Left
+If needed, you can add the following XML style to customize the display of languages containing text that is written right-to-left:
+<style cond="decLang in ['hebrew','arabic']" mode="after" name="respview.client.css"><![CDATA[
+<style>
+body { direction: rtl; }
+.survey-buttons { text-align: left !important; }
+#surveyContent, .survey-body, .question-text, .instruction-text,
+.grid.grid-table-mode .row-legend, .grid-desktop-mode.grid-list-mode .cell-section,
+.grid-single-col .cell, .grid[data-settings*='single-col'] .cell,
+.noRows .grid.grid.grid-table-mode .colCount-1 .element,
+.noRows .grid.grid.grid-table-mode .colCount-1 .col-legend { text-align: right !important; }
+.survey-body .fir-hidden { left: auto !important; right: -9999px !important; }
+</style>]]>
+</style>
+Learn more: Best Practices for Programming Multi-Language Surveys

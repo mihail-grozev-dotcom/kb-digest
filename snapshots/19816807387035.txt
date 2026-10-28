@@ -1,0 +1,24 @@
+Title: 153.19 Release Notes
+Release Date: October 24, 2023
+Release Version: 153.19
+New Features
+Portal
+Two-factor authentication can now be enabled by staff and supervisors via the company settings or user settings pages.
+Learn More: Managing Two Factor Authentication
+The Project Overview's Actions menu now includes an Archive Survey option.
+Learn More: The Project Overview Page
+The "Switch To Another User" function is now limited to PG Forsta staff only.
+Reporting
+Dashboard
+API endpoints have been created for listing, getting, updating (publishing or unpublishing), and deleting research dashboards.
+Programming and Tools
+API
+The generate script, as well as the surveys data API, can now retrieve data referenced by the condition of a Crosstabs report.
+Learn More: Generating Data from the Command Line
+Bug Fixes
+Responses
+Response Summary
+Quota reassignment will no longer produce incorrect results for questions that include a noanswer element.
+Reporting
+Data Downloads
+Triple-S export columns for answers for questions with <noanswer></noanswer> options now download correctly.

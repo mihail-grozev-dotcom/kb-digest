@@ -1,0 +1,7 @@
+Title: Using the Piping Tool
+The Piping Tool in the Survey Editor allows you to pipe text from a selected response option into a follow-up question or answer option. The piping tool supports text piping for one-dimensional Single Select questions, one-dimensional Select questions (with only choices), Multi-Select questions, Text or Number questions that have only one response field (i.e., one row or one column), and Autofill elements.
+Only text from questions that appear before a question with a pipe can be used for the pipe.
+1: Inserting a Pipe
+To pipe text into a question, row, column, or choice, click the text field where you want to insert the pipe. Then, click the pipe tool icon in the text editor ribbon.
+Select the question that serves as the source for the pipe. Then choose the case in which you want the text to appear and click "Apply" to insert the pipe.
+Important: Do not edit or remove anything displayed within brackets or the brackets themselves, as doing so will break the pipe.

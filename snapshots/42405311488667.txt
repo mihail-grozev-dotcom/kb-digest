@@ -1,0 +1,16 @@
+Title: 154.7 Release Notes
+Release Date: October 21, 2025
+Release Version: 154.07
+New Features
+Portal
+Improved performance on systems where the database has low response time.
+Survey
+Dynamic Questions
+Media Evaluator now supports smartphones.
+Learn More: Media Evaluator
+Bug Fixes
+Portal
+An issue causing files uploaded to Shared Documents to be empty has been resolved.
+Reporting
+Crosstabs
+An issue where grid tables that included nets were not being shown in the Table Editor in Crosstabs has been resolved.

@@ -1,0 +1,69 @@
+Title: Attributes for Device Settings
+There are a variety of <survey> attributes that can be used to configure the behavior of both surveys and their questions across Decipher's various tools and features.
+You can use the following attributes to control the device settings for any Decipher survey:
+Attribute
+Purpose
+Description
+desktopNotAllowedMessage
+Message for Blocked Desktops
+The desktopNotAllowedMessage attribute controls the message shown to participants who enter the survey on a desktop machine when desktops are not allowed.
+The default message is:
+The device you are using is not allowed to take this survey.
+deviceNotAllowedMessage
+Message for Blocked Devices
+The deviceNotAllowedMessage attribute controls the message shown to participants who enter the survey on a device that is not allowed to take the survey.
+The default message is:
+The device you are using is not allowed to take this survey.
+featurephoneNotAllowedMessage
+Message for Blocked Feature Phones
+The featurephoneNotAllowedMessage attribute controls the message shown to participants who enter the survey on a featurephone when featurephones are not allowed.
+The default message is:
+The device you are using is not allowed to take this survey.
+mobile
+Set the Mobile Device Compatibility Level
+The mobile attribute allows you to configure the mobile compatibility for your project. The default, mobile="none", allows all devices in and does not optimize the content for mobile device screen sizes. If mobile="compat" is specified, the survey will allow all mobile devices and will optimize the content for mobile device screen sizes. If mobile="mobileOnly" is specified, desktop machines (e.g., PC, Mac, etc.) will not be allowed to take the survey. If mobile="noMobile" is specified, only desktop machines will be allowed to take the survey. See Mobile Optimization Options to learn more.
+mobileDevices
+Specify the Allowed Mobile Devices
+The mobileDevices attribute allows you to specify which mobile devices are allowed into the survey. If mobileDevices="smartphone, featurephone, tablet, mobile" is specified, all known mobile devices will be allowed into the survey. See Mobile Optimization Options to learn more.
+mobileOnlyMessage
+Message for Blocked Non-Mobile Devices
+The mobileOnlyMessage attribute controls the message shown to participants who enter the survey on a desktop machine for a mobile="mobileOnly" survey.
+The default message is:
+Please come back using your mobile device.
+noMobileMessage
+Message for Blocked Mobile Devices
+The noMobileMessage attribute controls the message shown to participants who enter the survey on a mobile device for a mobile="noMobile" survey.
+The default message is:
+Please come back using a computer.
+smartphoneNotAllowedMessage
+Message for Blocked Smartphones
+The smartphoneNotAllowedMessage attribute controls the message shown to participants who enter the survey on a smartphone device when smartphones are not allowed.
+The default message is:
+The device you are using is not allowed to take this survey.
+ss:disableOfflineDetection
+Set to Disable Offline Detection Warning
+The ss:disableOfflineDetection attribute allows you to disable the connectivity warning shown to smartphone devices when the connection has been interrupted. If disabled, the overlay shown below will not be shown if the participant loses connectivity.
+Tip: Click image to enlarge.
+tabletNotAllowedMessage
+Message for Blocked Tablets
+The tabletNotAllowedMessage attribute controls the message shown to participants who enter the survey on a tablet device when tablets are not allowed.
+The default message is:
+The device you are using is not allowed to take this survey.
+surveyDisplay
+Optimize Survey Layout Based on Device Display Size
+The surveyDisplay attribute requires surveys to have a compat level of 125 +.
+The surveyDisplay attribute controls how responsive the survey layout is based on the display size of the device being used.
+It is recommended to keep the default value, surveyDisplay="auto", so that the survey adjusts its layout in reaction to the display size.
+If surveyDisplay="auto" is specified (default), then the survey layout changes according to the size of the device automatically. If the width of the screen is less than what the @breakpoint value is set to (default is 768px), then the survey will adjust accordingly into a mobile optimized format.
+If surveyDisplay="desktop" is specified, then the survey will never optimize for mobile devices.
+If surveyDisplay="mobile" is specified, then the survey will always be mobile-optimized.
+Note: This attribute can be applied globally to the survey element or locally at an individual question.
+Learn more about The Less Styles System.
+Learn More:
+More information about all of the <survey> element's attributes are provided in the documents below.
+Overview of the Survey Tag and Quick Links
+Attributes for Project Settings
+Attributes for Display Settings
+Attributes for Question Settings
+Attributes for Field Settings
+Attributes for Report Settings

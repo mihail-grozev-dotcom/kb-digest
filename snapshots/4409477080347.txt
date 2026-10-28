@@ -1,0 +1,36 @@
+Title: Keyboard Shortcuts in the Survey Editor
+When working in the Survey Editor, there are a variety of keyboard shortcuts you can use to speed things along while making changes to questions or response options. These commands differ depending on whether or not you have clicked into a text field.
+1: Text Field Shortcuts
+The following keyboard shortcuts are available when you click a question or answer text field (i.e., when the Rich Text Editor (RTE) is displayed).
+Keyboard Shortcut
+Action
+Enter, Return or Tab
+Applies the current response option and creates a new one at the bottom of the list. If you are editing a response option inside a group, the new one is added at the bottom of the group.
+Shift + Tab
+Applies the current response option and opens the previous response option (above) for editing.
+Shift + Enter/ Return
+Creates a new line within the row or column field.
+Esc
+Applies the response option, then exits edit mode and leaves the response field selected.
+2: Regular Shortcuts
+The following keyboard shortcuts are available when a response option is selected, but the text field is not (i.e., the RTE is NOT displayed).
+Keyboard Shortcut
+Action
+Enter or Return
+Opens the selected response option for editing, placing the text cursor at the end of the text string.
+Arrow Up or K
+Selects the previous response option.
+Arrow Down or J
+Selects the next response option.
+Ctrl/Cmd + Arrow Up or K
+Moves the selected response option up one position in the list. If a group exists, the item is moved above the group as if the group was a row item.
+Note: Grouped items can only be moved within the group.
+Ctrl/Cmd + Arrow Down or J
+Moves the selected response option down one position in the list. If a group exists, the item is moved below the group as if the group was a row item.
+Grouped items can only be moved within the group.
+Arrow Left or H
+Converts the selected response option into a group header and auto-selects the item immediately below it.
+If the selected response option is in a group, this removes it from the group, placing the response option immediately below the group.
+Arrow Right or L
+If the selected response option is directly below a group, it is added to the group.
+If a group header is selected, it is removed from the group and converted into a response option. All items within the group are un-grouped.

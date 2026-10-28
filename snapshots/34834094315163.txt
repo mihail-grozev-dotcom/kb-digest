@@ -1,0 +1,14 @@
+Title: March 11, 2025 Release Notes
+Release Date: The following items were released between February 25, 2025 and March 11, 2025.
+Bug Fixes
+Survey
+Survey Editor
+An encoding issue preventing access to company library elements for some companies has been resolved.
+An issue preventing successful survey exports to Word/PDF/HTML formats has been resolved.
+Responses
+View/Edit Responses
+The landing page now displays better on smaller screens.
+Response Summary
+An issue where hidden quota tables caused a fatal error has been resolved.
+Programming and Tools
+An issue that prevented users from using copy-survey in the restricted shell has been resolved.

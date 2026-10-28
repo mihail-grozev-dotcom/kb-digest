@@ -1,0 +1,5 @@
+Title: Relabeling Data
+The Survey Editor allows you to define an alternative label for each survey element. This label appears in place of the survey label everywhere (e.g., in the Response Summary report, Crosstabs, etc.) except the survey. This option is most often used for "re-coding" or "relabeling" data.
+To create an alternative label for an element, first click the question or answer option to view it in the staging area. In the options panel to the right of the staging area, click "More Options" and select "altlabel" from the drop-down. Then enter the alternative label.
+In order to confirm that the alternative label is in place, click "Report" in the navigation menu at the top of any project page and select "Crosstabs". Then run your desired report and verify that the alternative label appears for the element, as shown below.
+Note: The alternative label will not override pre-existing data layouts with their own labeling. To change those labels, use the Data Layout Manager.

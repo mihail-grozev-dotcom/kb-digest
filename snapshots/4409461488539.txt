@@ -1,0 +1,16 @@
+Title: Previewing a Question
+1: Opening the Question in Preview Mode
+Preview mode allows you to view a question as the participant will see it.
+To preview an element, click the "Preview" link located at the top right corner of the element.
+The preview of the element opens in a new tab in your browser. By default, the device preview is set to desktop. You can select a tablet or mobile preview if desired.
+Note: The preview displays the best approximation for the selected device. In some cases, especially for dynamic questions that use JavaScript, there may be some differences between the preview display and the display in the actual device.
+Note: The Device Preview functionality applies to new surveys (compat level: 130+).
+2: Previewing on a Tablet or Mobile Device
+In the graphic below, the device preview has been set to Mobile. The question now displays as it would to a participant on a mobile device. You can scroll through the Device Preview display to view the question as it would appear on different devices.
+When previewing in a tablet or mobile device, you can also see how the question displays in landscape mode. Click the rotate symbol and the device rotates 90 degrees to the right giving you a landscape preview of the question. You can toggle between portrait and landscape view.
+Portrait preview
+Landscape preview
+You can click the rotate symbol again to toggle back to the original preview (portrait preview).
+3: Returning to the Survey Editor
+When you are finished previewing the question, click the tab with the survey name to return to the Survey Editor.
+Note: If you make changes to the question, click the preview link again to view them. New changes do not automatically appear in a previous preview.

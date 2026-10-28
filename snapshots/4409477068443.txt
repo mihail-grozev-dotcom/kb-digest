@@ -1,0 +1,33 @@
+Title: Creating a Rating Scale
+You can use the Survey Editor to create a rating scale within any Single Select, Single Select Grid or Select survey element. Adding a rating scale to a question will create NETs for that question in the report. The NET options for a 4-7 point rating scale include top 2 / bottom 2 NETs, while an 8-11 point rating scale adds top 3 / bottom 3 NETs.
+Note: This document outlines the process for creating a rating scale within a standard survey element. If you would prefer to use a stylized rating question, you can choose from the following dynamic rating elements:
+Rating Scale Element
+Button Rating Element
+Card Rating Element
+Slider Rating Element
+Star Rating Element
+The response options on a rating scale should consist of measurable attributes.
+Example of measurable attributes:
+Completely agree
+Somewhat agree
+Neither agree nor disagree
+Somewhat disagree
+Completely disagree
+Example of attributes that are not measurable:
+Every day
+1 to 4 times a week
+Once or twice a month
+Less often
+Never
+1: Creating a Rating Question
+To create a rating question, first add a new Single Select, Single Select Grid, or Dropdown Menu element. Then check the "Rating/Scale" box in the options section for the element and add the question’s response options as desired.
+1.1: Examples of Rating Questions
+A one-dimensional Single Select element with columns creates a horizontal rating question.
+A one-dimensional Single Select element with rows creates a vertical rating question.
+A one-dimensional Select element with choices creates a rating question that uses a drop-down menu.
+A two-dimensional Single Select element creates the rating scale as columns and attributes as rows.
+1.2: Examples of Rating Scales in Crosstabs
+A 4-7 point rating scale includes Top 2 / Bottom 2 NETs and stat summaries for the scale in the report.
+An 8-11 point rating scale includes Top 3 / Bottom 3 NETs and stat summaries for the scale in the report.
+A two or three-dimensional rating question includes the Mean Summary of the scale and a summary table for the Top 2 / Bottom 2 and Top 3 / Bottom 3 NETs in addition to the top NETs for each row, column, and / or choice.
+To learn how to make changes to the NETs, averages, or tables in the report, or how to apply your changes to all your projects, see Editing Tables in Crosstabs.

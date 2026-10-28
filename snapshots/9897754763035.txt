@@ -1,0 +1,29 @@
+Title: 149.5 Release Notes
+Release Date: December 7, 2021
+Release Version: 149.5
+New Features
+Portal
+Login
+Added the ability to use a single username and password (single-sign on) to login to all Forsta products formerly under the FocusVision brand (Surveys, Digital Interviews, Digital Diaries, VideoInsights, and Panel Management). To set up this feature for your company, contact your Account Manager.
+Learn More: Logging in to Your Account
+Survey Launch Process
+Added a warning for live projects to prevent sample marketplace bids from being overwritten by out-of-date temporary changes when launching a temp-edit-live survey.
+Survey
+Survey Editor
+Fixed an issue preventing some special characters from displaying properly in questions added from the library.
+Programming & Tools
+API
+Added a new sheetCond attribute to each quota table object that is part of a sheet with a cond in the survey.xml as a new attribute in the JSON response of the GET /api/v1/surveys/{survey}/quota API endpoint.
+Architecture/DevTools
+Temp-view directories will be deleted instead of being archived to avoid cluttering disc space in cloud servers.
+Bug Fixes
+Survey
+Survey Editor
+Improved how Survey Editor and the logic editor handle custom scripts
+Themes
+Fixed a javascript XSS security risk in Theme Editor.
+Respondent View
+Fixed an issue that sometimes caused the outlines of checkboxes to appear faint or disappear entirely while taking a survey if the survey's `firStyle` attribute was set to `square`.
+Reporting
+Crosstabs
+Fixed a bug in the Open End modal in Crosstabs where zero results would be returned if using the Split Results feature on a question that had both rows and columns.

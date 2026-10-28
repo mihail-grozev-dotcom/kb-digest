@@ -1,0 +1,27 @@
+Title: Setting Up a Domain Alias (CNAME)
+A "CNAME" (Canonical Name) refers to a domain alias. It allows an alternative domain name to be used to either access Forsta hosted surveys or branded email sends. A CNAME can be created using a CNAME Record (for subdomains) or an A Record (for apex domains).
+Note: The setup presented here does not support secure connections and would only be used for accessing web pages over a nonsecure connection. To set up a secure connection, please reach out to your main Forsta contact.
+1: Setting Up a CNAME
+You need a current domain to setup a CNAME. If you do not own a domain, you can purchase a domain from a third-party vendor such as Namecheap. A CNAME record can be setup as secure or non-secure depending on whether certificates are setup.
+There are two ways to setup a CNAME:
+CNAME Record - This is the easiest way to set up a CNAME. When a CNAME Record is set up, it redirects the current domain to the target domain and uses the same DNS settings as the target domain.
+A Record - An A Record should be used when you can not set up a CNAME Record. For example, because your DNS system does not support CNAME Records, or because you are setting up an apex domain (domain.com) rather than a subdomain (customer.domain.com).
+1.1: Using a CNAME Record
+A CNAME Record should match the subdomain part of a current domain and its domain should point to the server where its surveys are hosted. To create a CNAME using a CNAME Record, add your CNAME Record as the host and your Forsta server as the target.
+For example, if you wanted to create a CNAME for a customer whose surveys are located on the main US server, the CNAME would be customer.domain.com and it would point to v2.decipherinc.com.
+Main Decipher Servers by Region:
+US Server
+v2.decipherinc.com
+US-2 Server
+selfserve.decipherinc.com
+EMEA Server
+uk.focusvision.com
+APAC Server (AU/NZ)
+au.focusvision.com
+APAC Server (Asia)
+Singapore.decipherinc.com
+1.2: Using an A Record
+To set up an A Record, point your domain to the IP where your surveys are hosted. Please reach out to your main Forstacontact to get the required server IP.
+2: Enabling the CNAME
+After verifying your CNAME configuration, send the CNAME to your main Forsta contact or support team to add it to your company page.
+Once your CNAME has been added to your company, you can use it for masking survey URLs. To mask a survey URL for a project, add the specific CNAME to the CNAME field in the Field Settings window and click "Save":

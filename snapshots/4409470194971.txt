@@ -1,0 +1,45 @@
+Title: Opt-Out Process
+Decipher will not send emails to people who have specified that they do not want to be contacted (i.e., "opt-outs"). All survey email invites must include an opt-out link. Opt-out links are automatically generated when a survey or email campaign is launched and are unique to each participant.
+There are two different types of opt-outs:
+The global email preference list (global opt-out) owned by Forsta
+The company remove list owned by the client
+Unbranded sends use the global opt-out link as the unsubscribe link. Fully branded sends use the company remove list.
+Note: The "[optOutLink]" will be replaced with the appropriate opt-out link (global or company) at the time of send.
+Note: An error message will appear, if you do not use the correct opt-out link when trying to send.
+1: How it Works
+The opt-out link redirects participants to a new page, where they must confirm that they do not want to be contacted again using their email address. The participant's email address will be pre-filled but editable. To confirm opting out, participants must submit this page by clicking "Finish".
+Once a user submits the page, their email address is added to a special "remove" list for the company associated with the project.
+1.1: Branded Email Invites
+A branded email invite will have a CNAME set up and will have no mention of Forsta or any of our domains in ALL of the following areas:
+Sender (fromName)
+From Address (fromAddress)
+Reply to Address (replyTo)
+Email Subject (subject)
+Email Body Content (contentBody)
+Survey Link
+Opt-Out Link: https://[branded_domain]/survey/selfserve/[client_dir]/remove?email=[email]&msgid=[messageid]&source=[source]
+Asset links (to images, javascript files, css files, etc.)
+Note: For more information on how to mask the URL link and from address that identifies Forsta, see Setting Up a Domain Alias (CNAME)
+1.2: Unbranded Email Invites
+An unbranded invite does not have a CNAME set up to mask the URL link and "from" address.
+The following areas may reference Forsta or any of our domains (decipherinc.com, focusvision.com, forsta.com):
+Sender (fromName)
+From Address (fromAddress - defaults to invite@decipherinc.com )
+Reply to Address (replyTo - defaults to invite@decipherinc.com)
+Email Subject (subject)
+Email Body Content (contentBody)
+Survey Link
+Opt-Out Link: https://release.decipherinc.com/survey/selfserve/53a/email-preferences?list=1&email=[email]&server=[server]&survey=[survey]&msgid=[messageid]&source=[source]
+Asset links (to images, javascript files, css files, etc.)
+1.3: The Remove List
+When an email address is added to a company's "remove" list, that address will be removed from all further communications for that company. The bulk email programming command checks the company's "remove" list and will not send to any emails listed there.
+In addition to explicit opt-outs, errors and human replies to the sender's email address can cause an email to be removed from further sends, unless the email has characteristics of a temporary situation (e.g., a "mailbox full" or "I'm out of the office today" response). This has a 24-hour delay.
+Note: Automated spam complaints from "feedback loops" and bouncebacks also cause automatic suppression from all future sends.
+2: Campaign Manager Considerations
+Because the Campaign Manager is tied to each survey at the company level, any emails sent from there will also have opt-out links that apply to future communications from that company.
+Once an email is sent out using the Campaign Manager, a "Remove Survey" is automatically created within the company directory. You can find it in the Portal. This survey consists of just the opt-out screen with an open-ended response box to track user emails. See 2.1: The Remove Survey below.
+You can also view a .txt file list of all of your company-specific opt-outs directly from the Campaign Manager. First, click on the Recipient List option to open the drop-down menu. Then click "Export Bounce-Backs and Opt-Outs" to download a text file with company-specific list of bounce-backs and opt-outs.
+2.1: The Remove Survey
+You can view a list of all your company-specific opt-outs in Crosstabs. In the Portal, open the "Remove Survey" survey. Then open Crosstabs.
+Run the Total Qualified crosstab, then click on the Total link in the q1 table.
+The email addresses that have opted-out will be displayed.

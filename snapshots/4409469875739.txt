@@ -1,0 +1,37 @@
+Title: Setting an Answer Option Base to Total Shown
+1: Overview
+You can adjust the "Percentage Base" by selecting Edit Settings in Crosstabs. By default, the drop down menu on the right allows you to select one of the following:
+Total Answering (default)
+Total Shown
+Total in Segment
+However, you may wish to show the percentage calculation based on the number of participants who were shown a specific answer option in the multi-select question, rather than the entire question. Consider the following example:
+<checkbox label="Q2" atleast="1" rowcond="Q1[row]">
+<title>Select all that apply:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</checkbox>
+<suspend/>
+In this example, the rows at Q2 are shown only if they're selected at Q1. If 3 out of the total 4 participants selected r3, then the percentage would be 75% for r3 at Q2. However, if only 3 people actually saw r3, then that would mean 3 out of the total 3 participants who saw r3 selected r3, which is 100%.
+2: Percentages Based on Individual Checkboxes
+To show the percentage calculations base based on individual checkboxes, we can add trackVars="checkbox" to the project's <survey> tag.
+Note: Surveys with delphi="1" have this attribute on by default.
+<?xml version="1.0" encoding="UTF-8"?>
+<survey name="Survey"
+...
+...
+trackVars="checkbox"
+...>
+In doing so, a new option, "Total Shown Variable", will be available in the percentage base drop down menu:
+Selecting "Total Shown Variable" will adjust the percentage calculations for <checkbox> questions to base the number on the total number of participants who saw the individual checkbox selection rather than the question as a whole.
+2.1: Control trackVars at the Question Level
+Use the tv attribute to control how trackVars works at the question level. For example:
+<checkbox label="Q10" atleast="1" tv="off">
+By default, tv="auto" is specified and trackVars will work normally.
+If tv="off" is specified, then trackVars will not take effect at this question. This means that the question's data values will only be blank if the question was skipped altogether.
+If tv="force" is specified, then all of the question's cells will be considered to have been seen. If new rows are later added and merged in, those rows will be marked as unseen.
+If the question has where="execute", trackVars is implicitly set to off. To track a question with where="execute", set tv to tv="record". This will decrease performance if you have many records. On a question without where="execute", using tv="record" is the same as using tv="off".
+3: What's Next?
+Learn more about other options for Configuring Crosstab Settings.
+The trackVars attribute is one of many Survey Tag attributes.

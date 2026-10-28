@@ -1,0 +1,27 @@
+Title: 145.5 Release Notes
+Release Date: November 10, 2020
+Release Version: 145.5
+New Features
+Portal
+Admin Pages
+Added a metering report that displays a running total of all Lumoa credits used per company.
+Usage Statistics
+Increased the loading speed for reports.
+Decreased the amount of data loaded for reports.
+Programming & Tools
+API
+Improved performance when using the Calculate Usage endpoint.
+Bug Fixes
+Portal
+Fixed an issue causing the bulk survey “Hide” and “Unhide” options to malfunction.
+Start from Template
+Fixed an issue causing the “Marital Status” header to display as “Gender” in the dashboard included within the Demographic survey template.
+Responses
+Campaign Manager
+Fixed an issue preventing the information displayed in the “Status” column for email sends from being updated unless the page was manually refreshed.
+Fixed an issue preventing reminder emails from being scheduled if the reminder order differed from the original send order.
+View/Edit Responses
+Fixed an issue preventing the report from loading if survey quotas contained special characters like brackets and parentheses.
+Programming & Tools
+API
+Fixed an issue causing a proxy error when too many system files were open at once.

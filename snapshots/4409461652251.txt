@@ -1,0 +1,726 @@
+Title: Whitelabeling Decipher Software
+Requires Decipher Cloud
+White labeling will allow you to mask or reconfigure the branding of the Decipher software platform.
+1: Configuring Your Styles
+Using your shell login, navigate to Decipher's v2/selfserve directory on your cloud server.
+Create a new nstyles file. If one already exists, edit the current file.
+Place any of the following style blocks in the file and modify accordingly.
+Contact your primary Forsta account representative to link this file to your domain(s) (if the file has not already been linked).
+2: Unbranding the Portal
+To brand the Decipher Portal with unbranded items, place the following at the top of the nstyles file you created:
+@include unbranded
+This will automatically apply the following styles:
+*whitelabel.company: Generic Inc.
+*whitelabel.support: support@generic.example.com
+# This support email defaults to support@decipherinc.com
+*clientSupport.email: [whitelabel.support]
+# Replace default news link with nothing at all
+*framework.newslink.li:
+# Remove the bell icon in the portal
+*ultron.header.notifications:
+# Help link is just an email address
+*framework.helplink:
+<a href="mailto:[whitelabel.support]?subject=Support Request" class="link-text">help</a>
+# No login logo
+*login.logo:
+<div class="text-center">
+<b>[whitelabel.company] portal: please log in</b>
+</div>
+# Custom login title based on company name
+*login.title: [whitelabel.company] portal: Sign in
+# left hand logo on some pages
+# leave behind some whitespace as not to bunch up the page
+*logo.decipher:
+<div style="height: 99px"> </div>
+# right hand logo on some other pages
+*logo.client:
+# General support link replacement
+*support.link.shared:
+<a href="/support/${gv.survey.path if gv.survey else ""}">Help</a>
+# support links on some legacy pages
+*survey.support:
+<div class="help">
+[support.link.shared]
+</div>
+# support links on newer pages
+*survey.respview.footer:
+<div id="surveyFooter" class="survey-footer">
+[support.link.shared]
+</div>
+# Remove the app switcher from the header bar in portal
+*ultron.common.unifiedlogin.markup:
+# new user intro email introducing users to Decipher
+*sys.login.newuser-intro:
+# social media links in new user emails
+*sys.login.email-footer:
+# new user email company logo
+*sys.login.newuser.emailLogo:
+<img width="196" height="60" src="[whitelabel.logoPath]" alt="[whitelabel.company]">
+# help desk info for new user email
+*sys.login.newuser.helpdesk.plaintext:
+*sys.login.newuser.helpdesk.html:
+3: Whitelabeling the Login Page
+To whiltelabel the Decipher login page, add the following to the nstyles file:
+3.1: Whitelabeling the Login Page Title
+Use the following for the login page title:
+*login.title: Company Login
+3.2: Whitelabeling the Login Logo
+Use the following for the login logo:
+*login.logo:
+<div class="text-center">
+<img src="/path/to/company-logo.jpg" alt="Company Logo" />
+</div>
+Note: The logo must be located on the server. It is recommended that you put the logo in /selfserve/static. You can then reference the path as '/selfserve/logo.jpg'. If the v2/selfserve/static folder does not exist, contact Technical Support to create the folder for you.
+3.3: Whitelabeling the Login Page External CSS Stylesheets​
+Use the following to include external CSS stylesheets for the login page:
+*login.include.css:
+<link rel="stylesheet" type="text/css" href="/survey/path/to/company-login.css"/>
+3.4: Whitelabeling the Cookie Consent Policy
+To comply with GDPR best practices, all Decipher users are required to consent to the Forsta cookie policy prior to logging into their account. The default cookie consent tooltip contains a description of the cookie policy and a link to the Forsta privacy policy.
+If required, you can customize your company's privacy policy using the following style definition:
+*login.privacyPolicy:
+<a href='#' target='_blank'>%(Privacy Policy)%</a>
+Note: Pages linked here should include the same informational content as the Forsta cookie policy.
+3.5: Whitelabeling Two Factor Authentication
+If you have two-factor authentication enabled, use the following style definition to customize the verbiage on the Configure 2FA Device page:
+*login.2fa_instructions:
+<p>A mobile authenticator app is necessary for login such as Google Authenticator or Microsoft Authenticator.</p>
+<br/>
+<p>Please scan the QR code with your app. You may also type the secret key into the app.</p>
+The name of the company displayed in the mobile authenticator application is based on the *whitelabel.company style definition listed above in 2: Unbranding the Portal.
+4: Whitelabeling the Notifications Bell
+To configure the bell icon for your company notifications, add the following to the nstyles file:
+*ultron.header.notifications:
+<span class="notifications" data-notifications></span>
+5: Whitelabeling the Default Survey Styles
+Note: Survey styles are not tied to the domain and will be applied based on the hierarchical level of the nstyles file.
+To include privacy policy and help links in the survey footer, add the following to the nstyles file:
+5.1: Whitelabeling the Support Links Footer
+*survey.respview.footer:
+<div id="surveyFooter" class="survey-footer">
+[support.link.shared]
+</div>
+5.2: Whitelabeling the Participant View Privacy Policy and Help Links
+*support.link.shared:
+<a href="path/to/company/privacy-statement" target="_blank">Privacy</a> -
+<a href="/support?decLang=@(lang)" target="_blank">Help</a>
+6: Whitelabeling Email Addresses
+Note: The from email address must be authorized to send from Forsta Surveys. To confirm that your email domain is authorized to send system emails, contact Technical Support.
+Use the following to configure various email address fields:
+6.1: Whitelabeling the Email Address for Support Requests
+Use the following to configure the e-mail address for support request:
+*whitelabel.support: support@generic.example.com
+6.2: Whitelabeling the From Address for Password Reset Email
+Use the following to configure the "from address" for the password reset e-mail:
+*clientSupport.email: support@generic.example.com
+6.3: Whitelabeling the Reply-To Email Address for Support Requests
+Use the following to configure the reply to the e-mail address for support request:
+*whitelabel.sender: support@generic.example.com
+7: Whitelabeling System Email Content
+You have several options for configuring the body of your email. See below for what to add to the nstyles file for each message type.
+7.1: Whitelabeling the Base Email Message Format
+The following is the base message format required for all emails.
+*sys.email.survey:
+From: "$(fullname)" <[whitelabel.sender]>Subject: [$(survey)] $(subject)
+Reply-To: $(sender)
+To: $(target)
+This is an email from [whitelabel.company] regarding survey $(survey) - [whitelabel.secureHost]/report/$(survey)
+$(message)
+7.2: Whitelabeling the New User Notification Email
+The following email is the first communication sent to new users once their account has been created.
+*sys.login.newuser:
+From: "$(sender)" <[whitelabel.sender]>
+Reply-To: <$(sender)>
+Subject: User Account Created
+To: $(target)
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="----=_NextPart_001_001F_01C26331.F7121560"
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/plain; charset="utf-8"
+Welcome to [whitelabel.company]!
+Your username is $(target)
+Click the link below to set up your password.
+Set Password:
+$(host)/login/reset?token=$(token)&why=first
+$(message)
+This invitation is valid for 24 hours.
+[sys.login.newuser.helpdesk.plaintext]
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/html; charset="utf-8"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome to [whitelabel.company]</title>
+<style>
+a:link{color:#2A5DB0;text-decoration:underline}
+</style>
+<style type="text/css">
+/* Force Hotmail to display emails at full width */
+.ExternalClass {
+display: block !important;
+width: 100%;
+}
+/* Force Hotmail to display normal line spacing */
+.ExternalClass,
+.ExternalClass p,
+.ExternalClass span,
+.ExternalClass font,
+.ExternalClass td,
+.ExternalClass div {
+line-height: 100%;
+}
+@media only screen and (max-width: 600px) {
+body[class*="background"],
+table[class*="background"],
+td[class*="background"] {
+background: #eeeeee !important;
+}
+table[class="card"] {
+width: auto !important;
+}
+td[class="data-heading"],
+td[class="data-value"] {
+display: block !important;
+}
+td[class="data-heading"] {
+padding: 10px 10px 0;
+}
+table[class="wrap"] {
+width: 100% !important;
+}
+td[class="wrap-cell"] {
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+}
+}
+</style>
+</head>
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor="" class="background" style='margin:0;padding:0;font-family:"Open Sans", sans-serif;font-size:14px;font-weight:normal;color:#222;line-height:1.5em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;background-color:#333333;'>
+<table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" class="background" style="background-color:#333333;margin:0;padding:0;width:100% !important;">
+<tr>
+<td align="center" valign="top" width="100%" class="background" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;background-color:#333333;">
+<center>
+<table cellpadding="0" cellspacing="0" width="600" class="wrap">
+<tr>
+<td valign="top" class="wrap-cell" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;padding-top:30px; padding-bottom:30px;">
+<table cellpadding="0" cellspacing="0" class="force-full-width" style="width:100% !important;">
+<tr>
+<td height="60" valign="top" class="header-cell header-logo" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;background-color:#f9f9f9;font-size:24px;border-bottom:1px solid #9BC862;text-align:center;padding:30px;">
+[sys.login.newuser.emailLogo]
+</td>
+</tr>
+<tr>
+<td valign="top" class="body-cell" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;background-color:#ffffff;text-align:center;padding-top:30px;padding-bottom:34px;">
+<table cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+<tr>
+<td valign="top" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;padding-bottom:15px; background-color:#ffffff;">
+<h1 style='margin:0;padding:0;font-family:"Open Sans", sans-serif;font-size:26px;font-family:"Open Sans Semibold", sans-serif;'>Welcome to [whitelabel.company]!</h1>
+</td>
+</tr>
+<tr>
+<td valign="top" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;padding-bottom:20px; background-color:#ffffff;">
+Your username is <span class="email-address" style='font-family:"Open Sans Semibold", sans-serif;'>$(target)</span><br>
+Click the button below to set up your password.
+</td>
+</tr>
+<tr>
+<td style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;">
+<table cellspacing="0" cellpadding="0" width="100%" bgcolor="#ffffff">
+<tr align="center">
+<td width="auto" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;background-color:#ffffff; font-size:0; line-height:0;">&nbsp;</td>
+<td style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;width:200px;">
+<div>
+<!--[if mso]>
+<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="$(host)/login/reset?token=$(token)&why=first" style="height:50px;v-text-anchor:middle;width:250px;" arcsize="8%" stroke="f" fillcolor="#A2D063">
+<w:anchorlock/>
+<center>
+<![endif]-->
+<a class="password-button" href="$(host)/login/reset?token=$(token)&why=first">
+<span style="color:white;text-decoration:none;color:#2A5DB0;text-decoration:underline;-webkit-box-shadow:0 2px #6B8B40;-moz-box-shadow:0 2px #6B8B40;box-shadow:0 2px #6B8B40;border-radius:7px;background-color:#A2D063;color:#ffffff;display:inline-block;font-size:20px;line-height:40px;text-align:center;text-decoration:none;padding: 5px 20px;-webkit-text-size-adjust:none;white-space: nowrap;">
+Set My Password
+</span>
+</a>
+<!--[if mso]>
+</center>
+</v:roundrect>
+<![endif]-->
+</div>
+</td>
+<td width="auto" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;background-color:#ffffff; font-size:0; line-height:0;">&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;">
+<div class="message-container" style="background-color:#f9f9f9;color:#222;width:90%;margin:20px auto;">
+@if message
+<div class="message-text" style='margin:0;padding:0;font-family:"Open Sans", sans-serif;font-weight:normal;color:#222;line-height:1.5em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;font-size:14px;padding:1px;'>$(message)</div>
+@endif
+</div>
+</td>
+</tr>
+<tr>
+<td style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;background-color:#ffffff; font-size: 12px; color: #777;">
+This invitation is valid for 24 hours.<br>
+[sys.login.newuser.helpdesk.html]
+</td>
+</tr>
+</table>
+</td>
+</tr>
+[sys.login.email-footer]
+</table>
+</td>
+</tr>
+</table>
+</center>
+</td>
+</tr>
+</table>
+</body>
+</html>
+------=_NextPart_001_001F_01C26331.F7121560--
+The following email is sent after a user sets their password via the sys.login.newuser email.
+Note: If this style is left blank, no email is sent.
+*sys.login.newuser-intro:
+From: "$(sender)" <[whitelabel.sender]>
+Reply-To: <$(sender)>
+Subject: Welcome to [whitelabel.company]
+To: $(target)
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="----=_NextPart_001_001F_01C26331.F7121560"
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/plain; charset="utf-8"
+Hello $(target),
+Check out some of the major features you now have access to!
+Build:
+Surveys that don't compromise on the features you need.
+$(host)/apps/mindtouch?cid=de_gettingstarted
+Test:
+The participant experience you're excited about.
+$(host)/apps/mindtouch?cid=kb_1891#Survey_Testing_Environment
+Distribute:
+Centralized field management for tracking progress and success.
+$(host)/apps/mindtouch?cid=kb_1891#Email_Campaign_Manager_Overview
+Report:
+Sophisticated Crosstab tools for breakthrough insights.
+$(host)/apps/mindtouch?cid=kb_1892
+[whitelabel.company] Support Available 24/7
+We're here to help, so please don't hesitate to contact our support team for questions you may have. Here are ways you can connect with our support team.
+Visit the Knowledge Base
+$(host)/apps/mindtouch/Decipher
+Contact us by e-mail
+$(host)/apps/mindtouch?cid=helpdesk
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/html; charset="utf-8"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome to [whitelabel.company]</title>
+<style type="text/css">
+/* Force Hotmail to display emails at full width */
+.ExternalClass {
+display: block !important;
+width: 100%;
+}
+/* Force Hotmail to display normal line spacing */
+.ExternalClass,
+.ExternalClass p,
+.ExternalClass span,
+.ExternalClass font,
+.ExternalClass td,
+.ExternalClass div {
+line-height: 100%;
+}
+@media only screen and (max-width: 600px) {
+body[class*="background"],
+table[class*="background"],
+td[class*="background"] {
+background: #eeeeee !important;
+}
+table[class="card"] {
+width: auto !important;
+}
+td[class="data-heading"],
+td[class="data-value"] {
+display: block !important;
+}
+td[class="data-heading"] {
+padding: 10px 10px 0;
+}
+table[class="wrap"] {
+width: 100% !important;
+}
+td[class="wrap-cell"] {
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+}
+}
+</style>
+</head>
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor="" class="background" style='margin:0;padding:0;font-family:"Open Sans", sans-serif;font-size:14px;font-weight:normal;color:#222;line-height:1.5em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;background-color:#333333;'>
+<table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" class="background" style="background-color:#333333;margin:0;padding:0;width:100% !important;">
+<tr>
+<td align="center" valign="top" width="100%" class="background" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;background-color:#333333;">
+<center>
+<table cellpadding="0" cellspacing="0" width="600" class="wrap">
+<tr>
+<td valign="top" class="wrap-cell" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;padding-top:30px; padding-bottom:30px;">
+<table cellpadding="0" cellspacing="0" class="force-full-width" style="width:100% !important;">
+<tr>
+<td height="60" valign="top" class="header-cell header-logo" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;background-color:#f9f9f9;font-size:24px;border-bottom:1px solid #9BC862;text-align:center;padding:30px;">
+[sys.login.newuser.emailLogo]
+</td>
+</tr>
+<tr>
+<td valign="top" class="body-cell" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;background-color:#ffffff;">
+<table cellpadding="0px" cellspacing="0px" width="100%" bgcolor="#ffffff" style="padding: 30px;">
+<tr>
+<td valign="top" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;">
+<h1 style='margin:0;padding:0;font-size:20px;font-family:"Open Sans", sans-serif;'>Hello $(target),</h1>
+</td>
+</tr>
+<tr>
+<td valign="top" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;padding-top: 10px; padding-bottom:20px; background-color:#ffffff;">
+Check out some of the major features you now have access to!
+</td>
+</tr>
+<tr>
+<td style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;">
+<table class="feature-table" cellspacing="0" cellpadding="0" width="100%" bgcolor="#ffffff">
+<tr bgcolor="#f9f9f9" height="30px" style="border-bottom:5px solid white;border-top:5px solid white;display:table;">
+<td valign="middle" align="left" width="30px" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;padding: 20px;">
+<a href="$(host)/apps/mindtouch?cid=de_gettingstarted" style="color:#6B8B40;text-decoration:none;"><img src="$(host)/i/ion-settings.png" style="outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border:none;"></a>
+</td>
+<td align="left" width="570px" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;">
+<div class="feature" style="display:inline-block;">
+<span class="name" style='display:block;padding-top:9px;font-family:"Open Sans Semibold", sans-serif;color:#6B8B40;font-size:18px;'><a href="$(host)/apps/mindtouch?cid=de_gettingstarted" style="color:#6B8B40;text-decoration:none;">Build</a></span>
+<span class="description" style="display:block;font-size:12px;color:#777;">Surveys that don't compromise on the features you need.</span>
+</div>
+</td>
+</tr>
+<tr bgcolor="#f9f9f9" height="30px" style="border-bottom:5px solid white;border-top:5px solid white;display:table;">
+<td valign="middle" align="left" width="30px" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;padding: 20px;">
+<a href="$(host)/apps/mindtouch?cid=kb_1891#Survey_Testing_Environment" style="color:#6B8B40;text-decoration:none;"><img src="$(host)/i/ion-android-done-all.png" style="outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border:none;"></a>
+</td>
+<td align="left" width="570px" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;">
+<div class="feature" style="display:inline-block;">
+<span class="name" style='display:block;padding-top:9px;font-family:"Open Sans Semibold", sans-serif;color:#6B8B40;font-size:18px;'><a href="$(host)/apps/mindtouch?cid=kb_1891#Survey_Testing_Environment" style="color:#6B8B40;text-decoration:none;">Test</a></span>
+<span class="description" style="display:block;font-size:12px;color:#777;">The participant experience you're excited about.</span>
+</div>
+</td>
+</tr>
+<tr bgcolor="#f9f9f9" height="30px" style="border-bottom:5px solid white;border-top:5px solid white;display:table;">
+<td valign="middle" align="left" width="30px" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;padding: 20px;">
+<a href="$(host)/apps/mindtouch?cid=kb_1891#Email_Campaign_Manager_Overview" style="color:#6B8B40;text-decoration:none;"><img src="$(host)/i/ion-ios-email-outline.png" style="outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border:none;"></a>
+</td>
+<td align="left" width="570px" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;">
+<div class="feature" style="display:inline-block;">
+<span class="name" style='display:block;padding-top:9px;font-family:"Open Sans Semibold", sans-serif;color:#6B8B40;font-size:18px;'><a href="$(host)/apps/mindtouch?cid=kb_1891#Email_Campaign_Manager_Overview" style="color:#6B8B40;text-decoration:none;">Distribute</a></span>
+<span class="description" style="display:block;font-size:12px;color:#777;">Centralized field management for tracking progress and success.</span>
+</div>
+</td>
+</tr>
+<tr bgcolor="#f9f9f9" height="30px" style="border-bottom:5px solid white;border-top:5px solid white;display:table;">
+<td valign="middle" align="left" width="30px" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;padding: 20px;">
+<a href="$(host)/apps/mindtouch?cid=kb_1892" style="color:#6B8B40;text-decoration:none;"><img src="$(host)/i/ion-stats-bars.png" style="outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border:none;"></a>
+</td>
+<td align="left" width="570px" style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;">
+<div class="feature" style="display:inline-block;">
+<span class="name" style='display:block;padding-top:9px;font-family:"Open Sans Semibold", sans-serif;color:#6B8B40;font-size:18px;'><a href="$(host)/apps/mindtouch?cid=kb_1892" style="color:#6B8B40;text-decoration:none;">Report</a></span>
+<span class="description" style="display:block;font-size:12px;color:#777;">Sophisticated Crosstab tools for breakthrough insights.</span>
+</div>
+</td>
+</tr>
+</table>
+<div style="border-bottom: 1px solid #ddd; margin-top: 15px; padding-top: 5px; padding-bottom: 5px;"></div>
+</td>
+</tr>
+<tr>
+<td style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;">
+<h1 style='margin:0;padding:0;font-size:20px;font-family:"Open Sans", sans-serif;padding-top: 25px; padding-bottom: 5px;'>[whitelabel.company] Support Available 24/7</h1>
+</td>
+</tr>
+<tr>
+<td style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;padding-top: 10px; padding-bottom: 25px;">
+We're here to help, so please don't hesitate to contact our support team for questions you may have. Here are ways you can connect with our support team.
+</td>
+</tr>
+<tr>
+<td style="font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;">
+<table style="border-spacing: 10px;">
+<tbody>
+<tr style="text-align: center;">
+<td style="width: 170px; height: 130px; background: #f9f9f9;">
+<img height="45" src="$(host)/i/kb_icon.png" style="outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;">
+<br/>
+<span style="padding-top:8px;">Visit the</span>
+<span class="de-link" style="color:#6B8B40;text-decoration:none;padding-top:8px;">
+<br/>
+<a href="$(host)/apps/mindtouch/Decipher" style="color:#6B8B40;text-decoration:none;">Knowledge Base</a></span>
+</td>
+<td style="width: 170px; height: 130px; background: #f9f9f9;">
+<img height="45" src="$(host)/i/contact_icon.png" style="outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;">
+<br/>
+<span style="padding-top:8px;">Contact us</span>
+<span class="de-link" style="color:#6B8B40;text-decoration:none;padding-top:8px;">
+<br/>
+<a href="$(host)/apps/mindtouch?cid=helpdesk" style="color:#6B8B40;text-decoration:none;">By E-mail</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+[sys.login.email-footer]
+</table>
+</td>
+</tr>
+</table>
+</center>
+</td>
+</tr>
+</table>
+</body>
+</html>
+------=_NextPart_001_001F_01C26331.F7121560--
+Additionally, the following styles can be referenced in either new email:
+*whitelabel.helpdesk.link: $(host)/apps/mindtouch?cid=helpdesk
+*sys.login.newuser.helpdesk.plaintext:
+If the invitation has expired, contact our helpdesk.
+[whitelabel.helpdesk.link]
+*sys.login.newuser.helpdesk.html:
+If the invitation has expired, contact our <a href="[whitelabel.helpdesk.link]" style="color:white;text-decoration:none;color:#2A5DB0;text-decoration:underline;text-decoration:none;color:#A2D063;">helpdesk.</a>
+*sys.login.newuser.emailLogo:
+<img width="196" height="60" src="$(host)/i/Decipher_logo.png" alt="Decipher">
+*sys.login.email-footer:
+<tr>
+<td align="center" class="background" style="background-color: #eee !important;">
+<table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" class="background" style="background-color:#eee;margin:0;padding:0;width:100% !important;">
+<tr>
+<td valign="top" class="footer-cell" colspan="4" style='font-size:14px;font-weight:normal;color:#222;line-height:1.5em;vertical-align:top;border-collapse:collapse;background-color:#eee;color:#777;text-align:center;padding-top:30px;font-family:"Open Sans", sans-serif;font-size:12px;'>
+Follow Us:
+</td>
+</tr>
+<tr>
+<center>
+<table align="center" border="0" cellpadding="4" cellspacing="0" height="100%" class="background" style="background-color:#eee;margin:0;padding:0 0 30px 0;">
+<tr>
+<td>
+<a href="https://www.linkedin.com/company/102216/" style="color:white;text-decoration:none;color:#2A5DB0;text-decoration:underline;">
+<div style="color:#777;border-radius:50%;padding:6px;border:1px solid;height:18px;width:18px;"><img src="$(host)/i/fa-linkedin.png" style="outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border:none;" alt="Linkedin"></div>
+</a>
+</td>
+<td>
+<a href="https://twitter.com/FocusVisionInfo" style="color:white;text-decoration:none;color:#2A5DB0;text-decoration:underline;">
+<div style="color:#777;border-radius:50%;padding:6px;border:1px solid;height:18px;width:18px;"><img src="$(host)/i/fa-twitter.png" style="outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border:none;" alt="Twitter"></div>
+</a>
+</td>
+<td>
+<a href="https://www.youtube.com/channel/UCaNRd4J8j71AgUWJAQUOOdg" style="color:white;text-decoration:none;color:#2A5DB0;text-decoration:underline;">
+<div style="color:#777;border-radius:50%;padding:6px;border:1px solid;height:18px;width:18px;"><img src="$(host)/i/fa-youtube-play.png" style="outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border:none;" alt="Youtube"></div>
+</a>
+</td>
+</tr>
+</table>
+</center>
+</tr>
+</table>
+</td>
+</tr>
+7.3: Whitelabeling the Password Reset Email
+The following email is the communication sent to users whenever they request a password reset.
+*sys.login.password.email:
+<html>
+<head>
+<title>Reset Password</title>
+</head>
+<body style="background-color: #ECECEC;margin: 0px;padding: 20px;font-family: Arial;">
+<div style="width: 50%;margin-left: 25%;border: 1px solid #CACACA;border-radius: 7px;background: #FFF">
+<div style="text-align: center;border-bottom: 1px solid #CACACA;margin-bottom: 25px;padding: 20px;">
+[whitelabel.emailLogo]
+</div>
+<div style="padding: 30px;color: #333;font-size: 14pt;">
+<h1 style="margin: 0px;margin-bottom: 10px;">Hello,</h1>
+<div style="margin-bottom: 10px;">
+You have indicated that you have forgotten your password.
+</div>
+<div style="margin-bottom: 20px">
+To select a new password, click the button below.
+</div>
+<div style="text-align: center;">
+<a href="$(host)/login/reset?token=$(token)" target="_blank"style="border-radius: 5px;padding: 5px 10px;background-color: #0086ab;color: #FFF;text-decoration: none;display: inline-block;">
+Reset Password
+</a>
+</div>
+<div style="margin-top: 20px; font-size: 0.75em">
+If you have not asked for a new password, you can disregard this email.
+</div>
+</div>
+</div>
+</body>
+</html>
+7.4: Whitelabeling the Project Warnings Notification Email
+The following email is the communication sent to users whenever there is a warning triggered for their project.
+*projectwarnings.notification-email:
+From: <[whitelabel.sender]>
+Subject: Project Warnings - $(projectName)
+To: $(recipient)
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="----=_NextPart_001_001F_01C26331.F7121560"
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/plain; charset="utf-8"
+ATTENTION
+Your project "$(projectName)" (${re.sub("^selfserve/", "", projectPath)}) has triggered some warnings. Learn More:
+$(host)/apps/mindtouch/0002_Portal/0004_Company_Management/040_Project_Warnings_Report
+Errors:
+@for event in [ x for x in events if x.type in ("exceptions", "missing_resources", "quota_misses",) ]
+${event.format % event.value} $(event.name)
+@end
+Other Warnings:
+@for event in [ x for x in events if x.type not in ("exceptions", "missing_resources", "quota_misses",) ]
+${event.format % event.value} $(event.name)
+@end
+Open Project Warnings Page:
+$(host)/apps/projectwarnings#/details/$(projectPath)?start=none&end=none
+Not your project? Visit the portal and click "Actions" -> "Unsubscribe"
+to stop receiving notifications about this project.
+$(host)/apps/portal#/projects/detail/$(projectPath)
+------=_NextPart_001_001F_01C26331.F7121560
+Content-Type: text/html; charset="utf-8"
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Project Warnings - $(projectName)</title>
+</head>
+<body style="width: 100% !important; height: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; background-color: #f6f6f6; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.2; color: #333;">
+<table style="width: 100%; padding: 20px; background-color: #f6f6f6;">
+<tr>
+<td></td>
+<td bgcolor="#FFFFFF" style="border: 1px solid #f0f0f0; display: block!important; max-width: 600px!important; margin: 0 auto!important; clear: both!important; padding: 20px;">
+<!-- content -->
+<div style="max-width: 600px; margin: 0 auto; display: block;">
+<table style="width: 100%;">
+<tr>
+<td>
+<h1 style="margin: 20px 0 10px; line-height: 1.2; font-weight: bold; font-size: 18px;">ATTENTION</h1>
+<p style="font-weight: 400; color: #222;">Your project
+<a href="$(host)/apps/projectwarnings#/details/$(projectPath)?start=none&amp;end=none"
+style="text-decoration: none; color: #0086ab;">
+$(projectName) (${re.sub("^selfserve/", "", projectPath)})
+</a>
+has triggered some warnings.
+<a href="$(host)/apps/mindtouch/0002_Portal/0004_Company_Management/040_Project_Warnings_Report"
+style="text-decoration: none; color: #0086ab;">
+Learn More
+</a></p>
+<div style="margin: 0 0 30px 20px;">
+<h2 style="margin: 20px 0 10px; line-height: 1.2; font-weight: bold; font-size: 16px;">Errors:</h2>
+<table>
+@for event in [ x for x in events if x.type in ("exceptions", "missing_resources", "quota_misses",) ]
+<tr
+@if event.warn
+style="color: #dd4b39;"
+@else
+style="color: #777777;"
+@endif
+>
+<td style="min-width: 40px; text-align: right; padding-right: 4px;">
+<span
+@if event.warn
+style="font-weight: bold; color: #dd4b39;"
+@else
+@if event.value
+style="font-weight: bold; color: #222;"
+@else
+style="font-weight: bold; color: #777;"
+@endif
+@endif
+>${event.format % event.value}</span>
+</td>
+<td style="font-weight: bold; color: ${'#dd4b39' if event.warn else '#222'}">$(event.name)</td>
+</tr>
+@end
+</table>
+<h2 style="margin: 20px 0 10px; line-height: 1.2; font-weight: bold; font-size: 16px;">Other Warnings:</h2>
+<table>
+@for event in [ x for x in events if x.type not in ("exceptions", "missing_resources", "quota_misses",) ]
+<tr>
+<td style="min-width: 40px; text-align: right; padding-right: 4px;">
+<span
+@if event.warn
+style="font-weight: bold; color: #0086ab;"
+@else
+@if event.value
+style="font-weight: bold; color: #222;"
+@else
+style="font-weight: bold; color: #777;"
+@endif
+@endif
+>${event.format % event.value}</span>
+</td>
+<td style="font-weight: bold; color: ${'#0086ab' if event.warn else '#222'}">$(event.name)</td>
+</tr>
+@end
+</table>
+</div>
+<p>
+<a href="$(host)/apps/projectwarnings#/details/$(projectPath)?start=none&amp;end=none"
+style="text-decoration: none; color: #FFF; background-color: #0086ab; border: solid #0086ab; border-width: 10px 20px; line-height: 2; font-weight: bold; margin-right: 10px; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px;">
+Open Project Warnings Page
+</a>
+</p>
+</td>
+</tr>
+</table>
+</div>
+<!-- /content -->
+</td>
+<td></td>
+</tr>
+</table>
+<!-- /body -->
+<!-- footer -->
+<table style="width: 100%; clear: both !important;">
+<tr>
+<td></td>
+<td style="display: block!important; max-width: 600px!important; margin: 0 auto!important; clear: both!important;">
+<!-- content -->
+<div style="max-width: 600px; margin: 0 auto; display: block;">
+<table>
+<tr>
+<td align="center">
+<p style="font-size: 12px; color: #666;">Not your project? Visit the <a
+href="$(host)/apps/portal#/projects/detail/$(projectPath)"
+style="color: #333;">portal</a>
+and click "Actions" -&gt; "Unsubscribe"
+to stop receiving notifications about this project.</p>
+</td>
+</tr>
+</table>
+</div>
+<!-- /content -->
+</td>
+<td></td>
+</tr>
+</table>
+<!-- /footer -->
+</body>
+</html>
+------=_NextPart_001_001F_01C26331.F7121560--
+8: Suggestions and Best Practices
+For more complete brand masking, perform the following adjustments:
+Setup an SSL alias instead of using the Decipher defaults.
+Hide Decipher's Knowledge Base / Support page links.
+Update the logos on the user login screen and password change page.
+Note: If you have any other inquiries in terms of whitelabeling, please contact Technical Support.

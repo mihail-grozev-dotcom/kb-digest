@@ -1,0 +1,25 @@
+Title: 154.2 Release Notes
+Release Date: August 12, 2025
+Release Version: 154.2
+New Features
+Portal
+Project Overview
+The users tab loads a large amount of users better than before.
+Survey
+Survey Editor
+The NPS survey element now has a "Learn More" knowledge base link in its description.
+Participant View
+When QA Tools are enabled, the list of languages used with the mls attribute on survey elements will only be shown when hovering over the "mls" icon.
+Bug Fixes
+Survey
+Survey Editor
+Radio questions can now be changed into checkbox question when all answers are grouped as expected.
+Reporting
+Crosstabs
+Questions that use terminates with dupeCheck instead of cond, now will be displayed on CrossTabs report on vterm Terminates section
+Crosstabs reports now properly displays open-end rows with a label that begins with a digit.
+Programming and Tools
+API
+An issue that prevented the user from scrolling through search results has been resolved.
+Custom Code Elements (AI Compute Logic node)
+AI Compute logic node now uses a newer OpenAI module and will be better at processing large non-English text.

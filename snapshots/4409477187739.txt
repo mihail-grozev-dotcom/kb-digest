@@ -1,0 +1,17 @@
+Title: Server Administration
+Requires Decipher Cloud
+This section will go over how to do administrative tasks in the shell.
+umanage: Creating and Managing Shell Users
+Requires Shell Supervisor Level Access
+As a server supervisor, we may need to add, remove, or edit accounts for shell and staff users from our server. This tutorial will go over the umanage tool and its functionality.
+Reference Materials:
+Creating and Managing Shell Users
+Monitoring Server Status
+Occasionally, we may need to monitor our server in regards to disk space or process usage. We can use the serverutil script to easily see what processes are running and quickly find directories or files that may be taking up server space.
+Reference Materials:
+Monitoring Server Status
+Scripts for Managing Archived Projects
+When a server is close to maxing out our disk space usage, we may look into archiving our projects to save space or we may need to recover a project that has been archived due to data retention. This tutorial will go over the archive, unarchive, and archived scripts.
+Reference Materials:
+Scripts for Managing Archived Projects
+Data Archival and Deletion

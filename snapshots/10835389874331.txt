@@ -1,0 +1,169 @@
+Title: Customizing the Autosuggest Element
+The Autosuggest element is a Dynamic Question type that allows you to upload a set of answers that will automatically be suggested to participants as they type a response into an open-ended text box. The Autosuggest style sits on top of a <text> question.
+Autosuggest questions may contain one or more text boxes and suggested answers are controlled using a set of preconfigured filters.
+1: Creating and Uploading the Answer File
+Before you can add an Autosuggest element to a survey, you must first create and upload the file containing the answers you would like to be suggested to participants.
+The answer file must contain a list of all the answers you would like to suggest, along with a unique identifier for each of those answers. Answer files can be created using a simple text editor and can be uploaded via the file manager or the Upload/Replace Files API endpoint.
+Learn more: Creating an Autosuggest Answer List
+2: Adding the Element
+Once you have uploaded your answer list, you can add the Autosuggest element.
+The Autosuggest style sits on top of a <text> question. To add an Autosuggest question via the survey XML, first create the base <text> question in the desired location.
+Then copy and paste the following code block as the body of that question:
+<text
+label="q2"
+uses="autosuggest.4"
+autosuggest:filename="myAnswerSourceFile.txt"
+autosuggest:uniqueKey="uniqueKey"
+autosuggest:answerKey="answerKey">
+<title>New Autosuggest Question</title>
+<col label="c1">Key</col>
+<col label="c2">Answer</col>
+</text>
+2.1: Required Attributes
+The following attributes must be applied in order for the Autosuggest style to work:
+uses="autosuggest.4": The question style being applied to the base element (the value after the period indicates the style’s version number).
+autosuggest:filename: Specifies which file to use as an answer source (uploaded in step 1 above).
+Note: Version autosuggest.2 and higher supports the attributes autosuggest:characterLimit and autosuggest:characterLimitText.
+When a participant submits a response that matches a value from your answer file, the survey data will be updated with both the participant’s input and a unique key linking that input to the matching value in your answer file.
+autosuggest:uniqueKey: Specifies which of the answer file’s columns contains your unique answer keys.
+autosuggest:answerKey: Specifies which column to use for suggesting answers as the participant types.
+Note: The column headers in your answer file will not be shown to participants and can be titled anything you choose. The text you specify, however, will appear in certain reports, such as Crosstabs.
+Note: When using autosuggest.4 or higher, "No Match" is populated for all unanswered optional answers.
+2.2: Optional Attributes
+The attributes listed below are optional and can be used to filter how answers are displayed to participants. Only the responses you specify are suggested to participants as they type.
+Attribute Name
+Attribute Description
+autosuggest:languageKey
+For multi-language surveys, specifies which column contains the survey languages for filtering answers (should be added as decLang values). Only those answers with language values matching a participant’s decLang value will be suggested to that participant.
+autosuggest:questionFilter
+Specifies a survey variable to use as a filter.
+autosuggest:filter1Key
+Specifies the column containing the filter values.
+autosuggest:filter1Values
+Specifies which values to filter by, using the column specified in autosuggest:filter1Key.
+autosuggest:filter2Key
+Applies a second filter.
+autosuggest:filter2Values
+Specifies which values to filter by, using the column specified in autosuggest:filter2Key.
+autosuggest:filter3Key
+Applies a third filter
+autosuggest:filter3Values
+Specifies which values to filter by, using the column specified in autosuggest:filter3Key.
+autosuggest:filter4Key
+Applies a fourth filter
+autosuggest:filter4Values
+Specifies which values to filter by, using the column specified in autosuggest:filter4Key.
+autosuggest:oneRowAtATime
+Applies the "One Row at a Time" question style.
+autosuggest:characterLimit
+Specifies how many characters survey participants must enter in order to see autosuggestions in the dropdown list.
+For example, autosuggest:characterLimit="2" requires participants to enter at least 2 characters before the autosuggestion dropdown list appears.
+The default characterLimit is 3.
+Note: autosuggest:characterLimit requires version uses="autosuggest.2" or higher.
+autosuggest:characterLimitText
+Tells participants how many characters they must enter to see the autosuggestion dropdown list.
+For example, autosuggest:characterLimitText="Enter at least 5 characters" will display “Enter at least 5 characters” to the participant until at least five characters are entered if autosuggest:characterLimit="5" is also set.
+The default text displayed is “Enter at least 3 characters”.
+Note: autosuggest:characterLimitText requires version uses="autosuggest.2" or higher.
+autosuggest:appendFileData
+Adds to the report a virtual question for every additional column in the source file beyond the unique key and the answer key.
+Note: autosuggest:appendFileData requires version uses="autosuggest.3"or higher.
+autosuggest:excludeRowSelections
+Enabled by default. Prevents duplicate answers within a single Autosuggest question.
+Note: autosuggest:excludeRowSelections requires version uses="autosuggest.3"or higher.
+autosuggest:includeFrom
+Takes comma-separated list of question labels and uses the answers submitted in those previous Autosuggest questions as the autosuggestion answers in the question to which it is applied.
+Note: autosuggest:includeFrom requires version uses="autosuggest.3"or higher.
+autosuggest:noMatchVirtual
+Includes in the report a virtual question that records non-matching answers for that Autosuggest question.
+Note: autosuggest:noMatchVirtual requires version uses="autosuggest.3"or higher.
+Note: When using autosuggest.4 or higher, "No Match" is populated for all unanswered optional answers, whether or not this attribute is included.
+autosuggest:multifilter
+Allows you to add additional filters beyond the standard four available in the Source file setting of the elements.
+For example: autosuggest:multiFilter="ColumnName1:comma,separated,values^ColumnName2:comma,separated,values^ColumnName3:comma,separated,values" will filter the responses based on criteria from 3 columns.
+Each filter consists of:
+the column in the source file to be referenced for filtering
+a colon “:”
+the desired filtering value(s) from that column.
+To distinguish multiple filters, use the ^ symbol.
+Note: Be sure not to include spaces unless they exist within the name of the column, or the value being used for filtering.
+Note: Up to four custom filters can be added in the Source File Settings of the element or as many as needed when using the multifilter attribute in the XML editor. However, if no custom filters are specified, all values from the answer file will be available.
+Note: If a typo exists in the values you have specified for filter1Values, it will not affect the question’s behavior. You will want to be sure to verify that the values you have entered here are spelled correctly prior to running your survey.
+2.3: Meta Functionality
+The attributes listed below are optional and can be used to provide access to the various answer file data that correspond to selected Autosuggest answers. Advanced survey programming knowledge is recommended.
+Attribute Name
+Attribute Description
+getData
+Allows the question to access other column data for each answer row.
+Example:
+getData(<column from file>) returns the column value based on selected item in the question.
+q1.meta.getData("Model")
+has
+Allows the question to use conditional logic based on other column data of what was answered.
+Example:
+has(<column>, <value to check>) returns true/false if the value entered is found in the column based on the selected item in the question.
+q1.meta.has("Type", "Car")
+answeredList
+Allows the question to provide all file data for selected items in the question.
+Example: q1.meta.answeredList
+unansweredList
+Allows the question to provide all file data for unselected items in the question.
+Example: q1.meta.unansweredList
+mapRowsFromData
+Allows the question to pipe answered or unanswered data to a text question. Normally a where=execute question.
+Example and definitions of attributes:
+mapRowsFromData(<text question>, onlyUnanswered, onlyAnswered, extraCols, extendAnswered)
+onlyUnanswered - default is False. Pipes only unanswered data. Matches unansweredList.
+onlyAnswered - default is False. Pipes only answered data. Matches answeredList.
+extraCols - By default only values of uniqueKey and answerKey are piped. This a list of other columns from the file to also pipe.
+extendAnswered - This is a list of other Autosuggest questions to include those questions answeredList data as part of the piped data.
+3: Testing Your Setup
+Once you have finished setting up your Autosuggest question, you can verify your configuration by testing through the survey as a participant.
+Learn More: Testing an Online Survey
+4: Additional Considerations and Limitations
+The following considerations and limitations apply when working with Autosuggest questions.
+4.1: Filtering Rules
+When added, custom filters will affect all participants. Additionally, the following rules apply:
+Only those answers which have the values specified for a filter will be shown if that filter is applied.
+Filters should only be applied to non-answer columns. The XML editor will display an error if you attempt to apply a filter to the answer key column.
+If a typo exists in the values you have specified for a filter, it will not affect the question’s behavior and you will not receive any warning messages.
+When two filters are applied, they are joined by “and” logic; in other words, answers must meet the criteria from both filters to appear in the survey.
+Multiple values for a single filter are joined by “or” logic; in other words, specifying “red,blue” will show all answers which include "red” or “blue” in that column.
+To include answers which have no value in a specific column, a comma must be added to the beginning or end of the value list (e.g., filter1="red,blue," or =",red").
+4.2: Troubleshooting Issues
+Follow the steps below to resolve any issues you experience during implementation.
+"I see the following error:" Survey Load Error: Fix XML
+If this appears while you are making changes to your Autosuggest element, it may have been caused by one of the following actions:
+Uploading a new file which is missing some of the column headers you specified for the previous file.
+Deleting an Autosuggest element that was being used as a filter for another Autosuggest element.
+Resetting a column filter to “No Selection” when its filter values still exist.
+Moving an Autosuggest element to the same page as, or a page ahead of, its specified question filter.
+Try changing the configuration and then refresh your browser window.
+“I tried to upload an answer source file, but it failed and displayed an error.”
+Make sure your answer file meets the listed requirements. If it does, make sure that the following criteria is also being met:
+Your file does not contain spreadsheet formulae (e.g., including “=FORMULA("string",True,0)” will cause an error).
+Your file’s extension matches its type (e.g., an Excel spreadsheet called txt will cause an error).
+“I tried to launch my survey and saw the following error:”Exception occurred, code "NDCWC" Error text: <h3>Error autosuggest:filename is required. </h3>
+This message indicates that the Autosuggest element is not configured properly. Check that the following conditions are true:
+You have added a valid answer file.
+You have mapped the required columns (“Answer” and “Unique ID” are required).
+Any optional filters you have applied are configured properly.
+If you have verified that all Autosuggest elements are configured properly, try refreshing the browser page before re-attempting to launch your survey. You may also try deleting your Autosuggest element(s) and re-building them from scratch.
+4.3: Restricting Response Length
+By default, there are no limitations on the length of the values participants can enter for Autosuggest rows. If you would like to restrict the length of participant responses, you must use a custom <validate> function.
+To add this function to an Autosuggest element, first locate the element within your survey XML. Then copy and paste the following code snippet directly into the element:
+<validate>
+minLength = 3
+maxLength = 10
+errorMessage = "Your answer must be between {min} and {max} length. Your answer was {current}."
+for qRow in this.rows:
+valueLength = len(qRow[1].val)
+if valueLength lt minLength or valueLength gt maxLength:
+error(errorMessage.format(min=minLength, max=maxLength, current=valueLength), row=qRow)
+</validate>
+Finally, update the following variables to match whatever values you desire, and save to apply your changes.
+minLength: The minimum number of characters you require for a response to be considered valid.
+maxLength,: The maximum number of characters you require for a response to be considered valid.
+errorMessage: The text you would like to display within the question when participants enter an invalid response. If desired, you may keep the {min} and {max} variables in order to pipe in your minimum and maximum length values. The {current} variable will pipe in the character count for the participant's original response value.
+5: Learn More
+See Autosuggest Element to learn how to add an Autosuggest Element using the Survey Editor.

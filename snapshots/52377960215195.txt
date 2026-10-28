@@ -1,0 +1,7 @@
+Title: June 30, 2026 Release Notes 
+Release Date: The following items were released between June 16, 2026 and June 30, 2026
+Bug Fixes
+Programming and Tools
+It is no longer possible to archive delphi surveys that have child surveys. Any child surveys must be archived first, and then the parent survey may be archived.
+Custom Code Elements (Logic Nodes)
+AI Compute logic nodes now fully process all queued records even after a survey closes or stops receiving new responses.

@@ -1,0 +1,28 @@
+Title: 153.6 Release Notes
+Release Date: April 25, 2023
+Release Version: 153.6
+New Features
+Survey
+Participant View
+Removed default privacy policy link from new surveys.
+Reporting
+Crosstabs
+Added the "Participant Status" button to quickly run a report filtered by Participant Status. Mirrors the "Filter" function of Report 2010.
+Learn More: Crosstabs Entry Page
+Programming and Tools
+API
+The beacon API tool now supports key.value syntax for easy specification of complex arguments.
+For example, to edit one data record, you can now use here beacon put ./data/edit key=uuid data.0.uuid=epfm3wpkj89vmqdq data.0.q1=q1_updated. Previously, a JSON object was required: here beacon put ./data/edit key=uuid data='[{"uuid" : "epfm3wpkj89vmqdq", "q1": "q1_updated"}]'.
+Modified the Crosstab-Execution Rest API to allow specifying a global (or per-segment) weighting variable.
+Bug Fixes
+Survey
+Dynamic Questions
+When "oneRowAtATime" is applied to the Autosuggest element (autosuggest.4), participant data now includes "No matches found" for all non-matching rows, instead of only the first non-matching row.
+Participant View
+Using keyboard controls to select responses from an Autosuggest element that has the excludeRowSelections option enabled no longer displays duplicate rows.
+Responses
+Campaign Manager
+The Spam Rate on the Response Summary page now displays the accurate rate. For the last few months, it always showed a rate of 0%.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+The RelevantID (relevantid.6) logic node can now be used within a <block> without errors.

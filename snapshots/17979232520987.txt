@@ -1,0 +1,30 @@
+Title: 153.14 Release Notes
+Release Date: August 15, 2023
+Release Version: 153.14
+New Features
+Portal
+Archived surveys are now listed and can be unarchived from the new Archived Surveys section of the Company page in Portal.
+Learn More: Archived Surveys Report
+Project owners will be notified via email when they have surveys with a deprecated compat level.
+Learn More: Survey Compat Levels
+Responses
+Campaign Manager
+Deleting an email campaign now deletes the associated recipient lists as well, not just the invites.
+Learn More: Actions in the Campaign Editor
+Added a new API endpoint DELETE /surveys/{survey}/campaigns/{campaign}.
+Bug Fixes
+Survey
+Participant View
+Open-end input fields in Button Select questions no longer hide their row text when using the tiled or horizontal layout styles.
+In Button Single-Select questions on mobile devices, a deselected option no longer retains the hover style.
+Survey Editor
+Updated "Learn More" links for the MaxDiff and QuantText dynamic questions.
+Removed "Learn More" links for the Audio Testimonial and Quester ITB dynamic questions.
+Title text and instruction text now support horizontal alignments.
+Survey Testing Tools
+When clicking on 'login' while previewing a survey, users will be taken to the correct testing survey address.
+Reporting
+Data Downloads
+Users with appropriate custom permissions can now access the Data Content section.
+Custom Data Downloads list items that do not include a link now display correctly.
+Data Downloads from ad-hoc Crosstab reports now include the corresponding, relevant data as per the selected Participant status.

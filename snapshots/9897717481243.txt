@@ -1,0 +1,22 @@
+Title: 144.19 Release Notes
+Release Date: August 11, 2020
+Release Version: 144.19
+New Features
+Programming & Tools
+API
+Updated the Create Campaign endpoint to allow for multiple email sends of the same type to be scheduled in succession.
+Bug Fixes
+Portal
+Fixed an issue preventing the “Statistics & Reports” section from appearing on the Company page for company supervisors.
+Responses
+Campaign Manager
+Fixed an issue preventing new email campaigns from being created using email templates.
+View/Edit Responses
+Fixed an issue causing the report to crash when attempting to upload data fields with large files attached.
+Reporting
+Crosstabs
+Fixed an issue causing the “Share a Crosstabs Export” survey element to send duplicate reports.
+Fixed an issue preventing Crosstabs from loading when data weighting is applied to a report containing a large number of float questions / numeric data.
+Programming & Tools
+Custom Code Elements (Logic Nodes)
+Fixed an issue causing some logic nodes to fail when their file descriptors were reset.

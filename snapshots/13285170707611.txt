@@ -1,0 +1,49 @@
+Title: 153.2 Release Notes
+Release Date: February 28, 2023
+Release Version: 153.2
+New Features
+Survey
+Language Manager
+Added new country-specific languages for data collection: Arabic (Iraq), Arabic (Jordan), Arabic (Kuwait), English (New Zealand), English (UAE), Greek (Cyprus), Russian (Belarus), Russian (Kazakhstan), Spanish (Costa Rica), and Spanish (Dominican Republic).
+Learn More: Available Survey Languages
+Reporting
+Crosstabs
+Improved Crosstabs performance.
+Programming and Tools
+The here beacon eval tool now supports Delphi without needing to specify a UUID. To evaluate python code in the context of a survey: from your shell, run here beacon eval survey/path. Then run q1.r1.any or any other Python condition that would normally specify within the survey.
+API
+Added API documentation for users and surveysaudit-log API calls.
+Updated the API endpoint documentation for surveys/*/edits.
+When an API key is created, rekeyed, or deactivated for a user, that user will now be notified via email.
+Added the api.get_paged method to the API library to split the output for audit log endpoints over several pages.
+Custom Code Elements (Logic Nodes)
+Added the Tremendous logic node, to allow ordering and delivering a variety of rewards from Tremendous to survey participants.
+Learn More: Tremendous Integration
+The Logic Debug page now allows encrypting values even when the survey is not yet valid.
+Learn More: Logic Debug
+Bug Fixes
+Survey
+Dynamic Questions
+The previous version of Rank Sort (ranksort.4) is now compatible with the latest survey compat (153).
+When using autosuggest.4, 'No Match' is populated for all unanswered optional answers.
+Participant View
+In Dropdown questions, characters like Ø and Æ are now visible in selected answers.
+Floating text is now positioned correctly when used in atm1d.11 questions that include images.
+In survey compats 152 and 153, the size of the input field for number and float questions now changes appropriately when the size attribute is set.
+On Android devices, an open-end answer will be automatically selected when a participant begins typing in the text field.
+SST
+When atmost is used on a checkbox question with a higher value than available options, SST no longer displays an error.
+Survey Testing Tools
+Autosum variables are no longer populated with the html character for 'space' when the question is edited via the QA tools.
+Responses
+Participant Sources
+The header text shown when editing a Participant Source now correctly identifies the source's type.
+Reporting
+Crosstabs
+Naming a question WEIGHT_COUNT no longer prevents Crosstabs from loading.
+Data Downloads
+The "Random Order" data download now displays the shuffled row list correctly when you use altlabel to relabel the report label for the question.
+Double-quotes in responses are no longer replaced with a space in View/Edit Responses, Excel downloads, and JSON API downloads.
+Programming and Tools
+API
+API calls for CATI server now return relevant status messages.

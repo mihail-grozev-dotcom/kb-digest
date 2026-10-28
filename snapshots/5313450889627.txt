@@ -1,0 +1,38 @@
+Title: Importing Recipients from Salesforce
+        
+After
+connecting your Salesforce account to your Forsta Surveys account,
+you can add a recipient list from Salesforce to Forsta Surveys. The connected
+Salesforce account will need to have access to the Salesforce campaign or the
+Salesforce report in the selected Salesforce report folder, and you will need
+to create an
+email campaign
+in an existing or
+new survey.
+1: Import Recipients
+After creating a new email campaign,
+click +Add next to “Recipient List” in the Campaign Launch Checklist.
+A new modal will appear, asking where to pull the file from. Click the
+Salesforce tab.
+Reports and campaigns for the selected account are displayed in the “Salesforce”
+tab. If more than one account is connected, you can choose a different account
+from the drop-down menu at the upper left.
+Choose a report or campaign and check the box to confirm that recipients have
+opted-in to your communications. Then click Import Selected
+to import the selected file.
+A new modal will appear, showing the import progress for the file. When it has
+finished loading, a message appears indicating that the import was successful.
+Click Close to continue.
+Verify that your file name is showing as the “Recipient List” in the Campaign
+Launch Checklist.
+Click the list name to review the contents of the list and verify that recipient
+details are correct.
+You can now use this recipient list for your Forsta Surveys email campaign. To
+send emails using the campaign manager, see
+Sending Emails in the Campaign Manager.
+2: Learn More
+Connecting Decipher with Salesforce
+Managing Salesforce Connections
+Salesforce Integration FAQ
+Creating an Email Campaign
+Sending Emails in the Campaign Manager

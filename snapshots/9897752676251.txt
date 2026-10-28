@@ -1,0 +1,28 @@
+Title: 146.1 Release Notes
+Release Date: February 2, 2021
+Release Version: 146.1
+New Features
+Survey
+Language Manager
+Added Urdu (India) to the list of supported survey languages.
+Responses
+Response Summary
+Updated quota definitions in the Quotas tab to display on hover by default; definitions display can still be disabled in the Response Summary Preferences menu.
+Updated quota settings to display in-progress and overquota counts when the “In Progress” and “Overquota” columns are disabled in the Response Summary Preferences menu. Counts are displayed in parentheses next to their associated quotas.
+Bug Fixes
+Survey
+Survey Editor
+Fixed an issue preventing image watermarks from being displayed to some participants.
+Responses
+Response Summary
+Fixed an issue preventing users with view-only access from being able to view the Response Summary Preferences menu.
+Fixed an issue causing an error when attempting to replace a quota limit with “inf” for quotas uploaded via a quota.xls file.
+Fixed an issue causing an error when using the date filter to view past days for projects with multiple days’ worth of data.
+Fixed an issue causing an error when attempting to update a quota in a live survey.
+Reporting
+Crosstabs
+Fixed an issue causing a discrepancy in the qualified completion counts when migrating surveys with delphi="1" enabled.
+Fixed an issue causing an error when attempting to display charts for some Text Highlighter questions.
+Architecture/DevTools
+Fixed an issue causing errors when attempting to run the update-mail-reports script.
+Fixed an issue causing errors when attempting to migrate database information from one company to another using the devops/umigrate script.

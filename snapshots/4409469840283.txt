@@ -1,0 +1,53 @@
+Title: Allowing Participants to Take a Survey Only Once
+1: One-Time Entry
+We have a survey and want to ensure that no single participant can repeat the survey once they have pressed the "Continue" button once.
+The project contains very sensitive data and we don't want to allow participants to the opportunity to re-enter the survey. The survey is pasted below and the sensitive data is displayed at Q3.
+<radio label="Q1" title="Are you...">
+<comment>Please select one</comment>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<number label="Q2" optional="0" size="3" title="What is your age?">
+<comment>Please enter a whole number</comment>
+</number>
+<suspend/>
+<html label="Q3" where="survey">
+<p>Super sensitive data: <b>42</b></p>
+</html>
+1.1: Setting Unique Variables within Participant Sources
+A unique variable will allow participants to enter the survey with that variable ID only once. Any future attempts to enter the survey with the same ID, participants will be blocked. You can restrict the participants that complete your survey by adding a participant source with unique variables.
+To get started, add a new participant source. To do this, first, click "Participant Sources" in the Survey Elements tree and then click "Add New Participant Source". Specify the participant source you want to add and click "Insert".
+Then, click to remove the open sample.
+Click "Variable" to add your URL.
+Enter the name of your unique variable. In the example below, the variable is named "myID".
+Enter and select the following to input the variable information:
+Variable Name: Type the variable to append to the URL for this sample provider.
+Requirement: Set to unique.
+Authentication: Select one of the following.
+No Authentication: The variable is required in the URL but can be anything and the system will use internal tracking to verify the uniqueness of the variable.
+File: Upload a file that contains the values you want to verify the variable values against. The file must be in plain text format (.txt) with one value per line (e.g., one column). Note that for safety precautions, if you upload a file, the file name will not match the name of the uploaded file.
+Click "Save" to save the variable information and add it to the participant source.
+The variable displays in the Participant Source window. If you need to delete the variable, simply click the x next to the variable name. You can make changes to the variable using the drop down lists.
+1.2: XML Set Up
+Below is an example of how a unique variable might look in XML.
+<samplesource list="1">
+<title>Custom Participant Source</title>
+<completed>It seems you have already entered this survey.</completed>
+<invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+<var name="myID" unique="1"/>
+<exit cond="terminated">Thank you for taking our survey.</exit>
+<exit cond="overquota">Thank you for taking our survey.</exit>
+<exit cond="qualified">Thank you for taking our survey. Your efforts are greatly appreciated!</exit>
+</samplesource>
+</samplesources>
+1.3: Verify Unique Participants
+You can further restrict participants from entering your survey by adding fingerprint detection via your project settings menu.
+To further restrict participants, from the Build menu, select "Project Settings" and then click "Field Settings". In Field Settings window, change the "Verify Unique Participants" to "Advanced Detection". Click "Save".
+The Advanced Detection setting is described as the following and uses modern browsers (e.g., IE9+, Firefox, Chrome).
+Participant duplication prevention is based on cookies as well as unique identifiers stored using the following methods:
+HTML5: A cookie that has a more modern storage method than old style cookies.
+ETag: A value stored within the browser cache, allowing cross-domain detection when surveys use a cname.
+Flash: A cookie stored inside Flash Local Storage (Flash 9.0+ released 2006).
+Note: This method of finger print detection is considered safe with no chance of "false positives".
+Learn More: Verifying Unique Participants

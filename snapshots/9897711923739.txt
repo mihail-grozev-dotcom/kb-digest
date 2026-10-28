@@ -1,0 +1,48 @@
+Title: February 6th Technical Release Notes
+This document contains the technical release notes for Decipher's (previously Decipher) February 6th release.
+Release Date: February 6, 2018
+New Features
+Crosstabs: Table Settings in Library
+Add default nets and stat scores to saved elements.
+Reuse table settings for the same elements across multiple surveys.
+Data Redaction
+Hide participant information and open-ended responses based on flags in the survey data.
+Set permissions for viewing sensitive data based on user account.
+Control the flow of information by user type without affecting report counts.
+Portal
+Company Settings - Application Access: Use of Report 2010 can be enabled per company. New companies will have Report 2010 disabled. Existing companies will automatically have Report 2010 access enabled.
+Application access requires staff access to set. Staff users are not affected by this application access toggle.
+Bug Fixes
+Reporting
+Fixed a rare issue where virtual question updates while running report would not complete for auto-recovering surveys
+Crosstabs
+Fixed an issue where exporting PPT from Crosstabs in projects with long row text caused a fatal
+Fixed a rare issue where saving table edits for multi-dimensional questions with grid tables and nets would not load
+Dashboard
+Fixed an issue with Dashboard PPT exports having incorrect precision and showing percentage symbols
+Fixed an issue where the "Getting Started" video was not displaying
+Responses Report
+Fixed issue where in-progress participants filtering did not account for PII levels
+Data Downloads
+Fixed an issue in SAS export where LRECL in custom layouts was defaulting to the value of the standard layout when the custom layout had more variables than standard layout
+Survey
+Fixed an issue where protected images would not show inside a survey
+Dynamic Questions
+Fixed an issue with Video Player where Brightcove would time out
+Fixed an issue where uploading HEIC images caused various errors
+CAPI
+Release of version 2.4 includes:
+Added a new warning that shows you need to be online to first download a survey
+Added a new warning that your survey has errors and can not be taken
+Fixed an issue where all questions inside a randomized block would not be shown
+Fixed an issue with using the camera with the Image Upload DQ
+Fixed an issue with using the camera to take a video with the Video Capture DQ
+Portal
+Fixed a rare issue where project data would not display on a project when using grid view until accessed by reporting
+Programming & Tools
+Custom Code Elements
+Fixed an error in Relevant ID
+Fixed a typo in Virtual Incentives
+Misc / Custom Projects
+Updated Powerpoint exports look and feel
+Updated FocusVision and Decipher logos

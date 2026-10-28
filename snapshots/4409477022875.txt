@@ -1,0 +1,28 @@
+Title: Guide to Programming Multi-Language Studies
+Creating a multi-language study allows you the opportunity to gather data from participants around the world. Using the Decipher Survey Editor and XML tools, you can easily enable your survey to display in the appropriate language for your diverse participant base.
+These documents were designed to help guide you through the process of creating a multi-language study from start to finish.
+If you've never created a multi-language project, be sure to read all of the sections below before getting started:
+1: Before You Start
+Before starting this guide, make sure that you have programmed your survey according to your questionnaire using either Survey Editor or the XML editor. Include pipes, concepts, and everything that you would include in a single language study.
+Note: The language used to program the survey is the language displayed in the tables of the reporting tools.
+1.1: Programming Multi-Language Studies
+In this section of the guide, learn the basics of adding multiple languages to your survey by using either the Survey or XML editors.
+Learn more: Programming Multi-Language Surveys
+1.2: Best Practices for Programming Multi-Language Studies
+Programming a multi-language study can be difficult! Here’s a list of best practices to get you started on the right track when working on a multi-language study.
+Learn more: Best Practices for Programming Multi-Language Surveys
+1.3: Translating Multi-Language Studies
+Now that you’ve completed programming your survey, and you’ve finished testing it thoroughly, you’re ready to start translating your survey.
+Learn more: Translating Multi-Language Studies
+1.4: Testing Translations for Multi-Language Studies
+When working on a project, you want to make sure that it's completely free of errors before launching and attempting to collect data from participants. Use the following techniques to test your multi-language survey and before going live.
+Learn more: Testing Survey Translations
+1.5: Making Changes to Translations for Multi-Language Studies
+So what happens when you realize that there’s an error in an uploaded translation file, or you realize that your file was missing translations? In the event that that happens, you’ll want to follow the steps in this tutorial to manually update translations in your project.
+Learn more: Making Changes to Translations for Multi-Language Studies
+1.6: Making Live Translation Changes for Multi-Language Studies
+The survey editor allows you to edit a survey that is live and actively collecting data. The process involves setting up a temporary version of the live survey that allows you to make the appropriate edits. This process remains the same when updating translations for a live multi language study.
+Learn more: Making Live Translation Changes
+1.7: Downloading the Datamap in Multi-Language Studies
+You may want to download the datamap in each language you programmed. You can download some datamaps in each language that you have added to your survey. Use the Language drop-down menu on the Download Data page.
+Learn More: Data Downloads and Formatting Options

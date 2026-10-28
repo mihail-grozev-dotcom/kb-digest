@@ -1,0 +1,9 @@
+Title: Assigning Numerical Values to Answer Options
+In Decipher, users can assign both data values and statistical values to a question's answer options. This can be particularly useful for rating and similar questions, where you may want your response options to flow one way in the survey and another way in the report.
+1: Assigning the Data Values
+Open the question in the Survey Editor and click the desired answer option to select it. Then, enter the data value that you would like to use for that option in the "Data Value" box.
+Note: You can use both positive and negative numbers for data values.
+2: Assigning the Statistical Values
+Open the question in the Crosstabs table editor and assign statistical values to the answer options under "Stat Values".
+Note: You can use both positive and negative numbers for statistical values.
+Learn more: Editing Tables in Crosstabs

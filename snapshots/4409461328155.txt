@@ -1,0 +1,61 @@
+Title: Data Verifiers
+Open-ended questions like <text>, <textarea> and <number> questions come equipped with the verify attribute. This attribute is used at the question or question element level to restrict responses to a certain format.
+1: Using Verifier Functions in the XML
+The verify attribute uses regular expressions to check the alpha-numeric content of a participants' response. If applied at the question level, the responses for each input are checked against the regular expression and must match in order to be accepted. As illustrated below, the verify attribute can also be applied at the row or column level and there are a number of built-in verifier functions to choose from.
+<text label="..." title="Enter your email address below." verify="email"/>
+<text label="..." title="Fill in the information below.">
+<row label="name" verify="len(1, 32)">First Name</row>
+<row label="phone" verify="phoneUS">Phone #</row>
+<row label="zip" verify="zipcode">Zip Code</row>
+</text>
+<text label="..." title="Which year were you born?" verify="digits;len(4);range(1900,2014)"/>
+Note: The example above also demonstrates the ability to stack verifier functions.
+2: Using Verifier Functions in the Survey Editor
+First create the question in the Survey Editor. Then click "verify" in the options panel to the right of the staging area and choose a verifier from the drop-down.
+Finally, test the survey to confirm the question is functioning correctly.
+3: Built-In Verifier Functions
+The table below provides a list of all available verifier functions.
+Verifier
+Description
+Example
+Email
+The data entered must resemble an email address. In short, it should contain the @ symbol followed text, a dot and ending with 2 - 25 characters (e.g., user@domain.com, user@social.media).
+Scope: <text>, <textarea>
+verify="email"
+US Zip Code
+The data entered must be 5 digits long (e.g., 93722).
+Scope: <text>, <textarea>
+verify="zipcode"
+Zip Code w/Extension
+The data entered must be 5 digits immediately followed with a hyphen and 4 digits (e.g., 93722-1234).
+Scope: <text>, <textarea>
+verify="zipcodeExt"
+Number Range
+The data entered must fall in the range provided. Note that the minimum and maximum values provided exist within the set of accepted inputs (e.g., range(1, 100) accepts values 1, 2, 3, ... , 99, 100).
+Scope: <text>, <textarea>, <number>
+verify="range(MINIMUM, MAXIMUM)"
+Digits
+The data entered must be a number, using only arabic numerals 0 - 9 (e.g., 1, 123, 9001).
+Scope: <text>, <textarea>
+verify="digits"
+Number
+The data entered must be a number, integer or decimal (e.g., 100, 10.0, $10, 10.00, 1,000).
+The following characters are ignored and will be accepted as input: $ , .
+Scope: <text>, <textarea>, <number>
+verify="number"
+US Phone Number
+The data entered must be a 10-digit US phone number (e.g., 559123456).
+Scope: <text>
+verify="phoneUS"
+Response Length
+The data entered must be a certain number of characters in length, or at least a certain number of characters in length (e.g., len(5) ensures that at least 5 characters are entered, len(5,10) ensures that at least 5 and at most 10 characters are entered).
+Scope: <text>, <textarea>, <number>
+verify="len(MIN_LENGTH)"
+verify="len(MIN_LENGTH, MAX_LENGTH)"
+Date Range
+The data entered must be a date range, including the desired date format as well as range start and end times. Acceptable date formats include: dd/mm/yyyy, mm/dd/yyyy, yyyy/mm/dd. Acceptable start and end times can be any, a specific date, or today (e.g., daterange(mm/dd/yyyy, 01/01/2019, today) allows participants to enter any date in mm/dd/yyyy format starting from 01/01/2019 to the current day).
+Scope: <text>
+Syntax: daterange(FORMAT, START, END)
+daterange(yyyy/mm/dd, today, any)
+daterange(mm/dd/yyyy, 01/01/2019, today)
+daterange(dd/mm/yyyy, 10/02/2019, 10/16/2019)

@@ -1,0 +1,15 @@
+Title: 147.1 Release Notes
+Release Date: March 2, 2021
+Release Version: 147.1
+New Features
+Portal
+Added a warning and confirmation message to display when attempting to launch a survey containing purchased sample and no quotas.
+Architecture/DevTools
+Updated the project cleanup process to remove all excess directories for temp surveys with delphi="1" enabled.
+Bug Fixes
+Survey
+Start from Template
+Fixed an issue causing the default images included in the Brand Perception and Brand Awareness templates to extend beyond their configured widths.
+Reporting
+Crosstabs
+Fixed an issue causing videos to play instead of being downloaded when attempting to export them from a Video Testimonial question.

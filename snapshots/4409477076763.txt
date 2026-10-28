@@ -1,0 +1,192 @@
+Title: QuantText Element
+The QuantText element allows researchers to incorporate real-time one-on-one
+interview sessions into a quantitative online survey.
+Example:
+The is an example of what will show on the participant’s screen as the interview
+session begins. The HTML code provided by
+QuantText™ by Schlesinger Group produces
+the screen below within the Decipher survey.
+If a moderator is not available or the chat quota has been filled, a message
+like the one shown below will appear on the screen asking the participant
+to please hit the “Continue" button.
+1: First Steps
+1.1: Notify Your QuantText Contact
+Before you add the QuantText element, you must first contact your QuantText™
+by Schlesinger Group representative. They will provide you
+with the script URL you will need to insert into the Decipher logic node.
+1.2: Pulling the Survey Datamap
+If you would like the QuantText™ representative
+who will be chatting with participants to know what each participant
+answered in questions preceding the chat session, you will need to send
+those questions to QuantText beforehand.
+To do this, click the Actions menu for the project and select “Export
+Survey” from the drop-down menu. In the Export Survey window, select
+"Text" from the available formats. The datamap for your survey will appear
+in your browser window, including the survey text and corresponding labels.
+You can then copy the desired questions and email them to your QuantText™
+representative.
+This information will be used to create a unique URL for you to enter
+in the QuantText element, as explained in the steps below. When the chat
+box is shown to a participant, their answers to those questions will
+be passed to the representative chatting with them. It will also be used
+by QuantText to keep counts and track quotas on the number of completed
+chats.
+2: Adding an QuantText Element
+To insert the QuantText element, add a new survey element, select the “Advanced”
+tab and select the QuantText Logic Node.
+Once inserted, the following logic node will appear with a Script URL field
+and a Question Map field.
+2.1: Script URL
+To have the participant's data inserted into the script URL, you need
+to tell Decipher which survey elements to retrieve the data from for
+each parameter in the URL.
+The URL of the script tag (provided by QuantText™
+by Schlesinger Group) should be entered in the "Script URL"
+field. When you receive the URL from QuantText, it may still contain
+some extra JavaScript language around the actual URL.
+In this example, you would remove everything except the URL:
+<script type="text/javascript" scr="//www.quanttext.io/chatter?Respondent=&jISN=1000&Q1=&Q2=&Q3=&Q4=&GENDER=&AGE=&EDUCATION="></script>
+The URL should look as follows once the JavaScript is removed:
+//www.quanttext.io/chatter?Respondent=&jISN=1000&Q1=&Q2=&Q3=&Q4=&GENDER=&AGE=&EDUCATION=
+Be sure to make no other changes to the URL other than copying from the
+script tag and pasting it into the custom element unless you are moving
+an open-ended question to the end of the URL.
+If you do want to pass responses to an open-ended question to QuantText,
+you must move that question to the end of the URL. The URL can only pass
+up to 2,000 characters, and by moving the open-ended question to the
+end of the URL, you can ensure that the rest of the participant's data
+is communicated to QuantText if the participant writes a long response
+and part of the answer is cut off.
+Using the same example, q3 is an open-ended text question, so you would
+move &q3= to the last position in the URL:
+//www.quanttext.io/chatter?Respondent=&jISN=1000&Q1=&Q2=&Q4=&GENDER=&AGE=&EDUCATION=&Q3='
+Once you have made the necessary changes, paste the URL into the “Script
+URL" field.
+2.2: Question Map
+The question map tells Decipher which survey element to retrieve the
+data from for each variable being requested in the URL. You will have
+to specify instructions for each variable in the URL after the question
+mark ("?"), excluding the "jISN" variable because it is not a variable
+in the survey. QuantText uses the "jISN" value to identify the survey.
+Define these variables by specifying them in a space delimited format
+for each URL parameter.
+Start by entering each variable in the "Question Map" field, followed
+by an equals sign (=). This is case-sensitive so you must enter the variables
+exactly as they appear in the URL.
+At the other end of each equals sign, you need to tell Decipher which
+question in the survey it should pull the responses from.
+The first variable is Respondent=. You can use any unique identifier
+collected in the survey data from your sample source lists (e.g., a participant
+source unique variable), or simply use the uuid.
+From there, specify where all other variables are pulling from.
+It is helpful to have the datamap open so you can easily find the question
+labels. To open the datamap, return to the primary page of your survey.
+Click the Actions menu for the project and select “Export Survey” from
+the drop-down menu. In the Export Survey window, select "Text" from the
+available formats. The datamap for your survey will appear in your browser
+window, including the survey text and corresponding labels.
+Tip: Single-dimensional questions only require the question label
+because there is only one option to pull the answers from. For multi-dimensional
+questions, specify the row or column that the responses should be pulled
+from.
+Using the same example:
+Q1 and Q3 are single-dimensional
+questions, meaning they only contain rows or columns. You
+only need to enter the question label for Decipher to know what information
+to pass.
+Q2 and Q4 are 2-dimensional grid
+questions, meaning they have to be broken out by row in order to
+pass the columns selected for those rows. A grid question may also
+be grouped by columns, meaning you would enter the [question label].[column
+label] and this would result in passing the row response for each
+column.
+If you are unsure how to enter the labels for a question,
+click here
+to jump to a table that describes the different configurations.
+3: Testing
+You will need to schedule a time with QuantText™
+by Schlesinger Group to review the content. If you test the
+survey at any other time, you will see a placeholder message where the chat
+will occur.
+At the scheduled time, test the survey and when you reach the chat element,
+the QuantText window will appear and the representative will be able to confirm
+that the implementation worked and they have received the values from all
+of the URL variables.
+4: References
+4.1: Question Configurations for the Question Map
+This table describes the different configurations between question types
+and their answer options.
+Question Type
+Dimension
+Question Map Example
+Passed in URL
+Respondent Identifier
+N/A
+=UUID
+12345
+Single-select
+1-dimensional (rows or columns)
+=q1
+r2 (if rows)
+c3 (if columns)
+2-dimensional (rows and columns)
+=q1.r1 (if "grouped by" rows)
+=q1.c1 (if "grouped by" columns)
+c3
+r2
+Multi-select
+1-dimensional (rows or columns)
+=q1 (to pass the selected row or column label)
+r2 (if rows)
+c2 (if columns)
+1-dimensional (rows or columns)
+This configuration allows you to specify a specific row
+or column and will pass a 0 if it's not checked or 1
+if checked.
+=q1.r2
+=q1.c2
+0 (not selected)
+1 (selected)
+2-dimensional (rows and columns)
+=q1.r1 (if "grouped by" rows)
+=q1.c1 (if "grouped by" columns)
+c3
+r2
+2-dimensional (rows and columns)
+This configuration allows you to specify a specific row or
+column and will pass a 0 if it's not checked or 1 if checked.
+=q1.r2.c1
+=q1.c2.r1
+0 (not selected)
+1 (selected)
+Select (drop-down)
+1-dimensional single dropdown (choices with no rows
+or columns)
+=q1
+ch2
+2-dimensional (choices, with rows or columns)
+=q1.r1 (if "grouped by" rows)
+=q1.c1 (if "grouped by" columns)
+ch2
+3-dimensional (choices, rows and columns)
+=q1.r2.c1
+ch2
+Text or Number
+1-dimensional single answer field (no rows or columns)
+=q1
+open-ended response or number value
+1-dimensional (rows or columns)
+=q1.r1 (if rows)
+=q1.c2 (if columns)
+open-ended response or number value
+2-dimensional (rows and columns)
+=q1.r1.c1
+open-ended response or number value
+Autofill
+1-dimensional (single classification)
+=q3.r1
+0 (not selected)
+1 (selected)
+1-dimensional (multiple classifications)
+=q3
+r1,r3,r7

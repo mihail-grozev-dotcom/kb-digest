@@ -1,0 +1,51 @@
+Title: Decipher (previously Decipher) M31 Technical Release Notes
+Release Date: December 15, 2015
+Dynamic Questions
+21563: Client specific dynamic questions must be put into the selfserve/client/lib directory which is now searched right after the survey's lib directory. Avoid using lib/local unless it's really a DQ local to this particular server. Questions of general useful nature should be moved to the DQ team
+#21436: Button Select 8 no longer gets confused if a browser (namely Firefox and Internet Explorer) saves the form data after a page refresh.
+#21493: Button Select Grid 5 and 6 buttons are now always fully clickable and selectable under compats 129 and 130.
+#21627: Resolved an issue where the "no answer" checkbox was not showing up (displaying or functioning properly) for Image Map DQ.
+Dashboard
+#21533: New gauge chart.
+#21679: New "benchmark" attribute for gauge chart.
+#21526: Now “default=1” for local filters.
+#21623: Combine 2 line chart datasets into one chart.
+#21635: Specify a postfix string for datalabels.
+#21286: Sigtest results are now included in exports.
+#21452: Showif can now be based on local filter ids. Local segments can now include a showif condition.
+#21528: Sigtesting when using stats has been updated to use the numeric stat test based on mean.
+#21621: When no label is specified for pie charts, the label is the count and percentage.
+#21431: Formulas can now be applied to data.
+#21534: Scatter plots and bubble charts added to dashboards.
+#21648: Allow transpose when all rows are metric.
+#21655: Added a conds attribute to allow grid questions to be displayed in a single chart or table.
+Survey
+#21685: Brightcove video player support for secure surveys.
+Survey Builder
+#21030: Removed confusing whitespace above translation grid.
+#20386: Implements an improved, API-driven element library.
+#20666: Resolved an issue where Builder > Descriptive content element > More Options was missing all values.
+Theme Editor
+#21413: Introduced the ability to export existing theme.less files and save them locally. Afterwards you can use the file as a template to customize the theme and even create a new theme. Use import to upload customized theme.less file to Decipher.
+Device Preview
+#21489: Added the ability to rotate the view for tablet and mobile devices so you can toggle between portrait and landscape views for a survey.
+XML Editor
+#20007: Improved error reporting.
+Portal
+#21377: Updated New Project modal to be easier to use. Can now start a survey from a template.
+Programmer Tools
+#21543: The bulk unhash command reverses the email hashes in a file. This is useful for reading the complaints.txt file that lists the people who complained that the email invite was spam. When you specify a filename as argument, all lists in file's directory are read in and the hashes are reversed.
+CATI
+#21508: Reschedule sample with the dialer at callback time.
+#21507: Additional table in the "Disposition Report" tab which splits "available for Retry" into their most recent call-history disposition (e.g., No Answer) and selected split field.
+#20912: Resolved an issue where the same sample would be sent to the dialer multiple times.
+Bugfixes
+#21331: Simultaneous edits now prevented while performing a live merge in Builder in most cases.
+#21209: The CSV data REST API would output an extra blank line at the end of downloads.
+#21475: Running bulk status on a list where items were modified will no longer error out if the log file references entries that cannot be found anymore.
+#21451: Webfonts in "Vintage" system theme now render properly in IE9.
+#21512: Fixes issue where textarea instruction text was not set when using project_created hook.
+#21606: Adds .fa-icon-check-empty, missing unchecked checkbox icon class to Font Awesome.
+Misc / Custom Projects
+#21527: Emails sent from the bulk system will now attach information about the send/client that the Gmail Feedback Loop can report on. This cannot be automated due to lack of an API, but clients/sends exceeding 1% threshold on Gmail loop will generally have their sending practices thoroughly examined.
+#21524: Binding for interacting with PIX API.

@@ -1,0 +1,56 @@
+Title: Monitoring Server Status
+Requires Decipher Cloud
+You may occasionally need to view your server's status and space details for planning purposes. In Decipher, the serverutil script can be used to monitor your server's overall health and usage.
+1: Monitoring Server Processes
+To monitor all processes currently running on a server, use the following syntax:
+serverutil monitor
+Running server utility monitoring on the back-end runs a top -c Unix command. This will show the processes taking up the most resources, sorted from top to bottom.
+2: Analyzing Disk Storage Usage
+2.1: Total Disk Space
+To view the total and available disk space for a server, use the following syntax:
+serverutil size server
+Passing the size and server arguments to the serverutil script will output the overall accessible server disk usage. The returned statistics include the total accessible disk space, as well as all available / used space and the percentages for each.
+Sample output:
+Total Disk Size: 158G
+Available Space: 129G (86%)
+Used Space(Percentage): 21G (14%)
+2.2: Company Directory Size
+A more detailed view of disk usage can be obtained by retrieving the size of each company directory. To view the sizes of all company directories housed on a server, use the following syntax:
+serverutil [--sort] [--filter=XXX] size companies
+When entered, serverutil will output the total size of each directory (including sub-directories) and its path.
+Sample Output:
+size path
+292K selfserve/5fb
+736K selfserve/6ab
+184K selfserve/7f0
+The following optional arguments can be passed through:
+Option
+Description
+--sort
+Specify all sizes in kilobytes and sort paths based on directory size, from largest to smallest.
+--filter=XXX
+Filter results based on the argument passed to filter. For example, using --filter='53' would return all lines that contain the number 53.
+Note: Similar to the grep command, the --filter option also accepts regular expressions, such as --filter='64.$'.
+2.3: Project Directory Size
+For an even more detailed view, you can retrieve the size of individual project directories. To view the sizes of all projects within a company directory, use the following syntax:
+serverutil [--sort] [--filter=XXX] size projects <directory>
+Similar to the company size script, the project size script drills down further into a specified directory. Using the previous example, if the directory selfserve/5fb was passed, a list of all its project directories (including projects, data, static files, etc.) is displayed with their corresponding sizes within that directory. The same optional arguments for listing company size are available for projects as well.
+For example, if you use the following to find your largest data directories:
+serverutil --sort --filter=data size projects selfserve/796
+You would see an output similar to the below:
+size(kb) path
+144 selfserve/796/160200/data
+104 selfserve/796/160201/data
+96 selfserve/796/160202/data
+4 selfserve/796/160400/data/old-results
+4 selfserve/796/160300/data/old-results
+2.4: Individual File Size
+Often, the sizes of various files on a server need to be known. To view the size for a specific server file, use the following syntax:
+serverutil [--sort] [--filter=XXX] size file <filename>
+While very similar to the project size script, the file size script would be used for accessing the size of specific files and not directories. Similar to listing sizes for both projects and companies, you have the same optional arguments of sort and filter.
+For example, if you wanted to know the size of all state.db files within a project, you would input the following:
+serverutil --filter=selfserve/53a size file state.db
+Sample Output:
+size path
+4.0K ./selfserve/53a/160600/data/state.db
+4.0K ./selfserve/53a/170600/data/state.db

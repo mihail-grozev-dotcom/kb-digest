@@ -1,0 +1,60 @@
+Title: 141.4 Release Notes
+Release Date: January 22, 2019
+Release Version: 141.4
+New Features
+Dashboards
+Added the option to include an Individual Response table in any dashboard with compat level 4 or higher. This new table displays question and response option data for individual participants and supports the following optional features:
+Links to view individual participant records within the View/Edit Responses report.
+Links to view images uploaded by participants via the Image Upload question (if applicable).
+Programming & Tools
+API
+Added two new endpoints:
+Get Completions: Allows users to view a copy of the "Completions" tab of the Response Summary report.
+Get Splits: Allows users to view a list of the names of the splits available for the Response Summary report.
+Custom Code Elements (Logic Nodes)
+Improved stability for logic nodes that have asynchronous calls.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed issues with sorting tables and charts in two-dimensional grid questions.
+Fixed a console error occurring if a crosstab segment contained certain values.
+Fixed an issue with the NPS survey template preventing Crosstabs reports from loading.
+Fixed an issue with significance testing data not being displayed in PowerPoint (.pptx) or PDF (.pdf) exports for tables with number questions.
+Fixed an issue when exporting crosstabs to PDF, where users would lose segment titles for questions that had more rows than a page could handle.
+Dashboard
+Fixed an issue where formula statistic rows were exporting as empty in PowerPoint (.pptx) and PDF (.pdf) formats.
+Fixed an issue with nets hiding some rows when sorting tables.
+View/Edit Responses
+Fixed an issue where some edit actions were not being saved in Delphi-enabled projects.
+Fixed an issue causing datapoints for multi-variable questions to appear in an incorrect order.
+Saved Reports
+Fixed an issue where custom bases were not displaying in PowerPoint (.ppt), PDF (.pdf), and Excel (.xls) file exports.
+Survey
+Survey Editor
+Fixed the "Learn More" link for the "Share a Crosstabs Export" element within the element menu.
+Fixed an issue with the Rich Text Editor not visibly showing italicized text in the staging area.
+Fixed an issue with title fields not being saved when users clicked away after making changes.
+Updated the Lucid sample source variable rid to RID.
+Project Settings
+Removed an obsolete radio button that was displaying in the Project Settings menu in the Survey Editor.
+XML Editor
+Fixed an issue where erroneous changes appeared to be saved but weren't actually saved.
+Fixed an issue where edits made to a survey were being lost after restarting a browser which was set to reopen the previous session on startup.
+Fixed a bug which enabled users to edit the XML for closed surveys when accessing them with a direct link.
+Survey Testing Tools
+Fixed an issue where printing tasks from the Tasks tool in the survey testing toolbar could result in a blank page.
+Fixed an issue where survey links were not being sent to phones when sending via SMS.
+Fixed an issue where the "Answer for Me" feature would not populate inputs which used the daterange verifier in the Date Picker dynamic question when taking a survey with QA codes on.
+Panel Management (previously Kinesis) Integration
+Fixed a compatibility issue between Panel Management datapoints and Decipher logic nodes. Question elements created by logic nodes will no longer attempt to create matching datapoints in Panel Management.
+Portal
+Adjusted the account expiration and application fields within the Company Settings menu to display timezone differences between server and local time.
+Fixed an issue within the Company Settings menu that was preventing users from uploading an image for new companies.
+Fixed an issue with the "Relaunch" option appearing for temporary (temp) projects.
+Fixed a bug which caused surveys to hang when re-launching them from the Portal.
+Project Parameters
+Fixed an error preventing users from saving project parameters after editing them from the navigation menu.
+Programming & Tools
+Fixed an issue with the archive script being able to archive non-data directories.
+Custom Code Elements (Logic Nodes)
+Fixed an issue with the Virtual Incentive and API logic nodes not working correctly if more than one used condition logic in a survey.

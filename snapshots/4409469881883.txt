@@ -1,0 +1,419 @@
+Title: System Language Resources
+System language resources are the default text displayed in survey error messages, tooltips, browser window tabs, support links, and buttons. To display alternate text on a per survey basis, a resource tag is used. This overrides a system language resource and allows the customization of text that will be included in a survey translation file. To learn more about managing multiple language surveys, see Guide to Programming Multi-Language Studies.
+Resource tags that override a system language resource can be nested in the applicable question tags or in the survey tag. When nested in the survey tag, the overriding text applies to the entire survey. When nested in an applicable question tag, the overriding text takes precedence, providing a per question override of system language resources.
+1: Overriding the Default System Language Resource
+To override the default text, create a resource tag in the XML and label the resource tag, sys_languageResource. The data in the resource tag will be the replacement text.
+For example:
+<res label="sys_textNoAnswerSelected">replacement text</res>
+The resource sys_textNoAnswerSelected text, "replacement text", will replace the default textNoAnswerSelected text (i.e., "Please provide an answer").
+1.1: Accessing Overridden System Language Resources in Code
+lget allows access to the system language resources that take into account overrides in the question tag or survey tag, and if none, use the default text. lget is used when the overridden text is shown for a non-standard behavior (i.e., custom validation). Below is an example of use in custom validation.
+<validate>
+if someLogic:
+error(this.lget("languageResource"))
+</validate>
+It is also possible to access system language resources within text via hlang.get. Below is an example of this using HTML.
+<html final="1" cond="not dbUserIDs.valid(User_ID.val)" label="invalid_id_provided" where="survey">
+<p>${hlang.get("invited.not")}</p>
+</html>
+2: Default System Language Resources
+System language resources are unique per tool and question type. Click a category below to jump to related resources:
+Surveys
+Calendars
+Multi-Select Questions
+Date Verifiers
+Single Select Questions
+Select Questions
+Number / Float Questions
+Text Questions
+NoAnswer Checkboxes
+Open-Ended Answer Fields
+Note: Survey system language resources nested within a question tag will have no effect.
+2.1: Surveys
+The following system language resources can be overridden in surveys.
+Resource
+Text
+Description of Use
+alreadyStarted
+The system has detected that you may have already started this survey. We have restored the data you entered, but if you would rather start over entirely, please click here.
+Displayed on the page when the survey enables participants to return to the survey from the same link after closing their browser (autosave="1") and a participant is returning to a survey.
+andjoiner
+and
+Displayed when joining the last row when piping from an autofill.
+back
+back
+Text displayed on the back button.
+clearAnswers
+Are you sure you want to clear your answers on this page?
+Displayed in surveys that have a "reset" button.
+closed
+We appreciate your interest, but unfortunately this survey is now closed.
+Displayed on the page when the survey is closed.
+closed.title
+Survey closed
+Displayed on browser window tab when survey is closed.
+complete
+Complete
+Displayed when participants mouse-over the progress bar.
+continue
+Continue
+Text displayed on the continue button.
+finish
+Finish
+Text displayed on the finish button.
+instructions
+Instructions
+Displayed when participants mouse-over the question instruction text.
+invited.geoip
+We're sorry, but this survey has a geographic requirement. You appear to be accessing this survey from outside of that geographic area.
+Displayed on the page when a participant's country is not in allowedCountries or forbiddenCountries, or they are from an IP address that cannot be decoded for digital fingerprinting.
+invited.inprogress
+Our records show that you are already taking this survey. If that's not correct, please wait 15 minutes and refresh this page. Thank you.
+Displayed on the page when a survey is lockdown by a variable and that variable has started but not completed (default timeout is 15 minutes) and inprogress is not set on the participant source.
+invited.not
+The URL above does not include the proper information to be included in this survey. Please review your invite email for the proper URL, and contact the individual specified if problems persist.
+Displayed on the page when participant is missing a required / unique variable in survey link or variable is not valid and invalid message is not set for the participant source.
+invited.used
+Thank you for your interest but it seems you have already finished this survey.
+Displayed on page when unique variables are used and this unique variable has already completed the survey and completed is not set for the sample source.
+listseparator
+,
+Displayed when joining rows when piping from an autofill.
+livemerge.body
+Sorry for the inconvenience but this survey is currently undergoing maintenance. We don't expect the survey to be down for long. I'll try to send your data again in 15 seconds automatically, or you can wait a bit and click.
+Displayed on the page during live edits merging.
+livemerge.title
+Sorry for the inconvenience but this survey is undergoing temporary maintenance. Please try again soon.
+Displayed on browser tab during live edits merging.
+mobile.devicenotallowed
+Sorry for the inconvenience but the device you are using is not supported by this survey. Please try again using a different device.
+Displayed on the page when a participant's mobile device is not in mobileDevices="".
+mobile.mobileonly
+Sorry for the inconvenience but this is a mobile only survey. Please come back using your mobile device.
+Displayed on the page when a participant is not on a mobile device and mobile="mobileOnly".
+mobile.nomobile
+Sorry for the inconvenience but this survey is not supported on mobile devices. Please come back using a computer.
+Displayed on the page when a participant is on a mobile devices and mobile="nomobile".
+noJavascript.body
+We're sorry, you must have JavaScript turned on and enabled for full functionality of this site.
+Here are the <a href="http://www.enable-javascript.com/"
+target="_blank"> instructions how to enable JavaScript
+in your web browser</a>.
+Displayed on the page to participants with javascript disabled in surveys (compat of 111+ or below 111 with requires="javascript").
+noJavascript.title
+JavaScript is required to take this Survey.
+Displayed on the browser tab to participants with javascript disabled in surveys (compat of 111+ or below 111 with requires="javascript").
+progress-bar
+progress bar
+Displayed when participants mouse-over progress bar.
+question
+question
+Displayed when participants mouse-over the question text.
+support
+<a href="http://decipherinc.com/survey/privacy?decLang=@(lang)"
+target="_blank">Privacy Policy</a> - <a href="/support?decLang=@(lang)"
+target="_blank">Help</a>
+Support links shown at bottom of page (survey.respview.footer.support).
+support.email
+Support email
+The text next to the email field and method for contact in the support help link.
+support.error
+Required field
+The error message shown when email field or the text area for the message are blank on submission in the support help link.
+support.howhelp
+How can we help you?
+The text next to the text area for the message in the support help link.
+support.name
+Name
+The text next to the name field in the support help link.
+support.phone
+Support phone
+The text next to the phone field and method for contact in the support help link.
+support.reach
+What's the best way for us to reach you?
+The question text for the method of contact in the support help link.
+support.submit
+Submit Request
+Text on the submission button in the support help link.
+support.surveyComplete
+What survey are you completing?
+The text next to the prepopulated survey link field.
+support.thanks
+We have accepted your request and will be looking at it.
+The message shown after a successful submission in the support help link.
+support.privacyPolicy
+Privacy Policy
+The text for the Privacy Policy link as it appears within the Help window in the survey.
+survey.has-errors
+There were problems with some of the data you entered in the survey. You will find the questions with errors below; please follow the instructions attached to each question.
+Displayed at top of the page when a question is submitted with errors (does not pass the default validation or custom validate i.e., no answer when the question is not optional).
+surveyCompleted
+Survey Completed - Thank You
+Displayed on the page and browser tab after the finish button.
+timeout-redirect
+You will be redirected in $(timeout) seconds; <a href="$(url)">click here </a> to continue now.
+Displayed on page after the finish button when timeout="#" is set for the exit tag.
+upgradeBrowser.p1
+Sorry for the inconvenience but we do not support this browser. Please upgrade to a current browser to take this survey.
+Displayed on page if using Internet Explorer 6 (compat of 111+).
+upgradeBrowser.p2
+We recommend…
+Displayed on the page when upgrading to a modern browser is recommended.
+upgradeBrowser.title
+Please Upgrade Your Browser.
+Displayed on the browser tab when upgrading to a modern browser is recommended.
+upgradeBrowser.titleText
+visit download site
+Displayed when participants mouse over browser image when upgrading to a modern browser is recommended.
+2.2: Calendars
+The following system language resources can be overridden in survey and email invite calendars.
+Resource
+Text
+Description of Use
+calendar.jan
+Jan
+Text displayed in the calendar for January.
+calendar.feb
+Feb
+Text displayed in the calendar for February.
+calendar.mar
+Mar
+Text displayed in the calendar for March.
+calendar.apr
+Apr
+Text displayed in the calendar for April.
+calendar.may
+May
+Text displayed in the calendar for May.
+calendar.jun
+Jun
+Text displayed in the calendar for June.
+calendar.jul
+Jul
+Text displayed in the calendar for July.
+calendar.aug
+Aug
+Text displayed in the calendar for August.
+calendar.sep
+Sep
+Text displayed in the calendar for September.
+calendar.oct
+Oct
+Text displayed in the calendar for October.
+calendar.nov
+Nov
+Text displayed in the calendar for November.
+calendar.dec
+Dec
+Text displayed in the calendar for December.
+calendar.su
+Su
+Text displayed in the calendar for Sunday.
+calendar.mo
+Mo
+Text displayed in the calendar for Monday.
+calendar.tu
+Tu
+Text displayed in the calendar for Tuesday.
+calendar.we
+We
+Text displayed in the calendar for Wednesday.
+calendar.th
+Th
+Text displayed in the calendar for Thursday.
+calendar.fr
+Fr
+Text displayed in the calendar for Friday.
+calendar.sa
+Sa
+Text displayed in the calendar for Saturday.
+2.3: Multi-Select Questions
+The following system language resources can be overridden within multi-select questions.
+Resource
+Text
+Description of Use
+check-error-atLeast-plur-column
+Please check at least $(count) boxes in this column (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) does not have the minimum (atleast) selected in a column.
+check-error-atLeast-plur-row
+Please check at least $(count) boxes in this row (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) does not have the minimum (atleast) selected in a row.
+check-error-atLeast-sing-column
+Please check at least 1 box in this column (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) has no selection in a column with atleast="1".
+check-error-atLeast-sing-row
+Please check at least 1 box in this row (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) has no selection in a row with atleast="1".
+check-error-atMost-plur-column
+Please check at most $(count) boxes in this column (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) has more than the maximum (atmost) selected in a column.
+check-error-atMost-plur-row
+Please check at most $(count) boxes in this row (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) has more than the maximum (atmost) selected in a row.
+check-error-atMost-sing-column
+Please check at most 1 box in this column (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) has more than the one selected in a column with atmost="1".
+check-error-atMost-sing-row
+Please check at most 1 box in this row (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) has more than the one selected in a row with atmost="1".
+check-error-exactly-plur-column
+Please check exactly $(count) boxes in this column (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) has more / less selections than specified in exactly="#" in a column.
+check-error-exactly-plur-row
+Please check exactly $(count) boxes in this row (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) has more / less selections than specified in exactly="#" in a row.
+check-error-exactly-sing-column
+Please check exactly 1 box in this column (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) does not have exactly one selection in a column.
+check-error-exactly-sing-row
+Please check exactly 1 box in this row (you checked $(actual)).
+Displayed in error message when mulit-select (checkbox) does not have exactly one selection in a row.
+checkboxGroupRow
+Please select an answer for the "$(group)" group in this row.
+Displayed in error message when multi-selects (checkboxes) uses groupRestrict="cols" and no selection is made for a group in a row.
+exclusiveSelected-column
+Unfortunately, you cannot select <b>$(what)</b> in this column with any other answer. Please re-submit your response.
+Displayed in error message multi-select (checkbox) when an exclusive option is checked with other options in a column.
+exclusiveSelected-row
+Unfortunately, you cannot select <b>$(what)</b> in this row with any other answer. Please re-submit your response.
+Displayed in error message multi-select (checkbox) when an exclusive option is checked with other options in a row.
+favoriteCorresponding
+Since you selected this row as your favorite, you must also select the corresponding row.
+Displayed in error message when selecting a single select (radio) favorite column is checked and that option was not checked in the multi-select (checkbox) column.
+favoriteNotSelected
+Please also select your favorite item.
+Displayed in error message when a single select (radio) favorite column is not selected
+2.4: Date Verifiers
+The following system language resources can be overridden within any in-survey date verifiers.
+Resource
+Text
+Description of Use
+dateverify.later
+Sorry, but you must choose $(from_date) or later.
+Text displayed in error message when a date prior to the start date is entered.
+dateverify.prior
+Sorry, but you must choose $(to_date) or prior.
+Text displayed in error message when date after the end date is entered.
+dateverify.between
+Sorry, but you must choose a date between $(from_date) and $(to_date).
+Text displayed in error message when a date outside of the specified range is entered.
+dateverify.error
+Sorry, but you have entered an invalid date.
+Text displayed in error message when the date entered is invalid.
+dateverify.format
+Sorry, but you have entered an invalid date. Please enter in $(date_format) format.
+Text displayed in error message when the date entered is not in one of the accepted formats.
+2.5: Single Select Questions
+The following system language resources can be overridden within single select questions.
+Resource
+Text
+Description of Use
+duplicate-column
+Duplicated answers; please select each column only once.
+Displayed in error message when a single select (radio) has unique="1" and grouping="rows" and a column is selected more than once.
+duplicate-row
+Duplicated answers; please select each row only once.
+Displayed in error message when a single select (radio) has unique="1" and grouping="cols" and a row is selected more than once.noAnswerSelectedPlease select an answer. Displayed in error message when no answer is selected for a single select (radio) question.
+extraInfoFor
+You did not specify the required extra information for $(what).
+Displayed in error message when a mandatory open-end is blank with the corresponding option checked.
+2.6: Select Questions
+The following system language resources can be overridden within select questions.
+Resource
+Text
+Description of Use
+noAnswerSelected
+Please select an answer.
+Displayed in error message when no answer is selected for a single select (radio) question.
+select
+Select one
+Text displayed in a select question default option.
+select.minranks-plur
+Please rate at least $(atleast) items.
+Displayed in error message when the minimum amount of rankable items has not been ranked.
+select.minranks-sing
+Please rate at least 1 item.
+Displayed in error message when minRanks="1" and no rankable item is ranked.
+select.order
+Please assign your rankings in order, i.e. assign "$(one)" to an item before assigning "$(two)".
+Displayed in error message when select question has minRanks="#" and ranks are used out of order (i.e., three before two).
+select.unique.cols
+Please select each answer only once in each column.
+Displayed in error message when select has unique="cols" and choice is selected more than once in the same column.
+select.unique.rows
+Please select each answer only once in each row.
+Displayed in error message when select has unique="rows" and a choice is selected more than once in the same row.
+2.7: Number / Float Questions
+The following system language resources can be overridden within number / float questions.
+Resource
+Text
+Description of Use
+duplicate-number
+Duplicated answers; please select each number only once.
+Displayed in the error message when a number is selected more than once.
+notValidDecimalNumber
+Please specify a valid decimal number.
+Displayed in error message when a float question is invalid.
+notWhole
+Please specify a whole number.
+Displayed in the error message when a number question is invalid.
+notWholeNumber
+Please specify a whole number.
+Displayed in error message when text question with verify="number" or the number is invalid.
+point-mismatch
+Your total must equal <b>$(sum)</b> exactly. You have entered <b>$(points)</b>.
+Displayed in error message when amount does not match on a number question.
+valueAtLeast
+Sorry, but the value must be at least $(min).
+Displayed in error message when number question with verify="range(low,high)" low is invalid.
+valueAtMost
+Sorry, but the value must be no more than $(max).
+Displayed in error message when number question with verify="range(low,high)" high is invalid.
+2.8: Text Questions
+The following system language resources can be overridden within text questions.
+Resource
+Text
+Description of Use
+badEmail
+Please enter a valid email address (must be in the form of user@domain.name).
+Displayed in the error message when a text question with verify="email" is invalid.
+badPhoneUS
+There is an error with the phone number entered. Please enter in '5551234567' format.
+Displayed in the error message when a text question with verify="phoneUS" is invalid.
+badZipCode
+There is an error with the zip code entered. Please enter in '12345' format.
+Displayed in error message when text question with verify="zipdcode" is invalid.
+badZipcodeExt
+There is an error with the zipcode extension entered. Please enter in '12345-1234' format.
+Displayed in error message when text question with verify="zipdcodeExt" is invalid.
+lenAtLeast
+Your answer must be at least $(min) character(s) long, but I only counted $(count).
+Displayed in error message when text question with verify="len(low,high)" low is invalid.
+lenAtMost
+Your answer must be at most $(max) characters long, but I only counted $(count).
+Displayed when text question with verify="len(low,high)" high is invalid.
+lenExactly
+Your answer must be exactly $(len) characters long, but I only counted $(count).
+Displayed in error message when text question with verify="len(#,#)" # is invalid.
+textNoAnswerSelected
+Please provide an answer.
+Displayed when nonoptional text / textarea has no text submitted.
+2.9: NoAnswer Checkboxes
+The following system language resources can be overridden for noanswer checkboxes.
+Resource
+Text
+Description of Use
+exclusiveSelected-question
+Unfortunately you cannot select $(what) in this question with any other answer. Please re-submit your response.
+Displayed when a noanswer option is selected with real answers. This requires no javascript enabled in the survey.
+2.10: Open-Ended Answer Fields
+The following system language resources can be overridden for open-ended answer fields.
+Resource
+Text
+Description of Use
+extraInfo
+Please specify the required extra information.
+Displayed in error message when a mandatory open-end is blank with the corresponding option checked.
+extraSelect
+Since you specified extra information, please also select a corresponding answer.
+Displayed in error message when an open-end is completed with the corresponding option not checked.

@@ -1,0 +1,325 @@
+Title: Customizing the Dashboard Layout
+Simple dashboards have only one element within each container, and containers appear vertically at the maximum width. This page includes the keywords and syntax needed to change these parameters and adjust the overall appearance of your dashboard.
+1: Grouping Elements Within a Dashboard
+By default, only one dashboard element is shown per container. Using the group keyword allows you to display multiple elements in one container, where filters and zooming can be applied to all elements. Elements within groups should appear on a new line and the group itself should be ended with the keyword Endgroup.
+Base Syntax:
+group <name of group>
+<elements>
+Endgroup
+Example:
+To group two charts and one table within one container, use the following code:
+group Charts
+chart Chart 1
+row Q1.r1 Male
+row Q1.r2 Female
+row Q1.r3 Non-Binary
+row Q1.r4 Self-Describe
+type pie
+chart Chart 2
+type column
+row Q1.r1 Male
+row Q1.r2 Female
+row Q1.r3 Non-Binary
+row Q1.r4 Self-Describe
+table "Table"
+rows Q1.r1-r4
+Endgroup
+This will produce the following result:
+1.1: Changing the Container Layout
+Dashboards use a 12-column layout, meaning that up to 12 elements can fit across a page within one container. The keyword layout allows you to specify how many elements are shown horizontally in a container before starting over at the left-most part of the same container. The values for layout are separated by comma:
+layout <# in row 1,..., # in row n>
+Example:
+To have two charts appear in the first line of a container and a table in the second line, use the following code:
+group layout=2,1 Two Charts in the First Row
+chart Chart 1
+row Q1.r1 Male
+row Q1.r2 Female
+row Q1.r3 Non-Binary
+row Q1.r4 Self-Describe
+type pie
+chart Chart 2
+row Q1.r1 Male
+row Q1.r2 Female
+row Q1.r3 Non-Binary
+row Q1.r4 Self-Describe
+type column
+table "Table"
+rows Q1.r1-r4
+Endgroup
+1.2: Keeping Elements Together
+The keyword keepWith moves elements to the same column as the specified element using element ID's.
+Note: In order for keepWith to affect the structure of your dashboard, you will first need to use the width keyword to insert visible columns.
+Example:
+If you are working with four different elements, and you want the first table to appear in the same column as the first chart and the second table in the same column as the second chart, use the following code:
+table id=Table1 width=6 Table 1
+row Q1.r1
+row Q1.r2
+table id=Table2 width=6 Table 2
+row Q1.r1
+row Q1.r2
+chart id=Chart1 keepwith=Table1 Chart 1
+row Q1.r1
+row Q1.r2
+type pie
+chart id=Chart2 keepwith=Table2 Chart 2
+row Q1.r1
+row Q1.r2
+type bar
+This will produce the below result:
+If you remove the keepWith attribute from Chart 1, charts using keepWith will still be grouped with their tables, but those not using keepWith will be split up:
+2: Altering A Dashboard’s Style
+The dashboard system allows you to apply CSS styles to page elements within the dashboard.
+2.1: Style Syntax
+You may create global styles that span across the entire dashboard, as well as local styles that are specific to individual charts and/or tables.
+The keyword style allows you to specify CSS styles for various page elements.
+Base Syntax:
+style <target> <css styles>
+Example #1:
+Changing the inner background color for all containers to black:
+style container.inner background: #000;
+The above syntax must be placed outside of any table or chart definitions, and will produce the below result:
+Example #2:
+Changing the text color within a tab and within a table:
+style tab.active color: orange; text-shadow: 1px 2px 3px white;
+page Gender
+table id=db-1 Gender
+rows Q1.r1-r2
+page Age
+Placement for style attributes is very important. The style modification here is a globally-applied style because it is above all occurrences of the page keyword. It will apply to the the entire dashboard. The code above changes the active tab's font color to orange and adds a white text shadow.
+The style modification located in the table element is a locally applied style, meaning that it will only affect the table in which it is applied. This code updates the table row's font color to green:
+page Tab 1
+table id=db-1 Gender
+rows Q1.r1-r2
+style table.tr color: green;
+page Tab 2
+2.1.1: Dashboard Configurable Styles
+Listed below are the available targets for which you may specify a style:
+Target
+Description
+chart
+Defines the styles for the chart element
+container
+Defines the div that holds tables / charts. Can include the following:
+container.title: Defines main title for the container
+container.inner: Defines the inner div that holds the table and chart (this is what is actually visible in each dashboard page)
+page
+Defines the styles for the page
+tabs
+Defines the styles for all clickable tabs
+tab.active
+Defines the active clickable tab
+tab.active-foreground
+Defines the div that holds the tab content
+tab.active-subtitle
+Defines the subtitle for the tab
+tab.active-title
+Defines the title for the tab
+tab.bar
+Targets the navigation bar
+tab.highlight
+Targets the highlighted bar on the bottom of each tab
+tab.text
+Defines the text for all tabs
+table
+Defines the actual table styles. Can include the following:
+table.tr: Defines the styles for table rows
+table.th: Defines the styles for table headers
+table.td: Defines the styles for table cells
+table.td.data: Defines the styles for cells containing data points
+table.td.row-legend: Defines the styles for the cells column in data tables
+3: Advanced Layout Customization
+The dashboard system allows you to use other programming languages like HTML, CSS, and JavaScript, along with the default style configurations to further customize your dashboard.
+Note: The below examples require at least some HTML, CSS and JavaScript knowledge. To learn more about web scripting using those tools, please visit W3Schools.com
+3.1: Adding HTML Containers
+The keyword html allows you to insert raw HTML code into the dashboard:
+html <one line of code>
+If the html code exceeds one line, use the keyword end at the end of the code to create an HTML code block:
+html <multiple lines>
+<of code>
+end
+Example:
+page Smartphone Owners
+table id=db-1 What kind of smartphone do you own?
+total
+html <center><h1>Results</h1></center>
+net 2 "Top 2"
+rows Q3.r1-r5
+net -2 "Bottom 2"
+chart id=db-2
+type pie
+You can also use the html keyword to write inline Javascript and CSS code:
+page Smartphone Owners
+table id=db-1 What kind of smarphone do you own?
+total
+html
+<h1 class="clickable blue"><center>Results</h1></center>
+<style>
+.blue { color: blue; }
+</style>
+<script>
+$(document).on("globalUpdate", function() {
+$(".clickable").click(function() {
+alert("Clicked!");
+});
+});
+</script>
+end
+See Best Practices for Dashboard Programming to find out more about using JavaScript/CSS in dashboards.
+3.2: HTML Extensions
+The dynamic dashboard extension system allows you to add more data, value and information to your dashboard. You can use dynamic extensions to add the following information to a dashboard's html block:
+an element's title
+the survey start time
+the survey title
+the total number of participants
+open-ended data
+various data metrics (e.g., mean, median, standard deviation [stddev], percentage [pct], etc.)
+The syntax for including dynamic dashboard extensions is below:
+{{condition}}
+{{condition:attribute}}
+{{condition:attribute="arguments"}}
+Example:
+html width=6
+<h1>{{survey.title}}</h1>
+<h2>This survey began on {{survey.start_date}}.</h2>
+<h2>
+It was a {{survey.start_date:format="%A"}}
+in {{survey.start_date:format="%B"}}
+on the {{survey.start_date:format="%I"}}th hour.
+</h2>
+end
+html width=6
+<h2>When asked: "{{q3:title}}"</h2>
+<h3>{{survey.total}} people responded with the following words:</h3>
+<span class="q3-table">
+{{q3:oe="list"}}
+</span>
+<style>
+span.q3-table td:first-child {
+font-weight: bold;
+color: red;
+}
+</style>
+end
+The example dashboard above generates the following result:
+The { {survey.start_date} }, { {survey.total} }, and { {survey.title} } are examples of the built-in reserved keywords that you can use to present additional information in your dashboard. The following reserved keywords are available:
+Keyword
+Description
+survey.start_date
+A date/time object that will output the date when the Survey was created
+survey.total
+The total number of participants for the entire survey
+survey.title
+The survey's alternative report name
+filter.total
+The total number of participants for the entire survey based on the current filter
+In addition to the reserved keywords above, the following attributes are accessible:
+Attribute
+Description
+format
+Only applicable to { {survey.start_time} }
+Formats the date/time object. Accepts all Python strftime arguments.
+Supply "%s" as an argument to display the day prefix (e.g., "nth", "rd", "st")
+abscount
+The absolute count of participants for the given condition (ignores filters)
+abspct
+The absolute percentage of participants for the given condition (ignores filters)
+percentage
+The percentage of participants for the given condition (respects filters)
+title
+The title of the condition (e.g., question's title, cell text)
+oe
+Displays open-ended text data. Can be set to:
+list: outputs a table of all OE responses with associated ID #
+random: returns a single random OE response
+# (number): returns the OE response matching the given ID #
+wrap
+Wraps the output in a <span> element. Output format:
+<span data-tag="condition" data-attributes="attributes" class="magic condition">value</span>
+datasum
+The total sum of all responses
+mean
+The standard mean
+median
+The median
+stddev
+The sample standard deviation (i.e., sigma-1)
+stderr
+The standard error
+count
+The number of non-empty responses
+uwcount
+The unweighted count
+effbase
+The base count used for calculations
+pct
+The count divided by base (e.g., 40% of all participants answered this question; respects filters)
+alt
+The alternative (default) text to display in case value is 0 or doesn't exist
+Example:
+In addition to the keywords listed above, the { {condition} } syntax can take any valid datapoint reference, so you can display information similar to what you would in a chart or a table, but in an entirely customized way:
+table width=6
+row stats="mean" q1.r1.val MEAN
+row stats="median" q1.r1.val MEDIAN
+row stats="stddev" q1.r1.val STDDEV
+row stats="stderr" q1.r1.val STDERR
+row stats="count" q1.r1.val COUNT
+row stats="pct" q1.r1.val PCT
+html width=6
+<h4>{{q1:title}}</h4>
+<p>MEAN: {{q1.r1.val:mean}}</p>
+<p>MEDIAN: {{q1.r1.val:median}}</p>
+<p>STDDEV: {{q1.r1.val:stddev}}</p>
+<p>STDERR: {{q1.r1.val:stderr}}</p>
+<p>COUNT: {{q1.r1.val:count}}</p>
+<p>PCT: {{q1.r1.val:pct}}</p>
+end
+The above syntax will produce the below output:
+3.2.1: HTML Extension Examples
+Performing Question Calculations
+While the dashboards system is limited to performing only statistical calculations (such as calculating means/medians/standard deviations), you can use the Dynamic HTML extensions in combination with HTML and JavaScript to achieve more complex calculations, based on either multiple questions, or multiple answer options.
+The below example illustrates calculating a net aggregate between alternative methods of shopping, based on a question (q1), similar to the below:
+If you want to see the net percentage of people who shop online when compared to those who shop in person, use the HTML extensions to calculate and subtract the aggregate percentage for In Person shopping from the aggregate percentage of online shopping.
+3.2.2: Setting up the Calculation Container
+In order to be able to display the net aggregate on screen, you need an HTML container item first. You can create a simple header element to hold that text.
+html
+<h3 style="font-weight:bold" class="container"/>
+end
+There are two things to note here - first, give your paragraph element a class attribute, so that you are later able to target it with JavaScript, and second - you do not include any default text for the paragraph, as you will be setting that up dynamically.
+Calculating the Net Aggregate Using JavaScript
+To add in your JavaScript code, start off with the below snippet:
+<script>
+$(document).on("globalUpdate", function(){
+};
+</script>
+You will then need to calculate each aggregate separately. The aggregate for "Online" shopping can be calculated using the following method:
+$netOnline =(( {{q1.r1}}+{{q1.r2}} )/ {{q1}} ) * 100
+Similarly to that, the aggregate for "In Person" shopping would be calculated as follows:
+$netInPerson = (( {{q1.r3}}+{{q1.r4}} )/ {{q1}} ) * 100
+You now need to subtract "In Person" shopping from "Online" shopping, and store this in a variable:
+$netAggregate = $netOnline - $netInPerson
+After adding these three lines of code to your script, your JS snippet should look like this:
+<script>
+$(document).on("globalUpdate", function(){
+$netOnline =(( {{q4.r1}}+{{q4.r2}} )/ {{q4}} ) * 100
+$netInPerson = (( {{q4.r3}}+{{q4.r4}} )/ {{q4}} ) * 100
+$netAggregate = $netOnline - $netInPerson
+});
+</script>
+Adding the Net Aggregate to the Paragraph Container
+The final thing you need to do in order to display your net aggregate, is to append the calculated variable to the container paragraph you created earlier. This is where you would use the container class you defined. To append text to the container, you can use the below syntax:
+$('.container').html(Net Online Preference: $netAggregate.toFixed(2) + '%');
+Note: The JavaScript .toFixed() method will set the decimal precision of the percentage displayed to two symbols after the decimal delimiter.
+Putting It All Together
+With this line addition, your full code snippet should look like the below:
+html width=6
+<h3 style=”font-weight:bold” class="container"/>
+<script>
+$(document).on("globalUpdate", function(){
+$netOnline =(( {{q4.r1}}+{{q4.r2}} )/ {{q4}} ) * 100
+$netInPerson = (( {{q4.r3}}+{{q4.r4}} )/ {{q4}} ) * 100
+$netAggregate = $netOnline - $netInPerson
+$('.container').html($netAggregate.toFixed(2) + '%');
+});
+</script>
+end
+And the final result of this syntax will produce the following:

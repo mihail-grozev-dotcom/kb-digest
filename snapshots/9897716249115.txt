@@ -1,0 +1,26 @@
+Title: M43 Release Notes
+Release Date: May 1, 2019
+Release Version: 143
+New Features
+Survey Testing Tools
+Recorder
+Improved question jumping functionality. Now allows users to view and answer hidden questions, questions based on survey language, and the content of descriptive content elements.
+Updated the display of loop and block elements. Child elements now appear nested under their parent elements in the drop-down.
+Answer for Me
+Improved “Answer for me” functionality to support more question types.
+Crosstabs
+Updated image support. Thumbnail images displayed in table rows, segments, and grid table split-by segments will now be included in Excel and PDF exports.
+Other Updates
+The new survey compat level is 143. Use compat="143" for all new surveys. This enables:
+Labels for <quota> elements, used in question jumping
+Labels for <term> elements, used in question jumping
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue where Crosstabs would not load if a question contained rows without text.
+Fixed an issue that showed tables along with charts when exporting charts in a Saved Report created from Crosstabs.
+Fixed an issue where all start / end dates for partials were not updating.
+Fixed an error caused by re-running a crosstab after saving loop or loop child elements to the Library from Crosstabs.
+Survey
+Testing Tools
+Fixed an issue with “Answer for me” shortcuts not working in Firefox.

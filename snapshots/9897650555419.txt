@@ -1,0 +1,75 @@
+Title: Beacon M23 Release Notes
+Release Date: July 14, 2014
+Crosstabs & Classic Reporting
+#18413 - Changes to initial report loading and scrolling to provide a smoother user experience.
+Research Hub / Portal
+#18397 - The inactivity timeout for newly created companies is now 1 day, and not 1 hour. Existing companies that had a 1 hour timeout have been upgraded to 1 day. If your choice of a 1-hour timeout was a deliberate security decision, you need to re-edit the company to reset the timeout
+#18639 - Dialogs are now more consistent. No more random opening and closing.
+Along with the dialog changes, the workflow for saving a company group has changed.
+The save dialog has been moved into the company selector [staff only]
+After selecting two or more companies, the save company group input will appear
+When “All Companies” is selected, a message will be shown informing the user that they can not have a group with “All Companies”
+The “Save” button will become enabled when the user inputs a name
+Clicking “Save” will add the group the the list of company groups where it can be selected
+Survey Editor
+#17080 - Added a set of standard, industry-approved questions to the question library.
+#18604 - Added a set of standard, industry-approved answer options to the answer library.
+#16803 - Added new “errors” option to theme editor for overwriting error message colors.
+#18632 - New “essay” question type in the survey editor (alias for textarea), which allows for adding a textarea without having to add a height value via styles manager.
+#18617 - Exec can now be saved in question library
+#13783 - Built-in @verify options are now easier to set using More Options, used for verifying answer formatting. E.g., email address, phone number (US), etc.
+Image Manager
+“Insert Images” dialog replaces original Image Manager.
+Can be accessed from the Survey Editor and Campaign Manager toolbar
+Click one or more images to insert at once
+Specify maximum size restriction when inserting images (default selection - original):
+Small (150px)
+Medium (300px)
+Large (600px)
+Extra Large (900px)
+Original Size
+Custom
+A copy of resized images will be created in the static directory
+Only original images are loaded in the grid
+*Copied images will be listed in the File Manager page
+Image Manager dialog updates:
+Accessible from “Insert Images” dialog
+Upload one or more images at once to the static directory
+Toggle image protection
+Add/Edit “alt” attribute
+Only original images are loaded in the grid
+*Changes not applied to logo dialog
+Dashboard
+#18163 New Filter View Layout. Multiple Filters can now be selected prior to “applying” and instead, are now applied all at once.
+#18165 New Date range picker for Filters. You can now filter via date range by including ‘filter datepicker’ as a Filter in your dashboard.
+Survey & CMS
+We have replaced the “Device Atlas” mobile detection with one from the “Fifty-One Degrees” vendor. This allows us to get more frequent updates and allows for mobile detection on all the cloud servers. Generally, the new system uses the same categories and field names as the old one, however the following fields have been changed:
+hardwareVersion is being depreciated, as field will always be blank
+browserWidth and browserHeight are being depreciated, as fields will no longer show the width/height of the browser but incorrectly report dimensions on the entire device. So this is number of “real” pixels now (this makes a difference for Retina devices).
+isRIM is being depreciated, as it still works but is being replaced by the identical isBlackberry.
+isOSX is being depreciated, as it still works but is being replaced by the identical isiOS.
+All cloud servers will automatically update to the same device database every Sunday.
+Staff only: You can use this comparison tool to compare what a user-agent will be classified as using both the old and new system (this will be available for a limited time only, until our Device Atlas license has expired)
+Dynamic Questions Toolkit Updates
+#15180 - stylevars can now be translated using type=res.
+Field report & Campaign Manager
+#18112 New hook campaign_uploaded is called when a user uploads an email list to the campaign manager. This can trigger notification of the upload to users.
+File Manager
+#18602: ‘acl.txt’ files can be uploaded by non-staff user to the root directory.
+Bugfixes
+#4650 - Added fix where printing the Field Report didn’t include all information.
+#17685 - Removing an item from the “more options” list should add it back to the dropdown menu
+#18503 - Renaming a quota sheet in the survey editor should no longer rearrange the vquota table
+#18391 - Fixes issues where the survey editor opened in iframe instead of main window when launching / editing a project in the portal.
+#18510 - Fixes error where you could not remove elements from a project library.
+#18594 When using a synchronized multi-table plus-marker quota sheet, per-cell importance level applied to the plus markers correctly prioritize the plus marker selection across tables rather than considering only average fill-levels.
+#15895 - Overriding respview.client.css/js/meta will no longer remove default mobile styling.
+Misc
+#18608 The company attribute lets you assign a specific company to a project, ignoring normal directory-based project assignment (e.g. selfserve/1234 -> Company X). The client attribute lets you set a end-client tag in the XML (which must be one of pre-approved end-client tags) These attributes should not be used outside of the GMI server (use the GUI for tagging and company assignment anywhere else)
+It’s possible to do server-side suppression of certain data (e.g. ipAddress) from downloads. This is implemented on the GMI server only. The suppression will not affect virtual questions, OE-drilldown dashboard nor users reading the text files directly in the shell.
+The verify_survey hook runs letting you add additional restrictions to contents of the survey (E.g. forbid or require some attributes). Example:
+def verify_survey(survey, errors):
+if self.root.compat >= 122 and not self.root.client:
+errors.append((self.root, “The client attribute is required”))
+Security
+#18627 The raw cookie header data cannot be accessed in surveys. For example, calling gv.request.getFirstHeader("cookie") will now return ****. You can request a specific cookie variable using gv.request.getCookieVar() as before.

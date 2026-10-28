@@ -1,0 +1,14 @@
+Title: Archived Surveys Report
+The archived surveys report displays surveys that have been archived. You can unarchive surveys on the Archived Surveys page.
+Note: Only company Supervisor or Staff roles can access the archived surveys report from the company page.
+1: Accessing the Archived Surveys Report
+In the Portal, open your company page by clicking your company name or logo. Then click the Archived Surveys in the left panel of the page.
+2: Archived Surveys Report Overview
+1. Filter by Survey Name: Search by survey name.
+2. Name: The name of the archived survey.
+3. Path: The url path for the archived survey.
+4. Archived The date and time the survey was archived. Time is based on the server's time.
+5. Clear Data: The date and time that participant data is cleared. This is based on a configurable company setting. If no date displays, participant data is not cleared prior to the Delete date. See Create and Manage Companies to learn more.
+6. Delete: The date and time the survey will be deleted. The server default is 365 days.
+7. Unarchive: To restore a survey, click Unarchive.
+8. Pagination: Ten archived surveys are displayed per page. To jump to a specific page, use the text box at right, then click Go.

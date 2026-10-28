@@ -1,0 +1,18 @@
+Title: 153.35 Release Notes
+Release Date: July 9, 2024
+Release Version: 153.35
+New Features
+Survey
+On the first day of each month, an email will be sent to supervisor and staff users who have deprecated surveys that have had billable completes in the past six months. The email will provide a link to the list of deprecated surveys as well as links to more information about what it means for a survey to be retired and how to increase the compat level of their surveys if needed.
+Dynamic Questions
+Media evaluator has been upgraded to a new version bcme.7.
+Responses
+Campaign Manager
+The API endpoint to get a campaign list now includes an "extra" column which provides more information for certain statuses, such as the remove lists associated with optouts and additional suppressions. This download is also available by clicking on the "Export List" option in the drop-down menu for the list in the Campaign Manager list view.
+Bug Fixes
+Survey
+Dynamic Questions
+The current version of Date Picker (fvdatepicker.2) now supports date format validation for browsers set to locales that use date formats other than mm-dd-yyyy.
+Reporting
+Crosstabs
+Uploading an nweight.txt file that includes a weight column when having multiple weight columns will now throw and error and not allow the upload process to continue.

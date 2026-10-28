@@ -1,0 +1,33 @@
+Title: 150.7 Release Notes
+150.7 Release Notes
+Release Date: July 5, 2022
+Release Version: 150.7
+New Features
+Survey
+Survey Editor
+Fixed an issue that prevented the use of Survey Editor, when a logic node reference was added to a condition.
+Dynamic Questions
+Added the ability to bulk download video testimonials for a question.
+Added the ability to download to the favorite testimonials as a bulk download.
+Updated the capacity for Non-Autosuggest questions to be utilized with questionFilter and only 1-dimensional questions are supported. XML modification with some attributes are required.
+Learn More: Autosuggest Element
+Programming & Tools
+Deliverable
+Risky
+Undeliverable
+Custom Code Elements (Logic Nodes)
+Released QuantText logic node to the Schlesinger server. The QuantText should show up under Advanced section in Survey Elements (panmenu).
+Learn More: QuanText Element
+Removed the reference that a survey must have a page break defined before and after the element, when adding a quanttext element.
+Bug Fixes
+Portal
+Fixed an issue with the portal user list displaying inaccurate messages, when there are large lists of users and extensive loading time. A loader also has been added to enhance the user experience.
+Survey
+Survey Editor
+Fixed an issue where excludeRowSelections plus row shuffling was showing incorrect highlighted errors.
+Respondent View
+Fixed an issue where the “Back to Lobby” button was blocked for Terminated/Overquota respondents for CATI (manual) users.
+Dynamic Questions
+Fixed an issue with atm1d.10 where the open ended text response option continues to be displayed when unclicked.
+Sample Marketplace
+Fixed an issue that prevented Sample Marketplace participant source status updates.

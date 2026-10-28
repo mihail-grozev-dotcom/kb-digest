@@ -1,0 +1,32 @@
+Title: 153.25 Release Notes
+Release Date: February 13, 2024
+Release Version: 153.25
+New Features
+Survey
+As of February 1, 2024, surveys with compat levels 0 through 18 are now deprecated, and their deprecated status is displayed in the "State" column of the Portal list page. These surveys have access to all existing features until they are retired on February 29, 2024.
+Learn More: Survey Compat Levels
+Survey Scoreboard
+Survey Scoreboard 's list of column descriptions has been updated to include descriptions for all columns.
+Learn More: Evaluating Survey Performance Over Time
+Responses
+Campaign Manager
+To improve system resource usage, the Automated Database (ADB) system no longer indexes "seed list" files. Only full list files (e.g. listXXX.txt) are indexed.
+For surveys using the ADB feature (ADB=1), survey links in Campaign Manager seed email sends now open the survey only if seed list recipients can test the survey (i.e. the recipient is logged in, or the survey is in testing mode).
+Sample Marketplace
+Pending bids can now be closed. Previously, only live and paused bids could be closed.
+Architecture and DevTools
+The state-dump tool now shows on each page a new entry, __modified, containing a list of what elements modified question data. An <exec> tag that modifies question data will appear in that list. Questions which have an embedded exec, or which are auto-filled, will also appear there.
+Learn More: Recovering Data
+Bug Fixes
+Portal
+Logging in via Corporate Login will no longer add an extra question mark to an address that already includes one.
+Survey searches using the Portal list page and the get surveys API endpoint have been improved to allow searching for multiple projects, including projects with underscores in the path.
+Audit Logs
+A more detailed entry is now logged when a user's 2FA status is changed.
+Survey
+Survey Editor
+Adding a logic node reference to a condition no longer prevents autosaving.
+Survey logos display as expected when configured via Display Settings.
+Responses
+Response Summary
+The QUOTAS tab now displays correctly when the string "hquota" is included in the survey.

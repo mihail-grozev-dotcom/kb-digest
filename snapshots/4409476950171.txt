@@ -1,0 +1,58 @@
+Title: Customizing the This or That Element
+Using the survey builder? Check out the This or That Element.
+1: Overview
+The left-right shuffle question style (also known as This or That) is a special style that presents two concepts on a rating scale to see which of the two is preferred.
+For example:
+The questions above were generated from the code below:
+<radio
+label="q1"
+uses="leftright.1">
+<title>Which of the following items do you prefer?</title>
+<row label="r1" rightLegend="Pepsi">Coke</row>
+<row label="r2" rightLegend="Cats">Dogs</row>
+<row label="r3" rightLegend="Mac">PC</row>
+<col label="c1">I like this</col>
+<col label="c2">I like that</col>
+</radio>
+<radio
+label="q2"
+uses="leftright.1">
+<title>Please select your preference from the following:</title>
+<row label="r1" rightLegend="Evening">Morning</row>
+<row label="r2" rightLegend="Tea">Coffee</row>
+<row label="r3" rightLegend="Work">Fun</row>
+<col label="c1">+2</col>
+<col label="c2">+1</col>
+<col label="c3">0</col>
+<col label="c4">+1</col>
+<col label="c5">+2</col>
+</radio>
+2: Underlying Question Architecture
+The left-right shuffle question style can be applied to any <radio> question that has at least one row and two columns specified. For example:
+<res label="Q1_r1">That 1</res>
+<res label="Q1_r2">That 2</res>
+<res label="Q1_r3">That 3</res>
+<radio label="Q1">
+<title>Please choose your preference:</title>
+<row label="r1" rightLegend="${res.Q1_r1}">This 1</row>
+<row label="r2" rightLegend="${res.Q1_r2}">This 2</row>
+<row label="r3" rightLegend="${res.Q1_r3}">This 3</row>
+<col label="c1">This</col>
+<col label="c2">That</col>
+</radio>
+The code above produces the following result:
+3: Converting to the Left Right Shuffle Style
+To apply the left-right shuffle dynamic question style, add uses="leftright.1" to the <radio> question. For example:
+<radio label="Q1" uses="leftright.1">
+This transforms the appearance of the question to the following:
+When this question style is applied, a few things happen automatically:
+The question's row legends are set to show on both sides of the answer choices
+Each row legend is shuffled randomly once per participant
+A hidden, virtual question is added immediately after the question to show the normalized data for each row
+4: Data Normalization
+An additional hidden question is automatically added after every question that uses the left-right shuffle question style. This question contains the normalized data for the original question.
+Normalized data tables show the results as if the question's row legends weren't shuffled at all. This table will have two data points for every row in the question, one for both of the row legends (left and right).
+For example, given the following selections to the question below:
+Notice that "This #" was selected for each row.
+The standard, non-normalized data tables for the responses above are shown below:
+The normalized data tables are shown below:

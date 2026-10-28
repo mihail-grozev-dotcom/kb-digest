@@ -1,0 +1,20 @@
+Title: DQ5 Release Notes
+Release date: March 11, 2014
+Dynamic Questions: New Question Types
+Page Turner (pageturner.1) - Respondents interact with a magazine-like layout, while the system tracks the time spent on each page.
+Timer Ad Test (adtest.1) - Respondents view an ad for a predetermined amount of time, and then proceed automatically to the next page.
+Slider Points (sliderpoints.1) - Respondents move a slider to a point on the scale to answer the question.
+Audio Player (audio.1) - Respondents listen to an audio clip.
+Dynamic Questions: New Versions
+Media Evaluator (bcme.2, new version)
+#16416 The Video Analyzer can now export video with overlay graph(s).
+Button Select (atm1d.4, new version)
+#16704 - Button Select, fixed an issue with IE8 not allowing you to go to the bottom of the page. Code re-write.
+Dynamic Questions: Bug Fixes
+Form Image Replacement (fir.2)
+FT#17239 - Fixed an issue with theme builder disabled state not working
+FT#17237 - Fixed an issue where global fir usage was not working properly
+FT#17263 - Button Select Table (atmtable.2, updated existing version), fixed an issue where scrolling with your finger would answer the option.
+#17379, added cursors to slider questions. handles now have arrow cursors to indicate direction of movement.
+All DQ’s were updated with new default text that demonstrate the DQ. Title/Instruction/Options/Rows/Columns/Choices/etc were added so the question is fully functional upon adding via Dynamic Tab. (Updated with M19 release)
+All DQ’s have new icons in the Dynamic Tab. (Updated with M19 release)

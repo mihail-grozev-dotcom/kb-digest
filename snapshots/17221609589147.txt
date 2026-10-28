@@ -1,0 +1,38 @@
+Title: 153.12 Release Notes
+Release Date: July 18, 2023
+Release Version: 153.12
+New Features
+Login Page
+The accept cookie policy is now a button on a banner at the bottom of the login page instead of a checkbox.
+Portal
+Added a new filter to the Portal that allows you to filter surveys by "Retired Surveys".
+Learn More: Search Capabilities
+Survey
+Participant View
+Participants will now see an "SE-40 Survey retired" message when attempting to access retired projects.
+Learn More: Survey Compat Levels
+Reporting
+Crosstabs
+The Crosstabs Data Downloads view now includes links to Markers and Progress reports which were previously found only in Report 2010.
+Learn More: Data Downloads and Formatting Options
+Dashboard
+The All Data Formats export option in Dashboards now opens the Crosstabs Data Downloads view.
+Data Downloads
+Added API endpoint surveys/<survey-path>/layouts/<layout-id> to display information for a specified layout.
+Programming and Tools
+When running bulk clean, large (over 100k) batches of emails are now split into smaller batches of 100k emails and processed separately.
+API
+Added API documentation for large file exports which now can be scheduled as asynchronous tasks, allowing users to successfully make calls for larger data which would otherwise time out after 30 minutes.
+Learn More: Forsta API - Additional Features, Forsta API - Miscellaneous
+Bug Fixes
+Portal
+Usage Statistics
+The tags filter selection now loads the tags when the Usage Statistics page is viewed without query parameters.
+Reporting
+Anonymous users can access public saved reports.
+Data Downloads
+Link for Datamap in JSON format is available in Data Downloads.
+The current data layout is set correctly to Standard layout on initial page load.
+Users with appropriate permission can access the Data Content section.
+Report menu items in the Global Header now indicate the current view correctly.
+Existing projects now successfully load the "Other Data Formats" page. Previously, slow-loading survey and question data prevented the page from loading.

@@ -1,0 +1,125 @@
+Title: Research Defender REVIEW Integration
+The Research Defender REVIEW logic node allows for integration with the Research Defender REVIEW API. Research Defender REVIEW measures and scores a participant’s engagement in real-time by analyzing open-end responses and checking for proper grammar, response length, profanity, copy/paste, and other attributes from Research Defender to simplify your analysis of open-end responses. You can then use these scores to disqualify participants to improve data quality of your survey.
+The logic node sends a request to Research Defender at the location you insert the logic node into the survey.
+1: Using the Survey Editor
+To add the Research Defender REVIEW logic node using the Survey Editor, click + Element in the staging area.
+In the Element Library, click Advanced and select the Research Defender REVIEW Integration element from the list. Then click Add.
+The new element will appear in the staging area, where you can specify the settings for your integration.
+1.1: Configuration
+The following options are configurable. Research Defender specific values can be found in your Research Defender account.
+Publishable Key: Required. The unique Publishable Key provided by Research Defender to identify the account. For security, encrypt the key prior to adding it to the logic node.
+Private Key: Required. The Private Key provided by Research Defender. For security, encrypt the key prior to adding it to the logic node.
+Survey ID: Required. A unique Survey ID of your choosing. Used to identify the survey in Research Defender. This field is pipeable.
+Participant ID: Required.Unique identifier for each participant. Use ${uuid} to ensure uniqueness across sample sources. This field is pipeable.
+Targets: Required. The targets for the open end responses to be evaluated by Research Defender REVIEW , separated by commas. For example: q1, q2.r1, q3.c1, q4.r1.c1. The targets must be on the same page as the REVIEW element.
+Minimum Response Length: Required. The minimum amount of characters required in the response to perform the evaluation. Defaults to 25.
+Enable Automatic Composite Score Terminate: Required. Set Yes to enable terminating the survey if the composite score threshold has been met. Set No to disable.
+Composite Score Threshold: The minimum composite score necessary to automatically terminate a survey. Required when Automatic Composite Score Terminate is set to Yes. Defaults to 100.
+Display in Report: Required. Select Yes to display the logic node's results in the report and downloads. Select No to hide the results.
+2: Using the XML Editor
+To add the Research Defender REVIEW logic node using the XML Editor, add the following <logic> tag to your survey XML:
+<logic uses="researchdefender_review.1" label="ln2"
+researchdefender_review:publishable_key="EXAMPLE-PUBLISHABLE-KEY"
+researchdefender_review:private_key="EXAMPLE-PRIVATE-KEY"
+researchdefender_review:survey_id="YOUR-UNIQUE-SURVEY-ID"
+researchdefender_review:participant_id="${uuid}"
+researchdefender_review:targets="q1, q2.r1, q3.c1, q4.r1.c1"
+researchdefender_review:s_text_length="25"
+researchdefender_review:enable_cscore_term="Yes"
+researchdefender_review:cscore_threshold="100"
+researchdefender_review:display_report="No"
+>
+<title>Research Defender REVIEW Integration</title>
+</logic>
+2.1: Required Attributes
+All attributes should be prefixed with researchdefender_review:.
+Attribute
+Description
+Example
+publishable_key
+Required. The unique Publishable Key provided by Research Defender to identify the account. For security, encrypt the key prior to adding it to the logic node.
+4a05c25b-12ab-34cd-a1dc-8dde1ba4f837
+Default: Empty
+private_key
+Required. The Private Key provided by Research Defender. For security, encrypt the key prior to adding it to the logic node.
+e6b10a92-ab1c-2345-d6e7-0f7da0a43cf0
+Default: Empty
+survey_id
+Required. A unique Survey ID of your choosing. Used to identify the survey in Research Defender. This field is pipeable.
+mybreakfastsurvey
+Default: Empty
+participant_id
+Required. Unique identifier for each participant. Use uuid to ensure uniqueness across sample sources. This field is pipeable.
+${uuid}
+Default: Empty
+targets
+Required. The targets for the open end responses to be evaluated by Research Defender REVIEW, separated by commas. The targets must be on the same page as the REVIEW element.
+q1, q2.r1, q3.c1, q4.r1.c1
+Default: Empty
+s_text_length
+Required. The minimum amount of characters required in the response to perform the evaluation.
+50
+Default: 25
+enable_cscore_term
+Required. Set Yes to enable terminating the survey if the composite score threshold has been met. Set No to disable.
+Yes
+Default: No
+cscore_threshold
+The minimum composite score necessary to automatically terminate a survey. Required when Automatic Composite Score Terminate is set to Yes.
+72
+Default: 100
+display_report
+Required. Use Yes to display the /REVIEW results in the report and downloads, No to hide.
+No
+Default: Yes
+3: Research Defender REVIEW Response
+The API call returns a set of values that can be used for participant validation. This information is automatically stored in a hidden question labeled [label given to the node]_results (for example, ln2_results ). Once the information is captured, the participant is taken to the next page of the survey.
+Below is the list of values returned by the logic node:
+Row Label
+Description
+Values
+composite_score
+This score uses all other flags to produce a quality score, from 0 to 100. This parameter takes into account all the other parameters to produce an overall score for the response.
+A lower score indicates a response with fewer flags.
+A higher score indicates a flawed answer for reasons ranging from profanity to copy/paste, etc.
+Responses with a language equal to ‘Unknown’, as well as responses that trigger the Pasted Response, Profanity Flag or Similarity flags will be set to 100.
+0 to 100
+similarity_text
+Uses the Minimum Response Length (s_text_length) parameter to determine the minimum amount of characters needed in the response to perform the check. This is helpful to sniff out bots or scripts that provide identical responses.
+If the same phrase is found in multiple participants' answers, Research Defender REVIEW will return a similarity_text of 1, which would indicate a duplicate open end.
+With a s_text_length of 5, the response "cow" would not be checked by Similarity, but "Gorilla" would because it's more than 5 characters.
+1 - Duplicate
+0 - Not duplicate
+language_detected
+Text description of the language used in the response (English, French, etc.).
+Text
+language_detected_score
+Confidence interval with which the language is correctly detected. .01 is a 99.9% confidence in the determination of the language.
+Float
+profanity_check
+Detects whether or not profanity is used in the participant's response.
+If the response contains profanity, 1. Otherwise 0.
+1 – True
+0 – False
+pasted_response_score
+Value represents the percent of the number of words used from the clipboard in the answer. For example, in an answer of 10 characters and 4 of the characters were pasted from the participant’s clipboard, the pasted_response_score will be 0.4.
+Float
+engagement_score
+Measures the length of a response compared to other responses within the same Question ID. If a response is the same length, the engagement_score will be equal to 1. If a response is shorter than the average length within the question ID, the engagement_score will be less than 1. If a response is longer than the average length within the question ID, the engagement_score will be greater than 1.
+Float
+page_view_time
+Time it takes from page load to submitting the text (in milliseconds).
+Note: This is a stand alone parameter and does not factor into the composite score.
+Float
+typed_response_time
+Time it takes from the start of entering the text (answer) to submitting the text (in milliseconds).
+Note: This is a stand alone parameter and does not factor into the composite score.
+Float
+client_blacklist
+Flags if a word or phrase appears on the customer’s blacklist.
+Note: Reach out to Research Defender to upload a list of your blacklisted words for your entire account.
+3.1: Participant Screening
+The values captured in the hidden question can be used to either terminate the participants in real time or to flag them for further review. You can decide which route to take depending on your project's need. Use the is_successful property as a condition in custom termblocks to prevent fatal errors.
+4: Limitations
+The logic node does not work with the Rank Sort element.
+The logic node does not work with the Autosuggest element.

@@ -1,0 +1,192 @@
+Title: Managing Data with the Tab Import Script
+Requires Decipher Cloud
+Note: This tool is the command-line version of the View / Edit Responses report, available under the Responses menu.
+The Tab Import tool is a mechanism that allows for data reading in a tab-delimited file and appending, modifying, or deleting records in a survey. It has two main purposes:
+Cleaning existing survey data.
+Uploading external data to a survey.
+1: Functionality of Tab Import
+The Tab Import tool uploads a tab-delimited file into an existing survey and appends or modifies the existing data. Tab Import only recognizes variables that are seen as output from the targeted survey. In other words, if you are able to see a variable in the downloaded tab-delimited data, you can modify it using Tab Import.
+The "variables.xls" file can be used to match data layouts and you can create custom data layouts using the New Layout option found in the Other Data Formats menu under Data Downloads in the Report menu.
+Tab Import updates data based on the variables provided in the header of the tab-delimited file. You can upload partial data sets that only include the variables that you need to update and you are not required to provide the entire data set.
+Syntax:
+tabimport [-k key] [-c] [-a] [-N] [--nobackup] [--layout=###] [--yes] surveyPath file.txt
+Tab Import is often used to perform the following tasks:
+Import external data so clients can utilize reporting and production tools.
+Transform data into alternative tables.
+Tab-delimited (e.g., Triple-S, SPSS, fixed-width, CB, etc.)
+Recode and clean data.
+Update markers.
+Delete / disqualify participants.
+Update data.
+Remove duplicates based on IP address.
+A more advanced tool, transform, lets you apply Python code to your variables and qualify / delete participants.
+The examples below are simple and should help to get you familiar with the Tab Import process and end result.
+1.1: Example 1
+To learn the Tab Import tool, begin with a simple scenario. Take a look at the following survey, specifically the question variables and setMarker function call.
+<?xml version="1.0" encoding="UTF-8"?>
+<survey name="Survey"
+alt="Tab Import Ex #1"
+extraVariables="source,list,url,record,ipAddress,userAgent"
+compat="118"
+state="testing"
+setup="time,quota,term"
+unique="">
+<samplesources default="1">
+<samplesource list="1" title="default">
+<exit cond="qualified"><b>Thanks again for completing the survey!</b></exit>
+<exit cond="terminated"><b>Thank you for your selection!</b></exit>
+<exit cond="overquota"><b>Thank you for your selection!</b></exit>
+</samplesource>
+</samplesources>
+<radio label="Q1" title="Are you...">
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<number label="Q2" optional="0" size="3" verify="range(1, 120)" title="How old are you?"></number>
+<suspend/>
+<exec cond="Q2.ival gt 17">setMarker('Age_17+')</exec>
+<html label="End" where="survey">
+<p>Thank you!</p>
+</html>
+<marker name="qualified"/>
+</survey>
+The survey above will generate the following tab-delimited data:
+uuid markers status Q1 Q2 qtime vos
+t4s87amvy4b1wuvu Age_17+,qualified 3 2 76 30.245002138445 5
+b0e6njaww638bgu7 Age_17+,qualified 3 1 91 32.446309568718 12
+25a0yt89t5zeznwz Age_17+,qualified 3 1 29 28.911985701804 12
+cgeua8a308bvxe28 Age_17+,qualified 3 2 66 35.590599491062 13
+xzxe66dvqj54nytg qualified 3 1 5 28.386099702762 5
+wt4xjkq8aj401gy6 Age_17+,qualified 3 1 72 29.058076265442 4
+p9zp7u66197hfb3t qualified 3 1 5 30.897337177573 13
+80fkbz5kzn1zdnxt Age_17+,qualified 3 1 27 29.251838559104 4
+...
+...
+You can use the Tab Import tool to alter any of the variables listed above (e.g., markers, Q1, Q2, etc.). However, it is unlikely that you would want to touch variables unique to the participant like record and uuid.
+You may have noticed an error in the survey code. A marker named "Age_17+" is set for participants with an age value greater than seventeen.
+<exec cond="Q2.ival gt 17">setMarker('Age_17+')</exec>
+This marker should have named "Age_18+" instead. This is where the Tab Import tool comes in. In addition to modifying the survey code to set the correct maker, you would need to alter the existing data for those participants who have already received the incorrect marker.
+One way to accomplish this task is to download the tab-delimited data, use a "Find & Replace" tool to change "Age_17" to "Age_18" and use the Tab Import script to update the existing data. Below is the modified tab-delimited file you need to upload to your project:
+uuid markers
+t4s87amvy4b1wuvu Age_18+,qualified
+b0e6njaww638bgu7 Age_18+,qualified
+25a0yt89t5zeznwz Age_18+,qualified
+cgeua8a308bvxe28 Age_18+,qualified
+xzxe66dvqj54nytg qualified
+wt4xjkq8aj401gy6 Age_18+,qualified
+p9zp7u66197hfb3t qualified
+80fkbz5kzn1zdnxt Age_18+,qualified
+...
+...
+Use the uuid variable to update each record accordingly for each participant. You can use any variable that will uniquely identify each participant.
+Since you are only modifying the markers string, it is the only variable you need to include in the file. Note that if the variables are exactly the same, then no modifications will be made, so you may include the entire data set without affecting the data. In your project's directory, you can run the following command to correct the data:
+tabimport -kuuid . file.txt
+The Tab Import tool provides helpful information that you should review before confirming. If the number of records updated and unchanged looks correct, you may proceed. A backup of the data is made in the data / folder.
+In the code below, you used the -kuuid option to update participants based on their uuid variable, that way the data matched accordingly. If you download the data again, you will see that the appropriate marker was modified and "Age_18+" can be seen instead of "Age_17+".
+[user@ project1234]$ tabimport -kuuid . file.txt
+Assuming . refers to temp/project1234
+Importable fields: uuid markers
+Skipped fields: vlist vos vosr14oe vbrowser vbrowserr14oe vmobiledevice vmobileos
+Rows read from input file: 100
+not processed 0
+unmatched deletions 0
+Rows in results file: 100
+unchanged: 17
+rewritten: 83
+deleted: 0
+created: 0
+Fields processed: 1500
+updated: 83
+identical: 1417
+ignored: 0 (e.g. record, weight)
+erronous: 0
+Continue import? (Y/N) Y
+Import completed. Backup in temp/project1234/data/old-results/001.results.*
+temp/project1234: markers in data file and in markers database were mismatched and were updated
+1.2: Example 2
+To delete participants who do not have the "Age_18+" marker, you need to supply an extra field unique to the Tab Import script called "action".
+Using the custom reporting tool, you can generate a tab-delimited file containing only those participants that do not have the "Age_18+" marker. It should look similar to this:
+uuid markers status Q1 Q2 qtime vos
+xzxe66dvqj54nytg qualified 3 1 5 28.386099702762 5
+wt4xjkq8aj401gy6 qualified 3 1 72 29.058076265442 4
+p9zp7u66197hfb3t qualified 3 1 5 30.897337177573 13
+...
+...
+To delete these participants, add an extra column labeled "action" and add its value as "DEL":
+record uuid markers ... action
+105 xzxe66dvqj54nytg qualified ... DEL
+108 wt4xjkq8aj401gy6 qualified ... DEL
+112 p9zp7u66197hfb3t qualified ... DEL
+...
+...
+Similar to the previous example, if you run the Tab Import tool using this file, you will see some helpful information as to what will happen and you can confirm or deny the process.
+[user@ project1234]$ tabimport -kuuid . file.txt
+Assuming . refers to temp/project1234
+Importable fields: record uuid date markers status Q1 Q2 qtime start_date source list url ipAddress userAgent dcua session action
+Skipped fields: vlist vos vosr14oe vbrowser vbrowserr14oe vmobiledevice vmobileos
+Rows read from input file: 17
+not processed 0
+unmatched deletions 17
+Rows in results file: 100
+unchanged: 83
+rewritten: 0
+deleted: 17
+created: 0
+Fields processed: 0
+updated: 0
+identical: 0
+ignored: 0 (e.g. record, weight)
+erronous: 0
+Continue import? (Y/N) Y
+Import completed. Backup in temp/project1234/data/old-results/002.results.*
+temp/project1234: markers in data file and in markers database were mismatched and were updated
+The result shows that 17 records were deleted and 83 records were unchanged.
+2: Options & Modifiers
+The Tab Import tool is equipped with a handful of options, as shown in the syntax below:
+tabimport [-k key] [-c] [-a] [-N] [--nobackup] [--layout=###] [--yes] surveyPath file.txt
+The following modifiers are available:
+Modifier
+Description
+-k key
+The unique variable by which to reference each participant by (default: uuid ; e.g., tabimport -kID . file.txt).
+-c
+Create a new record if no matching key is found. This is useful when uploading new tab-delimited data to the project. (e.g., tabimport -c . extra-data.txt) If -c is not used, the record will be skipped.
+-a
+Allow importing into notdp variables. (i.e., variables hidden from data downloads). With -a you should see question labels that use question / row / col label. Otherwise, the label is generated through altlabel / variables.xls labels.
+-N
+Suppresses email sent to the project team regarding edited data. This is useful for tabimport scripts that run daily.
+nobackup
+Does not create a backup of data (be careful!).
+--layout
+Import data using variables modified in a Custom Data Layout.
+--yes
+Skips the confirmation prompt.
+surveyPath
+The path to the survey. (e.g., selfserve/9d3/proj1234 or . if in the working directory).
+file.txt
+The tab-delimited file containing the data to upload. The naming convention does not matter.
+Note: Variables contained in this file are case sensitive and must match 100%. Extra fields not found will create warning, but are ignored.
+2.1: Deleting Participants
+Demonstrated in Example 2, the Tab Import tool allows you to delete participants by providing an additional field called "action" with "DEL" supplied as the value. Any record containing the "DEL" value will be removed from the data.
+2.2: Disqualifying Participants
+Participants can be disqualified by modifying the "markers" field. Set this field's value to "DISQUALIFY:reason" and when imported, the participant's markers will be adjusted appropriately so that they show up as a "disqualified complete".
+The "qualified" marker will appear as "bad:qualified".
+All quota markers will be removed.
+A new marker, "reason", will be set.
+Note: This can be set to any text. (e.g., "DISQUALIFY:speeder" ).
+2.3: Custom Data Layouts
+Tip: See Modifying the Survey Data Layout to learn more about the Data Layout Manager if you are using the Survey Editor.
+In the Report menu of your project, you have the ability to create custom data layouts. This enables you to move variable positions and modify the labels.
+When you download data with the labels modified, the system will not be able to detect the proper variables unless you use the --layout=### modifier where ### should be replaced with the ID of the custom data layout (shown at the top of the layout).
+For example, create a custom data layout using the "New Layout" link. Using this tool, you have the ability to modify the labeling for each variable (e.g., Q1r1 -> foo, vos -> bar).
+If you download this data in the tab-delimited format to modify variables and re-upload, you will need to let the Tab Import tool know which layout ID to reference when adding the data back in. For example, a programmer can generate the tab-delimited data for a project with the layout using the following command:
+generate --layout=617 . all tab > tabbed_data.txt
+After adjustments have been made (e.g., updating markers, resetting values, etc.), you can import the data back in using tabimport and the --layout modifier:
+tabimport --layout=617 -kuuid . tabbed_data.txt
+This will recognize any altered variable names (e.g., Q1r1 -> foo ) and update the data values at "Q1" accordingly.
+2.4: Recover Original Data
+To recover backup data, you will need to copy the following files:
+data/old-results/XXX.results.bin to data/results.bin
+data/old-results/XXX.results.text to data/results.strings
+3: Learn more
+See Managing Data with the Transform Command to learn about a similar data modification tool, called transform.

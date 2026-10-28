@@ -1,0 +1,23 @@
+Title: 153.49 Release Notes
+Release Date: March 25, 2025
+Release Version: 153.49
+New Features
+Survey
+Survey Editor
+We've updated the icon and location (Open End) for the Open Assist DQ.
+Dynamic Questions
+audiotestimonial is now closed, and restricted to survey compat 153 (maximum). To have participants record an audio testimonial, use the Media Testimonial element.
+Learn More: Media Testimonial Element
+Programming and Tools
+API
+A new API endpoint has been added to convert non-delphi surveys to delphi.
+Learn more: https://docs.developer.focusvision.com/docs/decipher/api#tag/Modifying-Data/operation/createSurveyDataDelphiConversion
+Bug Fixes
+Portal
+An issue preventing SAML login provider errors from displaying on the login page has been resolved.
+An issue preventing new users from receiving their welcome email has been resolved.
+Survey
+Dynamic Questions
+An issue causing HTML to display as user-facing text in the mobile version of some Rank Sort questions has been resolved.
+Survey Editor
+An issue preventing use of Survey Editor when a locked library element containing unicode characters was present has been resolved.

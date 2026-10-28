@@ -1,0 +1,845 @@
+Title: Creating a Discrete Choice Model (DCM) Question
+The Discrete Choice Model (DCM) question, also known as a conjoint, is a special question type that requires custom modifications to your survey to get up and running.
+To create this question in your survey, you need to:
+Setup the design file.
+Setup the quota sheet.
+Copy the DCM question template into the survey.
+Modify the template according to your design requirements.
+1: Setting Up the Design File
+You will need to provide your own DCM design file. You can either create the design file yourself, or you can obtain one from a third party company specializing in statistical software (e.g., Sawtooth).
+Note: Forsta Support cannot generate DCM design files.
+You can follow along by downloading this design file.
+The first step is to extract your raw design like the one shown above into a tab-delimited text file. Save the design file in the tab-delimited format. In Microsoft Excel, there is an option for this. In LibreOffice Calc, you can save the sheet as comma-separate values (CSV) and select the {TAB} character in the "Field delimiter" drop-down.
+Once done change the extension of your file from ".txt" to ".dat". Verify that your tab-delimited text file is named "design.dat". The file should look something like the one shown below:
+The design file has now been prepared and you need to upload it to your project's root directory.
+In the following instructions, there are a few key terms used in the design file and coded as described below:
+Tasks: These are referring to the number of questions participants see in the exercise.
+Concepts: These are referring to the number of configurations (columns) participants see at each question.
+Attributes: These are represented by the number of columns after the concept column. You can make this your legend text later.
+2: Setting up the Quota Sheet
+Next, you need to create a quota to randomly select the versions each participant will see. From your design file, note how many total versions exist and create a quota sheet that picks one of those. Name your markers "ver_1", "ver_2", ..., "ver_50".
+Illustrated below is "Q24_DCM" sheet with a "DCM Versions" table that randomly assigns each participant one of the fifty version markers. Click here to download this example quota file.
+Note: If you change the name of the markers, they should still end with "_#" where # represents the version number as defined in the design file.
+After you have created your quota sheet to match your design, upload quota.xls to your project's directory.
+Note: You should only have one quota.xls file uploaded to your system files. If you have already created a quota element in your survey, then you will need to download the existing quota file from the Response Summary and create your DCM quota as a new tab in that file. Then rename it and upload as quota.xls. For information on how to do this, see Downloading the Quota Structure.
+3: Copying the DCM Template into the Survey
+After you have uploaded the design.dat and quota.xls files into your project, you can start adding in the necessary DCM code. Copy and paste the following code into your survey.xml where the DCM needs to be shown to participants. This is a base template and you will need to make some modifications.
+The next step is to modify this template to match your DCM design requirements.
+<note>DCM Question Template --Start--</note>
+<exec when="init">
+def setupDCMFile(fname, fileDelimiter="\t"):
+f = open("%s/%s" % (gv.survey.path, fname))
+dcmObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
+d = {}
+dcm_concepts = []
+for i,row in enumerate(dcmObj):
+if i:
+d["v%s_t%s_c%s" % (row[0],row[1],row[2])] = row[3:]
+if row[2] not in dcm_concepts:
+dcm_concepts.append(row[2])
+concepts = [ int(x) for x in dcm_concepts ]
+concepts.sort()
+d["concepts"] = dcm_concepts
+return d
+#set persistent items, format: p.concept#_att#
+def setupDCMItems(d, vt, prefix="1"):
+print "***** STAFF ONLY *****"
+print "***** DCM Matrix *****"
+print "Version_Task: %s" % vt
+for concept in d.get("concepts"):
+attributes = d[ "%s_c%s" % (vt,concept) ]
+print "Concept %s: %s" % (concept,attributes)
+for i,attr in enumerate(attributes):
+p[ "concept%s_att%s" % (concept,i+1) ] = res[ "%s_att%s_level%s" % (prefix,i+1,attr) ]
+p[ "dcmLegend_att%s" % (i+1) ] = res[ "%s_legend%s" % (prefix,i+1) ]
+</exec>
+<exec when="init">
+Q1_dcm = setupDCMFile("design.dat")
+</exec>
+<quota label="Q1_quota" overquota="noqual" sheet="Q1_DCM"/>
+<number label="Q1_Version" size="3" optional="1" verify="range(1,5)" where="execute">
+<title>Q1 - DCM Version</title>
+<exec>
+print p.markers
+for x in p.markers:
+if "/Q1_DCM/ver_" in x:
+Q1_Version.val = int(x.split("_")[-1])
+break
+</exec>
+</number>
+<suspend/>
+<res label="Q1_legend1">Legend 1</res>
+<res label="Q1_legend2">Legend 2</res>
+<res label="Q1_legend3">Legend 3</res>
+<res label="Q1_legend4">Legend 4</res>
+<res label="Q1_legend5">Legend 5</res>
+<res label="Q1_att1_level1">att1-1</res>
+<res label="Q1_att1_level2">att1-2</res>
+<res label="Q1_att1_level3">att1-3</res>
+<res label="Q1_att1_level4">att1-4</res>
+<res label="Q1_att2_level1">att2-1</res>
+<res label="Q1_att2_level2">att2-2</res>
+<res label="Q1_att2_level3">att2-3</res>
+<res label="Q1_att3_level1">att3-1</res>
+<res label="Q1_att3_level2">att3-2</res>
+<res label="Q1_att3_level3">att3-3</res>
+<res label="Q1_att4_level1">att4-1</res>
+<res label="Q1_att4_level2">att4-2</res>
+<res label="Q1_att4_level3">att4-3</res>
+<res label="Q1_att5_level1">att5-1</res>
+<res label="Q1_att5_level2">att5-2</res>
+<res label="Q1_att5_level3">att5-3</res>
+<res label="NoneText">None of these</res>
+<res label="TopText">Concepts</res>
+<res label="rowText">Select one option</res>
+<exec>p.startTime = timeSpent()</exec>
+<loop label="Q1_dcm_loop" vars="task" randomizeChildren="0">
+<title>Q1 - DCM Loop</title>
+<block label="Q1_dcm_block" randomize="0">
+<radio label="Q1_[loopvar: task]" optional="0" surveyDisplay="desktop"
+ss:questionClassNames="Q1_dcm">
+<title>DCM Title [DCMcount]</title>
+<alt>DCM Task: [loopvar: task]</alt>
+<comment>Select one</comment>
+<exec>
+setupDCMItems( Q1_dcm, "v%s_t%s" % (Q1_Version.val,"[loopvar: task]"),"Q1" )
+p.DCMcount = "%d" % (Q1_dcm_loop_expanded.order.index([loopvar: task]-1) + 1)
+</exec>
+<col label="c1">Concept 1</col>
+<col label="c2">Concept 2</col>
+<col label="c3">Concept 3</col>
+<col label="c4">Concept 4</col>
+<col label="c5" alt="None of these"/>
+<style name="question.header" mode="before">
+<![CDATA[
+<style type="text/css">
+/* add this only if you have scrollbars in IE7,8
+div.Q1_dcm {
+overflow: hidden;
+}
+*/
+.Q1_dcm tr.legend th.legend {
+font-weight: bold;
+width: auto;
+}
+.Q1_dcm th, .Q1_dcm td {
+padding: 15px;
+}
+.Q1_dcm tr.dcm_even {
+background-color: #FFFFFF;
+}
+.Q1_dcm tr.dcm_odd {
+background-color: #EFEFEF;
+}
+.Q1_dcm td.dcm_legend {
+font-weight: bold;
+text-align: left;
+width: 120px;
+}
+.Q1_dcm tr.dcm_even td.dcm_item, .Q1_dcm tr.dcm_odd td.dcm_item {
+text-align: center;
+width: 120px;
+}
+</style>
+]]>
+</style>
+<style arg:addNoneColumn="1" arg:attributes="5" arg:noneText="${res.NoneText}" arg:top="${res.TopText}" arg:yeslegend="1" name="question.top-legend">
+<![CDATA[
+\@if this.styles.ss.colLegendHeight
+<tr class="legend top-legend${" GtTenColumns" if ec.colCount > 10 else ""} $(colError)" style="height:${this.styles.ss.colLegendHeight};">
+"\@else
+<tr class="legend top-legend${" GtTenColumns" if ec.colCount > 10 else ""} $(colError)">
+\@endif
+\@if yeslegend == '1'
+<th class="dcm_legend2">$(top)</th>
+\@endif
+$(left)
+$(legends)
+$(right)
+</tr>
+\@for x in range(1,int(attributes)+1)
+<tr class="${'dcm_%s' % ['odd','even'][x % 2]}">
+\@if yeslegend == '1'
+<td class="dcm_legend">${p.get('dcmLegend_att%d' % x)}</td>
+\@endif
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][0],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][1],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][2],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][3],x) )}</td>
+\@if addNoneColumn == '1'
+\@if x == 1
+<td rowspan="${int($(attributes))}" style="border-top: none; text-align: center;"><b>$(noneText)</b></td>
+\@endif
+\@endif
+</tr>
+\@end
+<tbody>
+]]>
+</style>
+<style arg:row="${res.rowText}" arg:yeslegend="1" name="question.row">
+<![CDATA[
+\@if this.styles.ss.rowHeight
+<tr class="$(style) colCount-$(colCount)" style="height:${this.styles.ss.rowHeight};">
+\@else
+<tr class="$(style) colCount-$(colCount)">
+\@endif
+\@if yeslegend == '1'
+<td class="dcm_legend">$(row)</td>
+\@endif
+$(left)
+$(elements)
+$(right)
+</tr>
+]]>
+</style>
+<style arg:addNoneColumn="1" name="question.top-legend-item">
+<![CDATA[
+\@if this.styles.ss.colWidth
+<th id="$(this.label)_$(col.label)" class="dcm_legend legend survey-q-grid-collegend $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""}" style="width:${this.styles.ss.colWidth}; min-width:${this.styles.ss.colWidth}">
+$(text)
+</th>
+\@else
+\@if addNoneColumn == '1' and col.index == (ec.colCount - 1)
+<th id="$(this.label)_$(col.label)" style="border-bottom: none; width: 125px;" >
+$(text)
+</th>
+\@else
+<th id="$(this.label)_$(col.label)" class="legend survey-q-grid-collegend $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""}">
+$(text)
+</th>
+\@endif
+\@endif
+]]>
+</style>
+</radio>
+<suspend/>
+</block>
+<looprow label="1">
+<loopvar name="task">1</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="task">2</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="task">3</loopvar>
+</looprow>
+<looprow label="4">
+<loopvar name="task">4</loopvar>
+</looprow>
+<looprow label="5">
+<loopvar name="task">5</loopvar>
+</looprow>
+</loop>
+<float label="Q1_Timer" size="15" where="execute">
+<title>Q1 - DCM Timer (Minutes)</title>
+<exec>Q1_Timer.val = (timeSpent() - p.startTime) / 60.0</exec>
+</float>
+<note>DCM Question Template --End--</note>
+4: Updating the Template
+Now that you have the DCM question code in place, modify it to match your design specification.
+4.1: Updating the Design File Name
+<exec when="init">
+Q1_dcm = setupDCMFile("design.dat")
+</exec>
+This is where you initialize the DCM class. It takes in the name of the design file you uploaded to the project's directory. Update design.dat, if needed, to reflect the name of the design file you uploaded to your project directory.
+4.2: Updating the Sheet Name in the Quota File
+The following code calls the "Q1_DCM" quota sheet and assigns the participant a version number. You need to update the sheet name in the quota call to match the sheet name in the quota file you created to track the version. For the sample design, this is set to "Q24_DCM."
+<quota label="Q1_quota" overquota="noqual" sheet="Q1_DCM"/>
+4.3: Updating the Range Specification
+Update the range (verify="range(1,5)") on the _version question to match the number of versions in the quota for your DCM question. For the sample design, this is set to "range(1,50)"
+<number label="Q1_Version" size="3" optional="1" verify="range(1,5)" where="execute">
+<title>Q1 - DCM Version</title>
+<exec>
+print p.markers
+for x in p.markers:
+if "/Q1_DCM/ver_" in x:
+Q1_Version.val = int(x.split("_")[-1])
+break
+</exec>
+</number>
+<suspend/>
+4.4: Updating the Sheet Name/Default Version Markers
+If you updated the quota sheet name or the default version markers, be sure to update the following line of code (if "/Q1_DCM/ver_" in x:) to reflect your changes.
+<p>for x in p.markers:<br> if "/Q1_DCM/ver_" in x:<br> Q1_Version.val =
+int(x.split("_")[-1])<br> break<br> </exec><br></number><br><suspend/></p>
+4.5: Updating the Resource Tags
+In this update, replace the resource tags (<res>) with attributes related to your design file. First, extract the attribute text elements that will be shown to the participant. Refer to the "Attribute Text" sheet in the sample design file.
+The DCM function uses the tags above to properly show the text based on the design file. See the screenshot below to get a better idea of how this works:
+Note: Design files vary drastically from project to project. In this example, it was noted in the design file that there are many blank attributes and the corresponding cells should not display any text. Your design file may not contain any blank cells.
+4.5.1: Resource Tags for DCM Legends
+Create the resource tags for the DCM legends with the same naming format as the template "Q#_Legend#". If no DCM legends exist, skip this step.
+<res label="Q1_legend1">Legend 1</res>
+<res label="Q1_legend2">Legend 2</res>
+<res label="Q1_legend3">Legend 3</res>
+<res label="Q1_legend4">Legend 4</res>
+<res label="Q1_legend5">Legend 5</res>
+To reflect the sample design provided, below are the coded DCM legend resource tags:
+<res label="Q1_legend1" >Genre</res>
+<res label="Q1_legend2" >Additional Story Content</res>
+<res label="Q1_legend3" >Additional Game Levels</res>
+<res label="Q1_legend4" >Additional Characters</res>
+<res label="Q1_legend5" >Additional In-Game Items</res>
+<res label="Q1_legend6" >Additional Cosmetic Items</res>
+<res label="Q1_legend7" >Additional Boosters</res>
+<res label="Q1_legend8" >In-game Currency</res>
+<res label="Q1_legend9" >Exclusive Items</res>
+<res label="Q1_legend10">Ads</res>
+<res label="Q1_legend11">Subscription</res>
+<res label="Q1_legend12">Upfront Game Client Cost</res>
+4.5.2: Resource Tags for Each Level
+Create resource tags for each level. Use the naming convention "Q#_att#_level#", where the attribute number is the column from which it is pulling (i.e., the attribute count). The level is the number from the column for that particular row.
+<res label="Q1_att1_level1">att1-1</res>
+<res label="Q1_att1_level2">att1-2</res>
+<res label="Q1_att1_level3">att1-3</res>
+<res label="Q1_att1_level4">att1-4</res>
+<res label="Q1_att2_level1">att2-1</res>
+<res label="Q1_att2_level2">att2-2</res>
+<res label="Q1_att2_level3">att2-3</res>
+<res label="Q1_att3_level1">att3-1</res>
+<res label="Q1_att3_level2">att3-2</res>
+<res label="Q1_att3_level3">att3-3</res>
+<res label="Q1_att4_level1">att4-1</res>
+<res label="Q1_att4_level2">att4-2</res>
+<res label="Q1_att4_level3">att4-3</res>
+<res label="Q1_att5_level1">att5-1</res>
+<res label="Q1_att5_level2">att5-2</res>
+<res label="Q1_att5_level3">att5-3</res>
+To reflect the sample design provided, below are the coded resource tags for each level:
+<res label="Q1_att1_level1">First-person shooter (FPS)</res>
+<res label="Q1_att1_level2">Third-person shooter (TPS) / Action</res>
+<res label="Q1_att1_level3">Role-playing (RPG)</res>
+<res label="Q1_att1_level4">Strategy</res>
+<res label="Q1_att1_level5">Simulation</res>
+<res label="Q1_att1_level6">Casual / puzzle / card</res>
+<res label="Q1_att1_level7">Real-time strategy</res>
+<res label="Q1_att1_level8">Sports</res>
+<res label="Q1_att1_level9">Music</res>
+<res label="Q1_att1_level10">Fighting</res>
+<res label="Q1_att1_level11">Massive online battle arena (MOBA)</res>
+<res label="Q1_att2_level0"> </res>
+<res label="Q1_att2_level1"> </res>
+<res label="Q1_att2_level2">Additional story content is available for purchase in a cash shop</res>
+<res label="Q1_att3_level0"> </res>
+<res label="Q1_att3_level1"> </res>
+<res label="Q1_att3_level2">Additional levels of gameplay are available for purchase in a cash shop</res>
+<res label="Q1_att4_level0"> </res>
+<res label="Q1_att4_level1"> </res>
+<res label="Q1_att4_level2">Additional characters are available for purchase in a cash shop</res>
+<res label="Q1_att5_level0"> </res>
+<res label="Q1_att5_level1"> </res>
+<res label="Q1_att5_level2">In-game items like weapons, vehicles and equipment are available for purchase in a cash shop</res>
+<res label="Q1_att6_level0"> </res>
+<res label="Q1_att6_level1"> </res>
+<res label="Q1_att6_level2">Cosmetic items and customizations for you characters are available for purchase in a cash shop</res>
+<res label="Q1_att7_level0"> </res>
+<res label="Q1_att7_level1"> </res>
+<res label="Q1_att7_level2">Boosters and power-ups are available for purchase in a cash shop</res>
+<res label="Q1_att8_level0"> </res>
+<res label="Q1_att8_level1">The game features in-game currency that can only be earned</res>
+<res label="Q1_att8_level2">The game features in-game currency that can be earned or purchased with real money</res>
+<res label="Q1_att8_level3">The game features an in-game currency that can only be earned and a separate currency that can only be purchased with real money</res>
+<res label="Q1_att9_level0"> </res>
+<res label="Q1_att9_level1"> </res>
+<res label="Q1_att9_level2">The game features exclusive in-game items that can only be purchased with real money</res>
+<res label="Q1_att9_level3">The game features exclusive in-game items that can be either earned or purchased with real money</res>
+<res label="Q1_att10_level0"> </res>
+<res label="Q1_att10_level1">The game is free of all advertising</res>
+<res label="Q1_att10_level2">The game features advertising </res>
+<res label="Q1_att11_level0"> </res>
+<res label="Q1_att11_level1">There is no subscription required to play</res>
+<res label="Q1_att11_level2">The game requires you to pay a subscription each month in order to play</res>
+<res label="Q1_att12_level1">Game is free</res>
+<res label="Q1_att12_level2">Game is available for $2.50</res>
+<res label="Q1_att12_level3">Game is available for $5</res>
+<res label="Q1_att12_level4">Game is available for $10</res>
+<res label="Q1_att12_level5">Game is available for $15</res>
+<res label="Q1_att12_level6">Game is available for $20</res>
+<res label="Q1_att12_level7">Game is available for $25</res>
+<res label="Q1_att12_level8">Game is available for $30</res>
+<res label="Q1_att12_level9">Game is available for $40</res>
+<res label="Q1_att12_level10">Game is available for $50</res>
+4.5.3: Resource Tags for Specifying Text
+Update the following resource tags to reflect the desired text you want for the "None" column, top text, and text before the elements respectively. You can set these resource tags to "blank" if desired.
+<res label="NoneText">None of these</res>
+<res label="TopText">Concepts</res>
+<res label="rowText">Select one option</res>
+4.6: Updating the Question & the Loop
+This is the DCM question element. It is incorporated into a Loop element (<loop>) and will run for as many tasks that are provided in the loop rows (<looprow> tags).
+<loop label="Q1_dcm_loop" vars="task" randomizeChildren="0">
+<title>Q1 - DCM Loop</title>
+<block label="Q1_dcm_block" randomize="1">
+<radio label="Q1_[loopvar: task]" optional="0" surveyDisplay="desktop"
+ss:questionClassNames="Q1_dcm">
+<title>DCM Title [DCMcount]</title>
+<alt>DCM Task: [loopvar: task]</alt>
+<comment>Select one</comment>
+<exec>
+setupDCMItems( Q1_dcm, "v%s_t%s" % (Q1_Version.val,"[loopvar: task]"),"Q1" )
+p.DCMcount = "%d" % (Q1_dcm_loop_expanded.order.index([loopvar: task]-1) + 1)
+</exec>
+<col label="c1">Concept 1</col>
+<col label="c2">Concept 2</col>
+<col label="c3">Concept 3</col>
+<col label="c4">Concept 4</col>
+<col label="c5" alt="None of these"/>
+<style name="question.header" mode="before">
+<![CDATA[
+<style type="text/css">
+/* add this only if you have scrollbars in IE7,8
+div.Q1_dcm {
+overflow: hidden;
+}
+*/
+.Q1_dcm tr.legend th.legend {
+font-weight: bold;
+width: auto;
+}
+.Q1_dcm th, .Q1_dcm td {
+padding: 15px;
+}
+.Q1_dcm tr.dcm_even {
+background-color: #FFFFFF;
+}
+.Q1_dcm tr.dcm_odd {
+background-color: #EFEFEF;
+}
+.Q1_dcm td.dcm_legend {
+font-weight: bold;
+text-align: left;
+width: 120px;
+}
+.Q1_dcm tr.dcm_even td.dcm_item, .Q1_dcm tr.dcm_odd td.dcm_item {
+text-align: center;
+width: 120px;
+}
+</style>
+]]>
+</style>
+<style arg:addNoneColumn="1" arg:attributes="5" arg:noneText="${res.NoneText}" arg:top="${res.TopText}" arg:yeslegend="1" name="question.top-legend">
+<![CDATA[
+\@if this.styles.ss.colLegendHeight
+<tr class="legend top-legend${" GtTenColumns" if ec.colCount > 10 else ""} $(colError)" style="height:${this.styles.ss.colLegendHeight};">
+\@else
+<tr class="legend top-legend${" GtTenColumns" if ec.colCount > 10 else ""} $(colError)">
+\@endif
+\@if yeslegend == '1'
+<th class="dcm_legend2">$(top)</th>
+\@endif
+$(left)
+$(legends)
+$(right)
+</tr>
+\@for x in range(1,int(attributes)+1)
+<tr class="${'dcm_%s' % ['odd','even'][x % 2]}">
+\@if yeslegend == '1'
+<td class="dcm_legend">${p.get('dcmLegend_att%d' % x)}</td>
+\@endif
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][0],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][1],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][2],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][3],x) )}</td>
+\@if addNoneColumn == '1'
+\@if x == 1
+<td rowspan="${int($(attributes))}" style="border-top: none; text-align: center;"><b>$(noneText)</b></td>
+\@endif
+\@endif
+</tr>
+\@end
+<tbody>
+]]>
+</style>
+<style arg:row="${res.rowText}" arg:yeslegend="1" name="question.row">
+<![CDATA[
+\@if this.styles.ss.rowHeight
+<tr class="$(style) colCount-$(colCount)" style="height:${this.styles.ss.rowHeight};">
+\@else
+<tr class="$(style) colCount-$(colCount)">
+\@endif
+\@if yeslegend == '1'
+<td class="dcm_legend">$(row)</td>
+\@endif
+$(left)
+$(elements)
+$(right)
+</tr>
+]]>
+</style>
+<style arg:addNoneColumn="1" name="question.top-legend-item">
+<![CDATA[
+\@if this.styles.ss.colWidth
+<th id="$(this.label)_$(col.label)" class="dcm_legend legend survey-q-grid-collegend $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""}" style="width:${this.styles.ss.colWidth}; min-width:${this.styles.ss.colWidth}">
+$(text)
+</th>
+\@else
+\@if addNoneColumn == '1' and col.index == (ec.colCount - 1)
+<th id="$(this.label)_$(col.label)" style="border-bottom: none; width: 125px;" >
+$(text)
+</th>
+\@else
+<th id="$(this.label)_$(col.label)" class="legend survey-q-grid-collegend $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""}">
+$(text)
+</th>
+\@endif
+\@endif
+]]>
+</style>
+</radio>
+<suspend/>
+</block>
+<looprow label="1">
+<loopvar name="task">1</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="task">2</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="task">3</loopvar>
+</looprow>
+<looprow label="4">
+<loopvar name="task">4</loopvar>
+</looprow>
+<looprow label="5">
+<loopvar name="task">5</loopvar>
+</looprow>
+</loop>
+The DCM question and loop require several updates as described in the next sections.
+4.6.1: Setting the Randomization
+<loop label="Q1_dcm_loop" vars="task" randomizeChildren="0">
+If you need to randomize tasks in addition to what the randomization design file is already doing, change the randomizeChildren value to "1". By default, it is set to "0" and it is typically left unchanged.
+If you do change the randomizeChildren value to "1", then make sure that you also change randomize="0" to randomize="1" in the subsequent block, as shown below.
+<block label="Q1_dcm_block" randomize="1">
+4.6.2: Updating the Single Select Question's <title> and <comment> Attributes
+Title and comment tags represent the question and instruction text (respectively) that display to participants for each task in the DCM. You can update the text between the <title> and <comment> tags to match your questionnaire.
+By default, the template includes a [DCMcount] in the <title> tag to let participants know which task of the DCM they are on.
+<title>DCM Title [DCMcount]</title>
+<alt>DCM Task: [loopvar: task]</alt>
+<comment>Select one</comment>
+4.6.3: Specifying Columns
+Update the number of columns to match the number of concepts in the design. The template currently has a "None of These" column in place. If this is not a requirement for your client, you can remove this column.
+<col label="c1">Concept 1</col>
+<col label="c2">Concept 2</col>
+<col label="c3">Concept 3</col>
+<col label="c4">Concept 4</col>
+<col label="c5" alt="None of these"/>
+4.6.4: Setting Configurable Attributes
+<style arg:addNoneColumn="1" arg:attributes="5" arg:noneText="${res.NoneText}"
+arg:top="${res.TopText}" arg:yeslegend="1" name="question.top-legend">
+Set these attributes to the following values:
+If the client requires a "None" column, then set the arg:addNoneColumn attribute to 1 (arg:addNoneColumn="1"). Otherwise, set this attribute to 0. Complete this task in two places within the loop.
+Set arg:attributes to the count of attributes in the DCM design specification (e.g., arg:attributes="12")
+If your DCM question has a legend, set arg:yeslegend to 1 (arg:yeslegend="1"). Otherwise, set it to 0. Complete this task in two places within the loop.
+4.6.5: Updating the question-top Legend Style
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][0],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][1],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][2],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][3],x) )}</td>
+In the question-top-legend style, verify that the number of td blocks matches the number of columns in your DCM design. Currently, the template is set for four columns (0-3). If you need to add a column for five columns, add an additional td block as shown above, and set the number to inside the brackets to four (e.g., [4]).
+Note: You do not need to add a td block for the "None" column as that is accounted for in the next section of code.
+4.6.6: Updating the Number of Tasks
+Update the number of tasks (looprow) to match the number of tasks in your design file. The DCM template loop is setup for five tasks which indicates showing five questions to each participant. The example design file is setup to show fourteen different questions to each participant. To match the design, multiple <looprow> tags are added as shown.
+<looprow label="1"> <loopvar name="task">1</loopvar> </looprow>
+<looprow label="2"> <loopvar name="task">2</loopvar> </looprow>
+<looprow label="3"> <loopvar name="task">3</loopvar> </looprow>
+<looprow label="4"> <loopvar name="task">4</loopvar> </looprow>
+<looprow label="5"> <loopvar name="task">5</loopvar> </looprow>
+<looprow label="6"> <loopvar name="task">6</loopvar> </looprow>
+<looprow label="7"> <loopvar name="task">7</loopvar> </looprow>
+<looprow label="8"> <loopvar name="task">8</loopvar> </looprow>
+<looprow label="9"> <loopvar name="task">9</loopvar> </looprow>
+<looprow label="10"> <loopvar name="task">10</loopvar> </looprow>
+<looprow label="11"> <loopvar name="task">11</loopvar> </looprow>
+<looprow label="12"> <loopvar name="task">12</loopvar> </looprow>
+<looprow label="13"> <loopvar name="task">13</loopvar> </looprow>
+<looprow label="14"> <loopvar name="task">14</loopvar> </looprow>
+4.7: Globally Updating the DCM Question Label
+From within the template, do a global find and replace to replace all instances of "Q1" to match your question label. For the sample design, the question label is updated to "Q24".
+5: Results of Template Modifications
+Below is the revised code adapted to fit the needs of the example design file.
+<note>DCM Question Template --Start--</note>
+<exec when="init">
+def setupDCMFile(fname, fileDelimiter="\t"):
+f = open("%s/%s" % (gv.survey.path, fname))
+dcmObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
+d = {}
+dcm_concepts = []
+for i,row in enumerate(dcmObj):
+if i:
+d["v%s_t%s_c%s" % (row[0],row[1],row[2])] = row[3:]
+if row[2] not in dcm_concepts:
+dcm_concepts.append(row[2])
+concepts = [ int(x) for x in dcm_concepts ]
+concepts.sort()
+d["concepts"] = dcm_concepts
+return d
+#set persistent items, format: p.concept#_att#
+def setupDCMItems(d, vt, prefix="1"):
+print "***** STAFF ONLY *****"
+print "***** DCM Matrix *****"
+print "Version_Task: %s" % vt
+for concept in d.get("concepts"):
+attributes = d[ "%s_c%s" % (vt,concept) ]
+print "Concept %s: %s" % (concept,attributes)
+for i,attr in enumerate(attributes):
+p[ "concept%s_att%s" % (concept,i+1) ] = res[ "%s_att%s_level%s" % (prefix,i+1,attr) ]
+p[ "dcmLegend_att%s" % (i+1) ] = res[ "%s_legend%s" % (prefix,i+1) ]
+</exec>
+<exec when="init">
+Q24_dcm = setupDCMFile("design.dat")
+</exec>
+<quota label="Q24_quota" overquota="noqual" sheet="Q24_DCM"/>
+<number label="Q24_Version" size="3" optional="1" verify="range(1,50)" where="execute">
+<title>Q24 - DCM Version</title>
+<exec>
+print p.markers
+for x in p.markers:
+if "/Q24_DCM/ver_" in x:
+Q24_Version.val = int(x.split("_")[-1])
+break
+</exec>
+</number>
+<suspend/>
+<res label="Q24_legend1" >Genre</res>
+<res label="Q24_legend2" >Additional Story Content</res>
+<res label="Q24_legend3" >Additional Game Levels</res>
+<res label="Q24_legend4" >Additional Characters</res>
+<res label="Q24_legend5" >Additional In-Game Items</res>
+<res label="Q24_legend6" >Additional Cosmetic Items</res>
+<res label="Q24_legend7" >Additional Boosters</res>
+<res label="Q24_legend8" >In-game Currency</res>
+<res label="Q24_legend9" >Exclusive Items</res>
+<res label="Q24_legend10">Ads</res>
+<res label="Q24_legend11">Subscription</res>
+<res label="Q24_legend12">Upfront Game Client Cost</res>
+<res label="Q24_att1_level1">First-person shooter (FPS)</res>
+<res label="Q24_att1_level2">Third-person shooter (TPS) / Action</res>
+<res label="Q24_att1_level3">Role-playing (RPG)</res>
+<res label="Q24_att1_level4">Strategy</res>
+<res label="Q24_att1_level5">Simulation</res>
+<res label="Q24_att1_level6">Casual / puzzle / card</res>
+<res label="Q24_att1_level7">Real-time strategy</res>
+<res label="Q24_att1_level8">Sports</res>
+<res label="Q24_att1_level9">Music</res>
+<res label="Q24_att1_level10">Fighting</res>
+<res label="Q24_att1_level11">Massive online battle arena (MOBA)</res>
+<res label="Q24_att2_level0"> </res>
+<res label="Q24_att2_level1"> </res>
+<res label="Q24_att2_level2">Additional story content is available for purchase in a cash shop</res>
+<res label="Q24_att3_level0"> </res>
+<res label="Q24_att3_level1"> </res>
+<res label="Q24_att3_level2">Additional levels of gameplay are available for purchase in a cash shop</res>
+<res label="Q24_att4_level0"> </res>
+<res label="Q24_att4_level1"> </res>
+<res label="Q24_att4_level2">Additional characters are available for purchase in a cash shop</res>
+<res label="Q24_att5_level0"> </res>
+<res label="Q24_att5_level1"> </res>
+<res label="Q24_att5_level2">In-game items like weapons, vehicles and equipment are available for purchase in a cash shop</res>
+<res label="Q24_att6_level0"> </res>
+<res label="Q24_att6_level1"> </res>
+<res label="Q24_att6_level2">Cosmetic items and customizations for you characters are available for purchase in a cash shop</res>
+<res label="Q24_att7_level0"> </res>
+<res label="Q24_att7_level1"> </res>
+<res label="Q24_att7_level2">Boosters and power-ups are available for purchase in a cash shop</res>
+<res label="Q24_att8_level0"> </res>
+<res label="Q24_att8_level1">The game features in-game currency that can only be earned</res>
+<res label="Q24_att8_level2">The game features in-game currency that can be earned or purchased with real money</res>
+<res label="Q24_att8_level3">The game features an in-game currency that can only be earned and a separate currency that can only be purchased with real money</res>
+<res label="Q24_att9_level0"> </res>
+<res label="Q24_att9_level1"> </res>
+<res label="Q24_att9_level2">The game features exclusive in-game items that can only be purchased with real money</res>
+<res label="Q24_att9_level3">The game features exclusive in-game items that can be either earned or purchased with real money</res>
+<res label="Q24_att10_level0"> </res>
+<res label="Q24_att10_level1">The game is free of all advertising</res>
+<res label="Q24_att10_level2">The game features advertising </res>
+<res label="Q24_att11_level0"> </res>
+<res label="Q24_att11_level1">There is no subscription required to play</res>
+<res label="Q24_att11_level2">The game requires you to pay a subscription each month in order to play</res>
+<res label="Q24_att12_level1">Game is free</res>
+<res label="Q24_att12_level2">Game is available for $2.50</res>
+<res label="Q24_att12_level3">Game is available for $5</res>
+<res label="Q24_att12_level4">Game is available for $10</res>
+<res label="Q24_att12_level5">Game is available for $15</res>
+<res label="Q24_att12_level6">Game is available for $20</res>
+<res label="Q24_att12_level7">Game is available for $25</res>
+<res label="Q24_att12_level8">Game is available for $30</res>
+<res label="Q24_att12_level9">Game is available for $40</res>
+<res label="Q24_att12_level10">Game is available for $50</res>
+<res label="NoneText">None of these</res>
+<res label="TopText">Concepts</res>
+<res label="rowText">Select one option</res>
+<exec>p.startTime = timeSpent()</exec>
+<loop label="Q24_dcm_loop" vars="task" randomizeChildren="0">
+<title>Q24 - DCM Loop</title>
+<block label="Q24_dcm_block" randomize="0">
+<radio label="Q24_[loopvar: task]" optional="0" surveyDisplay="desktop"
+ss:questionClassNames="Q24_dcm">
+<title>DCM Title [DCMcount]</title>
+<alt>DCM Task: [loopvar: task]</alt>
+<comment>Select one</comment>
+<exec>
+setupDCMItems( Q24_dcm, "v%s_t%s" % (Q24_Version.val,"[loopvar: task]"),"Q24" )
+p.DCMcount = "%d" % (Q24_dcm_loop_expanded.order.index([loopvar: task]-1) + 1)
+</exec>
+<col label="c1">Concept 1</col>
+<col label="c2">Concept 2</col>
+<col label="c3">Concept 3</col>
+<col label="c4">Concept 4</col>
+<col label="c5" alt="None of these"/>
+<style name="question.header" mode="before">
+<![CDATA[
+<style type="text/css">
+/* add this only if you have scrollbars in IE7,8
+div.Q24_dcm {
+overflow: hidden;
+}
+*/
+.Q24_dcm tr.legend th.legend {
+font-weight: bold;
+width: auto;
+}
+.Q24_dcm th, .Q24_dcm td {
+padding: 15px;
+}
+.Q24_dcm tr.dcm_even {
+background-color: #FFFFFF;
+}
+.Q24_dcm tr.dcm_odd {
+background-color: #EFEFEF;
+}
+.Q24_dcm td.dcm_legend {
+font-weight: bold;
+text-align: left;
+width: 120px;
+}
+.Q24_dcm tr.dcm_even td.dcm_item, .Q24_dcm tr.dcm_odd td.dcm_item {
+text-align: center;
+width: 120px;
+}
+</style>
+]]>
+</style>
+<style arg:addNoneColumn="1" arg:attributes="12" arg:noneText="${res.NoneText}" arg:top="${res.TopText}" arg:yeslegend="1" name="question.top-legend">
+<![CDATA[
+\@if this.styles.ss.colLegendHeight
+<tr class="legend top-legend${" GtTenColumns" if ec.colCount > 10 else ""} $(colError)" style="height:${this.styles.ss.colLegendHeight};">
+\@else
+<tr class="legend top-legend${" GtTenColumns" if ec.colCount > 10 else ""} $(colError)">
+\@endif
+\@if yeslegend == '1'
+<th class="dcm_legend2">$(top)</th>
+\@endif
+$(left)
+$(legends)
+$(right)
+</tr>
+\@for x in range(1,int(attributes)+1)
+<tr class="${'dcm_%s' % ['odd','even'][x % 2]}">
+\@if yeslegend == '1'
+<td class="dcm_legend">${p.get('dcmLegend_att%d' % x)}</td>
+\@endif
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][0],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][1],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][2],x) )}</td>
+<td class="dcm_item">${p.get('concept%d_att%d' % ([c.index+1 for c in p.get('shuffle-Col-%d' % this.uid) or this.cols][3],x) )}</td>
+\@if addNoneColumn == '1'
+\@if x == 1
+<td rowspan="${int($(attributes))}" style="border-top: none; text-align: center;"><b>$(noneText)</b></td>
+\@endif
+\@endif
+</tr>
+\@end
+<tbody>
+]]>
+</style>
+<style arg:row="${res.rowText}" arg:yeslegend="1" name="question.row">
+<![CDATA[
+\@if this.styles.ss.rowHeight
+<tr class="$(style) colCount-$(colCount)" style="height:${this.styles.ss.rowHeight};">
+\@else
+<tr class="$(style) colCount-$(colCount)">
+\@endif
+\@if yeslegend == '1'
+<td class="dcm_legend">$(row)</td>
+\@endif
+$(left)
+$(elements)
+$(right)
+</tr>
+]]>
+</style>
+<style arg:addNoneColumn="1" name="question.top-legend-item">
+<![CDATA[
+\@if this.styles.ss.colWidth
+<th id="$(this.label)_$(col.label)" class="dcm_legend legend survey-q-grid-collegend $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""}" style="width:${this.styles.ss.colWidth}; min-width:${this.styles.ss.colWidth}">
+$(text)
+</th>
+\@else
+\@if addNoneColumn == '1' and col.index == (ec.colCount - 1)
+<th id="$(this.label)_$(col.label)" style="border-bottom: none; width: 125px;" >
+$(text)
+</th>
+\@else
+<th id="$(this.label)_$(col.label)" class="legend survey-q-grid-collegend $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""}">
+$(text)
+</th>
+\@endif
+\@endif
+]]>
+</style>
+</radio>
+<suspend/>
+</block>
+<looprow label="1">
+<loopvar name="task">1</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="task">2</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="task">3</loopvar>
+</looprow>
+<looprow label="4">
+<loopvar name="task">4</loopvar>
+</looprow>
+<looprow label="5">
+<loopvar name="task">5</loopvar>
+</looprow>
+<looprow label="6">
+<loopvar name="task">6</loopvar>
+</looprow>
+<looprow label="7">
+<loopvar name="task">7</loopvar>
+</looprow>
+<looprow label="8">
+<loopvar name="task">8</loopvar>
+</looprow>
+<looprow label="9">
+<loopvar name="task">9</loopvar>
+</looprow>
+<looprow label="10">
+<loopvar name="task">10</loopvar>
+</looprow>
+<looprow label="11">
+<loopvar name="task">11</loopvar>
+</looprow>
+<looprow label="12">
+<loopvar name="task">12</loopvar>
+</looprow>
+<looprow label="13">
+<loopvar name="task">13</loopvar>
+</looprow>
+<looprow label="14">
+<loopvar name="task">14</loopvar>
+</looprow>
+</loop>
+<float label="Q24_Timer" size="15" where="execute">
+<title>Q24 - DCM Timer (Minutes)</title>
+<exec>Q24_Timer.val = (timeSpent() - p.startTime) / 60.0</exec>
+</float>
+<note>DCM Question Template --End--</note>
+6: Question Results
+The following image showcases a DCM template reflecting the sample design (includes a "None" column).
+The following image showcases a DCM template without the "None" column.
+Click here to download the example design file used in this project and here to download the example quota file used.
+If you want to change the look of this question, you can take additional steps to make this DCM question more presentable with CSS using the XML style system.
+7: Learn more
+XML Style System

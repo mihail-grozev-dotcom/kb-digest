@@ -1,0 +1,438 @@
+Title: Randomizing Response Options in Groups
+Randomizing a question's response options means showing them in random order for each participant. It is a common task when building surveys. Randomization in groups can mean a couple of things:
+Randomizing groups: You have a set of rows that need to be randomized and a subset of these rows should remain grouped together.
+Randomizing groups with group order: You have a set of rows that need to be randomized and a subset of these rows should remain grouped together in a specific order.
+Randomizing using shuffleBy: You have a set of rows that need to be randomized in the same order as a previous question's rows, but the number of rows do not match.
+Please review Advanced Randomization if you are not familiar with the syntax and continue reading when you are ready to see solutions revolving around more advanced randomization tasks.
+Note: The examples in the following sections demonstrate how to randomize row elements. The same approach can be taken to randomize column elements, but you must change the code to use cols instead of rows.
+1: Randomizing Groups
+Group randomization can be accomplished in the Survey Editor using groups. See Adding Answer Groups and Group Tag: Group Response Options to learn more about the Group tag.
+Below is an alternative approach that is dynamic and relatively easy.
+1.1: Context
+You have a set of rows that need to be randomized and a subset of these rows should remain grouped together.
+In the example below, there are eight rows and rows 5, 6, and 7 are to be positioned next to each other.
+<radio label="Q1" shuffle="rows">
+<title>Standard radio question.</title>
+<comment>Please choose one.</comment>
+<row label="r1">r1</row>
+<row label="r2">r2</row>
+<row label="r3">r3</row>
+<row label="r4">r4</row>
+<row label="r5">r5</row>
+<row label="r6">r6</row>
+<row label="r7">r7</row>
+<row label="r8">r8</row>
+</radio>
+Without any modifications to the question above, the rows will randomize for each participant and rows 5, 6, and 7 will not always remain grouped together. The result is illustrated below.
+Rows 5, 6, and 7 are not presented next to each other. The correct and intended behavior is for the question to look like the layout below.
+Rows 5, 6, and 7 are now grouped together. It was not specified to show these rows in the same order, just that they should be positioned in the table next to each other. If you need the rows to be in a specific order, see Randomizing Groups with Group Order below.
+1.2: Solution (Pseudocode)
+To achieve this result, you will have to manually specify the row order for the question. The system will handle the randomization and you will need to specify the code to group the rows together. Below is a description of the function that you can create to make this happen:
+Step 1: Create one variable to store an index value (used in step #3).
+Step 2: Iterate through a copy of the question's randomization order.
+Step 3: The first time you reach a row that is in the set of rows to be grouped together, store the row's index position relative to the question's randomization order in the variable (created in step #1).
+Step 4: As you continue iterating through the randomization order, each time you reach a row that is in this set of rows to be grouped together, increment your index variable (noted in step #3) and move this row into this new position.
+Step 5: The final step is to set the question's randomization order to the copy that you just modified.
+1.3: Solution (In Practice)
+You can accomplish this task using <exec> blocks and Python code. First, create a function called group_rows to perform the procedures written out in steps 1 - 5 above. This function will accept two arguments:
+The question in which you are performing the manual randomization.
+A list of row labels relative to the rows that should be grouped together.
+def group_rows( question, grouped_rows ):
+When the time is right, call this function from your survey like this:
+exec="group_rows( Q1, ['r5', 'r6', 'r7'] )"
+Then, finish writing the function based on steps 1 - 5 listed above.
+def group_rows( question, grouped_rows ):
+# Create one variable to store an index value
+first_item_index = None
+# Iterate through a copy of the question's shuffle order
+shuffle_order = [row.index for row in question.rows.order]
+for index, row in enumerate( shuffle_order ):
+# The first time we reach a row that is in the set of rows
+# to be grouped together, store the row's index position
+# relative to the question's shuffle order into the variable
+if question.rows[row].label in grouped_rows:
+if first_item_index == None:
+first_item_index = index
+else:
+# As we continue iterating through the shuffle order
+# each time we reach a row that is in the set of
+# rows to be grouped together, increment our index
+# value and move this row into the new position
+first_item_index += 1
+shuffle_order.insert( first_item_index, shuffle_order.pop(index) )
+# The final step is to set the question's shuffle order to the copy that
+# we just modified
+question.rows.order = shuffle_order
+That completes your function and fulfills the requirements specified for this task. As shown below, you can apply this function to your survey by adding it (without the comments) to an <exec> block that is called once when the survey is loaded. You can then call this function at your question using the <exec> attribute.
+<exec when="init">
+def group_rows( question, grouped_rows ):
+first_item_index = None
+shuffle_order = [row.index for row in question.rows.order]
+for index, row in enumerate( shuffle_order ):
+if question.rows[row].label in grouped_rows:
+if first_item_index == None:
+first_item_index = index
+else:
+first_item_index += 1
+shuffle_order.insert( first_item_index, shuffle_order.pop(index) )
+question.rows.order = shuffle_order
+</exec>
+<radio label="Q1" shuffle="rows" exec="group_rows(Q1, ['r5', 'r6', 'r7'])">
+<title>Standard radio question</title>
+<comment>Please choose one.</comment>
+<row label="r1">r1</row>
+<row label="r2">r2</row>
+<row label="r3">r3</row>
+<row label="r4">r4</row>
+<row label="r5">r5</row>
+<row label="r6">r6</row>
+<row label="r7">r7</row>
+<row label="r8">r8</row>
+</radio>
+1.4: Result
+You can assert that your function is working correctly by verifying that each time the question is loaded, rows 5, 6, and 7 are randomized together.
+1.5: Real-World Application
+This function would apply well to the question below given the following programmer note:
+PROGRAMMER NOTE: Randomize rows. Keep Google products grouped together.
+<checkbox label="Q4" shuffle="rows" exec="group_rows(Q4, ['r3', 'r4', 'r5'])">
+<title>Please select the services you currently use.</title>
+<comment>Select all that apply.</comment>
+<row label="r1">Bing Search</row>
+<row label="r2">DuckDuckGo</row>
+<row label="r3">Google Search</row>
+<row label="r4">Google Mail (GMail)</row>
+<row label="r5">Google Drive</row>
+<row label="r6">Yahoo Search</row>
+<row label="r7">Dropbox</row>
+</radio>
+This function can be stacked if you need to group more than one set of rows. For example, if you also wanted to group "Bing Search" with "Yahoo Search" in the example above, you would just need to modify the question's <exec> attribute to call the function again for this additional set.
+<checkbox label="Q4" shuffle="rows" exec="group_rows(Q4, ['r3', 'r4', 'r5']); group_rows(Q4, ['r1', 'r6']);">
+1.6: Conclusion and Thoughts
+More information about the enumerate function used can be found on Python.org.
+2: Randomizing Groups with Group Order
+2.1: Context
+You have a set of rows that need to be randomized and a subset of these rows should remain grouped together in a specific order.
+In this example, there are eight rows and you need rows 5, 6, and 7 to be positioned next to each other in the specified order. For the sake of this example, the rows are arranged in ascending order.
+<radio label="Q1" shuffle="rows">
+<title>Standard radio question.</title>
+<comment>Please choose one.</comment>
+<row label="r1">r1</row>
+<row label="r2">r2</row>
+<row label="r3">r3</row>
+<row label="r4">r4</row>
+<row label="r5">r5</row>
+<row label="r6">r6</row>
+<row label="r7">r7</row>
+<row label="r8">r8</row>
+</radio>
+Without any modifications to the question above, the rows will randomize for each participant and rows 5, 6, and 7 will not remain grouped together. The result is illustrated below.
+Rows 5, 6, and 7 are not presented next to each other. The correct and intended behavior is for your question to look like the layout below.
+Notice how rows 5, 6, and 7 are now grouped together and in the specified order.
+2.2: Solution (Pseudocode)
+To achieve this result, you will have to manually specify the row order for the question. The system will handle the randomization and you will need to specify the code to group the rows together. Below is a description of the function you can create to make this happen:
+Step 1: Create two lists, a copy of the question's randomization order and an empty list in which to store the new order.
+Step 2: Transform the grouped list of labels to a grouped list of indexes and create a variable to store the position index of the first item in your grouped list relative to the randomization order.
+Step 3: Insert the list of grouped items in their specified order to this position.
+Step 4: Iterate through your copy of the randomization order.
+Step 5: As you go through this list, check to see if the item is either the list you inserted into your copy (in step #2) or a row item not found in the grouped list. If the item is the list you inserted into your copy, concatenate the item to the new order list that you are generating. If the item is a row item not found in the grouped list, append the item to the list you are generating.
+Step 6: The final step is to set the question's randomization order to the new order list that you generated.
+2.3: Solution (In Practice)
+You can accomplish this task using <exec> blocks and Python code. First, create a function called group_rows_with_order to perform the procedures written out in steps 1 - 6 above.
+This function will accept two arguments:
+The question in which you are performing the manual randomization.
+A list of row labels relative to the rows that should be grouped together.
+def group_rows_with_order( question, grouped_rows ):
+When the time is right, call this function from your survey like this:
+exec="group_rows_with_order( Q1, ['r5', 'r6', 'r7'] )"
+Then, finish writing the function based on steps 1 - 6 listed above.
+def group_rows_with_order( question, grouped_rows ):
+# Create two lists, a copy of the question's shuffle order
+# and an empty list to store the new order into
+current_order = [row.index for row in question.rows.order]
+new_order = []
+# Transform the grouped list of labels provided to a grouped list of indexes
+# and create a variable to store the position index of the
+# first item in our grouped list relative to the shuffle order
+grouped_rows = [question.attr(row).index for row in grouped_rows]
+first_item_index = current_order.index(grouped_rows[0])
+# Insert the list of grouped items in their specified order
+# to this position
+current_order.insert(first_item_index, grouped_rows)
+# Iterate through our copy of the shuffle order
+for row in current_order:
+# As we go through this list, check to see if the item is either
+# 1) the list we inserted into our copy or
+# 2) a row item not found in the grouped list
+if row == grouped_rows:
+# If 1), concatenate the item to the new order list we are generating
+new_order = new_order + row
+elif row not in grouped_rows:
+# If 2), append the item to the list we are generating
+new_order.append(row)
+# The final step is to set the question's shuffle order to the
+# new order list that we generated
+question.rows.order = new_order
+That completes your function and fulfills the requirements specified for this task. As shown below, you can apply this function to your survey by adding it (without the comments) to an <exec> block that is called once when the survey is loaded. You can then call this function at your question using the <exec> attribute.
+<exec when="init">
+def group_rows_with_order( question, grouped_rows ):
+current_order = [row.index for row in question.rows.order]
+new_order = []
+grouped_rows = [question.attr(row).index for row in grouped_rows]
+first_item_index = current_order.index(grouped_rows[0])
+current_order.insert(first_item_index, grouped_rows)
+for row in current_order:
+if row == grouped_rows:
+new_order = new_order + row
+elif row not in grouped_rows:
+new_order.append(row)
+question.rows.order = new_order
+</exec>
+<radio label="Q1" shuffle="rows" exec="group_rows_with_order(Q1, ['r5', 'r6', 'r7'])">
+<title>Standard radio question</title>
+<comment>Please choose one.</comment>
+<row label="r1">r1</row>
+<row label="r2">r2</row>
+<row label="r3">r3</row>
+<row label="r4">r4</row>
+<row label="r5">r5</row>
+<row label="r6">r6</row>
+<row label="r7">r7</row>
+<row label="r8">r8</row>
+</radio>
+2.4: Result
+You can assert that your function is working correctly by verifying that each time the question is loaded, rows 5, 6, and 7 are randomized together and in the order specified.
+2.5: Real-World Application
+This function would apply well to the question below given the following programmer note:
+PROGRAMMER NOTE: Randomize rows. Keep Google products grouped together and in this order -- Mail, Search, Drive.
+<checkbox label="Q4" shuffle="rows" exec="group_rows_with_order(Q4, ['r4', 'r3', 'r5'])">
+<title>Please select the services you currently use.</title>
+<comment>Select all that apply.</comment>
+<row label="r1">Bing Search</row>
+<row label="r2">DuckDuckGo</row>
+<row label="r3">Google Search</row>
+<row label="r4">Google Mail (GMail)</row>
+<row label="r5">Google Drive</row>
+<row label="r6">Yahoo Search</row>
+<row label="r7">Dropbox</row>
+</radio>
+This function can be stacked if you want to group more than one set of rows. For example, if you also wanted to group "Bing Search" with "Yahoo Search" in the example above, you just need to modify the question's <exec> attribute to call the function again for this additional set.
+<checkbox label="Q4" shuffle="rows" exec="group_rows_with_order(Q4, ['r4', 'r3', 'r5']); group_rows_with_order(Q4, ['r1', 'r6']);">
+3: Randomizing Using shuffleBy
+The attribute shuffleBy can be used to randomize a set of rows in the same order as within a previous question. To use shuffleBy, the number of rows in each question must be exactly the same. If the number of rows do not match, then you need to take a couple of extra steps to ensure the rows are randomized in the same order.
+There are two methods for randomizing in the same order provided below. You can use the where="none" method if the number of rows is relatively small (less than 10 or so) or if the content of the rows do not match exactly. If the number of rows to randomize by is large, then it will be easier to use the Pythonic method.
+3.1: The where="none" Method
+3.1.1: Context
+You have a set of rows that need to be randomized in the same order as a previous question's rows, but the number of rows do not match.
+In this example, there are two questions equipped with a different number of rows. The first question has six rows and the second has three rows. You need to randomize the row elements in the second question in the same order as the first question.
+In other words, items 1, 3, and 5 in the second question should be shown in the same order as 1, 3, and 5 in the first question.
+<radio label="Q1" shuffle="rows">
+<title>Please choose one.</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">5</row>
+<row label="r6">6</row>
+</radio>
+<radio label="Q2" shuffle="rows">
+<title>Please choose one.</title>
+<row label="r1">1</row>
+<row label="r2">3</row>
+<row label="r3">5</row>
+</radio>
+Without any modifications to the questions above, you obtain the following result:
+Notice that rows 1, 3, and 5 in the second question are not in the same order as 1, 3 and 5 in the first question (e.g. 5 - 3 - 1 compared to 3 - 1 - 5). What needed to have happened is illustrated below.
+The screenshot above shows the desired result. The second question's row elements are now randomized in the same order as the first question's row elements (e.g., 5 - 1 - 3).
+3.1.2: Solution (Pseudocode)
+To achieve this result, use the shuffleBy attribute. Since shuffleBy uses index values to line up the rows, you cannot use shuffleBy if the row counts do not match. However, you can get around this by matching the number of rows to the second question and hiding the rows that do not apply. Below is a description of the approach you can take to make this happen:
+Step 1: Copy the rows from the first question to the second question in the same order.
+Step 2: Hide all rows that should remain invisible to participants by adding where="none" to each of the row tags.
+Step 3: Add shuffleBy="Q1" to the second question, where "Q1" is a reference to the original question.
+3.1.3: Solution (In Practice)
+Attached below is the same code for the original sets of questions with the mismatched row counts. No changes have been applied yet.
+<radio label="Q1" shuffle="rows">
+<title>Please choose one.</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">5</row>
+<row label="r6">6</row>
+</radio>
+<radio label="Q2" shuffle="rows">
+<title>Please choose one.</title>
+<row label="r1">1</row>
+<row label="r2">3</row>
+<row label="r3">5</row>
+</radio>
+By going through steps 1 - 3 mentioned above, you end up with the following code with matching row counts. Notice that the second question is now equipped with the same number of rows as the first question.
+<radio label="Q1" shuffle="rows">
+<title>Please choose one.</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">5</row>
+<row label="r6">6</row>
+</radio>
+<radio label="Q2" shuffle="rows" shuffleBy="Q1">
+<title>Please choose one.</title>
+<row label="r1">1</row>
+<row label="r2" where="none">2</row>
+<row label="r3">3</row>
+<row label="r4" where="none">4</row>
+<row label="r5">5</row>
+<row label="r6" where="none">6</row>
+</radio>
+where="none" was added to items 2, 4, and 6 because you only need to collect data on items 1, 3, and 5. The sole purpose of adding and hiding these row items is to match the number of rows for each question so that you can apply the shuffleBy="Q1" attribute.
+3.1.4: Result
+You can assert that you are getting the correct results if the row items in the second question always match the order they were presented in the first question.
+3.1.5: Real-World Application
+This approach would apply well given the following questions and this programmer note:
+PROGRAMMER NOTE: Randomize rows. Show Google products in the same order for "Q4" and "Q5".
+<checkbox label="Q4" shuffle="rows">
+<title>Please select the services you currently use.</title>
+<comment>Select all that apply.</comment>
+<row label="r1">Bing Search</row>
+<row label="r2">DuckDuckGo</row>
+<row label="r3">Google Search</row>
+<row label="r4">Google Mail (GMail)</row>
+<row label="r5">Google Drive</row>
+<row label="r6">Yahoo Search</row>
+<row label="r7">Dropbox</row>
+</checkbox>
+<radio label="Q5" shuffle="rows">
+<title>Which of these services is your favorite?</title>
+<comment>Please select one.</comment>
+<row label="r1">Google Search</row>
+<row label="r2">Google Mail (GMail)</row>
+<row label="r3">Google Drive</row>
+</radio>
+Demonstrated below, you can use the where="none" method discussed above and modify "Q5" to fulfill the programmer note.
+<radio label="Q5" shuffle="rows" shuffleBy="Q4">
+<title>Which of these services is your favorite?</title>
+<comment>Please select one.</comment>
+<row label="r1" where="none">Bing Search</row>
+<row label="r2" where="none">DuckDuckGo</row>
+<row label="r3">Google Search</row>
+<row label="r4">Google Mail (GMail)</row>
+<row label="r5">Google Drive</row>
+<row label="r6" where="none">Yahoo Search</row>
+<row label="r7" where="none">Dropbox</row>
+</radio>
+3.1.6: Conclusion and Thoughts
+When it comes to randomizing a different number of rows based on a previous question, this method works. It would be more optimal, however, if you do not need to add the extra rows. This could become very tedious with larger sets. Continue to the Pythonic method section below for a method that achieves the same result and does not require where="none" to be added nor the same number of rows to be present.
+In the examples above, writing shuffleBy="Q1" is exactly the same as writing exec="Q2.rows.order=Q1.rows.order".
+3.2: The Pythonic Method
+3.2.1: Context
+You have a set of rows that need to be randomized in the same order as previous question's rows, but the number of rows do not match.
+In this example, there are two questions equipped with a different number of rows. The first question has six rows and the second has three rows. You need to randomize the row elements in the second question in the same order as the first question.
+In other words, items 1, 3, and 5 in the second question should be shown in the same order as 1, 3, and 5 in the first question.
+<radio label="Q1" shuffle="rows">
+<title>Please choose one.</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">5</row>
+<row label="r6">6</row>
+</radio>
+<radio label="Q2" shuffle="rows">
+<title>Please choose one.</title>
+<row label="r1">1</row>
+<row label="r2">3</row>
+<row label="r3">5</row>
+</radio>
+Without any modifications to the questions above, you get the following result:
+Notice that rows 1, 3, and 5 in the second question are not in the same order as 1, 3, and 5 in the first question (e.g., 5 - 3 - 1 compared to 1 - 5 - 3). What needs to have happened is illustrated below.
+The second question's row elements are now randomized in the same order as the first question's row elements (i.e., 3 - 1 - 5).
+3.2.2: Solution (Pseudocode)
+To achieve this result, you will have to use an <exec> block and Python code to manually set the randomization order of the second question. Here is a description of the code you will create:
+Step 1: Create a list containing the row text for each row in the current question.
+Step 2: Create an empty list to generate the new randomization order for the current question.
+Step 3: Iterate through the source question's row order.
+Step 4: When you come across a row that is present in the current question, add the row's index position (relative to the current question) to the generated list.
+Step 5: Manually set the current question's row order to the new order generated.
+3.2.3: Solution (In Practice)
+First, you need to create a function called shuffleBy that takes in two values:
+The question you are manually randomizing.
+The source question by which to randomize.
+def shuffle_by( current_question, source_question ):
+After you have created this function, you can call it in your survey like this:
+exec="shuffle_by( Q2, Q1 )"
+Then, finish writing this function based on steps 1 - 5 listed above.
+def shuffle_by( current_question, source_question ):
+# Create a list containing the row text for each row in the current question
+current_order = [row.text for row in current_question.rows]
+# Create an empty list to generate the new shuffle order for the current question
+new_order = []
+# Iterate through the source question's row order
+for row in source_question.rows.order:
+# When we come across a row that is present in the current question,
+# add the row's index (relative to the current question) to the generated list
+if row.text in current_order:
+new_order.append( current_order.index( row.text ) )
+# Manually set the current question's row order to the new order generated
+current_question.rows.order = new_order
+That completes your function and fulfills the requirements specified for this task. As shown below, you can apply this function to your survey by adding it (without the comments) to an <exec> block that is called once when the survey is loaded. You can then call this function at your question using the <exec> attribute.
+<exec when="init">
+def shuffle_by( current_question, source_question ):
+current_order = [row.text for row in current_question.rows]
+new_order = []
+for row in source_question.rows.order:
+if row.text in current_order:
+new_order.append( current_order.index( row.text ) )
+current_question.rows.order = new_order
+</exec>
+<radio label="Q1" shuffle="rows">
+<title>Please choose one.</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">5</row>
+<row label="r6">6</row>
+</radio>
+<radio label="Q2" shuffle="rows" exec="shuffle_by(Q2, Q1)">
+<title>Please choose one.</title>
+<row label="r1">1</row>
+<row label="r2">3</row>
+<row label="r3">5</row>
+</radio>
+3.2.4: Result
+You can assert that your function is working correctly if the second question's row items randomize in the same order as presented in the first question.
+3.2.5: Real-World Application
+This approach would apply well given the following questions and this programmer note:
+PROGRAMMER NOTE: Randomize rows. Show Google products in the same order for "Q4" and "Q5".
+<checkbox label="Q4" shuffle="rows">
+<title>Please select the services you currently use.</title>
+<comment>Select all that apply.</comment>
+<row label="r1">Bing Search</row>
+<row label="r2">DuckDuckGo</row>
+<row label="r3">Google Search</row>
+<row label="r4">Google Mail (GMail)</row>
+<row label="r5">Google Drive</row>
+<row label="r6">Yahoo Search</row>
+<row label="r7">Dropbox</row>
+</checkbox>
+<radio label="Q5" shuffle="rows">
+<title>Which of these services is your favorite?</title>
+<comment>Please select one.</comment>
+<row label="r1">Google Search</row>
+<row label="r2">Google Mail (GMail)</row>
+<row label="r3">Google Drive</row>
+</radio>
+Demonstrated below, you can use the function you just created to fulfill the programmer note.
+<radio label="Q5" shuffle="rows" exec="shuffle_by(Q5, Q4)">
+<title>Which of these services is your favorite?</title>
+<comment>Please select one.</comment>
+<row label="r1">Google Search</row>
+<row label="r2">Google Mail (GMail)</row>
+<row label="r3">Google Drive</row>
+</radio>
+Important: This function would not correctly order the rows if the rows in the second question you are trying to randomize do not have matching text values. For example, if "Q5" in the example above had "Mail" instead of "Google Mail", but "Q4" still had "Google Mail", the function would not work properly.
+3.2.6: Conclusion and Thoughts
+The shuffleBy function can be rewritten to reduce the line count, but as you can see below, it also reduces the readability of the code.
+def shuffle_by( current_question, source_question ):
+current_order = [row.text for row in current_question.rows]
+current_question.rows.order = [current_order.index(row.text) for row in source_question.rows.order if row.text in current_order]

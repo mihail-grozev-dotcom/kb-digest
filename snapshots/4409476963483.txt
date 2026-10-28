@@ -1,0 +1,409 @@
+Title: Python Functions
+There are several built-in Python functions that can help save you time.
+1: allQuestions - Access Any Question
+allQuestions is a Python dictionary available in every survey. It contains all of the questions in the survey and can be used to access any question's sub-elements.
+For example, Q1.val = 1 is exactly the same as allQuestions["Q1"].val = 1.
+The allQuestions dictionary is especially useful when you need to iterate through a number of questions.
+For example:
+<number label="Q1" size="3" title="Please enter the total days:"/>
+<number label="Q2" size="3" title="Please enter the total hours:"/>
+<number label="Q3" size="3" title="Please enter the total minutes:"/>
+<number label="Q4" size="3" title="Please enter the total seconds:"/>
+<suspend/>
+<number label="vQ1_Q4" size="3" where="execute">
+<title>HIDDEN: Q1 - Q4 Answers</title>
+<exec>
+for x in xrange(4):
+question_label = "Q{}".format(x+1)
+question_value = allQuestions[question_label].val
+vQ1_Q4.rows[x].val = question_value
+</exec>
+<row label="days">Days</row>
+<row label="hours">Hours</row>
+<row label="minutes">Minutes</row>
+<row label="seconds">Seconds</row>
+</number>
+2: digimarc - Watermark using DigiMarc™
+The use of DigiMarc™ software requires a license. See your account manager for details.
+DigiMarc™ technology is used to watermark images in real-time. For example:
+<html label="Concept_Image" where="survey">
+<img src="${digimarc('selfserve/9d3/proj1234/concept_1.png'), source)}" alt="Image"/>
+</html>
+3: File - Load a Tab-Delimited File
+The File() function is the best way to load data into your survey from a tab-delimited file. For example, given the following tab-delimited file named "include.dat":
+source name email list
+src001 Neil D. Tyson ndtyson@cosmos.edu 1
+src002 Richard Feynman dick@physics.com 2
+src003 A. Einstein albert@emc2.org 2
+src004 Carl Sagan carl@universe.com 2
+We can easily pull this data into our survey in real-time or after the survey has gone live with the File() function:
+<exec when="init">
+dataFile = File("include.dat", "source")
+</exec>
+<text label="vRESPDATA" where="execute">
+<title>HIDDEN: Participant Data</title>
+<exec>
+respData = dataFile.get(source)
+if respData:
+vRESPDATA.r1.val = respData['source']
+vRESPDATA.r2.val = respData['name']
+vRESPDATA.r3.val = respData['email']
+vRESPDATA.r4.val = respData['list']
+</exec>
+<row label="r1">source</row>
+<row label="r2">name</row>
+<row label="r3">email</row>
+<row label="r4">list</row>
+</text>
+<suspend/>
+<exec when="virtualInit">
+vdataFile = File("include.dat", "source")
+</exec>
+<number label="vLIST" size="1">
+<title>VIRTUAL: Participant List</title>
+<virtual>
+respData = vdataFile.get(source)
+vLIST.val = int(respData['list']) if respData else None
+</virtual>
+</number>
+4: finish - Finish the Survey
+Just like the <finish> element, the finish() function can be used to end the survey immediately.
+This function does not work in SECURE surveys. You may use the <finish> element for SECURE surveys. For more information about secure surveys, see Secure Surveys Overview.
+For example:
+<radio label="Q100">
+<title>Would you like to quit the survey now?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<exec cond="Q100.r1">
+setMarker('QUIT_SURVEY')
+finish()
+</exec>
+<html label="Transition" where="survey">
+Great! Let's keep going... On the next page, we'll ask about...
+</html>
+5: getattr - Retrieve Attributes of an Element
+The getattr() function can be used to access attributes of a survey object. The syntax for the getattr() function is below:
+5.1: Syntax
+getattr(ELEMENT, ATTRIBUTE, DEFAULT)
+For example:
+<exec>print getattr(Q1, "title")
+print getattr(Q1, "label")
+print getattr(Q1, "r2").label
+print getattr(Q1, "r2").text
+print getattr(Q1, "r2")
+Q1.val = getattr(Q1, "r2").index
+print getattr(Q1, "r2")
+</exec>
+<radio label="Q1">
+<title>Please select one:</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<row label="r3">Row 3</row>
+<row label="r4">Row 4</row>
+</radio>
+The code above produces the following result:
+The third parameter can be used to return a default value if the attribute doesn't exist. For example:
+<exec>
+print getattr(Q1, "r5", "There is no r5 in Q1")
+</exec>
+6: setattr - Set an Element's Attribute Value
+The setattr function sets an attribute's value for a given element. The syntax for setattr is below:
+6.1: Syntax
+setattr(ELEMENT, ATTRIBUTE, VALUE)
+For example:
+<exec>
+setattr(Q1, "title", "Please choose any one:")
+setattr(Q1.r2, "text", "Rawr 2")
+</exec>
+<radio label="Q1" rowLegend="left">
+<title>Please select one:</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<row label="r3">Row 3</row>
+<row label="r4">Row 4</row>
+</radio>
+The code above produces the following result:
+7: getQuotaCells - Get a Quota Markers Counts & Limits
+The getQuotaCells() function returns information about all of the quota markers in the survey. Specifically, you can access a marker's current count, limit, and the number of participants who have been overquota for that particular quota marker.
+<exec>
+quota_cells = gv.survey.root.quota.getQuotaCells()
+current, limit, overquota = quota_cells["/gender/Male"]
+if current lt 100:
+setMarker('/gender/Male')
+</exec>
+Learn more: Adding Quotas Using the XML Editor
+8: hasMarker - Check if Marker in Markers
+The hasMarker() function can be used to check if a marker exists in a participant's marker set. The syntax for hasMarker() is below:
+Syntax
+hasMarker('MARKER')
+For example:
+<pipe label="concept">
+<case label="c1" cond="hasMarker('Concept_1')">Concept 1</case>
+<case label="c2" cond="hasMarker('Concept_2')">Concept 2</case>
+<case label="c3" cond="hasMarker('Concept_3')">Concept 3</case>
+<case label="c99" cond="1">undefined</case>
+</pipe>
+You can also use the p.markers persistent variable to check if markers exist.
+For example:
+<exec>
+for x in xrange(3):
+if "Concept_{}".format(x+1) in p.markers:
+vConcept.val = x
+break
+# ^ is the same as
+if hasMarker("Concept_{}".format(x+1)):
+vConcept.val = x
+break
+</exec>
+8.1: Quota Tables
+If the marker you are checking for is from a quota table, you must include the quota sheet name along with the marker name. You can also use a wildcard reference (*) in place of the sheet name to check against all sheets.
+For example:
+Checking for the 'male' marker within the 'Sheet1' quota sheet:
+cond="hasMarker('/Sheet1/male')
+Checking for the 'male' marker using a wildcard:
+cond="hasMarker('/*/male')
+9: getMarker - Get a Marker's Count
+The getMarker() function can be used to obtain a marker's current, effective count. That is, it returns the marker's current + pending count.
+For example:
+<exec cond="getMarker('/gender/Male') lt 100">
+setMarker('/gender/Male')
+</exec>
+10: setMarker - Set a Marker
+Just like the <marker> element, the setMarker() function can be used to set a survey marker.
+For example:
+<radio label="Q1">
+<title>Are you...</title>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<exec>
+if Q1.r1:
+setMarker("/gender/Male")
+else:
+setMarker("/gender/Female")
+</exec>
+Learn more: Marker Tag: Set a Survey Marker
+11: removeMarker - Remove a Marker
+The removeMarker function is able to remove a given marker from the participant's list of set markers.
+For example:
+<radio label="Q99">
+<title>Have you undergone a change of gender since you first began this survey?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<exec cond="Q99.r1">
+if hasMarker("/gender/Male"):
+removeMarker("/gender/Male")
+setMarker("/gender/Female")
+else:
+removeMarker("/gender/Female")
+setMarker("/gender/Male")
+</exec>
+12: loadOtherData - Load & Populate Data from Other Survey
+Note: loadOtherData() does not work in projects with delphi="1".
+The loadOtherData() function loads all data from another survey for a given uuid into a survey which has an identical question layout. This is often useful for displaying a participant's results back to them after having already collected their data. The syntax for the loadOtherData() function is below:
+12.1: Syntax
+loadOtherData("survey/path", "uuid")
+For example, given two surveys that have exactly the same questions, if the original survey had the following <exit> element:
+<exit cond="qualified" url="http://survey.cname.com/survey/selfserve/9d3/proj1234/results?source=${uuid}"/>
+Then the corresponding "/results" survey could automatically load all of the responses provided in the original survey using the loadOtherData() function. For example:
+<exec when="started">
+loadOtherData("selfserve/9d3/proj1234", source)
+</exec>
+13: omitQuestion - Ignores a Question
+The omitQuestion() function can be used within a question's <exec> element to tell the survey engine that the question was not really displayed at all and not to save any data for it.
+For example:
+<radio label="Q99">
+<title>Do you want to sign up for future surveys?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<text label="Q100">
+<exec>
+if Q99.r2:
+omitQuestion()
+</exec>
+<title>What is your email address?</title>
+</text>
+However, we can achieve the same results as the code above using the cond attribute. For example:
+<radio label="Q99">
+<title>Do you want to sign up for future surveys?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<text label="Q100" cond="Q99.r1">
+<title>What is your email address?</title>
+</text>
+14: goto - Go to a Target
+Just like the <goto> element, the goto() function can redirect survey execution to another target or section.
+For example:
+<radio label="Q1">
+<title>Would you like to skip the next question?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<exec cond="Q1.r1">
+Q2.val = "SKIPPED"
+goto(Q3)
+</exec>
+<textarea label="Q2" title="Please tell us about your experience:"/>
+<suspend/>
+<radio label="Q3" type="rating" values="order">
+<title>How would you rate your experience?</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">5</row>
+</radio>
+15: serializeAccess - Execute Code Atomically
+The serializeAccess() function ensures that only the provided identifier (e.g. source, uid, etc...) has access to a section of survey code at a given time. This is useful if you need to access a database and ensure that read-modify-write cycles are uninterrupted.
+For example:
+<exec>
+serializeAccess(source)
+# read database
+# modify database
+</exec>
+The function serializeAccess() ensures that only one process at a time will execute the code above.
+16: hasattr - Check if an Element's Attribute Exists
+The hasattr function returns True or False based on whether or not a given element has the attribute provided. The syntax for hasattr is below:
+Syntax
+hasattr(ELEMENT, ATTRIBUTE)
+For example:
+<exec>
+print hasattr(Q1, "title") # True
+print hasattr(Q1, "label") # True
+print hasattr(Q1, "shuffle") # False
+print hasattr(Q1, "r2") # True
+print hasattr(Q1, "r5") # False
+print hasattr(Q1, "comment") # False
+</exec>
+<radio label="Q1">
+<title>Please select one:</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<row label="r3">Row 3</row>
+<row label="r4">Row 4</row>
+</radio>
+The code above produces the following result:
+17: setExtra - Set an extraVariable's Value
+The setExtra() function can be used to change the value for any variable present in the extraVariables attribute (e.g. source, list, etc...). The syntax for this command is below:
+17.1: Syntax
+setExtra("VARIABLE", "VALUE")
+For example:
+<exec>
+# prepend list number to source variable
+setExtra("source", ''.join((list, "_", source)))
+# change uid to Q1's value
+setExtra("uid", Q1.val)
+</exec>
+18: ishuffle - Shuffle a List
+By default, Python's random.shuffle() method shuffles a list in place. For example:
+<exec>
+x = [1,2,3]
+shuffle(x)
+# x is now shuffled
+</exec>
+Instead of shuffling in place, the ishuffle() command returns a shuffled copy of the list. For example:
+<exec>
+x = [1,2,3]
+ishuffle(x)
+# x is NOT shuffled
+x = ishuffle(x)
+# x is now shuffled
+</exec>
+The ishuffle() command is useful for iterating over a shuffled copy of a list:
+<exec>
+# check 3 random values
+for eachRow in ishuffle(Q1.rows)[:3]:
+eachRow.val = 1
+</exec>
+Here's how the ishuffle() command works:
+def ishuffle(l):
+# By value shuffle
+l = l[:]
+shuffle(l)
+return l
+19: suspend - Suspend the Survey
+Just like the <suspend/> element, the suspend() function can be used to create a page break.
+For example:
+<radio label="Q1">
+<title>Would you like to see the next two questions on the same page?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<text label="Q2" title="Question #2"/>
+<exec cond="Q1.r2">
+suspend()
+</exec>
+<text label="Q3" title="Question #3"/>
+The <exec> element above can be rewritten to the following:
+...
+<text label="Q2" title="Question #2"/>
+<suspend cond="Q1.r2"/>
+<text label="Q3" title="Question #3"/>
+Learn more: Suspend Tag: Adding a Page Break
+20: timeSpent - Get the Time Spent by a Participant Taking the Survey
+The timeSpent() function returns the number of seconds a participant has spent inside the survey. It's often used to terminate speeders in a survey.
+For example:
+<term cond="timeSpent() lt 300 and not gv.isSST()">SPEEDER: Less than 5 minutes</term>
+The variable qtime is present in every project and is the accumulation of the participant's entire time spent in the survey (e.g. it's the sum of timeSpent() on every page).
+21: v2PipeAllSelected - Conjoin Answer Responses
+This function does not work in SECURE surveys. For more information about secure surveys, see Secure Surveys Overview.
+The v2PipeAllSelected() function creates a persistent string of all the selected items in a question (e.g. "row 1, row 2, and row 3"). The items are properly conjoined with "and".
+For example:
+<checkbox label="Q1" atleast="1">
+<title>Please select all that apply:</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<row label="r3">Row 3</row>
+<row label="r4">Row 4</row>
+</checkbox>
+<suspend/>
+<exec>
+p.Q1_selections = v2PipeAllSelected(Q1.rows)
+</exec>
+<html label="Q1_Results" where="survey">
+<p>You selected ${p.Q1_selections}.</p>
+<p>You selected [pipe: Q1].</p>
+</html>
+The code above produces the following result:
+22: v2SendRequest - Send a Request to a Remote Server
+This function requires a custom hook: request_allowed. Contact Forsta Support for assistance with custom hooks.
+The v2SendRequest function is available in secure surveys and enables you to send an HTTP request to another server from within the survey XML. This function is asynchronous and the survey will not block until the request has completed. The result of the function call cannot be integrated back into the participant's view. Success or failure are logged into survey.log located in the survey directory.
+For example:
+<exec cond="not gv.isSST()">
+v2SendRequest(
+url='https://yourpanel.company.com/panelistCompleted',
+method='post',
+type='json',
+args=dict(panelist_id=PID, status='completed')
+)
+</exec>
+The requests are submitted when simulated data is running. Add cond="not gv.isSST()" or sst="0" to the <exec> element to prevent this.
+The following arguments can be passed into the v2SendRequest function:
+Argument
+Description
+url
+The URL (including http:// or https://). It is highly recommended that you send sensitive data through HTTPS only. If using HTTPS, the remote server must have a validated certificate. Only HTTP and HTTPS schemas are allowed.
+method
+Optional. Parameter for the HTTP method to use. If not specified, method will default to "post". Acceptable values: post, put or get
+type
+Optional. By default, any arguments are encoded using the standard browser form encoding. Set type="json" to serialize to JSON instead.
+args
+Optional. A dictionary of arguments to encode and send. This data can be passed in 3 different ways.
+If method="get", then these become URL parameters (e.g. /panelistCompleted?status=completed&panelist_id=**PID**)
+If method="post", then the arguments will be encoded parameters in the body of the request
+If method="json", then the arguments will be serialized as a JSON document in the body of the request
+headers
+Optional. A dictionary of optional headers to include in the request (e.g. headers={"x-apikey": "123456"})
+The success or failure of the request is logged to survey.log in the survey's directory. Requests have a 300 second timeout and will not be retried if a failure is encountered.
+To use this function in secure surveys, you must add a request_allowed hook that specifies exactly which domains are allowed to be sent to.

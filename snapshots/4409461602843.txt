@@ -1,0 +1,149 @@
+Title: Survey Building
+This section outlines the basics of building surveys within the Survey Editor. Here, we'll learn everything we need to know to build a simple survey in Decipher, from navigating the project options in the Portal, to understanding the various elements necessary for survey creation.
+Overview of the Portal
+Before we can start building our survey, we'll need to familiarize ourselves with the layout of the Decipher project system. This lesson provides a general introduction to the Portal, the central hub of the Decipher Platform where we can create, manage, review, and collaborate on projects.
+Reference Materials:
+Logging in to Your Account
+Introduction to the Portal
+Search Capabilities
+Project Management
+Creating a New Project
+When creating a new project, you can either start from scratch or by importing a questionnaire into the Survey Editor. In this lesson, we'll take a look at accessing the Survey Editor and starting a new project using both methods.
+Reference Materials:
+Creating a New Survey
+Project Settings
+The Project Settings section of the Project Settings Summary menu allows you to quickly review and adjust the general settings for your survey.
+Reference Materials:
+Project Settings
+Survey Editor Workspace
+The Survey Editor workspace is split into three distinct sections:
+The question tree displays all of the survey's elements in a linear order.
+The stage allows users to update question text and answer options.
+The options panel allows users to manage some of the more advanced settings for questions and answer options.
+In this lesson, we'll learn how to use each section to customize our survey questions and to map out an efficient structure for our project.
+Reference Materials:
+Overview of the Building Workspace
+Basic Question Types
+Certain question types like single- or multi-choice are considered survey staples, and the Survey Editor includes customizable templates for these and most other common question types. In this lesson, we'll learn how to program the following basic question types from a questionnaire:
+Single Select: Allows participants to select one answer in a list of options.
+Single Select Grid: Allows participants to select one answer in a 2-dimensional grid layout.
+Multi-select: Allows participants to select multiple answers from a list of options.
+Multi-select Grid: Allows participants to select multiple answers in a 2-dimensional grid layout.
+Dropdown Menu: Allows participants to select one answer from a drop-down menu of options.
+Number: Allows participants to enter a numeric response in an open-ended answer field.
+Text: Allows participants to enter a text response in an open-ended answer field.
+Essay: Allows participants to enter a text response in a larger open-ended answer field than the traditional Text question type.
+Descriptive Content: Displays text and/or multimedia elements to participants without requiring interaction.
+Reference Materials:
+Basic Question Types Questionnaire (Download)
+Single Select Element
+Single Select Grid Element
+Multi-Select Element
+Dropdown Menu Element
+Number Element
+Text Element
+Essay Element
+Descriptive Content Element
+Dynamic Question Types
+Along with the basic question types covered above, the Survey Editor includes templates for a variety of dynamic question types which provide enhanced usability, participant engagement, and data quality. In this lesson, we'll learn how to program the following dynamic question types from a questionnaire:
+Button Select: Allows participants to select one answer in a list of options.
+Rating Scale: Allows participants to select one answer in a 2-dimensional grid layout.
+Slider: Allows participants to select multiple answers from a list of options.
+Star Rating: Allows participants to select multiple answers in a 2-dimensional grid layout.
+Rank Sort: Allows participants to select multiple answers from a drop-down menu of options.
+Card Rating: Allows participants to rate multiple response cards displayed one at a time.
+Note: Although dynamic questions use basic question types as their foundations, the data may not be directly comparable. When employing dynamic questions, be sure to develop standards and maintain consistency in how they are customized; this ensures the relative values of data can be interpreted without concern that the question format is biasing results in some way.
+Reference Materials:
+Dynamic Question Types Questionnaire (Download)
+Button Single Select Element
+Button Multi-Select Element
+Button Multi-Select Grid Element
+Rating Scale Element
+Slider Element
+Slider Rating Element
+Slider Decimal Element
+Star Rating Element
+Card Sort Single Select Element
+Element Library
+The Element Library allows users to store commonly used elements for future use in their current survey or other projects, making it easy to reuse things like demographic questions, screener questions, or even brand lists. The following items are storable in the Element Library:
+Entire questions/elements
+Multiple questions (can be used to create survey templates)
+Answer options
+In this lesson, we'll learn how to add questions and answers to the Element Library. We'll also learn how to add questions and answers that have previously been saved to the Element Library to our current survey.
+Reference Materials:
+About the Libraries
+Saving to the Element Library
+Adding Questions From the Library
+Saving and Importing Response Options
+Adding & Managing Images
+The Image Manager allows users to add images to a survey and easily update any existing images. In this lesson, we'll learn how to add images to our survey through the Image Manager. We'll also learn how to resize images for viewing on different devices and how to add protections to avoid un-permitted distribution or use of our images.
+Reference Materials:
+Adding and Managing Images
+Style Editor
+It is also possible to configure the display settings for most basic and interactive elements within the Survey Editor. In this lesson, we'll learn how to adjust the configurations for both a basic and dynamic question in our test survey.
+Reference Materials:
+Editing Question Styles
+Question and Element Types
+Note: The styling options available for any given question may vary due to survey layout or question setup.
+Data Verifiers
+A data verifier is an attribute which can be used on a text, essay or number element to restrict responses to a particular format. These built-in "verify" attributes are accessible in the Survey Editor and can be applied to particular answer options or to a question as a whole. If applied at the question level, the responses for each input will be checked against the regular expressions and must match in order to be accepted.
+In this lesson, we will learn more about data verifiers and how to add them to our survey.
+Reference Materials:
+Options for Verifying Response Formats
+Data Verifiers Questionnaire (Download)
+Adding Logic
+Applying logic conditions to a survey can greatly improve the quality of the data collected. In this lesson, we will learn how to add logic conditions to survey questions and about how these additions can lead to us gathering more accurate data.
+Reference Materials:
+Logic Conditions Questionnaire (Download).
+Adding Logic to a Question or Response Option
+Terminate Element
+Saving to the Element Library
+Saving and Importing Response Options
+Answer Piping
+Block Element
+In this lesson, we will learn how to add the block element to a survey. We will also learn how the block element can be used to group questions together, display a section of survey elements in random order, or restrict several questions by the same logic.
+Reference Materials:
+Block Element Questionnaire (Download)
+Block Element
+Note: A block will not show to participants taking the survey.
+Loop Element
+The loop element allows users to ask the same question(s) of a participant multiple times, typically for each applicable value of a variable. In this lesson, we'll learn about adding the loop element to a survey to save ourselves time on programming questions and implementing complex piping.
+Reference Materials:
+Loop Element Questionnaire (Download)
+Loop Element
+Skip Element
+The skip element can be used to route participants from one survey question to a targeted question later on in the survey. In this lesson, we'll learn how to add a skip element to our survey.
+Reference Materials:
+Skip Element Questionnaire (Download)
+Skip Element
+Autofill Element
+The autofill element is a hidden element that can be used to create hidden segments for auto-punching or advanced piping. In this lesson, we'll learn about the autofill element and attempt to program three different types of autofill into our survey.
+Reference Materials:
+Autofill Element Questionnaire (Download)
+Autofill Element
+Quota Element
+In this lesson, we'll take an in-depth look at the quota element. The quota element manages flow through a survey by restricting the number of participants allowed through it. We'll also take a look at the three different quota types available in the Survey Editor:
+Question answers ("quick quotas"): Add quota cells based on responses from selected 1-dimensional survey questions.
+Logic conditions: Add quota cells based on new or existing survey logic conditions.
+Randomly assign quotas (+quotas): Add quota cells that participants will be randomly assigned to.
+Reference Materials:
+Adding Quotas Questionnaire (Download)
+Quotas Overview Questionnaire (Download)
+Adding Quotas Using the Survey Editor
+Monitoring Quotas in Field
+Participant Sources
+A participant source is simply the method by which a participant gets to and from a survey. Common participant sources include purchased panel sample, private panel sample, direct email sends, and intercepts from websites. The participant source also defines any variables that should be gathered, stored, and/or passed back through the survey exit pages or URL.
+In this lesson, we'll learn how to add participant sources to our survey, and how to set up a pre-programmed participant source which includes the URL variables and exit links configured for individual panel vendors. We'll also explore creating custom participant sources in which the variables and exit pages are added manually.
+Reference Materials:
+Participant Sources Questionnaire (Download)
+Adding Participant Sources Using the Survey Editor
+About Participant Sources and Survey URLs
+Note: Upon survey creation, the question tree will include a "Participant Sources" element and the sample will be defined as 'Open' so that anyone can take the survey. Only after a participant source is added will the option appear to disallow the Open Survey.
+Theme Editor Overview
+In this lesson, we'll learn how to customize the appearance of our survey by adding a logo and applying a theme. We'll also learn how to use these tools to make our project more engaging for participants.
+Reference Materials:
+Editing the Survey Theme
+Upload System Files
+Moving on, it's time to familiarize ourselves with the Decipher system files. In this lesson, we'll be introduced to the Decipher file manager, the different directories within a project, and some of the supporting files in a Decipher survey.
+Reference Materials:
+Uploading System Files

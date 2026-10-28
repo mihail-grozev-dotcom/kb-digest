@@ -1,0 +1,183 @@
+Title: XML Style System Examples
+Requires Decipher Cloud
+The XML Style system is used to modify survey components such as question structure, default texts, CSS styles, JavaScript behaviors, and much more.
+This document provides various examples of how the XML Style system can be used to customize the survey experience.
+Note: See XML Style System to learn how to use the XML Style system.
+1: Help & Privacy Policy
+You can use the following XML styles to customize the "Help" or "Privacy Policy" text or hyperlinks that appear at the bottom of the survey window:
+Privacy Policy: Replace this portion with the desired privacy policy text.
+Help: Replace this portion with the desired help text.
+condition: Enter a logic condition to show this footer if the logic is met.
+link: Enter the link for the privacy policy web page.
+/support: Enter the link for the help/support web page (/support is the default).
+Example:
+<res label="privacy">Privacy Policy </res>
+<res label="helpTxt">Help </res>
+<style name="survey.respview.footer.support" cond="condition">
+<![CDATA[
+<a href="link" target="_blank">${res.privacy}</a> - <a
+href="/support" target="_blank">${res.helpTxt}</a>]]>
+</style>
+Result:
+2: Continue Button
+You can use the following XML styles to modify the "Continue" button that appears at the bottom right corner of the survey window.
+Text for continue: Replace this portion with the desired "Continue" text.
+condition: Enter a logic condition to set this text if some logic is met.
+Example:
+<res label="continueButton">Text for continue </res>
+<style name="button.continue" mode="mode" cond="condition">
+<![CDATA[
+<input type="submit" name="continue" id="btn_continue"
+class="button continue"
+value="${res.continueButton} &raquo;"
+onClick="var i = document.createElement('input');
+i.setAttribute('type', 'hidden');i.setAttribute('value', '1');
+i.setAttribute('name', '__has_javascript');document.forms.primary.appendChild(i);
+"/>]]>
+</style>
+Result:
+3: State Abbreviations
+You can use the el.Text XML style to add abbreviations for states in a Select element. The abbreviations are stored in the global variable "allStates" that is created using the <exec when="init"> code block.
+Note: The variable has all the values split, which creates a list in the Select element using the style.
+Example:
+<exec when="init">
+allStates = 'AA AE AK AL AP AR AS AZ CA CM CO CT CZ DC DE FL FM GA GU HI IA ID IL IN KS KY LA MA MD ME MH MI MN MO MP MS MT NC ND NE NH NJ NM NV NY OH OK OR PA PI PR PW RI SC SD TN TT TX UT VA VI VT WA WI WV WY'.split()
+</exec>
+<style name="el.text" rows="r3">
+<![CDATA[
+<select name="$(name)">
+<option>Select one...</option>
+\@for state in allStates
+<option value="$(state)" ${"SELECTED" if state==ec.value else ""}>$(state)</option>
+\@end
+</select> ]]>
+</style>
+Result:
+4: Phone Number Formatting
+You can use the following XML styles to add formatting for questions that ask for participants' phone numbers.
+question.header
+question.element
+To use these styles, first save the file named "jquery.maskedinput-1.4.1.min.js" to your project static directory using the File Manager. The question.header style will load the javascript (.js) file needed for the input mask. You can then use the question.element style to apply the mask to the row label specified in the rows attribute in the style.
+Note: Both styles need to be placed inside the target question.
+Once added, when participants click the answer field, the required format appears (i.e., (XXX) XXX - XXXX).
+Example:
+<style mode="before" name="question.header">
+<![CDATA[
+<script src="[rel jquery.maskedinput-1.4.1.min.js]"></script>
+]]>
+</style><style mode="after" name="question.element" rows="r5">
+<![CDATA[ <script>$ ("input[name='$(name)']").mask("(999) 999-9999")</script>
+]]>
+</style>
+Result:
+Note: There is a known issue with this style for Android devices. Users may experience an issue with the cursor aligning itself to the left of any typed character. Click here to download a .js file with a temporary fix. Before deploying any survey with this fix in place, be sure to test your code thoroughly for functionality in all browsers.
+5: Blank Cells
+You can use the hideElements style to modify one or more cells in a two or three dimensional question to appear blank (i.e., without a radio or checkbox button).
+To use this style, add the cols and/or rows attributes, specifying which columns and rows to hide.
+Note: The following example only applies to desktop displays.
+Example:
+<style name='question.element' label="hideElements">
+<![CDATA[
+\@if ec.simpleList
+<div class="element $(rowStyle) $(levels) $(extraClasses)
+${col.group.styles.ss.groupClassNames
+if col.group
+else
+(row.group.styles.ss.groupClassNames if row.group else "")}
+$(col.styles.ss.colClassNames) $(row.styles.ss.rowClassNames)
+${"clickableCell" if isClickable else ""}"$(extra)>
+${v2_insertStyle('el.label.start')}
+${v2_insertStyle('el.label.end')}
+</div>
+\@else
+<$(tag) $(headers) class="cell nonempty element $(levels)
+${"desktop" if this.grouping.cols else "mobile"} border-collapse $(extraClasses)
+${col.group.styles.ss.groupClassNames
+if col.group
+else
+(row.group.styles.ss.groupClassNames if row.group else "")}
+$(col.styles.ss.colClassNames) $(row.styles.ss.rowClassNames)
+${"clickableCell" if isClickable else ""}"$(extra)>
+${v2_insertStyle('el.label.start')}
+${v2_insertStyle('el.label.end')}
+</$(tag)>
+\@endif
+]]></style>
+<style copy="hideElements" cols="c2" rows="r7,r8"
+name="question.element"/>
+Note: In the above example, the hideElements style is defined in the first <style> tag inside the question.
+Result:
+6: Blank Cells Based on Responses
+You can use the cond style to modify one or more cells in a two or three dimensional question to appear blank (i.e., without a radio or checkbox button), based on what response options a participant selects in a previous question.
+To use this style, add cond to any columns and rows you would like to hide, specifying the desired display logic.
+Note: The following example only applies to desktop displays.
+Example:
+<style copy="hideElements" cond="not S1[row][col]" name="question.element"/>
+Note: In the above example, the hideElements style is defined in the first <style> tag.
+Result:
+7: Continue Delay
+You can use the following styles to disable the survey’s "Continue" button for a specified amount of time. After that time has passed, the button will be enabled and become clickable again.
+arg:timeout: Replace with the desired amount of time (in seconds) that the button is disabled.
+ElementLabel: Replace with the label of the element on the same page where the “Continue” button should be disabled. Styles can be applied to more than one label at a time with comma separation (e.g., with="ElementLabel,Label2Label3").
+b.disable
+b.enable
+Example:
+<style label="disable_continue" arg:timeout="3" mode="after"
+name="survey.respview.footer" with="ElementLabel"
+wrap="ready">
+<![CDATA[
+var b = $ ("#btn_continue, #btn_finish");
+b.disable();
+setTimeout(function() { b.enable()} , $(timeout)*1000);
+]]></style>
+8: Real-Time Feedback
+You can use the following XML styles to add real-time
+feedback for participants answering a TextArea
+question. The style is designed to encourage
+participants to provide more detail, rather than
+giving a one-word answer.
+Please provide a bit more detail:
+Replace this portion with the desired text
+for when you want the participant to provide
+more information.
+This is very good information:
+Replace this portion with the desired text
+for when the participant has provided sufficient
+information.
+Oh wow! This is great!: Replace
+this portion with the desired text for when
+the participant has provided lots of information.
+arg:less_length: The minimum
+number of characters required for the This is very good information
+text.
+arg:enough_length: The
+minimum number of characters required for
+the Oh wow! This is great! text.
+Example:
+<res label="less">Please provide a bit more detail</res>
+<res label="enough">This is very good information</res>
+<res label="more">Oh wow! This is great!</res>
+<textarea label="Q1" size="40">
+<title>Please provide your input</title>
+<style name="question.after" wrap="ready" arg:less_length="10" arg:enough_length="20">
+<![CDATA[
+$ ('.answers div.element').prepend("<div id='top-err' style='margin-bottom: 10px; font-weight: bold;'></div>");
+$ ('.answers div.element').append("<div id='bot-err' style='height: 6px; width: 0%; transition: width 2s;'></div>");
+$ ('.answers textarea').css('width','100%');
+$ ('.answers textarea').on('change keydown keyup', function() {
+var val = $ (this).val();
+if (val.length < $(less_length)) {
+$ ('#top-err').text("${res.less}").css('color', 'red');
+$ ('#bot-err').css({'backgroundColor':'red', 'width':'33%'});
+} else if (val.length < $(enough_length)) {
+$ ('#top-err').text("${res.enough}").css('color', 'orange');
+$ ('#bot-err').css({'backgroundColor':'orange', 'width':'66%'});
+} else {
+$ ('#top-err').text("${res.more}").css('color', 'green');
+$ ('#bot-err').css({'backgroundColor':'green', 'width':'100%'});
+}
+});
+]]>
+</style>
+</textarea>
+Result:

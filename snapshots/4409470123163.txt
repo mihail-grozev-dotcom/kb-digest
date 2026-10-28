@@ -1,0 +1,97 @@
+Title: Reporting
+Now that we've launched our survey, we'll need to focus our efforts on monitoring our field progress and analyzing the data we collect. In this section, we'll learn about all of the reporting tools available within Decipher and how to use them to ensure that our survey is performing successfully in field.
+Response Summary
+The Response Summary shows the overall health of a survey by providing real-time data on participant traffic. It can be used to edit quota values while a survey is live, watch for unspecified terminates, monitor participation rates, and even track drop-out activity.
+In this lesson, we'll learn how to run the Response Summary to check our survey completion data, including counts for qualified participants, terminates, quotas and drop-outs.
+Reference Materials:
+About the Response Summary
+Monitoring Completions in Field
+Monitoring Terminates in Field
+Monitoring Quotas in Field
+Editing Quota Limits in Field
+Adding Quota Alerts in the Response Summary
+Downloading the Quota Structure
+Monitoring Drop-outs in Field
+About the Response Summary
+View/Edit Responses
+In this lesson, we'll cover the basic functions of the View/Edit Responses report. The View/Edit Responses report allows users to view and edit the responses of every participant in a survey. It's a particularly useful tool for projects with a low incidence rate, where more attention should be given participants' progress through the survey.
+Reference Materials:
+About the View / Edit Responses Report
+Crosstabs Overview
+The Crosstabs reporting system is designed to improve the speed and ease of crosstab creation. In this lesson, we'll review the reporting tools available within the Crosstabs landing page, total frequencies report, and settings menu.
+Reference Materials:
+Crosstabs Overview
+Crosstabs Entry Page
+Crosstabs
+Configuring Crosstab Settings
+Running a Total Crosstab
+Running a Quick Split
+In this lesson, we'll learn how to run a quick split from question logic to quickly create segments in our Crosstabs report. We'll also learn how to nest and append segments from multiple questions.
+Reference Materials:
+Running a Quick Split Crosstab
+Build a Crosstab
+The Crosstabs reporting system also allows for the creation of custom segments, or banners, to more easily dissect and digest the information in your report. In this lesson, we'll take a closer look at Crosstabs and learn how to create our own custom banner.
+Reference Materials:
+Building a Crosstab
+Build & Edit a Crosstab with XML
+If you are familiar with our XML coding system, then using the XML editor within Crosstabs can be an easy way for you to edit or modify a crosstab. In this lesson, we'll learn how to use the Crosstabs XML editor to update our report and find errors that may not be visible within the graphical user interface (GUI).
+Reference Materials:
+Using XML to Edit Crosstabs
+View Options
+In this lesson, we'll learn about the View Options menu within Crosstabs, where we can adjust the settings and appearance of the tables in our report using the following options:
+Show/Hide QA codes: Showing makes question and answer labels visible for easier reference. Survey codes will also display contextually, highlighting key programming settings.
+Hide Tables with No Participants: Hides tables with no data.
+View Chart Options: Allows you to edit the table's chart color palette and select its data values.
+Show/Hide Download Data Values: Allows you to display/hide the data values in the Crosstabs report.
+Show/Hide Unweighted Total Count: If you are applying weights, you may choose to show or hide the unweighted "Total" row in your tables.
+Turn All Grid Tables On/Off: Allows you to show or hide grid tables throughout the report.
+Create a Table in Crosstabs
+In this lesson, we'll learn how to add a new table to the end of our Crosstabs report and how to reference this table when creating custom crosstabs or running quick splits.
+Editing Tables
+Next, we'll learn about editing tables within Crosstabs using the options available in the table editor:
+Updating Question & Answer Option text
+Show/Hide answer options
+Adding Nets
+Editing Stat Values
+Including answer options in the base for the table
+Adding statistics
+Applying a custom filter
+Reference Materials:
+Editing Tables in Crosstabs
+Create a Table Set
+In this lesson, we'll learn how to create a table set to limit the number of tables shown in a Crosstabs report. We'll also learn how to edit and remove table sets, as well as how to apply them to other Crosstabs reports.
+Reference Materials:
+Creating a Table Set
+Marking Favorite Tables in Crosstabs
+Add/Edit Charts in Crosstabs
+In this lesson, we'll learn how to get more from Crosstabs by adding charts to interactively display the information in our report.
+Reference Materials:
+Adding or Editing Charts
+Create a Saved Report
+A saved report is a custom collection of tables and charts that users can create by pinning these elements to their whiteboard in Crosstabs. In this lesson, we'll learn how to create our own saved report and about the options we have for sharing it with other users.
+Reference Materials:
+Pinning Tables and the Whiteboard
+Creating Saved Reports
+Permissions in Crosstabs
+The Crosstabs landing page will display crosstab reports to users based on what they have permission to view or edit. In this lesson, we'll learn about the different permissions available within Crosstabs and how to assign these when saving a crosstab or quick split report:
+Private: Only you (the owner) can use/edit the current crosstab.
+Editable: Any logged-in user can edit the current crosstab.
+View Only: Any logged-in user can view the current crosstab. Only the crosstab owner can edit or delete it.
+Export Crosstabs
+In this lesson, we'll learn how to export a Crosstabs report to different formats. We'll also take a look at customizing our preferences for each of the following export formats available within Crosstabs.
+Excel
+PowerPoint
+PDF
+Reference Materials:
+Exporting Crosstabs
+Data Downloads in Crosstabs
+In this lesson, we'll learn about the various options we have for downloading our raw survey data.
+Reference Materials:
+Download Data in Crosstabs
+Data Downloads and Formatting Options
+Data Format
+In this lesson, we are going to learn about the structure and format of the data in Decipher. Understanding how data is collected and stored in Decipher is critical to both survey programmers and data processors.
+Modifying the Layout of the Data
+Next, we'll learn how to use the data layout manager to control the order, visibility, and labeling of survey variables in our raw data downloads. We'll also learn how to use data layouts from previously fielded versions of a project in a current version to ensure consistency among the data outputs.
+Reference Materials:
+Modifying the Survey Data Layout

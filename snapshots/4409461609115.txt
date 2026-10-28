@@ -1,0 +1,21 @@
+Title: Alert Element
+The Alert element is used to send a customized email if a participant matches the condition set up within the element. For example, you may want to know if a participant was not satisfied with your service, or wants more information and a followup from your company.
+When a participant satisfies the alert condition, the alert email is sent out after the participant completes the survey.
+Tip: Looking to add a quota alert? See Adding Quota Alerts in the Response Summary to learn how to set up an alert for quotas directly from the Response Summary.
+1: Adding an Alert Element
+To add an Alert element, first click the "+ Element" button to add a new survey element. Then click "Logic Elements" under Question Types and select the "Alert" element. Then click "Add".
+The Alert element will be hidden to participants when viewing the survey.
+1.1: Setting up the Alert Message
+Next, configure the alert by filling out each of the fields listed below:
+1. Alert Name: Enter the name of the alert. This is used as the subject line of the alert email.
+2. Alert Recipients: Enter a properly formatted email address for each intended recipient of the alert.
+3. Alerts accessible by (Optional): Enter an email or group label to restrict access to specific users. Company supervisors and all users with report edit permissions (report.edit) automatically have access to the alert.
+4. From: Enter a properly formatted email address for the sender of the alert. By default, your username appears here.
+5. Message: Enter the body of the email. The body of the email can utilize the pipe tool, allowing you to pipe survey question answers into the message body. This pipe variable generates a clickable link in the email that lets the recipient of the notification get more information about the participant.
+6. Send a Reminder: Check this box to send a reminder email. From the drop-down, choose the number of days of inactivity before the reminder is sent out.
+7. Include Survey Content: Select question(s) to include in the email. Click "Add a Question" to select the desired question(s).
+8. Include link to participant's survey results: Check this box to include a link to the participant's answers to all questions in the survey.
+1.2: Setting up the Alert Condition
+To set up the condition for the alert, create a new logic condition the same way you would for a regular survey question. In the general options for the element, select "show Alert if" and click "+ New Condition" (or select an existing condition).
+Logic conditions can only be created using elements that occur before the Alert element. Select the question from the drop-down menu and the response options from that question appear, then select the response options that define your logic. For more detailed information about adding logic conditions, see Adding Logic to a Question or Response Option.
+Once the condition is defined, click "Save". The condition will appear along the top portion of the Alert element.

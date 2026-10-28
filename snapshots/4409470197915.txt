@@ -1,0 +1,68 @@
+Title: Specifying Answers for Simulated Data
+When running simulated data to test your project, you can specify the timeframe from which to run the test data, as well as which values to select at each question. If your survey has very strict logic or many terminate points, these strategies will help you get more qualified completes from your simulated data runs.
+See Running Simulated Data to learn more about running simulated data.
+1: Setting the Timeframe
+Simulated data can be customized to run with completion times other than the date when it was actually run. The default timeframe is a random offset between the test date and seven days prior.
+To customize the timeframe for your simulated data, add the sstDaysOffset key, specifying one or more numeric values. Each number specified is the value for a prior date that may be used.
+Examples:
+sstDaysOffset: <##> # - Dates will be ## days before the date the test data is run.
+sstDaysOffset: 1 2 3 # - Dates will be the last three days before the date the test data is run.
+sstDaysOffset: 7 14 21 # - Dates will be one, two, and three weeks before the date the test data is run.
+2: Setting Question Values
+The way you specify answers for question response options depends on the question type. You will find examples of how to specify answers to each of Decipher's basic question types below.
+2.1: Single Select Questions
+One-Dimensional
+For a one-dimensional Single Select question like this:
+You can specify which items to punch like this:
+q1: r2
+q2: r2 r3 r4
+Using this example, when simulated data is ran, r2 will be the only punch made at q1, and r2, r3, and r4 will have a random distribution at q2.
+Two-Dimensional
+For a two-dimensional Single Select question like this:
+You can specify which items will punch for each row like this:
+q1.r1: c1
+q1.r2: c1 c2
+When simulated data is run, c1 will be the only punch made at q1.r1, and c1 and c2 will have a random distribution for q1.r2.
+2.2: Multi-Select Questions
+One-Dimensional
+For a one-dimensional Multi-Select question like this:
+You can specify which items to punch like this:
+q2.r2: 100%
+q2.r3: 0%
+q3.r2: 50%
+q3.r3: 50%
+q3.r4: 25%
+When simulated data is ran, r2 will always be checked at q2 and r3 will never be checked. r2 and r3 for q3 will be checked for approximately half of the runs, and r4 will be checked for roughly a quarter of the runs.
+Two-Dimensional
+For a two-dimensional Multi-Select question like this:
+You can specify which items to punch for each row like this:
+q1.r1.c1: 100%
+q1.r1.c2: 0%
+When simulated data is run, c1 will always be punched for q1.r1. c2 will never be punched.
+2.3: Text and Number Questions
+Text (<text>, <textarea>) and Number (<number>, <float>) question types all work the same way with regards to specifying values for simulated data runs.
+One-Dimensional
+For a one-dimensional Text question like this:
+You can specify the values to input like this:
+q4: "Hello, world!" & '"quotes"'
+q5: 42 "foo" bars
+When simulated data is run, the open-ended response field for each question is populated with the quoted text. A single pair of quotes is not necessary, but you may specify two pairs of quotes if needed.
+Two-Dimensional
+For a two-dimensional Text question like this:
+You can specify the values to input like this:
+Q1.r1.c1: Hello World
+Q1.r1.c2: ""
+When simulated data is run, Q1.r1.c1 will be either "Hello" or "World". Q1.r1.c2 will not have any values provided.
+2.4: Drop-down Questions
+One-Dimensional
+For a one-dimensional Drop-down question like this:
+You can specify which items to select like this:
+q6.r1: ch1
+q6.r2: ch2 ch3
+When simulated data is run, q6.r1 will always be ch1 and q6.r2 will be either ch2 or ch3.
+Two-Dimensional
+For a two-dimensional Select question like this:
+You can specify which items to select for each column like this:
+q6.r1.c1: ch1
+q6.r1.c2: ch2 ch3
+Similar to the previous example, when simulated data is run, q6.r1.c1 will always be ch1, and q6.r2.c2 will be either ch2 or ch3.

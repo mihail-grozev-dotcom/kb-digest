@@ -1,0 +1,4 @@
+Title: Server Customizations (Hooks System)
+Requires Decipher Cloud
+Server customizations can be made using the hooks system to call on specific functions at specific times during survey operation. Hooks are typically defined using a default project value (e.g., a list of key survey variables or the filename for a downloadable file) and can be based on information passed into the survey by participants' behaviors. Hooks can return the default value or can be modified to return custom values.
+To inquire about server customizations (hooks), reach out to your Decipher account representative or contact Technical Support for feasibility and costs.

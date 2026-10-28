@@ -1,0 +1,149 @@
+Title: Beacon M26 Release Notes
+Release Date: November 10, 2014
+Automation
+Beacon API 2.0:
+general documentation for everyone (doc in progress) -- this documentation has something for developers and users of the API and will likely have to be broken down into other pieces
+API reference -- this document is auto-generated from checked-in source. It must remain in this format as the format it's specified in affords is automated testing and test consoles down the road, will allow for things like check that docs are really up to date with the code etc. However the rendering system used to create may have different themes if we want to generate e.g. Decipher colors
+Python library documentation -- this documentation is part of the Python library API users may optionally install and is maintained within source code. Once the Python library has stopped changing, we can move the documentation elsewhere
+The datamap API is one of the APIs supported. It has its own separated document with in-depth explanation of what the output is.
+Key supported API calls are:
+get a survey's datamap
+retrieve a list of users
+retrieve a list of companies (for cloud servers)
+get system information (inventory purposes, but also lets you e.g. monitor disk space)
+run a crosstab / saved report and get the output (as JSON)
+export a saved report as PDF / PPTX / Excel
+get tab-delimited, fixed-width, flat, CSV etc. data corresponding to some crosstab condition or date range (not all formats supported)
+re-distribute the output of a saved report or a data file via email
+manage API keys used for the API
+Integrations:
+We integrate with Zapier. This means you can add a Zap that triggers on e.g. time and performs an action -- like sending a data file to someone via email. Integration is currently invite-only. This integration can be done without any programming knowledge.
+More documentation required:
+how do I use e.g. curl to do this -- but probably no point to use curl with the Python library
+How do I work with the API in some other popular languages (which?)
+C# probably prime candidate
+Java ? PHP ? node.js ?
+#19458 xsdata: Data can be saved to be sent back with the sample source API's disposition call. Saving data to p.xsdata inside the survey will send that data back when the participant completes/terms/etc. Only JSON serializable data can be sent.
+Research Hub / Portal
+#17673 Dynamic Question (DQ) directories will no longer appear as projects in the portal. Previously 100s of DQ copies would clutter the portal as each one has a test survey. Those can now be accessed only via direct paths.
+#19542 Autologout re-write. Incorrect browser clocks are now taken into consideration when calculating time left in the session. Any mouse movement or keypresses are sufficient to keep the session alive.
+Email
+#19630 We can now integrate with the Mandrill email sending system. This system delivers email through Mandrill's vast email server network and allows much easier setup of custom DKIM, SPF and dedicated IP addresses at only a small additional fee ($200 for 1 million emails plus $30 per dedicated IP). Setup requirements:
+Use the --mandrill flag to send via Mandrill. It will tell you that there's no subaccount. Contact Erwin to set that up, giving the client ID.
+If using Campaign Manager, you can create a selfserve/1234/bulk-options file with --mandrill that will make Mandrill apply to all subdirectories
+If you are using any other email than someone@decipherinc.com (even if CNAME is setup), SPF and DKIM records must be setup for the domain. If they are NOT setup, Mandrill will add "via invite@decipherinc.com" to the From line. Thus the client must be willing to change the domain. Specify the domain name and contact Erwin.
+There's a send limit in how many emails per hour can be sent. It can be seen in the KB page. As we complete more sends, it will increase.
+Mandrill supports fully branded sends only that must comply with CAN-SPAM. See the Mandrill/Mailchimp AUP.
+Email lists must be clean and participants should have been within last months. If too many emails bounce back, your Mandrill subaccount for that client can be closed.
+Field Statistics
+#19633 Usage Stats: Imported completes added to "All Clients" and "Summary" views
+Builder
+#18712: Question library snippets that are saved without instruction text will pull the default instruction text as specified in the "Question Settings" (if available) when added to the project.
+#19391: New Survey Elements menu!
+#19429: Dynamic Question row/column/choice-specific attributes will be displayed and available for modification inside the main Options panel instead of their own individual panel.
+#18671: The "Quota Editor" dialog has been updated to separate the "Maximum Number of Respondents" input from the "Maximum Number of Cells to Assign" input. You are no longer required to input the total N number of participants to pick and the total number of cells to pick in the same input (e.g. 500 cells:5). These values/inputs have been separated.
+New menu for Adding Sample Sources
+#18839: Updated Rich Text Editor
+Updated Library
+New Rows/Columns/Choices UI (QEM Replacement):
+Adding answers to questions is now done on the stage within the element.
+New Rows, Columns, Choices can be added by click the "+ New Rows" or "Add Rows" buttons.
+Pasting multiple lines into a single text input will create separate answers upon exiting the input
+Row actions (Import rows, save to library, etc) are now placed into an "actions" menu
+Grouping is now done in the row tables, not the panel on the right
+Undo/Redo is available on all actions
+Adding new elements to the stage will create placeholders in some instances.
+Deleting answers can be done individually or by bulk via the "actions" menu
+Groups can be added by actions menu or converting existing rows into a group header with the Left Arrow Key
+Rows can be added to a group by clicking the "+ Row in Group" or highlighting a row and clicking the Right Arrow Key
+Images can be inserted as one answer or processed as individual rows by clicking the "Insert Selected Images as Separate Answers" in the insert image dialog
+Dashboard
+#19433 A new dashboard hook has been added that lets you control weight applied to a table based on a combination of table, filters selected and banner selected.
+Survey & CMS
+#18417: Two new read-only survey attributes have been added to better track participants after a live edit has been made to a survey. The `version` and `remerged` attributes will automatically update each time the survey is saved from a /temp-edit-live session and/or remerged from command line.
+The `version` attribute starts with a default, implicit value of 1 and increments each time the survey is remerged.
+The `remerged` attribute is a YYYYMMDD_HH:MM timestamp representing the date and time of the most recent remerge.
+When the survey `version` attribute is greater than 1, each participant will automatically receive a marker in the form of REMERGED_vVERSION (e.g. 20140930_16:23_v3) when viewing the updated survey. This marker will not be duplicated and each participant will only receive a single version marker per version.
+A file named previous.datamap.txt will be written to the project directory each time the survey is remerged containing the datamap of the survey before the edits were made. You may use the following command to generate the current datamap:
+generate survey/path all datamap fw plain > current.datamap.txt
+#18109: A new survey attribute has been added to override the system's requirement for sufficient simulated data for all languages. If your survey contains a language that is never used or set and should not respect the "Survey must have enough qualified completes in all languages" requirement, then add the language to the `unusedLanguages` survey attribute. For example:
+name="Survey"
+lang="spanish"
+otherLanguages="english, chinese"
+unusedLanguages="spanish"
+...>
+With the setup above, you will be able to set the survey live without fulfilling the simulated data requirement for "spanish". Like the `otherLanguages` attribute, the `unusedLanguages` attribute accepts valid languages separated by a comma. A fatal error will be presented if you attempt to use/set a language specified in the `unusedLanguages` attribute.
+All unused languages will remain visible in the data and reports, but will not be available for testing or updating translations via the survey builder.
+#19424: XML Style survey.question.answers.start was updated to contain the Global FIR icons.
+#19424: Font Awesome 3.1.0 was upgraded to Font Awesome 4.2.0 in the survey participant view.
+#19424: A new value was added to the Global FIR firStyle attribute to support custom Font Awesome 4.2.0 icons (not available for configuration in the Display Settings). Specify firStyle="fa" or firStyle="fontawesome" or firStyle="font-awesome" to use FA icons.
+In addition to this new style, 4 new attributes have been added:
+firRadio, firRadioSelected, firCheckbox, firCheckboxSelected.
+Use these attributes to specify custom FIR icons to be used. For example:
+...
+...
+#19425: The "Button Select" Dynamic Question style (compat=126+) now supports custom icons using the 4 attributes mentioned in the bullet above.
+#19350: Single-select question inputs using the Global FIR style can be de-selected. This behavior can be overridden by appending the class "no-uncheck" to each ".cell" class.
+#1453: A new "Spell Check" button was added to the QA survey testing toolbar. When turned "On", all translatable text on the page will be checked for spelling errors and highlighted yellow if misspelled. A dictionary of 99.1K words is referenced. Words can be added by logged-in users via this survey. A word is flagged as misspelled if:
+1. it cannot be found in the dictionary exactly how it was written in the survey or
+2. the first letter of the word is the only capitalized letter and the lower-cased version of the word cannot be found in the dictionary
+e.g. good words: "The", "the", "Paint",
+e.g. misspelled words: "THE", "paiNt"
+#19596: The "Answer for me" button no longer attempts to populate hidden or autofill questions. Pressing this button or pressing CTRL + RIGHT ARROW will only attempt to populate non where="execute"/autofill questions with random data.
+#19431: All non-legend table columns now have an equal width, to prevent bias for/against any one column. They are sized to match the widest column.
+#19356: Changed the spacing around question instructions for better readability.
+Dynamic Questions Toolkit Updates
+#18714: The attribute multiline="1" can be added to stylevar elements to produce a textarea input instead of a single-line text input. This applies to inputs seen in the "Question Display Options" and "Options" panel found in the survey builder. This attribute works for the following types: res, string, text, css, url.
+#19665: Updated multicol DQ to version 5, which enables the grids to be full page-width again (width: 100%, instead of width:auto), a feature accidentally removed in version 4.
+#16413: Shopping Cart version 1 can now be used to provide an online shopping experience like no other. The products are intuitively added using the Image Manager, and the product name and price are easily updated from the survey builder user interface. [Released a week after M26]
+#19677: Deprecated stylevars are now removed from Button Select version 6.
+#19693: Page Turner version 2 no longer displays its "read only" columns nor allows adding any columns.
+#19580: A functional timeout was added to prevent Media Evaluator from throwing fatal exceptions, which resulted from the Brightcove server taking too long to respond to video identification queries.
+Programming & Tools
+#19459 New survey_environment hook lets you (typically as a Beacon Private cloud owner) run code when any survey load and add extra survey functions.
+#19460 The new v2SendRequestion function lets you asynchronously send data to other servers from within the survey. E.g. notify your panel system that a user has completed the survey.
+Facing a Dropouts report that does not make sense? You can use the pcdiff tool: run here maint/pcdiff start_label end_label end_label... -- this will find participants who completed the page containing the start_label question and compare them to those who started the following pages. For any mismatched participants, you'll get a trace of pages they've seen. You will also see which participant started both set of second pages which is another case of weird counts.
+#19504: Simplified how to set the default survey width, just set a @preferred-survey-width Less variable (before you also had to set @preferred-item-width)
+#19497: Command line tool for sharing files with clients via misc/download page. Use: sharefile to make it available and display the link. sharefile -l to list recent shares.
+The track-time command can be used to log time spent in a shell script to the DataDog service. Contact Jeremy Short for more info. This is mostly useful to create a DataDog dashboard for time spent in complex export scripts.
+Bugfixes
+#17450: Fixes a bug where elements prevented the survey builder from loading. The survey builder will now allow/ignore the use of elements inside the survey XML.
+#19330: Fixes a bug where compat checks were inaccurately truthy.
+#19436: Fixes a bug where the ThemeBuilder could not be loaded for compat 125+ surveys.
+#19455: Fixes a bug in the participant view that prevented selections to be made when the cell label legend contained formatting or child elements.
+#19491: Fixes a bug that prevented the survey builder from loading when a element contained the pos attribute.
+#19420: Fixes a usability issue in the testing tools "Quick Links" menu that caused difficulty when trying to access submenus.
+#19275: Fixes a bug that prevented the File Manager from loading when the survey has errors. You can now load the project's File Manager even if the survey has fatal errors.
+#19550: Fixes a bug that prevented and custom Less files from overriding the default FIR display variables.
+#19426: Fixes an issue where additional Global FIR inputs added via the "add-fir" class required the programmer to set up the click events as well. Additional FIR inputs added via "add-fir" will now handle the click events automatically.
+#18616: Fixes a bug that prevented multiple sample sources to be used when TrueSample is enabled. Now, with a TrueSample-enabled survey, you can set the persistent variable p.nots = 1 for any list that you do not wish to load TrueSample validation/logic. For example, if lists 2 and 3 should not be TrueSample engaged, then add the following code to the top of your survey's XML (just below the first page break) to ignore all TrueSample logic:
+p.nots = 1
+#9064: Fixes a bug in the "Recorder" QA tool where the last choice was shown as selected for a select question that was skipped.
+#18553: Fixes a bug that prevented the "View tasks" link from opening the tasks window when attempting to launch a survey from the project's Portal mega menu or Quick Links menu found in the participant view (testing mode).
+#15861: Fixes a bug that caused the survey builder to automatically append "_[loopvar: label]" to an element's label contained in a loop if it wasn't already present inside the label. This meant that a valid label such as "Q1_[loopvar: var1]" would become "Q1_[loopvar: var1]_[loopvar: label]". The survey builder will no longer append this suffix unless the question doesn't contain a dynamic label. All dynamic labelling will be stripped from the element's label upon removing it from the loop. This means that "Q1_[loopvar: var1]_[loopvar: label]" will become "Q1" upon removing.
+#15862: Fixes an issue where the survey builder updated valid row/col/choiceCond logic from e.g. "q1[row]" to "q1[row.index]". The survey builder will only modify this condition logic if it was changed and/or conflicts with the question it pertains to. A condition such as e.g. "q1[row]" is now valid.
+#19650: Fixed an issue where question labels and titles were displayed title-cased within the survey builder.
+#19665: Fixes an issue where rowCond (or similar) logic was displayed duplicated in a survey builder notification.
+#19477: Fixed essay questions becoming extremely narrow in IE8
+#19463: Fixed the Paper Stack legacy theme showing a gap between the header and survey content
+#19427: Fixed grid breakdown not engaging on wide windows
+#19376: Fixed hidden grids not using correct background in testing tools
+#18972: Fixed Builder top-menu dropdowns appearing misaligned after window resize
+#19603: Fixed back button being submitted when Enter key is pressed
+#19448: Fixed open-ended fields appearing in wrong cell after window resize
+#19604: Fixed open-ended fields appearing in wrong cell if the last column is hidden
+#19584: Fixed footer not centered when using unbranded styles
+#19532: Fixed error when displaying question with all rows hidden
+#19482 Data edits ("Edit Data" tool, the transform and tabimport scripts) are now better at ensuring no participants can complete while they work. This alleviates some issues where transform could clash with autorecover and generate odd data. Be aware that data edits to large surveys can now prevent participants from completing for (in some cases) 30-120 minutes.
+#19390 Surveys that use custom styles in page footer/header that access question data could previously error out if the survey was closed. All questions now start out with blank data for closed surveys.
+#19593 Text files used in File() that have carriage return (i.e. DOS format) have that stripped out from the data files. The "BOM" mark is also stripped (this is a 3-byte sequence that sometimes may appear at the beginning of a file)
+#19476 ADB is applied before language selection
+#19319 Blank strings could be reported as counts in Crosstabs if they have been gone through a hmerge process
+#19616 surveys copied from within the shell were not able to later be copied from Research Hub
+#19516 Google OAuth2 would sometimes fail due to "Server Limit Exceeded"
+#19360: surveys not launchable/mergeable while the simulated data process is running
+Reporting
+#19411 There is now a unicode-aware fixed-width data download for Open Ended data. While the previous FW downloads we had were byte based, this one counts unicode characters.
+#19235The tv="off" and tv="force" options can be used to finely control variable visibility
+#19381: In-Progress Reporting. Shows a report with participants with their current status. Using autorecover is recommended to display partial data. Can be accessed by clicking Respondents Report from the mega-menu or the Report drop-down.
+#19582: We have a "Flat" download format which is like the "Flat OE" format but includes all variables. For the API / generate, use "flat_all" as format name.

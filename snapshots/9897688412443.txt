@@ -1,0 +1,41 @@
+Title: 141.1 Release Notes
+Release Date: October 30, 2018
+Release Version: 141.1
+New Features
+New Decipher (previously Decipher) Knowledge Base
+Upgraded to a new Decipher Knowledge Base with improved search and an enhanced support request system.
+Search bar now pre-populates search queries based on popular articles.
+New support request system automatically recommends relevant articles based on similar content.
+Reporting
+Downloads
+Improved buffering when downloading large Excel and SPSS files.
+Survey
+Participant View
+Added a link to the default Privacy Policy in the Help window displayed within each survey.
+System Language Resources
+Added a new system language resource for the Privacy Policy link that appears in the survey Help window.
+Whitelabeling Style Removal
+Removed the ultron.common.help.walkthrough whitelabeling style attribute.
+In-App Text Changes
+Portal
+"Field Report" renamed to "Response Summary" within the bulk edit option.
+Project Overview Page
+“Field Report” renamed to “Response Summary" within the "Add User / Group" window.
+"Field Report" renamed to "Response Summary" within the "Edit User" window.
+Company Page
+“Field Report” renamed to “Response Summary" within the "Add User" window.
+“Field Report” renamed to “Response Summary" within the "Add Group" window.
+Survey Editor
+The "Field Report" renamed to "Response Summary" within the placeholder text for the Terminate element.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue where some rows for large tables were being nested inside the wrong nets.
+Fixed an error where summary table segments were not sortable.
+Survey
+Survey Editor
+Fixed an error that occurred when users without offline permissions tried to edit offline surveys.
+XML Editor
+Fixed an issue where using database.add with replace=True caused an error in specific survey setups.
+Participant View
+Fixed an issue where some survey variables were unavailable when re-completing a survey in certain survey setups.

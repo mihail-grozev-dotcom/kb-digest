@@ -1,0 +1,28 @@
+Title: Reporting on the DCM Conjoint Element
+The raw choice data for a Discrete Choice Model (DCM) Conjoint Element is available directly within Forsta Surveys. To access the calculated utilities data, you’ll need to generate and download an .xlsx data file.
+To use the DCM element, ask your Forsta account representative to enable the DCM element.
+1: Accessing the Data File
+To generate the data file, first navigate to Data Downloads and select DCM Reporting under Other Data Formats.
+On the next page, select the question label of the DCM element from the drop-down menu. Then click Generate.
+The status of the question report will display. The Status can be any of the following:
+Not Started: No report has been generated.
+In Progress: The report is in the process of being generated.
+Completed: The report has been generated and is ready for download.
+Failed: An explanation of the error will display.
+Once the report is generated, you can download the report from the Downloads section of the modal. The report can be identified by the question label.
+The .xlsx workbook contains the following sheets:
+Summary: Displays the average preferences for levels and relative importance by attribue.
+ZC Diff Utilities: Displays zero-centered diff utilities scores data by participant uuid.
+Zeroed Utilities: Displays zeroed utilities scores data by participant uuid.
+Raw Utilities: Displays raw utilities scores data by participant uuid.
+Utility Ranges: Displays utility ranges scores data by participant uuid.
+Importance Ratios: Displays importance ratios scores data by participant uuid.
+2: Limitations
+Only qualified data is included.
+Filtering is not supported.
+Segmentation is not supported.
+3: Learn More
+To use the Survey Editor to create a DCM Conjoint Element, see
+Discrete Choice Model (DCM) Conjoint Element
+To use the XML Editor to create a DCM Conjoint Element, see
+Customizing the DCM Conjoint Element

@@ -1,0 +1,111 @@
+Title: Monitor and Terminate Straightliners
+A "straightliner" is a participant who selects the same answer for every row in a question.
+It is common to perform data validation checks to ensure that participants aren't speeding through the survey. A participant who answers questions like the example below can be terminated from the survey as a straightliner.
+1: Terminating Straightliners
+The .all function is a vector logic function that terminates survey participants who are straightliners. The syntax for this function is as follows:
+<term cond="Q1.c1.all or Q1.c2.all or Q1.c3.all or Q1.c4.all or Q1.c5.all">
+Q1: STRAIGHTLINED
+</term>
+2: Examples
+Instead of the explicit logic written above, you can use a hidden question variable to store whether a participant has straightlined or not.
+2.1: Straightlining a Two-Dimensional Single Select Question
+Given the two-dimensional single select question below.
+<radio label="Q1" type="rating" values="order" shuffle="rows">
+<title>Please rate the following items:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+<row label="r5">Item 5</row>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+<col label="c6">6</col>
+<col label="c7">7</col>
+<col label="c8">8</col>
+<col label="c9">9</col>
+<col label="c10">10</col>
+</radio>
+<suspend/>
+You can create a hidden question to track whether a participant straightlined at the question and terminate them if they did:
+<exec>
+for eachCol in Q1.cols:
+if eachCol.all:
+Q1_SL.r1.val = 1
+break
+</exec>
+<checkbox label="Q1_SL" where="execute">
+<title>HIDDEN: STRAIGHTLINED Q1?</title>
+<row label="r1">Yes</row>
+</checkbox>
+<suspend/>
+<html label="DID_SL" cond="Q1_SL.r1" where="survey">
+YOU STRAIGHTLINED!
+</html>
+<html label="DIDNT_SL" cond="not Q1_SL.r1" where="survey">
+You did not straightline.
+</html>
+<suspend/>
+<term cond="Q1_SL.r1">Q1: STRAIGHTLINED</term>
+2.2: Straightlining a Two-Dimensional Multi-Select Question
+Given the following two-dimensional multi-select question below.
+<checkbox label="Q2" atleast="1" shuffle="rows">
+<title>Please select all that apply:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+<row label="r5">Item 5</row>
+<col label="c1">Brand 1</col>
+<col label="c2">Brand 2</col>
+<col label="c3">Brand 3</col>
+<col label="c4">Brand 4</col>
+<col label="c5">Brand 5</col>
+</checkbox>
+You can create a hidden question to track whether a participant straightlined at this question in any dimension and terminate them if they did:
+<exec>
+for eachRow in Q2.rows:
+if eachRow.all:
+Q2_SL.r1.val = 1
+break
+for eachCol in Q2.cols:
+if eachCol.all:
+Q2_SL.r2.val = 1
+break
+</exec>
+<checkbox label="Q2_SL" where="execute">
+<title>
+HIDDEN: STRAIGHTLINED Q2?
+</title>
+<row label="r1">Yes - Straightlined a row</row>
+<row label="r2">Yes - Straightlined a col</row>
+</checkbox>
+<suspend/>
+<html label="DID_SL" where="survey" cond="Q2_SL.any">
+[pipe: Q2_SL]
+</html>
+<html label="DIDNT_SL" where="survey" cond="not Q2_SL.any">
+You did not straightline.
+</html>
+<suspend/>
+<term cond="Q2_SL.any">Q2: STRAIGHTLINED</term>
+2.3: Setting a Marker for Participants Who Straightline
+If you just wish to monitor participants who straightlined at a question instead of terminating them, you can set a marker using the <marker> element and the hidden questions created above.
+For example:
+<marker name="Q1_STRAIGHTLINED" cond="Q1_SL.r1">Straightlined Q1</marker>
+<marker name="Q2_STRAIGHTLINED" cond="Q2_SL.r1">Straightlined Q2</marker>
+(Optional) For "Q1", you can add the straightline logic directly into the <marker> element itself:
+<marker name="Q1_STRAIGHTLINED" cond="len(set([row.val for row in Q1.rows if row.val != None])) == 1"/>
+(Optional) For "Q2", you can use the setMarker() function to set a marker for straightliners:
+<exec>
+for eachRow in Q2.rows:
+if eachRow.all:
+setMarker('Q2_STRAIGHTLINED_ROW')
+break
+for eachCol in Q2.cols:
+if eachCol.all:
+setMarker('Q2_STRAIGHTLINED_COL')
+break
+</exec>

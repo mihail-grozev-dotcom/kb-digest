@@ -1,0 +1,10 @@
+Title: End a Survey without Termination
+You can use the “final” option in the Survey Editor to end a survey for a participant without termination. The "final" option is similar to showing a participant an exit message, the difference being that the "final" option does not count the participant as a terminate or complete, it simply ends the survey for that participant.
+By default, response data for participants that are sent through the "final" option is not saved and not included in the Response Summary.
+Note: To save the partial response data for "final" participants, you can enable the Partial Recovery System for your survey.
+1: Adding the Option
+To end a survey for a participant after they have answered a specific question, click the question so its general options appear to the right of the staging area. Then select "final" from the "more options" drop-down menu and check the box to enable it.
+2: Testing the Setup
+To test the setup, select "Test Survey" from the "Preview" drop-down in the navigation menu. In the Survey Test Environment, select "Show Participant View" to test the survey as a participant. Once you reach the question you have marked as “final”, select the response options that meet the logic condition you created for that question.
+On the following page, you should see the “final” question with a message in a red box explaining that the survey would normally end at that point and the "Continue" button would not display.
+Note: This message only appears during testing. Survey participants will see only the "final" question and be unable to continue through the survey

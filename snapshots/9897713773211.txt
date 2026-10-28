@@ -1,0 +1,16 @@
+Title: May 15th General Release Notes
+Release Date: May 15, 2018
+Highlights of May 15th Release
+New Features
+Crosstabs: Single Table Export
+Export individual question tables within Crosstabs.
+View/Edit Responses: Muti-Variable Questions
+Add multi-variable questions to the View/Edit Responses report using a single variable.
+New Features
+Crosstabs: Single Table Export
+Did you find that one key insight in your report and need to share it with your colleagues? Or, do you need to include just one table in Crosstabs in your presentation? We’re making that easier with a new option to export a single table to PowerPoint, Excel, or PDF.
+You’ll find the new functionality on each question table in Crosstabs:
+View/Edit Responses: Multi-Variable Questions
+The process for viewing and editing complex question types in the View/Edit Responses report has been streamlined. You can now add all of the variables for a multi-variable or looped question using just one variable.
+To add multiple variables at once, select the question from the column drop-down:
+Once applied, each of the question variables appears as a separate column in the response table:

@@ -1,0 +1,100 @@
+Title: 140.1 Release Notes
+Release Date: October 2, 2018
+Release Version: 140.1
+New Features
+Portal Layout and Project Overview Redesign
+Updated the Portal layout to include only two views: the default company page and the project overview page.
+Removed the Project Controls menu and moved all options to the Actions and navigation bar menus.
+Added the following options to the "Actions" menu per survey: preview, launch, close, rename, duplicate, export, archive, and delete.
+Added buttons for direct access to survey tools:
+Build: Redirects to the Survey Editor
+Responses: Redirects to the Response Summary page
+Report: Redirects to Crosstabs
+Added the ability for new users to create an example survey, with sample elements and participant data.
+Added the ability to subscribe to a survey from the project overview page.
+Added the ability to add a survey to your favorites list from the project overview page.
+Survey Editor
+Adjusted grouping and categorization within the Survey Elements Menu. Questions and elements now appear within the following categories by default:
+Favorites
+Question types
+Advanced elements
+Logic / structural elements
+Custom elements
+Library
+Panel datapoints
+Centralized element creation and page break actions in the survey staging area.
+Launch Survey
+Added the ability to launch and relaunch projects directly from both the Survey Editor and XML Editor.
+Reporting
+Crosstabs
+Landing Page
+Updated the landing page to include a "Total Qualified" crosstab by default. This replaces the "Run Total" button on the Crosstabs landing page.
+Table Editor
+Added the ability to include a custom base description for report tables.
+Added the ability to suppress table rows when they do not meet a specific threshold. Hidden rows can be included or excluded from base calculations.
+Added the ability to use dynamic sorting based on row text or frequency. Once setup, sorting is applied each time a crosstab is run. Table rows and nets can be locked from sorting.
+Added a new option to reset the table to its default settings.
+Added the ability to include a "Sum Answer" table that shows the sum of responses rather than the count of participants.Users can also add a "Mean Answer" table that shows the mean of responses.
+Updated summary tables to display an average percent row.
+Rim Weighting
+Increased the default number of iterations run by the system from 10 to 50.
+Added a warning message that displays when convergence is not met.
+Dashboard
+Added the ability to sort tables based on row and net text. Table rows or nets can be locked from sorting using the sort=0 attribute.
+Downloads
+Added the ability to download survey data to SPSS (16 with OE) and Excel (2007) directly from the navigation menu.
+In-App Text Changes
+Portal
+"New Project" button renamed to "New Survey"
+"Project Info" in the New Survey menu renamed to "Survey Options"
+"TESTING" survey state renamed to "DRAFT"
+"Projects" select-all checkbox renamed to "Surveys"
+"All Projects" option in the View options menu renamed to "All Surveys"
+"Recent Projects" option in the View options menu renamed to "Recent Surveys"
+"Active Projects" option in the View options menu renamed to "Active Surveys"
+"All Projects" menu renamed to "All Surveys"
+"Type" table header renamed to "State"
+"Distribute" option in the Launch Survey menu renamed to "Get Responses"
+Project Overview
+“Add to Project” user option renamed to “Add User(s)"
+"Distribute" option in the Launch Survey menu renamed to "Get Responses"
+Navigation Menu
+"Project Overview" renamed to "Overview"
+The survey "State" of "TESTING" renamed to "DRAFT"
+"Test Survey" under "Test" Category renamed to "Preview"
+"Run Test Data" under "Test" Category renamed to "Run Simulated Data"
+"Distribute" Category renamed to "Responses"
+"Project Summary" under "Responses" (previously "Distribute") renamed to "Survey Summary"
+"Field Report" under "Responses" (previously "Distribute") renamed to "Responses Summary"
+Survey Editor
+The "Structural" category in the Survey Elements Menu renamed to "Structural Elements"
+The "Standard" Question Type in the Survey Elements Menu renamed to "Single and Multi Select"
+The "Rating Specific" Question Type in the Survey Elements Menu renamed to "Rate, Rank, and Sort"
+The "Open-Ends" Question Type in the Survey Elements Menu renamed to "Open End"
+The "Multimedia" Question Type in the Survey Elements Menu renamed to "Stimulus"
+Crosstabs
+"The "Build Crosstab" button renamed to "New Crosstab"
+Bug Fixes
+Reporting
+Fixed an error where users marked _NO_SUBMIT were being included in the vstatus question.
+Crosstabs
+Fixed an issue preventing users from saving an advanced weighting scheme after their initial save.
+Survey
+Fixed an issue with the alwaysSaveData attribute directly accessing the database without reopening it.
+XML Editor
+Fixed an issue where edits made in the XML Editor were being shown in the survey.log file and user audit log with the raw actions / scripts and the action performed (noted as "staging xml").
+Panel Management (previously Kinesis) Integration
+Increased the timeout period for the Panel Management registration logic node.
+Fixed an issue with running test data on registration surveys with open-ended data points.
+CAPI App 3.1
+Fixed an issue where uploading an image without a default image editor would cause the app to crash.
+Fixed an issue where the extra variable interviewerId was not accessible on the first entry of the survey page.
+Fixed an issue with survey vector logic (e.g., "q1.any", "q1.but</code">", etc.) not evaluating correctly.
+Portal
+Fixed a permission issue with retrieving user groups.
+Programming & Tools
+API
+Fixed an error that was occurring when using the sample source API on a survey with a compat greater than 138.
+Updated the the process for uploading the survey.xml file to require edit ( builder) product access as well as survey:edit permission for the project.
+Logic Nodes
+Fixed an issue with logic node data sends failing periodically.

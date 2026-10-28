@@ -1,0 +1,121 @@
+Title: Creating Dashboard Filters
+Create dashboard filters to allow users to view only some segments of data at a time for various questions. Customize your filters with dynamic group filters or multiple nested filters, drop-down menus for selectable filters, or by specifying different filtering options for specific filters.
+The keyword filter allows you to restrict the participant data included within a dashboard to a set of predefined variables.
+1: Adding Filters
+To add default selectable filters to a dashboard, add default=1 using the following syntax:
+filter [default=1] <condition> [title]
+Note: If a filter does not have a title, it will always be applied and you will not be able to toggle it on/off.
+1.1: Example 1
+filter id=db-9 Q5.r1 Only Social Media Users
+filter id=db-3 Q3.r1 Only Android Users
+filter id=db-4 Q3.r2 Only Blackberry Users
+filter id=db-5 Q3.r3 Only iPhone Users
+filter id=db-6 Q3.r4 Only Windows Users
+filter id=db-7 Q3.r5 Only Other Users
+With filters added, users can click the "Filter" button within the dashboard to choose and apply filters:
+When viewing a dashboard with this configuration, users would be able to view the data by "Only Social Media Users", "Only Android Users", etc., or even with no filter at all. By default, the data is filtered by "Only Social Media Users":
+1.2: Example 2
+You can also add a filter for users to view the data by a participant's status (qualified, terminated, and overquota). If no status filter is applied, the status defaults to "all" data, including partials.
+filter default=1 qualified Qualifieds only
+filter terminated Terminates only
+filter overquota Overquota only
+With the above dashboard configuration, you can filter the data by "Qualifieds only", "Terminates only", "Overquota only" or no filter at all. By default, the data is filtered by "Qualifieds only".
+1.3: Filtering by Date Range
+To filter by a date range, use filter datepicker. While using this filter, make sure that the dashboard compat level is set to "2 (faster)" / "1 (compat 123)" or greater.
+When this filter is applied, a date picker is available for your input from the left drop-down filter panel when viewing the dashboard:
+2: Filtering by Local Data
+The keyword filter.local allows restricting participants' data within a table or chart. This overrides all other filters.
+filter.local <condition>
+Example:
+chart Gender of Respondents
+rows Q1.r1-r2
+filter.local Q1.r1
+This chart only shows data for Q1.r1 because the chart's data is filtered to show only the data that matches the condition provided for the local filter
+3: Using Dynamic Grouped Filters
+The keyword filtergroup allows you to create dynamic grouped filters.
+filtergroup <title>
+Example:
+To view all of the existing tables or charts based on males who primarily use an iPhone, or based on females who primarily use a Blackberry, you would use the following code:
+filtergroup Gender
+filter q1.r1 Males
+filter q1.r2 Females
+filtergroup Primary Smartphones
+filter q2.r1 iPhone
+filter q2.r2 Android
+filter q2.r3 Blackberry
+filter q2.r4 Windows
+filter q2.r5 Other
+This creates two new filter groups available for toggling within the dashboard viewer:
+By default, the logical relation between filters in a filtergroup is an “AND” statement. You can change the relationship to a logical “OR” statement using the keyword argument multi=or.
+Example:
+To show data grouped by any smartphone, you would use the following code:
+filtergroup multi=or Primary Smartphones
+filter q2.r1 iPhone
+filter q2.r2 Android
+filter q2.r3 Blackberry
+filter q2.r4 Windows
+filter q2.r5 Other
+You can also add exclusivity to the filters by adding exclusive=1 to a filtergroup. The keyword argument "Exclusive" is an user interface (UI) setting only. It displays the filters in a filtergroup as mutually exclusive (whether or not they actually are) and allows the user to select at most one.
+Example:
+To make your smartphone filter selection mutually exclusive, you could use the following code:
+filtergroup exclusive=1 Primary Smartphones
+filter q2.r1 iPhone
+filter q2.r2 Android
+filter q2.r3 Blackberry
+filter q2.r4 Windows
+filter q2.r5 Other
+This changes the filter selection to a radio button:
+4: Adding Drop-down Menus for Selectable Filters
+You can use filtergroup.local to add drop-downs for selectable filters on charts and tables. These filters are applied in addition to any global filters.
+Example:
+To add a drop-down toggle filter for region, use the following code:
+chart id=db-48 Nutritional Information Frequency
+type column
+filtergroup.local multi=or Generations
+filter.local id=db-49 GEN.r1 Millenial
+filter.local id=db-50 GEN.r2 Gen X
+filter.local id=db-51 GEN.r3 Baby Boomers
+rows s5.r1-r8
+When added to a chart or table definition, this would create a selectable drop-down filter on the element itself:
+5: Specifying the Filters/Segments/Rows to be Shown with Certain Filters
+The showif attribute can be added to rows, local filters, and local segments, so you can specify the filters/segments/rows that are shown with certain filters. The showif condition only applies if at least one filter from the same filtergroup is selected.
+Note: When using a showif condition to display a row that is included in a sum or net, the sum or net and all its rows should have the same condition.
+Example:
+The following example shows certain filters/rows when the "Desktop" filter is applied and different filters/rows when the "Mobile Device" filter is applied. Both local filters and rows are changed based on the filter selection.
+table id=db-15 "Table with conditional rows and filter"
+filtergroup.local Mobile OS
+filter.local showif="db-20" id=db-21 vmobileos.r0 iOS
+filter.local showif="db-20" id=db-22 vmobileos.r1 Android
+filter.local showif="db-20" id=db-23 vmobileos.r3 Windows 7
+filter.local showif="db-20" id=db-24 vmobileos.r0 Mac OS X or older
+filtergroup.local Desktop OS
+filter.local showif="db-14" id=db-27 vos.r2 Windows 8
+filter.local showif="db-14" id=db-28 vos.r3 Windows 10
+filter.local showif="db-14" id=db-29 vos.r4 Windows 7
+filter.local showif="db-14" id=db-30 vos.r5 Windows Vista
+filter.local showif="db-14" id=db-32 vos.r7 Windows XP
+row showif='db-20' vmobiledevice.r0 Smartphone
+row showif='db-20' vmobiledevice.r1 Featurephone
+row showif='db-20' vmobiledevice.r2 Tablet
+row showif='db-20' vmobiledevice.r3 Other mobile
+row showif='db-14' vmobiledevice.r4 Desktop
+When the "Desktop" filter is applied, only the "Desktop" rows are shown:
+Similarly to that, when choosing to apply a local filter, only the "Desktop OS" filter menu has items in it.
+When the "Mobile Device" filter is applied, the device types rows are shown:
+As well as only the "Device Mobile OS" filters:
+6: Creating Multiple Nested Filters
+Filters can be nested to provide multiple levels by which you can drill-down your view of the data. You can create a nested filter by adding the filterlevel attribute to a filter and assigning it a number (1, 2, 3 and so on).
+For example, to specify the top level of an hierarchy set filterlevel=1, then list any filters under that one that should be children of that filter. Then assign the next nesting level as filterlevel=2, and so on. Children of a filter are hidden in the filters drop-down menu until selected.
+Additionally, you can specify a filterlabel as a description for the next drop-down. The filterlabel displays with the options "All" and "Multiple".
+Note: The "All" and "Multiple" options do not display if the filtergroup is setup as "exclusive".
+Creating a drill-down for country, state, county, province, and municipality would require using the following code:
+filtergroup multi=or filterlabel="Country" "Region"
+filter id=db-33 filterlabel="State" filterlevel=1 "q11.r1" "United States of America"
+filter id=db-34 filterlabel="County" filterlevel=2 "q12.r1" "California"
+filter id=db-35 "q13.r1" "Fresno County"
+filter id=db-36 "q13.r2" "Kern County"
+filter id=db-37 "q13.r3" "Kings County"
+filter id=db-38 filterlabel="County" filterlevel=2 "q12.r2" "Nevada"
+filter id=db-39 "q13.r4" "Carson City"
+filter id=db-40 "q14.r5" "Clark County"
+This would create a nested filter like the one displayed below, including the "All" and "Multiple" options for each filter level:

@@ -1,0 +1,24 @@
+Title: Restricting User Access to the Response Summary
+Requires Decipher Cloud
+1: Setting User Permissions
+Note: Restrictions are possible only on the "list" variable.
+If a project has multiple list variables, it is possible to restrict a user's access to the Response Summary by list. To begin, navigate to the Project Overview page for the desired project. Then, click "Users" to access the Users tab. Next, click the link to "Add User / Group."
+In the Add Users window, click the text box to display a dropdown and select the user / group you want to add to the project. Next, select "Custom" for the Permission Level and set the permissions. See Create and Manage Users for a description of the permission options. The user's access to the "Response Summary" and "Data" must be set to "none", as those will not be limited.
+In the "Other" text box, enter dashboard.view/x in the area provided, where "x" is the list variable. In the example below the user will be able to view the data for lists 1 and 2 in the Response Summary. Multiple list variables should be separated by commas.
+Next, click "Add User(s)”. The user is added to the project with custom permissions applied.
+Now, when the user views the Response Summary, they will only see the data for the list variable(s) they have permission to view.
+1.1: Restricting Access to Specific Tabs
+In the same way as restricting data to certain lists, you can restrict access to certain tabs using a list variable and a valid tab name.
+Note: List and tab restriction can be combined or used individually, but tab restriction requires that you also specify a list variable.
+For example, you can set the permission to dashboard.view/1,2,completion to restrict access to only the completions tab for lists 1 and 2. The following are the internal tab names you must use:
+completion -- main Completions tab
+dropout -- Dropouts
+terminate -- Terminates
+quota -- Quota
+custom -- Custom reports (custrep.txt)
+email -- Campaigns
+oldquota -- for studies using legacy "hquota" quota interface only
+1.2: Restricting Access to Quota Sheets
+If the user has access to the "quota" tab, he will by default be able to see any quota sheet regardless of his list settings. The counts displayed however would be filtered by accessible lists.
+To display only some quota sheets to restricted users, set the fieldReport attribute on each <quota> tag. If set to fieldReport="none" then no restricted Response Summary users will be able to see that quota sheet.
+If set to fieldReport="1,2,3" then only users that have access to any of lists 1, 2 or 3 will be able to see the quota sheet. If omitted or set to fieldReport="" then no special restrictions apply.

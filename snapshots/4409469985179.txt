@@ -1,0 +1,122 @@
+Title: Creating a New Survey
+Note: In order to build your own surveys, your company must have access to the survey building application enabled. Contact your account manager to sign up or activate your Decipher account.
+1: Creating the Survey
+To create a new survey, click the "New Survey" button in the top-right corner of the Portal. On the "New Survey" screen, select from the following survey creation methods:
+Note: You will only see the “Start with Word” option if you have the Word Importer tool enabled for your company.
+Start from Scratch: Creates a blank survey.
+Start with a Template: Creates a survey using one of Decipher's default templates.
+Start with Word: Creates a survey using an imported Microsoft Word file.
+More Options:
+Import File: Creates a survey using one of the following file types: decipher.xml, confirmit.xml, excel.xls, bconvert.txt
+Campaign: Creates a blank email campaign.
+Next, enter a name for your survey in the “Name” field and select a survey category from the “Category” drop-down. If you would prefer not to categorize your survey or you cannot find an appropriate category, leave this as “No Selection”.
+Note: Respondents will never see what is entered for "Name" or "Category".
+If desired, you can then click "Survey Options" to configure additional survey settings.
+1.1: Picking a Category
+Although not required to create a survey, selecting a survey category can help you identify the main purpose of a survey. Once selected, the survey category appears on the Project Overview page alongside the survey description and any survey tags (if applicable).
+The following categories are available:
+Automotive
+Beauty/Cosmetics
+Beverages – Alcoholic
+Beverages – Non-alcoholic
+Business
+Children & Parenting
+Coalition/Loyalty Programs
+Credit Cards
+Destinations & Tourism
+Education
+Electronics/Computer/Software
+Entertainment & Leisure
+Explicit Content
+Fashion & Clothing - Department Store
+Fashion & Clothing - Other
+Finance, Banking Investing & Insurance
+Food/Snacks
+Gambling/Lottery
+Government & Politics
+Heathcare/Pharmaceuticals
+Home (Utilities, Appliances)
+Home Entertainment (DVD, VHS)
+Home Improvement/Real Estate/Construction
+IT (Servers, Databases, etc.)
+Media & Publishing
+Personal Care/Toiletries
+Pets
+Restaurants
+Sensitive Content
+Smoking/Tobacco
+Social Research
+Sports, Recreation, Fitness
+Telecommunications (phone, cell phone, cable)
+Toys
+Transportation
+Travel – Airlines
+Travel – Hotels
+Travel Services/Agency/Booking
+Video Games
+Websites/Internet/E-Commerce
+1.2: Configuring Survey Options
+Regardless of the survey creation method you choose, you will be able to configure the basic settings for your survey prior to its creation. Click “Survey Options” to configure the following survey settings:
+Note: You may have to scroll down to view the “Survey Options” menu.
+Primary Language: The survey language. This will be the default language in which the survey is shown to participants. You can add secondary languages via the Language Manager or using the survey’s XML. To learn more about managing multiple languages within your survey, see Programming Multi-Language Surveys.
+Note: The “Primary Language” field is not available for surveys created using the “Campaign” creation method.
+Description: A short description to help you remember what the survey was about and help others identify the survey in the Portal.
+Tags: Related words or short phrases that will help with survey organization and search filtering. By default, the company name and subdirectory (if applicable) will be added as tags. Other tags may be added as well, depending on the type of survey you create. To learning more about tagging surveys, see Tagging Projects.
+Survey Directory: The company directory in which you'd like to house the survey.
+Note: Your "parent" directory is listed first in the "Survey Directory" dropdown list, followed by all of the subdirectories in your organization.
+Survey Path: The survey URL. Customizing the project number of the survey path can be very useful for organizing your studies by groups or clients. To specify your own project number, click "Auto" under Survey Path and enter a new unique string in the text box. Only a-z, 0-9, and underscore characters are allowed.
+Note: Uppercase A-Z characters are not allowed.
+Note: Do not use the following as the start of your survey path: "temp, tmp, sst, preview" (e.g., template2).
+Note: If you do not specify a custom survey path, the system automatically generates one for you. System-generated paths will follow a YYMM### format, where ### starts at 0 and increments in the order created.
+Once you are satisfied with your settings, click "Create Survey" to create the survey in the Survey Editor.
+2: Building the Survey
+The process for building your survey will vary based on the survey creation method you have chosen. The following sections outline the steps for building surveys using each of the methods listed above.
+2.1: Start from Scratch
+To build a survey from scratch, enter your survey details and click “Create Survey”. In the Survey Editor, build your survey by adding survey questions and other elements.
+To learn more about the survey creation options available within the Survey Editor, see Overview of the Building Workspace.
+2.2: Start with a Template
+To build a survey using a survey template, click "Start with a Template" and select one of the available templates from the list. You may also search for templates using question/answer text or saved tags.
+A preview of each template appears in the box to the right of the templates list:
+Note: If an image is not linked directly to a file path, its formatting will not show in the preview box. Additionally, formatting for the following HTML tags will not appear in previews: <strong>, <em>, <a>, <span>
+The following Decipher system templates will always appear at the top of the template list and are available to all users by default:
+Ad test: Presents participants with a product advertisement and then asks them a series of questions to test the ad’s marketability.
+Brand Awareness*: Presents participants with a list of brands and then asks them to rank those with which they are familiar in order of preference.
+Brand Perception: Presents participants with a list of brands and then asks them to compare and evaluate the brands based on a series of attributes.
+Copy Test (Video Ad): Presents participants with a video advertisement and then asks them a series of questions to test the ad’s marketability.
+COVID-19 Company Response Evaluation*: A pulse survey designed to monitor customers’ feelings on your COVID-19 response.
+COVID-19 Information Requirements*: A pulse survey designed to help you understand your B2B content needs regarding COVID-19.
+COVID-19 Organizational Priorities*: A B2B pulse survey on organization priorities regarding COVID-19.
+Customer Satisfaction*: Asks participants a series of questions designed to help you evaluate their level of satisfaction with their latest purchase from your company.
+Demographic*: Asks participants a series of basic demographic questions.
+Employee Satisfaction: Asks employees a series of questions designed to help you evaluate their level of satisfaction with your company’s policies and working environment.
+Exploratory Pricing: Asks participants a series of questions designed to help you determine the minimum and maximum prices they would pay for a product or service.
+HR 30 Day Onboarding: Asks employees a series of questions designed to help you evaluate your company’s onboarding practices. Intended for distribution at 30 days past the point of hire.
+HR 60 Day Onboarding: Asks employees a series of questions designed to help you evaluate your company’s onboarding practices. Intended for distribution at 60 days past the point of hire.
+HR 90 Day Onboarding: Asks employees a series of questions designed to help you evaluate your company’s onboarding practices. Intended for distribution at 90 days past the point of hire.
+HR Candidate Survey: Asks interviewers a series of questions designed to help you evaluate a new employee candidate. Intended for distribution after the interview has concluded.
+HR Exit Survey: Asks employees a series of questions designed to help you evaluate your company’s policies and working environment. Intended for distribution upon the employee’s departure from the company.
+HR Pulse Survey: Asks employees a series of questions designed to help you evaluate their level of satisfaction with their current role or position within the company.
+HR Supervisor Evaluation: Asks employees a series of questions designed to help you evaluate their level of satisfaction with their working relationship with their manager.
+Net Promoter Score (NPS)*: Asks participants a series of questions designed to help you determine how likely they would be to recommend your product or service to others. Uses the Net Promoter Score (NPS) survey element as well as two open-ended consumer evaluation questions. Generates an NPS chart in both Crosstabs and the template’s associated dashboard.
+Price Laddering*: Presents participants with a product concept and then asks them a series of questions designed to help you determine the highest price they would be willing to pay for it.
+Product Concept*: Presents participants with a product concept and then asks them a series of questions designed to help you test the concept’s marketability.
+Note: Templates marked with an asterisk (*) include a preconfigured survey dashboard. See below for more information on using templates with dashboards.
+Once you are satisfied with your settings, click "Create Survey". In the Survey Editor, build your survey by adding survey questions and other elements.
+To learn more about the survey creation options available within the Survey Editor, see Overview of the Building Workspace.
+Note: You can create a custom template and add it to this list for use in future surveys. To learn how to create custom survey templates, see Creating and Using Survey Templates.
+2.2.1: Templates with Dashboards
+Some templates include preconfigured survey dashboards. These dashboards are accessible from the dashboards menu and update automatically as the survey collects data.
+Note: You must either run simulated testing data or field for live participants in order to see survey graphs and data populated within dashboards.
+The following limitations apply when using a template which includes a survey dashboard:
+Response options added to the survey template will also need to be added within its dashboard to be reflected there.
+Removing any pre-existing response options from the survey template may prevent its dashboard from working as intended, unless those answer options are also removed from the dashboard.
+2.3: Start with Word
+To build a survey using a Microsoft Word file, you must upload the file using the Word Importer.
+To learn more about using the Word Importer, see Creating a Survey from a Word Document.
+Note: You will only see the “Start with Word” option if you have the Word Importer tool enabled for your company.
+2.4: Import File
+To build a survey using another file format, you must upload the file using the Survey Importer.
+To learn more about using the Survey Importer, see Survey Importer.
+2.5: Campaign
+To build a survey using just an email campaign, you must schedule email sends using the Campaign Manager.
+To learn more about using the Campaign Manager, see Email Campaign Manager Overview.

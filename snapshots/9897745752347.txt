@@ -1,0 +1,20 @@
+Title: 144.5 Release Notes
+Release Date: January 28, 2020
+Release Version: 144.5
+Bug Fixes
+Portal
+Fixed an issue preventing some surveys from being exported into Microsoft Word format.
+Survey
+Survey Editor
+Adjusted Lucid’s participant source exit links for qualified survey participants.
+Reporting
+Crosstabs
+Fixed an issue preventing survey nets from converting to Unicode when exporting data into Microsoft Excel format.
+Data Downloads
+Fixed an issue preventing loop variable data from being displayed within stacked fixed-width SPSS exports.
+Fixed an issue causing non-looped variables that were omitted from a data layout to be displayed within the stacked fixed-width datamap export.
+Programming & Tools
+API
+Fixed an issue causing slowed survey performance when additional users were added to user groups within an element or template that was saved to the Element Library.
+Fixed an issue causing errors in Crosstabs when adding conditional logic to a two-dimensional checkbox question AND setting that question’s table to “Total Shown Variable”.
+Fixed an issue causing video authentication tokens to expire too quickly for the Video Testimonial Dynamic Question type.

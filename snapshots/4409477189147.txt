@@ -1,0 +1,83 @@
+Title: Testing and Launching
+We've successfully built a project using the Survey Editor. What's next? Before we can launch our survey, we'll want to make sure that we've thoroughly tested for both quality and functionality. In this section, we'll learn how to efficiently test a survey using each of the tools available to us within Decipher. We'll also learn how to launch our survey using a variety of fielding methods, as well as some best practices for making changes to a live survey.
+Running Simulated Data
+In this lesson, we will learn how to run simulated data to ensure that our survey logic is working correctly. When running simulated data, the system will attempt to send random data through the survey to fill the database, although specifics of how the simulated data is run can be adjusted via the simulation configuration settings. If survey errors are generated while running simulated data, information about each error will display in the simulated data window.
+Running simulated data is an important part in the testing process, as this process will help us identify potential errors in survey logic and survey flow.
+Reference Materials:
+Running Simulated Data
+Survey Testing Environment
+In this lesson, we'll learn how to configure the survey testing environment, where we can view our survey in different testing modes. The survey testing environment includes options for us to view our survey both with and without QA tools, and allows us to specify dummy values for testing the functionality of survey URL variables.
+Reference Materials:
+Testing an Online Survey
+Survey Testing Toolbar
+In this lesson, we will learn how to test our survey using the testing tools available within Decipher. These tools will help us ensure that our skip patterns are working correctly and let us review each question for errors before our survey goes live.
+The survey testing toolbar consists of:
+Tasks: Allows you to assign and resolve tasks directly within survey pages to make collaboration easier.
+Edit: Allows you to edit survey questions directly, without having to go back to the survey editor or XML to make changes.
+Recorder: Records the path you take through the survey so you don't have to remember your answers when trying to test a specific section.
+QA Codes: Makes labels, settings, and logic conditions visible for each question for easier reference.
+One Page: Enables you to see the entire survey on one page, and to make all of your edits at one time.
+Actions: Allows you to manage your survey languages, view your change history, and access the Knowledge Base.
+Quick Links: Provides links to other areas of your project for quick access to building, testing, distributing, and reporting tools.
+Note: To ensure proper quality control, we recommended using a copy of your questionnaire to guide you through any edits as you test through your survey with the tools above.
+Reference Materials:
+About the Survey Testing Toolbar
+Using Tasks to Provide Feedback
+Editing Text in the Test Environment
+Survey Recorder
+About QA Codes
+Language Manager
+In this lesson, we'll learn how to use the Language Manager to add a language to our survey, as well as how to export our survey into an Excel or XML file to be translated.
+Importing languages uses a text overlay, making it easier to import multiple languages at one time. Once the text has been translated, you can simply import the translated text back into the survey editor. The Language Manager also has an option to edit translations once they have been imported.
+Reference Materials:
+Language Manager Overview
+Survey Summary
+Adding & Managing Languages Questionnaire (Download)
+Launching a Survey
+In this lesson, we'll learn how to launch our survey within Decipher. Launching the survey will clear out any simulated data and open the survey to begin collecting responses. The launch process also performs several checks to ensure the survey is in good shape and ready to go live. Once the survey goes live, the status of our project in the project menu bar will indicate that the survey is live and no longer in testing mode.
+Reference Materials:
+Launching a Survey
+Email Campaign Manager Overview
+In this lesson, we'll be introduced to the Email Campaign Manager, which allows users to distribute survey links to a preconfigured list of email addresses.
+Reference Materials:
+Email Campaign Manager Overview
+Create an Email Campaign
+In this lesson, we'll learn how to create a new email campaign within Decipher. We'll also learn about the options we have for editing our email invite, including making updates to its content, changing the look and feel, and modifying the sender settings for a successful campaign launch.
+Reference Materials:
+Email Send Usage Specifications
+Creating an Email Campaign
+Editing a Campaign
+Setting Up a Domain Alias for Email Sends
+Actions in the Campaign Editor
+Creating a Recipient List
+Email recipient lists can be uploaded using both Excel and tab-delimited file formats. In this lesson, we'll learn how to format a recipient list and upload it for use in our email campaign. We'll also learn how to implement a field merge and modify our survey URL for more custom email sends.
+Reference Materials:
+Creating a Recipient List
+Uploading a Recipient List
+Launching an Email Campaign
+Now that we've created our email campaign and uploaded our recipient list, it's time to launch! In this lesson, we'll learn how to set up and schedule the launch of our email campaign.
+Reference Materials:
+Sending Emails in the Campaign Manager
+Opt-Out Process
+Sending Reminder Emails
+Reminder emails can be sent to participants who have not yet taken a survey. In this lesson, we'll learn about the process for configuring and sending reminder emails to list recipients who have not yet completed our survey.
+Reference Materials:
+Editing a Reminder
+Sending Reminders
+Editing a Live Survey
+Once a survey has been launched, it will transition to a "live" state and will be locked down for field. In this lesson, we'll learn how to make changes to a survey after it has gone live and is already collecting data. We'll also learn about best practices for editing live surveys, including what's safe to edit and what's not.
+What's Safe to Edit:
+Update question text
+Fix spelling errors
+Add a new question
+Add new rows to a question
+Modify skip patterns
+Changes to Avoid:
+Do NOT modify question labels
+Do NOT delete questions
+Do NOT delete question options
+Do NOT change question types
+Do NOT delete participant sources
+Do NOT delete named conditions
+Reference Materials:
+Editing a Live or Closed Survey

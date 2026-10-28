@@ -1,0 +1,26 @@
+Title: Making Changes to Translations for Multi-Language Studies
+In Decipher, you can manually update translations by either importing new translations or using inline editing.
+Working with a Live Study? See Making Live Translation Changes to learn about making translation changes to a live study.
+Note: If you've never created a multi-language project, be sure to read the Guide to Programming Multi-Language Studies.
+1: Importing New Translations
+Access the Language Manager by selecting Language Manager under Build in the navigation menu, or from the Quick Links menu within the testing toolbar.
+Export your most recent translation file for the language you need to update/change by clicking on the arrow next to it under Export.
+A new dialogue box will pop up. Select the specifications you would like applied to your output file and then select Export File:
+This translation file, also known as an XLATE file, contains all of the original and translated text for your survey.
+Note: The columns for original text and translated text are identical until new translations are uploaded into the system.
+Open the file.
+You will want to strip this file down so that the only contains the column header labels and rows with the new/changed translations. See the example below:
+Once you have completed updating the XLATE file, save it, and upload it to the system by clicking on “Import” next to that language in the Language Manager:
+When you upload a new XLATE file, it overwrites any of the previous translations with the same original text that you imported using language manager. This is why it is recommended that you only upload new translations or translation changes.
+2: Inline Editing
+You can simultaneously make updates to a single language at once by typing your changes directly into the appropriate row within the “Translation” column:
+Note: To use Decipher's AI translation services, reach out to your Forsta representative to enable the Translate button. See Language Manager Overview--4: DeepL AI Translations for details.
+All translation changes are saved as you go, but the Summary Table will need to be updated manually. Once you are done editing a cell, press Enter on your keyboard or simply click outside of the cell, and you should see a message pop up in the languages menu, letting you know that the Summary Table is now out of date. You can continue editing or click “Update Now” to see your changes applied in the Summary Table:
+If you need to make changes across multiple languages, you can use the drop-down in the Resource Table to toggle from language to language:
+See Language Manager Overview to learn more about editing translations.
+Note: Any changes made in the Resource Table are also updated in the XLATE file.
+3: Keep Track of the Most Recent Translation
+It is best practice to maintain all translations within the translated XLATE document. If you do make a manual update, be sure to re-pull (or export) the translation file and share with your internal team.
+You can quickly do this by selecting “Export” for the language you need.
+Save the new XLATE file with a name that indicates that it’s the most up-to-date file (e.g. 150509_French_UPDATE_May01.xls).
+The next phase of the multi-language studies guide: Making Live Translation Changes.

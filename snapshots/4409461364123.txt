@@ -1,0 +1,92 @@
+Title: Survey Style Attributes
+Attribute
+Type
+Description
+cs:postText
+string
+Text following the text/number input
+cs:preText
+string
+Text preceding the text/number input
+html:showNumber
+bool
+Show question numbers
+iq:include
+bool
+include interactive question (Flash) API. Add to the survey tag.
+ss:choiceClassNames
+string
+white space delimited set of CSS classnames to apply to the specified choice (select option)
+ss:colClassNames
+string
+white space delimited set of CSS classnames to apply to the specified col td elements
+ss:colLegendHeight
+string
+Set column legend heights
+ss:colorScheme
+string
+Survey color scheme
+ss:colWidth
+string
+Set width of columns
+ss:commentClassNames
+string
+white space delimited set of CSS classnames to apply to the comment element
+ss:customCSS
+string
+custom css filename (without the .css file extension) within the projects static directory. Add to the survey tag.
+ss:customJS
+string
+custom js filename (without the .js file extension) within the projects static directory. Add to the survey tag.
+ss:disableBackButton
+bool
+Disable the browser back button
+ss:disableOfflineDetection
+bool
+Disable the connectivity warning shown to smartphone devices when the connection has been interrupted
+ss:groupClassNames
+string
+white space delimited set of CSS classnames to apply to the specified group td elements
+ss:includeCSS
+string
+comma separated list of CSS file paths to be included (/survey/client/clientfile.css). Add to the survey tag.
+ss:includeJS
+string
+comma separated list of JS file paths to be included (/survey/client/clientfile.js) Add to the survey tag.
+ss:legendColWidth
+string
+Set left/right legend
+ss:logoAlt
+string
+Alternate text for screen readers and is displayed if the image cannot be shown (i.e. a missing resource).
+Note: Requires compat 133+.
+ss:logoFile
+string
+Path of the logo file. Add to the survey tag.
+ss:logoPosition
+string
+Position of the logo. Add to the survey tag.
+ss:postText
+string
+Text following the text/number input
+ss:preText
+string
+Text preceding the text/number input
+ss:questionClassNames
+string
+white space delimited set of CSS classnames to apply to the surveyQuestion element
+ss:rowClassNames
+string
+white space delimited set of CSS classnames to apply to the specified row td elements
+ss:listDisplay
+bool
+Display 1-column questions a lists or tables?
+surveyDisplay
+string
+Specify how the survey layout should be optimized? By default, "auto" means that the survey will adjust its layout based on the display size of the device being used. "mobile" means to force the mobile optimization. "desktop" means don't optimize for smaller devices.
+ss:enableNavigation
+bool
+Add a Back button to the survey?
+fir
+string
+Replace form inputs (e.g. radios, checkboxes) with images? Set fir="on" to use form image replacement.

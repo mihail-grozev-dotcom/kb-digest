@@ -1,0 +1,301 @@
+Title: Secure Surveys Overview
+When you create a project from the portal, or edit the project using the XML editor, or edit survey module in the survey editor, the resulting survey is 'secure.' With a secure survey there are some restrictions on the code that is allowed as described in this document.
+Note: This does not apply to any surveys created through the shell environment.
+1: Embedded Code and Python Code Restrictions
+Code that executes for the participant such as exec, conditions, and rowCond etc., generally has access to all question data and can examine it, and modify it (e.g. modify text values).
+The following lists the Python code restrictions:
+names cannot start with an underscore character (_). This includes attribute names and variable names.
+augmented assignment is not possible on attributes/indices (e.g. d[42] += 1, or p.foo += 3)
+2: Supported Functions
+The following sections outline the functions that are supported and some that are unsupported for secure surveys.
+2.1: Built-in Python Functions
+The following table lists the supported built-in Python functions for secure surveys:
+False
+complex()
+hex()
+next()
+str()
+None
+dict()
+id()
+oct()
+sum()
+True
+divmod()
+int()
+ord()
+tuple()
+abs()
+enumerate()
+isinstance()
+pow()
+unichr()
+all()
+eval()
+issubclass
+range()
+unicode()
+any()
+filter()
+list()
+reduce()
+xrange()
+basestring()
+float()
+len()
+reversed()
+zip()
+bool()
+frozenset()
+long()
+repr()
+callable()
+getattr()
+map()
+round()
+chr()
+hasattr()
+max()
+set()
+cmp()
+hash()
+min()
+setattr()
+For more information about the available Python built-in functions, see Python documentation.
+Note: The built-in functions setattr(), getattr(), hasattr(), and eval() have some restrictions on what they are able to do while working within the secure rules.
+2.2: Core Hermes Functions
+The following table lists the supported core Hermes functions for secure surveys.
+Hermes Function
+Description
+finish()
+Triggers an immediate finish of the survey, skipping any questions that have not already been rendered.
+getMarker(marker)
+Gets marker count.
+hasMarker(marker)
+Checks whether participant has this marker
+loadRecord(path, var, value)
+Loads a participant record that completed another survey For more information about loadRecord, see Loading Data from an Existing Survey
+open(filename)
+Opens a file for reading only. The file must exist in the survey directory or a subdirectory. You should use relative paths here as they will be relative to the survey's directory (e.g. open("file.txt") opens selfserve/X/Y/file.txt. For compatibility with non-secure surveys, specifying the full path, i.e. open("selfserve/X/Y/file.txt") also works.
+setExtra(var, value)
+Modifies extra variable
+setLanguage(name)
+Changes the language
+setMarker(marker)
+Sets this marker for this participant
+2.3: Functions Used by Internal Code
+The following table lists the supported functions generally used by internal code and should not be overwritten in the survey code.
+Internal Code Function
+Description
+allowOnly
+dollar(s)
+Quote string to avoid variable replacement
+ebayMobileCheck
+If
+includeData
+From current directory only
+ishuffle
+isMobile
+protected
+Watermarking
+quoteXML(s)
+Quote string for emission in XML
+timeSpent()
+Number of seconds spent in survey by the participant
+updateConditionTable
+updateTrackCheckboxTable
+2.4: Standard Modules and Accessible Functions
+The following table lists the supported standard modules and their accessible functions for secure surveys.
+Module Name
+Accessible Functions
+datetime
+datetime date tzinfo timedelta
+hashlib
+math
+log log10 exp sqrt trunc ceil isnan log1p pow modf
+misc
+flatten
+os
+path
+os.path
+abspath basename dirname exists getmtime getsize join isfile isdir
+random
+randrangechoicesample randint random shuffle
+re
+compile search match sub findall finditer split
+time
+asctime clock ctime gmtime mktime strftime strptime localtime
+util
+generatePassword limitString shuffle urlencodeDict formEncode toPrintable commaify quote natkey
+__future__ with_statement
+2.5: Virtual Questions and Functions
+The supported functions for virtual questions are the built-in Python functions and the following related virtual functions.
+For more information about the functions of virtual question, see Adding Virtual Questions to the Report.
+Virtual Functions
+assignRandomOrder
+bucketize (See note below)
+bucketizeSearch
+completionTimeFor
+fetchMarker
+fetchMarkerM
+getRandomOrder
+labelSearch
+Since data merging is not available, use the datasources system instead. In addition, bucketize() with ranges will not work in SECURE surveys.
+If you would like to add a virtual question that summarizes participant outputs in JSON, you can use json_loads() to accomplish this.
+2.6: Utility Functions
+The following table describes the useful utility functions for secure surveys.
+Utility Function
+Description
+oneArgument
+Extracts the first space-delimited word from a strong and returns the word and the rest of the string
+>>> first, rest = oneArgument("some words here")
+>>> print first
+some
+>>> print rest
+words here
+nullfun
+Takes any amount of arguments and always returns "None." It is occasionally useful as a "data sink"
+indices
+Exists only for backwards compatibility. Instead use the builtin enumeratePython function
+generatePassword
+Generates a random string of alphanumeric digits with the specified number of characters
+>>> print util.generatePassword(12)
+nn7vrbm18t1d
+flatten
+Concatenates a possibly nested sequence of other sequences. Strings are not flattened, but lists and tuples are flattened
+>>> flatten([[1,2,3], 4, 5, ["six", "seven"]])
+[1, 2, 3, 4, 5, 'six', 'seven']
+ddict
+Is a limited version of the Python collections.defaultdict. Its a dictionary that can be provide a default value for items that are not found.
+>>> d = ddict()
+>>> d["joe"] = 42
+>>> print d["joe"], d["bob"], d["janet"]
+42 0 0
+commaify
+Formats a number as a string, inserting commas every 3 digits.
+>>> commaify(12345678)
+'12,345,678'
+v2All
+Returns "True" if all elements of the passed sequence are true. Otherwise, it returns "False." This is equivalent to Python builtin function, all
+v2Any
+Returns the first "true" object in a sequence. This differs slightly from the Python builtin function, any
+>>> v2Any([0,None,"", 5])
+5
+2.7: Unsupported Functions
+The following functions are unsupported for secure surveys.
+Unsupported Functions
+Comments
+checkDuplicateEntry()
+digimarc()
+exec()
+execfile()
+Built-in Python function
+findBetaSegment()
+from __future__ import with_statement
+Is automatically enabled
+merge()
+merge2()
+mergeQuestions()
+storeDuplicateEntry()
+3: Objects
+Secure code has limited read-only access to information about the current survey and requests. Most of these are used only in custom styles and rarely in survey code. This list applies mainly to those who implement custom styles.
+The following table lists the read-only objects in a secure survey.
+Read-only Objects
+Description
+condition
+Condition object for accessing named conditions
+gv.debug
+For debugging settings (e.g., gv.debug.flow)
+gv.hasQA(True)
+Checks if the user can QA the survey and if QA codes are enabled
+gv.inReport()
+Are we running a report
+gv.inSurvey()
+Are we currently in a survey
+gv.isSST()
+Whether simulated data is running
+gv.isUser()
+Is there someone logged in
+gv.report
+Current report
+gv.request
+Current request
+gv.request.baseURL
+Return the Base URL of the survey (i.e http://survey.domain.com or https://survey.domain.com)
+gv.request.device
+Returns the properties of the referenced device
+gv.request.get
+Find a raw value in the request
+gv.request.getCookieVar
+If a cookie was submitted to the page it will return that cookie
+gv.request.getFirstHeader(name)
+Find the first HTTP header with this name
+gv.request.getRaw(name)
+Access all variables passed in the URL as a list with the specified name. If none found will result in a keyError
+gv.request.getRemote()
+IP address of the request
+gv.request.has_key(var)
+Checks if a variable exists
+gv.request.method
+Returns the type of request (GET or POST) that was sent to the survey
+gv.request.path
+The path of the survey excluding any variables (i.e., selfserve/53a/abc123)
+gv.request.requestHost
+Current survey domain/host being used
+gv.request.savedUser
+Saved user (for user switch)
+gv.request.secure
+Is the request coming over a secured session
+gv.request.user
+Current user
+gv.request.variables
+Dictionary of extra variables and their values
+gv.secureHost
+The secure host the survey would redirect to
+gv.showCms()
+Checks if respview mode is off. If True, the Change Management System is available if the user can QA the survey
+gv.survey
+Current survey
+gv.survey.compat
+Checks for the compat level
+gv.survey.path
+Survey path
+gv.survey.replaceVariables([variable],[replacement])
+Values set to replace embedded variables or expressions
+gv.survey.root
+Additional survey.xml information
+gv.survey.root.compat
+Compatibility level
+gv.survey.root.lastDataTimestamp
+Formatted information about last data timestamp
+gv.survey.root.name
+Participant-visible survey name
+gv.survey.root.newStyle
+newStyle=1 set?
+gv.survey.root.quota
+Quota object in which you can call getQuotaCells() on it
+gv.survey.root.state
+Survey state (e.g., gv.survey.root.state.testing)
+gv.survey.root.weights
+Weights information
+pipe
+Pipe object for accessing pipe contents
+res
+Object to access text of a resource
+Note: In addition to the above objects, when you access a question or cell object, you can read (but not write) any attribute that appears in the XML.
+4: Styles
+The code within styles (i.e. ${python code} or @if python conditions) is also secured. While you have free access to style parameters, you are restricted in what global data is accessible (see objects chapter above).
+The code in @if and @for will run within the same context as your survey.
+5: Mutator Code
+Mutators are functions specified in an onLoad attribute. Only copy, createTables, rowsFromAnswers, createQuotaTables, and createTerminateTables are available in that context.
+While fixupPipe and updateNoanswerTable are accessible, they are automatically used by <pipe> and <noanswer> elements.
+Note: The fixupPipe function will create a mutator radio question capturing a pipe’s state and will be applied automatically if a pipe has capture="yes" configured. If you do not want to capture data from a pipe, you can remove this function by setting capture="".
+Mutators that are not supported: hotText.
+6: XML Tag Limitations
+Quota: secure quotas cannot reference quota files from another directory (filename= attribute) nor can they use the multi= attribute to have multi-survey quotas.
+Html: files referenced by this tag must be read from the current directory or subdirectories.
+Labels: labels must not start with an underscore character (_) if you want to build logic off of them.
+Questions: The aggregate attribute (which lets you stack questions) is not supported for secure surveys.
+7: Secure Surveys in Detail
+A secure survey has an additional file named, SECURE, that resides in the survey directory. If that file is removed, the survey reverts to the default insecure state until it is edited using the survey editor. You can remove the SECURE file, but it is not recommended as the survey might require additional peer review.
+Adding fullService="1" to the <survey> element will allow staff access to the survey but not non-staff who have survey editor access. This technique can be used to lockout a client where the client entering the survey editor would cause code to break due to the SECURE file. This is different from adding the builderCompatible="0" which locks out all users from the survey editor and allows only non-staff who have survey editor access to edit the XML.

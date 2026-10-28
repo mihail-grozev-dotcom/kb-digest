@@ -1,0 +1,15 @@
+Title: DQ Language Resources (res.xml)
+This article describes the content and use of the language resources file that is unique to Dynamic Question types.
+Requires Decipher Cloud
+System Language Resources are the default text displayed in survey error messages, tooltips, browser window tabs, support links and buttons. Similar to how these can be overwritten at the survey level, we can overwrite this for Dynamic Questions (DQs) as well by using the res.xml file.
+1: Overriding Language Resources
+To override a language resource within a res.xml file, you would just call any system language resources you would like changed within <res> tags and enclose these within a <resources> tag.
+For example, the language resource noAnswerSelected displays the message “Please select an answer” when a participant does not input a response, but it may be more logical in a slider DQ to say “Slide all the interdimensional sliders”. To change this error message, you would just call the noAnswerSelected label within a <res> tag, and input your replacement text after the >.
+<resources>
+<res label="sys_noAnswerSelected">Slide all the interdimensional sliders</res>
+</resources>
+Similarly, <res> tags can be used to update the error message text that shows based on participants answering a question or page incorrectly. For example, if a participant enters an amount less than the required minimum response in a column, the displayed error message can be overwritten as follows:
+<resources>
+<res label="sys_check-error-atLeast-sing-column">Please select at least $(count) answer (you selected $(actual)).</res>
+</resouces>
+Note: Because this file is overriding a system style, the name of the style will need to be prefixed with sys_.

@@ -1,0 +1,116 @@
+Title: Customizing the Star Rating Element
+1: Underlying Element Architecture
+The underlying element type for star ratings is a "select" question. The star rating element type provides the maximum amount of flexibility as it allows you to have a 3D question type if you want to create an entire grid of options using rows and columns. It also doesn’t require any rows or columns, so it’s flexible and accommodating.
+Example:
+XML:
+<select label="q1">
+<title>What did you think of &lt;span style="font-weight: bold"&gt;The Dark Knight Rises&lt;/span&gt;?</title>
+<choice label="ch1">1 - Hated It</choice>
+<choice label="ch2">2 - Didn't Like It</choice>
+<choice label="ch3">3 - It was OK</choice>
+<choice label="ch4">4 - Liked It</choice>
+<choice label="ch5">5 - Loved It</choice>
+</select>
+2: Converting to Star Rating
+To convert this question to a Star Rating question, simply add the uses="starrating.6" attribute to the question tag. (If you create a Star Rating Element in Survey Editor, this code has already been added.)
+Example:
+XML:
+<select label="q1" uses="starrating.6">
+<title>What did you think of &lt;span style="font-weight: bold"&gt;The Dark Knight Rises&lt;/span&gt;?</title>
+<choice label="ch1">Hated It</choice>
+<choice label="ch2">Didn't Like It</choice>
+<choice label="ch3">It was OK</choice>
+<choice label="ch4">Liked It</choice>
+<choice label="ch5">Loved It</choice>
+</select>
+3: Customization
+Listed below are all of the attributes available for this element. Override them to create a custom look and feel for your text highlighter element.
+Attribute
+Type
+Description
+Example
+starrating:tooltips
+bool
+Toggles tooltips on/off depending on whether you want to show these to the participants.
+The tooltip content comes from the choices. For example, in the question above, the tooltip shown when hovering over the 4th star would say "Liked It".
+Default: 1
+starrating:tooltips="0" would turn the tooltips off.
+starrating:tooltips_skin
+string
+Allows you to specify a “skin” (theme) for the tooltips. There are many available: facebook, yellow, salmon, blue, lime, liquid, light, lavender, dark, cloud, black.
+Default: "light"
+starrating:tooltips_skin="dark" would set the tooltips to use the dark theme.
+starrating:tooltips_css
+CSS
+Allows you to add CSS to customize the look of the tooltips.
+starrating:tooltips_css="font-size: 14px" would set the font size inside the tooltips to 14px.
+starrating:star_css
+CSS
+Allows you customize the default look of the stars using CSS
+starrating:star_css="color: #aee4f3" would set the default color of the stars to #aee4f3
+starrating:star_selected_css
+CSS
+Use this to customize the look of the stars when selected.
+starrating:star_selected_css="color: #00bff3" would set the selected color of the stars to #00bff3.
+starrating:star_char
+HTML Entity
+The stars use Font Awesome, a graphical font, for display.
+Visit HTML character entity references and the Font Awesome cheatsheet to determine what entity to enter.
+starrating:star_char="&#61446;" gives the default Font Awesome empty star (icon-star-empty).
+starrating:star_char="$" gives the US dollar symbol (an easy one).
+starrating:star_char="&#163;" gives the British Pound symbol.
+starrating:star_selected_char
+HTML Entity
+Just like the starrating:star_char, but to customize the character shown for the selected ratings.
+Visit HTML character entity references and the Font Awesome cheatsheet to determine what entity to enter.
+starrating:star_selected_char="&#61445;" gives the default Font Awesome filled star (icon-star).
+starrating:star_selected_char="&#165;" gives the Yen sign.
+4: Customization Examples
+4.1: Example 1 (Light Customization)
+XML:
+<select label="q1"
+uses="starrating.6"
+starrating:star_css="font-size: 60px; color: #aee4f3;"
+starrating:star_selected_css="color: #ff0000">
+In this example, the size and color of the stars are customized. The “selected” state (starrating:star_selected_css) inherits the rules from the default state, so only the font-size attribute on the default state (starrating:star_css) needed customizing.
+4.2: Example 2 (Heavy Customization)
+XML:
+<select label="q1"
+uses="starrating.6"
+starrating:star_css="font-size: 36px; color: #fff; background: #fc6;
+border-radius: 40px; width: 40px; height: 40px; padding: 3px; margin: 1px; text-align: center; line-height: 36px;"
+starrating:star_selected_css="background: #f80; color: #ffffff;"
+starrating:star_char="&#61445;">
+In this example, the buttons are styled using CSS to change:
+the default state of the stars
+the selected state of the stars
+Additionally, the default star character has been changed from the empty star to the filled star.
+Remember, the selected state inherits the look of the default state: you only need to add rules that differ from the default.
+4.3: Example 3 (Swapping Out the Star Character)
+XML:
+<select label="q1"
+uses="starrating.6"
+starrating:star_char="$"
+starrating:star_selected_char="$"
+starrating:star_css="font-size: 48px; color: #999; padding: 0 3px;"
+starrating:star_selected_css="color: #007236">
+Here the default stars are changed to US currency symbols.
+Note: When swapping out star characters, be sure to specify both the default and selected character or the system default stars will show when not selected.
+4.4: Example 4 (Pulling It All Together)
+XML:
+<select label="q1"
+uses="starrating.6"
+starrating:star_char="&#163;"
+starrating:star_selected_char="&#163;"
+starrating:star_css="font-size: 36px; color: #fff; background: #bbb;
+border-radius: 40px; width: 40px; height: 40px; padding: 3px; margin: 1px; text-align: center; line-height: 46px;"
+starrating:star_selected_css="background: #007236;">
+In this final example, the star character is swapped for pound symbols and extensive CSS modifications are made to the star containers.
+5: References
+Font Awesome
+HTML Entities
+CSS Help:
+CSS Cheat Sheet
+CSS3 Generator
+CSS Gradients
+Color Scheme Generator

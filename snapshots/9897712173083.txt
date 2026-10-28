@@ -1,0 +1,96 @@
+Title: January 23rd Technical Release Notes
+This document contains the technical release notes for Decipher's January 2018 release.
+Release Date: January 23, 2018
+New Features
+Custom Code Elements
+Allows users to add custom code elements using the Survey Editor.
+All Logic Library code elements are available for use in any survey.
+Imperium RelevantID Integration
+Allows users to integrate with Imperium RelevantID fraud detection and computer fingerprinting.
+Browser and System Support
+Updated supported web browser list to include system and email clients.
+Reporting
+Crosstabs
+Updated "Actions" and "View Options" menus.
+Added the ability to set a percentage base per table.
+Downloads
+A new format can be added to custom data downloads.
+Responses Report
+Updated "Table Settings" to allow the ability to save the layout of column (variables) selected.
+Survey
+Survey Editor
+Set new project defaults for devices to be Desktop, Tablet and Smartphone (excludes featurephone).
+Participant View
+Added new survey languages: assamese, bengali, marathi.
+Updated translations for survey language: tamil.
+Dynamic Questions
+The new video player (videoplayer.1) is now available in survey compats 114+.
+Campaign Manager
+Added the ability to upload a shared recipient list via API.
+Programming & Tools
+API
+Added the ability to create and override nets and toggle nesting nets.
+Logic Nodes
+Added the ability to include a calendar invite with an email.
+Hooks
+A new hook allows for adding custom data downloads.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue with exports not matching when sorting with nets
+Fixed tooltip text for "Create Custom Table"
+Responses Report
+Fixed an issue where custom filters were not included when projects were duplicated
+Warnings are now shown when trying to upload the same filename in the import data feature
+Survey
+Survey Editor
+Fixed an issue where a LIVE edit with a CAPI sample source was not displaying text in the LIVE warning message
+Fixed an issue where project could not be loaded in builder when using a non integer for the default sample source
+Fixed an issue where having an Alert element could cause the survey to be stuck in a loop and use excessive resources
+Participant View
+Fixed an issue where block order customization wasn't preserved when using the survey back button
+Fixed an issue where hybrid/merged questions were not re-populated when using the survey back button
+Fixed issues where using the survey back button would not return to the last question shown to the participant when using noanswers or blocks
+Fixed an issue when using loadData where restoring data would only populate the first noanswer checkbox
+Dynamic Questions
+Updated legacy flash player versions of bcvideo/bcme to use newest HTML5 players automatically.
+Updated Image Upload to support HEIC format images
+Logic Nodes
+relevantid.1: Fixed an issue where if unable to contact Imperium, the continue button in the survey would not enable
+Panel Management (previously Kinesis) Integration
+Fixed issue where existing panelist would see an error when completing a registration survey
+Fixed an issue with projects could only be launched in portal and survey editor
+CATI
+Fixed issue with downloading call history
+CAPI
+Released version 2.2 with the following updates:
+Added interviewerID to the interviewer export file in the offline field report.
+Removed the "Remember Me" option from the login page.
+Login automatically respects companies' inactivity setting.
+Project with datasource tags can now be launched from Portal and Builder.
+Fixed an issue in 'Practice Mode' that sometimes made the survey unresponsive.
+Fixed an issue where interviewers would sometimes retain the cached session from a previously logged in interviewer.
+Guardrails added when attempting to use reserved system labels in survey.
+Using loops in the CAPI App no longer fatals when randomize is set with no eligible looprows.
+Corrected Android support to 6+ in Google Play store
+Fixed vInterviewers reporting question not displaying
+Fixed an issue loading surveys with language overrides via /lang
+Release version 2.3 with the following updates:
+Fixed an issue with images not loading
+Fixed an issue where not having decLang caused errors
+Fixed an issue where rowConds could not work on 2d questions
+Fixed an issue when rows are hidden you could not continue
+Fixed an issue when pressing the browser back button would cause errors
+Portal
+New User Email: Fix "Set my Password" button in outlook and styling updates
+Fixed an issue where copying large projects could cause the portal to be unresponsive
+Fixed an issue where deleting a project from a subdirectory could sometimes display an error when loading the portal
+Fixed an issue when using list view would not show all projects when the list of projected required scrolling
+Usage Statistics
+Fixed an issue with some new video counts being inaccurate. Updating past counts requires a manual update by running the following:
+here maint/brightcove-collect-views <MM/DD/YYYY>
+Programming & Tools
+API
+Fixed issue that would take async logic nodes used in large/complex surveys an unreasonable amount of time to "setup" (fork)
+Misc / Custom Projects
+Updated the location of the file referenced in scripts/videouploader.py to allow all shell users access

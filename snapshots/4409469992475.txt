@@ -1,0 +1,12 @@
+Title: Fulcrum Quota Element
+Any quotas used for Fulcrum sample should use the Fulcrum Quota Element. This dedicated quota element allows Fulcrum to track their sample, filling only quotas that apply to them. A standard quota element may be used, however it is not recommended when non-Fulcrum sample sources are also being used because Fulcrum cannot differentiate their sample bucket from the others.
+Learn more about Fulcrum: Adding Fulcrum Automatic Sample
+1: Adding the Fulcrum Quota Element
+To insert a Fulcrum quota element, add a new survey element, select the "Structural" tab and choose "Fulcrum Quota". Then click "Insert":
+Note: Quota elements must be placed immediately after a page break in order for them to function properly.
+The Fulcrum quota is not shown to participants and contains logic that restricts the element to Fulcrum sample:
+Next, enter a title for your quota and configure the logic for each cell using the "Edit Quota" button. See Adding Quotas Using the Survey Editor to learn more about creating quotas in the Survey Editor.
+2: Editing the Quotas
+Once you have created a Fulcrum quota, it will appear in the "Quotas" tab of the Response Summary, where you can view and make changes to it during field.
+See Editing Quota Limits in Field for more information on editing quotas in the Response Summary.
+Note: Any changes you make to Fulcrum quotas in the Response Summary for LIVE surveys (not a temp-edit-live) will automatically be synced to and applied on the Fulcrum side.

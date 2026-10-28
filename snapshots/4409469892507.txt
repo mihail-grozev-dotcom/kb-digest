@@ -1,0 +1,37 @@
+Title: Advanced Piping and Logic with Imported Data
+This document explains how advanced piping and survey logic can be implemented using the Import Data element.
+1: Advanced Piping with Imported Data
+Below are the steps to explain how to pipe a participant's name from an imported data file into the survey introduction.
+1.1: Setup the participant sources.
+Note: Participant sources require a unique identifier.
+In order to match up the imported data with participants in the new survey, you must add the participant sources from the data file to the survey into which the data will be imported. You may select from the sample providers available in the Participant Sources menu, or set up a custom participant source. If you are using one of the sample providers listed in the Participant Sources menu, select "Survey Summary" under "Responses" in the navigation menu to locate the unique identifier used by the provider.
+If you are using a custom participant source, you must create a unique identifier using the options available in the Participant Source element.
+1.2: Import the data file and define the key variables.
+After you have set up the participant sources, import the data file using the Import Data element. Once the data has been imported, select the key variables that are to be included. Then click "Apply Options" and click "Close".
+Note: See Import Data Element to learn how to import survey data using the Import Data element.
+The imported variables from the data file appear in the question tree.
+1.3: Add the question and the pipe.
+Next, add a new element anywhere after the imported data and insert the pipe.
+To add the pipe, click in the spot where you want the pipe to occur, then select the pipe icon in the Rich Text Editor (RTE). Choose the element from which you want to pipe the content in the pipe drop-down. Then select the "Case" in which you want the text to appear and click "Apply".
+Note: See Using the Piping Tool to review additional information on the pipe tool.
+The pipe appears in the element text.
+1.4: Test the survey to confirm the pipe functions as desired.
+To confirm that the pipe is functioning correctly, select "Test survey" from the "Preview" drop-down in the navigation menu. In the "Survey Test Environment" window, enter the "pin" and click "Show Participant View" to test the survey as participants will see it or "Show Survey with Tools" if you wish to test the survey with QA tools enabled.
+Locate the element in the survey and confirm the pipe is working as expected.
+2: Advanced Piping & Logic with Imported Data
+Below are the steps to explain how to pipe participants' phone type based on their response to a question in the data file, and pipe the phone type into question text.
+2.1: Setup the Participant Sources. Custom Participant Sources require a unique identifier.
+In order to match up the imported data with participants in the new survey, you must add the participant sources from the data file to the survey into which the data will be imported. You may select from the sample providers available in the Participant Source menu or set up a custom participant source. If you are using one of the sample providers listed in the Participant Source menu, select "Survey Summary" under "Responses" in the navigation menu to locate the unique identifier used by the provider.
+If you are using a custom participant source, you must create a unique identifier using the options available in the Participant Source element.
+2.2: Import the data file and define the key variables.
+After you have set up the participant sources, import the data file using the Import Data element. Once the data has been imported, select the key variables that are to be included. Then click "Apply Options" and click "Close".
+2.3: Add the Autofill element and classification, and define the logic.
+Next, insert an Autofill element after the imported data and before the element with the pipe. Select "Edit Answers" to add classifications for each pipe option. Then, define the logic for each classification using the imported data for the logic conditions. See Adding Logic to a Question or Response Option to learn more about adding logic conditions.
+See Autofill Element to learn more about the Autofill element.
+2.4: Add the question and the pipe.
+Finally, add a new element after the Autofill element and insert the pipe.
+To add the pipe, click in the spot where you want the pipe to occur, then select the pipe icon from the Rich Text Editor (RTE). Choose the Autofill element from the pipe drop-down. Then select the "Case" in which you want the pipe to appear and click "Apply".
+2.5: Test the survey to confirm the pipe function as desired.
+To confirm that the pipe is functioning correctly, select the "Test survey" option from the "Preview" drop-down in the navigation menu. In the "Survey Test Environment" window, enter the "pin" and click "Show Participant View" to test the survey as participants will see it or "Show Survey with Tools" if you wish to test the survey with QA tools enabled.
+Locate the Autofill element in the survey and confirm the correct condition is filled. In this case, "iPhone 7" is selected, which is the phone type from the ID that was entered, therefore this condition is working correctly.
+Next, locate the question in the survey and confirm the pipe is working as expected. The question below says "We understand you have an iPhone 7", which is the phone type from the ID that was entered, therefore the pipe is working correctly.

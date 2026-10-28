@@ -1,0 +1,129 @@
+Title: DQ Style Configuration (meta.xml)
+Requires Decipher Cloud
+The meta.xml file contains the setup restrictions, survey editor menu support, question types, templates, compat levels, and KB reference pages for a Dynamic Question (DQ).
+1: Setup Variables Within the meta.xml
+The meta.xml file contains a <meta> tag with any of the following tags included (all optional):
+scope
+state
+compat
+supports
+require
+count
+owner
+modifies
+1.1: scope
+This tag can be either global (can only be used on the survey tag), question (can be used on ANY question type), or a comma-separated list of specific question tag names to which the style can be applied.
+For example, the following script defines a style that can only apply to a question:
+<meta>
+<scope>select</scope>
+</meta>
+While the following style can apply to a or question.
+<meta>
+<scope>checkbox,radio</scope>
+<title>My special style</title>
+<compat>134</compat>
+<state>testing</state>
+</meta>
+1.2: state
+This tag should be set to dev (still in development), testing (ready for testing), live (in production), or closed (style is obsolete and replaced for all compat levels). For example, according to the below, the DQ is currently live and available for use:
+<state>live</state>
+1.3: compat
+This tag designates which survey compat levels this style works with. If omitted, the style is compatible with everything; otherwise, it will be set to a compat level to require use in at least that compat. For example, for compatibility with compat 114+, the compat should be:
+<compat>114</compat>
+If a DQ is only compatible within a range of levels, this can be specified as well. For example, the below will allow use in at least compat 111, but in no more than compat 112:
+<compat>111-112</compat>
+1.4: supports
+This tag declares what unusual question features this style works with via a comma-separated list of these items. If this tag is not set, the style cannot be applied to a question with those attributes. For example, the code from the Star Rating DQ below shows that this DQ will work with the noanswer, open, surveydisplay, and listdisplay question features:
+<supports>noanswer, open, surveydisplay, listdisplay</supports>
+Here is a list of the most common question features you might see in this tag:
+noanswer -- style understands <noanswer> elements
+fused -- style can be used in merged questions (using below=, rightOf= -- either as merger or to be merged)
+open -- rows or columns in the question can have open="1" set
+nojavascript -- usable without Javascript (when requires="" is set on the survey.xml)
+1.5: require
+This tag forces certain values on attributes. For example, the code below means a question using this style must have grouping="rows" set:
+<require name="grouping">rows</require>
+If it is NOT explicitly set, it is added implicitly and if grouping="cols" is set, the system will return an error message.
+If desired, you can specify multiple values for the same required attribute by adding multiple <require> tags to that attribute. The default value for the attribute is what is specified in the first <require> tag.
+Example:
+<require name="where">notdp</require>
+<require name="where">survey,report,notdp</require>
+1.6: count
+This tag requires a certain amount of rows, columns or choices within the DQ. For example, the code below means that the system will require at least two rows in the question:
+<count name="row">2+</count>
+Zero can also be set to disallow groups and "1" can be set to allow exactly one row/column/choice. Similarly, "1+" can be set to require at least one explicit row/column/choice (i.e., one that is in the XML and not automatically added).
+Note: There is always a single implicit row/column/choice in every question.
+1.7: owner
+This tag shows the email address of the creator or current maintainer of the style for display on the debugging page. For example, the starrating DQ has the following owner:
+<owner>dq+starrating+6@decipherinc.com</owner>
+1.8: modifies
+This tag is used for multi-style compatibility. Dictates one or more items this style changes so multiple styles that change the same thing cannot be used together. The total modifications on a question can also be checked by using this.modifies ("excludes", "controls") while in styles.
+Current modifications supported:
+controls -- this style replaces the <code></code> controls displayed in the cells. For example, the ATM table DQ replaces the checkbox with clickable boxes and hides the variable, so it cannot be used together with the Form Image Replacement (fir) style:
+<modifies>controls</modifies>
+Note: This is mostly useful for styles applied to the survey tag, such as fir, who want to replace control images on all questions displayed in the survey but want to exclude questions that manage their own controls.
+2: Making a DQ Compatible With the Survey Editor
+If you are planning to use your DQ in the programmed in the Survey Editor or XML Editor, you will need to take a few extra steps. The following attributes are not used when loading the survey.xml, but they are used within the meta.xml to display editing screens within the survey editor.
+If a DQ is survey editor-compatible, the following attributes should also be included:
+builder
+title
+description
+rename
+2.1: builder
+This attribute dictates whether the style appears in the Survey Editor and how. Without this tag, the DQ does not appear anywhere in the Survey Editor. The tag can contain a comma-separated list of these tokens:
+missing -- does not appear in the Survey Editor (and cannot be added through the XML Editor).
+<builder/> -- does not appear in the pan menu but can be added through the XML Editor or Style Editor.
+<builder>pan</builder> -- appears to everyone in the pan menu.
+<builder>pan, staff</builder> -- appears to staff only in the pan menu.
+For example, if you create a 'Star Rating' DQ with pan access:
+<builder>pan</builder>
+It will appear within the Survey Elements menu in the Survey Editor:
+2.2: title
+This attribute will include a short description of the style itself and is used by the Survey Editor to categorize DQs. The basic form or functionality of the DQ should be hinted at within the title.
+For example, the “Star Rating” style is a rating question with customized star buttons:
+<title>Star Rating</title>
+The title will appear in multiple places within the Survey Editor, including the Element Library, the Element info page, Style toggler, and the Options sidebar:
+2.3: description
+This attribute will include a longer description, which may contain HTML and is displayed by the survey editor in some menus. The description should cover the major points of functionality for the DQ.
+For example, the following description for the “Star Rating” DQ provides basic instructions, as well as information on its selection functionality, and its style requirements:
+<description>
+<![CDATA[
+<h3>Star Rating Question</h3>
+<p>Respondents answer the question by selecting star values. Similar to the select question, participants can only select one star value for each answer.</p>
+<p>Star rating questions must have star values, and may also have rows and/or columns.</p>
+]]>
+The html formatting tags are important to note, as the description will appear exactly how it is written here within the Element Library in the Survey Editor:
+2.4: rename
+This attribute designates any changes to element names within the survey editor. For instance, instead of showing 'columns' the DQ will display 'buckets' in the survey editor. The col, row, and choice elements can all be renamed. What will be renamed should be written inside the tag, and these names can be in plural form:
+<rename name="col">buckets</rename>
+<rename name="choice">star values</rename>
+<rename name="row">slider positions</rename>
+For example, you may want to rename the choice options to be a bit more descriptive so that other users know exactly what attribute they are updating within the survey editor. Per the below, the choice options have been renamed 'Star Tool Tips' for the 'Star Rating' DQ:
+<rename name="choice">Star Tool Tips</rename>
+And these will appear here:
+3: Adding a Template
+Your DQ meta file can also contain a template of the DQ code that will be used when first inserted into the Survey Editor. To include a template, you will need to add a <code></code> tag specifying the XML with all of the question's necessary variables and working dummy values. Even if your DQ does not contain a lot of customization options, its template should be fully functional and consist of at least the following:
+Question tag - The base question type for this DQ (i.e radio,checkbox, etc.).
+label="{x}" - The question label must be specified with this syntax so that it will use the next label in the sequence when entered.
+title - The question text shown to participants.
+comment - The question instruction text shown to participants.
+Any rows, columns, or choices needed to meet the minimum requirements of the dynamic question as specified by the count tag.
+Any attributes needed to meet the requirements specified by the require tag in the DQ; each attribute must be set to a working default value.
+For example, the meta.xml file for the starrating DQ contains the following template:
+<template scope="select">
+<![CDATA[
+<select label="{x}">
+<title>New Star Rating Question</title>
+<comment>Select a star value.</comment>
+<row label="r1">Example 1</row>
+<row label="r2">Example 2</row>
+<row label="r3">Example 3</row>
+<choice label="ch1">Star 1</choice>
+<choice label="ch2">Star 2</choice>
+<choice label="ch3">Star 3</choice>
+<choice label="ch4">Star 4</choice>
+<choice label="ch5">Star 5</choice>
+</select>
+]]>
+</template>
+Note: The "{x}" label in the example above is referencing the next available variable within the Survey Editor.

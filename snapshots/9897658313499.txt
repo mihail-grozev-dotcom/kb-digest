@@ -1,0 +1,54 @@
+Title: Decipher (previously Decipher) M35 General Release Notes
+Release Date: October 18, 2016
+Highlights of Decipher M35 Release
+New Features
+Language Manager
+All language tools now centralized
+Allows direct export/import of xls (XLATE) files
+Allows inline editing of applied translations
+Adds resource search and filter functionality
+Crosstabs Table Enhancements
+Drag and drop functionality enabled on tables and rows
+Improved display of nesting
+New and customizable net and stat rows
+Ability to transpose a table, rotate rows and columns
+Rotate the primary dimension
+Getting Started Videos
+Quick access to Knowledge Base articles and video tutorials
+New users now get a catered walkthrough of the platform
+Survey Functionality
+Survey Editor, primary language added as a project setting
+Portal, primary language added to the Project Settings Summary
+New Features
+Language Manager
+The new Translation Manager fundamentally overhauls the old language management application. It will allow users to export/import xls (xlate) files, edit translations and review the status of applied translations with improved efficiency. It also has added functionality for easy searching and filtering by resources to find what you need.
+Import/Export
+Importing and exporting language files has gotten much easier! You can perform either function directly within the Language Manager by clicking on the Import/Export arrows next to each language:
+Edit/Review Translation Status
+You can now view a summary of the status of each language alongside the translation editor. This summary table will show you exactly how many resources you have in total per language, as well as how many are missing or outdated:
+Making changes is also now easier than ever with the Resource Table. Just select the language you would like to edit and start making your changes directly to each resource:
+There is now a translation search bar as well, so you can filter what gets shown on your Resource Table to quickly find resources and text that needs updating:
+Crosstabs Table Enhancements
+Improvements to table functionality has expanded greatly. Drag-and-drop functionality has been enabled on tables and rows, and there is now improved display of nesting, as well as new and custom net and stat rows. Additional enhancements to Crosstabs tables will allow users to transpose a table, rotate rows and columns (without affecting data calculations) and even rotate the primary dimension of a question (previously only available while building a project or making live survey changes)!
+Drag & Drop Functionality
+The new drag-and-drop functionality allows you to quickly reorder the rows and nets within your question tables. Any row or table with the following icon will be adjustable:
+This functionality applies to summary nets and tables within multi-dimensional questions as well:
+Improved Nesting
+Nets can now be placed anywhere on the table, and you can click on any net title to view the data for each included row:
+Net & Custom Stat Rows
+All of our normal stat rows are still there, along with the new ability to create multiple stat rows at once directly within the table editor:
+Transposing Tables
+Now you can transpose your tables to flip how data values are shown across rows and columns. The transpose function does not alter any calculations either, so all of your net and stat scores will remain true in any position:
+Rotating Dimensions
+You can also now switch dimensions within multi-dimensional questions so that your Crosstabs report shows tables by row or column:
+Getting Started Videos
+The portal now includes Getting Started Videos. These provide an improved user experience for those seeking quick access to Knowledge Base articles, and offer video tutorials for all major features within the Decipher platform. New users specifically will have an improved first-time entry into the Decipher system with a catered walkthrough of the platform.
+Survey Functionality
+Survey Editor
+Primary Language has been added as a setting in the Project Settings and Summary menus within the survey editor:
+Here, you can quickly select a primary language or click on “Edit Languages” to go to the Language Manager and further define your survey’s language options:
+Portal
+Primary Language
+A Primary Language option has been added to the New Project menu within the portal. You can use the drop-down on the project creation page to quickly set the Primary Language for your project:
+Dashboards
+A Dashboards link has also been added to the Project Controls menu, so you can access all of your dashboards directly in the Report menu from anywhere in the portal:

@@ -1,0 +1,79 @@
+Title: Scripts for Managing Archived Projects
+Requires Decipher Cloud
+While survey data is automatically archived within the Decipher system after a prolonged period of inactivity, you have a variety of options for managing this process, including survey / data recovery and archival prevention.
+Note: To archive a survey using the portal, you must have Supervisor permissions. See Archiving Surveys to learn more.
+Note: This article refers to surveys archived at the company level. Surveys archived at the company level are hidden from all company users. To hide a survey from just your own Portal view, you can hide it using the Portal Actions menu instead. See Hiding Surveys to learn more.
+1: Running a Script to Archive a Project
+To archive a survey, run the following script:
+archive survey/path
+Example:
+archive
+archive
+Usage:
+archive [-cn] <survey name>
+-n dry run
+-q quiet
+-m allow archival of sub-directories
+-f force archival, even if the project is too young to be archived
+Note: A certain amount of time must pass before you can attempt to archive a survey. The script will output the required time upon running.
+Note: If a survey is manually archived through the shell, any existing files at the time of archival will not be removed.
+2: Commands to Manage Archived Projects
+Several commands are available to help you manage archived surveys.
+2.1: Listing Archived Surveys
+To list archived surveys in a directory, first navigate to the desired directory and then run the following command:
+archived
+A list of surveys that have been archived at this location are returned. For example:
+Surveys archived here:
+selfserve/749/001234/data.clear Nov 13 2019 09:01AM 180876
+selfserve/749/001234/data.clear May 15 2019 09:11AM 180876
+selfserve/749/004567 Dec 02 2019 03:07AM -
+selfserve/749/004568 Dec 02 0219 03:00AM 177584
+selfserve/749/004569 Dec 02 2019 03:03AM 365554
+2.2: Recovering Archived Surveys
+To recover a survey that has been archived, enter the following command:
+unarchive survey/path
+For example,
+unarchive selfserve/749/001234
+3: Commands to Manage Archived Survey Data
+Several commands are available to help you manage archived survey data.
+3.1: Listing Archived Survey Data
+To list the data in a survey that has been archived, first navigate to the desired project directory, and then enter the following command:
+unarchived
+This command returns a list of data directories in the archived survey.
+For example:
+Surveys archived here:
+selfserve/749/001234/data.clear Feb 09 2019 03:18AM 3775484
+selfserve/749/001234/data.dev.020619 Feb 09 2019 03:18AM 488652
+selfserve/749/001234/data.merge.032419 Mar 27 2019 04:10AM 3775484
+serveserve/749/001234/temp-edit-live-20190324/data.dev.032419 Mar 27 2019 04:10AM 3351
+selfserve/749/001234/temp-view Mar 15 2019 08:23AM 56841
+3.2: Recovering Archived Survey Data
+To recover a data folder in an archived survey, enter the following command:
+unarchive data_directory
+For example:
+unarchive selfserve/749/001234/data.dev.020619
+The data folder is now restored to the project's location.
+4: Preventing Data From Archiving
+Several commands are also available to prevent data from being archived.
+Note: Consider that storage space may be limited. Executing these commands may incur storage costs if disk space is limited.
+4.1: Preventing Surveys From Archiving
+To prevent surveys from being automatically archived after nine months, run the following command in your project directory:
+touch keep
+This creates a blank file named "keep" in your project, which prevents the auto-archival system from running on the project.
+4.2: Preventing Mail Folders From Archiving
+To prevent email from being automatically archived after three months, run the following command in your project's mail directory:
+retain . mail
+4.3: Preventing Partial Data From Archiving
+To keep partial data from being automatically archived after three months, run the following command in your project's data directory:
+touch keep-state
+5: Archival FAQs
+What gets archived?
+The entire project directory, including the survey, survey data, static files, etc.
+Note: A survey cannot be archived if it was accessed or modified recently (that is, changes were made to the survey's survey.xml file, survey data, or anything else that would leave an entry in the survey's audit log file). Web server rlog files are also analyzed just in case you are accessing a Javascript or image file within the static directory from another survey. When archiving manually, the archive -f option will override this.
+Where does the data go?
+The content of the directory is compressed into a single file. This can compress data to as much as one-tenth of its original size. On cloud servers, the files are saved to S3. Once successfully compressed, the original directory is erased. Thus, 10 GB of archived data may take up only 1 GB of space afterward, for a 90% data storage saving.
+On Rackspace and Google-hosted servers, the archived data space can potentially be moved to a slower and cheaper disk system.
+Note: If server encryption is enabled, the compressed file will be encrypted.
+How do I know what has been archived?
+In the relevant survey directory, run archived to view names and archival dates. In the web interface, visit [server]/admin/archived. Note that the page will be enormously large for many larger servers.
+You can also review the log file on the server, v2/logs/archive.log, though that is mostly there for troubleshooting purposes.

@@ -1,0 +1,9 @@
+Title: Adding or Removing a Page Break
+While creating a survey, you may want to add or remove page breaks for better element functionality or question flow.
+Note: Some elements require certain page breaks in order to function. If in doubt, review the setup information provided for each basic element and structural element before moving its surrounding page breaks.
+1: Adding a New Page Break
+To add a page break below an element, first select the element, then click the "+ Page Break" button.
+The page break is inserted after the selected survey element and is identified by a dotted line in the question tree.
+Tip: To move a page break, click and hold the page break in the question tree, then drag and drop it into a new position.
+2: Removing a Page Break
+To remove a page break, select it in the question tree and click the "+ Page Break" button.

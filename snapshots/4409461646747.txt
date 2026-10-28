@@ -1,0 +1,8 @@
+Title: CATI Comment Element
+Note: The CATI Comment element is only available when CATI Sample has been added to a project.
+The CATI Comment element may be used to display instructions to your interviewers dictating the survey to a telephone participant when they first start the survey. It is not shown to the participants.
+The instructions for your interviewers should show before the questions for participants, so it is best to place this element at the very beginning of the survey.
+1: Adding the CATI Element
+To add a CATI Comment element, first navigate to the Survey Editor. Then click the location within the question tree where you would like the element to appear and click “+ Element”. Next, click "Single and Multi Select" under “Question Types” and select the “CATI Comment” element. Then click "Add".
+Finally, enter the desired instructional text in the field provided.
+Important: By default, CATI Comment elements include conditional logic to show them only to lists 116 and 117. This logic is used to route participants to the appropriate CATI survey paths and should not be altered or removed.

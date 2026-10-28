@@ -1,0 +1,79 @@
+Title: Decipher (previously Decipher) M33 General Release Notes
+Release date: May 10, 2016
+Highlights of Decipher M33 Release
+New Features
+Survey Builder
+Device feedback that notifies you of incompatible elements in your survey based on the devices allowed.
+Theme Editor
+Permissions: Supervisors can set user access to survey themes
+Field Report
+Spam rate metric on the campaigns tab
+Split campaigns by email domains
+Disqualified reason on the terminates tab
+Dashboards
+Publish button
+Duplicate link
+Reporting Functionality
+Crosstabs
+Rows no longer randomized
+Exclude rows from mean statistics
+Dashboards
+Apply a color scheme to a wordcloud
+Add a Survey's title in an html block
+Survey Functionality
+Survey Builder, ALT text for logo
+Simulated Data, CPU warning
+Portal, Reset Password
+New Features
+Survey Builder Device Feedback
+To ensure that your survey functions correctly for all participants, Decipher provides device feedback that notifies you when elements in your survey are incompatible with the devices you have allowed for the project. Device feedback also provides options to correct compatibility issues.
+Device compatibility warnings are highlighted in red. They may display on/when:
+survey elements menu
+survey builder element tree and stage
+project settings (device settings category)
+launching your survey
+Note: All device feedback warnings must be resolved before launching your survey.
+Survey Elements Menu
+Survey Builder Elements Tree & Stage
+Project Settings (Device Settings Category)
+Launching Your Survey
+Theme Editor Permissions
+Supervisors can now set user and group access to survey themes. You set these permissions when you add/edit a user or user group.
+Field Report
+Spam Rate Metric on the Campaigns Tab
+There is a new spam rate metric on the campaigns tab that provides the spam complaint rate. Hover over a spam rate statistic to see how it was calculated. Here, there were 2 spam complaints, from 9 spam base domains for a resulting spam rate of 22.22%.
+Split Campaigns by Email Domains
+When you split the campaign by email, the campaign tab splits to show you the details of how the email was sent through various email providers.
+Disqualified Reason on the Terminates Tab
+The terminates tab now shows the reason and count for participants that were disqualified in the data editor. Additionally, the terminates tab now reports the participants that did not qualify for a quota.
+Dashboards
+Publish Button
+On the dashboard list view where you perform management tasks, there is a new publish button. After you are satisfied with your dashboard and are ready for others to view, click "Publish" for a link that you can share.
+Duplicate Link
+On the dashboard list view there is a new duplicate link. Duplicate makes a copy of the dashboard and prefixes the existing name with "Copy." You can use the copy as the basis for a new dashboard. The dashboard copy is in an unpublished state.
+Reporting Functionality
+Crosstabs
+Rows No Longer Randomized
+Rows that are not randomized in the survey are no longer randomized in tables and charts
+Exclude Rows from Mean Statistics
+Table editor now allows you to exclude rows from mean statistics.
+Dashboards
+Apply a Color Scheme to a WordCloud
+You can apply a color scheme to a word cloud using the cloud.palette option. You can specify up to 10 colors (in six hexadecimal character format). The colors are applied to the most frequent used words to the least.
+Add a Survey's Title With a Dynamic Extension
+The dynamic dashboard extension system now allows you to add a survey's title to a dashboard's html block: The {{survey.title}} is a new built-in reserved keywords that you can use to present additional information in your dashboard.
+Survey Functionality
+Survey Builder - ALT Text for Logo
+Set the alternate (ALT) text for the logo. For participants that use a screen reader, the logo ALT text is read when the logo is hovered. Additionally, the alternate text is displayed to participants if the image cannot be shown (i.e. a missing resource). If left blank, "Logo" is the default for this field.
+Simulated Data - CPU Warning
+A CPU warning indicates that a code block in the survey is using too much CPU processing power. This issue must be corrected before launching the survey. Possible causes:
+questions with a long attribute list
+large surveys
+complex quota setup
+extensive use of persistent variables
+poorly written exec blocks
+Portal - Password Reset
+You can send an email to a user to reset a forgotten password.
+On the company page, click the user name from the "Users" tab. On the "Edit User" window click the "Reset Password" link.
+A confirmation message displays and the following email is sent to the user.
+A confirmation message displays and the following email is sent to the user.

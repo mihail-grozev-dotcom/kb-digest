@@ -1,0 +1,39 @@
+Title: Reading the Report and Statistics
+Report Basics
+Below is a standard table within a report, depicting the various parts of that table.
+This label indicates the question number of that table, and will often track back to the original questionnaire.
+This text indicates the question title for that question. When needed, this text can be modified to show an alternate text in the report view, different than what was shown to the participant in the survey.
+This is a QA Code indicating the question type. For a list of QA Codes, see About QA Codes.
+This is the label assigned to that answer option.
+This is the row or column title assigned to that answer option.
+This text will provide a column name for the segment you are viewing. As shown in the example, the default is "All" or total answering the question.
+When clicked, this chart icon gives you the ability to create a chart for that table. See Adding Charts in Report (2010) to learn how.
+Report Statistics
+The reporting system allows for running real time reports, including many useful tools designed to help analyze the data. Below is detail of the testing and statistics available in reports. See Creating and Running a Custom Report for more info on setting up custom reports.
+Significance Testing ( ? - "Alpha" )
+Significance testing, often called "Sig testing," is a test that results the confidence level on the likelihood two tested measurements are different; in other words, I am 95% confident that group A and group B are different on this feature. This can be referred to as either Confidence Level or Significance Level, and is indicated by uppercase letters (95% confidence) and lowercase letters (90% confidence) corresponding to the built-in Segment (i.e. column) indicators.
+In this example, the Confidence Level is 95% and the Significance Level is 5% (or 100- ?).
+1. Mean ( µ - "mu" ) - The average of all measured values in a sample or population. For a sample of n=6, with the following ranking scores (3, 3, 4, 2, 1, 5), the mean is (3+3+4+2+1+5)/6 = 3.
+2. Standard Deviation ( σ- "sigma" ) - The measure of variability or dispersion around the mean. A low sigma shows that the values are mostly very similar, while a large sigma signals largely varying data and a wide distribution curve. According to the standard distribution model, 68.27% of the population is within 1σ of the mean, 95.45% are within 2σ, and 99.73% are within 3σ.
+3. Median (med)- The middle value in a sample or population. This is the value of the number separating the sample in half, not an average. If you had 7 ages (14, 15, 19, 22, 34, 44, 78), the median is 22, or the middle most number. If you have a even sample size, you take the average of the middle two numbers, or for (14, 15, 19, 22, 25, 34, 44, 78), you would get 22+25/2 = 23.5.
+4. Standard Error (se) - Represents the confidence of the Standard Deviation. The smaller the value, the more confident we are that if the project was repeated we would find the same outcome.
+5. Base - This numeric value represents the total number of participants who saw or answered the question (depending on the option selected). It is the base number used to calculate the percentages in the report.
+Standard Features
+The tables described below are available by default in every report.
+Total Interview Time
+This table indicates the average interview time for all participants in the defined segment. Clicking on the segment base will allow you to view each value individually.
+IP Address Tracking
+To help prevent duplicate participants, you may decide to collect the IP address for each survey participant. If IP address tracking is enabled for your survey, this table allows you to review your participants' IP information.
+Clicking the base number will allow you to open and review the IP addresses collected.
+Conditions
+This table lists all the conditions setup during the creation of the survey. Useful for testing and tracking calculated segments in the survey.
+Available Features
+Custom Data Tables - Using the create table feature, you can add new tables to you reporting. See Automatic Report Segmentsto learn how.
+View Options - You can toggle QA codes, hide empty tables and more. See Report (2010) - Report View Options to learn how.
+Net Tables - Using the reporting standards, you can add net tables to rating questions. See Editing Tables in Crosstabs to learn how.
+Custom Options
+Additional features that our staff can help you setup:
+Advanced custom data tables (segments, nets, summary, etc.)
+Alternate text and label naming.
+Orientation (reversing the data axis to group by rows or columns)
+Weighting

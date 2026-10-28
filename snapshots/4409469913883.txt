@@ -1,0 +1,9 @@
+Title: Limiting the Number of Characters Permitted in Open-Ended Questions
+The Survey Editor allows you to place a limit on the number of characters a participant can enter in the answer box for an open-ended question (e.g., a Text, Essay, or Number question). This ability can be used to restrict the user's response to a reasonable length, which can be useful for coding purposes.
+1: Adding the Open End
+First, add the open-ended question to the survey using the Survey Elements menu. In the Survey Editor, click the "+ Element" button and select the desired question from the list.
+2: Limiting the Response Field
+Next, locate the "Response Length" fields in the options menu to the right of the staging area and enter a minimum and maximum value to restrict the number of characters permitted for a response.
+Note: The number of characters also counts spaces.
+Finally, test the survey to confirm that the question functions correctly. If the number of characters entered in the response field is below or exceeds the limit, you will receive an error message.
+Note: “Response Length” is a data verifier that is specific to open-ended questions. See Data Verifiers for more information about data verifiers for other question types.

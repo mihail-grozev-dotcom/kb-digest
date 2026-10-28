@@ -1,0 +1,17 @@
+Title: 153.37 Release Notes
+Release Date: July 30, 2024
+Release Version: 153.37
+New Features
+Responses
+Campaign Manager
+The "Export Bounce-Backs and Opt-Outs" button in the View List modal has been renamed to "Export Bounce-Backs" and returns only the bounce-backs. All of the other exports are available from the drop-down menu in the Campaign Manager list view.
+Bug Fixes
+Survey
+Dynamic Questions
+The Media Evaluator's Video Analyzer chart in Crosstabs no longer shows a duplicate Exports menu in the graph area.
+Simulated Test Data
+The "skip" / "un-skip" functionality for SST failures caused by <validate> elements now works as expected.
+Survey Editor
+Using certain functions (such as hasMarker('some_marker') or timeSpent() > 120) in raw logic conditions for two-dimensional quotas now works as expected.
+Architecture and DevTools
+An issue that was preventing newsflashes from being delivered to some servers has been resolved.

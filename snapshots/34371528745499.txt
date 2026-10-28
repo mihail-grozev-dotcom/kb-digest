@@ -1,0 +1,919 @@
+Title: Dynata QualityScore Integration
+This logic node allows for integration with the Dynata QualityScore API (v1.5.1). Together with speeder and straight-liner detection, the Dynata QualityScore outputs a score ranging from 0-100 for participants at the end of the survey. This API reads respondents in survey behavior and passes data to Dynata’s servers to analyze, which results in a score being passed back into your survey data.
+Note: The Dynata QualityScore logic node provides QualityScore, RealAnswer, and RelevantID services. These logic nodes cannot be added to a survey that already has a Dynata QualityScore logic node to prevent redundancy.
+To use the QualityScore, you must place two elements into the survey:
+The QualityScore logic node, which should be the first element of the survey.
+The companion element, which must be on its own page after all questions pages, and can only be added via XML
+1: Adding the QualityScore Logic Node
+There are two ways to add the QualityScore Logic Node: using the Survey Editor or via the XML Editor.
+1.1: Using the Survey Editor
+The QualityScore logic node is located under the Advanced category inside the Survey Editor.
+The QualityScore logic node should be the first element in the survey, as it collects and sends data from all questions that come after it. The RelevantID call is performed where you place the logic node.
+The following fields are available:
+Client ID: Your unique Client ID, assigned by Dynata.
+GeoCodes (Geographic Codes): A comma-separated list of country codes. This field is required to enable RelevantID.
+After adding the logic node, you must add the Companion element (qualityscore_analyze) to the survey using the XML editor.
+1.2: Via the XML Editor
+The QualityScore logic node should be the first element in the survey, as it collects and sends data from all questions that come after it. Add the following code to the survey’s XML:
+<logic label="ln1"
+qualityscore:ClientID="123"
+qualityscore:GeoCodes="1,US"
+uses="qualityscore.3" sst="0">
+<title>Dynata QualityScore</title>
+</logic>
+Parameter
+Description
+Example
+ClientID
+Your unique Client ID, assigned by Dynata
+Required: Yes
+Default: Empty
+qualityscore:ClientID="A1B2-X8Y9"
+GeoCodes
+Comma-separated list of country codes
+Required: Yes
+Default: Empty
+qualityscore:GeoCodes="1,US"
+or
+qualityscore:GeoCodes="1,US,FR,CA"
+LangCodeMap
+Comma-separated list of English generic languages (english_g1, … english_g10) and LanguageCode mapping.
+Can be added via XML only.
+Required: No
+Default: Empty
+Mapping for one language:
+qualityscore:LangCodeMap="english_g1:ES"
+Mapping for 2 plus languages:
+qualityscore:LangCodeMap="english_g1:ES, english_g2:TR"
+After adding the logic node, you must add the Companion element (qualityscore_analyze) to the survey using the XML editor.
+1.2.1: GeoCodes
+Codes of countries where the survey is conducted:
+Country
+Code
+Country
+Code
+AFGHANISTAN
+AF
+LESOTHO
+LS
+ALAND ISLANDS
+AX
+LIBERIA
+LR
+ALBANIA
+AL
+LIBYAN ARAB JAMAHIRIYA
+LY
+ALGERIA
+DZ
+LIECHTENSTEIN
+LI
+AMERICAN SAMOA
+AS
+LITHUANIA
+LT
+ANDORRA
+AD
+LUXEMBOURG
+LU
+ANGOLA
+AO
+MACAO
+MO
+ANGUILLA
+AI
+MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF
+MK
+ANTARCTICA
+AQ
+MADAGASCAR
+MG
+ANTIGUA AND BARBUDA
+AG
+MALAWI
+MW
+ARGENTINA
+AR
+MALAYSIA
+MY
+ARMENIA
+AM
+MALDIVES
+MV
+ARUBA
+AW
+MALI
+ML
+AUSTRALIA
+AU
+MALTA
+MT
+AUSTRIA
+AT
+MARSHALL ISLANDS
+MH
+AZERBAIJAN
+AZ
+MARTINIQUE
+MQ
+BAHAMAS
+BS
+MAURITANIA
+MR
+BAHRAIN
+BH
+MAURITIUS
+MU
+BANGLADESH
+BD
+MAYOTTE
+YT
+BARBADOS
+BB
+MEXICO
+MX
+BELARUS
+BY
+MICRONESIA, FEDERATED STATES OF
+FM
+BELGIUM
+BE
+MOLDOVA, REPUBLIC OF
+MD
+BELIZE
+BZ
+MONACO
+MC
+BENIN
+BJ
+MONGOLIA
+MN
+BERMUDA
+BM
+MONTENEGRO
+ME
+BHUTAN
+BT
+MONTSERRAT
+MS
+BOLIVIA, PLURINATIONAL STATE OF
+BO
+MOROCCO
+MA
+BONAIRE, SAINT EUSTATIUS AND SABA
+BQ
+MOZAMBIQUE
+MZ
+BOSNIA AND HERZEGOVINA
+BA
+MYANMAR
+MM
+BOTSWANA
+BW
+NAMIBIA
+NA
+BOUVET ISLAND
+BV
+NAURU
+NR
+BRAZIL
+BR
+NEPAL
+NP
+BRITISH INDIAN OCEAN TERRITORY
+IO
+NETHERLANDS
+NL
+BRUNEI DARUSSALAM
+BN
+NEW CALEDONIA
+NC
+BULGARIA
+BG
+NEW ZEALAND
+NZ
+BURKINA FASO
+BF
+NICARAGUA
+NI
+BURUNDI
+BI
+NIGER
+NE
+CAMBODIA
+KH
+NIGERIA
+NG
+CAMEROON
+CM
+NIUE
+NU
+CANADA
+CA
+NORFOLK ISLAND
+NF
+CAPE VERDE
+CV
+NORTHERN MARIANA ISLANDS
+MP
+CAYMAN ISLANDS
+KY
+NORWAY
+NO
+CENTRAL AFRICAN REPUBLIC
+CF
+OMAN
+OM
+CHAD
+TD
+PAKISTAN
+PK
+CHILE
+CL
+PALAU
+PW
+CHINA
+CN
+PALESTINIAN TERRITORY, OCCUPIED
+PS
+CHRISTMAS ISLAND
+CX
+PANAMA
+PA
+COCOS (KEELING) ISLANDS
+CC
+PAPUA NEW GUINEA
+PG
+COLOMBIA
+CO
+PARAGUAY
+PY
+COMOROS
+KM
+PERU
+PE
+CONGO
+CG
+PHILIPPINES
+PH
+CONGO, THE DEMOCRATIC REPUBLIC OF THE
+CD
+PITCAIRN
+PN
+COOK ISLANDS
+CK
+POLAND
+PL
+COSTA RICA
+CR
+PORTUGAL
+PT
+COTE D'IVOIRE
+CI
+PUERTO RICO
+PR
+CROATIA
+HR
+QATAR
+QA
+CUBA
+CU
+REUNION
+RE
+CURACAO
+CW
+ROMANIA
+RO
+CYPRUS
+CY
+RUSSIAN FEDERATION
+RU
+CZECH REPUBLIC
+CZ
+RWANDA
+RW
+DENMARK
+DK
+SAINT BARTHELEMY
+BL
+DJIBOUTI
+DJ
+SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA
+SH
+DOMINICA
+DM
+SAINT KITTS AND NEVIS
+KN
+DOMINICAN REPUBLIC
+DO
+SAINT LUCIA
+LC
+ECUADOR
+EC
+SAINT MARTIN (FRENCH PART)
+MF
+EGYPT
+EG
+SAINT PIERRE AND MIQUELON
+PM
+EL SALVADOR
+SV
+SAINT VINCENT AND THE GRENADINES
+VC
+EQUATORIAL GUINEA
+GQ
+SAMOA
+WS
+ERITREA
+ER
+SAN MARINO
+SM
+ESTONIA
+EE
+SAO TOME AND PRINCIPE
+ST
+ETHIOPIA
+ET
+SAUDI ARABIA
+SA
+FALKLAND ISLANDS (MALVINAS)
+FK
+SENEGAL
+SN
+FAROE ISLANDS
+FO
+SERBIA
+RS
+FIJI
+FJ
+SEYCHELLES
+SC
+FINLAND
+FI
+SIERRA LEONE
+SL
+FRANCE
+FR
+SINGAPORE
+SG
+FRENCH GUIANA
+GF
+SINT MAARTEN (DUTCH PART)
+SX
+FRENCH POLYNESIA
+PF
+SLOVAKIA
+SK
+FRENCH SOUTHERN TERRITORIES
+TF
+SLOVENIA
+SI
+GABON
+GA
+SOLOMON ISLANDS
+SB
+GAMBIA
+GM
+SOMALIA
+SO
+GEORGIA
+GE
+SOUTH AFRICA
+ZA
+GERMANY
+DE
+SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS
+GS
+GHANA
+GH
+SPAIN
+ES
+GIBRALTAR
+GI
+SRI LANKA
+LK
+GREECE
+GR
+SUDAN
+SD
+GREENLAND
+GL
+SURINAME
+SR
+GRENADA
+GD
+SVALBARD AND JAN MAYEN
+SJ
+GUADELOUPE
+GP
+SWAZILAND
+SZ
+GUAM
+GU
+SWEDEN
+SE
+GUATEMALA
+GT
+SWITZERLAND
+CH
+GUERNSEY
+GG
+SYRIAN ARAB REPUBLIC
+SY
+GUINEA
+GN
+TAIWAN, PROVINCE OF CHINA
+TW
+GUINEA-BISSAU
+GW
+TAJIKISTAN
+TJ
+GUYANA
+GY
+TANZANIA, UNITED REPUBLIC OF
+TZ
+HAITI
+HT
+THAILAND
+TH
+HEARD ISLAND AND MCDONALD ISLANDS
+HM
+TIMOR-LESTE
+TL
+HOLY SEE (VATICAN CITY STATE)
+VA
+TOGO
+TG
+HONDURAS
+HN
+TOKELAU
+TK
+HONG KONG
+HK
+TONGA
+TO
+HUNGARY
+HU
+TRINIDAD AND TOBAGO
+TT
+ICELAND
+IS
+TUNISIA
+TN
+INDIA
+IN
+TURKEY
+TR
+INDONESIA
+ID
+TURKMENISTAN
+TM
+IRAN, ISLAMIC REPUBLIC OF
+IR
+TURKS AND CAICOS ISLANDS
+TC
+IRAQ
+IQ
+TUVALU
+TV
+IRELAND
+IE
+UGANDA
+UG
+ISLE OF MAN
+IM
+UKRAINE
+UA
+ISRAEL
+IL
+UNITED ARAB EMIRATES
+AE
+ITALY
+IT
+UNITED KINGDOM
+GB
+JAMAICA
+JM
+UNITED STATES
+US
+JAPAN
+JP
+UNITED STATES MINOR OUTLYING ISLANDS
+UM
+JERSEY
+JE
+URUGUAY
+UY
+JORDAN
+JO
+UZBEKISTAN
+UZ
+KAZAKHSTAN
+KZ
+VANUATU
+VU
+KENYA
+KE
+VENEZUELA, BOLIVARIAN REPUBLIC OF
+VE
+KIRIBATI
+KI
+VIET NAM
+VN
+KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF
+KP
+VIRGIN ISLANDS, BRITISH
+VG
+KOREA, REPUBLIC OF
+KR
+VIRGIN ISLANDS, U.S.
+VI
+KUWAIT
+KW
+WALLIS AND FUTUNA
+WF
+KYRGYZSTAN
+KG
+WESTERN SAHARA
+EH
+LAO PEOPLE'S DEMOCRATIC REPUBLIC
+LA
+YEMEN
+YE
+LATVIA
+LV
+ZAMBIA
+ZM
+LEBANON
+LB
+ZIMBABWE
+ZW
+Note: Language codes are automatically set based on the survey language. If the survey language is not supported by QualityScore, AcceptNotSupportedLanguages is set to 1.
+1.2.2: LangCodeMap
+The LangCodeMap attribute must be set if generic English language is used (for example, english_g1 or english_g10). Associate the generic English language with a supporting language by specifying a two-letter language code from the following table. This will instruct RealAnswer to use the correct language when analyzing open-ended questions.
+Country Code
+Language
+EN
+English
+ZH-CHS
+Chinese - Simplified
+ZH-CHT
+Chinese - Traditional
+PT
+Portuguese
+DE
+German
+ES
+Spanish
+FR
+French
+NL
+Dutch
+SV
+Swedish
+NN
+Norwegian
+RU
+Russian
+IT
+Italian
+JA
+Japanese
+PL
+Polish
+TR
+Turkish
+DA
+Danish
+FI
+Finnish
+MS
+Malay
+HU
+Hungarian
+RO
+Romanian
+SK
+Slovak
+ID
+Indonesian
+CS
+Czech
+BG
+Bulgarian
+VI
+Vietnamese
+2: Adding Companion element via the XML Editor
+The companion element is required to analyze the collected data. It must be placed in a new page by itself after all pages containing questions to be evaluated by QualityScore. Add the element using the following code to include the companion element on a new page:
+<suspend/>
+<html label="qualityscore_analyze" where="survey" sst="0" translateable="0">
+${ln1.analyze()}
+<div id="logic-node-loading-spinner"></div>
+</html>
+<style
+label="analyze_submit"
+mode="after"
+name="respview.client.js"
+with="qualityscore_analyze"
+wrap="ready"><![CDATA[
+disableContinueButton();
+const analyzeSuccessful = setInterval(function() {
+if (${p.client_qualityscore_results["StatusCode"]}) {
+clearInterval(analyzeSuccessful);
+enableContinueButton().then(() => clickContinueButton());
+};
+}, 500);
+]]></style>
+Note: The code of the above html element with the label qualityscore_analyze must be used exactly as displayed, except for the logic node’s label (ln1 in the above code). Change the companion element logic node’s label to match the QualityScore element’s logic label.
+The logic node will verify that this HTML companion element exists somewhere in the survey, but you must ensure that all relevant participants see it.
+You can add a suspend element after the companion element and take action based on the scores returned. The scores are captured inside a persistent variable.
+3: Real Answer ClassNames
+Real Answer is a solution within QualityScore. Real Answer evaluates data collected on open-end questions and indicates the likelihood of a response being genuine and made by an engaged respondent, not a bot or an AI generation tool.
+To add the Real Answer attribute to open-ends, you will need to add a css classnames attribute to the open-ends via the XML editor.
+You can add css attributes at 3 levels:
+Question Level
+Column Level
+Row Level
+Note: Attributes can be applied on all three levels for a single question. For example, if you have a Real Answer attribute you want to apply to all open-ends, you can add that at a question level. However, if you want to apply other attributes to individual open rows that are unique from each other, you will need to add the attributes individually per row.
+3.1: Adding Real Answer attribute at the Question Level
+To add the Real Answer attribute to all open-ends in a question, add the ss:questionClassNames attribute to the question. If you have four open-ends in a question, using this attribute will apply to all 4 open-ends.
+Example:
+<text
+label="Q1a"
+ss:questionClassNames="IsBrandQuestion">
+<title>Text Question</title>
+<comment>Please be as specific as possible.</comment>
+<row label="r1">Row Label r1</row>
+<row label="r2">Row Label r2</row>
+</text>
+3.2: Adding Real Answer attribute at the Column Level
+If you have an open-end column in a question element and want to apply Real Answer attributes to that open-end, add the ss:colClassNames attribute to an open-end column.
+Example:
+<radio
+label="Q1b">
+<title>Radio Question </title>
+<comment>Please be as specific as possible.</comment>
+<col label="c1">Col Label c1</col>
+<col label="c2" open=”1” openSize=”20” ss:colClassNames="IsBrandQuestion">Col Label c2 (Please specify)</col>
+<row label="r1">Row Label r1</row>
+<row label="r2">Row Label r2</row>
+</radio>
+3.3: Adding Real Answer attribute at the Row Level
+Add Real Answer attributes by adding ss:rowClassNames to an open-end at the row level. If you have more than 1 open-end specifies in a question element and you would like to apply different attributes to them, you will need to apply the css classname individually to each row.
+Example:
+<text
+label="Q1b">
+<title>Text Question 2nd image to the right</title>
+<comment>Please be as specific as possible.</comment>
+<row label="r1" ss:rowClassNames="IsExcluded">Row Label r1</row>
+<row label="r2" ss:rowClassNames="IsBrandQuestion">Row Label r2</row>
+</text>
+3.4: Real Answer ClassNames Values
+Use the following values for the questionClassNames, colClassNames, and rowClassNames attributes.
+Real Answer ClassNames Values
+Description
+AcceptCustomOrCommonPhrases
+Flag to exclude open-end response from Non-Engaged and Similarity Checks if open-end response is a custom factor or common phrase.
+AcceptNotSupportedLanguages
+Flag to accept requests with language code not supported by Real Answer. When enabled, the request will be processed for all checks excluding any lexicon-based checks.
+DisableAutocorrectText
+Flag to disable text auto correction service.
+DetectPII
+Flag to detect PII if any is entered in raw text of open-ended field. This flag is disabled by default.
+EngagedLength_#
+Replace the # with the minimum length of words required to be considered engaged.
+Example: ss:rowClassNames="EngagedLength_15"
+In the above example, 15 is the minimum number of words in the response before the NonEngaged factor is triggered. Any responses that are 14 words or fewer triggers the NonEngaged flag and affect the RealAnswer score (RAS).
+To disable the NonEngaged check, specify a value of 0.
+To use the average response length from the last 30 days, specify a value of -1.
+IgnoreGarbageWords
+Flag to ignore garbage words check. Garbage words will not be checked, and thus will not impact the the RealAnswer score.
+IsBrandQuestion
+Flag indicating that the question is asking for brand/ names.
+When this value is applied, the engaged length defaults to “1” and special logic is used to validate for garbage words.
+IsExcluded
+Flag to skip this field. Commonly applied to captcha verification fields.
+SuppressRespondentDuplication
+Flag to suppress duplication check; service will not perform duplication check.
+SuppressSimilarity
+Flag to suppress similarity check; service will not perform similarity check.
+TextClassQuestID_#
+Replace the # with the appropriate id for the question type.
+Example: ss:rowClassNames="TextClassQuestID_-1"
+An id indicating the type of question that is being answered so that text classification can be performed on the answer. See the Text Classification Questions Table for supported questions.
+DisableUseDetectedLanguage
+Flag to disable the use of lexicon as backup for Garbage words, Bad words and Bad phrases.
+The Text Classification Questions table identifies the number you should use with the TextClassQuestID value to identify the type of question being answered. Questions are only supported in English.
+TextClassQuestID
+Question Type
+Description
+-1
+None
+Disabled
+0
+Question-Specific
+Leverages word vectors to approximate the context of any question for any survey, based on past responses for the given question. This will generally be less fine-tuned compared to the other Text Classification Question IDs.
+1
+Vacation
+What is your ideal vacation, what trips do you like to take, etc.
+2
+Technology
+What issues do you experience with technology, what is your biggest headache
+in information technology, etc.
+3
+Job Roles
+Please describe your role. This will return department roles. Please see
+Job Role Categories table for cluster/segment ids that are returned.
+The Job Role Categories table identifies the cluster/segment ids that are returned if the Text Question Classification ID (TextClassQuestID) is set to 3.
+Cluster ID
+Job Title
+19
+Tradesmen Laborers
+29
+Software Developer
+67
+Real Estate Agents
+75
+Lawyers
+149
+Human Resources
+3.5: ClassNames Limitations
+Certain limitations apply regarding the classnames that can be used on specific dynamic questions to pass actual response data to Dynata. Below, you’ll find a list of the approved classnames for each type of dynamic question.
+Dynamic Question
+Supported CSS Classnames
+Button Rating
+ss:questionClassNames
+Star Rating
+ss:questionClassNames, ss:rowClassNames
+Rating Scale
+ss:questionClassNames
+Card Rating
+Does not support open-end (OE) questions.
+Slider Rating
+Unsupported; cannot modify ss:questionClassNames
+Slider
+Partial Support; ss:questionClassNames; applies classnames to number inputs; cannot set classnames to OE legend; OE legend not included in request
+Slider Decimal
+Partial Support; ss:questionClassNames; applies classnames to number inputs; cannot set classnames to OE legend; OE legend not included in request
+Rank Sort
+ss:questionClassNames
+Card Sort Single Select
+ss:questionClassNames
+Card Sort Multi Select
+ss:questionClassNames
+4: QualityScore’s Response
+Data received from Dynata’s service is saved to hidden questions and is available as persistent variables at certain points while the participant is taking the survey. They are as follows:
+Data Type
+When Available?
+How?
+RelevantID results
+One page after the page where the QualityScore element is placed.
+Through a persistent variable: a dictionary named client_relevantid_results, where XYZ represents the logic node’s label. Keys are the field names in the RelevantID data table below.
+QualityScore results
+One page after the last page of the survey.
+Through a persistent variable: in a dictionary named client_qualityscore_results. Keys are the field names in the QuliatyScore analysis data table below.
+4.1: RelevantID Data
+GeoCodes is a mandatory field specified in the configuration parameters to enable RelevantID. The standard fields returned are listed in the following table. Data is automatically captured in a hidden question on the page after the QualityScore element.
+Field
+Description
+RVid
+Unique RelevantID used to identify the machine. A "0" value indicates an error has occurred.
+Score
+A confidence score which is a number between 0 – 100; 100 indicates a 100% level of confidence that the machine is dupe. A score of 75 or higher is typically considered a dupe. -1: Error.
+4.1.1: Terminating Participants based on RelevantID Score
+At least one page after the Dynata Quality logic node, add the following term element via the XML Editor.
+<term
+label="RelevantID_Term"
+cond="float(p.client_relevantid_results['Score'])
+&gt;= 75"
+incidence="0"
+markers="rvid"
+sst="0">
+RelevantID Termination: Participant RelevantID score equal to or greater than 75
+</term>
+Example:
+<logic label="ln1"
+qualityscore:ClientID="123-BAD888"
+qualityscore:GeoCodes="1,US"
+uses="qualityscore.3"
+sst="0">
+<title>Dynata QualityScore</title>
+</logic>
+<suspend/>
+<term label="RelevantID_Term"
+cond="float(p.client_relevantid_results['Score'])
+&gt;= 75"
+incidence="0"
+markers="rvid"
+sst="0">
+RelevantID Termination: Participant RelevantID score equal to or greater than 75
+</term>
+<suspend/>
+4.2: QualityScore Data
+The QualityScore analysis of the collected data is obtained after the last page of the survey. Data is automatically captured in a hidden question once the participant has finished the survey.
+Field
+Description
+StatusCode
+HTTP status code (200 if no errors).
+Score
+The quality score of a participant for the survey, ranging from 0 to 100.
+TransactionGuid
+Unique string identifying the analysis request made.
+ActiveBehaviors
+3 – The respondent had good behaviors during the survey.
+2 – The respondent had suspicious behaviors during the survey.
+1 – The respondent had bad behaviors during the survey.
+BackgroundAndTech
+3– The respondent had good background data.
+2 – The respondent had suspicious background data.
+1 – The respondent had bad background data.
+Background data includes network latency,
+pages completed number, IP address.
+OpenEndBehaviors
+3 – The respondent had good behaviors on open-end questions.
+2 – The respondent had suspicious behaviors of open-end questions.
+1 – The respondent had bad behaviors of open-end questions.
+Null – The respondent did not answer any open-end question.
+TransactionGuid
+Unique string identifying the analysis request made.
+Mode
+0 – The survey has both open-end questions and Matrix questions.
+1 – The survey has only matrix questions.
+2 – The Survey has only open-end questions.
+3 – The survey has none of these questions.
+4.2.1: Terminating Participants based on QualityScore score
+At the end of the survey, add the following term element after the companion element via the XML Editor.
+<term
+label="Qualityscore_Term"
+cond="p.client_qualityscore_results['StatusCode'] == 200 and float(p.client_qualityscore_results['Score']) lt 20"
+markers="qualityscore"
+sst="0">
+QualityScore Termination: Participant QualityScore score less than 20
+</term>
+Example:
+<suspend/>
+<html label="qualityscore_analyze" where="survey" sst="0" translateable="0">
+${ln1.analyze()}
+<div id="logic-node-loading-spinner"></div>
+</html>
+<style
+label="analyze_submit"
+mode="after"
+name="respview.client.js"
+with="qualityscore_analyze"
+wrap="ready"><![CDATA[
+disableContinueButton();
+const analyzeSuccessful = setInterval(function() {
+if (${p.client_qualityscore_results["StatusCode"]}) {
+clearInterval(analyzeSuccessful);
+enableContinueButton().then(() => clickContinueButton());
+};
+}, 500);
+]]></style>
+<suspend/>
+<term
+label="Qualityscore_Term"
+cond="p.client_qualityscore_results['StatusCode'] == 200 and float(p.client_qualityscore_results['Score']) lt 20"
+markers="qualityscore"
+sst="0">
+QualityScore Termination: Participant QualityScore score less than 20
+</term>
+5: Technical Details
+The QualityScore logic node is a two step process:
+Collect Data
+Analyze Data
+5.1: Collect Data
+On every survey page that has a question, the participant’s browser sends the following data to Dynata when the participant presses the Submit button:
+ClientID, SurveyID, RespondentID (PanelistID), PanelID
+PageID: Automatically generated by the logic node as logicNodeName_questionLabels; it should be unique for each page of the survey that contains questions
+Matrix Data: Values of all the matrix questions displayed on the page for the purpose of straight-liner analysis
+GeoCodes: Only on the page where the RelevantID call is made
+Survey Language: Indicates the language of open-ended inputs
+Additional data collected by the Dynata libraries to improve analysis as well as data from all open-ended input fields for RealAnswer analysis
+After the participant presses Submit, the participant’s browser will prevent the survey from continuing until the data has been sent and received from Dynata. The browser will wait for a response up to five (5) seconds.
+If you would like to disable the collect data service for all questions on a page, you will need to add the following XML style overrides in the XML editor:
+<style mode="after" name="survey.respview.footer" with="QUESTION-LABEL"><![CDATA[
+<input type="hidden" id="qualityscore_collect_disabled">
+]]></style>
+The mode, name, and with attributes for the style element are required.
+The value for mode must be after.
+The value for name must be survey.respview.footer.
+The value for with must be the label of one of the questions on the page.
+Example:
+<suspend/>
+<style mode="after" name="survey.respview.footer" with="q3"><![CDATA[
+<input type="hidden" id="qualityscore_collect_disabled">
+]]></style>
+<text label="q3" optional="0" size="25">
+<title>New Text Question</title>
+<comment>Be specific</comment>
+</text>
+<textarea label="q4" height="10" optional="0" width="50">
+<title>New Essay Question</title>
+<comment>Be specific</comment>
+</textarea>
+<suspend/>
+5.2: Analyze Data
+The participant’s browser sends the following data to Dynata when the page is displayed:
+ClientID, SurveyID, RespondentID (PanelistID), PanelID
+The Continue / Finish button is disabled until the data has been sent and received from Dynata. The participant’s browser will wait for a response up to five (5) seconds.

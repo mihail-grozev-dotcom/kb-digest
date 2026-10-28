@@ -1,0 +1,5 @@
+Title: How do I add a user to a project?
+You can add a users to a project by:
+Selecting the project via the Research Hub, and selecting the users icon in the top center of the screen and selecting “+ Add Users/ Groups”.
+Or you can navigate to the project page, click the “Users” tab and select “Add Users / Groups” to assign user to the project.
+See Create and Manage Users to learn more about adding users to projects.

@@ -1,0 +1,62 @@
+Title: Piping Open-End Response Boxes
+You can limit the number of open-end response boxes shown in a question based on the user's answer to a previous question. The process of limiting open-end response boxes is different depending on the type of base question used.
+This document outlines how to display a predetermined number of open-end response boxes based on both a Number question and a Single Select question.
+1: Basing Boxes on a Number Question
+To limit open-end boxes based on a Number question, first create the Number question and set a value range for it.
+Next, create the Text question that will display the open-end response boxes. The number of rows in this question should match the maximum value allowed in the Number question.
+For example, if the maximum value for the Number question is 5, then add five rows to your Text question.
+1.1: Setting Conditions via the Survey Editor
+To select which rows will be shown using the Survey Editor, click the row to select it and click "Show If" in the "Row Options" panel. Then, click the “New Condition” button.
+In the "Logic Conditions Setup" window, select the Number question you are basing the row off of from the drop-down menu.
+In the text box that appears, type in >= (greater than or equal to) the row number. For example, for the first row, your condition would be >=1.
+The condition appears under "Show if" for the selected row in the "Row Options" panel to the right of the staging area.
+Repeat this for every row you would like to make conditional. Using the example above with five rows, your last row would be >=5. You can review the conditions you have set for each row in its "Show If" box.
+1.2: Setting Conditions via the Survey XML
+To select which rows will be shown using the survey XML, first click "More Tools" under "Build" in the navigation menu at the top of any project page, then select "Edit XML".
+Now, set the conditions of all the rows using the rowCond attribute on your Text question, where QLABEL is the question label of your Number question:
+rowCond="row.index lt QLABEL.val"
+Assuming your Number question label is q11, your Text question would look like this:
+<text
+label="q12"
+optional="0"
+rowCond="row.index lt q11.val"
+rowLegend="left"
+size="25">
+<title>Please list all the stores you shop at.</title>
+<comment>Be specific</comment>
+<row label="r1">Store 1</row>
+<row label="r2">Store 2</row>
+<row label="r3">Store 3</row>
+<row label="r4">Store 4</row>
+<row label="r5">Store 5</row>
+</text>
+<suspend/>
+2: Basing Boxes on a Radio Question
+To limit the open-end boxes based on a Single Select question, first create a Single Select question with the same amount of rows your Text question will have.
+Next, create the Text question and add enough rows to match the number of rows in the Single Select question. For example, if the Single Select question has five options, then add five rows to the Text question.
+2.1: Setting Conditions via the Survey Editor
+To select which rows will be shown using the Survey Editor, click the row to select it and click "Show If" in the "Row Options" panel. Then, click the “New Condition” button.
+Select the Single Select question you are basing the row off of from the drop-down menu.
+Then, select all options that are of this number or higher and choose "or" from the logic type drop-down. Then click "Save".
+For example, in the following images, all options are selected for the first row, while only the last option is selected for the last row.
+2.2: Setting Conditions via the Survey XML
+To select which rows will be shown using the survey XML, first click "More Tools" under "Build" in the navigation menu at the top of any project page, then select "Edit XML".
+Then set the conditions of all the rows using the rowCond attribute on your Text question where QLABEL is the question label from your Number question.
+rowCond="row.index le QLABEL.val"
+Assuming your Single Select question label is Q14, your Text question would look like this:
+<text
+label="Q15"
+optional="0"
+rowCond="row.index le Q14.val "
+rowLegend="left"
+size="25">
+<title><span>Please list all the stores you shop at.</span></title>
+<comment>Be specific</comment>
+<row label="r1">Store 1</row>
+<row label="r2">Store 2</row>
+<row label="r3">Store 3</row>
+<row label="r4">Store 4</row>
+<row label="r5">Store 5</row>
+</text>
+<suspend/>
+Note: This works only if the data values for each of the rows in your Single Select question are in numerical order starting from "1".

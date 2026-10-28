@@ -1,0 +1,11 @@
+Title: Running a Standard Report
+Overview
+The standard report allows you to view the aggregate totals of each question. The default settings in the standard report include all qualified participants with percentages based off the total number of participants who viewed each question.
+Running the Report
+Step 1: Log in to your Decipher Portal and locate your project, click click the menu icon next to the project name to access the drop down menu of options.
+Step 2: Click "Report (2010)" to access the report window:
+Step 3: A new window will open showing the report options with the "Standard" report automatically selected as the default. Choose your Filter and %Base for the report.
+Filter: you can filter your report in the drop-down area by viewing the qualified participants only (default selection) or by viewing all the participants including terminates, drop outs or overquotas.
+%Base: you can choose the percentage base for the data in your report in this drop down area. You can set the base at the total number of participants who answered the question (default selection), the total number of participants who were shown the question, or when running multiple crosstabs, the total number in the segment (applies only to a custom report - same as "total answering the question" when running a standard report).
+Step 4: Click the "Run Report" button:
+A new window will open displaying the contents of your report. From this new window, you can download your report in various formats. For more customized reporting options with banner point / cross tab comparisons, see Creating and Running a Custom Report to learn how to create and run a custom report.

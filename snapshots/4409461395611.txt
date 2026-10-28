@@ -1,0 +1,24 @@
+Title: JSON Datamap Modification
+Requires Decipher Cloud
+To use a complex Dynamic Question (DQ) in another system, if its configuration is not apparent from the data collected or its question/row text, you will need to modify its JSON datamap before extracting it.
+1: Modifying a JSON datamap
+To modify a DQ’s JSON datamap, add the following function to its code.py file:
+def datamap(q, d):
+d['key'] = q.styles.{DQ}.{DQStyleVar}
+In this function, q is the question displayed and d is the dictionary that will contain the JSON definition for this question. The dictionary key (d['key']) must be a string and the value must be serializable within JSON (use list, dict, string, or number). Name-spacing the attribute is recommended to avoid conflicts with other DQs and future changes to the JSON datamap.
+2: Survey-wide verification
+If a configuration must be consistent in a survey as a whole, rather than in each individual DQ, you can use a verify function within the code.py file to ensure that only one instance of a question is present in a survey. An example declaration of this function is:
+def verify_all(questions, survey, error):
+seen = {}
+for q in questions:
+id = q.styles.{DQ}.{DQStyleVar}
+Here, the questions function is a list of every question where this DQ has been applied, and the survey function is the entire survey. If you want to signal an error, you can add an error function. The error function takes two arguments: the element with an error and the error message itself.
+def verify_all(questions, survey, error):
+seen = {}
+for q in questions:
+id = q.styles.{DQ}.{DQStyleVar}
+if id in seen:
+error(q, "Duplicate value for {DQ}:{DQStyleVar} - %r" % id)
+error(seen[id], "Previously seen here")
+else:
+seen[id] = q

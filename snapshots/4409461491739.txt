@@ -1,0 +1,239 @@
+Title: Question and Element Types
+There are many different types of survey elements available in the Survey Editor. Below is an overview of each type of survey element and its unique feature set.
+You can also review a short description of each element type directly from the Survey Elements Menu within the Survey Editor.
+1: Single and Multi-Select Elements
+1.1: Single Select
+The Single Select question offers both one and two-dimensional options (rows, or rows and columns), allowing users to enter one response per question, or one response per row per column.
+Learn more: Single Select Element
+1.2: Multi-Select
+The Multi-Select question offers both one and two-dimensional options (rows, or rows and columns), allowing users to enter multiple responses per question, or multiple responses per row per column. In Multi-Select questions, response options can also be set to exclusive.
+Learn more: Multi-Select Element
+1.3: Dropdown Menu
+The Dropdown Menu question, offers one, two, and three-dimensional options (rows, rows and columns, or rows, columns and choices), allowing users to select from a pre-configured list of options for one or more responses.
+Learn more: Dropdown Menu Element
+1.4: Button Single Select
+The Button Single Select element offers a one-dimensional option, allowing users to select one response from two or more buttons.
+Learn more: Button Single Select Element
+1.5: Single Select Grid
+The Single Select Grid question offers a two-dimensional option, allowing users to select one response at each row across multiple columns.
+Learn more: Single Select Grid Element
+1.6: Button Single Select Grid
+The Button Single Select Grid element is a dynamic alternative to a Single Select question and must contain buttons, rows and / or column legend text. Selecting answers requires very little effort on the part of participants because of the buttons' large hit areas.
+Learn more: Button Single Select Grid Element & Customizing Button Select Grid Elements
+1.7: Button Multi-Select
+The Button Multi-Select element utilizes a multi-select form and must contain buttons. It is another one-dimensional version of the Button Single Select Grid element.
+Learn more: Button Multi-Select Element
+1.8: Multi-Select Grid
+The Multi-Select Grid element allows participants to select multiple responses for each option. Multi-Select Grid questions can have multiple rows and / or columns.
+1.9: Button Multi-Select Grid
+The Button Multi-Select Grid element is a dynamic alternative to a Multi-Select Grid question and must contain buttons, rows and / or column legend text. Selecting answers requires very little effort on the part of participants because of the buttons' large hit areas.
+Learn more: Button Multi-Select Grid Element & Customizing Button Select Grid Elements
+1.10: This or That
+The This or That element allows you to set labels on both the left and right side of the response forms, creating a question where participants can rate their preference towards either. Each row is randomized once per participant. This element is not optimized for mobile compatibility due to the fact that it must contain multiple rows and columns.
+Learn more: This or That Element
+2: Open End Question Types
+2.1: Text
+The Text question is an open-ended question type allowing for alpha-numeric responses.
+Learn more: Text Element
+2.2: Essay
+The Essay question provides a larger open-ended response field than the Text question, allowing participants to enter a longer open-ended, alpha-numeric response. This question can have a single entry form or multiple rows and / or columns.
+Learn more: Essay Element
+2.3: Number
+The Number question is an open-ended question type which restricts responses to numeric values.
+Learn more: Number Element
+2.4: Autosum
+The Autosum element is an open-ended question type which allows survey participants to enter numeric values in multiple text-boxes and keeps a running total of those values. The sum of all rows or columns is displayed below those input fields and is updated in real-time as the participant enters values.
+Learn more: Autosum Element
+2.5: Date Picker
+The Date Picker element utilizes a text area type question with a date range and format validation. It allows participants to select a date from a pre-configured calendar instead of typing it in manually.
+Learn More: Date Picker Element
+2.6: Autosuggest
+The Autosuggest element allows you to upload a set of answers that will automatically be suggested to participants as they type a response into an open-ended text box.
+Learn More: Autosuggest Element
+3: Rate, Rank, and Sort Question Types
+3.1: Button Rating
+The Button Rating question allows participants to click buttons to rate a question / response option. The Button Rating element is a dynamic alternative to the Number question.
+Learn more: Button Rating Element & Customizing the Button Rating Element
+3.2: Star Rating
+The Star Rating element is a dynamic alternative to the Select question, and must contain star values, as well as rows and / or columns. The participant answers the question by selecting a star value. This element is mobile compatible.
+Learn More: Star Rating Element & Customizing the Star Rating Element
+3.3: Rating Scale
+The Rating Scale element is a dynamic alternative to a Single Select question, and must contain multiple rows and columns. The participant rates answers by positioning a button for each item into a rating location.
+Learn more: Rating Scale Element & Customizing the Rating Scale Element
+3.4: Card Rating
+The Card Rating element allows participants to rate or categorize elements. Participants view cards one at a time and select one button below to rate them. Once rated, the carousel of cards automatically advances to the next card.
+Learn more: Card Rating Element & Customizing the Card Rating Element
+3.5: Slider Rating
+The Slider Rating element allows participants to move a slider to a point on a scale to answer the question. The slider point element utilizes a select form, and must contain multiple points. Additional sliders are optional.
+Learn more: Slider Rating Element & Customizing the Slider Rating Question
+3.6: Slider
+The Slider question allows participants move a slider to a point on a scale to answer the question. The slider element utilizes a number form and must contain a value range for the slider points, and may contain multiple sliders (i.e., rows).
+Learn more: Slider Element & Customizing the Slider Element
+3.7: Slider Decimal
+The Slider Decimal element allows participants move a slider to a point on a scale to answer the question. The Slider Decimal element utilizes a number form and must contain a value range for the slider points (decimal points supported), and may contain multiple sliders (i.e., rows).
+Learn more: Slider Decimal Element & Customizing the Slider Decimal Element
+3.8: Rank Sort
+The Rank Sort element utilizes a select form and must contain multiple labels and items. Participants rank answers by dragging an item into a rank position.
+Learn more: Rank Sort Element & Customizing the Rank Sort Element
+3.9: Card Sort Single Select
+The Card Sort Single Select element is a dynamic alternative to a Single Select question and must contain cards (i.e., rows) and buckets (i.e., columns). The participant answers the question by placing cards into buckets.
+Learn more: Card Sort Single Select Element & Customizing the Card Sort Element
+3.10: Card Sort Multi-Select
+The Card Sort Multi-Select element is a dynamic alternative to a Multi-Select question and must contain cards (i.e., rows) and buckets (i.e., columns). The participant answers the question by placing cards into buckets.
+Learn more: Card Sort Multi-Select Element & Customizing the Card Sort Element
+3.11: MaxDiff
+The MaxDiff element uses "Best-Worst" scaling to help you determine participant preferences for large lists of items without using large, complex grid tables. In a MaxDiff element, participants are asked the same question multiple
+times, but each time, they are shown a different subset of items to rate.
+Learn More: MaxDiff Element
+3.12: Net Promoter Score (NPS)
+The Net Promoter Score (NPS) element allows survey participants to rate their likeliness to recommend a product or service on a scale of 0-10, following standard Net Promoter System® guidelines.
+Learn More: Net Promoter Score (NPS) Element
+4: Stimulus Question Types
+4.1: Audio Player
+The Audio Player element allows participants to listen to an audio clip. The Audio Player element utilizes a multi-select form with no response options. It is desktop, tablet, and smartphone compatible.
+Learn more: Audio Player Element
+4.2: Image Map
+The Image Map element utilizes a text area type question with one to three markers. It offers a fully interactive experience, allowing the participant to capture different areas of the image to show what interests them instead of manually typing a description.
+Learn more: Image Map Element & Customizing the Image Map Element
+4.3: Media Evaluator
+The Media Evaluator element allows participants to engage in a video and rate their feedback as it plays. This element utilizes a text area type question.
+Learn more: Media Evaluator Element & Customizing the Media Evaluator Element
+4.4: Page Timer
+The Page Timer element allows participants to view an ad for a predetermined amount of time, and then proceed automatically to the next survey page. The Page Timer element utilizes a multi-select form with no answer options.
+Learn more: Page Timer Element
+4.5: Page Turner
+The Page Turner element allows participants to interact with a magazine-like layout, while the system tracks the time they have spent on each page. The Page Turner element utilizes a number form and must contain multiple pages (i.e., rows).
+Learn more: Page Turner Element
+4.6: Shopping Cart
+The Shopping Cart element allows participants to simulate purchasing items from an online store. The Shopping Cart element should be set to optional unless all products must be purchased.
+Learn more: Shopping Cart Element
+4.7: Text Highlighter
+The Text Highlighter element offers an interactive experience, allowing the participant to rate the likability of the concept / text by highlighting the words or sentences. It utilizes a select type form with at least one marker and multiple highlight-able text items.
+Learn more: Text Highlighter Element & Customizing the Text Highlighter Element
+4.8: Video Player
+The Video Player element allows participants to view a video. The Video Player element utilizes a multi-select form without traditional answer options. Videos are hosted through Brightcove.
+Learn more: Video Player Element
+4.9: Video Player (YouTube / Vimeo)
+This Video Player (YouTube / Vimeo) element allows you to quickly add videos to your survey from popular hosting services, such as YouTube or Vimeo. No additional Decipher fees apply to play these videos as part of your survey experience. This element utilizes a number form, capturing the number of seconds the participant stays on the page.
+Learn more: Video Player (YouTube / Vimeo) Element
+5: Participant Upload Question Types
+5.1: Image Upload
+Тhe Image Upload element allows you to request, collect, and manage images uploaded by survey participants. Participants have the ability to select an existing image or use their mobile device camera to take a new snapshot and provide feedback to a question by uploading an image.
+Learn more: Image Upload Element
+5.2: Video Testimonial
+The Video Testimonial element allows a participant to provide feedback to a question via a video recording. Through the video testimonial, the true voice of the participant is captured because with a video recording you can additionally read voice tone and volume and even the facial expression of the participant.
+Learn more: Video Testimonial Element & Customizing the Video Testimonial Element
+6: Advanced Question Types
+6.1: Date Marker
+When using a Date Marker element, participants are flagged automatically with a marker based on when they start a survey. The marker format can be based on day, week or a custom format.
+Learn More: Adding a Date Marker
+6.2: API Integration
+The API Integration element allows you to integrate your survey with another system using API calls. Adding this element requires whitelisting your survey URLs; contact your Forsta Account Manager for more information.
+6.3: Cint / Lucid Secure Sample
+The Cint / Lucid Secure Sample element helps you minimize risk for link fraud and “ghost completes” and will give the most accurate quota reflection between the two platforms. It requires setting up an account with Cint or Lucid.
+Learn More: Cint Secure Sample Integration
+6.4: CINT Panel API
+The CINT Panel API element allows you to send and receive participant information in your survey using CINT's Panel API. It requires setting up an account with CINT. Contact your Forsta Account Manager for more information.
+Learn more: CINT Panel Integration
+6.5: Google Recaptcha
+The Google Recaptcha element allows you to integrate your survey with Google's reCaptcha human verification system, which presents participants with a logic puzzle. Information about whether a solution was successful is available for logic checks, which can be used to terminate the participant or just to record the information for later data cleaning.
+To use this option with a custom domain, contact your Forsta Account Manager or request a private reCaptcha key fromhttps://www.google.com/recaptcha/about/.
+Learn more: reCaptcha Integration
+6.6: Imperium QualityScore Integration
+The Imperium QualityScore Integration element allows you to integrate with the Imperium Quality Score API. Together
+with speeder and straight-liner detection, the Imperium Quality Score outputs
+a 0-100 Quality Score for participants at the end of the survey.
+This API uses the participant’s browser to interact with Imperium services.
+Requires setting up an account with Imperium. Contact your Forsta Account Manager for details on setup.
+Learn More: Imperium QualityScore Integration
+6.7: Imperium Real Answer Integration
+The Imperium Real Answer Integration element allows you to automatically validate against a participant's open-end responses while they are taking a survey. Real Answer will help you make sure that users are inputting valid responses by providing you with a Real Answer ScoreTM ("RAS") for each open-ended response as it is submitted by a participant.
+Requires setting up an account with Imperium. Contact your Forsta Account Manager for details on setup.
+Learn more: Imperium Real Answer Integration
+6.8: Imperium RelevantID Integration
+The Imperium RelevantID Integration element allows you to automatically verify participants based on their browser, geo-location, and operating system. Fraud flags and a Fraud Profile Score are provided, which can be used to validate the quality of your participants.
+Requires setting up an account with Imperium. Contact your Forsta Account Manager for details on setup.
+Learn more: Imperium RelevantID Integration
+6.9: Lumoa Integration
+The Lumoa Integration element allows for automatically sending open-ended text responses and Rating Score results to Lumoa for analysis.
+Requires a subscription to the Lumoa text analytics solution. Contact your Forsta Account Manager for details on setup.
+6.10: OE Flag
+Checks open-end data for duplicate and gibberish responses (English only).
+Learn More: Flagging Open End Responses
+6.11: QuantText
+The QuantText element uses QuantText™ proprietary software to allow researchers to incorporate real-time, one-on-one interview sessions into a quantitative online survey.
+Learn More: QuantText Element
+6.12: Schedule Clearing Data
+The Schedule Clearing Data element allows you to automatically clear participant data at a set date and time. This can be useful if your survey contains Personally Identifiable Information (PII) and needs to be cleared out by a specific deadline.
+Learn More: Clearing Data
+6.13: Schedule Survey Closing Time
+The Schedule Survey Closing Time element allows you to automatically close your survey at a specific date and time.
+Learn More: Scheduling a Survey to Close
+6.14: Send An Email
+The Send An Email element allows you to send emails to recipients as part of your survey. This can be useful if you want to send a confirmation to a participant or even just a thank you note. Emails can be scheduled to be sent up to three days after a participant completes the survey.
+Emails should only be sent to consenting users. Emails must comply with CAN-SPAM laws.
+Learn more: Sending an Email
+6.15: Share A Crosstabs Export
+The Share A Crosstabs Export element allows you to periodically share saved Crosstabs exports. It also allows sharing with users who do not have access to the project in the Portal.
+Learn More: Sharing Crosstabs
+6.16: Share A Response Summary Snapshot
+The Share A Response Summary Snapshot element allows you to share a periodic snapshot of the current survey's Response Summary with one or more recipients. It also allows sharing with users who do not have access to the project in the Portal.
+Learn More: Sharing the Response Summary
+6.17: Transfer Data
+The Transfer Data element allows you to periodically upload your survey data to an external source using an FTP or SFTP connection.
+Learn More: Uploading Data Files
+6.18: Tremendous Integration
+The Tremendous Integration element allows for integration with the Tremendous API. Tremendous provides a way to order a variety of rewards that can be given to participants as incentives for participation in a survey.
+An account with Tremendous is required.
+Learn More: Tremendous Integration
+6.19: Virtual Incentives Integration
+The Virtual Incentives Integration element allows you to deliver Virtual Incentives rewards to participants directly from your survey. Using this element requires setting up an account with Virtual Incentives. Contact your Forsta Account Manager for details on setup.
+Learn More: Virtual Incentives Integration
+7: Logic Elements
+7.1: Alert
+The Alert element is used to send a customized email if a participant matches the condition set up on the element. For example, you may want to know if a participant was not satisfied with your service, or wants more information and followup from your company.
+Learn more: Alert Element
+7.2: Autofill
+The Autofill element is a hidden question used for creating user segments, auto-punching responses, and advanced text / media piping.
+Learn more: Autofill Element
+7.3: Language Selector
+The Language Selector element allows a participant to select the language in which they would like to take the survey. Languages are shown based on the declared languages within the Language Manager Overview for that survey, and each language is shown in its own translated form.
+Learn more: Language Selector Element
+7.4: Loop
+the Loop element is a hidden question that allows you to setup a series of questions or response options and pipe participants individually through them.
+Learn more: Loop Element
+7.5: Quota
+The Quota element allows you to control participant flow by restricting the number of participants allowed through the survey.
+Learn more: Adding Quotas Using the Survey Editor
+7.6: Reusable Answer List
+The Reusable Answer List element allows you to save the response options you create within one survey element for use in other elements.
+Learn more: Reusable Answer List Element
+7.7: Skip
+The Skip element allows you to move participants from one survey element to another element or target defined later in your project.
+Learn more: Skip Element
+7.8: Terminate
+The Terminate element screens out participants based on their responses to survey questions. This element is hidden from participants and appears only in the report.
+Learn more: Terminate Element
+8: Structural Elements
+8.1: Descriptive Content
+The Descriptive Content element allows you to display text directly to participants without adding a question or response set.
+Learn more: Descriptive Content Element
+8.2: Block
+The Block element allows you to setup advanced rotation and randomization of other survey questions and elements. You can use this element to display just one of a series of questions or to rotate participants through a defined number of questions / elements.
+Learn more: Block Element
+8.3: Section
+The Section element allows you to setup sections within the survey report. It is used for organizational purposes only and will not be shown to participants.
+Learn more: Section Element
+8.4: Note
+The Note element allows you to leave comments to yourself or anyone else editing the survey in the Survey Editor. Note elements only appear in the Survey Editor and are not included when testing the survey with tools or in the report, and they are not shown to participants.
+Learn more: Note Element
+8.5: Import Data
+The Import Data element allows you to import previously collected data into your survey for appending to the report and dataset, or for piping details or controlling the flow of participants through the survey.
+Learn more: Import Data Element
+8.6: Exec
+The Exec element is a hidden question type that allows you to add advanced Python code directly to your survey.
+Learn more: Exec Element
+9: Dynamic Question Styles
+9.1: Form Image Replacement
+Form Image Replacement (FIR) is a unique, mobile-compatible style that can be applied to single or multi-select question types to create a more visually engaging experience for participants.
+Learn more: Form Image Replacement (FIR) Question Style & Working with Form Image Replacement

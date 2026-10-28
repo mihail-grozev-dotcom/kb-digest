@@ -1,0 +1,160 @@
+Title: How to Display Looped Questions as Grid Tables in Crosstabs
+By default, Decipher displays looped questions as individual tables in the reporting tools, and each question follows the labeling syntax of "questionLabel_loopvarLabel". Frequently, however, there is a need to compare the looped responses from each iteration against one another.
+For this exercise, you will be following an example loop with two questions iterated through four different brands.
+1: Example Loop
+Below, you will see an example of the loop in the Survey Editor and well as the corresponding survey.xml file.
+1.1: Loop Element in the Survey Editor
+Single-Select / Radio Question
+Multi-Select / Checkbox Question
+Looped Variables
+1.2: Loop Tag in the XML Editor
+Single Select / Radio Question
+<radio
+label="q1_[loopvar: label]"
+optional="0"
+randomize="0">
+<title>How would you rate [loopvar: brand]?</title>
+<comment>Select one</comment>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">5</row>
+</radio>
+Multi-Select / Checkbox Question
+<checkbox
+label="q2_[loopvar: label]"
+atleast="1"
+optional="0"
+randomize="0">
+<title>Which of the following attributes describe [loopvar: brand]?</title>
+<comment>Select all that apply</comment>
+<row label="r1">Attribute 1</row>
+<row label="r2">Attribute 2</row>
+<row label="r3">Attribute 3</row>
+<row label="r4">Attribute 4</row>
+<row label="r5">Attribute 5</row>
+<row label="r6">Attribute 6</row>
+</checkbox>
+Looped Variables
+<looprow label="Lr1">
+<loopvar name="brand">Brand A</loopvar>
+</looprow>
+<looprow label="Lr2">
+<loopvar name="brand">Brand B</loopvar>
+</looprow>
+<looprow label="Lr3">
+<loopvar name="brand">Brand C</loopvar>
+</looprow>
+<looprow label="Lr4">
+<loopvar name="brand">Brand D</loopvar>
+</looprow>
+1.3: Loops in the Report
+By default, looped questions will display as individual tables for each loop iteration. Essentially, each of these tables is considered a separate entity, so data collected within them cannot be directly compared.
+2: Programming the Grid Question(s)
+To get started, first program the new grid questions into your survey.
+The grid questions will store the combined data and can be programmed using either the Survey Editor or the XML Editor. Additionally, these questions can be programmed at any point during the data collection process. The timing will, however, dictate whether a hidden question or virtual question is required.
+2.1: Radio Questions
+For a single select / radio question, program a grid question with the loop variables in the rows and the answer choices in the columns. It’s important to ensure that the row labels in your grid match the labels used in the loop variables. This dramatically simplifies the Python code required to populate these questions.
+Using the example above, where the answer choices are brand ratings, your grid question would appear as follows:
+Survey Editor
+Survey XML
+<radio
+label="q1GRID">
+<title>How would you rate BRAND NAME?</title>
+<comment>Select one</comment>
+<row label="Lr1">Brand A</row>
+<row label="Lr2">Brand B</row>
+<row label="Lr3">Brand C</row>
+<row label="Lr4">Brand D</row>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+2.2: Checkbox Questions
+For a multi-select / checkbox question, program a grid question with the loop variables in the rows and the answer choices in the columns. It’s important to ensure that the row labels in your grid match the labels used in the loop variables.
+Using the example above, where the answer choices are brand attributes, your grid question would appear as follows:
+Survey Editor
+Survey XML
+<checkbox
+label="q2GRID">
+<title>Which of the following attributes describe BRAND NAME?</title>
+<comment>Select one</comment>
+<row label="Lr1">Brand A</row>
+<row label="Lr2">Brand B</row>
+<row label="Lr3">Brand C</row>
+<row label="Lr4">Brand D</row>
+<col label="c1">Attribute 1</col>
+<col label="c2">Attribute 2</col>
+<col label="c3">Attribute 3</col>
+<col label="c4">Attribute 4</col>
+<col label="c5">Attribute 5</col>
+<col label="c6">Attribute 6</col>
+</checkbox>
+2.3: Hidden Question Grid Tables
+2.3.1: Radio Questions
+For a hidden radio question, nest the following template code within the opening (<radio>) and closing (</radio>) tags of your question in the survey XML:
+<exec>
+for eachRow in q1GRID.rows:
+loopQ = allQuestions["q1_%s" % (eachRow.label)]
+if loopQ.val != None:
+eachRow.val = loopQ.val
+</exec>
+Modifying the Template Code
+Only the following portions of the code need to be updated:
+Change all iterations of q1GRID to the label of your hidden grid question.
+Change all iterations of q1 to the label of your original loop question.
+2.3.2: Checkbox Questions
+Nest the template code below within the opening (<checkbox>) and closing (</checkbox>) tags of your question in the survey XML:
+<exec>
+for eachRow in q2GRID.rows:
+loopQ = allQuestions["q2_%s" % (eachRow.label)]
+for eachCol in q2GRID.cols:
+if loopQ.attr(eachCol.label.replace('c','r')):
+q2GRID[eachRow][eachCol].val = 1
+</exec>
+Modifying the Template Code
+Only the following portions of the code need to be updated:
+Change all iterations of q2GRID to the label of your hidden grid question.
+Change all iterations of q2 to the label of your original loop question.
+2.4: Virtual Questions
+The setup for virtual questions is very similar to hidden questions. One major difference, however, is the timing of the code execution. Unlike hidden questions, virtual questions can be added anytime during the life of a survey, including after data collection has completed. This is because the code within virtual questions runs when reports load, rather than while participants are progressing through the survey. As such, virtual questions can be included to reorganize data before, during, or after fielding.
+One limitation of virtual questions, is that they are only accessible through the survey XML. After the virtual code is implemented, the question will no longer display in the question tree in the Survey Editor.
+Learn More: Adding Virtual Questions to the Report
+2.4.1: Radio Questions
+For virtual radio questions, nest the following template code within the opening (<radio>) and closing (</radio>) tags of your question in the survey XML:
+<virtual>
+for eachRow in q1GRID.rows:
+loopQ = allQuestions["q1_%s" % (eachRow.label)]
+if loopQ.val != None:
+eachRow.val = loopQ.val
+</virtual>
+Modifying the Template Code
+Only the following portions of the code need to be updated:
+Change all iterations of q1GRID to the label of your virtual grid question.
+Change all iterations of q1 to the label of your original loop question.
+2.4.2: Checkbox Questions
+For virtual checkbox questions, nest the following template code within the opening (<checkbox>) and closing (</checkbox>) tags of your question in the survey XML:
+<virtual>
+for eachRow in q2GRID.rows:
+loopQ = allQuestions["q2_%s" % (eachRow.label)]
+for eachCol in q2GRID.cols:
+if loopQ.attr(eachCol.label.replace('c','r')):
+q2GRID[eachRow][eachCol].val = 1
+​​​​​​​ </virtual>
+Modifying the Template Code
+Only the highlighted portions of the code need to be updated:
+Change all iterations of q2GRID to the label of your virtual grid question.
+Change all iterations of q2 to the label of your original loop question.
+3: Viewing the Results in Crosstabs
+Once the template code has been implemented and modified to fit your specific project, the reports will contain the combined data for your looped questions in grids. These grids add a layer of redundancy as the default tables will still be shown, though this can be resolved through the use of table sets.
+3.1: Viewing Radio Question Grid Tables
+As a result of the template code, the data from all individual q1_ tables will be combined into the programmed grid table. This allows for comparisons across each of the four loop iterations (Brands), including built-in statistical testing.
+3.2: Viewing Checkbox Question Tables
+Likewise, the checkbox question will display the frequency for each attribute within the four Brand loops. Additionally, the average number of attributes selected will be included in the table, along with stat testing.
+3.3: Hiding the Individual Tables
+The individual tables for each loop question are still displayed, despite the addition of the new grid questions. Since the new tables contain the same data, these old tables are no longer required.
+To hide these tables, enter the settings menu, create a new table set, and deselect the boxes for the corresponding tables:
+Learn More: Creating a Table Set

@@ -1,0 +1,20 @@
+Title: 148.1 Release Notes
+Release Date: September 14, 2021
+Release Version: 148.1
+New Features
+Survey
+Panel Management (previously Kinesis) Integration
+Added logging for API calls made between Decipher and Panel Management for all integrated Decipher projects.
+Bug Fixes
+Survey
+XML Editor
+Fixed an issue causing a duplicate label error when adding similar labels to questions within nested loops.
+Fixed an issue causing an error when applying some types of validation logic.
+Language Manager
+Fixed the Russian and Latvian language translations for the Language Selector element.
+Updated the Latvian text “Latviešu valoda” to read as “Latviešu”.
+Capitalized the first letter of the Russian word “pусский” (now appears as “Русский”).
+Participant View
+Fixed an issue preventing the text within some Spanish language translations from being displayed properly.
+Architecture/DevTools
+Changed the archival deletion report send cadence. The report is now sent out on a weekly basis (every Sunday).

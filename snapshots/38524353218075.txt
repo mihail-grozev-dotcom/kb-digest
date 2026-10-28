@@ -1,0 +1,30 @@
+Title: 153.56 Release Notes
+Release Date: July 1, 2025
+Release Version: 153.56
+New Features
+Survey
+Dynamic Questions
+The following improvements have been made to Media Testimonial:
+In Crosstabs, videos can be downloaded by report segment, or by those marked as Favorite.
+In Participant View, tapping a newly recorded video will play/pause that video.
+During participant recording, warnings icons are displayed when sound or light levels are too low.
+Learn More: Media Testimonial Element
+Video Testimonial (videocapture.3) is now closed. Existing Video Testimonial elements will continue working normally until September 30. Media Testimonial is available for capturing participant video and audio.
+Learn More: Media Testimonial Element
+Integration
+An issue preventing use of the Google Recaptcha element in Kinesis Panel registration surveys has been resolved.
+Bug Fixes
+Portal
+A rare issue affecting some users during SAML login has been resolved.
+Survey
+Survey Editor
+An issue preventing use of the DCM element when acl.txt was present has been resolved.
+An issue affecting changes to default image watermarking settings in Image Manager has been resolved.
+Programming and Tools
+An error that occurred when attempting to send a notification email from tabimport has been resolved.
+API
+Theget survey information API endpoint now returns the correct dateLaunched and createdOn values in GMT where it previously returned the timestamps in the server's local time but incorrectly labeled them as GMT.
+Architecture and DevTools
+An issue with DMARC errors on some additional system emails such as the new user email and the password reset email when the sender email was customized has been resolved.
+Temporary files created from the results of async API calls such as data downloads are now only retained on the server for 24 hours. For async API users, this means that if you get an ident from your aysnc API call, you have 24 hours to retrieve the results. This change was made to prevent excessive disk space usage due to the accumulation of such files.
+Learn More: Timeouts for Decipher Processes

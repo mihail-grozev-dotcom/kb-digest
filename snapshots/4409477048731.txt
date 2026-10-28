@@ -1,0 +1,74 @@
+Title: Participant Sources
+Note: This document includes details on how to add participant sources using the Participant Sources menu. You can also add participant sources using the Survey Editor. Learn how to add participant sources from the Survey Editor.
+The Participant Sources menu allows you to add and customize the participant sources for your Decipher survey. This document provides an overview of the Participant Sources menu and its various tools and features.
+1: Accessing the Menu
+To access the Participant Sources menu, select “Participant Sources” under “RESPONSES” in the navigation menu.
+Note: The Participant Sources menu is only available for surveys with at least one user-added participant source. If your survey contains only the default “Open Survey” participant source, you will instead be redirected to the participant source selection page, where you can click a tile to add a new source.
+2: Using the Menu
+The Participant Sources menu contains a list of links for all participant sources added to the survey, as well as a button you can use to add new sources. Sources are grouped by type so that all similar participant sources appear together on the page.
+2.1: Viewing Sources
+The following details and options are available for each link displayed in the sources list:
+1. Name: The name for the participant source. Names can be changed using the “Edit” option in the Actions menu.
+Note: If additional participant sources are added to a survey, only the "OPEN SURVEY" link appears in the Participant Sources menu.
+2. Responses: The total number of responses collected to date for the participant source.
+3. Details: Additional sample details that are specific to the participant source. Displays the following based on the type of participant source:
+Sample Provider
+Link: The customized survey link, which includes any required URL variables and security features.
+Copy: A button that can be used to copy the survey link to share with others.
+Purchased Sample
+Language: The survey language selected for the participant source during its purchase. Anyone entering the survey via this participant source will see the survey in the specified language. The language can be changed using the “Edit” option in the Actions menu.
+Targets: A summary of any applied targeting criteria.
+Note: When purchasing sample, if the language selected for a bid does not already exist in your survey, the associated participant source will instead be assigned the survey’s primary language. In order to use a new language, you must first add the desired language to the survey and then return here to update the participant source.
+Custom Source
+Link: The customized survey link, which includes any required URL variables and security features.
+Copy: A button that can be used to copy the survey link to share with others.
+CAPI Source
+URL: Quick links to access both the in-app survey and the “Offline” tab of the Response Summary report.
+Copy: A button that can be used to copy the survey link to share with others.
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+Note: If the survey supports multiple languages, the survey link for each language will be displayed under “Link”.
+4. Status: The current status of the participant source.
+Testing: The source has not yet collected any responses.
+Live: The source has been launched and is ready to begin collecting responses.
+Paused: Shown only for purchased sources. The source has been launched but cannot currently collect responses.
+Closed: The source has been closed and can no longer be used to collect responses.
+Note: Purchased sources will display their own status, independent of the survey state. For all other sources, the status matches the survey’s current state.
+5. Actions: Additional options for the participant source.
+Launch: Appears only for participant sources purchased via the Sample Marketplace. Click to launch the source.
+Important: To avoid additional charges from oversampling, we recommend adding quotas for all surveys with purchased sample. Learn more about using quotas to limit your survey completes.
+Note: Some vendors may not support launching sample for non-secure surveys. For best results, enable the Force Secure Links option in your survey's Project Settings Summary menu prior to launching any purchased sample.
+Pause: Appears only for participant sources purchased via the Sample Marketplace and only after the source has been launched. Click to pause fielding for the participant source.
+Resume: Appears only for participant sources purchased via the Sample Marketplace and only after the source has been paused. Click to resume fielding for the participant source.
+Edit: Click to edit the settings for the source survey link. See Adding Panel Sample to a Survey--2.1: Configuring Link Settings.
+Save as Custom Source: Appears only for Survey Link, Email Campaign, and Custom Samples participant sources. Click to save the survey link as a custom participant source that you can use in other surveys.
+Close: Click to close the source and block all participants from entering the survey via that source’s survey link.
+Delete: Click to delete the source and remove it from the survey. Only sources which have never collected data can be deleted. Once a source has collected any data (including partials and click-throughs), it can only be closed.
+Note: Once a participant source has been deleted, it is completely removed from the survey and cannot be restored.
+View Summary: Appears only for participant sources purchased via the Sample Marketplace. Click to view the specifications for the selected bid.
+View History: Appears only for participant sources purchased via the Sample Marketplace. Click to view the history for the selected bid. The history identifies the status of the bid (Pending, Live, Closed, Paused), the date of the change, who made the change and why the change was made.
+2.2: Adding New Sources
+Note: Once a new source is added, it cannot be removed using the Participant Sources menu until at least one other source is added.
+To add a new participant source, click the "+ Participant Source" button at the top of the menu and select from the following types:
+Purchase Sample: Redirects to the Sample Marketplace, where you can identify your sample needs, get competitive pricing from multiple vendors, and purchase participant sources.
+Note: Access to the Sample Marketplace requires that your account be up-to-date with all software releases and installs managed by Forsta. Accounts lacking the latest software or those which have an on-premise install will not have access to the Sample Marketplace.
+Survey Link: Creates a new survey link, allowing you to specify your survey’s exit page behavior and add custom URL variables. Learn how to create a custom survey link.
+Sample Provider: Displays a list of all providers offering sample for general use. Selecting one of these sources will add their default exit pages and links to your survey. Learn how to add panel sample to a survey.
+Email Campaign: Creates a new email campaign, allowing you to send a customized survey invite or reminder email to multiple participants. Learn how to add an email campaign to a survey.
+CAPI: Creates a new CAPI source, allowing you to specify your survey’s exit page behavior and add custom URL variables.
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution..
+Custom Samples: Displays a list of all previously saved custom participant sources. Learn how to add saved sources to a survey.
+CATI ProTS: Only available if CATI ProTS is enabled at the company level. Creates a new CATI source, allowing you to specify the settings and functionality for an offline version of your survey. Learn how to add CATI ProTS to a survey.
+3: Additional Considerations
+In order to edit the sources for a survey using the Participant Sources menu, the following conditions must be met:
+The project must be located within a selfserve directory.
+Users must have access to the Survey Editor.
+Users must have survey:edit access permissions.
+The survey must be in the selfserve directory and have the builderCompatible="1" attribute enabled. Additionally, the survey cannot use the unmacro="0" attribute when macros are present.
+3.1: Editing Sources for Live Surveys
+Once a survey has been launched, navigating to the Participant Sources menu will create a temporary (temp-edit-live) copy of the survey where the changes will be made. The survey must be re-launched in order for any changes made in the temporary version to be applied to the live survey.
+3.2: Limitations
+The following participant sources require settings too advanced to be added via the Participant Sources menu and must be added via the Survey Editor. Learn more about adding and editing participant sources using the Survey Editor.
+Panel Management
+Lucid
+Custom sample API
+Tip: While the sources above can be edited and deleted from the Participant Sources menu, we recommend editing them using the more advanced Participant Sources (Legacy) tools available in the Survey Editor.

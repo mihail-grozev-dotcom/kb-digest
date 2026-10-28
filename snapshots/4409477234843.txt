@@ -1,0 +1,15 @@
+Title: Creating a Recipient List
+A recipient list can be created in both Excel (.xls, .xlsx) and text (.csv, .txt) file formats. The list importer reads the first line in the file and creates list variables based on its content.
+1: File Requirements
+The list must contain the variable name "email" with valid email addresses for all recipients.
+In addition to the "email" variable, the list may include additional variables (e.g., name, list, language, etc.) separated by column (in .xls or .xlsx files), or by tab or comma (in .csv or .txt files), as appropriate.
+1.1: Additional Considerations
+Files must not include any hanging tabs or spaces (i.e., an extra space or tab at the end of a line).
+Recipient lists uploaded in Excel (.xls or .xlsx) format must contain only one data sheet / tab. If you would like to upload multiple recipient lists, these must be separated into individual files. Additionally, Excel files cannot include any blank columns. All columns must contain valid data within each cell.
+For best results, all files should be formatted using UTF-8 encoding.
+Variables should only use ASCII characters.
+2: Examples
+Below is an example of a recipient list in Excel (.xls or .xlsx) format, which contains the name, email, UID, language, and list variables for each recipient.
+Below is an example of a recipient list in tab-delimited (.txt) format, which contains the name, email, UID, and tag variables for each recipient.
+Below is an example of a recipient list in comma-separated (.csv or .txt) format, which contains the name, email, UID, and tag variables for each recipient.
+To learn how to upload a recipient list, see Uploading a Recipient List.

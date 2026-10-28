@@ -1,0 +1,30 @@
+Title: Adding Panel Sample to a Survey
+Important: To avoid additional charges from oversampling, we recommend adding quotas for all surveys with purchased sample. Learn more about using quotas to limit your survey completes.
+You can add panel sample to any Decipher survey. This document provides a step-by-step guide for adding panel sample and configuring the necessary field settings.
+1: Adding a New Participant Source
+To add panel sample to your survey, you must first add a new participant source. Navigate to the Participant Sources menu by selecting “Participant Sources” under “RESPONSES”. Then click the “+ Participant Source” button.
+Next, click the “Sample Provider” tile in the list of source types.
+2: Selecting a Panel Provider
+The Sample Provider page contains a list of buttons for the various panel providers available for Decipher surveys. Choose a provider by clicking the appropriate button.
+Upon selecting a provider, you will be redirected back to the Participant Sources menu, where the link for the new provider will appear at the bottom of the sources list.
+2.1: Configuring Link Settings
+While you can generally use panel links as-is, you have the option to change the link’s source name, exit page behavior, and URL variables.
+To make changes to the panel link, click the “…” button next to the source name and select “Edit”.
+2.1.1: Naming the Link
+By default, the Source Name will be the name of the panel provider. If desired, you can enter a new name to change how the source appears in survey reports and downloads.
+2.1.2: Secure Sample
+If your survey provider is set up to provide server-to-server (S2S) authentication at the company level, check the box to enable S2S.
+See Configuring Secure Samples to learn more about
+setting up secure server-to-server (S2S) sample authentication at the company level.
+2.1.4: Setting the Exit Pages
+Panel exit pages are generally predefined as separate pages which redirect to different web pages for qualified, terminated, and over quota participants. If desired, you can make changes to this behavior using the available options.
+Note: Because panel providers typically use custom exit pages matching their panel’s unique branding and community requirements, we recommend checking with your panel contact prior to making any changes.
+See Creating a Survey Link to learn more about customizing survey link exit pages.
+2.1.4: Adding URL Variables
+Panel links typically include some custom URL variables used to identify participants. If desired, you can make changes to these variables using the available options.
+Note: Because panel providers typically use custom URL variables to track participants for pricing requirements, we recommend checking with your panel contact prior to making any changes.
+See Creating a Survey Link to learn more about customizing survey URL variables.
+Once you are satisfied with your link settings, click “Save” to add it to your survey as a participant source.
+3: Saving Changes
+If you’ve made changes to your panel link and would like to use it in other surveys, you can save it as a custom participant source using the additional options menu in the Participant Sources page.
+See Participant Sources to learn more about the Participant Sources page.

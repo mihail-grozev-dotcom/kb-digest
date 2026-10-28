@@ -1,0 +1,31 @@
+Title: Managing Data Encryption
+For added server security, staff users have the ability to enable data encryption at the server level. This document details how to view and manage a server's encryption state.
+Note: This page only applies to server owners managing encryption for a Decipher server. Only "Staff" level users can enable encryption. This is not the same as "Supervisor".
+1: About Managing Data Encryption
+When server encryption is enabled, data (e.g. email lists, sample files, files uploaded to a project details page) is automatically encrypted when being stored. You can also specify to encrypt all open-end fields and partial data in a project. Additionally, you can encrypt/decrypt any individual file from the command line.
+To learn about encrypting open-end fields, see Attributes for Project Settings: encryptData.
+To learn about encrypting/decrypting from the command line, see Data Encryption: Encrypting & Decrypting from the Command Line.
+The decryption is transparent and automatic for users with the correct permissions. Every access to encrypted data is logged in the access-log.xlsx file which is accessible to staff or supervisor users.
+Encryption is set at the server level and requires the creation of a decryption key or passphrase. The passphrase resides only in the server's memory and consequently every time the server is rebooted, the passphrase must be re-entered. Without a passphrase, data can not be decrypted.
+For technical details on the encryption process, see Data Encryption.
+2: Viewing the Server Encryption State
+Staff users can view the status of their server encryption directly from the Portal.
+To view the status of your server encryption, click your email address in the top right corner of the Portal. Your "Server Encryption" state will be displayed as one of the following:
+Active: Server is encrypted, passpharase has been entered. No immediate user action is necessary. In an "Active" state, you can click the "Server Encryption" link to perform any of the following:
+Modify the list to send notification if the server reboots.
+Change the passphrase.
+Download the access log that reports when a new encryption key was requested, and when and for whom data was decrypted.
+Off: Encryption has not been enabled for the server. To enable server encryption, see Enabling Encryption below.
+Locked Out: Encrypted server has been rebooted and notification email has been sent to those specified. Click "Server Encryption", to enter the passphrase to unlock the server so that data can be decrypted. To unlock a server, see Unlocking the Server below.
+3: Enabling Encryption
+A server encryption state of "Off" means encryption has not been enabled. To enable server encryption, first click the "Server Encryption" link in the "User Links" menu.
+Then enter a 16 ASCII character (or more) passphrase or you can have the system generate one for you, if desired. The passphrase should be at least 16 characters. If it is easy to guess, a highly skilled hacker that steals all the data files on the server and carefully studies how we manage encryption may be able to "brute force" access to them.
+The passphrase strength displays a measure of how well the passphrase resists guessing or brute-force attack. Once you have decided on a passphrase, re-enter it in the second box and click "Enable Encryption".
+Note: ASCII characters normally represent text characters on a computer and do not include Japanese characters or emojis.
+The server is now encrypted and the state is set to "Active". Your email is automatically added to the notification list in case the server reboots.
+If you forget the passphrase, please reach out to Decipher support and ask them to "escrow" the key.
+4: Unlocking the Server
+When a server reboots, the passphrase stored in memory is erased and must be re-entered for data decryption to occur. Staff or supervisor users on the Email Notification list are sent an email about re-entering a passphrase.
+Note: When servers are locked, the "Server Encryption" link in the "User Links" menu will display a "Locked Out" state.
+To unlock the server, first click the "Server Encryption" link in the "User Links" menu. Then enter the established passphrase and click "Submit".
+Learn more: Data Encryption

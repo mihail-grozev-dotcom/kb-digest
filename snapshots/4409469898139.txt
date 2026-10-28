@@ -1,0 +1,38 @@
+Title: How to Create a Dynamic Question (DQ)
+Requires Decipher Cloud
+This is a reference guide for creating a Dynamic Question (DQ) using the “style library”. The library was created to allow for a complex question style to be centrally defined and then easily accessed in any survey. It stores all DQ's that have been or will be developed for use in a Decipher survey.
+A good understanding of the XML style system is required for creating and using DQ's from the style library. To learn more about the XML style system, or for a quick refresher, see XML Style System.
+1: What Files Make Up a DQ?
+In order to create or edit a DQ, you will first need to understand what files are needed to use or create one. There are a few required files for each DQ created within Decipher - if you are creating a new DQ, you will need to create the following files for it within the style library.
+1.1: meta.xml
+The meta.xml file contains the rules for your DQ, such as setup restrictions, Builder menu support, question types, templates, compat levels, and required question attributes.
+1.2: styles.xml
+The styles.xml file is an XML file that is very similar to your survey.xml file, but it can only house style definitions for the DQ, containing <style>, <stylevar> and <include> tags. When a DQ style is applied to a question, this file overrides the existing XML style for it and these tags are effectively inserted as if they were specified within the question or globally.
+1.3: Static Folder
+The static folder stores any external static files that are necessary for and private to the DQ style (e.g., CSS or JavaScript files).
+1.4: res.xml
+The res.xml file contains custom language resource overrides for the DQ will be stored in here (e.g., what system error messages will be changed).
+1.5: code.py
+Some DQ's may also contain a code.py file. The code.py file allows for the application of some onLoad functions whenever the DQ is used, and is limited to Forsta-created system DQ's.
+1.6: Examples
+Click here to download example files for a blank DQ.
+2: Where to Put DQ Files or Find Existing DQ's
+Note: Once added to a shared folder, DQ's can be loaded across all projects with access to that folder. To ensure proper functionality of all building tools and features, we recommend testing your DQ for errors within a sandbox company before moving it to lib/local or your company's selfserve folder.
+You can search for and store new or updated DQ styles in the following locations:
+lib/local/dqname/v1: Global DQ's -- These are DQ's that will apply to all companies on a server
+selfserve/hashcode/lib/dqname/v1: Company/folder-specific DQ's -- These are DQ's that will apply to a single company on a server
+lib/steam/xxxx: Forsta-created standard DQ's -- This is a version-controlled location where all standard Forsta-created DQ's are stored. These will apply server wide and can only be added to or modified by Forsta staff.
+3: Additional Considerations
+3.1: Versioning
+Any time edits are made to a live version of a DQ, those edits should be created within a new version. This is because multiple surveys can be utilizing any DQ at any time, and updates will need to be applied manually to each instance. By creating a new version, you will not overwrite code potentially in use by another live survey.
+3.2: Adding Demos
+It is recommended to put an active survey.xml file in the same directory which can be used to demonstrate the style. A demo should use all options the style provides, and a showSource="1" flag on each question should display the source for that question immediately before it appears.
+4: Calling a DQ in Your Survey
+Once you’ve created or updated a DQ, you will likely want to use it in a survey. To call a DQ style in a survey.xml file, you will need to know either its XML reference, which is a combination of its XML style name and LIVE version number. See Dynamic Question Versioning to view the XML references for all of Decipher's current DQ's.
+Once you know the XML reference for your DQ, you can call it in the survey.xml file using the below uses attribute, where the “xxxx” is the XML style name for the DQ and “yy” is the LIVE version number:
+<radio uses="xxxx.yy">
+For example, if you wanted to call a “Star Rating” DQ, you would use the following command:
+<radio uses="starrating.6">
+The first location with a DQ’s XML Style Name will be used. Then, a subdirectory will be searched, based on the version number specified. If there is no matching version directory, the system will error out (it will not try to find the version in any other location).
+You can also call multiple non-conflicting DQ's by separating their XML references with a comma. For example, if you wanted to call both a “Form Image Replacement” (fir) and a “This or That” (leftright) DQ, you would use the following command:
+<radio uses="fir.2, leftright.1">

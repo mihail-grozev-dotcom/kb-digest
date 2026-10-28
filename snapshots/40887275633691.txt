@@ -1,0 +1,12 @@
+Title: 154.4 Release Notes
+Release Date: September 9, 2025
+Release Version: 154.04
+Bug Fixes
+Portal
+Redundant tooltip text has been removed from the "Copy to Clipboard" button in the survey testing modal.
+Survey
+Survey Editor
+An issue causing extraneous <p></p> paragraph tags to be added to survey element titles has been resolved.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+A rare issue preventing some participants from completing a survey after returning to it post-redirect has been resolved.

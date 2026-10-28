@@ -1,0 +1,10 @@
+Title: Quick Switch App
+Our recently updated Quick Switch app now allows seamless integration with other products on the Research HX platform, including Decipher and Forsta Visualizations.
+1: Seamless One-Click Login from Decipher to Forsta Visualizations
+Users with access to both Decipher and Forsta Visualizations can effortlessly switch between the two products using the Quick Switch app. Simply click the Forsta icon and select Forsta Visualizations to transition between platforms.
+If you have access to multiple Decipher environments, select the “>” button, and a list of available environments will appear for you to choose from.
+Note: If the quick switch app is not visible in the portal, it has likely been removed due to client white labeling. However, you can still seamlessly access Forsta Visualizations through a specific project.
+If you're working on a specific project and want to switch, go to the Report menu, select Forsta Visualizations, and you'll be directed to Forsta Visualizations.
+If you're in Forsta Visualizations and want to switch back to Decipher, select the hamburger menu icon in the upper left corner and select Decipher. From there, you'll see a list of server environments you have access to, allowing you to choose and switch back to Decipher.
+Tip: You need to have access to both platforms to access the quick link(s).
+Note: If you are a new user on either platform but already have access to the other, it may take one to two days for your credentials to synchronize.

@@ -1,0 +1,94 @@
+Title: Virtual Incentives Integration
+This document details the process for integrating Virtual Incentives to a survey using the Logic Library.
+1: Overview
+With the Virtual Incentives Rest API integration, we have the ability to offer incentives to participants in real time. Incentive amount and type can be adjusted midfield via the API. This can be done using either the "Virtual Incentives Integration" element in the Survey Editor or the "incentive" logic node in the survey XML.
+The ProgramID (project number) and SKU (type of incentive) will be required for each project. Contact the Support team or your Account Manager for these details.
+Note: If you are adding multiple Virtual Incentives integrations within a single study, you will need to add each integration within its own block elements.
+2: Using the Survey Editor
+To add the Virtual Incentives Integration using the Survey Editor, click "+ Add Survey Element" under the staging area:
+In the Element Library, click "Custom" and select the "Virtual Incentives Integration" element from the list. Then click "Insert":
+The new element will appear in the staging area, where you can specify the settings for your integration:
+The following options are configurable:
+User ID: The account user ID as provided by Virtual Incentives.
+Token: The account token as provided by Virtual Incentives. To encrypt your account token, click "Encrypt Field".
+Project Number: The unique project number as assigned by Virtual Incentives.
+Client ID: The unique identifier for the validation.
+Amount: The virtual prepaid denomination (without the currency symbol).
+SKU: The SKU number of the incentive (e.g., Amazon.com gift card or Visa gift code).
+Error: The message to display to each participant if their validation is not successful.
+RECIPIENT:
+Email: The recipient's email address as they complete the survey (e.g., if email is provided in q1, ${q1.val}).
+First Name: The recipient's first name. This is displayed in the email and Virtual Reward Center salutation.
+Last Name: The recipient's last name.
+OPTIONAL:
+Address: The recipient's physical address, line 1.
+Address Line 2: The recipient's physical address, line 2.
+City: The recipient's resident city.
+State: The recipient's resident state.
+ZIP: The recipient's resident zipcode.
+Country: The recipient's resident country (enter as a two-character abbreviation).
+3: Using the XML
+The incentive logic node allows for real-time ordering of prepaid gift cards through the Virtual Incentives Rest API. To use the Virtual Incentives logic node, add the following <logic> tag to your survey XML:
+Note: Usage of the incentive logic node requires an account with virtual incentives and configuring the IP address from where the request will originate.
+<logic label="incentive"
+uses="incentive.1"
+incentive:userid="userid"
+incentive:token="token"
+incentive:programid="programid"
+incentive:clientid="${source}"
+incentive:sku="sku"
+incentive:amount="5.00" />
+<html label="giftcard_ok" cond="incentive.status == 200">
+Here is your giftcard link ${incentive.r["order"]["accounts"][0]["link"]} </html>
+3.1: Parameters
+3.1.1: Required Attributes
+The following attributes are required when using the incentive logic node:
+incentive:userid
+This is your Virtual Incentives account user ID.
+incentive:token
+This is your Virtual Incentives account token.
+Note: It is highly recommended that you encrypt the token value, making it usable only within a company or survey. To encrypt your virtual incentive token, visit the following link, replacing <your-server> with your server domain, and <survey> with your survey path: https://your-server/apps/logic/survey:debug. Then, instead of adding the raw token value simply replace it with the encrypted value: incentive:token=”<encrypted value>”.
+incentive:programid
+A unique project number Virtual Incentives will assign to your project.
+incentive:clientid
+Client provided unique identifier for order, often a source variable is piped in here.
+incentive:sku
+Virtual Incentive assigns each type of incentive (e.g., Amazon.com gift code, Visa gift code, Target gift code…) with a SKU number. This identifies the type of incentive being fulfilled.
+incentive:amount
+Virtual prepaid denomination requested. This should not contain a currency symbol.
+incentive:firstname
+Incentive recipient first name.
+Note: This field is displayed in the email and VRC salutation If this value is not specified it defaults to “Reward”.
+incentive:lastname
+Incentive recipient last name. If not specified it defaults to “Participant”.
+incentive:email
+Incentive recipient email address. If this value is not specified, it defaults to “support@virtualrewardcenter.com”.
+3.1.2: Optional Attributes
+The following attributes are optional, and will be used in the request payload:
+incentive:address1
+Incentive recipient address line 1
+incentive:address2
+Incentive recipient address line 2
+incentive:city
+Incentive recipient city
+incentive:state
+Incentive recipient state (2 character abbreviation)
+incentive:zip
+Incentive recipient zip
+incentive:country
+Incentive recipient country (2 character abbreviation)
+incentive:udf1
+User Defined Field to associate with incentive recipient
+incentive:udf2
+User Defined Field to associate with incentive recipient
+To view a full log of each incentive request status/response per uuid, visit the following link, replacing <your-server> with your server domain, <survey> with your survey path and <xxxx> with the label for your incentive logic node:
+https://your-server/apps/logic/survey:debug?label=xxxx
+3.2: Piping Variables
+You can pipe in values using the ${variable} syntax or the [variable] syntax for any incentive field. For example:
+incentive:lastname="${lname}")
+incentive:lastname="[lname]")
+You can check that the correct value was piped in using the following link, where <your-server> is your server name, and <survey> is your survey path:
+https://your-server/apps/logic/survey:debug
+3.3: Customizing Error Messages
+If an error occurs the participant is not allowed to continue in the survey and is shown the default error message, "Something went wrong with getting your gift card. Please contact support." The error message can be customized using incentive:error, with the alternate message included in quotes:
+incentive:error="custom error message"

@@ -1,0 +1,28 @@
+Title: Purchasing Survey Sample
+Important: To avoid additional charges from oversampling, we recommend adding quotas for all surveys with purchased sample. Learn more about using quotas to limit your survey completes.
+Note: Sample can only be purchased in an unpublished or live survey. The sample marketplace is unavailable in temp-edit-live surveys.
+You can use the Sample Marketplace to bid out and purchase sample for any Decipher survey. This document provides a step-by-step guide for bidding and purchasing sample using the Sample Marketplace.
+1: Adding a New Participant Source
+To create a sample bid, first navigate to the Participant Sources menu by selecting “PARTICIPANT SOURCES” under “RESPONSES” in the navigation menu at the top of any project page. Then click “+ Participant Source” and select “Purchase Sample” from the list of possible participant sources.
+1.1: Entering Your Sample Criteria
+Next, specify your survey’s sample needs using the input fields on the left side of the Sample Criteria page. At minimum, you must enter the total number of participants and days needed to field, as well as the survey length, qualifying rate, and field locale. You must also indicate whether the survey contains personally identifying information.
+You also have the option to set additional targeting criteria based on preset demographics.
+1.1.1: Defining Additional Targets
+You can define additional targeting parameters for your participant profile using a set of preconfigured demographics. To add new targeting criteria, click “Add Target” and search or scroll to select a demographic from the drop-down.
+Tip: Hover over each item in the drop-down for a preview of its configurable criteria.
+When you add a target question, all answer options are included by default. If you would like to remove an answer option, deselect that option from the list.
+Note: Only participants with answers matching the selected criteria will be included in your sample.
+Note: Age targets must fall within the 18-99 range.
+1.1.2: Setting Sample Target Quotas
+You can also set quotas/limits for each of your survey’s targeted demographics. After adding a target question, click into the text box next to any answer option to specify a limit for that segment.
+Note: Quotas/limits set here serve as a guide for vendor targeting and are not directly linked to those programmed within the survey.
+Alternatively, you can click “Even Distribution” to automatically add limits to all segments so that sample is distributed across them evenly.
+Note: Sample quotas/limits are not required. If none are set, sample will naturally fall out across the applied answer options.
+Once you are satisfied with your selections, verify that the details in the “SUMMARY” area are correct and click “Get Prices” to view the Purchase Sample page to view and select quotes from eligible vendors.
+1.1.3: Viewing Localized Questions
+If you have selected a locale that includes language translations, you can click the “Translate” button to toggle between a localized version of any target question and its original text.
+2: Purchasing the Sample
+The Purchase Sample page contains a summary of your participant profile, along with estimates from all vendors with sample matching the criteria you have set. Pricing estimates include the vendor name, the cost per complete, and the total cost for fielding using their sample.
+Scroll through the list to review the estimates from each vendor and click “Select” to choose the participant source you’d like to add to your survey. If you need to make a change to your participant profile, click “Edit Sample Criteria” to return to the Sample Criteria page.
+Note: If desired, you can add sample from more than one vendor to your survey. You can also add multiple bids from the same vendor.
+Selected participant sources are automatically added to the Participant Sources menu, where you can review their bid details and manage fielding for your survey.

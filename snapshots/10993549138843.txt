@@ -1,0 +1,46 @@
+Title: 151.7 Release Notes
+Release Date: December 6, 2022
+Release Version: 151.7
+New Features
+Portal
+Optimized retention data retrieval when running Portal searches so that it takes less time to retrieve results.
+Users with many assigned permissions (e.g. due to having created thousands of projects) should be able to access the Portal and all other applications slightly faster.
+Survey
+Streamline Launch is a new option which can be enabled on a per-server, per-company, or per-survey basis. It includes options to bypass two checks, which shortens the launch process.
+Learn More: Launching a Survey
+Survey Testing Tools
+Updated integration with Twilio to continue to support sending a survey test link to any US or Canadian phone number via SMS.
+Responses
+View and Edit Responses
+Improved data fetching when very large responses are returned.
+Campaign Manager
+When a server is configured to only use SendGrid, the "from" email address validation in Campaign Manager now verifies that the email address is at a valid SendGrid domain.
+Response Summary
+The Response Summary Drop-Outs tab now shows the question label in the Question column.
+Programming and Tools
+Requests such as reports that run slow virtual updates, or other users' SST tasks can now be easily cancelled through the status API call.
+Architecture and DevTools
+The legacy panel system (accessible as /pm/panelName in URLs or within panel surveys using Panel.noteCompletions , gv.getsp(), or Panel.getUserData) has been removed. Styles that reference the function or URLs associated with them will no longer work. Associated scripts, such as clear-members and pm-import, have also been removed.
+Bug Fixes
+Portal
+Projects can no longer be set to live via the API, UI, or "live" command line utility while test data is running for a project.
+Surveys with headers export to PDF correctly instead of exporting a blank page.
+Survey
+Fixed a bug in the SST2 script to prevent errors for non-Delphi surveys.
+Dynamic Questions
+The virtual question in de_maxdiff now includes information about all task configuration, including the most recent configuration.
+Survey Editor
+Fixed an error where the Project Settings were unavailable if a firstyle with 'crispedges' was applied to the project.
+Responses
+Campaign Manager
+Campaign Manager is now accessible to surveys located outside of the 'selfserve' directory.
+View and Edit Responses
+Fixed a bug where "0"s were being output as blanks when exporting data from View/Edit Responses.
+Reporting
+Crosstabs
+Fixed a region error for Video Testimonial v2 when "Download All" link was used.
+Saved crosstabs reports no longer support bulk download options for Video Testimonial questions. Bulk download is still available in the full Crosstabs report.
+Data Downloads
+Stacked data now downloads correctly when a define is inserted within a looped question.
+Exports
+Exporting a survey as HTML/Text/PDF when certain invalid HTML configurations are encountered no longer results in a failed/truncated report.

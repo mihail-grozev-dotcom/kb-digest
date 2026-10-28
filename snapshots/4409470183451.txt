@@ -1,0 +1,10 @@
+Title: Shorten Survey URL Link
+You can shorten survey URL links to make them easier to share. For example, a link to the survey https://v2.decipherinc.com/survey/selfserve/abc/123456 can be shortened to https://v2.decipherinc.com/b/abc/123456.
+This is helpful:
+When you want to recruit participants quickly by providing an easier survey link.
+With clients that don’t have an email address and use their phone to take a survey.
+For easy sharing the survey URL in seminars.
+For reducing the amount of typing required if the client is copying the URL from a print material.
+How to Shorten a Link?
+Copy the survey URL from your web browser's address bar and replace "survey/selfserve" with "b". The shorten URL immediately redirects to "/survey/selfserve". This redirect does retain the "Referer" header.
+Note: CNAME aliases works with shorten survey URL link.

@@ -1,0 +1,27 @@
+Title: Adding Questions From the Library
+It is possible to add previously saved questions or elements to a survey from the element library. Saved elements will include all pre-specified response options and report table settings.
+See Table Settings in the Question Library for more information on what report table settings are included for elements saved in the library.
+1: Adding the Question or Element
+First, select where you want the element to appear in the tree and click "+ Element" at the bottom of the question tree in the Survey Editor. Then click "Library" to open the element library. Select the desired element(s) and click "Add to Survey."
+The element library provides many ways to search and access elements and options for adding them to your survey. See About the Libraries for a complete description of the features available in the element library.
+Click an element to view its details (question type, label, text and answer options) in the scrollable window to the right.
+1.1: Locked Elements
+You can not edit locked elements or templates that you insert into the survey. When you add one that is locked, a semi-transparent overlay displays on locked elements in a survey as a reminder of this.
+To unlock elements in the survey editor, click "Unlock Element". After you unlock elements, you can make changes to it such as modifying answer options, etc. Afterwards, you can save the modified element to the library as a new element. Any changes you make do not affect the original locked element.
+See Saving to the Element Library for more information about locked elements.
+1.2: Standard Industry Questions
+Note: These question options are only accessible for new companies that don't already have an existing question library.
+The standard industry questions are commonly demographic questions, including:
+Age (Single Select)
+Age (Number)
+Education (Single Select)
+Employment (Single Select)
+Ethnicity (Multi-Select)
+Ethnicity (Single Select)
+Gender (Single Select)
+Income (Single Select)
+Marital Status (Single Select)
+Click a question to view the question type, label, text and answer options.
+1.3: Questions from Another Survey
+It is also possible for you to import questions from another Decipher survey using the Library.
+To use questions from another survey, first click into the "Source" drop-down under the "Library Settings" menu and select the survey name from the list. Then, select the question or element you would like to import from that survey and click "Add to Survey".

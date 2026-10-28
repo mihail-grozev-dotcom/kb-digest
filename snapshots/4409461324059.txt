@@ -1,0 +1,265 @@
+Title: Customizing the Slider Decimal Element
+The slider decimal style enables participants to provide a float value for questions by sliding a handle.
+1: Underlying Question Architecture
+This dynamic style sits on top of a <float> question. See below for the base XML code required for this style:
+1.1: Base XML
+<float label="Q1" size="4" optional="0">
+<title>
+To the nearest penny, please estimate how much you've spent on DLC in the past week...
+</title>
+<comment>Please slide to answer</comment>
+</float>
+2: Converting to Slider Decimal Element
+To add the slider decimal element to the question above, simply add the following highlighted portion to the <float> tag:
+<float label="Q1" size="4" optional="0" uses="sliderdecimal.4" range="0,100">
+When using the slider decimal style, you must also include the range attribute with a minimum and maximum value. In the above example, we have set the minimum to 0 and the maximum to 100. If a range is not provided, an error will be thrown.
+This change transforms the simple input box into an interactive slider, like the one seen in the screenshot above.
+3: Customization
+There are tons of options available for this dynamic style that can be altered to create the interactive experience you're looking for. Review these options in the section below and see examples of how they can be applied to your project in the following section.
+sliderdecimal:step
+As you move the slider, this is how much the value will increment
+Type: Decimal
+Default: 0.1
+Example:sliderdecimal:step="0.5" increments the value by 0.5 as you move the slider
+sliderdecimal:decimalPlaces
+The number of decimal places to show in the value box
+Type: Integer
+Default: 2
+Example:sliderdecimal:decimalPlaces="3" shows the value all the way to the thousandths decimal place
+sliderdecimal:sliderWidth
+Specify the width of the slider
+Type: Percentage
+Default: 75%
+Example:sliderdecimal:sliderWidth="25%" will shorten the slider's width
+sliderdecimal:sliderPosition
+The initial position of the slider
+Type: String
+Default: "Left End"
+Accepts: "Left End", "Middle", "Right End"
+Example:sliderdecimal:sliderPosition="Middle" initializes the slider in the middle of the scale
+sliderdecimal:showValue
+The position of the value box
+Type: String
+Default: "Above Slider"
+Accepts: "Above Slider", "Below Slider", "On Handle", "Do Not Show Value"
+Example:sliderdecimal:showValue="On Handle" displays the value on the slider handle itself
+sliderdecimal:legendPosition
+The position of the legend text
+Type: String
+Default: "Above Slider"
+Accepts: "Above Slider", "Below Slider"
+Example:sliderdecimal:legendPosition="Below Slider" displays the legend (if provided) below the slider
+sliderdecimal:leftLegend
+Text to display in the left-most legend
+Type: String
+Example:sliderdecimal:leftLegend="Not likely at all" displays this text on the left-most side of the scale
+sliderdecimal:midLegend
+Text to display in the middle legend
+Type: String
+Example:sliderdecimal:midLegend="Neutral" displays this text near the middle of the scale
+sliderdecimal:rightLegend
+Text to display in the right-most legend
+Type: String
+Example:sliderdecimal:rightLegend="Extremely likely" displays this text on the right-most side of the scale
+sliderdecimal:preText
+Text to display on the left side of the value box
+Type: String
+Example:sliderdecimal:preText="$" displays a dollar sign to the left of the value box
+sliderdecimal:postText
+Text to display on the right side of the value box
+Type: String
+Example:sliderdecimal:postText="minutes" displays "minutes" to the right of the value box
+sliderdecimal:editable
+Allows a participant to edit the value box with their keyboard
+Type: Bool
+Default: 1; (1 = Editable, 0 = Not Editable)
+Example:sliderdecimal:editable="0" disables the editing feature on the value box by showing only the value and no input box
+sliderdecimal:showRange
+Shows a colored range on the scale similar to a progress bar
+Type: Bool
+Default: 1; (1 = Show Range, 0 = Hide Range)
+Example:sliderdecimal:showRange="0" hides the colored range
+sliderdecimal:OO_Text
+Specify the text for the Opt Out option
+Requires the raw option ignoreValues="99" attribute in the <float> tag to store the value of this punch
+Type: String
+Example:sliderdecimal:OO_Text="Have not heard of this" will display this text inside an exclusive button that a participant can click to opt out of providing an answer
+sliderdecimal:offScaleAdjustment
+Specify the off scale starting position to accommodate custom images or larger handles
+Type: String
+Default: -30px
+Example:offScaleAdjustment="-100px" initializes the slider 100px to the left of the scale
+sliderdecimal:offScaleText
+Text to display in the slider when it's off scale (has not been slid)
+Type: String
+Default: <i class="fa-icon-arrow-right"></i>
+Example:sliderdecimal:offScaleText="!" displays an exclamation mark when the slider is still off scale
+sliderdecimal:sliderdecimal_desktop_margin_css
+Adjust the desktop margins of the slider to accommodate other slider handles
+Type: CSS
+Example:sliderdecimal:sliderdecimal_desktop_margin_css="margin-bottom: 200px;" adds a significant gap below each slider
+sliderdecimal:sliderdecimal_mobile_margin_css
+Adjust the mobile margins of the slider to accommodate other slider handles
+Type: CSS
+Example:sliderdecimal:sliderdecimal_mobile_margin_css="margin-top: 200px;" adds a significant gap above each slider
+sliderdecimal:input_css
+Configure the CSS style of the input box or value placeholder
+Type: CSS
+Example:sliderdecimal:input_css="padding: 5px; font-size: 32px; border: 1px solid black;" wraps the value box with a thin black border and displays the value in a very large font size
+sliderdecimal:input_active_css
+Configure the CSS style of the input box, preText and postText when the slider is active
+Type: CSS
+Example:sliderdecimal:input_active_css="color: red;" will show the preText and postText in a red font when the slider is active
+sliderdecimal:handle_css
+Configure the CSS style for the slider handle
+Type: CSS
+Example:sliderdecimal:handle_css="padding: 5px; background: blue;" displays a larger handle with a blue background
+sliderdecimal:handle_offscale_css
+Configure the CSS style for the slider handle in its initial position
+Type: CSS
+Example:sliderdecimal:handle_offscale_css="background: green;" displays the handle with a green background before it has been slid or moved
+sliderdecimal:handle_focus_css
+Configure the CSS style for the slider handle when it has focus
+Type: CSS
+Example:sliderdecimal:handle_focus_css="background: orange;" displays an orange handle when it has the user's focus
+sliderdecimal:handle_hover_css
+Configure the CSS style for the slider handle when it's hovered over
+Type: CSS
+Example:sliderdecimal:handle_hover_css="border: 1px solid black;" shows a thin black border around the handle when the mouse is hovering over
+sliderdecimal:handle_active_css
+Configure the CSS style for the handle when the value is being updated
+Type: CSS
+Example:sliderdecimal:handle_active_css="background: yellow;" adds a yellow background to the slider when the value is changing
+sliderdecimal:track_css
+Configure the CSS style for the slider track
+Type: CSS
+Example:sliderdecimal:track_css="background: black; border: 5px dotted green;" sets the background color to black and adds a dotted green border around the slider track
+sliderdecimal:track_hover_css
+Configure the CSS style for the slider track when it or the handle is hovered over
+Type: CSS
+Example:sliderdecimal:track_hover_css="background: yellow;" sets the slider track background color to yellow when it (or the handle) is hovered over
+sliderdecimal:track_active_css
+Configure the CSS style for the slider track when it has focus or the value is changing
+Type: CSS
+Example:sliderdecimal:track_active_css="opacity: 0.5; filter:alpha(opacity=50);" reduces the transparency of the track when the value is being updated
+sliderdecimal:track_range_css
+Configure the CSS style for the slider track range
+Type: CSS
+Example:sliderdecimal:track_range_css="background: indigo;" changes the range background color to indigo (purple)
+4: Customization Examples
+4.1: Example 1
+In this example, the look and feel of the slider decimal style is customized to accommodate a question regarding the length of modern smartphone devices. The end result looks as if the participant is using a physical school ruler to measure the phone's length.
+See below for a screenshot of the final result along with the required XML code to complete this style.
+4.1.1: Example 1 XML Code
+<float label="Q1" optional="0" size="3" uses="sliderdecimal.4" range="0,10"
+sliderdecimal:track_css="border-radius: 0px;
+background: url([rel ruler_bg.png]) 50% 50% repeat-x;"
+sliderdecimal:track_range_css="background: black; opacity: 0.5;
+transparency: opacity(alpha=50);"
+sliderdecimal:preText="This smartphone is "
+sliderdecimal:postText=" inches long"
+sliderdecimal:rightLegend='10"'
+sliderdecimal:leftLegend='0"'
+sliderdecimal:handle_css="min-width: 20px; width: 20px;
+border-radius: 0px; background: black;
+border-color: black;"
+sliderdecimal:input_css="background: none; border: 1px solid black;
+color: black;"
+sliderdecimal:track_active_css="border: 1px solid black;"
+sliderdecimal:track_hover_css="border: 1px solid black;"
+sliderdecimal:input_active_css="color: black;"> <title> Please estimate the length of each smartphone...
+</title>
+<comment>Please slide to answer</comment>
+<row label="r1">iPhone 4</row>
+<row label="r2">Nexus 5</row>
+</float>
+4.1.2: Example 1 XML Code Breakdown
+This example uses a number of the available options to change the look and feel of the slider. Below is a description for each of those changes:
+sliderdecimal:track_css
+Instead of a color, we changed the track to look like a ruler using an image. The background property allows us to use any image desired. For this example, we used the following:
+Since rulers normally have squared edges and not circular, we set the border-radius property to 0px.
+sliderdecimal:track_range_css
+Instead of a solid color, we used a transparent black color to indicate the range of value that is currently selected on the track. In the screenshot, you can still see the ruler image behind the transparent black.
+sliderdecimal:preText, sliderdecimal:postText
+These two attributes add the text to the left and right of the input box. In this example, we reinforce the purpose of the question by making them feel as though they should fill in the blank. "This smartphone is BLANK inches long"
+sliderdecimal:leftLegend, sliderdecimal:rightLegend
+These two attributes add the legends beneath the track. The purpose is to reinforce the idea of a ruler by adding metrics to both sides, starting with 0" and ending at 10".
+sliderdecimal:handle_css
+To supplement the idea of a ruler, the handle was transformed into a thin, black, column-like slider that a participant can relate to when adjusting the length. Caution: The thinner the handle, the more difficult it may be for participants to find and slide.
+sliderdecimal:input_css
+This attribute simply provides a blank space for participants to input or adjust the length. The colors are updated to match the ruler theme.
+sliderdecimal:track_hover_css, sliderdecimal:track_active_css
+These two attributes simply strip away the default orange colors so that they better match the ruler themed question.
+sliderdecimal:input_active_css
+By default, the preText and postText font color will be orange when the slider is active. In this example, this attribute overrides the color to black.
+4.2: Example 2
+This example demonstrates the ability to modify the look and feel of the slider handle. See below for details and... hang ten!
+4.2.1: Example 2 XML Code
+<float label="Q2" optional="0" size="3" uses="sliderdecimal.4" range="0,20"
+sliderdecimal:step="0.01"
+sliderdecimal:handle_offscale_css="background: none;
+border-radius: 0px;
+width: 50px; height: 75px;
+top: -30px; border: none; box-shadow: none;
+background-image: url([rel surfer_notactive.png]);"
+sliderdecimal:offScaleText=""
+sliderdecimal:handle_css="background: none; border-radius: 0px;
+width: 50px; height: 75px; top: -30px;
+border: none; box-shadow: none;
+background-image: url([rel surfer_active.png]);"
+sliderdecimal:track_css="border: 1px solid black;"
+sliderdecimal:input_css="border: none; background: none;
+background-image: url([rel input_wave.png]);
+width: 61px; height: 26px; color: black;
+font-size: 24px; box-shadow: none;
+text-shadow: white 0.1em 0.1em 0.2em;"
+sliderdecimal:postText=" ft.">
+<title>
+Dude, how tall were those waves you were surfing?
+</title>
+<comment>Shred the gnar and touch the surfer to rad it up!</comment>
+<row label="r1">...in California</row>
+<row label="r2">...in Hawaii</row>
+</float>
+4.2.2: Example 2 XML Code Breakdown
+With a few simple adjustments, the look and feel of this style can turned into something fun and exciting. See below for details:
+sliderdecimal:step
+This example asks the participant to identify how large the waves were in feet. Since we set this step attribute to 0.01, the participant can answer with a value that is rounded to the nearest hundredth feet.
+sliderdecimal:handle_offscale_css
+This modification replaces the default circular handle with a more appropriate image of a surfer. When the handle is in the initial, unanswered state, participants see an image of a surfer holding his board, idle and not yet out there in the ocean.
+sliderdecimale:offScaleText
+This attribute removes the default right arrow icon by replacing it with an empty string.
+sliderdecimal:handle_css
+When the handle has been moved or the value has been updated, the surfer should no longer look idle. The code here updates the handle image to a surfer in action.
+sliderdecimal:track_css
+This attribute overrides the default border color from orange to black.
+sliderdecimal:input_css
+We could have left this alone, but why not go the extra mile? The modifications made here transform the typical rectangular input box into something better suited for our beach theme.
+sliderdecimal:postText
+Since we're interested in how large the waves were measured in feet, we reinforce the idea here by adding "ft." after the input box.
+sliderdecimal:input_active_css
+When the slider is active, the "ft." postText is and input text is colored black instead of the default orange.
+5: Customizing the Error Messages
+If you want to customize specific error messages for the slider decimal element, you can do so by using <res> tags.
+Example:
+XML:
+<float
+label="q7"
+ignoreValues="999"
+optional="0"
+range="-10,10"
+uses="sliderdecimal.4">
+<title>New Slider Decimal Question</title>
+<comment>Drag the slider to a point on the scale.</comment>
+<res label="sys_noAnswerSelected">Please slide the handle to rate your response.</res>
+</float>
+This is a list of all the available resource tags used to change the error messages in the slider decimal question type:
+<res label="sys_noAnswerSelected">Please slide the handle to rate your response.</res>
+This <res> tag overrides the default error message shown by the system, returning the above error message if no answer is selected.
+6: What's Next?
+CSS Help:
+CSS Cheat Sheet
+CSS3 Generator
+CSS Gradients
+Color Scheme Generator
+Want to add the slider decimal style through Survey Editor? See Slider Decimal Element to find out how.

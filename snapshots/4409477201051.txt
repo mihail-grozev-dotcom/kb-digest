@@ -1,0 +1,9 @@
+Title: Marking Favorite Tables in Crosstabs
+You can mark tables as favorites in Crosstabs. Tables marked as favorites can be used to filter reports by various pre-configured fields.
+1: Selecting Favorites
+To mark a Crosstabs table as a favorite, click the star icon located above the question label and title for the table.
+To unmark a table as a favorite, click the star icon again.
+2: Pinning Favorites
+You can pin all of your favorite tables to your whiteboard by selecting Pin All Favorites from the Actions menu.
+3: The Favorites Table Set
+A Favorites table set is automatically created, which includes all tables marked as favorites. Click Edit Settings to access the Table Set.

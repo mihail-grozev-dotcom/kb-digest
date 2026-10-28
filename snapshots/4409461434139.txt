@@ -1,0 +1,119 @@
+Title: CINT Panel Integration
+With the CINT panel integration, CINT users have the ability to retrieve and update panelist data directly from a survey using the CINT Panel API. This can be done using either the "CINT Panel API" element in the Survey Editor or the "cint" logic node in the survey XML.
+The project api_key (API key) and shared_secret (shared secret) values will be required for each instance. If you do not know where to find these values, you may contact your CINT advisor for assistance.
+Note: The CINT panel integration requires a compat level of 135+ for surveys with delphi="1" enabled.
+The following is a collection of some of the panelist data fields that can be accessed via the integration:
+Field
+Value
+Description
+points_earned
+enum
+Read-only. Panelist's total point balance.
+date_created
+date
+Read-only. Date the panelist's account was created.
+auth_token
+string
+Read-only. Panelist's authentication token.
+rewards
+string
+Read-only. Panelist's rewards.
+joined
+date
+Read-only. Date the panelist joined the panel.
+password
+string
+Read-only. Panelist's password.
+gender
+string
+Panelist's gender. Can be set to m, f, or u.
+date_of_birth
+date
+Panelist's date of birth. Format: YYYY-MM-DD
+Note: year_of_birth and date_of_birth can't be set in the same call.
+status
+string
+Panelist's current status within CINT:
+st_act = activated
+st_slp = deactivated
+Default: st_act
+tracking_consent
+string
+Indicates whether the panelist has consented to tracking.
+Can be set to True / False.
+Note: This list is not exhaustive - contact your CINT advisor for a full list of available data fields.
+1: Adding CINT Panel
+1.1: Using the Survey Editor
+To add the CINT panel integration using the Survey Editor, click "+ Add Survey Element" under the staging area:
+In the Element Library, click "Custom" and select the "CINT Panel API" element from the list. Then click "Insert":
+The new element will appear in the staging area, where you can specify the settings for your integration:
+The following options are configurable:
+CINT APIs: Specify whether you would like to retrieve or update the panelist's full profile (PROFILE) or specific variables (VARIABLES).
+Method: Specify what method you would like to use. Choose GET to view the specified data or PATCH to edit the data.
+Panelist ID: Specify the panelist's unique ID.
+Parameters: Specify the call parameters.
+JSON Data: Specify any additional payload data.
+API key: Enter the custom API key.
+Shared Secret: Enter the custom shared secret.
+Note: It is recommended that you encrypt your project's API key and Shared Secret value.
+1.2: Using the XML
+To add the CINT panel logic node to a survey using XML, you will need to add a <logic> tag to the survey.xml file, specifying a label, as well as the project's api_key and shared_secret values:
+<logic label="ln1" cint:api_key="<api_key>" cint:panelist_id="<panelist_id>" cint:shared_secret="<shared_secret>" uses="cint.1">
+The api_key and shared_secret values can be set per project from the Survey Editor, or via the survey XML (using encryption).
+Alternatively, they can be set in the company nstyles file to be used across multiple projects:
+nstyles
+*cint.api_key:
+<api_key>
+*cint.shared_secret:
+<shared_secret>
+1.2.1: Variables
+The logic node works by executing calls to the CINT Panel API. Once you have built out the base for your logic node, you can define its call parameters using the following variables:
+Variable
+Type
+Description
+cint:production
+enum
+Specify using production (1) or staging (0) URLs.
+Default: 1
+cint:panelist_id
+string
+Required. Specify the panelist ID.
+cint:api_call
+enum
+Specify the API to retrieve the panelist's profile / variables (PROFILE / VARIABLES) or update their data.
+Default: PROFILE
+cint:params
+expression
+Optional. This is the name of a variable that contains the URL parameters and must be a dictionary.
+cint:shared_secret
+string
+Enter the custom shared secret.
+cint:api_key
+string
+Enter the custom API key.
+cint:json_data
+expression
+Provide a dictionary containing the payload sent via a PATCH request.
+cint:method
+enum
+Specify the method of the API call (GET/PATCH).
+Default: GET
+1.2.2: Making Profile Calls
+Accessing Panelist Data
+You can use a GET call to retrieve and view any panelist's data. To make the call and access a dictionary of results, use the following syntax:
+<label>.r["panelist"]
+Success returns a status of 200.
+Updating Panelist Data
+You can use a PATCH call to update any panelist's data. To make the call, send the cint:json_data variable in the following form:
+dict(panelist=<json_data>)
+The data you send can be a single field to update or include many fields. Success returns a status of 204.
+1.2.3: Making Variable Calls
+Accessing Panelist Data
+You can use a GET call with api_call VARIABLE to retrieve and view any panelist's variable data. To make the call and access results, use the following syntax:
+<label>.r["categories"]
+Success returns a status of 200.
+Note: Because each CINT account has its own unique configuration, your results may include additional variables. If you have any questions regarding what variables are available to you, contact your CINT advisor.
+Updating Panelist Data
+You can use a PATCH call to update any panelist's data. To make the call, send cint:json_data, along with the panelist's keys and ID, in the following form:
+dict(panelist=<json data>)
+The data you send can be a single field to update or include many fields. Success returns a status of 204.

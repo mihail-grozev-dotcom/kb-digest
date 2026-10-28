@@ -1,0 +1,20 @@
+Title: February 6th General Release Notes
+This document contains the general release notes for Decipher's (previously Decipher) February 6th release.
+Release Date: February 6, 2018
+Highlights of February 6th Release
+New Features
+Crosstabs: Table Settings in Library
+Add default nets and stats to saved elements.
+Reuse table settings for the same elements across multiple surveys.
+Data Redaction
+Hide participant information and open-ended responses based on flags in the survey data.
+Set permissions for viewing sensitive data based on user account.
+Control the flow of information by user type without affecting report counts.
+New Features
+Crosstabs: Table Settings in Library
+Gone are the days of re-adding table settings question by question, survey by survey. You can now attach custom table settings to elements saved in the element library so that they are automatically added to new surveys along with the elements themselves.
+As with other survey elements, table settings for library elements can be edited at any time using the Crosstabs Table Editor:
+So get out there and start editing your tables without fear! They will go with your element, wherever it may travel.
+Data Redaction
+Looking for more control over what data your clients and vendors see? With data redaction, you can now hide participant records and open-end responses based on flags in the survey data.
+Data redaction is added at the user level and it affects Crosstabs, data downloads, and the View/Edit Responses report, as well as dashboards, meaning that you can decide which users see redacted reports and which users don't. Redaction does not affect the counts in the Portal or Field Report, either, so you don't have to worry about vendors losing access to field stats -- their reporting can go on uninterrupted, and you can relax knowing that your sensitive data is safe.

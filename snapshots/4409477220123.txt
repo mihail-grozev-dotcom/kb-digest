@@ -1,0 +1,160 @@
+Title: Default Meta Variables
+Default meta variables store the most essential information for each participant. This information is used for analysis and debugging purposes, and can be seen when running reports or downloading data.
+When you run a report in Crosstabs, the contents of that report will appear, including the survey questions and answer options, as well as data for any virtual (hidden) questions your survey may contain. The report also includes additional information that is collected by default, such as the total interview time and the browser used by the participant.
+Below is a list of all available default meta variables. In reports, the data for these variables will appear in virtual tables labeled with the attribute name.
+1: Data Downloads
+The following meta variables appear in all data downloads.
+Attribute
+Description
+record
+Unique numeric identifier per survey. Starts at 1 and increments for each participant that enters.
+uuid
+Random 16-digit alpha-numeric character.
+date
+Completion date of the participant. local server time.
+markers
+System markers set by the project creator or survey platform. e.g. quotas, data editor, partials.
+status
+The participant status type. 1=Term, 2=Overquota, 3=Qualified, 4=Partial.
+vlist
+The participant's sample source; specifically, the list value with which the participant entered the survey.
+qtime
+The amount of time the participant spent to take the survey, measured in both seconds, and as a % of seconds.
+vos
+The desktop operating system used by the participant. Based off of the userAgent variable.
+vbrowser
+The web browser used by the participant. Based off theuserAgent variable.
+vdropout
+If applicable.
+The last question the participant viewed before exiting the survey or closing their web browser without completing the survey.
+Only available in surveys where auto recovery of data is enabled. See Automatic Partial Recovery Technical Considerations.
+vmobiledevice
+If applicable.
+The category of mobile device used by the participant. Based off of thedcua variable.
+vmobileos
+If applicable.
+The operating system of the mobile device used by the participant. Based off the dcua variable.
+start_date
+The time and date that the participant started the survey. Local server time.
+source
+Usually blank, but will be populated with the participant's source value (unique identifier) when used within the Campaign Manager.
+ipAddress
+The IP address used by the participant.
+decLang
+If applicable.
+The language in which the participant viewed the survey. Saved as a "text/string" variable type for multi-language surveys.
+vdecLang
+Single-select representation of the decLang variable.
+_tcx
+If applicable; must be requested and enabled before field.
+Indicates whether or not a row in a multi-select question was enabled and visible to the participant, generating blank results if it is not seen. Displays data for all multi-select questions in the survey.
+Note: This only applies to surveys that are non-delphi and under compat 151.
+list
+Similar to vlist, just saved as a "text/string" variable type.
+userAgent
+The user agent for the web browser/operating system used by the participant.
+dcua
+If applicable.
+The userAgent for the mobile device category/operating system used by the participant.
+First character:
+'s' - 'Smartphone'
+'f' - 'Featurephone'
+'t' - 'Tablet'
+'m' - 'Other mobile'
+'.' - 'Desktop'
+Second character:
+'a' - 'Android'
+'s' -'Symbian'
+'w' -'Windows Phone'
+'b' - 'Blackberry'
+'.' - 'Other/Desktop’
+session
+The web browser cookie that was set for the participant.
+url
+The URL with which the participant entered the survey.
+latitude
+Requires compat 139+.
+Available only for offline surveys or online surveys using the CAPI app. The participant's positional latitude.
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+longitude
+Requires compat 139+.
+Available only for offline surveys or online surveys using the CAPI app. The participant's positional longitude.
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+device_id
+Requires compat 139+.
+Available only for offline surveys or online surveys using the CAPI app. The participant's device ID.
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+2: Reports
+The following meta variables appear in all reports as hidden virtual questions.
+Attribute
+Question Name
+Description
+conditions
+Conditions
+If applicable.
+The data for logic conditions in each named condition in the survey (i.e., logic conditions that use "save as" and are named in the Survey Editor).
+status
+Participant Status
+The participant status type. 1=Term, 2=Overquota, 3=Qualified, 4=Partial.
+vlist
+Sample source
+The participant's sample source; specifically, the list value with which the participant entered the survey.
+qtime
+Total Interview Time
+The amount of time the participant spent to take the survey, measured in both seconds, and as a % of seconds.
+vos
+Operating System
+The desktop operating system used by the participant. Based off of the userAgent variable.
+vbrowser
+Browser
+The web browser used by the participant. Based off theuserAgent variable.
+vmobiledevice
+Mobile Device
+If applicable.
+The category of mobile device used by the participant. Based off of thedcua variable.
+vmobileos
+Mobile Operating System
+If applicable.
+The operating system of the mobile device used by the participant. Based off the dcua variable.
+voqtable
+Overquotas: [quota label]
+If applicable.
+The overquota data for each quota in the survey.
+vqtable
+Quotas: [quota label]
+If applicable.
+The data for each quota in the survey.
+vterm
+Terminates
+The data for terminates that screen participants out from the survey.
+This table automatically generates for surveys with compat levels 133+.
+vdropout
+Last seen question
+If applicable.
+The last question the participant viewed before exiting the survey or closing their web browser without completing the survey.
+Only available in surveys where auto recovery of data is enabled. See Automatic Partial Recovery Technical Considerations
+decLang
+Language Tracker
+If applicable.
+The language in which the participant viewed the survey. Saved as a "text/string" variable type for multi-language surveys.
+vdecLang
+Single-select representation of the decLang variable.
+_tcx
+Checkbox tracker
+If applicable; must be requested and enabled before field.
+Indicates whether or not a row in a multi-select question was enabled and visible to the participant, generating blank results if it is not seen. Displays data for all multi-select questions in the survey.
+latitude
+Latitude Tracker
+Requires compat 139+.
+Available only for offline surveys or online surveys using the CAPI app. The participant's positional latitude.
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+longitude
+Longitude Tracker
+Requires compat 139+.
+Available only for offline surveys or online surveys using the CAPI app. The participant's positional longitude.
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+device_id
+Device ID Tracker
+Requires compat 139+.
+Available only for offline surveys or online surveys using the CAPI app. The participant's device ID.
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.

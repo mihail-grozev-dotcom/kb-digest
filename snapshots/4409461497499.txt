@@ -1,0 +1,18 @@
+Title: Saving and Importing Response Options
+The Element Library, available within the Survey Editor, allows you to save and reuse response options across multiple surveys. Using the Element Library, you can save and retrieve one or more response options from any survey created within your company. You can also set permissions for any saved answers to share them with specific users or at the company level.
+1:Saving Response Options to the Library
+To save a set of response options to the Library, click the Answer Actions menu for your question's response type (i.e., "Row Actions", "Column Actions" or "Choice Actions"), and select "Save Answers to Library".
+Then, enter a name for your response set, add tags to help others find your response set (optional), and select a sharing option.
+Note: To add multiple tags, press the Enter key after entering the text for each one.
+The "Sharing" setting specifies who may view and edit your response set. By default, sharing is set to "Off". See Saving to the Element Library for detailed information about element sharing settings.
+1.1: Assigning Answer ID's
+You also have the option to change the unique element ID that is used across the current server for your response set. This is particularly useful if you sometimes work in the XML Editor and plan to reuse your response set there. By default, a random ID is assigned to your response set.
+If you want to use this ID or assign a new one, click "Advanced Settings" to expand the ID dialogue.
+Once you are satisfied with your settings, click "Save" to save the response set to the Library.
+Note: Individual responses saved to the Library cannot be locked. Locking is available only when saving a full element to the Library.
+2: Importing Response Options From the Library
+Once you have saved a response set to the Library, it gets stored along with any other response sets already available to your company and you can use it again at any time.
+To reuse saved response options, first add a new survey element. Then click the Answer Actions menu for your question's response type (i.e., "Row Actions", "Column Actions" or "Choice Actions"), and select "Import Rows / Columns / Choices".
+In the Element Library, locate and select your saved response set. Then click "Add to Survey".
+Note: The Element Library provides many ways to search for a response set. See About the Libraries for a description of the features available for responses in the Element Library.
+Tip: Saved response options retain the labels they had when they were originally added to the Library. To edit the labels after adding responses to a survey, select the row, column or choice so that the options appear in the right panel, and then enter a new label.

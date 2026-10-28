@@ -1,0 +1,7 @@
+Title: 153.8 Release Notes
+Release Date: May 23, 2023
+Release Version: 153.8
+Bug Fixes
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+Internal JavaScript for the RelevantID, Real Answer, and Quality Score logic nodes can no longer be accidentally translated in Language Manager.

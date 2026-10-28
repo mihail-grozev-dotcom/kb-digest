@@ -1,0 +1,56 @@
+Title: Modifying the Survey Data Layout
+You can modify the data layout for any Decipher project using the Data Layout Manager. This is particularly useful when performing data edits and when running post-field data analysis.
+1: Accessing the Data Layout Manager
+To access the Data Layout Manager, you must first navigate to the Data Downloads page. There are two ways to access the Data Downloads page:
+From the navigation menu, select REPORT, then Data Downloads. Select Other Data Formats from the drop-down menu.
+From Crosstabs, first create or run a report. Then click Exports and select View All Data Formats.
+2: Viewing Layout Options
+From the Data Downloads page, you can use the options under Data Layout to select an existing layout created for the project from the drop-down menu, import a layout from another project, create a new layout, or edit / delete a non-standard layout.
+Clicking either New or Edit opens the Data Layout Manager.
+3: Importing a Layout
+Clicking Import opens the Import Layout menu. Enter the name or path of the target project in the field provided. As you type, any projects that match your entry appear in the menu. Select the desired project from the list and click Get Layouts.
+Then select the layout from those available in the layout(s) drop-down menu and click Import.
+3.1: Including Survey Variables
+In Decipher, each survey's data layout consists of a configurable list of its survey questions and variables.
+To adjust which questions and variables are included within your survey's data layout, click Edit to open the Data Layout Manager. Then, click the Add/Remove Variables button.
+Note: Fixed-width data exports require Decipher's default uuid variable to function. If you intend to download your data using the SPSS format, be sure to add uuid along with any other desired variables.
+The variable selection page contains the following tools and features:
+1. Select Variables: Allows you to view and select from only a certain type of question or variable. For example, you can click "Open-Ended" to view and select from only the open-ended questions / variables in your survey.
+2. Included: Check the boxes next to any variables you want to include in the data layout.
+3. Search: Enter a key term or label in the "Search" field to locate a specific variable.
+4. Jump To: Enter a key term or label in the "Jump To" fields to go to a specific variable.
+5. Expand / Contract Variable Groups: Allows you to expand or contract variable groups for multi-select and multi-dimensional question types.
+6. Column Options: Allows you to select the columns that are displayed in the editing field.
+7. Bold Labels: Indicates a contracted question. Click Expand Variable Groups to view / edit the question in expanded form.
+8. Close: Click Close to save the selected variable configuration and exit the Data Layout Manager.
+Note: Variables that are new in a project are highlighted in yellow. New variables are common in tracking studies when layouts are copied or imported.
+3.2: Editing the Layout
+Once you have chosen which variables to include in your data layout, you can begin editing the layout using the Data Layout Manager’s grid or text editing tools.
+Note: Fixed-width SPSS data exports require Decipher's default uuid variable to function. If you intend to download your data using the SPSS format, be sure to include uuid.
+3.2.1: Grid Edit
+For individual layout changes, you may prefer to use the Data Layout Manager’s grid editor. To edit your layout using the grid editor, click Grid at the top right of the Data Layout Manager. The grid editor contains the following tools and features:
+1. View Standard Datamap: Click to view the survey datamap in a new window. This contains a comprehensive list of all survey content and can be helpful to reference while making changes to the layout.
+2. Search: Enter a key term or label in the "Search" field to locate a specific variable.
+3. Jump To: Enter a key term or label in the "Jump To" field to locate a specific variable.
+4. Expand / Contract Variable Groups: Allows you to expand or contract variable groups for multi-select and multi-dimensional question types.
+5. Column Options: Allows you to select the columns that are displayed in the editing field.
+6. Move Selected Variables: Allows you to move the selected variable(s) to the Top position, Up one position, To a specified position, Down one position or to the Bottom position in the data download.
+Set to Survey Order: Reset to default order. (If a variables.xls file is present, it is backed up and removed.)
+7. Altlabel: Edit the default altlabel.
+8. Width: (For use with fixed-width data files.) Edit the width of a variable. The "start" and "end" range updates based on the width specified.
+9. Force Start: Allows you to specify the "Start" position of the variable in the data download. A start position must be greater than that of the variable before it. The "Start" and "End" range of all succeeding variables update based on the new position.
+10. Undo / Redo: Allows you to undo or redo the last change.
+11. Update Start / End: When a change is made to the width or force start column, you must click Update Start / End to update the start and end positions of the affected variables.
+Note: The numbers in the "Start" and "End" columns indicate the range and position of each variable in the data file.
+3.2.2: Text Edit
+For mass layout changes, you may prefer to use the Data Layout Manager’s text editor. To edit your layout using the text editor, click Text at the top right of the Data Layout Manager. The text editor contains the following tools and features:
+1. View Standard Datamap: Click to view the datamap in a new window, allowing you to refer a comprehensive list of the survey content.
+2. Edit mode: Allows you to switch between the grid view and the text view.
+3. Text Edit: Allows you to make edits in text format. Only variables that are included in the layout are displayed, and deleting a variable here removes it from the layout. The "altlabel" and "width" are also included and may be edited here.
+4. Update Start/End: When a change is made to the width, you must click "update start / end" to update the start and end positions of the affected variables.
+5. Save / Save as...: Click to save the layout.
+3.3: Saving the Layout
+Once you are satisfied with the settings for your layout, click the Save button in the Data Layout Manager to apply your changes. You may save the layout from the variable selection menu or from either of the editor tools available within the Data Layout Manager.
+Alternatively, you can click Save as... and enter a name for the layout and then click Save.
+After a layout is saved, you are directed back to the Data Downloads page, where you may select it from the Layout drop-down menu. You also have the option to edit or delete it directly from the Data Downloads page.
+Note: Some download types are not available for use with custom data layouts. Those downloads display in gray on the Data Downloads page and cannot be selected.

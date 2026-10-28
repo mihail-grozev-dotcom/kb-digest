@@ -1,0 +1,464 @@
+Title: Loop Tag: Cycle Through Questions
+The <loop> element is used to cycle through a series of survey elements. With each cycle, a new set of values can be supplied to show the same survey elements with new content.
+Loops help improve productivity as they save you from writing the same thing more than once. They also reduce your lines of code and thus save you time when changes are needed.
+For example, below is a "T-Minus countdown timer" that starts from 10.
+<loop label="T_Minus" vars="time">
+<block label="Launchpad">
+<html label="Launch_Status_[loopvar: label]" where="survey">
+ROCKET LAUNCH: T-MINUS [loopvar: time] SECONDS
+</html>
+</block>
+<looprow label="10"><loopvar name="time">10</loopvar></looprow>
+<looprow label="9"><loopvar name="time">9</loopvar></looprow>
+<looprow label="8"><loopvar name="time">8</loopvar></looprow>
+<looprow label="7"><loopvar name="time">7</loopvar></looprow>
+<looprow label="6"><loopvar name="time">6</loopvar></looprow>
+<looprow label="5"><loopvar name="time">5</loopvar></looprow>
+<looprow label="4"><loopvar name="time">4</loopvar></looprow>
+<looprow label="3"><loopvar name="time">3</loopvar></looprow>
+<looprow label="2"><loopvar name="time">2</loopvar></looprow>
+<looprow label="1"><loopvar name="time">1</loopvar></looprow>
+</loop>
+Loops are the ideal choice for repetitious tasks such as brand or concept tests, special question types such as DCMs or MaxDiffs, and iterating over questions that vary slightly in detail.
+1: Writing a Loop
+The <loop> element's basic syntax is below:
+<loop label="LOOP_LABEL" title="LOOP TITLE" vars="VAR1,VAR2">
+<block label="BLOCK_LABEL">
+<note>CONTENT TO REPEAT GOES HERE</note>
+</block>
+<looprow label="1">
+<loopvar name="VAR1">VARIABLE 1.1</loopvar>
+<loopvar name="VAR2">VARIABLE 1.2</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="VAR1">VARIABLE 2.1</loopvar>
+<loopvar name="VAR2">VARIABLE 2.2</loopvar>
+</looprow>
+</loop>
+Starting from the top, here is a brief description of each component:
+<loop label="LOOP_LABEL" title="LOOP TITLE" vars="VAR1,VAR2">
+...
+</loop>
+This is the main <loop> element definition. Like all survey elements, the loop's label must be unique. The title attribute appears only in the Survey Editor as a description of the loop. The vars attribute should contain a comma-separated list of each variable that will be piped into the loop's contents.
+...
+<block label="BLOCK_LABEL">
+<note>CONTENT TO REPEAT GOES HERE</note>
+</block>
+...
+The <loop> element requires one <block> element to contain all of the content to loop through. This is where all questions, comments, and exec blocks should be specified.
+An implicit page break (<suspend/>) is added to the end of every loop. This can be removed by specifying suspend="0" in the <loop> element.
+...
+<looprow label="1">
+<loopvar name="VAR1">VARIABLE 1.1</loopvar>
+<loopvar name="VAR2">VARIABLE 1.2</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="VAR1">VARIABLE 2.1</loopvar>
+<loopvar name="VAR2">VARIABLE 2.2</loopvar>
+</looprow>
+...
+The <loop> element's content will be shown once for every specified <looprow> element. There are two loop cycles in the code above.
+Variables are defined using the <loopvar> element. These are the changing parts of each loop. Each variable specified in the <loop> element's vars attribute must appear once as a <loopvar> for every <looprow>.
+A <loop> can contain any number of <looprow> elements and a <looprow> can contain any number of <loopvar> elements.
+These variables can be accessed within the loop using the [loopvar: VARIABLE_NAME] syntax. For example:
+[loopvar: label] : returns the current <looprow> label (e.g., 1, 2).
+[loopvar: VAR1] : returns the current loop's <loopvar> named VAR1 (e.g., VARIABLE 1.1, VARIABLE 2.1).
+[loopvar: VAR2] : returns the current loop's <loopvar> named VAR2 (e.g., VARIABLE 1.2, VARIABLE 2.2).
+2: Loop Options & Attributes
+Below is a list of the attributes available to <loop>, <looprow>, and <loopvar> elements:
+Attribute
+Description
+<loop> Elements
+<block>
+The content of the loop. Will be shown once for every specified looprow.
+label
+The unique identifier for the loop element.
+title
+The loop's title is optional and only visible in the Survey Editor. Use this to provide more detail about the loop.
+vars
+A comma-separated list of variables to use for each loop.
+translateVars
+A comma-separated list of variables to translate via the translation system. By default, all variables are translated. Use this attribute to explicitly define the attributes that should be translatable.
+randomizeChildren
+A boolean value that controls the shuffling of the <looprow> elements. Specify randomizeChildren="1" to shuffle the loop cycles.
+count
+An integer value for the total number of loop cycles to show. When enabled in a nested loop, loop items shown in the first iteration will be shown in subsequent iterations.
+Note: This attribute works only when randomizeChildren="1"is set.
+suspend
+A boolean value to control the implicit page break that is automatically added between every loop cycle (after every <looprow>). Specify suspend="0" to remove this implicit page break.
+cond
+The condition in which the entire <loop> element should be shown. If the condition evaluates to False, the <loop> will not be evaluated.
+Note: Conditions cannot be applied directly to the first block within a loop. To apply a condition at this level, you must add it to another block or <looprow> that is nested within the first block.
+<looprow> Elements
+label
+The unique identifier for the <looprow> element. This is often used to create unique variables for everything added to the <loop> element's content area. (e.g., <radio label="Q1_[loopvar: label]">).
+cond
+The condition in which the <looprow> should be executed. If the condition evaluates to False, the entire <looprow> is skipped.
+randomize
+A boolean value to control the default loop rotation. Specify randomize="0"to anchor the loop iteration so that it does not rotate. If not randomized, the loop iteration will be shown in the order in which it is programmed.
+Note: This is an XML-only attribute, and it requires that randomizeChildren="1" be added to the loop.
+looprows
+Can be used to specify when an inner looprow should appear in an outer loop, and accepts a comma-separated list of labels from an outer loop.
+Note: This is an XML-only attribute.
+<loopvar> Elements
+name
+The name of the variable. This should match with the variables specified in the <loop> element's vars tag. (e.g., <loopvar name="myVar">myVar's content>/loopvar>).
+target
+Can be used on a loopvar to pipe in different values for different loop iterations (looprow). The target attribute accepts a looprow label in an outer loop and must be specified for all loopvar elements with the same name. (e.g., target="r1").
+Note: This is an XML-only attribute. If in use, the loop will not be editable within the Survey Editor.
+Questions & Cells
+looprows
+The <looprows> attribute can contain a comma-separated list of <looprow> labels and acts like a condition, only showing the element it is applied to given that the <looprow> currently being shown exists in the list.
+e.g. <row label="r1" looprows="1,2,a,b">Item 1</row>
+3: Accessing Loop Details in Python
+Note: When accessing loop details in Python using loop.index, loop.length and loop.enabledRows, you need to set a count="" attribute (i.e. count="99") in the <loop> element in order for those variables to operate as expected.
+It is often important to know which of the <looprow> elements is currently being shown and how many will actually be shown to each participant.
+For example, consider the following simple loop:
+<loop label="MyLoop" vars="item" randomizeChildren="1">
+<block label="MyLoopBlock">
+<html label="LoopVariables_[loopvar: label]" where="survey">
+<p>Now viewing cycle # ${MyLoop.index} out of ${MyLoop.length}.</p>
+<p>The "item" variable is currently: [loopvar: item]</p>
+<p>This is for looprow with label: [loopvar: label]</p>
+<p>This is for looprow with label: ${MyLoop.current.label}</p>
+<p>This is for looprow with label: ${MyLoop.enabledRows[MyLoop.index].label}</p>
+</html>
+</block>
+<looprow label="1"><loopvar name="item">Item 1</loopvar></looprow>
+<looprow label="2"><loopvar name="item">Item 2</loopvar></looprow>
+<looprow label="3"><loopvar name="item">Item 3</loopvar></looprow>
+<looprow label="4"><loopvar name="item">Item 4</loopvar></looprow>
+</loop>
+Since randomizeChildren="1" is set on the <loop> element above, any of the rows can be displayed first. Shown below is what it would look like if the third row (label="4") was the first to be seen.
+Given a loop with "MyLoop" specified as the label, you have access to several different variables, as described below:
+Attribute
+Description
+MyLoop.index
+The index of the current cycle within the loop. Starting at 0, the index will increase for every <looprow> evaluated (e.g., 0, 1, 2, 3). For example, if you wanted to display an intermission message on the fifth cycle of the loop, you can specify it as:
+<html label="Intermission_[loopvar: label]" cond="MyLoop.index == 4">
+Almost done!
+</html>
+Important: Currently, there is a bug where using MyLoop.index in a cond="" or rowCond="" throws a fatal error. As a workaround, set the loop index to a persistent variable and then use that as shown below:
+p.loopindex = Loop_Q1.index
+rowCond="row.index != p.loopindex"
+MyLoop.length
+The total number of cycles that are displayed. Since conditions can be set on <looprow> elements, it is possible that not every <looprow> is displayed to every participant. This number reflects the exact number of <looprow> elements that will be evaluated.
+For example, if a fifth <looprow> is added to the example above with cond="0" specified, MyLoop.length would still return 4.
+MyLoop.enabledRows
+This is a list of all <looprow> elements that will be evaluated. This means that len(MyLoop.enabledRows) == MyLoop.length is True. You can access the current <looprow> element's label with MyLoop.enabledRows[MyLoop.index].label.
+MyLoop.current
+This is the same as MyLoop.enabledRows[MyLoop.index], the current <looprow> object.
+[loopvar: label]
+This is the same as MyLoop.enabledRows[MyLoop.index].label.
+[loopvar: VARIABLE]
+This is the content specified in the <loopvar name="VARIABLE"> element of the current <looprow>.
+4: Examples
+Loops are a great way to ask the same question(s) for multiple rows that were selected in a previous question.
+4.1: A Simple Loop
+In this example, two questions will be asked for every brand that is selected at question Q1. There is a single <looprow> element for every brand that contains a <loopvar> named "brand" containing the brand that will be piped into each question, Q2 and Q3.
+To only show the brands selected at Q1, a condition is added to the main <block> element (e.g., cond="Q1.r[loopvar: label]"). If this condition is "False", the entire section will be skipped and the questions will not be seen for that particular brand.
+Tip: Conditions can be applied to <looprow> elements individually (e.g., <looprow label="1" cond="Q1.r1">).
+<checkbox label="Q1" atleast="1">
+<title>Which of the following brands are you aware of?</title>
+<row label="r1">Brand #1</row>
+<row label="r2">Brand #2</row>
+<row label="r3">Brand #3</row>
+<row label="r4">Brand #4</row>
+</checkbox>
+<suspend/>
+<loop label="Brands_Loop" vars="brand">
+<block label="Brands_Block" cond="Q1.r[loopvar: label]">
+<textarea label="Q2_[loopvar: label]">
+<title>What do you think about [loopvar: brand]?</title>
+</textarea>
+<suspend/>
+<radio label="Q3_[loopvar: label]" type="rating" values="order">
+<title>How would you rate [loopvar: brand]?</title>
+<col label="c1">1 - Bad</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5 - Good</col>
+</radio>
+<suspend/>
+</block>
+<looprow label="1">
+<loopvar name="brand">Brand #1</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="brand">Brand #2</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="brand">Brand #3</loopvar>
+</looprow>
+<looprow label="4">
+<loopvar name="brand">Brand #4</loopvar>
+</looprow>
+</loop>
+4.2: A Randomized Loop
+In the example below, only the brands that are selected at Q1 are shown in the loop. Additionally, Q1's rows are randomized and the loop's order is set to display in the same order.
+<checkbox label="Q1" atleast="1" shuffle="rows">
+<title>Which of the following brands are you aware of?</title>
+<row label="r1">Brand #1</row>
+<row label="r2">Brand #2</row>
+<row label="r3">Brand #3</row>
+<row label="r4">Brand #4</row>
+</checkbox>
+<suspend/>
+<exec>
+# SET LOOP SHUFFLE ORDER SAME AS Q1.rows
+Brands_Loop_expanded.order = Q1.rows.order
+</exec>
+<loop label="Brands_Loop" vars="brand" randomizeChildren="1">
+<block label="Brands_Block" cond="Q1.r[loopvar: label]">
+<textarea label="Q2_[loopvar: label]">
+<title>What do you think about [loopvar: brand]?</title>
+</textarea>
+<suspend/>
+<radio label="Q3_[loopvar: label]" type="rating" values="order">
+<title>How would you rate [loopvar: brand]?</title>
+<col label="c1">1 - Bad</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5 - Good</col>
+</radio>
+<suspend/>
+</block>
+<looprow label="1">
+<loopvar name="brand">Brand #1</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="brand">Brand #2</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="brand">Brand #3</loopvar>
+</looprow>
+<looprow label="4">
+<loopvar name="brand">Brand #4</loopvar>
+</looprow>
+</loop>
+As shown below, the loop's cycle order is set to randomize and the order is set within the <exec> block:
+<exec>
+# SET LOOP SHUFFLE ORDER SAME AS Q1.rows
+Brands_Loop_expanded.order = Q1.rows.order
+</exec>
+<loop label="Brands_Loop" title="Brand-Related Questions" vars="brand" randomizeChildren="1">
+Though the <loop> element's label is set to Brands_Loop, Brands_Loop_expanded is used. This is because the <loop> element is expanded into questions when it is loaded into the system. For example, the code above really looks like this when it is loaded into the system.
+<block label="Brands_Loop_expanded" countVisibleOnly="1" randomizeChildren="1" uid="525">
+<block label="Brands_Loop_1_expanded" cond="Q1.r1" randomize="1" uid="526">
+<textarea
+label="Q2_1"
+uid="527">
+<title>What do you think about Brand #1?</title>
+</textarea>
+<suspend uid="531"/>
+<radio
+label="Q3_1"
+averages="cols"
+type="rating"
+uid="532"
+values="order">
+<title>How would you rate Brand #1?</title>
+<col label="c1" uid="533" value="1">1 - Bad</col>
+<col label="c2" uid="534" value="2">2</col>
+<col label="c3" uid="535" value="3">3</col>
+<col label="c4" uid="536" value="4">4</col>
+<col label="c5" uid="537" value="5">5 - Good</col>
+<net label="top2" indices="4,3" pos="below" uid="540" where="report,summary">Top 2</net>
+<net label="bot2" indices="0,1" uid="541" where="report,summary">Bottom 2</net>
+</radio>
+<suspend uid="542"/>
+<suspend uid="543"/>
+</block>
+<block label="Brands_Loop_2_expanded" cond="Q1.r2" randomize="1" uid="544">
+<textarea
+label="Q2_2"
+...
+...
+...
+Tip: To view the expanded version of your survey, run the following command: here save -t survey/path.
+The <loop> element will be expanded into its full form as if the questions were individually written out for every cycle. Fortunately, this is all done behind-the-scenes and you will never have to work with loops in their expanded form.
+When it comes to accessing the randomize order for loops, however, you must use LABEL_expanded.order.
+4.3: A Loop for Testing Multiple Concepts
+In this example, three concepts are randomly shown to each participant. The randomize order is determined by the quota system and the concepts to be seen each consist of an image with a paragraph of text and question.
+First, setup the quota sheet to determine the randomization order.
+Quota Definitions
+Result
+With this quota sheet in place, the randomization order of each concept will be evenly distributed for all of the participants.
+The following are the concept images that will be shown.
+Concept 1
+Concept 2
+Concept 3
+In the example code below, the following applies:
+The quota sheet is named as concept_order.
+The concept randomization order is tracked in a hidden question.
+The randomization order for the main loop is set as Concept_Loop.
+The concept format is specified using a <res> tag.
+The main loop to cycle through each concept is created.
+The built-in Python function, format, is used.
+<quota label="Quota_Order" overquota="noqual" sheet="concept_order"/>
+<radio
+label="vConcept_Order"
+where="execute,survey,report">
+<title>Shuffle order of concepts</title>
+<exec>
+shuffle_order = []
+for marker in p.markers:
+if marker.startswith("C_"):
+shuffle_order = [int(order) - 1 for order in marker.split("_")[1:]]
+break
+for row in vConcept_Order.rows:
+row.val = shuffle_order[row.index]
+Concept_Loop_expanded.order = shuffle_order
+</exec>
+<row label="r1">Concept 1</row>
+<row label="r2">Concept 2</row>
+<row label="r3">Concept 3</row>
+<col label="c1">First</col>
+<col label="c2">Second</col>
+<col label="c3">Third</col>
+</radio>
+<suspend/>
+<loop label="Concept_Loop" vars="description">
+<block label="Concept_Block">
+<html label="Concept_[loopvar: label]" where="survey">${res.concept.format("[loopvar: label]", "[loopvar: description]")}</html>
+<radio
+label="Q1_[loopvar: label]"
+optional="0">
+<title>Do you like concept [loopvar: label]?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+</block>
+<looprow label="1">
+<loopvar name="description">Concept 1 is awesome!</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="description">Concept 2 saves babies!</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="description">Concept 3 is the right choice.</loopvar>
+</looprow>
+</loop>
+In the example above, each of the three concepts is shown to participants. Using the quota system, the randomization order is evenly distributed (e.g., the first concept is shown first the same number of times as the second and third concepts, etc.). The <looprow> element's label is used to properly display the correct concept image and the <loopvar name="description"> to pipe in a unique description for each concept.
+The code above produces the following result when the marker C_3_2_1 has been set.
+4.4: Conditionally Showing Elements Based on Looprow
+The looprows attribute can be applied to question and cell elements within a loop to show only those elements if the current label of the current <looprow> exists in the list.
+<loop label="My_Loop" vars="item">
+<block label="My_Loop_Stage">
+<radio label="Q1_[loopvar: label]" looprows="1,2">
+<title>Please select one that is [loopvar: item]:</title>
+<row label="r1" looprows="1,a">Item 1</row>
+<row label="r2" looprows="1,2,a">Item 2</row>
+<row label="r3" looprows="2,a">Item 3</row>
+</radio>
+<html label="Outtro_[loopvar: label]" where="survey" looprows="a">
+That's the end of the loop.. Now we're going to ask you about...
+</html>
+</block>
+<looprow label="1"><loopvar name="item">awesome</loopvar></looprow>
+<looprow label="2"><loopvar name="item">super cool</loopvar></looprow>
+<looprow label="a"><loopvar name="item">your favorite</loopvar></looprow>
+</loop>
+In the code above, the question "Q1" is only shown for <looprow> elements with the label "1" or "2". The question's <row> elements are also conditionally shown based on the current <looprow> being shown.
+The third <looprow> in the loop above will only show the <html> comment element and not the "Q1" question.
+4.5: A Nested Loop
+You can also nest loops within other loops for further randomization and extended functionality. To nest a loop within another loop, add the target attribute to each loopvar to pipe in values specific to your new loop rows.
+<loopvar target="xxxx" name="xxxx">xxxx</loopvar>
+If you want to restrict how your loop rows appear, you can add the looprows attribute to specify when an inner loop row should appear in an outer loop.
+<looprow looprows="xxxx" label="xxxx">
+In the example below, up to two selected vehicle categories will be shown from Q1 and Q3 brands. Additionally, vehicle categories from "r1" are anchored in place and the lv2 loop is only shown for Sedans / SUVs.
+<checkbox
+label="q1"
+atleast="1">
+<title>Vehicle Categories</title>
+<comment>select all that apply</comment>
+<row label="r1">Mid-Size Sedans</row>
+<row label="r2">Crossovers</row>
+<row label="r3">SUVs</row>
+</checkbox>
+<suspend/>
+<loop label="l1" builderSource="q1" count="2" randomizeChildren="1" vars="lv1">
+<title>Brand comparison</title>
+<block label="b1" builder:title="default loop block">
+<radio
+label="q2_[loopvar:label]"
+optional="0"
+randomize="0">
+<title>How do you feel about [loopvar: lv1]?</title>
+<comment>select one</comment>
+<row label="r1" value="5">5</row>
+<row label="r2" value="4">4</row>
+<row label="r3" value="3">3</row>
+<row label="r4" value="2">2</row>
+<row label="r5" value="1">1</row>
+</radio>
+<loop label="l2" builderSource="q1" count="3" randomizeChildren="1" vars="lv2,lv3">
+<title>Brand comparison</title>
+<block label="b2" builder:title="default loop block">
+<radio
+label="q3_[loopvar: label]"
+optional="0"
+randomize="0">
+<title>Is the [loopvar: lv2] [loopvar: lv3], one of the vehicles you're considering?</title>
+<comment>select one</comment>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+</block>
+<looprow looprows="r1,r3" label="r4">
+<loopvar name="lv2">Toyota</loopvar>
+<loopvar target="r1" name="lv3">Camry</loopvar>
+<loopvar target="r2" name="lv3">NONE</loopvar>
+<loopvar target="r3" name="lv3">Highlander</loopvar>
+</looprow>
+<looprow label="r5">
+<loopvar name="lv2">Honda</loopvar>
+<loopvar target="r1" name="lv3">Accord</loopvar>
+<loopvar target="r2" name="lv3">CR-V</loopvar>
+<loopvar target="r3" name="lv3">Pilot</loopvar>
+</looprow>
+<looprow label="r6">
+<loopvar name="lv2">Mazda</loopvar>
+<loopvar target="r1" name="lv3">Mazda6</loopvar>
+<loopvar target="r2" name="lv3">CX-5</loopvar>
+<loopvar target="r3" name="lv3">CX-9</loopvar>
+</looprow>
+</loop>
+</block>
+<looprow label="r1" cond="(q1.r1)" randomize="0">
+<loopvar name="lv1">Mid-Size Sedans</loopvar>
+</looprow>
+<looprow label="r2" cond="(q1.r2)">
+<loopvar name="lv1">Crossovers</loopvar>
+</looprow>
+<looprow label="r3" cond="(q1.r3)">
+<loopvar name="lv1">SUVs</loopvar>
+</looprow>
+</loop>
+Note: Adding looprows allows you to exclude / specify inner loop rows with regard to the outer loop rows.
+5: Loop Data Outputs
+Projects that contain a nested loop have additional “stacked data” download options with tab-delimited and fixed-width (unicode) formats. A stacked data zip file contains the following for each segment / split:
+Unstacked data: A default output file with all variables that are not in loops.
+Stacked data: A file with data stacked once per loop. This file has the loop label suffixed to it.
+Datamap: Contains two files; one for the unstacked data layout and one with the layout per loop.
+Example
+If survey "123" has two segments: "Male" and "Female", and two loops: loop1 and loop2, the resulting stacked data zip file will contain six data files:
+Male/123.txt
+Male data not in any loops
+Male/123_loop1.txt
+Male loop data for "loop1"
+Male/123_loop2.txt
+Male loop data for "loop2"
+Female/123.txt
+Female data not in any loops
+Female/123_loop1.txt
+Female loop data for "loop1"
+Female/123_loop2.txt
+Female loop data for "loop2"
+Tip: For users with Cloud access, nested loop data is also available using the command line and the Decipher API
+6: Learn More
+Learn more about creating sections and shuffling questions with the Block tag.
+See Loop Element to find out more about using the Loop element in the Survey Editor.
+See Creating a Rotated Dataset to learn how to use the loop tag in large studies with 30+ response options that are to be looped through multiple times.

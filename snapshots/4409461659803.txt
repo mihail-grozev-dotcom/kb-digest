@@ -1,0 +1,13 @@
+Title: Strategies for Testing Your Survey
+Testing your survey is a vital part of ensuring your project’s success before fielding. By testing your survey before a launch you can avoid:
+Unnecessary costs
+The need to re-field
+Incorrect data
+Increased dropouts
+And other issues that arise from errors in your project
+There are a few different methods that can be used to test your survey:
+Click on each section to learn more about that method of testing.
+Testing an Online Survey: involves going through each page of your survey and looking for errors that can only be caught by eye (spelling mistakes, verifying condition logic, verifying images and videos, etc.)
+Running Simulated Data: looks for errors in survey logic or survey flow by forcing simulated data through your survey.
+Report Testing: Report testing verifies things like logic, quotas, terminates by utilizing crosstabs, and other reporting tools.
+Each method utilizes a variety of tools on the Decipher platform and is targeted to check various parts of your survey. Additionally, testing methods can overlap, and provide an extra level of verification that a particular component of your survey is working properly (ex. condition logic can be verified by manual testing, simulated testing and/or report testing).

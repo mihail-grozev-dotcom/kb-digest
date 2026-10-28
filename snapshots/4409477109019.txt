@@ -1,0 +1,95 @@
+Title: Survey Accessibility and ADA Compliance
+Decipher's standard survey questions and themes are optimized for digital accessibility and adhere to at least WCAG 2.2 standards. WCAG standards are the internationally recognized guidelines for creating accessible, ADA-compliant web pages. To meet WCAG 2.2 Level A and AA success criteria (“WCAG 2.2 A/AA”), surveys must be set to a' standard survey questions and themes are optimized for digital accessibility and adhere to WCAG 2.2 standards. WCAG 2.2 standards are the internationally recognized guidelines for creating accessible, ADA-compliant web pages. In order to meet the WCAG 2.2 Level A and AA success criteria (“WCAG 2.2 A/AA”), surveys must be set to a survey compat level of 155+ and
+contain only ADA-compliant questions and elements.
+In addition to WCAG 2.2 support, Decipher also provides options to help meet Section 508 U.S. accessibility requirements and the EN 301 549 European accessibility standard, allowing you to address accessibility needs across multiple regions.
+The "Accessible" theme in the Theme Editor has improved color and contrast to meet accessibility compliance standards. See Editing the Survey Theme to learn how to change your theme.
+For more information about WCAG guidelines, see the latest W3C recommendations.To view our Accessibility Conformance Report (completed VPAT), see Forsta Decipher Accessibilty Conformance Report
+Decipher questions can be grouped into WCAG compliant and non-compliant
+questions and elements:
+WCAG Compliant Questions and Elements
+WCAG Non-Compliant Questions and Elements
+1: WCAG Compliant Questions and Elements
+The following questions and elements are ADA-compliant (or are being updated
+to improve compliance). ADA-compliant questions and elements support screen readers,
+such as Job Access with Speech (JAWS) or NVDA (NonVisual Desktop Access), as
+well as the use of the keyboard to answer questions (e.g., via the Tab button,
+space bar, and arrow keys).
+To understand how a screen reader (Voiceover for iOS) works with Decipher participant view, watch the following video:
+Important: If your survey requires ADA compliancy, be sure it is set to a compat level of 155+ and that it only includes the questions and elements listed below.
+Important: If your survey requires ADA compliancy, be sure it is set to
+a compat level of 149+ and that it only includes the questions and elements
+listed below.
+Question Style
+XML Style Name
+Notes
+Text
+<text>
+Essay
+<textarea>
+Number
+<number>
+Number (check “Allow
+Decimals”)
+<float>
+Date Picker
+<text "uses=fvdatepicker.3">
+Single Select Question
+Single Select Grid
+<radio>
+Multi-Select Question
+Multi-Select Grid
+<checkbox>
+Button Single Select
+<radio uses="atm1d.11">
+Button Multi-Select Element
+<checkbox uses="atm1d.11">
+Text
+(when “No Answer” is checked)
+<text>
+(when a
+<noanswer>
+tag is added)
+With images:
+Single Select Question
+Single Select Grid
+<radio>
+(with
+images)
+With images:
+Multi-Select Question
+Multi-Select Grid
+<checkbox>
+(with
+images)
+This or That
+<radio uses="leftright.1">
+Card Sort Single Select Element
+<radio uses="cardsort.11">
+Not listed in Accessibility Conformance Report
+Rank Sort
+<select uses="ranksort.10">
+Not listed in Accessibility Conformance Report
+Rating Scale
+<radio uses="ratingscale.7">
+Not listed in Accessibility Conformance Report
+Note: All questions and elements are subject to VPAT approval and may
+be updated at anytime.
+2: WCAG Non-Compliant Questions and Elements
+The following questions and elements are not ADA-compliant as their functionality
+is not conducive to screen readers, nor using the keyboard to answer questions.
+This list is not comprehensive.
+Important: Avoid these questions if your survey requires ADA compliance.
+Question Style
+XML Style Name
+Media Evaluator
+<textarea uses="bcme.8">
+Audio Player
+<checkbox uses="audio.4">
+Video Player
+<text uses="videoplayer.4">
+Autosum
+<number uses="autosum.6">
+Button Rating
+<number uses="atmrating.7">
+Button Single Select Grid
+<radio uses="atmtable.7">

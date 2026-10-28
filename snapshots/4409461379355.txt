@@ -1,0 +1,15 @@
+Title: Examples of Question Formatting Options
+The survey editor allows you to add single-dimension grouping in question elements. You can then shuffle the attributes within a group, shuffle multiple groups and/or include headers for the groups.
+See: Adding Answer Groups
+The survey editor allows you to show a running sum or total for the rows or columns in 2-dimensional number elements. The participant must enter the amount specified for the sum of the rows or columns in order to continue to the next question.
+See: Autosum Element
+Hybrid questions utilize two or more element types in one question. The survey editor allows you to place an element type below another, or place an element on the right side of another.
+See: Create Hybrid Questions by Merging Elements
+The "Show rows/cols if" menu allows you to show the answer options from one question in another question, based on what the participant selects (or does not select).
+See: Answer Piping
+Rating questions can only be created using single select or select elements and the answer options in a rating scale should be measurable attributes.
+See: Creating a Rating Scale
+In a ranking question the participant must enter a unique response in the rows or columns. Ranking questions can be created using select or number elements.
+See: Ranking Questions
+The survey editor allows you to change a column in a 2-dimensional multi-select question into single select form. This is can be used in awareness questions where you'd also like the participant to select a favorite option that utilizes a single select form.
+See: Adding a Single Select Column in a Multi-Select Question

@@ -1,0 +1,85 @@
+Title: Button Rating Element
+1: About the Button Rating Element
+The Button Rating element utilizes numbers to rate a question and contains buttons as rows that are evenly spaced on the survey page. It allows a participant to click buttons to rate the question. This element is mobile compatible.
+Tip: Use a range of 0-11 for best compatibility with mobile devices.
+2: Adding a Button Rating Question
+Note: You can set the "Show if" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Button Rating element, first click the "+ Element" button to add a new survey element. Then click "Rate, Rank, and Sort" under Question Types and select the "Button Rating" element. Then click "Add".
+Enter the question and instruction text in the areas provided.
+2.1: Adding Rows
+Click "+ New Row" to add each new row, then enter the text for the response option in the text field.
+Note: Do not number the response options unless you want that numeric text to appear for the participant. The system automatically provides labels / numbers for the rows with the prefix "r", which you can edit later in "Options".
+2.2: Configuring Row Actions
+To customize the row settings for a Button Rating element, click “Row Actions” and select from the following options (you can click each option for more information):
+Import Answers
+Save Answers to Library
+Copy All Answer Text
+Insert Reusable Answer List (only available if you have previously saved
+an answer list)
+Create Reusable Answer List
+Add Answer Group
+Answer Piping
+Reverse Values
+Reset Values
+Reset Labels
+Delete All Answers
+Edit All Answers
+3: Style Settings
+To edit the display settings for a Button Rating element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Question Display Options" window, use the options on the left to specify how the question displays. When you mouse-over an option, information about the feature displays on the right.
+Click "Save and Preview" to preview the settings. Once you are satisfied with the style options settings, click "Save and Close".
+The following display options are configurable:
+Display Option
+Description
+Scale Order
+Allows you to specify the rating order displayed on the buttons.
+Select Low to High to set the scale direction from low to high values, from left to right.
+Select High to Low to set the scale direction from high to low values, from left to right.
+Scale Legend Position
+Allows you to set the position of the legend.
+Above: Displays the legends above the buttons
+Below: Displays the legends below the buttons
+Left Legend
+Allows you to enter text to display above / below the left-most button.
+E.g., Completely Dissatisfied.
+Middle Legend
+Allows you to enter text to display above / below the middle button.
+Note: The middle legend is not clickable if there is an even number of buttons.
+E.g., Neither Satisfied nor Dissatisfied.
+Right Legend
+Allows you to enter text to display above / below the right-most button.
+E.g., Completely Satisfied.
+Container Width
+Allows you to modify the width of the button container by specifying the percentage of the window size it will occupy. The optimal setting for most is 100%.
+E.g., 80% will stretch the buttons to 80% of the survey page.
+Opt Out Text
+Allows you to create an "Opt Out" option. Enter the desired text in this field and a button will be created automatically for each button rating programmed.
+Note: Additional steps are required to setup the opt-out option. See Slider Decimal Element for instructions.
+E.g., Enter "Not Applicable" in this field and a "Not Applicable" button will appear below the button rating scale, allowing the participant to select this response option if the rating points do not apply to their experience.
+4: Question Options
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it.
+4.1: General Options
+When altered, each of the following options affects all attributes within the Button Rating element.
+Label: The label assigned to the element. Click to edit the default label for the Button Rating element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: This setting is required and the box is checked by default.
+Randomize: Check the boxes to randomize items by rows.
+Allow Decimals: Check the box to allow decimal entries in the numeric field.
+Value Range: Click into the boxes to assign a value range for each open-ended number field in the question. For example, "1-200" will only allow the participant to enter numbers 1-200 in each open-ended number field.
+Validate Sum: Any value entered here will force the numeric sum of the question to be exactly equal to this value.
+ignoreValues: Enter an integer value. This value is not counted towards the question's standard deviation and average calculations in the report.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the settings for that option. For more information on each option, see More Options - Advanced Features.
+4.2: Row Options
+When altered, each of the following options affects only row attributes.
+Label: The label assigned to the row. Click to edit the default label for the row.
+Show If: Click to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the row will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the row to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the row optional and non-mandatory.
+Open End: Click to add an open-end response box to the row by selecting "Mandatory" or "Optional" from the drop-down menu. "Mandatory" means the participant must enter feedback in the response box to continue if the row is selected, "optional" means that feedback is not required.
+Hidden: Click to hide the row from participants.
+Value Range: Assigns a value range for each open-ended number field in the question. For example, "1-200" will only allow the participant to enter numbers 1-200 in each open-ended number field.
+Row Pre-Text: Enter a value to appear before the answer field.
+Row Post-Text: Enter a value to appear after the answer field.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the settings for that option. For more information on each option, see More Options - Advanced Features.

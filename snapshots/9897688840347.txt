@@ -1,0 +1,23 @@
+Title: April 17th Technical Release Notes
+Release Date: April 17, 2018
+New Features
+Survey Editor
+Question types and styles can now be switched after questions have been added in the Survey Editor
+Any content and styles already applied to questions can be transferred in some circumstances
+Reporting
+Crosstabs
+Percentages are now shown for "sum" summary tables to allow for volumetric reporting
+Bug Fixes
+Reporting
+Updated powerpoint templates to be inline with our current styling and fixed an error that was occurring when exporting
+Crosstabs
+Fixed an error that occurred when attempting to export media evaluator videos
+Survey
+Fixed an issue where autosave file state.db could become corrupted when multiple logic nodes were used in a survey
+Survey Editor
+Fixed an issue where an error message pop-up could be shown when re-launching a survey
+Fixed an issue where answers could not be deleted from the stage for reusable answer lists
+Panel Management (previously Kinesis) Integration
+Fixed a rare issue where new panelists could not be created when the data contained many participants who were termed or overquota
+Misc / Custom Projects
+Fixed issue with running Neilson API

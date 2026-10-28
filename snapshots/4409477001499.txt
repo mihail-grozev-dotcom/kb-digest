@@ -1,0 +1,107 @@
+Title: Slider Element
+The Slider element is a special type of rating element that allows survey participants to rate items using one or more dynamic sliders. You can add a Slider element to any survey using the Survey Editor.
+Tip: See Customizing the Slider Element to learn how to customize the Slider element using survey XML.
+1: About the Slider Element
+The Slider element utilizes a type of number form and so must contain a value range for its slider points. It may contain multiple sliders (i.e., rows). This element does not utilize Flash.
+Note: The Slider element is mobile compatible, though usability will degrade if multiple sliders are added.
+2: Adding a Slider Element
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to how to verify your project settings.
+To add a Slider element, first click the "+ Element" button to add a new survey element. Then click "Rate, Rank, and Sort" under Question Types and select the "Slider" element. Then click "Add".
+Enter the question and instruction text in the areas provided. Then use the “Options” menu to the right of the staging area to customize the slider.
+2.1: Including Multiple Sliders
+If you would like to include multiple sliders, add additional rows to the element by clicking the "Add Sliders" button.
+Tip: If you want to show only one slider with the question text, do not add any answer options.
+Then enter the text for the sliders. Each entry will be a new row and will have its own slider. Do not number the answer options unless you want numbering to appear for participants. The system will automatically provide labels / numbers for the answer options, which you can edit later using the "Options" menu.
+All answers will appear in the question box with labels (r1, r2, r3, etc.), indicating individual rows / sliders. You may edit each slider using the "Slider Actions" drop-down.
+For example, you can click "Answer Piping" to show sliders based on participants' answers to previous survey questions. See Answer Piping to learn more about answer piping.
+2.2: Defining the Range
+Next, you must define the range for the slider scale. In the "Options" menu to the right of the staging area, enter the desired range for the slider scale in the "Value Range" field.
+In the following example, the range is set from "1" to "5", meaning the lowest value is 1 and the highest is 5.
+3: Configuring Display Settings
+To configure the display settings for your Slider element, click the "..." button in the staging area and select "Update Styling" from the drop-down.
+In the "Question Display Options" window, configure the settings for the element using the options on the left. Additional information about each feature will appear when you mouse-over the text. Click "Save and Preview" to preview the settings. Once you are satisfied with your settings, click "Save and Close".
+The following display settings are available:
+Note: You can click any image to view an enlarged version.
+Display Option
+Description
+Initial Slider Position
+Allows you to specify where to start the slider handle.
+Off Scale : Start with the slider handle to the left of the slider scale
+Left End : Start with the slider handle at the minimum value of the slider scale
+Middle : Start with the slider handle at the middle value of the slider scale
+Right End : Start with the slider handle at the maximum value of the slider scale
+Scale Interval
+Allows you to set the interval of each slider point on the slider scale. Each interval must be entered as a whole number.
+Example:
+If you enter 5 in the scale interval and the value range is set to 0-100, the slider will jump to points 0, 5, 10, 15, and so on.
+Scale Legend Position
+Allows you to specify where the slider legend displays.
+Above Slider : Displays the legends above the slider scale
+Below Slider : Displays the legends below the slider scale
+Left Legend
+Allows you to enter text to display above the left-most slider point.
+Example: Completely Dissatisfied
+Middle Legend
+Allows you to enter text to display above the middle slider point.
+Example: Neither Satisfied nor Dissatisfied
+Right Legend
+Allows you to enter text to display above the right-most slider point.
+Example: Completely Satisfied
+Slider Value
+Allows you to specify where the slider value is displayed.
+Above Slider: Will show the value above the slider scale. For example:
+Below Slider: Will show the value below the slider scale. For example:
+On Handle: Will show the value on the slider handle. For example:
+Do Not Show Value: Will hide the value completely. For example:
+Pre-Text
+Allows you to enter a character to display before (i.e., to the left of) the slider value indicator.
+Example: $__
+Post-Text
+Allows you to enter a character to display after (i.e., to the right of) the slider value.
+Example: ___%
+Editable Input
+If the "Slider Value" is set to "Above Slider"or "Below Slider", allows you to make the value indicator editable, meaning participants can click the value and enter a specific number.
+When checked, the value box is editable to participants.
+When unchecked, the value box is read-only. Only moving the slider will update the value.
+Color-Fill Track
+Allows you to set the color of the slider track.
+When checked, the track will be highlighted according to the action of the slider, from the minimum value to the slider handle.
+When unchecked, the track will not be highlighted.
+Slider Container Width
+Allows you to modify the width of the slider scale bar by specifying the percentage of the window size it will occupy. The optimal setting for most sliders is 75%.
+Example: 100% will stretch the slider to the full width of the survey page.
+Opt Out Text
+Allows you to create an "opt-out" option for the slider. Enter the desired text in this field and a checkbox will be created automatically for each slider.
+Note: Additional steps are required to set up the opt-out option. See Adding an Opt-Out Answer Option below for instructions.
+Example: Enter Not Applicable in this field and a "Not Applicable" checkbox will appear below the slider scale, allowing the participant an answer option if the slider points do not apply to their experience.
+3.1: Adding an Opt-Out Answer Option
+If added, the "Opt-Out" checkbox must have a data value connected to it (the checkbox is automatically created when you add "Opt Out Text" in the style settings.
+To do this, locate the "More options" menu in the general options for the question. Select "ignoreValues" and a new field will appear in the options section. Enter a value in the field. This value must be outside of the specified value range.
+4: Options for a Slider Element
+The general options available for the Slider element are located to the right of the staging area. You can set rules for the entire element by clicking near the element text or set rules for individual rows by clicking the row you wish to edit. The "Options" menu will show the element or row text, label, and type of the option you have selected to edit.
+4.1: General Options
+When altered, each of the following options affect all attributes within the Slider element.
+Label: The label assigned to the element. Click to edit the default label for the slider element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: Check the box to force participants to provide a response. When checked, participants will be unable to continue the survey without completing the question.
+Randomize: Check the boxes to randomize items by type. Items can be randomized by rows, columns, or both.
+Allow Decimals: Check the box to allows participants to enter decimal values in the numeric field.
+Value Range: Click into each box to assign a value range for each open-ended number field in the question. For example, "1-200" will allow the participant to only enter numbers 1-200 in each open-ended number field.
+Validate Sum: This option is only available if the question has both rows and columns. Enter a value to force the numeric sum of each row or column (based on what the question is "grouped by") to be exactly equal to this value.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.2: Row Options
+When altered, each of the following options only affects specific row line attributes.
+Label: The label assigned to the row. Click to edit the default label for the row.
+Data Value: The value assigned to the row in the data. Click to edit the default value for the row if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the row will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the line to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the slider optional and non-mandatory.
+Open End: Click to add an open-end response box to the slider by selecting "Mandatory" or "Optional" from the drop-down menu. "Mandatory" means the participant must enter feedback in the response box to continue if the slider is selected, "optional" means that feedback is not required.
+Hidden: Click to hide the slider from participants.
+Value Range: Click into each box to assign a value range for each open-ended number field in the question. For example, entering "1-200" will allow the participant to only enter numbers 1-200 in each open-ended number field.
+Validate Sum: This option is only available if the general option "group by" is set to "rows". Enter a sum to force the participant to enter a number equal to or less than the value entered here.
+Row Pre-Text: Enter a value to appear before the answer field.
+Row Post-Text: Enter a value to appear after the answer field.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.

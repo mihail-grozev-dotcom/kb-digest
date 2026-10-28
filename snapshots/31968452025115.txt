@@ -1,0 +1,152 @@
+Title: Customizing the Media Testimonial Element
+Media Testimonial uses the text question type (<text>), but adds the attribute uses="mediatestimonial.2". In this element, the participant provides question feedback via a video or audio recording that is uploaded to the server. Some attributes are configurable only via the survey's XML. To learn more about configuring Media Testimonial using Survey Editor, to see examples of the Participant View, to enable and view AI transcriptions, or to learn how to view responses in Crosstabs, see Media Testimonial Element.
+Important: Uploaded media files for Media Testimonial are removed 90 days after date of upload.
+1: Element Requirements
+Media Testimonial requires:
+a survey with compat 153+
+no rows
+exactly 2 columns
+the attribute sst set to 0
+2: Underlying Question Architecture
+Shown below is the base XML inserted when adding the element via Survey Editor.
+<text
+label="q1"
+size="25"
+sst="0"
+uses="mediatestimonial.2">
+<title>New Media Testimonial Question</title>
+<comment>Record or upload an existing video</comment>
+<col label="c1">ID</col>
+<col label="c2">Length</col>
+<noanswer label="na_q1">NA</noanswer>
+</text>
+3: Customization
+All attributes available for this element are listed below. Set these options manually to create a custom look and feel for your Media Testimonial element, or to change its functionality.
+Each attribute must be prepended with mediatestimonial:, as shown in this example:
+<text
+label="q1"
+size="25"
+sst="0"
+mediatestimonial:audioonly="1"
+mediatestimonial:audioUploadText="Upload Audio File"
+mediatestimonial:mintimelimit="15"
+uses="mediatestimonial.2">
+<title>New Audio Testimonial Question</title>
+<comment>Record audio, or upload an existing file</comment>
+<col label="c1">ID</col>
+<col label="c2">Length</col>
+<noanswer label="na_q1">NA</noanswer>
+</text>
+3.1: Configurable Attributes
+Attribute
+Default
+Options
+Description
+audioonly
+0
+boolean
+Record only audio.
+width
+384
+integer
+height
+288
+integer
+mintimelimit
+5
+integer
+Minimum time (in seconds) required for the recording.
+timelimit
+120
+integer
+Time limit (in seconds) for the recording. Must be greater than zero and not greater than 120.
+uploadsizelimit
+1074000000
+integer
+Limit the recording's size (in bytes).
+providenoanswer
+1
+boolean
+Provide participants a <noanswer> option to skip the question.
+noanswerText
+I'm having issues recording a video
+text
+Label for the option to skip the question.
+openMicrophoneText
+Microphone
+text
+Label for activating the microphone.
+openCameraText
+Open Camera
+text
+Label for activating the camera.
+audioUploadText
+Upload File
+text
+Button title for uploading audio files.
+videoUploadText
+Upload Video
+text
+Button title for uploading video files.
+cancelText
+Cancel
+text
+loadingText
+Loading...
+text
+Message shown above the progress bar during upload of the recording.
+mobileCameraButtonTitle
+Flip Camera
+text
+Title of the button that switches between front and rear cameras on mobile devices.
+desktopCameraButtonTitle
+Change Camera
+text
+Button title for opening the cameras menu on desktop devices.
+desktopCameraMenuTitle
+Cameras
+text
+Title of the cameras menu on desktop devices.
+desktopMicrophoneButtonTitle
+Change Microphone
+text
+Title of the button that opens the microphones menu on desktop devices.
+desktopMicrophoneMenuTitle
+Microphones
+text
+Title of the microphones menu on desktop devices.
+timeLimitText
+Recording time limit
+text
+secondsText
+seconds
+text
+uploadSizeLimitText
+Max file size for uploads
+text
+existingResponseText
+Your response has been recorded. However, you may record a new response.
+text
+Message shown when participants navigate backward to a Media Testimonial question they've already answered.
+errorAudioInvalidType
+Unsupported file. Valid audio formats: .mp3, .wav, .webm
+text
+errorVideoInvalidType
+Unsupported file. Valid video formats: .mp4, .webm, .mov
+text
+errorCannotPlayback
+Upload successful.
+text
+Error message shown when the recording has uploaded succesfully but the participant cannot play it back.
+errorUnsupportedEncoding
+This device or browser does not support the selected format. Please try a different file.
+text
+errorTimeLimit
+Exceeds maximum time limit.
+text
+errorGeneric
+Something went wrong.
+text
+Catch-all error message shown for other errors.
+Some attributes have more options available when customized via XML than when set via the Update Styling menu in Survey Editor. Those options will be overwritten if styling options are saved via Survey Editor.
+For example: if your survey has mintimelimit="15", Survey Editor will display "0 seconds" instead. If you then Save the question from this modal in Survey Editor, the mintimelimit will be changed to "0".

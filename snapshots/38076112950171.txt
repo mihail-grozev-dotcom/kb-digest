@@ -1,0 +1,28 @@
+Title: 153.55 Release Notes
+Release Date: June 17, 2025
+Release Version: 153.55
+New Features
+Programming and Tools
+API
+The json_stacked datamap API will now return rating: True for questions that are explicit configured as type="rating".
+Bug Fixes
+Portal
+An error preventing navigation to Themes, Language Manager, and System Files in Closed surveys has been resolved.
+An issue that auto-assigned extraneous group permissions to duplicated surveys in subdirectories has been resolved.
+Survey
+Participant View
+An issue that caused extra space to display around some styled row texts in accordion-style questions on mobile devices has been resolved.
+A rare issue causing extraneous input fields to appear in some grid-type questions has been resolved.
+Survey Editor
+An issue preventing edits while the survey contained a looped quota with a pipe in the title has been resolved.
+View XML
+An issue preventing use of "View XML" for some live or closed surveys has been resolved.
+XML Editor
+An issue preventing navigation from the successful Launch Survey process directly to the read-only "View XML" page has been resolved.
+Reporting
+Data Downloads
+There is no longer a limit to how large a single fixed-width text field can be. Previously, the Open Assist DQ debug data could exceed the previous limit and interfere with fixedwidth and/or SPSS downloads.
+Fixed-width downloads where text fields contained non-ascii characters is no longer misaligned.
+Failure of json_stacked datamap with certain surveys is resolved.
+Architecture and DevTools
+When running SST, qtime is set to an average of 30 seconds per page.

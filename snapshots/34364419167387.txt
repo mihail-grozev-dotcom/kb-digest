@@ -1,0 +1,21 @@
+Title: February 25, 2025 Release Notes
+Release Date: The following items were released between February 11, 2025 and February 25, 2025.
+New Features
+Survey
+On January 13, 2026, survey compats 108-142 will be deprecated. Learn More: Survey Compat Levels
+Custom Elements (Logic Nodes)
+Adds the Dynata QualityScore Integration logic node.
+Learn More: Dynata QualityScore Integration
+Architecture and DevTools
+An issue where participant counts were not being updated properly for surveys that had been migrated has been resolved.
+Bug Fixes
+Survey
+Survey Editor
+An encoding issue that prevented surveys with certain characters from loading in Survey Editor has been resolved.
+Reporting
+Data Downloads
+An issue where some users were getting an error on the OData page in Data Downloads has been resolved.
+An issue where our OData feeds stopped working with PowerBI and Excel has been resolved.
+Architecture and DevTools
+Data Retention
+Temp directories within remove survey directories are now automatically archived following the same rules as temp directories elsewhere.

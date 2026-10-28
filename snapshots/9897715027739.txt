@@ -1,0 +1,23 @@
+Title: 143.3 Release Notes
+Release Date: June 25, 2019
+Release Version: 143.3
+New Features
+Survey Editor
+Added the OMI sample source.
+Participant Sources
+Added the OMI sample source.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue where Crosstabs would not run for a project containing image files with incorrect file extensions.
+Survey
+Survey Editor
+Fixed an issue where users were unable to set single values for the min or max value options within the options panel for checkbox questions.
+Portal
+Actions Menu
+Fixed an issue where clicking “Duplicate” more than once would produce more than one copy of a survey.
+Programming & Tools
+Fixed an issue where restricted shell users could not create surveys using the copy-survey command.
+Added a validation to check for available disk space when using copy-survey to duplicate surveys.
+Panel (legacy)
+Fixed an error displaying for terminate elements due to a recent compat change.

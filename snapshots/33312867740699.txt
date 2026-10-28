@@ -1,0 +1,167 @@
+Title: Customizing the DCM Conjoint Element
+You can use the Discrete Choice Model (DCM) Conjoint Element to assist you in creating a coherent set of questions for conjoint analysis.
+To use the DCM element, ask your Forsta account representative to enable the DCM element.
+1: Element Requirements
+The DCM element requires:
+a survey with compat 153+
+no rows
+at least two columns, at most twelve columns
+a discrete choice model design file
+You can either create the design file yourself, or you can use the Survey Editor to create the design file for you.
+2: Adding a Discrete Choice Model
+2.1: Add the <radio> element
+To add a Discrete Choice Model element, first add a <radio> element with multiple columns. You will also need to add the attribute uses="de_dcm.1":
+<radio
+label="q1"
+randomize="0"
+surveyDisplay="desktop"
+uses="de_dcm.1">
+<title>New Discrete Choice Model Question</title>
+<comment>Select one</comment>
+<alt>Task 1: New Discrete Choice Model Question</alt>
+<col label="c1">Sample Concept 1</col>
+<col label="c2">Sample Concept 2</col>
+</radio>
+In the above example, two concept columns are displayed to the participant. The participant can only choose one of the options on each page. You can change the number of columns (concepts) displayed from two to at most twelve.
+Note: You will add additional attribute tags to the <radio> element in 3: Customization.
+2.2: Adding the <res> tags
+To add the conjoint attribute and levels, you will need to add <res> tags with the appropriate labels after the opening <survey> tag. The <res> tags should be placed before any other elements in the survey.
+The <res> tags for the discrete choice model attributes should include label="q1_dcmlegend#", where q1 is the <radio> element's label, and # is 1 for the first attribute, 2 for the second attribute, and so on. The total number of res tags with a q1_dcmlegend# label should match the number of attributes in the design file.
+Tip: Text for the discrete choice model attributes are used as legend text when de_dcm:yesLegend="1".
+For example:
+<res label="q1_dcmlegend1">Price</res>
+<res label="q1_dcmlegend2">Data included</res>
+<res label="q1_dcmlegend3">International minutes included</res>
+<res label="q1_dcmlegend4">SMS included</res>
+The <res> tags for the discrete choice model attributes should include label="q1_dcmatt1_level#", where q1 is the <radio> element's label, dcmatt1 is the attribute's number, and # is 1 for the first level, 2 for the second level, and so on.
+For example, the levels for the "Price" attribute (<res label="q1_dcmlegend1">Price</res>) are:
+<res label="q1_dcmatt1_level1">$100 per month</res>
+<res label="q1_dcmatt1_level2">$75 per month</res>
+<res label="q1_dcmatt1_level3">$50 per month</res>
+While, for example, the levels for the "SMS included" attribute (<res label="q1_dcmlegend4">SMS included</res>) are:
+<res label="q1_dcmatt4_level1">500 messages</res>
+<res label="q1_dcmatt4_level2">Unlimited messages</res>
+3: Customization
+Each attribute should be prefixed with: de_dcm:.
+3.1: Required Attributes
+Note: You will need to add <res> tags for each attribute and task (level). See 2.2: Adding the <res> tags.
+Attribute
+Input
+Description
+Example
+attributes
+number
+The number of attributes to be used. This value should match the number of attributes in the design file, and the number of <res> attributes with a q1_dcmlegend# label. This will be the number of rows shown for each question.
+de_dcm:attributes="5"
+filename
+file name
+Identify the .dat or tab delimited .txt design file which you uploaded to the system files.
+To learn how to upload the file, see Uploading System Files.
+de_dcm:filename="q1_design_55a2d.dat"
+tasks
+number
+The value should match the number of tasks in the design file. This will be the number of questions the participant sees.
+de_dcm:tasks="5"
+versions
+number
+The number of unique combinations of tasks and attributes. This value should match the number of versions in the design file.
+de_dcm:versions="15"
+The opening tag to your <radio> element should now include the following attributes.
+<radio
+label="q1"
+de_dcm:attributes="5"de_dcm:filename="q1_design_55a2d.dat"de_dcm:tasks="5"de_dcm:versions="15"
+randomize="0"
+surveyDisplay="desktop"
+uses="de_dcm.1">
+3.2: Optional Attributes
+Attribute
+Input
+Description
+Example
+yesLegend
+boolean
+Set to 1 to show a legend to participants. The legend will be an added column to the left of the concepts, and will have one row per attribute. Add the legend header and footer using legendRowText and legendTopText.
+de_dcm:yesLegend="1"
+legendRowText
+string
+The text to label the bottom of the legend column, in the answer row. Displays when de_dcm:yesLegend="1".
+de_dcm:legendRowText="Select a plan."
+legendTopText
+string
+The text to label the top of the legend column. Displays when de_dcm:yesLegend="1".
+de_dcm:legendTopText="Available Options"
+4: DCM Best Practices
+Below are best practices for building a conjoint with Decipher's DCM conjoint element.
+Standard Question Text
+Please choose the option you would choose if these were the only options available.
+For DCM Design:
+Minimum Sample Size
+n = 300 respondents
+Attributes
+Minimum: 2
+Maximum: 7
+Levels per Attribute
+Minimum: 2
+Maximum: 6
+Recommendations for Price Attribute:
+Maximum of 5 levels
+Keep price levels simple and distinct
+Avoid overlap with value-related attributes (that is, do not include both "price" and "value" in the same study to preserve mutual exclusivity of concepts)
+Number of Random Tasks per Respondent
+Minimum: 6
+Maximum: 12
+Number of Concepts per Random Task
+Durables (durable goods): 2 – 4 concepts
+Durables are physical products with a long lifespan, typically purchased infrequently and used over time. These are high-involvement purchases, meaning consumers usually spend more time evaluating their options before buying.
+CPG (Consumer Packaged Goods): Up to 12 concepts.
+CPGs are everyday products that consumers purchase frequently, use quickly, and typically have lower involvement in the purchase decision compared to durable goods.
+Summary Table of Durable vs CPG based on best practices:
+Category
+Durables
+CPG / Non-Durables
+Lifespan
+Long-term
+Short-term / Consumable
+Purchase Frequency
+Infrequent
+Frequent
+Decision Process
+Deliberate, research-heavy
+Fast, often habitual
+Concepts per Task
+2-4
+Up to 12
+Common Examples
+cars, appliances, furniture
+snacks, drinks, toothpaste
+5: Adding CSS to DCM
+You can add CSS to the conjoint element with our XML Style System.
+Example:
+<style name="respview.client.css"><![CDATA[
+<style>
+#question_q1 tr.dcm_even {
+background-color: green !important;
+}
+#question_q1 tr.dcm_odd {
+background-color: yellow !important;
+}
+tr.even .dcm_legend {
+background-color: blue;
+}
+</style>
+]]></style>
+Learn More: XML Style System
+6: Design Metrics
+Design metrics provide various ways to evaluate the quality of the design. Three files are generated and available for download in the "Shared Documents" section on the Project Overview page. Provided are counts, frequencies, and standard errors.
+7: Limitations
+Only random design method is supported. Other design methods, such as balanced, are not available.
+None option is not supported.
+Prohibitions are not supported.
+Using a DCM inside a loop element is not supported.
+DCM cannot be duplicated using the Survey Editor Duplicate action. You will need to manually add a new element.
+Versions are automatically assigned based on least-filled.
+For manually uploaded design files, levels and attributes need to start with an index of 1.
+8: Learn More
+To use the Survey Editor, see
+Discrete Choice Model (DCM) Conjoint Element
+For reports, see Reporting on the DCM Conjoint Element

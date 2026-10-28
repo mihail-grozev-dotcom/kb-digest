@@ -1,0 +1,51 @@
+Title: Exporting OData Reports
+If you use PowerBI or Tableau to visualize your survey results, you can generate a special OData URL to import and dynamically update reports directly from Decipher using your survey’s most recent participant data.
+The OData URL provides access to the following survey resources in both PowerBI and Tableau:
+RespondentText: Includes one data row for each survey participant. The columns contain the textual answer to the single- / multi-select question (e.g., for a two-gender question, you would see “Male” or “Female” for a participant). The column names correspond to those configured in the data layout and will change if you change the layout. This is the easiest format to work with outside of Decipher.
+Respondent: Includes one data row for each survey participant. The columns contain the numeric answer, just like the default tab-delimited or Excel downloads. Processing this format may be faster, but you then have to work manually, referencing the survey datamap in Decipher.
+RespondentFlatText: Includes one row per variable response. The columns contain the textual answer to the single / multi-choice question (e.g., for a two-gender question, you would see “Male” or “Female” for a participant). Each row includes 3 additional columns as well: “uuid”, “label” (of the variable), and “data” (the value). Some users prefer to work with this format.
+RespondentFlat: The Flat version of Respondent; the values for single- / multi-select questions are numeric.
+Question: Includes one row for each question in the survey, together with its type.
+Variable: Includes one row for each variable in the data layout.
+Value: For single select questions, maps the numeric value to the answer text in the survey.
+Note: The Question, Variable, and Value tables correspond to values included in the JSON survey datamap.
+1: Connecting Your Accounts
+Before you can use a Decipher ODATA link, you must generate a Decipher API key to enable the system to connect your Decipher account to your data platform of choice (PowerBI or Tableau).
+1.1: Generating an API Key
+To generate an API key, first navigate to your company Portal and click your profile image / avatar. Then select API Access.
+Note: If you do not have access to create an API key, reach out to your company’s administrator to create an API key on your behalf.
+In the API key manager, click Create new API key and enter self to create a new API key for yourself.
+Tip: Be sure to copy your API key elsewhere. If you lose it, you must generate a new key for yourself using the rekey function in the key manager.
+Once you have generated an API key, you can use this to connect your Decipher account to an account in PowerBI or Tableau when copying over an OData link.
+Learn More about Decipher REST API Keys: Decipher REST API
+2: Generating the OData Link
+Now that you have connected your accounts, you can use the OData link manager to generate a unique URL that allows you to import a report directly into PowerBI or Tableau.
+To access the OData link manager, navigate to the Data Downloads page. From the navigation menu, select REPORT, then Data Downloads. Select Other Data Formats from the drop-down menu. On the Data Downloads page, select OData (Tableau, Power BI) under the header Open Formats.
+In the OData link manager, configure your report URL using the available drop-down menus.
+Report: By default, the report is set to “Total Qualified”, which contains all qualified complete data. Select a custom report if you would prefer to export only a specific subset of data.
+Data Layout: Data layouts saved for the survey. Learn more about modifying the survey data layout.
+Note: By default, OData report layouts are limited to 1,000 variables and will only export the first 1,000. If you would like to include more variables in your report, you must create a custom layout. If you would like to increase the default limit, contact your Forsta representative for assistance.
+Note: PowerBI and Tableau may have difficulty importing reports with many variables.
+3: Exporting the Report
+Once you are satisfied with your report settings, click the Copy button to copy the URL as it appears in the URL box. You can then paste the URL directly into the reporting platform of your choice.
+4: Generating Data
+4.1: In PowerBI
+To access to your Decipher data in PowerBI, first locate the Odata feed option in PowerBI and choose a basic authentication. Then paste the OData URL you copied from Decipher into the URL field.
+When prompted to authenticate, enter apikey as the user name and your 64-character Decipher API key as the password.
+Once you have connected your accounts, your Decipher data should appear within PowerBI, where you can choose to import or transform resources as normal.
+Note: If you edit your data in Decipher or your survey is still collecting completes after you have connected your accounts, you will need to manually refresh your resources within PowerBI to see the latest survey data.
+See PowerBI’s OData Feed documentation for additional details.
+4.2: In Tableau
+To access your Decipher data in Tableau, first locate the Odata option in Tableau and choose a basic authentication. Then paste the OData URL you copied from Decipher into the server field.
+When prompted to authenticate, enter apikey as the user name and your 64-character Decipher API key as the password.
+Once you have connected your accounts, your Decipher data should appear within Tableau, where you can choose to import or transform resources as normal.
+Note: If you edit your data in Decipher or your survey is still collecting completes after you have connected your accounts, you will need to manually refresh your resources within Tableau to see the latest survey data.
+See Tableau’s OData documentation for additional details.
+5: Limitations and Additional Considerations
+The following limitations and additional considerations apply when working with Decipher OData links.
+A Decipher API key is required at all times to ensure that only credentialed users are running OData reports.
+Surveys are limited to 1,000 variables.
+Surveys over 1,000 variables will be truncated to only include the first 1,000 variables.
+Users can only perform one call to OData for one specific survey at a time.
+Users can have only a total of three outstanding OData requests active at a time.
+Surveys can have only three background (Odata or other) requests active at a time.

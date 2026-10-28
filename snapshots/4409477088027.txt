@@ -1,0 +1,60 @@
+Title: Preparing a Survey for Multi-User Editing
+Note: Multi-User Editing must be enabled at the company level prior to use. If you are interested in utilizing this feature, please contact your Forsta representative to get set up.
+Before you can collaborate on a survey with multiple users, you must prepare that survey for Multi-User Editing. This article outlines the process for enabling Multi-User Editing on a survey.
+1: Adding Content Blocks
+To enable Multi-User Editing on a survey, you must first split that survey into sections of editable content using Block elements. Once the survey is split up, you can then assign Multi-User Editing to the content blocks you have created.
+To add a content block, add a new Block element to your survey and specify which questions or elements you would like to designate for that block.
+While creating content blocks, keep in mind that each block can only be accessed by one user at a time.
+Tip: To ensure that everyone has access to the blocks they need to work on, you may want to separate content based on your individual team members’ expertise with different survey elements.
+Learn more about creating blocks using the Block element in the Survey Editor or the <block> XML tag in the XML Editor.
+2: Assigning Blocks for Editing
+Once you have separated your survey into blocks, you can start assigning these blocks for editing. You can assign blocks for editing using the Survey Editor or the XML Editor.
+2.1: In the Survey Editor
+To assign a block for editing in the Survey Editor, select the block and click the ellipsis icon (“...”) at the top right of the element to access the question options menu. Then click “Assign for Multi-User editing".
+Repeat this process for every block you would like to assign for Multi-User Editing.
+2.2: In the XML Editor
+To assign a block for editing in the XML Editor, first navigate to the block element you would like to assign for Multi-User Editing. Then add the subsection="1" attribute within that element’s <block> tag.
+For example, if you were to assign Multi-User Editing to the first block element in your survey (“b1”) which contained only one question called “b1_q1”, your code might look something like the below.
+<block label=“b1” builder:title=”Section One” subsection=”1”>
+<checkbox
+label=“b1_q1”
+atleast=“1”
+randomize=”0”
+<title>Which colors do you like?</title>
+<comment>Select all that apply</comment>
+<row label=“r1”>Red</row>
+<row label=“r2”>Blue</row>
+<row label=“r3”>Green</row>
+<row label=“r4”>Yellow</row>
+<row label=“r5”>Pink</row>
+<row label=“r6”>Purple</row>
+<row label=“r7”>Orange</row>
+</checkbox>
+</block>
+Note: Multi-User Editing can only be assigned to standalone block elements. If you would like to assign Multi-User Editing to a parent block, you must first remove all children from that block. Similarly, you must remove a child block out of its parent block before assigning it for editing.
+3: Editing Blocks
+Once you have assigned your survey blocks for editing, any user with edit access to the main survey can use the Multi-User Editing control panel to edit those blocks.
+Learn more about collaborating on surveys using Multi-User Editing.
+4: Limitations and Additional Considerations
+Multi-User Editing is only available prior to the launch of the main survey. Once the survey has been set live, users will no longer be able to access the Multi-User Editing control panel to check blocks in or out.
+Additionally, the following limitations apply to a survey when Multi-User Editing is enabled.
+Users will not be able to edit the following survey features:
+Quotas
+Import Data elements
+Themes
+Exit pages
+Language Manager
+Project settings
+Uploaded system files
+Named conditions
+QA editing tools
+Users will not have access to the following survey tools and report pages:
+The XML Upload API endpoint
+Themes
+Language Manager
+Upload System Files
+Project Parameters
+Participant Sources
+Email Campaign Manager
+Alert Center
+The “Campaigns” tab of the Response Summary

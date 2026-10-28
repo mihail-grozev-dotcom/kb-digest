@@ -1,0 +1,35 @@
+Title: Combining Data from Multiple Surveys
+By default, only the current survey data is loaded and accessible within a dashboard. To pull data from multiple surveys, you need to include the keyword survey.
+1: Pulling Data from Multiple Surveys
+The keyword survey allows the inclusion of data from another survey.
+survey <path> [condition] [S1=T1] [S2=T2]
+For example, to include all data from the project path selfserve/9d3/12345, use the following code:
+survey selfserve/9d3/12345.
+You can add other values to further define your data pool. For instance, to view the same data, but only from participants that have a positive value for vwave.r1, use the following code:
+survey selfserve/9d3/12345 vwave.r1.
+You can also remap data points that you are planning to pull into your dashboard, which is helpful when projects have duplicate or very long label names.
+The remapping feature is used to combine data from questions with different question labels that share the same structure. For example, if you have q1 and s1 as gender questions in separate surveys and want to map q1 to reference both the q1 data in your current study, as well as the s1 data in your imported study, you could use the following code:
+survey selfserve/214e/161203 1 q1=s1
+When importing data from other studies, you can filter tables and charts to only display data from a specific study using the survey path of the study from which you would like to pull. The below example illustrates how to do that:
+survey selfserve/214e/161203
+table id=db-2 Gender 2
+row "q1.r1 and survey=='selfserve/214e/161202'" Males Survey 1
+row "q1.r1 and survey=='selfserve/214e/161203'" Males Survey 2
+row q1.r1 Combined
+1.1: Adding Filters Based on Project
+When looking to filter the displayed data based on other project included in the project, the filter definition syntax is pretty similar to the syntax used in row definition. One thing to keep in mind is that you cannot create filters on the survey keyword only. You need to have at least one datapoint reference in your filter for the filtering to work.
+As a general rule, the datapoint should reference a question that was answered by all participants in all surveys that you are importing. An easy example is basing the filter on a gender question, shown to all participants in the different projects you are importing:
+filtergroup Surveys
+filter id=db-53 "s1.any and survey=='selfserve/214e/180118'" Survey 1
+filter id=db-54 "s1.any and survey=='selfserve/214e/180218'" Survey 2
+You can use the .any Vector Logic function to ensure that all participants who answer this question are included. This will produce a Filters menu that allows you to select Survey 1 and/or Survey 2.
+1.2: Adding Banners Based on Project
+Similar to filters, segment definitions need to be based on a real datapoint reference in order to work. As with filters, you can add a question reference in order to create the split:
+bannergroup.local
+banner.local Gender Survey 1
+segment "s1.r1 and survey=='selfserve/214e/180118'" Males Survey 1
+segment "s1.r2 and survey=='selfserve/214e/180118'" Females Survey 1
+banner.local Gender Survey 2
+segment "s1.r1 and survey=='selfserve/214e/180218'" Males Survey 2
+segment "s1.r2 and survey=='selfserve/214e/180218'" Females Survey 2
+This will display splits based on gender and survey.

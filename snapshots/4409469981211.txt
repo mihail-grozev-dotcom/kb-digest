@@ -1,0 +1,35 @@
+Title: Create Hybrid Questions by Merging Elements
+Hybrid questions utilize two or more element types in one question. This is accomplished using the "Merge" feature in the style editor, which allows you to create a single question with answer options taken from multiple questions. You can place these answer options directly below or to the right of a question per your requirements.
+1: Hybrid Question Types
+Using the "Merge" feature, you can create two different types of hybrid questions. The example below shows a hybrid of a text element, a number element, and a select element created using the "merge below" option. The "merge below" option combines two or more types of elements into one question, one below the another.
+See Creating a Hybrid Question Using the "merge below" Option below to learn how to create this type of hybrid question.
+The next example shows a hybrid of a text element, a number element, and a select element created using the "merge right of" option. The "merge right of" option combines two or more types of elements into one question, one to the right of the other.
+See Creating a Hybrid Question Using the "merge right of" Option below to learn how to create this type of hybrid question.
+2: Creating a Hybrid Question Using the "merge below" Option
+The first, or primary, element should contain the desired question text and participant instructions for the hybrid question. All additional elements need to be added on the same page as the primary element, and should not have their own question text or participant instructions because they will become part of the primary element.
+All elements used in a "merge below" hybrid question must have the same number of columns.
+2.1: Add the Primary Element
+To create a "merge below" hybrid question that contains both a text element and a number element, first add the text element as the primary element and enter your desired question text, participant instructions, and answer options.
+Since the answer options from the secondary element will be merged below the answer options of the primary element, these should be entered as rows.
+2.2: Add the Secondary Elements
+Now that you've added the primary element, you can click "+ Element" in the Survey Editor to add the secondary elements, one at a time. Question and instruction text entered for the secondary elements will be ignored since the question text in the primary element is what is used for the hybrid question.
+To create a secondary element, first add another element and enter the desired answer options. Since the answer options from the secondary element will be merged below the answer options of the primary element, these should be entered as rows.
+Note: All elements used to create a hybrid question must appear on the same page. Additionally, hybrid questions created using the "merge below" style must have the same number of rows and any number of columns.
+Next, click "..." in the secondary element and select "Update Styling" to configure its display settings.
+In the "Question Display Options," locate the "Merge Below" drop-down and select the question number of the primary element. This will merge the answer options for the secondary element with those from the primary element. Then click "Save and Close".
+At this point, your changes are saved and the two elements will be joined together into one hybrid question. Back in the staging area of the Survey Editor, you can add another element to your hybrid question by clicking "+ Element" and repeating the process.
+You can also preview the hybrid question at any time by clicking on the "Preview" link located at the top right corner of the primary element. To learn more about previewing a survey question, see Previewing a Question.
+3: Creating a Hybrid Question Using the "merge right of" Option
+The first, or primary, element should contain the desired question text and participant instructions for the hybrid question. All additional elements need to be added on the same page as the primary element, and should not have their own question text or participant instructions because they will become part of the primary element.
+All elements used in a "merge right of" hybrid question must have the same number of rows.
+3.1: Add the Primary Element
+To create a "right of" hybrid question that contains both a text element and a number element, first add the text element as the primary element and enter your desired question text, participant instructions, and answer options.
+Since the answer options from the secondary element will be merged on the right side of the answer options of the primary element, these should be entered as columns.
+3.2: Add the Secondary Elements
+Now that you've added the primary element, you can click "+ Element" in the Survey Editor to add the secondary elements, one at a time. Question and instruction text entered for the secondary elements will be ignored since the question text in the primary element is what is used for the hybrid question.
+To create a secondary element, first add another element and enter the desired answer options. Since the answer options from the secondary element will be merged on the right side of the answer options of the primary element, these should be entered as columns.
+Note: The elements that will be used to create the hybrid question must appear on the same page. Additionally, hybrid questions created using the "merge right of" style must have the same number of columns and any number of rows.
+Next, click "..." in the secondary element and select "Update Styling" to configure its display settings.
+In the "Question Display Options," locate the "Merge Right Of" drop-down and select the question number of the primary element. This will merge the answer options from the secondary element with those from the primary element. Then click "Save and Close".
+At this point, your changes are saved and the two elements will be joined together into one hybrid question. Back in the staging area of the Survey Editor, you can add another element to your hybrid question by clicking "+ Element" and repeating the process.
+You can also preview the hybrid question at any time by clicking on the "Preview" link located at the top right corner of the primary element. To learn more about previewing a survey question, see Previewing a Question.

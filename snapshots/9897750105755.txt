@@ -1,0 +1,34 @@
+Title: 149.6 Release Notes
+Release Date: January 4, 2022
+Release Version: 149.6
+New Features
+Portal
+Improved portal performance. The portal now runs more efficiently.
+SPSS Importer
+Fixed an issue where some toolbar options were obscured when the project title was too long.
+Survey
+Dynamic Questions
+Improved accessibility for button single-select questions. Upgrade the “Button Single Select” dynamic question to the latest version (atm1d.10) to use the ADA compliant question.
+Learn More:
+Dynamic Question Versioning,
+Survey Accessibility and ADA Compliance
+Added support for Imperium QualityScore version 1.3 via a logic node.
+Learn More: Imperium QualityScore Integration
+Programming & Tools
+API
+Added participant data to be deleted in the next 90 days to the archival and deletion e-mail notification.
+Bug Fixes
+Survey
+Fixed an issue that caused a fatal error when trying to login with a non-existent username.
+Survey
+Survey Editor
+Fixed an issue that created invalid logic when using a 2D or 3D question’s noanswer row to show or hide another question.
+Fixed an issue that prevented some changes to Autosuggest data files in temp-edit-live projects from being applied to the live survey.
+Dynamic Questions
+Fixed an issue with the Autosuggest demo survey inside the Style Library.
+Responses
+Sample Marketplace
+Fixed a bug that prevented the Sample Marketplace marker from being added to qualified participants in Delphi surveys.
+Programming & Tools
+API
+Fixed a broken svg favicon link on API docs site for Firefox browsers.

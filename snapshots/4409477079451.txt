@@ -1,0 +1,14 @@
+Title: Keeping Questions Together
+For surveys with dependent questions, it may be useful to keep questions displayed together regardless of their submission status. It is possible to force validated questions to appear alongside any unanswered questions using the "Keep With" command in the Survey Editor.
+Note: For this method to work, the desired questions must appear on the same page in the editor (i.e., no page break between them).
+1: Normal Validation
+When a page with multiple questions is submitted (i.e., when the participant clicks "Continue"), the system will attempt to validate each question on that page. By default, any unanswered questions will be displayed on a follow-up screen for participants to answer separately.
+For example, if you had your gender and age questions on the same page, and you submitted a response for gender only:
+Then the unanswered age question would appear by itself on a follow-up screen:
+2: Keeping Questions Together
+To force two questions to appear together after a page is validated, select the second question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right corner of the question and select "Update Styling".
+The "Question Display Options" window will appear. Locate the "Keep With" drop-down menu and select the first question from the list. Then click "Save and Close".
+Note: Only questions that occur before the selected question will be available in the "Keep With" menu.
+2.1: Testing the New Validation
+To verify that your questions are now shown together, test the survey and submit a response for only the first question:
+You should see both questions on the follow-up screen:

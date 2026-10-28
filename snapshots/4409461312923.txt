@@ -1,0 +1,144 @@
+Title: Customizing the Button Select Element
+The Button Select element transforms a Single Select or Multi-Select question into a set of clickable buttons. This style is mobile friendly and provides a great way for participants to easily select items on smaller screens.
+1: Underlying Question Architecture
+This dynamic question style sits on top of and can be applied to any <radio> or <checkbox> question. See below for an example of the base XML code needed for applying this style to a <radio> question.
+1.1: Base XML
+<radio label="Q1">
+<title>
+Which of these is your favorite?
+</title>
+<row label="r1">Facebook</row>
+<row label="r2">Twitter</row>
+<row label="r3">Diaspora</row>
+<row label="r4">LinkedIn</row>
+<row label="r5">Vine</row>
+</radio>
+The above XML produces the following result:
+1.2: Converting to the Button Select Element
+To add the Button Select style to this question, update the <radio> tag as shown below:
+<radio label="Q1" uses="atm1d.#">
+Note: Replace # with the "Live" version of the dynamic question style.To view an up-to-date list of all dynamic question versions, see Dynamic Question Versioning.
+This change produces the following result:
+2: Customization
+The Button Select style is extremely configurable and can easily be modified to fit your project's specific needs.
+2.1: Updating Styles
+Listed below are all the configurable attributes for the Button Select style.
+To view a list of all the latest dynamic questions versions, see Dynamic Question Versioning.
+Note: As of version 9 (atm1d.9), the Button Select element also allows protected images to be added as buttons.
+Note: As of version 10 (atm1d.10), the Button Select element is ADA compliant.
+Attribute
+Type
+Description
+Example
+atm1d:numCols
+String
+The number of buttons displayed in one row. The number of columns is supported for the Multi column layout.
+Important: This style only works with atm1d:viewMode="Tiled".
+atm1d:numCols="3" displays 3 buttons in one row.
+atm1d:showInput
+enum
+Participants click a button to select an answer. This attribute determines whether or not the answer form (e.g., radio button or checkbox) shows within the button.
+Note: This setting is independent from the FIR setting.
+Select 1 to show the answer form within buttons. Select 0 to hide the answer form and only show the buttons. The default value is 1.
+atm1d:showInput="0" does not display the answer form within the button.
+atm1d:viewMode
+enum
+Choose the layout of the buttons. Select Vertical to align the buttons vertically. Select Tiled to tile the buttons in grid format. Select Horizontal to align the buttons horizontally.
+atm1d:viewMode="Vertical" displays the buttons vertically.
+atm1d:large_minHeight
+String
+If Layout is Horizontal: Define the minimum height allowed for larger screens in pixels, em or a percentage (25px, Auto, 1em, or 10%).
+Default: percentage.
+atm1d:large_minHeight="25px" displays buttons with a minimum height of 25 pixels for larger screens with horizontal layout.
+Note: If you select Horizontal in atm1d:viewMode, you will need to set a minimum height in order to have it take effect.
+atm1d:large_maxHeight
+String
+For all layouts: Define the max height allowed for larger screens in pixels, em or a percentage (50px, Auto, 2em, or 20%).
+Default: percentage.
+atm1d:large_maxHeight="50px" displays buttons with a maximum height of 50 pixels for all layouts for larger screens.
+atm1d:large_minWidth
+String
+If Layout is Vertical: Define the minimum width allowed for larger screens in pixels, em or a percentage (100px, Auto, 4em, or 40%).
+Default: percentage.
+atm1d:large_minWidth="100px" displays buttons with a minimum width of 100 pixels for larger screens with vertical layout.
+atm1d:large_maxWidth
+String
+For all layouts: Define the max width allowed for larger screens in pixels, em or a percentage (200px, Auto, 8em, or 80%).
+Default: percentage.
+atm1d:large_maxWidth="200px" displays buttons with a maximum width of 200 pixels for all layouts for larger screens.
+atm1d:large_buttonAlign
+enum
+Choose the alignment of buttons in relation to the page for larger screens. Select Left to left-align buttons. Select Center to center-align buttons. Select Right to right-align buttons.
+atm1d:large_buttonAlign="Right" displays buttons in a right alignment in relation to the page for larger screens.
+atm1d:large_contentAlign
+enum
+Choose the alignment of the content within buttons for larger screens. Select Left to left-align content. Select Center to center-align content. Select Right to right-align content.
+atm1d:large_contentAlign="Center" center aligns content within buttons for larger screens.
+atm1d:small_minHeight
+String
+If Layout is Horizontal: Define the minimum height allowed for smaller screens in pixels, em or a percentage (25px, Auto, 1em, or 10%).
+Default: percentage.
+atm1d:small_minHeight="25px" displays buttons with a minimum height of 25 pixels for smaller screens.
+atm1d:small_maxHeight
+String
+For all layouts: Define the max height allowed for smaller screens in pixels, em or a percentage (50px, Auto, 2em, or 20%).
+Default: percentage.
+atm1d:small_maxHeight="50px" displays buttons with a maximum height of 50 pixels for smaller screens.
+atm1d:small_minWidth
+String
+If Layout is Vertical: Define the minimum width allowed for smaller screens in pixels, em or a percentage (100px, Auto, 4em, or 40%).
+Default: percentage.
+atm1d:small_minWidth="100px" displays a minimum width of 100 pixels for vertical layouts on smaller screens.
+atm1d:small_maxWidth
+String
+For all layouts: Define the max width allowed for smaller screens in pixels, em or a percentage (200px, Auto, 8em, or 80%).
+Default: percentage.
+atm1d:small_maxWidth="200px" displays a maximum width of 200 pixels for all layouts on smaller screens.
+atm1d:small_buttonAlign
+enum
+Choose the alignment of buttons in relation to the page for smaller screens. Select Left to left-align buttons. Select Centerto center-align buttons. Select Right to right-align buttons.
+atm1d:small_buttonAlign="Left" displays buttons in a left alignment in relation to the page for smaller screens.
+atm1d:small_contentAlign
+enum
+Choose the alignment of the content within buttons for smaller screens. Select Left to left-align content. Select Center to center-align content. Select Right to right-align content.
+atm1d:small_contentAlign="Center" center aligns content within buttons for smaller screens.
+2.2: Using Less Styles
+The Button Select question style will accept the following Less style variables:
+@dq-button-bg-color
+@dq-button-bg-color-hover
+@dq-button-bg-color-selected
+@button-text-color
+@survey-error-bg-color
+@question-error-text-color
+@mobile
+To use the above Less variables, you must override the Button Select’s normal parameters using the <themevars> element. For example:
+<themevars>
+<themevar name="dq-button-bg-color">#ff0000</themevar>
+<themevar name="button-text-color">#ffffff</themevar>
+</themevars>
+The code above updates the button background color to #ff0000 (red) and changes the text color to #ffffff (white).
+Learn more: The Less Styles System
+2.3: Using CSS Styles
+If you need to modify any other elements of the Button Select style, you can update the style directly using CSS. See Including Static Files to learn how to add custom CSS style code to your survey.
+2.4: Customizing Error Messages
+If you want to customize the default error messages used for the Button Select style, you can do so using <res> tags.
+Example:
+To add a dynamic error message that tracks how many buttons are selected, you might input the following:
+<checkbox
+label="q3"
+atleast="1"
+uses="atm1d.#">
+<title>New Button Multi-Select Question</title>
+<comment>Select all buttons that apply.</comment>
+<res label="sys_check-error-atLeast-sing-column">Please select at least $(count) answers (you selected $(actual)).</res>
+<row label="r1">Example r1</row>
+<row label="r2">Example r2</row>
+<row label="r3">Example r3</row>
+</checkbox>
+The above XML would result in the following message being displayed in the survey when a participant does not select the required number of buttons:
+The following is a list of all the available resource tags that can be used to change the error messages in the Button Select question style.
+<res label="sys_check-error-atLeast-plur-column">Please select at least $(count) answers (you selected $(actual)).</res>
+<res label="sys_check-error-atLeast-sing-column">Please select at least $(count) answer (you selected $(actual)).</res>
+<res label="sys_check-error-atMost-plur-column">Please select at most $(count) answers (you selected $(actual)).</res>
+<res label="sys_check-error-exactly-plur-column">Please select exactly $(count) answers (you selected $(actual)).</res>
+To learn more about the XML style system, see XML Style System.

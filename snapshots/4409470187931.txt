@@ -1,0 +1,17 @@
+Title: About the Survey Version History Report
+The survey version history report allows you to view a history of all previous versions of the survey. For each previous version, you may view the survey XML, the date of the change, the user that made the change, and the number of changes that were made. Each time a change is saved, a new version is listed in the survey version history report.
+For more information on how long this data is stored per survey, see Data Archival and Deletion.
+1: Accessing the Report
+To access the survey version history report from the Portal, select "Version Control" from More Tools drop-down under Build in the navigation menu.
+You can also access a survey's version history report during testing by clicking the "Actions" button in the survey testing toolbar and selecting "View Survey Version History".
+2: Viewing the Report
+The survey version history report includes the following information about the survey:
+1. Path: The survey path. Click the header to sort by survey paths or click an instance to access the report. If the latest version of the report contains test data and does not match a previous report, then you will be unable to run the old version of the report due to the mismatched data format.
+2. File: The survey's survey.xml file. Click an instance to view the survey XML.
+3. When: The date of each version of the survey. Click the header to sort versions by date in ascending or descending order.
+4. Who: The user that edited the survey.
+5. Changes: The number of changes made to the survey, listed as (+) for additions and (-) for deletions. Click an instance to view the details about the change.
+2.1: Understanding Changes
+When you click a change instance, you will see two columns. The first column displays the snippets of code that were deleted during that change, and the second column displays the snippets of code that were added.
+For example, the change shown below appeared as "+4 -0 (diff)", meaning that zero items were deleted and four items were added in the change. The new items are shown in green. In this case, the change was adding four new rows at line 56 of the survey XML.
+Similarly, the change shown below appeared as "+0 -1 (diff)", meaning that one item was deleted and zero items were added in the change. The deleted items are shown in red. In this case, the change was deleting one row at line 50 of the survey XML.

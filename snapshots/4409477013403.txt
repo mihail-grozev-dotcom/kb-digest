@@ -1,0 +1,43 @@
+Title: Setting a Survey Password
+Password entry into your survey can be done using the <text> question element, the File(..) function, and a tab-delimited file. For information on using the File(..) function, see Importing External Offline Data with File().
+1: Single Password Only
+To create a single-password entry to your survey, you need some way of identifying participants in order to check their password. This is usually an extraVariable like source or id.
+Given the following tab-delimited file named "passwords.dat":
+source password
+un1qu30n3 p4ssw0Rd123
+sp3C14LuN iluvmypuppy99
+bl4hblAHB battery_horse_staple
+You can use the File() function as described in Importing External Offline Data with File() to compare unique identifiers with a password.
+For example:
+<html label="Introduction" where="survey">
+<p>Welcome to the survey!</p>
+<p>On the next page, you'll be asked for your password.</p>
+</html>
+<suspend/>
+<text label="PASS">
+<title>Please enter your password:</title>
+</text>
+<suspend/>
+<exec when="init">
+dataFile = File("passwords.dat", "source")
+</exec>
+<radio label="PASS_CHECK" where="execute">
+<title>HIDDEN: PASS DID MATCH SOURCE?</title>
+<exec>
+respData = dataFile.get(source)
+if respData and respData['password'] == PASS.val:
+PASS_CHECK.val = PASS_CHECK.yes.index
+else:
+PASS_CHECK.val = PASS_CHECK.no.index
+</exec>
+<row label="yes">Yes</row>
+<row label="no">No</row>
+</radio>
+<suspend/>
+<term label="term_passwd" cond="PASS_CHECK.no">PASS_CHECK: FAIL</term>
+<note>RESPONDENT PASSED PASSWORD CHECK</note>
+<html label="Welcome" where="survey">Welcome! Please "Continue".</html>
+Note: You can use a similar technique to validate a username and password against a tab-delimited file.
+2: Learn More
+Uploading System Files
+Take Action When a Participant Finishes a Survey

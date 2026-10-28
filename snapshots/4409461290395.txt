@@ -1,0 +1,342 @@
+Title: Adding Condition / Skip Logic
+Condition logic, or "skip logic", is used to show or hide certain elements in a survey. These elements can be questions, rows, columns, concepts, Python executions, and much more.
+Condition logic is written using the cond attribute and Python code.
+1: Setting Logic Conditions
+Condition logic comes in all shapes and sizes. The following table provides the cond attribute's basic and most used conditions.
+Conditions on the left evaluate to "True" and conditions on the right evaluate to "False".
+True Conditions
+False Conditions
+cond="1"
+cond="0"
+cond="True"
+cond="False"
+cond="1 == 1"
+cond="1 == 0"
+cond="1 and 1"
+cond="1 and 0"
+cond="1 or 0"
+cond="0 or 0"
+cond="1 le 1"
+cond="1 lt 1"
+cond="1 ge 1"
+cond="1 gt 1"
+cond="1 != 0"
+cond="1 != 1"
+cond="'alpha' == 'alpha'"
+cond="'alpha' != 'alpha'"
+cond="'None'"
+cond="None"
+cond="1 in [1,2,3]"
+cond="1 in [2,3]"
+cond="'alpha' in ['alpha', 'beta', 'gamma']"
+cond="'alpha' not in ['alpha', 'beta', 'gamma']"
+cond="[1]"
+cond="[]"
+cond="{0 : None}"
+cond="{}"
+cond="any([1, True, 0])"
+cond="all([1, True, 0])"
+While programming a survey, you can use integers, strings, and data structures to write condition logic. Using logical operators and built-in functions, you can create any survey regardless of the complexity.
+The Python documentation is a great resource for learning how to write great condition logic.
+Check out Python's Built-in Types.
+2: Showing and Hiding Elements
+Using the cond attribute, you can create conditions that evaluate to "True" or "False" that the survey system respects. If the condition is met, the survey system will evaluate the code. If the condition is not met, then the code will be skipped. This is the idea behind creating "skip logic".
+Continue reading to learn how you can use conditions to show or hide / skip certain elements in the survey.
+2.1: Questions
+Consider the following example, when you need to hide a question, use the cond attribute. Here, "Q2a" is shown to those who rated the survey pretty low and "Q2b" is shown to those who rated it high. Using condition logic, you can show different questions to those who rated the survey differently.
+<radio label="Q1" type="rating" values="order">
+<title>How would you rate this survey?</title>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+<suspend/>
+<textarea label="Q2a" cond="Q1.c1 or Q1.c2">
+<title>It appears you did not enjoy this survey. How come?</title>
+</textarea>
+<textarea label="Q2b" cond="Q1.c4 or Q1.c5">
+<title>It appears you enjoyed this survey. How come?</title>
+</textarea>
+You can also use the survey's extra variables to program additional logic. For instance, if survey participants were entering from different participant sources, you can conditionally show the incentive message to only those who enter from a particular source.
+<html label="Outtro" cond="list != '5'">
+<p>Thank you for taking our survey!</p>
+</html>
+<html label="Incentive_Outtro" cond="list == '5'">
+<p>You've qualified for the $50 gift card!</p>
+</html>
+<text label="Incentive_Email" cond="list == '5'">
+<title>Please enter your email address below:</title>
+<row label="email">Email</row>
+</text>
+Participants who enter the survey with a list value of five will see the incentive message and email question. All others will see the standard message.
+2.2: Rows, Columns, and Choices
+In the same way that you can conditionally display questions, you can dynamically show question elements based on condition logic.
+In the example below, the row and col elements in questions "Q2" - "Q4" are dynamically shown based on the responses provided at "Q1". Notice that questions "Q2" - "Q4" use different methods for showing the same devices selected at "Q1".
+<checkbox label="Q1" atleast="1">
+<title>Which of the following items have you used in the past 6 months?</title>
+<row label="r1">TV</row>
+<row label="r2">Smartphone</row>
+<row label="r3">Tablet</row>
+<row label="r4">Desktop Computer</row>
+<row label="r5">Laptop Computer</row>
+</checkbox>
+<suspend/>
+<number label="Q2" size="3" verify="range(0, 168)">
+<title>In a typical week, how many hours do you spend on each device?</title>
+<row label="r1" cond="Q1.r1">TV</row>
+<row label="r2" cond="Q1.r2">Smartphone</row>
+<row label="r3" cond="Q1.r3">Tablet</row>
+<row label="r4" cond="Q1.r4">Desktop Computer</row>
+<row label="r5" cond="Q1.r5">Laptop Computer</row>
+</number>
+<suspend/>
+<radio label="Q3" onLoad="copy('Q1', rows=True)" rowCond="Q1[row]">
+<title>Which device is your favorite?</title>
+</radio>
+<suspend/>
+<radio label="Q4" type="rating" values="order" colCond="Q1.rows[col.index]">
+<title>Which devices meet the descriptions included below?</title>
+<col label="c1">TV</col>
+<col label="c2">Smartphone</col>
+<col label="c3">Tablet</col>
+<col label="c4">Desktop Computer</col>
+<col label="c5">Laptop Computer</col>
+<row label="r1">Easy to use</row>
+<row label="r2">Fun to use</row>
+<row label="r3">Simple to use</row>
+</radio>
+<suspend/>
+At "Q2", a condition is added to each row item individually. Each row will be shown if the corresponding value is selected at "Q1".
+A more advanced technique is shown at "Q3" where you are able to use the mutator function, copy, to load all of the rows from "Q1". The attribute, rowCond="Q1[row]", adds condition logic just like what is shown at "Q2" i.e., a condition for each row based on the selection made at "Q1".
+Similarly, you can use the attribute, colCond="Q1.rows[col.index]", to show only those columns that were selected at "Q1".
+The attributes rowCond / colCond /choiceCond are very convenient ways to dynamically show question elements. To use these attributes, the elements must be the same and in the same order. The following are all valid expressions:
+rowCond="Q1[row]"
+rowCond="Q1.rows[row.index]"
+rowCond="Q1.cols[row.index]"
+colCond="Q1[col]"
+colCond="Q1.cols[col.index]"
+colCond="Q1.rows[col.index]"
+rowCond="Q1[row] or row.label == 'r99'"
+colCond="Q1[col] or col.label in ['c99', 'c100', 'c101']"
+rowCond="Q1[row] or row.index in [0, 1, 2]"
+rowCond="Q1[row] or Q2[row]"
+choiceCond="Q1[choice] or Q2.rows[choice.index]"
+These attributes above do not override the cond attribute applied to the elements directly. In the example below, "Laptop Computer" is always shown at "Q2", even if it was not chosen and regardless of the rowCond. The hard-coded condition always has priority.
+<checkbox label="Q1" atleast="1">
+<title>Which of the following items have you used in the past 6 months?</title>
+<row label="r1">TV</row>
+<row label="r2">Smartphone</row>
+<row label="r3">Tablet</row>
+<row label="r4">Desktop Computer</row>
+<row label="r5" cond="1">Laptop Computer</row>
+</checkbox>
+<suspend/>
+<radio label="Q2" onLoad="copy('Q1', rows=True)" rowCond="Q1[row]">
+<title>Which device is your favorite?</title>
+</radio>
+<suspend/>
+2.3: Blocks and Sections
+If you need to show large sections of the survey to particular participants, you can use the <block> tag to show large chunks to only those who meet the condition.
+In the example below, parts of the survey have been sectioned off to only those who selected particular foods at "Q1". The <block> tag is a great way to force participants to skip large sections of the survey based on conditional logic.
+<checkbox label="Q1" atleast="1" shuffle="rows">
+<title>What kind of food do you eat?</title>
+<row label="r1">Fruits</row>
+<row label="r2">Vegetables</row>
+<row label="r3">Instant</row>
+<row label="r4">Fast</row>
+<row label="r5">Junk</row>
+</checkbox>
+<suspend/>
+<exec>Food_Section.order = Q1.rows.order</exec>
+<block label="Food_Section" cond="1" randomizeChildren="1">
+<block label="Fruit_Section" cond="Q1.r1" randomize="1">
+<html label="Fruit_Intro" where="survey">
+Now for some fruit questions...
+</html>
+...
+</block>
+<block label="Vegetable_Section" cond="Q1.r2" randomize="1">
+<html label="Vegetable_Intro" where="survey">
+Now for some veggie questions...
+</html>
+...
+</block>
+<block label="JunkFood_Section" cond="Q1.r3 or Q1.r4 or Q1.r5" randomize="1">
+<html label="JunkFood_Intro" where="survey">
+Now for some other food questions...
+</html>
+...
+</block>
+</block>
+See the <block> tag below to learn more about the <block> tag.
+Note: If you have a <block> set to cond="0" and you direct survey participants to a question within that block from another question using goto, their responses to that new question will not be retained if they return to the original question (i.e., by clicking the survey "Back" button) and select a different response.
+3: Best Practices
+The less code you write, the less code you have to review and modify when changes arise. The following are a few tips to help you write less code.
+3.1: The <condition> Tag
+The <condition> tag is a great way to avoid writing out complex condition logic more than once. Use this tag to store a condition that you might need to reuse across your survey.
+3.1.1: Syntax
+<condition label="SHORT_LABEL" cond="CONDITION">DESCRIPTION</condition>
+3.1.2: Example
+In the example below, the condition logic at "Q100" is pretty intense. If you need to rewrite that condition logic anywhere else, things may start to get pretty ugly and your code will become more prone to error. Consider the fact that if anything changes, you will have to update the code at every location the condition is used.
+<radio label="Q100" ... cond="Q1.r1 and Q3.r2 and (Q4.r1 or Q4.r2 or Q4.r3)">
+...
+</radio>
+This is the beauty of the <condition> tag; you can write that condition logic in one place and use the condition.LABEL syntax to use it at other locations.
+Here, the above example has been revised to use a <condition> tag.
+<condition label="males_TV" cond="Q1.r1 and Q3.r2 and (Q4.r1 or Q4.r2 or Q4.r3)">Some helpful description (e.g., males who actively watch TV)</condition>
+<radio label="Q100" ... cond="condition.males_TV">
+...
+</radio>
+This example is simple, but the use of the <condition> tag can be applied across the entire survey. This will reduce the amount of code you need to write or you might need to change if changes occur, and that a QA will need to check to verify everything is working and set up properly. It definitely increases the readability of your code.
+See Condition Tag: Create Simpler References to Condition Logic to learn more about the <condition> tag.
+3.2: The <block> Tag
+The <block> tag is a great way to section off parts of the survey. When you find yourself writing the same condition logic repeatedly in a section of your survey, it may be best to use a <block> tag to show the section to only those who meet the condition logic.
+3.2.1: Syntax & Structure
+<block label="BLOCK_LABEL" cond="CONDITION">
+...
+...
+Questions and Content only for those who meet CONDITION
+...
+...
+</block>
+3.2.2: Example
+In the example below, particular concepts are shown to men and women separately.
+<radio label="Q1">
+<title>Are you...</title>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<condition label="men" cond="Q1.r1">Male</condition>
+<condition label="women" cond="Q1.r2">Female</condition>
+<html label="Concept1_Men" cond="condition.men">[pipe: Concept1_MEN]</html>
+<radio label="Q2_M" type="rating" values="order" cond="condition.men">
+<title>What do you think of this concept? (For men only)</title>
+<row label="r1">Dislike it <br/>1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">Like it <br/>5</row>
+</radio>
+<suspend/>
+<html label="Concept2_Men" cond="condition.men">[pipe: Concept2_MEN]</html>
+<radio label="Q3_M" type="rating" values="order" cond="condition.men">
+<title>What do you think of this concept? (For men only)</title>
+<row label="r1">Dislike it <br/>1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">Like it <br/>5</row>
+</radio>
+<html label="Concept1_Women" cond="condition.women">[pipe: Concept1_WOMEN]</html>
+<radio label="Q2_W" type="rating" values="order" cond="condition.women">
+<title>What do you think of this concept? (For women only)</title>
+<row label="r1">Dislike it <br/>1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">Like it <br/>5</row>
+</radio>
+<suspend/>
+<html label="Concept2_Women" cond="condition.women">[pipe: Concept2_WOMEN]</html>
+<radio label="Q3_W" type="rating" values="order" cond="condition.women">
+<title>What do you think of this concept? (For women only)</title>
+<row label="r1">Dislike it <br/>1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">Like it <br/>5</row>
+</radio>
+Notice that you had to write out the condition logic at each question multiple times. Rather than repeating the same logic over and over, you can reorganize the code to use the <block> tag and show a section of the survey only to men and a different section only to women.
+Below is the revised code using the <block> tag.
+<radio label="Q1">
+<title>Are you...</title>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<condition label="men" cond="Q1.r1">Male</condition>
+<condition label="women" cond="Q1.r2">Female</condition>
+<block label="MEN_ONLY" cond="condition.men">
+<html label="Concept1_Men">[pipe: Concept1_MEN]</html>
+<radio label="Q2_M" type="rating" values="order">
+<title>What do you think of this concept? (For men only)</title>
+<row label="r1">Dislike it <br/>1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">Like it <br/>5</row>
+</radio>
+<suspend/>
+<html label="Concept2_Men">[pipe: Concept2_MEN]</html>
+<radio label="Q3_M" type="rating" values="order">
+<title>What do you think of this concept? (For men only)</title>
+<row label="r1">Dislike it <br/>1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">Like it <br/>5</row>
+</radio>
+</block>
+<block label="WOMEN_ONLY" cond="condition.women">
+<html label="Concept1_Women">[pipe: Concept1_WOMEN]</html>
+<radio label="Q2_W" type="rating" values="order">
+<title>What do you think of this concept? (For women only)</title>
+<row label="r1">Dislike it <br/>1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">Like it <br/>5</row>
+</radio>
+<suspend/>
+<html label="Concept2_Women">[pipe: Concept2_WOMEN]</html>
+<radio label="Q3_W" type="rating" values="order">
+<title>What do you think of this concept? (For women only)</title>
+<row label="r1">Dislike it <br/>1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">Like it <br/>5</row>
+</radio>
+</block>
+Tip: The <block> tag is a great way to create sections in the survey that are only visible to those who meet the specified condition.
+See Block Tag: Create Sections to learn more about the <block> tag.
+4: Automatic Data Population
+The system automatically populates questions that contain condition logic and ensures that the selections visible are selected. Since survey participants would not have any choice but to select the option(s) available, the system auto-selects the only option(s) and progresses to the next page.
+Note: Questions that are auto-populated are never seen by survey participants.
+In the example below, if only one item is selected at "Q1", then "Q2" will automatically select that item and progress to the next page. This not only helps avoid redundancy but also shortens the survey's LOI (length of interview).
+<checkbox label="Q1" atleast="1">
+<title>
+Which of the following items have you used?
+</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</checkbox>
+<suspend/>
+<radio label="Q2" optional="0" onLoad="copy('Q1', rows=True)" rowCond="Q1[row]">
+<title>
+Which item is your favorite?
+</title>
+</radio>
+<suspend/>
+Listed below are scenarios for each question type that may result in auto-population:
+Note: The question or question element must contain condition logic of some sort to be auto-populated. (e.g., cond, rowCond, etc.)
+Checkbox
+If the number of rows visible is equal to or less than the value provided for atleast. For example, if the question is showing three visible rows and atleast="4" is specified, all 3 rows will be checked automatically.
+Radio
+If the question is not optional and there is only one possible element to select.
+Number
+If not optional and points= is specified, the question will be auto-populated with the points if only one cell is visible.
+If not optional and amount= is specified, the question will be auto-populated with the points if only one cell is visible.
+Select
+If not optional and only one choice is available.
+Text / Textarea
+Will never be auto-populated.
+5: Learn more
+Validate Tag: Custom Data Quality Checks
+Modify Survey Structure with Mutators
+Basic and Advanced Randomization

@@ -1,0 +1,21 @@
+Title: Vendor Essentials
+Welcome to our Vendor Essentials training series! This page contains all of the information you need to successfully use the Decipher platform for monitoring and reporting survey field statistics.
+Overview of the Portal
+Reference Materials
+Logging in to Your Account
+Introduction to the Portal
+Search Capabilities
+Project Summary
+Reference Materials
+Survey Summary
+Response Summary
+Reference Materials
+About the Response Summary
+Monitoring Completions in Field
+Monitoring Terminates in Field
+Monitoring Quotas in Field
+Editing Quota Limits in Field
+Adding Quota Alerts in the Response Summary
+Downloading the Quota Structure
+Monitoring Drop-outs in Field
+About the Response Summary

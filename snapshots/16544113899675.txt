@@ -1,0 +1,22 @@
+Title: 153.10 Release Notes
+Release Date: June 20, 2023
+Release Version: 153.10
+New Features
+Survey
+Survey Editor
+Added a new logic node to support S2S protocol for Cint and SHA-1 protocol for Lucid.
+Learn More: Cint Secure Sample Integration
+Two new sample sources, Cint and Lucid, have been added to the participant sources selector in Survey Editor.
+Reporting
+PowerPoint export colors from Crosstabs and Dashboards now match current PG Forsta branding.
+Bug Fixes
+Portal
+Selecting all surveys on the survey list page will no longer select hidden surveys.
+Survey
+Survey Testing Tools
+For the latest version of Button Select elements (atm1d.11), the Survey Testing Tools are now fully visible for each button.
+Reporting
+Crosstabs
+When a user tries to save an element to the library from the Menu option, the background page no longer reloads to a different page.
+Programming and Tools
+The bulk clean script now cleans email lists more reliably by using verification provider Emailable's unique IDs rather than the previously used listId.

@@ -1,0 +1,22 @@
+Title: 147.2 Release Notes
+Release Date: March 16, 2021
+Release Version: 147.2
+New Features
+Survey
+Survey Editor
+Added a new version of the Video Testimonial element (videocapture.2).
+Extends support for GDPR compliance and recommended guidelines for clients located in the European Union (EU).
+Allows users to host video responses on servers located in the EU.
+Adds the option to choose a video hosting location for each Video Testimonial element.
+Learn More: Video Testimonial Element, Customizing the Video Testimonial Element
+Programming & Tools
+API
+Added the optional excelToTab parameter to the Upload/Replace File endpoint, allowing users to convert Excel spreadsheets into tab-delimited .dat files on upload.
+Added the CATI Service Management endpoint, allowing CATI ProTS users to start, stop, and restart the CATI dialer using the Decipher API.
+Bug Fixes
+Survey
+Survey Editor
+Fixed an issue causing an error when attempting to convert a hidden question into a virtual question after making changes to quotas in a live survey.
+Fixed an issue causing the icons for some survey elements to appear mismatched in the element library.
+Architecture/DevTools
+Fixed an issue preventing some orphaned survey copies from being removed when removing a survey with delphi="1" enabled.

@@ -1,0 +1,181 @@
+Title: Statistical Testing in Crosstabs
+You can use the significance testing options within Crosstabs to determine whether two or more sample population parameters are equal.
+1: What is Significance Testing?
+Significance testing, or null hypothesis testing, is the evaluation of two columns in a data table (for example, two means or two proportions). In order to provide the most accurate results for a variety of datasets, Crosstabs allows you to apply both Z-test and T-test testing methods to your report.
+While both testing methods assume that your survey sample mean follows the Central Limit Theorem and is normally distributed, there are some formulaic differences in how each method interprets the data.
+For best results, methods should be applied based on sample size:
+Use Z-testing for larger sample sizes (i.e., those with an N ≥ 30).
+Use T-testing for smaller sample sizes (i.e., those with an N < 30).
+2: Significance Testing Formulas
+2.1: Z-Testing
+You can use the “Z-Test” option to perform Z-testing in Crosstabs.
+The Z-test testing method is most appropriate for larger sample sizes (N≥ 30) and can be used to test column proportions or column means.
+2.1.1: Testing Column Proportions
+Crosstabs uses the following formula to Z-test column proportions, where Z represents the static test value:
+Z = (Ps1 - Ps2) / SDS
+In this equation, variables are defined as follows:
+Ps1 = Larger percent
+Ps2 = Smaller percent
+SDS = Standard Deviation of the sampling distribution
+Note: If the data is weighted, the effective base is used for N1 and N2.
+Effective Base = The squared sum of weights divided by the sum of squared weights
+(x+y)2 / (x2 + y2) where x and y represent the weights.
+Standard Deviation
+When Z-testing column proportions, the following formula is used to calculate the Standard Deviation of the sample distribution:
+SDS = (Pu(1 - Pu))½∙ (((N1 - 1) + (N2 - 1)) / ((N1 - 1) ∙ (N2 - 1)))½
+In this equation, variables are defined as follows:
+Pu = Population proportion
+N1 = Base size of larger percent
+N2 = Base size of smaller percent
+Population Proportion
+When Z-testing column proportions, the following formula is used to calculate the total population proportion:
+Pu = (((N1 - 1) ∙ Ps1) + ((N2 - 1) ∙ Ps2)) / ((N1 - 1) + (N2 - 1))
+In this equation, variables are defined as follows:
+N1 = Base size of larger percent
+N2 = Base size of smaller percent
+Ps1 = Larger percent
+Ps2 = Smaller percent
+2.1.2: Testing Column Means
+Crosstabs uses the following formula to Z-test column means, where Z represents the static test value:
+Z = (X1 – X2) / SDS
+In this equation, variables are defined as follows:
+X1 = Larger Mean
+X2 = Smaller Mean
+N1 = Base size of larger percent
+N2 = Base size of smaller percent
+Note: If the data is weighted, the effective base is used for N1 and N2.
+Effective Base = The squared sum of weights divided by the sum of squared weights
+(x+y)2 / (x2 + y2) where x and y represent the weights.
+Standard Deviation
+When Z-testing column means, the following formula is used to calculate the Standard Deviation of the sample distribution:
+SDS = ((S1)2 / N1) + ((S2)2 / (N2-1)) ½
+In this equation, variables are defined as follows:
+S1 = Standard Deviation of the larger mean
+S2 = Standard Deviation of the smaller mean
+N1 = Base size of larger percent
+N2 = Base size of smaller percent
+Larger Mean
+When Z-testing column means, the following formula is used to calculate the Standard Deviation of the larger mean:
+S1 = (∑(X1i)2 / (N1 -1) – (X1bar)2)½
+In this equation, variables are defined as follows:
+S1 = Standard Deviation of the larger mean
+X1 = Larger mean
+N1 = Base size of larger percent
+Smaller Mean
+When Z-testing column means, the following formula is used to calculate the Standard Deviation of the smaller mean:
+S2 = (∑(X2i)2 / (N2 -1) – (X2bar)2)½
+In this equation, variables are defined as follows:
+S2 = Standard Deviation of the smaller mean
+X2 = Smaller mean
+N2 = Base size of smaller percent
+2.2: T-Testing
+You can use either the “T-Test no Overlap” or the “T-Test with Overlap” option to perform T-testing in Crosstabs.
+T-testing is most appropriate for small sample sizes (N < 30) and can be used to test column proportions or column means.
+2.2.1: Testing Column Proportions
+Crosstabs employs slightly different formulas for proportional testing when working with or without overlap.
+Without Overlap
+If the “T-Test no Overlap” option is applied, Crosstabs will perform proportional testing without overlap.
+By default, Crosstabs employs conjugate removal during T-testing by using hidden columns to perform testing. This means that a hidden “not X” column is created to test each non-Total segment against the Total column.
+Crosstabs uses the following formula to T-test without overlap on column proportions, where T represents the static test value:
+T = (p1 - p2 ± cc) / √(( ̂p(1- ̂p)) / ((1 - (1 / (e1 + e2 ))∙((1 / e1) + (1 / e2))))
+In this equation, the T value is distributed with e1 + e2 – e0 – 1 degrees of freedom and variables are defined as follows:
+cc = Continuity correction, defined as 1/2 ∙ ((1 / e1) + (1 / e2))
+Note: Continuity correction is only applied if the “Continuity Correction” box is checked in the crosstab’s settings.
+̂p = Population proportion variance
+p1 = The larger percentage
+p2 = The smaller percentage
+e0 = The effective base for the overlap between column 1 and column 2
+e1 = The effective base for column 1
+e2 = The effective base for column 2
+r0 = Correlation coefficient
+Note: The number of degrees of freedom determines what threshold the T-test result must exceed to be considered a major difference.
+With Overlap
+If the “T-test with Overlap” option is applied, Crosstabs will perform proportional testing with overlap.
+Note: Conjugate removal does not happen when “T-test with Overlap” is enabled.
+When T-testing with overlap, Crosstabs first runs a test between all segment combinations to check for overlap and adds a corresponding number of hidden segments to test the overlap it finds. It then tests each non-Total segment against the Total column.
+Note: Because each hidden segment splits all report tables, report loading times will be longer for crosstabs with multiple segments that overlap. For example, if your crosstab has 10 segments that mutually overlap, Crosstabs will create an additional 45 hidden segments, making the report run five times slower than usual.
+Crosstabs uses the following formula to T-test with overlap on column proportions, where T represents the static test value:
+T = (p1 - p2 ± cc) / √ (( ̂p(1- ̂p)) / ((1 - (1 / (e1 + e2 ))∙((1 / e1) + (1 / e2) - ((2e0 r0) / (e1 e2))))
+Note: Overlap is not generated in grid tables without defined segments.
+In this equation, the T value is distributed with e1 + e2 – e0 – 1 degrees of freedom and variables are defined as follows:
+cc = Continuity correction, defined as 1/2 ∙ ((1 / e1) + (1 / e2))
+Note: Continuity correction is only applied if the “Continuity Correction” box is checked in the crosstab’s settings.
+̂p = Population proportion variance
+p1 = The larger percentage
+p2 = The smaller percentage
+e0 = The effective base for the overlap between column 1 and column 2
+e1 = The effective base for column 1
+e2 = The effective base for column 2
+r0 = The correlation coefficient, calculated as: (ad - bc) / (√((a+b)(c+d)(a+c)(b+d))
+Note: The number of degrees of freedom determines what threshold the T-test result must exceed in order to be considered a major difference.
+2.2.2: Testing Column Means
+Crosstabs also employs slightly different formulas for mean testing when working with or without overlap.
+Without Overlap
+If the “T-test no Overlap” option is applied, Crosstabs will perform mean testing without overlap.
+Crosstabs employs conjugate removal during T-testing and uses the following formula to T-test column means without overlap, where T represents the static test value:
+T = ( ̅X1- ̅X2) / (S√((1 / e1) + (1 / e2))
+In this equation, the T value is distributed with e1 + e2 – 1 degrees of freedom and variables are defined as follows:
+X1 ̅= The mean of column 1
+X2 ̅= The mean of column 2
+S̅ = The standard deviation of the sample distribution
+S2b̅ = The variance of the independent observations in column 2
+e1 = The effective base in column 1
+e2 = The effective base in column 2
+Note: The number of degrees of freedom determines what threshold the T-test result must exceed in order to be considered a major difference.
+Pooled Variance
+By default, Crosstabs T-tests using pooled variance. The following formula is used to calculate the pooled variance, where T represents the static test value:
+T = ( ̅Xa- ̅Xb) / (Sp√((1 / na) + (1 / nb))
+In this equation, Sp is defined as:
+Sp = √(((na - 1)Sa2 + (nb - 1)Sb2) / (((na + nb) - ((na / ea) - (nb / eb)))
+Other variables are defined as follows:
+̅X a = The mean of the independent observations in column 1
+̅Xb = The mean of the independent observations in column 2
+S = The standard deviation of the sample distribution
+na = The number of observations exclusive to column 1
+nb = The number of observations exclusive to column 2
+Sa = The variance of the independent observations in column 1
+Sb = The variance of the independent observations in column 2
+ea = The effective base in column 1
+eb = The effective base in column 2
+Separate Variance
+If desired, you can check the box next to the “Separate Variance” option in the crosstab’s settings menu to apply separate (unpooled variance). When testing with separate variance enabled, Crosstabs uses the following formula to T-test column means without overlap, where T represents the static test value:
+T = ( ̅Xa- ̅Xb) / (√((S2a / na) + (S2b / nb))
+In this equation, paired observations are discarded and variables are defined as follows:
+̅Xa = The mean of the independent observations in column 1
+̅Xb = The mean of the independent observations in column 2
+S = The variance of the independent observations in column 1
+S2b = The variance of the independent observations in column 2
+na = The number of observations exclusive to column 1
+nb = The number of observations exclusive to column 2
+With Overlap
+If the “T-test with Overlap” option is applied, Crosstabs will perform mean testing with overlap.
+When T-testing column means with overlap, Crosstabs tests each non-Total segment against the Total column.
+Note: Conjugate removal does not happen when “T-test with Overlap” is enabled.
+If the effective base for overlap (e0) is greater than zero, row 0 is set to 1. Otherwise, Crosstabs uses the following formula to T-test column means with overlap, where T represents the static test value:
+T = ( ̅X1- ̅X2) / (S√((1 / e1) + (1 / e2) - (2r0e0 / e1e2))
+Note: Overlap is not generated in grid tables without defined segments.
+In this equation, the T value is distributed with e1 + e2 - e0 - 1 degrees of freedom and variables are defined as follows:
+̅Xa = The mean of column 1
+̅Xb = The mean of column 2
+S = The standard deviation of the sample distribution
+S2b = The variance of column 2
+e1 = The number of observations exclusive to column 1
+e2 = The number of observations exclusive to column 2
+r0 = The correlation coefficient
+Note: The number of degrees of freedom determines what threshold the T-test result must exceed in order to be considered a threshold for statistical significance.
+3: Significance Testing on Weighted Data
+When data is weighted, the sample distribution is altered to match a given population. Drastic alterations in sample data can occur and compromise the integrity of the results. When conducting a significance test on weighted data, such errors in the weighting process need to be accounted for.
+In Crosstabs, the effective base size is used when testing weighted data. Using the effective base size will ensure that improper statistical conclusions are not made from a sample that has been drastically altered.
+When Z-testing proportions using unweighted data, the following inputs are used:
+Group 1: unweighted percentage, unweighted base size
+Group 2: unweighted percentage, unweighted base size
+With weighted data, however, the following inputs are used:
+Group 1: weighted percentage, effective base size
+Group 2: weighted percentage, effective base size
+The effective base size is a good evaluation of the weighting procedure. If weighting drastically inflates the data for a subgroup of the sample, the effective base size will be lower. When weighting results in small alterations to the sample, the effective base size will be closer to the unweighted base size.
+3.1: Calculating Effective Base Sizes
+Crosstabs uses the following formula to calculate the effective base sizes for all weighted data:
+base = (sum of weights)2 / sum of (weights2)
+4: Reading Results
+If the resulting Test Static value is greater than or equal to 1.96 (Z ≥ 1.96), then you can assume that the larger percent is significantly higher than the smaller percent with 95% confidence.
+If the result Test Static value is greater than or equal to 1.645 (Z ≥ 1.645), then you can assume that the larger percent is significantly higher than the smaller percent with 90% confidence.

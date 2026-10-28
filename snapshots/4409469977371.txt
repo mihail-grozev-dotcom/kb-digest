@@ -1,0 +1,73 @@
+Title: Card Rating Element
+1: About the Card Rating Element
+The Card Rating element utilizes a single select form and must contain multiple cards (rows) and multiple buttons (columns). To interact with this question, the participant views the cards one at a time and selects one button to rate (or categorize) each card. Once rated, the carousel of cards automatically advances to display the next card.
+Tip: For Card Rating element XML customizations, see Customizing the Card Rating Element.
+2: Adding a Card Rating Element
+Note: You can set the "Show if" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Card Rating element, first click the "+ Element" button to add a new survey element. Then click "Rate, Rank, and Sort" under Question Types and select the "Card Rating" element. Then click "Add".
+Enter the question and instruction text in the areas provided.
+2.1: Adding Cards
+Click "+ New Card" to add each new card, then enter the text for the response option in the text field.
+2.2: Adding Buttons
+Click "+ New Button" to add each new button, then enter the text for the response option in the text field.
+2.3: Configuring Card Actions
+To customize the card settings for a Card Rating survey element, click “Card Actions” and select from the following options (you can click each option for more information):
+Import Answers
+Save Answers to Library
+Copy All Answer Text
+Insert Reusable Answer List (only available if you have previously saved
+an answer list)
+Create Reusable Answer List
+Add Answer Group
+Answer Piping
+Reverse Values
+Reset Values
+Reset Labels
+Delete All Answers
+Edit All Answers
+3: Style Settings
+To edit the display settings for a Card Rating element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Style Editor" window, use the options on the left to specify how the question displays. When you mouse-over an option, information about the feature displays on the right. After you have selected the required styles, click "Save".
+4:Question Options
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it.
+4.1: General Options
+When altered, each of the following options affects all attributes within the Card Rating element.
+Label: The label assigned to the element. Click to edit the default label for the Card Rating element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: This is required and the box is checked by default.
+Randomize: Check the boxes to randomize items by type. Items can be randomized by rows, columns, groups, or all.
+Rating/Scale: Enables nets in the report. To learn how to set up your rating scale preferences in the report, see Editing Tables in Crosstabs.
+fir: N/A
+grouping: N/A
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.2: Card Options
+When altered, each of the following options only affects specific card attributes.
+Label: The label assigned to the card. Click to edit the default label for the card.
+Data Value: The value assigned to the card in the data. Click to edit the default value for the card if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the card. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the card will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the card to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the slider optional and non-mandatory.
+Hidden: Click to hide the card from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.3: Button Options
+When altered, each of the following options only affects specific button attributes.
+Label: The label assigned to the button. Click to edit the default label for the button.
+Data Value: The value assigned to the button in the data. Click to edit the default value for the button if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the button. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the button will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the button to remain stationary.
+Optional: N/A
+Hidden: Click to hide the button from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+5: Limitations
+The Card Rating element has a few limitations. See the sections below for details regarding its supported browsers and additional question design considerations.
+5.1: Participant View Browser Support
+The Internet Explorer 9 browser does not support animations or transitions.
+Android 5.0+ is required for participant view browsers.
+5.2: Question Design & Recommendations
+Card Rating design does not support "Optional" for the question or buttons. It is recommended that you select "Mandatory" while setting the general options, described above.
+There is no support for adding images to buttons or text beyond a small length underneath a button.
+When adding cards, the text inside a card is centered. There is no option for text left or right alignment.
+It is recommended that you try to limit the number of characters used for cards and buttons as the text may not fit well on the display. Currently, there is not anything to limit the number of characters in the UI.

@@ -1,0 +1,28 @@
+Title: 150.9 Release Notes
+150.9 Release Notes
+Release Date: August 2, 2022
+Release Version: 150.9
+New Features
+Portal
+Improved the performance of the Users tab in Company Settings, when deactivated users are present.
+Updated the text & style of welcome emails for new SAML users.
+Survey
+Dynamic Questions
+Updated the questionFilter attribute for non Autosuggest questions to allow the use of comma separators to specify multiple filter values from Autosuggest questions.
+Bug Fixes
+Portal
+Fixed an issue that allowed supervisors to view staff users' audit logs.
+Survey
+Survey Editor
+Fixed an issue that prevented the where="report" attribute from appearing in the options panel for individual answer elements when enabled.
+Fixed an issue where user input in some logic node text fields did not save.
+Fixed an issue that prevented basing a logic condition on three-dimensional drop-down questions grouped by columns.
+Sample Marketplace
+Fixed an issue that prevented paused Lucid bids from updating properly.
+Campaign Manager
+Updated the functionality for scheduled emails to send to a large email list without using large resource consumption or exhausting system resources.
+Data Downloads
+Fixed an exception issue with xml mintel:sort=”1” in the Mintel report download.
+Programming & Tools
+API
+Fixed an error that prevented status updates for the Sample Provider API.

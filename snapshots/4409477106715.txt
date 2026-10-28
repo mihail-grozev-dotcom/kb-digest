@@ -1,0 +1,10 @@
+Title: Device Detection
+1: About Decipher's Device Detection
+Decipher uses 51Degrees™ web site detection service to provide an optimized user experience with reduced page load times and web content/functionality adapted to the participant's device. Device detection differentiates between devices such as tablets, feature phones, smartphone, TVs, desktops and laptop computers and then adjusts to the device's specification for optimized viewing.
+2: How Device Detection Works
+Using the pattern detection method,
+Step 1: Decipher's web site receives a request for a web page.
+Step 2: Device detection next uses finger prints (i.e. HTTP headers including user agents) to detect the type of device, browser and operating system combination in less than 1 millisecond.
+Step 3: Decipher's web site then returns a page that has been optimized for the exact screen and device type.
+3: Technical Specifications
+Visit 51Degrees™ for more information and to view the technical specifications for 51Degrees™ Device Detection.

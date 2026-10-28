@@ -1,0 +1,39 @@
+Title: 144.17 Release Notes
+Release Date: July 14, 2020
+Release Version: 144.17
+New Features
+Portal
+Start From Template
+Added the following survey templates and associated dashboards:
+“Brand Perception”
+“Exploratory Pricing”
+“Copy Test (Video Ad)”
+Added dashboards to the following survey templates:
+“Brand Awareness” (formerly “Brand Awareness/Equity”)
+Programming & Tools
+API
+Added the Delete File endpoint to delete files from a project.
+Added the Create Suppression List endpoint to create email suppression lists.
+Added the Get Suppression List endpoint to retrieve an individual suppression list.
+Added the Get Suppression Lists endpoint to retrieve all suppression lists for a project.
+Updated the Create a Send, Create Campaign, and Edit Campaign endpoints to launch sends without first having to send them to a seed list.
+Added the Database Backups endpoint, which allows staff users to see any backups that exist for a survey.
+Added the Specific Database Backup endpoint, which allows staff users to view the contents of a backup.
+Added the Restore endpoint, which allows staff users to restore data cleared in surveys with delphi="1" enabled.
+Bug Fixes
+Survey
+Survey Testing Tools
+Fixed an issue preventing automated test data from running when a row in a float type question had the open attribute applied.
+Participant View
+Fixed an issue causing rows containing the optional attribute to remain mandatory in float type questions.
+Reporting
+Crosstabs
+Fixed an error preventing the “By NPS” crosstab from loading in surveys created using the NPS template.
+Fixed an error caused by attempting to run a crosstab containing aggregated tables.
+Responses
+View/Edit Responses
+Fixed an error caused by using .all when trying to filter columns.
+Fixed an issue causing all questions to be marked as “shown” when updating a data source during a live edit.
+Programming & Tools
+API
+Fixed an issue preventing recipient lists from being uploaded by the Create List endpoint when the seed parameter was used as a query in the URL.

@@ -1,0 +1,38 @@
+Title: About the Simulated Data History Report
+A test data report is available when you run test data for a project and you can view this report directly from the test data menu.
+See Running Simulated Data to learn how to run test data when testing a survey.
+1: Accessing the Report
+If you encounter errors when you run test data for your project, click "View Test Data History" for more information about the error(s).
+2: Viewing the Report
+An overview of the test data report is shown below. Each row represents a separate run. The top line of the report contains the latest test data run.
+1. Name: Sort by the survey path or click on an instance to view a detailed report of the attempts.
+2. Start: The start date of the attempt.
+3. User: The user that ran the test data.
+4. Attempts: Attempts configured.
+5. Length: The total length of the test.
+6. Fail: The number of attempts that failed.
+7. Page stats: Detailed information about the mean time, min, max and standard deviation for fetching a single page from the server.
+8. Cvg: Shows the minimum coverage (i.e., how many questions the test hit of the total number of questions in the survey).
+9. Traffic: The amount of data received during the test in kilobytes (mouse-over to view the exact amount in bytes).
+Tip: Click on any of the headers to sort in ascending or descending order.
+3: Viewing All Attempts
+To access the attempt list, click on the survey name (i.e., survey path) in the test data report.
+The "attempt list" is a list of attempts, i.e., a list of each separate virtual participant, executed against the survey.
+1. ID: ID's are assigned sequentially.
+2. Run list: Click here to return to the history report.
+3. Status: Reports how the survey failed by listing the following options:
+• finished: The survey finished successfully (i.e., the last page loaded was not an error page).
+• fatal: The survey finished because the system reported a fatal error. If a fatal occurs, click on "fatal" to view details about the error.
+• fail: The attempt stopped because the correct information could not be filled (i.e., likely due to an error with the test data). If a fail occurs, click on "fail" to view details about the error.
+• loop: The attempt stopped because the data was looping through the survey and not progressing. If a question is seen more than 3 times a loop condition is detected.
+4. Page time: Detailed information about the mean time, min, max and standard deviation for fetching a single page from the server.
+5. Pages: Shows how many pages the test hit.
+6. Traffic: The amount of data received during the test in kilobytes (mouse-over to view the exact amount in bytes).
+Tip: Click on any of the headers to sort in ascending or descending order.
+4: Viewing Individual Attempts
+4.1: Fatals
+If an error occurs in the test data run, click on the "fatal" link in the attempt list and details about the error will appear.
+Review the report to locate the source of the error. In the example below the question is trying to use a row that doesn't exist in the survey. Click "Previous" to view information about the questions that occur before the error.
+4.2: Fails
+If an error occurs in the test data run, click on the "fail" link in the attempt list and details about the error will appear.
+Review the report to locate the source of the error. In the example below an incorrect number is entered and a custom error message is preventing the (virtual) participant from answering.

@@ -1,0 +1,30 @@
+Title: Locking Down a Survey by Unique Variables
+1: Locking Down the Survey
+Locking down the survey means that there is a finite number of unique variables that are allowed in. You can lock down any survey by any number of variables. We're going to go over how to only permit participants to enter the survey if their URL contains a specific variable from a file.
+For example, we only want to allow participants in if their ID variable is "alpha", "beta", or "gamma".
+1.1: Overview
+This task is easily solved using sample source variables. Here's what we need to do:
+Step 1: Add the variable, ID, to our sample source using the <var> tag.
+Step 2: Specify all acceptable values of ID in a file with each on its own line.
+Step 3: Upload the file to our project and add filename="acceptable_IDs.txt" or the <var> tag.
+1.2: In Practice
+Check out the code below to see the steps above incorporated into a project. The sample source used below is very generic and the important part to note is the <var> tag.
+<samplesources default="1">
+<samplesource list="1" title="default">
+<var name="ID" filename="acceptable_IDs.txt" unique="1" />
+<exit cond="qualified"><b>Thanks again for completing the survey!<br/><br/>Your feedback and quick response to this survey are greatly appreciated.</b></exit>
+<exit cond="terminated"><b>Thank you for your selection!</b></exit>
+<exit cond="overquota"><b>Thank you for your selection!</b></exit>
+</samplesource>
+</samplesources>
+That's everything needed for the first step. The next step is to create a file containing all acceptable values for ID. Below is the file we will need to create:
+alpha
+beta
+gamma
+Save and name this file "acceptable_IDs.txt". The name is not important as long as it matches the file reference in the <var> tag. Upload the file to the project's root directory (not the /static directory) and you're all set!
+1.3: Results
+If you enter the survey using a valid ID variable, "beta", you should be able to take the survey.
+If you enter the survey with an invalid ID variable, "gooma", you should see an error message and be denied access to the survey.
+Learn More
+See Configuring Participant Sources to learn more about participant sources.
+There are similar ways to lock down the survey, but this method applies very well to multiple variables and multiple sample sources. You may also want to learn about bulk-prepare and the invited.txt file which has some extra benefits when it comes to email campaigns.

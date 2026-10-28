@@ -1,0 +1,10 @@
+Title: Pausing Quotas in Field
+Note: This feature is not available for surveys created using the Survey Editor.
+Pausing a quota cell allows you to lock it without changing the limits while the survey is in field. Participants who fall into a paused quota cell will be tagged as overquota.
+For an overview of the "Quotas" tab in the Response Summary, see Monitoring Quotas in Field. To learn how to edit quotas, see Editing Quota Limits in Field.
+1: Pausing Quotas
+To pause a quota cell, first open the Response Summary for the survey and select the "Quotas" tab. Then click "Еdit Quotas".
+Each quota cell will appear with a padlock icon. A padlock in the unlocked position indicates the quota is not paused; a padlock in the locked position indicates that the quota is paused. To pause a quota cell, click its associated padlock icon. Then click "Save" to apply your changes.
+Once the changes are saved, each paused quota cell will appear with a locked padlock icon and its limit value will be crossed out.
+2: Resuming Quotas
+To release the pause on a quota cell, follow the same process, again clicking the padlock icon for the paused quota cell and saving the changes. The padlock icon will become unlocked.

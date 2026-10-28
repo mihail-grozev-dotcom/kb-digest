@@ -1,0 +1,27 @@
+Title: 154.15 Release Notes 
+Release Date: February 24, 2026
+Release Version: 154.15
+New Features
+Portal
+Portal search and the get surveys API endpoint now support filtering by hibernated status.
+Learn More: Decipher API and Search Capabilities
+Survey
+Participant View
+An issue affecting button background color in Card Sort versions 6 through 8 in iOS 26 has been resolved.
+In the Help form, the focused input field or other interactive element is now clearly indicated as focused via a bold outline.
+Bug Fixes
+Portal
+Add filtering by hibernated projects and give consistent value back in API call.
+An issue allowing a user to be added to a group twice has been resolved.
+Survey
+Participant View
+An issue preventing use of the numpad with the latest version (6) of the Autosum dynamic question has been resolved.
+A visual issue causing previously selected Card Sort answers to remain highlighted in subsequent rows has been resolved.
+Programming and Tools
+API
+The crosstabs execute API endpoint now accepts a per-segment weight as the API docs describe.
+Architecture and DevTools
+The criteria for survey hibernation now matches what is described in the knowledge base.
+System notification emails are now sent reliably across all production environments.
+Company Settings
+The permission report once again includes a list of group permissions.

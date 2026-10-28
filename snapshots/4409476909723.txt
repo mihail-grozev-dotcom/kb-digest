@@ -1,0 +1,61 @@
+Title: Adding Google Fonts to a Survey
+Google has a great font library that you can use in your survey.
+For example:
+The code that produced the screen above is below:
+<html label="Fonts">
+<p class="f1">I am a sleek font!</p>
+<p class="f2">I am a cursive font!</p>
+<p class="f3">I am not easy to read, but I'm still cool!</p>
+<p class="f4">I am all caps, baby!</p>
+</html>
+<style name='respview.client.css' mode="after"> <![CDATA[
+<link href='//fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Monofett' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,100italic' rel='stylesheet' type='text/css'>
+<style>
+p { font-size: x-large; }
+p.f1 { font-family: 'Raleway', sans-serif; }
+p.f2 { font-family: 'Lobster', cursive; }
+p.f3 { font-family: 'Monofett', cursive; }
+p.f4 { font-family: 'Alegreya Sans SC', sans-serif; }
+</style>
+]]></style>
+1: Retrieving the Google Font
+The first step is to head over to Google Fonts and choose the font(s) you wish to use.
+After you've selected all the font types that you wish to use, copy the code present in the "Use on the web" box:
+You can use the "<link>" or "@import" version of the code, it doesn't matter.
+Note: For more information on the Google Fonts website, visit Google Fonts' development page.
+2: Adding the Font to Your Survey
+DO NOT reference anything using "http://" since most surveys use "https://". The safest way to include an external file is to reference it using "//" (e.g. //fonts.googleapis.com).
+Once you've copied the font code, you're ready to add it to your project. Use the XML Style Systemrespview.client.css block, as shown below:
+<style name='respview.client.css' mode="after"> <![CDATA[
+<link href='//fonts.googleapis.com/css?family=YOURFONT' rel='stylesheet' type='text/css'>
+<style>
+@import url(//fonts.googleapis.com/css?family=YOURFONT);
+.special-font {
+font-family: 'YOURFONT', sans-serif;
+}
+p, h1, h2 {
+font-family: 'YOURFONT', sans-serif;
+}
+</style>
+]]></style>
+If you chose the "<link>" way to include your font, then use the <link.../> method shown above. If you chose the "@import" way to include your font, then it should be pasted in between two CSS <style> tags, as shown above.
+After you've added the font to your project, create a CSS class or override the existing HTML tags to add the font to your survey (e.g., p { font-family: "YOURFONT", serif; }).
+For example:
+<style name='respview.client.css' mode="after"> <![CDATA[
+<link href='//fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+<style>
+.row-legend, .survey-q-question-text {
+font-family: 'Indie Flower', cursive;
+}
+</style>
+]]></style>
+<radio label="Q1">
+<title>Please select one:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+The code above produces the following result:

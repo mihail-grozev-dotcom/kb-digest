@@ -1,0 +1,58 @@
+Title: Connecting Decipher with Salesforce
+Users can connect their Salesforce account to their Decipher account to
+use in an
+email campaign.
+The email campaign can import a Salesforce report or campaign as a recipient
+list.
+1: Preparing for the Decipher-Salesforce Integration
+Prior to connecting your Decipher and Salesforce accounts, complete the
+following three tasks within Salesforce.
+Identify the Salesforce login credentials to be used for the integration.
+These can be the credentials for an existing account, or an account
+can be created specifically for the integration.
+The permissions set for these credentials will determine which reports
+and campaigns will be visible to Email Campaigns users in Decipher.
+Identify the Salesforce folder containing the reports to be used in Decipher.
+Note: The default folder will be “Public Reports” if you do not choose a
+different folder.
+Note: Choose a primary folder. Reports located in subfolders within the primary
+folder will also be available for use.
+Note: Salesforce campaigns available to your user will automatically be displayed,
+regardless of folder selection.
+Create and/or place the desired reports in the folder identified in step
+2.
+Reports should be in
+tabular form
+and include recipients’ email addresses.
+2: Connecting Your Decipher and Salesforce Accounts
+To integrate your Decipher and Salesforce accounts, access the Company
+Page in Decipher. Click Salesforce under Integration Settings.
+Note: The above image shows a company with an integration already set up,
+but you will likely have none listed initially.
+Note: If you do not see the
+Integration Settings > Salesforce option, please contact
+your Forsta account representative or our
+Technical Support.
+Select a connection type from the drop-down menu, then click
+Go. You may choose to connect with a production account or a
+sandbox account.
+You will be directed to the Salesforce login page. Input the
+Salesforce login credentials
+to be used for this integration, then click Log In.
+A confirmation screen appears. Confirm access to the account by clicking
+Allow.
+You will be returned to the Decipher Salesforce integration page, where
+the Salesforce Account Details modal will appear.
+Select a folder, add
+a Description, and click Confirm.
+Note: The default folder is “Public Reports”.
+Note: Reports located in subfolders within the primary folder will also be
+available.
+Note: The folder names displayed in Surveys may not match exactly with the
+corresponding folder names in Salesforce.
+3: Learn More
+Managing Salesforce Connections
+Importing Recipients from Salesforce
+Salesforce Integration FAQ
+Creating an Email Campaign
+Sending Emails in the Campaign Manager

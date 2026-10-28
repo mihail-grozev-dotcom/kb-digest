@@ -1,0 +1,190 @@
+Title: Customizing the Button Rating Element
+The Button Rating element transforms a number question into a set of clickable buttons. This style is mobile friendly and provides a great way for survey participants to easily rate items.
+In the screenshot above, you may notice that the setup looks very similar to the standard configuration for calculating a Net Promoter Score (NPS). This style is a perfect fit for this kind of situation.
+1: Underlying Question Architecture
+This dynamic style sits on top of a <number> question. See below for an example of the base XML code needed for this style.
+Base XML
+<number label="Q1" optional="0" size="2" verify="range(0, 10)">
+<title>
+How likely is it that you would recommend the following social networks to a friend of colleague?
+</title>
+<row label="r1">Google+</row>
+<row label="r2">Diaspora*</row>
+<row label="r3">MySpace</row>
+</number>
+The above XML code produces the following result:
+2: Converting to a Button Rating Element
+To add the button rating style to this question, add the uses="atmrating.7" attribute to the <number> tag as shown below:
+<number label="Q1" optional="0" size="2" verify="range(0, 10)" uses="atmrating.7">
+This change produces the following result:
+Notice that the buttons are created using the minimum and maximum values provided in the range attribute. In this case, we see 11 buttons because we have a range with a min of 0 and a max of 10.
+3: Customization
+This style is extremely configurable and easily modified for your project's needs. Listed below are all of the available attributes for the button rating element:
+atmrating:order
+Adjusts the layout of the buttons to ascending or descending order
+Type: String
+Default: "lth" == Low to High (ascending order)
+Example: atmrating:order="htl" shows the values from High to Low (descending order)
+atmrating:legendPosition
+Adjusts the placement of the legend text to Above or Below
+Type: String
+Default: "Below"
+Example:atmrating:legendPosition="Above" shows the legend text above the buttons
+atmrating:leftLegend
+The text to show for the left-most legend
+Type: String
+Default: None
+Example:atmrating:leftLegend="not at all likely" displays this text on the left side of the buttons
+atmrating:midLegend
+The text to show for the middle legend
+Type: String
+Default: None
+Example:atmrating:midLegend="neutral" displays this text in the middle of the buttons
+atmrating:rightLegend
+The text to show for the right-most legend
+Type: String
+Default: None
+Example:atmrating:rightLegend="extremely likely" displays this text on the right side of the buttons
+atmrating:containerWidth
+The total width that the buttons should occupy
+Type: Percentage
+Default: 100%
+Example:atmrating:containerWidth="50%" will occupy half as much space as normal
+atmrating:OO_Text
+The text to display for the Opt Out option (e.g., Don't know, N/A, etc.)
+Type: String
+Default: None
+Requirements: You must add the attribute ignoreValues="99" to the <number> tag if using this option (an error message will be displayed if not included)
+Example:atmrating:OO_Text="None of the above" displays this text inside an exclusive button below the main rating buttons
+atmrating:containerPercentages
+Adjust the width values for the button element containers on a phone, tablet, desktop respectively
+Type: String
+Default: 82,88,92
+Example:atmrating:containerPercentages="50,50,50" changes the button container widths to use 50% of their normal width
+Note: The reason the value is not 100% is due to the fact that there is spacing (a margin) between each button. If 100% is set, then the buttons will wrap to a new line because they'll take up more space than what's actually available. If you adjust the CSS of the buttons with the following attributes, you may need to change these container values accordingly.
+atmrating:btn_css
+Configures the styling of the standard button element
+Type: CSS
+Example: atmrating:btn_css="background: black; color: yellow" changes the background color from orange to black and the text color from white to yellow
+atmrating:btn_selected_css
+Configures the styling of the standard button element when it has been selected or is being hovered over
+Type: CSS
+Example:atmrating:btn_selected_css="color: green;" changes the text color to green when selected or hovered over
+4: Customization Examples
+Using the attributes above, we can do some pretty neat things to get a custom look and feel for this question style. Below are a couple examples of the different ways you can configure the button rating style to fit your project's needs.
+4.1: Example 1
+In this example, we made quite a few adjustments to get the look and feel we were hoping for. Looks good, right? See below for the example XML code needed to achieve this style.
+4.1.1: Example 1 XML Code
+<number label="Q0" optional="0" size="2" verify="range(0, 5)">
+<atmrating:btn_css>
+background: #46a4f2;
+border: 1px solid black;
+margin: 0px 5px 0px 5px;
+</atmrating:btn_css>
+<atmrating:btn_selected_css>
+background: #80bced;
+color: black;
+font-weight: bold;
+</atmrating:btn_selected_css>
+<atmrating:order>htl</atmrating:order>
+<atmrating:legendPosition>Above</atmrating:legendPosition>
+<atmrating:leftLegend>
+<img src="[rel like.png]" />
+</atmrating:leftLegend>
+<atmrating:rightLegend>
+<img src="[rel dislike.png]" />
+</atmrating:rightLegend>
+<title>
+How satisfied are you with the following social networks?
+</title>
+<row label="r1">Google+</row>
+<row label="r2">Diaspora*</row>
+<row label="r3">MySpace</row>
+</number>
+4.1.2: Example 1 XML Code Details
+<atmrating:btn_css>
+background: #46a4f2;
+border: 1px solid black;
+margin: 0px 5px 0px 5px;
+</atmrating:btn_css>
+In this block of code, the default button style is adjusted. The background attribute changes the background color from the default orange to blue, the border attribute adds the 1px black border, and the margin attribute provides a bit more left and right spacing between the buttons.
+<atmrating:btn_selected_css>
+background: #80bced;
+color: black;
+font-weight: bold;
+</atmrating:btn_selected_css>
+This code adjusts the button when it has been selected or is being hovered over. Similar to the previous example, the background attribute changes the background color to a lighter shade of blue, the color attribute changes the text color to black, and the font-weight attribute gives it a bold look.
+<atmrating:order>htl</atmrating:order>
+This attribute changes the button order from ascending order to descending order (high to low).
+<atmrating:legendPosition>Above</atmrating:legendPosition>
+Since we want the legend images to appear above the buttons, we added this attribute to make it happen.
+<atmrating:leftLegend>
+<img src="[rel like.png]" />
+</atmrating:leftLegend>
+The order is set to descending order, which means the highest number is displayed on the left side. To accommodate this, we want the "Like" image on the left-most legend.
+<atmrating:rightLegend>
+<img src="[rel dislike.png]" />
+</atmrating:rightLegend>
+Similar to the previous attribute, we want to show the "Dislike" image on the right-most legend.
+4.2: Example 2
+Internet Explorer 8 does not support CSS box shadows unless you include the PIE library. Click here for more information.
+In this example, we're adding and removing a couple attributes from the previous example. Instead of changing the font to a bold black color when selected or hovered over, we're using CSS shadows to emulate the action of pressing the button down. In addition to centering the row text, we have also added the "Never heard of it" opt out button. See below for the XML code needed to achieve this style.
+4.2.1: Example 2 XML Code
+<number label="Q1" optional="0" size="2" verify="range(0, 5)" ignoreValues="99">
+<atmrating:btn_css>
+background: #46a4f2;
+border: 1px solid black;
+margin: 0px 5px 0px 5px;
+-webkit-box-shadow: 0 8px 6px -6px black;
+-moz-box-shadow: 0 8px 6px -6px black;
+box-shadow: 0 8px 6px -6px black;
+</atmrating:btn_css> <atmrating:btn_selected_css>
+background: #80bced;
+-webkit-box-shadow: inset 0 0 10px black;
+-moz-box-shadow: inset 0 0 10px black;
+box-shadow: inset 0 0 10px black;
+</atmrating:btn_selected_css>
+<atmrating:order>htl</atmrating:order>
+<atmrating:legendPosition>Above</atmrating:legendPosition>
+<atmrating:leftLegend>
+<img src="[rel like.png]" />
+</atmrating:leftLegend>
+<atmrating:rightLegend>
+<img src="[rel dislike.png]" />
+</atmrating:rightLegend>
+<atmrating:OO_Text>
+Never heard of it
+</atmrating:OO_Text>
+<title>
+How satisfied are you with the following social networks?
+</title>
+<row label="r1">Google+</row>
+<row label="r2">Diaspora*</row>
+<row label="r3">MySpace</row>
+</number>
+4.2.2: Example 2 XML Code Breakdown
+The details below only include the attributes that were modified from the previous example.
+<number label="Q1" optional="0" size="2" verify="range(0, 5)" uses="atmrating.7" ignoreValues="99">
+Since we included an opt out button, it is mandatory that we add ignoreValues="99" to the <number> tag.
+<atmrating:btn_css>
+background: #46a4f2;
+border: 1px solid black;
+margin: 0px 5px 0px 5px;
+-webkit-box-shadow: 0 8px 6px -6px black;
+-moz-box-shadow: 0 8px 6px -6px black;
+box-shadow: 0 8px 6px -6px black;
+</atmrating:btn_css>
+In this block of code, we added the CSS box shadows to emphasize the fact that the buttons are clickable (and can be pressed down).
+<atmrating:btn_selected_css>
+background: #80bced;
+-webkit-box-shadow: inset 0 0 10px black;
+-moz-box-shadow: inset 0 0 10px black;
+box-shadow: inset 0 0 10px black;
+</atmrating:btn_selected_css>
+When the button is selected, we are no longer updating the font color or weight. Instead, we use an inset CSS shadow to emphasize the fact that the button has been pressed down.
+<atmrating:OO_Text>
+Never heard of it
+</atmrating:OO_Text>
+This code creates an opt out button with the text "Never heard of it". This button is exclusive and cannot be selected with any other option.
+5: What's Next?
+Want to customize the button rating elements even further? To learn more about our XML styling system, see XML Style System.

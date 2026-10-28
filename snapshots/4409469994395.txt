@@ -1,0 +1,106 @@
+Title: Hidden Questions
+Hidden questions are survey questions that are not shown to participants. These are used to track data either through pre-loaded sample variables, or data points calculated within the survey. Data stored in these questions can later be used for building in-survey logic or for splitting reports.
+Hidden questions function similarly to Autofill elements, but allow for more complicated logic to be used when punching targeted questions.
+1: Hiding a Question
+Almost any question can be hidden. To hide a question, you will need to add the where attribute and set it to execute. The where attribute controls where a question will appear in a survey, and setting it to execute will hide the question.
+To learn more about the where attribute, see Control where an Element Appears with the Where Attribute.
+1.1: In the Survey Editor
+In the question options menu, displayed to the right of the staging area, first select "where" from the “More Options” drop-down.
+This will add the where attribute to the list of options that are available to edit. Then, enter “execute” in the where text field.
+1.2: In the XML Editor
+Add where="execute" to the question tag.
+<radio
+label="q2"
+where="execute">
+<title>Age Group Tracking</title>
+<comment>Select one</comment>
+<row label="r1">18-24</row>
+<row label="r2">25-34</row>
+<row label="r3">35-44</row>
+<row label="r4">45-54</row>
+<row label="r5">55+</row>
+</radio>
+1.3: End Result
+Hidden questions will only appear during testing and in the data. If you would like to view your hidden question to ensure that it is getting punched correctly, select "Show Survey with Tools" in the Survey Test Environment page and toggle "QA codes" on. Then, look for a question with a crumpled paper background, similar to the below:
+Hidden questions will always appear on this background and include a message about not being displayed to live participants. You will not see these pages while testing in "Show Participant View" mode or within a live survey.
+2: Populating Hidden Questions
+Once you have hidden a question, you must set it to automatically populate with a response as each participant passes through it. Hidden questions can be populated using Python code inside of an exec block. To populate your hidden question, change its value attribute to the desired response using the Python .val command within the question tag.
+For example, if you want to set question "Q1" to a value of 1, you can use the following code:
+<exec>
+Q1.val = 1
+</exec>
+This value can be changed depending upon the question type. See below for different ways to populate a hidden question depending on its question type.
+2.1: Populating Single Select Questions
+2.1.1: Single Select Questions
+To populate a hidden Single Select question, assign its value attribute to the index of the row you are looking to punch. Since indexes start with zero (in the above example, row 1 has an index of 0), you will need to input one integer below your target value.
+For example, if you want your hidden question to punch row 3, you can add the following code:
+<exec>
+q2.val = 2
+</exec>
+However, there are some issues with setting the index numerically. For instance, you may end up assigning an index that is different than that of the intended row if you change row positions. To ensure that the correct index is assigned, specify your question and row objects using the following notation: qxx.rxx.index. This will return the row’s default index, which can then be used to assign a new one.
+Using the above example, you can make the following modifications:
+<exec>
+q2.val = q2.r2.index
+</exec>
+2.1.2: Single Select Grids
+To populate a Single Select Grid question, assign each row a value that corresponds to the column index that would have been selected. For example, if you want your hidden question to populate row 1 with a value from column 3, you might input the following:
+<exec>
+q2.r1.val=q2.c1.index
+</exec>
+If you are using grouping="cols", the value assignment method changes, and you must instead input the index of the selected row as the column value.
+<exec>
+q2.c1.val=q2.r1.index
+</exec>
+2.2: Populating Multi Select Questions
+2.2.1: Multi Select Questions
+Multi-Select questions are populated differently from Single Select questions. In Multi-Select questions, you can punch multiple rows at the same time and each row can have one of two possible values: 1 for checked and 0 for unchecked. This means that you cannot assign a single value to the question and must instead assign a separate value to each of the question's rows.
+For example, to populate all check boxes in the question below, you would need to loop through each row and assign its value separately.
+In this case, you would input the following:
+<exec>
+for eachRow in q3.rows:
+eachRow.val=1
+</exec>
+2.2.2: Multi Select Grid Questions
+To populate a Multi Select Grid question, you must target a specific cell in the grid question and assign it a value of 1 or 0. You can do this by referencing both the row and the column of your chosen cell, as shown in the example below:
+<exec>
+q3.r1.c1.val=1
+</exec>
+Similarly, if you want to punch all answer options in a Multi Select Grid, you must traverse both the rows and columns of your question.
+For example, to punch all options in q3, you would input the following:
+<exec>
+for eachRow in q3.rows:
+for eachCol in q3.cols:
+q3.rows[eachRow.index].cols[eachCol.index].val = 1
+</exec>
+2.3: Populating Text Questions
+For Text questions, you do not need to specify any rows to punch. To populate a Text question, you can instead assign a value directly to the question.
+For example, imagine you are using the question below to track a participant’s name.
+In this case, you can use the following exec block to set “John” as the name of one of your participants:
+<exec>
+q4.val="John"
+</exec>
+Note: When assigning text to a Text question, the text value must be assigned as either a string type variable or a quoted string.
+Note: If you have a Text question with multiple rows, you can use q4.r1.val instead.
+2.4: Populating Number Questions
+Number questions follow the same rules as Text questions, with the exception that you will need to assign a whole number integer instead.
+For example, imagine you are tracking your participants' ages using the Number question below.
+In this case, you can use the following exec block to assign 20 as the age for one of your participants.
+<exec>
+q5.val=20
+</exec>
+Alternatively, if you already have a number stored within a variable, you can use that variable for the assignment statement. For example:
+<exec>
+age=20
+q5.val=int(age)
+</exec>
+Note: Number questions only accept whole numbers by default. If doing calculations, it is better to convert your variable to an integer before assignment.
+<exec>
+age=20/3
+q5.val=int(age)
+</exec>
+2.4.1: Decimal Questions
+Number questions with the “Allow Decimals” option enabled accept both whole numbers and decimal values. To populate a Decimal question, you can use the exec block below:
+<exec>
+age=20.5
+q5.val=float(age)
+</exec>

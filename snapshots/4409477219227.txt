@@ -1,0 +1,263 @@
+Title: Data Downloads and Formatting Options
+After running a standard or a custom report in the Portal, you have a variety of options available for downloading your data. This document outlines the process for accessing data downloads in Decipher.
+1: About Data Filtering
+The automatic downloads provided will reflect the same base as your report. For example, if you have a base of 600 in your report, the data downloads will all show a base of 600. If you have various segments with various base amounts in your report, Decipher will create multiple files for you to download.
+2: Accessing Data Downloads
+To access the data download options for your survey, click REPORT in the navigation menu. Then click Data Downloads and select either Excel or SPSS. If you would like to export to another format, click Other Data Formats.
+If you click Other Data Formats, the Download Data page opens. You can select your preferred output format from a list of every available download option. The data download will be based on the total qualified report.
+To change the data layout, use the Layout drop-down menu. See Modifying the Survey Data Layout to learn more.
+To change the displayed language of questions in the data download, use the Language drop-down menu. You can select from any language you have added to the survey. To learn how to add languages to your survey, see Guide to Programming Multi-Language Studies.
+To download data for a specific report, see Download Data in Crosstabs.
+3: Data Download Options
+Note: Some download types are not available for use with custom data layouts or other languages. Those downloads will appear in gray and cannot be selected.
+Click on a download name to jump to the description.
+3.1: Most Popular
+Quick links to the most popular downloads we offer. The downloads listed in this section are repeated in other categories. For example, the Excel download option listed within the 'most popular' section is exactly the same as the Excel download listed in the 'vendor-specific' section.
+Excel
+SPSS 16+ (.sav)
+SPSS 15 (.sav)
+Fixed-Width (unicode)
+Tab-Delimited
+OE Data (Excel)
+3.2: Other Data Formats
+Downloads only available to users with staff access.
+Markers
+Progress
+DCM Reporting
+3.3: Stacked Data
+Downloads specific to surveys with loop elements.
+Tab-Delimited
+Fixed-Width (unicode)
+3.4: Open Formats
+Downloads offering the complete, raw data in various open formats.
+OData (Tableau, Power BI)
+Fixed-Width (unicode)
+Tab-Delimited
+Tab-Delimited (Unquoted)
+JSON with Labels
+Triple-S (unicode)
+Comma-Separated (CSV)
+Pipe-Delimited
+Pipe-Delimited with Text
+Column-Binary
+Uploaded Files (only available if your survey includes an Image Upload Element)
+Flat
+3.5: Vendor Specific
+Downloads in specific data program formats.
+Excel
+Excel with Text
+SPSS 16+ (.sav)
+SPSS 15 (.sav)
+SPSS 16+ (.sav) with OE
+SPSS (data+script) (unicode)
+Quantum (unicode)
+SAS (unicode)
+Uncle (unicode)
+Wincross (unicode)
+3.6: Direct to Browser
+Downloads are generated within a new tab in your browser, instead of downloading in a separate file.
+Table
+Coverage
+Column-Binary (Text)
+Datamap (Fixed-Width)
+Datamap (OE)
+Datamap (All)
+Datamap (JSON)
+Field Debug Dump
+Fixed-Width (unicode)
+Fixed-Width
+Pipe-Delimited
+Pipe-Delimited with Text
+Quantum Script
+Net-MR Datamap
+Net-MR Datamap (CSV)
+SAS Script
+SPSS (Fixed-Width)
+SPSS (Tab-Delimited)
+Tab-Delimited
+Triple-S XML
+Uncle Tables
+Deleted Participants
+3.7: Open-Ended Responses
+Downloads tailored for reports with open-ended content.
+OE Data (Excel)
+OE Data (Tab-Delimited)
+OE Excel (By Sheet)
+OE Excel (w/ Blanks by Sheet)
+OE Data (Flat Form)
+3.8: Tracking Files
+Downloads with stored information incremented by your survey.
+All Seen Variables
+Marginals
+Random Order
+3.9: Custom
+Requires Decipher Cloud
+Any custom downloads that you have created. To learn how to create a custom data download, see Custom Data Downloads.
+4: Download Details
+This list is in alphabetical order.
+Download Type
+Description
+Download Location
+All Seen Variables
+The record, UUID and status of all participants that have started the survey.
+Opens in browser
+Column-Binary
+Downloads in zipped file containing one column-binary file per segment, datamap in both HTML and text versions, and a readme file.
+Downloads to computer
+Column-Binary (Text)
+Column-binary converted to text format.
+Opens in browser
+Comma-Separated (CSV)
+Similar to the tab-delimited format, this is a text based file separated by commas.
+Downloads to computer
+Coverage
+Outlines answered vs. shown counts per question. For more information, see About the Coverage Report.
+Opens in browser
+Datamap (All)
+Datamap containing all variables.
+Opens in browser
+Datamap (Fixed-Width)
+Datamap in fixed-width format.
+Opens in browser
+Datamap (JSON)
+Datamap for all variables in JSON format.
+Opens in browser
+Datamap (OE)
+Datamap containing open-ended variables.
+Opens in browser
+DCM Reporting
+Datamap for discrete choice model questions. To learn more, see Reporting on the DCM Conjoint Element.
+Downloads to computer
+Deleted Participants
+Tab-delimited file containing participants who have been deleted.
+Opens in browser
+Excel
+The Windows Excel file (.xlsx) downloads in a zipped format. The file contains the data, along with an extra tab containing the datamap. Datamap is offered in any language included in the project using the Language Manager.
+Downloads to computer
+Excel with Text
+The Windows Excel file (.xlsx) downloads in zipped format. The file contains the data, along with an extra tab containing the datamap. The ordinal data values are replaced with report text.
+For example, an answer to a gender question will appear as "Male" instead of "1". The responses to multi-select questions appear as "Answer" (instead of "1") or "NO TO: Answer" (instead of "0").
+Downloads to computer
+Field Debug Dump
+List of variables with internal debug information.
+Opens in browser
+Fixed-Width
+Fixed width file downloads in a zipped file containing the .dat data file, marginals, datamap in both HTML and text versions, and readme file.
+Downloads to computer
+Fixed-Width (unicode)
+Unicode-aware fixed-width download for open-end data.
+Downloads to computer/Opens in browser
+Flat
+Flat data downloads in a zipped file containing a .txt data file where each row in the file is a single variable from the survey (for example: Q1r1, Q1r2) for a single participant.
+Downloads to computer
+JSON with labels
+JSON with labeled values (returns value labels instead of numeric codes)
+Downloads to computer
+Marginals
+A standard Marginals download.
+Opens in browser
+Markers
+The marker names and the count per marker. Requires staff access.
+Opens in browser
+Net-MR Datamap
+Datamap for Net-MR in tab-delimited format.
+Opens in browser
+Net-MR Datamap (CSV)
+Datamap for Net-MR in CSV format.
+Opens in browser
+OData (Tableau, Power BI)
+Customize and copy a special URL to transfer survey reports directly into Tableau or Power BI in OData format. URLs can be set to pull data from any of the survey’s preconfigured crosstab reports and data layouts.
+Opens in a new menu
+OE Data (Excel)
+Open-ended data in Excel format (.xls).
+Downloads to computer
+OE Data (Flat Form)
+Open-ended data in tab-delimited format.
+Downloads to computer
+OE Data (Tab-Delimited)
+Open-ended data in a tab-delimited text file.
+Downloads to computer
+OE Excel (by Sheet)
+The Excel file (.xls) downloads in a zipped format. The file contains one sheet for each open-ended variable, along with an extra tab containing the datamap.
+Downloads to computer
+OE Excel (w/ Blanks by Sheet)
+The Excel file (.xls) downloads in a zipped format. The file contains one sheet for each open-ended variable with blank data included, along with an extra tab containing the datamap.
+Downloads to computer
+Pipe-Delimited
+Pipe-delimited "|" text file downloads in a zipped format or opens in browser. Zipped file includes the data, both HTML and text versions of the datamap and a readme file.
+Downloads to computer/Opens in browser
+Pipe-Delimited with Text
+Pipe-delimited "|" with Text downloads in a zipped format or opens in a browser. Zipped file includes the data, both HTML and text versions of the datamap and readme file.
+Downloads to computer/Opens in browser
+Progress
+Question label, before/after, completion %, and count. Requires staff access.
+Opens in browser
+Quantum
+Downloads in zipped format and includes the data formatted for Quantum software, both HTML and text versions of the datamap, marginals, and a readme file.
+Downloads to computer
+Quantum script
+Datamap for Quantum software.
+Opens in browser
+Random Order
+Tab-delimited file showing the tracked order for all randomized attributes in your survey.
+Opens in browser
+SAS
+Downloads in zipped format and includes the data formatted for SAS software, marginals and a readme file.
+Downloads to computer
+SAS Script
+Opens in browser
+Datamap for SAS software.
+Opens in browser
+SPSS (.sav)
+The native file format for SPSS data files. Datamap includes all languages included in the project using the Language Manager.
+Note: Forsta uses a newer library to generate SPSS *.sav files at twice the speed. Those files are all generated as “unicode” which requires SPSS 16+ if your survey has non-English characters (for example: accented chars, the € symbol). The SPSS 16+ downloads will give you that file, and a SPSS 15 download will give you the SAV file in the legacy Windows-1252 format.
+Note: Setting blankValue as a string in the <survey> tag will cause an error when exporting an SPSS file. Use a numeric response for blankValue instead.
+Downloads to computer
+SPSS (Data+Script)
+Different than the complete .sav download, this is a zipped set of files, including the .sps syntax file, data file and readme file. The syntax, when run, will create a full SPSS file, including value labels. This option has the same results as downloading the .sav file, however, it is a good option when download bandwidth is an issue, as the syntax files are much smaller. Datamap includes all languages included in the project using the Language Manager.
+Note: Setting blankValue as a string in the <survey> tag will cause an error when exporting an SPSS file. Use a numeric response for blankValue instead.
+Downloads to computer
+SPSS (Fixed-Width)
+A fixed-width SPSS datamap. Datamap includes all languages included in the project using the Language Manager.
+Note: Setting blankValue as a string in the <survey> tag will cause an error when exporting an SPSS file. Use a numeric response for blankValue instead.
+Opens in browser
+SPSS (Tab-Delimited)
+A tab-delimited SPSS datamap. Datamap includes all languages included in the project using the Language Manager.
+Note: Setting blankValue as a string in the <survey> tag will cause an error when exporting an SPSS file. Use a numeric response for blankValue instead.
+Opens in browser
+SPSS (.sav) with OE
+The native file format for SPSS data files. Datamap includes all languages included in the project using the Language Manager and includes open-ended data.
+Note: Setting blankValue as a string in the <survey> tag will cause an error when exporting an SPSS file. Use a numeric response for blankValue instead.
+Downloads to computer
+Tab-Delimited
+The tab-delimited text file downloads in a zipped format and includes the data, both HTML and text versions of the datamap and a readme file. The direct to browser option shows data in tab-delimited format. Add tab_uq to UI
+Downloads to computer/Opens in browser
+Tab-Delimited (Unquoted)
+A tab-delimited format with column headings and unquoted values.
+Downloads to computer
+Table
+An HTML table of all data.
+Opens in browser
+Triple-S
+Downloads in a zipped format and includes the data formatted for Triple-S software, marginals and the Triple-S XML datamap.
+Downloads to computer
+Triple-S XML
+Datamap for Triple-S XML.
+Opens in browser
+Uncle
+Syntax formatted for Uncle software.
+Downloads to computer
+Uncle Tables
+Datamap for Uncle software.
+Opens in browser
+Uploaded Files
+Downloads in a zipped format and includes a readme file and all files uploaded with the following naming format: RECORD_QLABEL_FILENAME
+Downloads to computer
+Wincross (.job)
+Syntax file for Wincross tabulation software.
+Downloads to computer
+5: Limitations and Additional Considerations
+The following limitations and special considerations apply when downloading data:
+Conditions with duplicate labels will have an underscore appended to the end of the title of the second label.
+Learn More:
+Modifying the Survey Data Layout

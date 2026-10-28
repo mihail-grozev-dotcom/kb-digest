@@ -1,0 +1,98 @@
+Title: Customizing the Legacy Video Player Element
+The Legacy Video Player element allows survey participants to view a video on desktop and mobile devices (when a mobile compatible file is used).
+1: Underlying Question Architecture
+The video player element uses a checkbox question type with one input. The input is autochecked when video completion occurs.
+2: Converting to a Video Player Element
+The video player requires:
+a survey with compat 131+
+no rows
+no columns
+the attribute sst set to 0
+the survey to use the HTTP protocol (e.g. http://your.survey.com/survey/...)
+that you do not use the word "ad" in the question label. Otherwise the question will be blocked with adblock.
+To apply the video player question style to a checkbox question add uses="bcvideo.5" to the question tag. The current version of bcvideo is the number added after bcvideo. when adding the question via the Survey Builder. It is recommended to add the question via the Decipher survey builder so that the most current version number is applied and customize via the XML. If your survey has a lower number than the current version the question was created before a new version was released. If the survey is in testing the version number can be changed to the current version. If the survey is LIVE it is not recommended to change the version as this could break the question style.
+Note: To reference the latest video player version, see Dynamic Question Versioning.
+3: Survey Theme
+Colors selected in the dynamic section of the survey theme will apply with a survey compat 115+ and are applied to the video player as shown below.
+Font - Default
+The video position indicator background color fill.
+Font - Selected
+The watermark font color.
+The video position font color.
+The video length font color.
+Background - Default
+The media controls position container background color.
+Background - Selected
+The video container box shadow.
+The watermark background color.
+The media controls container background color.
+To learn more about creating a survey theme, see Editing the Survey Theme.
+4: Advanced Customization - Desktop (CSS)
+While version 5 of the Video Player cannot be altered, you can customize any earlier versions by modifying the CSS in the XML. Each style variable is prepended with bcvideo:. For example, containerCSS becomes bcvideo:containerCSS to customize the video player styling.
+XML Style Variable & Description
+Example
+containerCSS
+The container for all video player elements
+bcvideo:containerCSS="margin-bottom: 0px; padding:0px;"
+margin-bottom: 0px; removes the bottom margin.
+padding:0px; removes the padding around the video element.
+This creates question text and continue/finish button that are closer to the player.
+mediaControlsCSS
+The media controls container which contains the play button (when pause is enabled), video position, video position indicator and video length when hovering the player.
+bcvideo:mediaControlsCSS=" background:#03343E; -webkit-box-shadow: 1px 1px 2px 2px rgba(9, 148, 174, .7); box-shadow: 1px 1px 2px 2px rgba(9, 148, 174, .7);"
+background:#03343E; sets the background color to a very dark cyan.
+-webkit-box-shadow: 1px 1px 2px 2px rgba(9, 148, 174, .7); box-shadow: 1px 1px 2px 2px rgba(9, 148, 174, .7); adds a dark cyan (with .7 opacity) box shadow when hovering.
+mediaControlsHideCSS
+The media controls container when not hovering the player and not using "chromeless" video.
+bcvideo:mediaControlsHideCSS=" -webkit-box-shadow:0px 0px 0px 0px #FFF;box-shadow:0px 0px 0px 0px #FFF;"
+Adds no box shadow when not hovered.
+overlayContentCSS
+The container for the play button in the overlay shown when the video is not playing.
+playButtonContainerCSS
+The container for the play button shown in the media controls.
+playButtonBigCSS
+The play button on the overlay. The default uses an image for the background.
+bcvideo:playButtonBigCSS=" background:none; width: 0; height: 0; border-top: 60px solid rgba(0, 0, 0, 0); border-bottom: 60px solid rgba(0, 0, 0, 0); border-left: 120px solid #0994ae;"
+background:none; removes the default image used.
+width: 0; height: 0; are used to create the box width and height.
+border-top: 60px solid rgba(0, 0, 0, 0); border-bottom: 60px solid rgba(0, 0, 0, 0); border-left: 120px solid #0994ae; The width and height of the arrow is determined by the width of the border. To create a left arrow the left border is colored dark cyan and top and bottom borders are transparent, rgba(0, 0, 0, 0), which forms the triangle.
+playButtonIconCSS
+The play button icon shown in the media controls when the video is not playing. This icon can be styled like text.
+playButtonIconCSS="color:#0ad1f5;"
+Sets the font color to cyan.
+positionContainerCSS
+The container for the video progress.
+bcvideo:positionContainerCSS=" background: #09515f;"
+Sets the background color to a very dark cyan.
+positionIndicatorCSS
+The fill portion of the container for the video progress.
+bcvideo:positionIndicatorCSS=" background: -moz-linear-gradient(left, #095260 0%, #0988a0 50%, #0988a0 51%, #0ad1f5 100%); background: -webkit-gradient(linear, left top, right top, color-stop(0%,#095260), color-stop(50%,#0988a0), color-stop(51%,#0988a0), color-stop(100%,#0ad1f5)); background: -webkit-linear-gradient(left, #095260 0%,#0988a0 50%,#0988a0 51%,#0ad1f5 100%); background: -o-linear-gradient(left, #095260 0%,#0988a0 50%,#0988a0 51%,#0ad1f5 100%); background: -ms-linear-gradient(left, #095260 0%,#0988a0 50%,#0988a0 51%,#0ad1f5 100%); background: linear-gradient(to right, #095260 0%,#0988a0 50%,#0988a0 51%,#0ad1f5 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#095260', endColorstr='#0ad1f5',GradientType=1 );"
+Sets a background color using a horizontal gradient from a very dark cyan to dark cyan to cyan. This code was generated using a gradient generator.
+videoLengthCSS
+The video length in time.
+bcvideo:videoLengthCSS="color:#0ad1f5;"
+Sets the font color to cyan.
+videoPositionCSS
+The current video position.
+bcvideo:videoPositionCSS="color:#0ad1f5;"
+Sets the font color to cyan.
+watermarkCSS
+The watermark container (when enabled).
+bcvideo:watermarkCSS="background:#0ad1f5; padding:3px; color:#09515f;"
+background:#0ad1f5; sets the background color to cyan.
+padding:3px; added padding around the text.
+color:#09515f; set the font color to a very dark cyan.
+The following CSS class can be added via XML styles to change the overlay background color to a very dark cyan (with a default opacity of 0.6), or even to remove the still image (by setting the opacity to 1.0.)
+<style name="respview.client.css"><![CDATA[
+<style type="text/css">#survey #question_q1 .sq-bcvideo-content .sq-bcvideo-overlay-container .sq-bcvideo-overlay{
+background: #03343E !important;
+}
+</style>]]></style>
+5: References
+CSS Help:
+CSS Cheat Sheet
+CSS3 Generator
+CSS Gradients
+Color Scheme Generator
+Color Scheme Designer
+Note: The video player element overrides page.head, question.after and survey.question.instructions in XML Styles.

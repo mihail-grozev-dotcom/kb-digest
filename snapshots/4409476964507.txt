@@ -1,0 +1,166 @@
+Title: Quota Hooks
+You can use a quota hook to modify the possible quota cell assignments for a survey participant.
+1: Defining the Function
+To modify quota cell assignments using a quota hook, you must first define the quota_hook function in an <exec when="init"></exec> block in your survey.
+Note: Only one quota_hook function should be defined per survey.
+For example, in the survey.xml file, you would define the following:
+<exec when="init">
+def quota_hook(sheet, table, cells):
+...
+return cells
+</exec>
+In the quotas.xls file, this would appear as follows:
+Sheet 1
+A
+B
+1
+# cells:4 = Brand Quota
+2
+BrandA
+100
+3
+BrandB
+100
+4
+BrandC
+100
+5
+BrandD
+100
+Note: Once run, items from the cells variable are expected to be returned. Instead of items from the cells variable, however, an empty list can also be returned to skip the quota table entirely.
+1.1: Available Variables
+You have access to the following variables within the quota_hook function:
+sheet: A string with the name of the current quota sheet. In the above example, "Sheet 1" would be returned.
+table: An object where you have access to information about the current quota table.
+table.cellCount: The amount of cells that will be selected in the current table. In the above example, cellCount would return 4. If cells:# is not defined, cellCount will default to 1. This number cannot be changed.
+table.description: A string with the description of the current table. In the above example, "Brand Quota" would be returned. If your table does not have a description defined, "Unnamed table #X" will be returned, where X is the numbered table from top to bottom on the sheet starting with the number 1.
+cells: A list where each item is information about the cells of a table. cells needs to be returned at the end of the quota hook but can be modified to remove unwanted items. Items in cells will be in order of least filled and priority, so items at the beginning of the list will be picked first. Each item in the cells variable has access to the following, where cell is an item inside of cells:
+cell[0]: The percent filled of the quota cell, including pending markers.
+cell[1]: A key used by the system.
+cell[2]: A string containing the marker name. In the above example quota, this would be "/Sheet 1/BrandA","/Sheet 1/BrandB","/Sheet 1/BrandC", or "/Sheet 1/BrandD"
+2: Examples
+2.1: Example #1
+In the following example, Concept 1 and Concept 2 are never selected together on Sheet 1.
+2.1.1: survey.xml
+<exec when="init">
+C1 = '/Sheet 1/Concept1'
+C2 = '/Sheet 1/Concept2'
+def quota_hook(sheet, table, cells):
+if sheet == 'Sheet 1':
+assignedCell = False
+for eachCell in cells:
+if eachCell[2] in (C1,C2):
+if assignedCell:
+cells.remove(eachCell)
+break
+else:
+assignedCell = True
+return cells
+</exec>
+2.1.2: quota.xls
+Sheet 1
+A
+B
+1
+# cells:2 = Brand Quota
+2
+Concept1
+100
+3
+Concept2
+100
+4
+Concept3
+100
+5
+Concept4
+100
+In this example, concept1 and concept2 markers are defined before the quota hook to be used for reference later. Inside the quota hook, it's checked whether users are currently in "Sheet 1" and iterated over each each cell in cells.
+Since cells returns in order of least-filled, the concept with a higher fill should be removed to ensure the quotas are balanced. To do this, you can verify whether the marker name is one of the two marker names being checked. If the this concept is the first of the two markers found, then you would set the assignedCell variable to True. If the assignedCell variable has already been set to True, then you would remove the next found cell from cells. You would then return cells outside of the if statement to make sure that cells with other sheets will always be returned.
+2.2: Example #2
+In the following example, the cell selection is reordered with a dynamic priority based on participants' answers to a specific question.
+2.2.1: survey.xml
+<radio label="Q1">
+<title>Please rate the brands based on satisfaction.</title>
+<col label="c1">Very Unsatisfied</col>
+<col label="c2">Unsatisfied</col>
+<col label="c3">Neither</col>
+<col label="c4">Satisfied</col>
+<col label="c5">Very Satisfied</col>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+</radio>
+<suspend/>
+<exec when="init">
+def quota_hook(sheet, table, cells):
+if sheet == 'Brand Selection':
+cellsOrdered = []
+C1 = ['/Brand Selection/Brand_' + eachRow.label for eachRow in Q1.rows if eachRow.c1]
+C2 = ['/Brand Selection/Brand_' + eachRow.label for eachRow in Q1.rows if eachRow.c2]
+C3 = ['/Brand Selection/Brand_' + eachRow.label for eachRow in Q1.rows if eachRow.c3]
+C4 = ['/Brand Selection/Brand_' + eachRow.label for eachRow in Q1.rows if eachRow.c4]
+C5 = ['/Brand Selection/Brand_' + eachRow.label for eachRow in Q1.rows if eachRow.c5]
+markerPriorities = [C5,C4,C3,C2,C1]
+for eachPriority in markerPriorities:
+for eachCell in cells:
+if eachCell[2] in eachPriority:
+cellsOrdered.append(eachCell)
+return cellsOrdered
+else:
+return cells
+</exec>
+<quota sheet="Brand Selection" />
+<checkbox label="Brands_Selected" atleast="1" where="execute">
+<exec>
+for eachRow in Brands_Selected.rows:
+if hasMarker('/Brand Selection/Brand_' + eachRow.label):
+eachRow.val = 1
+</exec>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+</checkbox>
+2.2.2: quota.xls
+Defines
+A
+B
+C
+1
+Brand_r1
+plus
+Brand A
+2
+Brand_r2
+plus
+Brand B
+3
+Brand_r3
+plus
+Brand C
+4
+Brand_r4
+plus
+Brand D
+Brand Selection
+A
+B
+1
+# cells:2 = Brands
+2
+Brand_r1
+100
+3
+Brand_r2
+100
+4
+Brand_r3
+100
+5
+Brand_r4
+100
+In this example, the priority of the quotas selected is changed based on participants' selections at Q1.
+This is accomplished by first making sure the quota labels match the row labels in the survey. Then a list is created for each different rating that a brand can be given which contains all brand markers for that rating, and stored in the variables C1-C5. In the markerPriorities variable, a list is created with C1-C5, ordered from highest priority to lowest priority. Then both markerPriorities and cells are looped, checking if marker names exist in each of the lists stored in markerPriorities. If so, these are appended to the cellsOrdered variable. Finally, cellsOrdered is returned.
+Due to how markerPriorities is set up (with C5 listed first and C1 last), "Very Satisfied" brands will be added to cellsOrdered first, and "Very Unsatisfied" brands added last. Since cells will always contain quota cells listed from highest priority to lowest priority with respect to least-filled, this also ensures that even with dynamic priorities, brands are still selected based on those that are least-filled. This process will make the top two highest priority least-filled brands the ones selected.

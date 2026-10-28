@@ -1,0 +1,23 @@
+Title: Server Customization
+Requires Decipher Cloud
+In this section, we will go over ways to extend the functionality of Decipher software. This includes things such as branding the platform, creating new question types, adding on project parameters, and modifying certain actions such as data downloads or project creation.
+Whitelabeling Decipher Software
+Whitelabeling will allow you to mask or configure the branding of the Decipher software platform. This training will cover modifying the login page, various system sent emails, and other tweaks to the portal and Decipher platform.
+Reference Materials:
+Whitelabeling Decipher Software
+Project Parameters
+We need to be able to organize our portal beyond just using tags for our projects. With project parameters we can add fields to our project to be searchable in the portal, show up in the project's data, and be found in the usage stats for our company.
+Reference Materials:
+Adding Project Parameters
+Building Dynamic Questions
+Dynamic Questions (DQ's) are Decipher's way of adding functionality to our standard question types. In this tutorial, we'll go over how to create our own Dynamic Questions in order to present new question types that will be unique experiences for our survey participants.
+Reference Materials:
+How to Create a Dynamic Question (DQ)
+Creating Logic Nodes
+Logic Nodes allow us to create elements in our server which enable us to use Python code we would normally not be able to import in the survey environment. This includes creating asynchronous commands, commands that run at a specific time, and commands that run repeatedly. This tutorial will walk through everything that goes into building a logic node.
+Reference Materials:
+Creating a Logic Node
+Managing Participant Sources
+As a server administrator, we need to add or change the default participant sources found in the Survey Editor and want this applied server-wide. This lesson will go over how to add, remove, and modify the default participant sources.
+Reference Materials:
+Managing Server-Specific Participant Sources

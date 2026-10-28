@@ -1,0 +1,101 @@
+Title: Single Select Question XML
+The Single Select element is a single select question type that enables participants to choose one response from a list of choices.
+The examples below demonstrate the different layouts available when working with Single Select elements.
+1: One-Dimensional
+A one-dimensional Single Select element requires only a single item to be selected.
+1.1: With Rows Only
+When only row elements are provided, the Single Select question defaults to grouping by columns. This means that only one selection can be made for each column.
+In the example below, there are two rows and no columns. If you do not need a column header, you do not need to explicitly define the column element.
+XML:
+<radio label="Q1">
+<title>Are you...</title>
+<comment>Please select one</comment>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+1.2: With Rows and a Column Header
+This example demonstrates the difference when a column element is defined. You now have the ability to define a column header.
+The question is grouped by columns and only one selection can be made for the "TV Size" column.
+XML:
+<radio label="Q2">
+<title>
+In your household, how large is your primary TV?
+</title>
+<comment>Please select one</comment>
+<col label="c1">TV Size</col>
+<row label="r1">15" - 24"</row>
+<row label="r2">25" - 34"</row>
+<row label="r3">35" - 44"</row>
+<row label="r4">45" - 54"</row>
+<row label="r5">55" - 64"</row>
+<row label="r6">Larger than 65"</row>
+</radio>
+1.3: With Columns Only
+Here is the same gender example as above with the row elements specified as columns instead.
+In this example, the question contains only column elements and is grouped by rows. This means that only one selection can be made for the entire row.
+XML:
+<radio label="Q1">
+<title>
+Are you...
+</title>
+<comment>Please select one</comment>
+<col label="c1">Male</col>
+<col label="c2">Female</col>
+</radio>
+1.4: With Columns and a Row Legend
+Here is the same TV example as above with the row elements specified as columns instead.
+The question contains both column and row elements. It is grouped by rows and only one selection can be made for the entire row.
+XML:
+<radio label="Q2" >
+<title>
+In your household, how large is your primary TV?
+</title>
+<comment>Please select one</comment>
+<row label="r1">TV Size</row>
+<col label="c1">15" - 24"</col>
+<col label="c2">25" - 34"</col>
+<col label="c3">35" - 44"</col>
+<col label="c4">45" - 54"</col>
+<col label="c5">55" - 64"</col>
+<col label="c6">Larger than 65"</col>
+</radio>
+2: Two-Dimensional
+A two-dimensional Single Select element has multiple rows and columns, requiring a single selection to be made per row or per column.
+2.1: Grouped by Rows
+When multiple rows and column elements are provided, the Single Select question defaults to grouping by rows. This means that only one selection can be made for each row.
+This example reflects a standard Rating question, where the participant is asked to rate each row item on a scale from 1 - 5.
+XML:
+<radio label="Q3">
+<title>
+Thinking about your last visit, please rate your satisfaction level in the following categories...
+</title>
+<comment>Please select one for each row</comment>
+<row label="r1">Speed of Service</row>
+<row label="r2">Hospitality</row>
+<row label="r3">Customer Service</row>
+<row label="r4">Overall Satisfaction</row>
+<col label="c1">Satisfied <br/>1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">Dissatisfied <br/>5</col>
+</radio>
+2.2: Grouped by Columns
+You can set the grouping attribute to "group by" columns. This means that only one selection can be made for each column.
+The example below, requests the participant to choose their most and least favorite row item. The data collected would not make sense if the participant was forced to make a selection for each row, so you must specify the attribute, grouping="cols".
+XML:
+<radio label="Q4" grouping="cols" unique="1">
+<title>
+Thinking about your last visit, please select your most and least favorite aspect of your experience...
+</title>
+<comment>Please select one for each column</comment>
+<row label="r1">Speed of Service</row>
+<row label="r2">Hospitality</row>
+<row label="r3">Customer Service</row>
+<row label="r4">Overall Satisfaction</row>
+<col label="c1">Most Favorite</col>
+<col label="c2">Least Favorite</col>
+</radio>
+3: Learn More:
+Single Select Question Attributes
+Single Select Element

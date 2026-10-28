@@ -1,0 +1,119 @@
+Title: Group Tag: Group Response Options
+The <group> element is used to create sets of response options that are visible to participants in the survey.
+For example:
+<checkbox
+label="Q1"
+atleast="1"
+shuffle="rows,groups">
+<title>Which of the following artists do you listen to?</title>
+<group label="g1" builder:axis="row">Rock</group>
+<group label="g2" builder:axis="row">Rap</group>
+<group label="g3" builder:axis="row">Country</group>
+<group label="g4" builder:axis="row">Techno</group>
+<group label="g5" builder:axis="row" randomize="0"/>
+<row label="r1" groups="g1">Boston</row>
+<row label="r2" groups="g1">Journey</row>
+<row label="r3" groups="g2">Kanye West</row>
+<row label="r4" groups="g2">50 Cent</row>
+<row label="r5" groups="g3">Tim McGraw</row>
+<row label="r6" groups="g3">Garth Brooks</row>
+<row label="r7" groups="g4">Avicii</row>
+<row label="r8" groups="g4">Skrillex</row>
+<row label="r9" groups="g5" exclusive="1" randomize="0">None of the above</row>
+</checkbox>
+The code above produces the following result:
+Note: The <group> element should not be used to net responses in the report. Use a <net> tag instead.
+If you want to create nets of these groups in the report, add the following code to the example above:
+<net labels='r1,r2'>Rock</net>
+<net labels='r3,r4'>Rap</net>
+<net labels='r5,r6'>Country</net>
+<net labels='r7,r8'>Techno</net>
+This creates the following table in the report:
+See Net Tag: Aggregate Data to learn more about aggregating data with the Net tag.
+1: Attributes
+In addition to the available element attributes, the <group> element has access to the following attributes:
+label
+groups
+aggregate
+builder:axis
+1.1: label - Setting the Group Name
+The label attribute is the unique identifier for the <group> element. This is used to reference to which group each <row>, <col>, or <choice> element belongs.
+For example:
+<radio label="Q1" optional="0">
+<title>Please select one:</title>
+<group label="g1">Group 1</group>
+<group label="g2">Group 2</group>
+<row label="r1" groups="g1">Row 1</row>
+<row label="r2" groups="g2">Row 2</row>
+<row label="r3" groups="g2">Row 3</row>
+</radio>
+Each <row> element is assigned to a group by associating the <groups> attribute with the group's label.
+1.2: groups - Setting the Group's Parent Groups
+The groups attribute controls to which group the <group> element belongs. This is used for creating hierarchical groups. It is not shown to participants.
+For example:
+<radio label="Q1" optional="0">
+<title>Which of the following cities have you visited recently?</title>
+<group label="g1">South</group>
+<group label="g2">North</group>
+<group label="g5" groups="g1">LA County</group>
+<group label="g6" groups="g1">Orange County</group>
+<group label="g7" groups="g1">San Diego County</group>
+<group label="g8" groups="g2">San Francisco</group>
+<group label="g9" groups="g2">Sonoma County</group>
+<row label="r1" groups="g1">Los Angeles</row>
+<row label="r2" groups="g1">Hollywood</row>
+...
+...
+</radio>
+1.2.1: Showing Nested Groups to Participants
+To show nested group labels to participants, set the groupDepth attribute to the deepest level of headers you want to show to participants. Apply builder:axis="row" to each <group> tag. Assign each <row> element to a subgroup by associating the <groups> attribute with the subgroup's label. Nested groups can only be displayed on rows.
+For example, the following code with groupDepth="2" displays as:
+<radio
+label="q2"
+groupDepth="2">
+<title>Which of the following cities have you visited recently?</title>
+<group label="g1" builder:axis="row">South</group>
+<group label="g2" builder:axis="row">North</group>
+<group label="g5" builder:axis="row" groups="g1">LA County</group>
+<group label="g6" builder:axis="row" groups="g1">Orange County</group>
+<group label="g7" builder:axis="row" groups="g1">San Diego County</group>
+<group label="g8" builder:axis="row" groups="g2">San Francisco</group>
+<group label="g9" builder:axis="row" groups="g2">Sonoma County</group>
+<row label="r1" groups="g5">Los Angeles</row>
+<row label="r2" groups="g6">Hollywood</row>
+<row label="r3" groups="g7">San Diego</row>
+<row label="r4" groups="g8">San Francisco</row>
+<row label="r5" groups="g9">Santa Rosa</row>
+</radio>
+When groupDepth="1" is applied, only the following is displayed to the participant:
+Note: A groupDepth of 3 or more is not supported by the Survey Editor and can only be applied via the XML Editor.
+1.3: aggregate - Controlling Data Aggregation
+The aggregate attribute is a boolean value that controls the calculation of aggregate information. If aggregate="0" is specified, aggregate information for that group will not be calculated.
+1.4: builder:axis - Setting the Group Orientation
+The builder:axis attribute can be set to "row", "col" or "choice" and is automatically added by the Survey Editor to indicate to which dimension the <group> element belongs.
+If builder:axis="row" is specified, then the group will be shown as an entire row legend. If builder:axis="col" is specified, the group will appear as an entire column header. If builder:axis="choice" is specified, the group will appear in the drop-down menu of a Select question.
+2: Example
+In the example below, groups are applied to all available response options (e.g., rows, columns, and choices):
+<select label="Q1" optional="0">
+<title>
+Group Demonstration Question
+</title>
+<group label="g1">GROUP 1</group>
+<group label="g2">GROUP 2</group>
+<group label="g3">GROUP 3</group>
+<group label="g4">GROUP 4</group>
+<group label="g5">GROUP 5</group>
+<group label="g6">GROUP 6</group>
+<row label="r1" groups="g1">ROW 1</row>
+<row label="r2" groups="g2">ROW 2</row>
+<row label="r3" groups="g2">ROW 3</row>
+<col label="c1" groups="g3">COL 1</col>
+<col label="c2" groups="g4">COL 2</col>
+<col label="c3" groups="g4">COL 3</col>
+<choice label="ch1" groups="g5">CHOICE 1</choice>
+<choice label="ch2" groups="g6">CHOICE 2</choice>
+<choice label="ch3" groups="g6">CHOICE 3</choice>
+</select>
+The code above produces the following result:
+3: Learn More
+Adding Answer Groups (Survey Editor)

@@ -1,0 +1,52 @@
+Title: Note Tag: Create Code Comments
+Using the Survey Editor? Learn more about the Note Element.
+1: Overview
+The <note> element can be used to leave notes in a survey that are only displayed in the survey builder and the code itself. Similar to a code comment, the <note> element can be used to add additional information for future reference. This element will never be shown to participants.
+1.1: Syntax
+In traditional XML, comments could be created using the same syntax as HTML documents:
+<!-- COMMENT -->
+This style of commenting is no longer supported in the Survey Editor and should be replaced with the following <note> syntax:
+<note> COMMENT </note>
+2: Attributes
+Note: This element can only be seen by you (the survey creator) and there isn't a need for any additional attributes.
+If desired, you can add builder:title to force identification of a <note>when using the live script. You can also add builder:warning="unsupported" to flag an element as unsupported and prevent a project from launching.
+3: Examples
+To leave additional notes, comments or annotations in your survey, use the following syntax:
+<note>
+Insert your note here
+</note>
+For example:
+<note>We may need to update Q10 from 1 - 5 to 1 - 10 instead.</note>
+<radio label="Q10" type="rating" values="order">
+<title>On a scale from 1 - 5, how would you rank your experience?</title>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+<suspend/>
+<note>
+Q11 was added on 1/20/2014
+</note>
+<textarea label="Q11" title="Why did you rank that?" />
+<suspend/>
+If you need to "comment out" an entire block of code containing other XML tags, use the following CDATA syntax:
+<note><![CDATA[
+** CODE COMMENTED OUT ON 1/30/2014
+<note>We may need to update Q10 from 1 - 5 to 1 - 10 instead.</note>
+<radio label="Q10" type="rating" values="order">
+<title>On a scale from 1 - 5, how would you rank your experience?</title>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+<suspend/>
+<note>
+Q11 was added on 1/20/2014
+</note>
+<textarea label="Q11" title="Why did you rank that?" />
+<suspend/>
+]]></note>

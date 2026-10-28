@@ -1,0 +1,19 @@
+Title: Device Settings
+Decipher surveys automatically detect participants' device types and can be configured to only accept participants entering from certain devices. The Device Settings section of the Project Settings Summary menu allows you to quickly review and adjust the device settings for your survey.
+Note: Certain browsers, such as Safari, no longer identify what device type is being used. It may not be possible to prevent a participant from accessing a survey on certain devices when using certain browsers.
+Note: Before launching, all mobile and tablet compatible surveys are checked for potential problems (e.g., usage of Flash questions, font size, etc.).
+1: Accessing Device Settings
+To view the device settings for your survey, first click the "Settings" button at the top right of the Survey Editor or XML Editor.
+In the "Survey Summary" window, select "Device Settings" from the "Summary" drop-down menu or click the blue "Device Settings" header on the left.
+2: Configuring Device Settings
+Select each device type you would like to allow for your survey.
+Desktops: Check to allow standard desktop or laptop computers.
+Tablets: Check to allow modern tablets like the iPad or Samsung Galaxy Tab.
+Smartphones: Check to allow new devices like the iPhone, Android-based devices, WebOS and newer Blackberries with touch input capabilities.
+Feature Phones: Check to allow older devices that have HTML-capable browsers with a screen width of 240px or wider.
+If a device is not allowed, participants attempting to take the survey on these devices will be shown a message.
+Tip: You may edit the default message by entering a custom message in the message field.
+Note: Certain browsers, such as Safari, no longer identify what device type is being used. It may not be possible to prevent a participant from accessing a survey on certain devices when using certain browsers.
+3: Saving Device Settings
+Click "Save" to save any changes made to the device settings for the project.
+You can also click the arrow next to the "Save" button to select "Save for this project", or if you would like these device settings to be set as the defaults for future projects as well, select "Save and set as defaults".

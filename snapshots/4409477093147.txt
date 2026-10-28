@@ -1,0 +1,8 @@
+Title: Setting the Column Width
+The Survey Editor allows you to customize column widths, measured in pixels.
+Note: The question must contain columns for this option to be available.
+To define the custom column width, select the question so it appears in the staging area of the Survey Editor. Then select "Update Styling" from the "..." menu at the top right corner of the question.
+The "Question Display Options" window will appear. Locate the "Column Width" field and enter the desired width in pixels.
+Note: If the text contained within a column exceeds the set column width, the column will automatically adjust to the smallest size capable of fitting the text.
+Then select "Save and Close" and the column width will be set for the question.
+Tip: Use the "Save and Preview" button at the bottom right of the "Question Display Options" window or the "Preview" link at the top right of the question to see how the custom width looks for your question.

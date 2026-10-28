@@ -1,0 +1,162 @@
+Title: Customizing the Rating Scale Element
+The rating scale question type is very similar to a normal rating (single select) question, but adds in some animation and images that can be more appealing than the usual radio buttons in a default grid question.
+1: Underlying Question Architecture
+Underneath a rating scale question is a single select question.
+Example:
+XML:
+<radio label="q1">
+<title>What do you think of these actors' portrayal of James Bond?</title>
+<row label="r1">Sean Connery</row>
+<row label="r2">George Lazenby</row>
+<row label="r3">Roger Moore</row>
+<row label="r4">Timothy Dalton</row>
+<row label="r5">Pierce Brosnan</row>
+<row label="r6">Daniel Craig</row>
+<col label="c1">Great as Bond</col>
+<col label="c2">4</col>
+<col label="c3">3</col>
+<col label="c4">2</col>
+<col label="c5">Not So Bond</col>
+<col label="c6">Who?</col>
+</radio>
+2: Converting to Rating Scale
+To convert the above question to a rating scale question, add uses="ratingscale.7" to the question tag.
+Example:
+XML:
+<radio label="q1" uses="ratingscale.7">
+Only the question tag is shown here because no other changes were made. The rows and cols are all the same.
+3: Customization
+To customize the question away from the default look shown above, use the XML with customizable variables that are unique to the rating scale question type. In the examples, only the question tag will be shown as nothing is being done to the <row> or <col> tags. If you add a rating scale question using Survey Editor, you’ll notice that there are several new XML variables put into the question tag. You only need to include the ones you want to customize.
+Here’s a brief description of each, but first some terminology when referencing these variables:
+Bubble: The draggable/animated image that moves across into the answer location
+Radio: On a default single select question, the form that would appear in the answer grid is called a radio button; to signify it's location/replacement, the word radio is used frequently in these configurable variables to represent either the radio button form or the grid cell that usually contains it
+ratingscale:bubble_inner_starting_css
+Configure styling of the draggable icon before a selection has been made
+Type: CSS
+Example: ratingscale:bubble_inner_starting_css="color: pink; font-size: 32px;" changes the color and size of the bubble
+ratingscale:bubble_inner_answered_css
+Configure styling of the draggable icon after a selection has been made
+Type: CSS
+Example: ratingscale:bubble_inner_answered_css="color: rgba(0,0,0,0.5)" changes the color of the bubble post-selection
+ratingscale:bubble_size
+Specify the pixel width and height of the draggable image (bubble)
+Expects image to be square
+Type: integer
+Example: ratingscale:bubble_size="40" sets the image to 40px by 40px
+ratingscale:bubble_img
+Specify an image to use as the bubble
+Type: URL
+Example: ratingscale:bubble_img="pushpin.png"
+ratingscale:bubble_css
+Configure styling of bubble
+This will be overridden by the more specific rules below, but allows you to set some global bubble properties (like maybe a border radius)
+Useful when you don't want to use images and would rather use a styled CSS div instead
+Recommend NOT using in combination with images
+Type: CSS
+Example: ratingscale:bubble_css="background: #aaa; border: 1px solid #777" would set the bubble to have an unsightly grey circle with a darker grey border
+ratingscale:bubble_starting_css
+Configure styling of bubble when bubble is sitting in the starting zone
+Overrides the ratingscale:bubble_css variable
+Recommend NOT using in combination with images
+Type: CSS
+Example: ratingscale:bubble_starting_css="border-color: red" would change the bubbles border to red when it's in the starting position
+ratingscale:bubble_answered_css
+Configure CSS styling of bubble when bubble is on the answer grid
+Overrides the ratingscale:bubble_css variable
+Recommend NOT using in combination with images
+Type: CSS
+Example: ratingscale:bubble_answered_css="border-color: green" would change the bubbles border to green once it's moved onto the grid
+ratingscale:bubble_disabled_css
+Configure styling of bubble when bubble is disabled
+Overrides the ratingscale:bubble_css variable
+Recommend NOT using in combination with images
+Type: CSS
+Example: ratingscale:bubble_disabled_css="background: #ddd;" would set the background to light grey when the bubble is disabled
+ratingscale:hide_radio
+Hides the radio buttons in the grid
+Only used if ratingscale:radio_img=""
+Recommend NEVER showing the radio forms (kinda defeats the purpose, right?)
+Type: Bool (1 = HIDE, 0 = SHOW); default = SHOW (only when ratingscale:radio_img="")
+Example: ratingscale:hide_radio="1" would hide an otherwise shown radio button
+ratingscale:radio_inner_css
+Configure styling for the radio image (dotted circle)
+Type: CSS
+Example: ratingscale:radio_inner_css="display: none;" hides the dotted circle
+ratingscale:radio_img_size
+Specify the pixel width and height of the radio button image
+Expects image to be square
+If using an image sprite then the states should be squares, for example a 20x40 image sprite where each state is a 20x20, size would be 20
+Type: integer
+Example: ratingscale:radio_img_size="40" would set the image size to be 40px by 40px
+ratingscale:radio_img
+Replaces the radio button in the grid with an image when the radio button is unselected
+Type: URL
+Example: ratingscale:bubble_img="pushpin-out.png"
+ratingscale:radio_selected_img
+Replaces the radio button with an image when the radio button is selected
+Set this value to empty if you do not want an image behind the "bubble" image/CSS
+Type: URL
+Example: ratingscale:bubble_img="pushpin-in.png"
+ratingscale:radio_css
+CSS styling of the grid cell
+Note that this applies to the interior table cells and does not affect the actual table/grid; to do that, you need to configure the survey theme
+Mostly useful if you simply want to change the background color on selected/unselected cells or use a background image
+Type: CSS
+Example: ratingscale:radio_css="background: black" to set the grid cells to black
+ratingscale:radio_selected_css
+CSS styling of the grid cell when that answer is selected
+As with ratingscale:radio_css, this applies to the interior table cells and does not affect the actual table/grid; to do that, you need to configure the survey theme
+Mostly useful if you simply want to change the background color on selected/unselected cells or use a background image
+Type: CSS
+Example: ratingscale:radio_selected_css="background: #f80" to set the grid cells to orange when selected
+ratingscale:radio_img_transition
+Toggles a transition when using an image for the radio buttons, assuming that image has 2 states: selected and unselected
+Only applies if using a replacement image for the radio buttons; indicates that the image has two states: selected and unselected; adds CSS to transition between the two states within the single image
+Type: Bool (1 = ON, 0 = OFF)
+Example: ratingscale:radio_img_transition="0" disables any transition
+ratingscale:radio_img_transition_effect
+CSS transition effect used when shifting between states in the replacement radio button images
+Assumes ratingscale:radio_img_transition="1"
+Type: String
+4: Customization Examples
+The rating scale question type allows a lot of customization and there are any number of directions you can take it.
+Example 1:
+XML:
+<radio optional="1" label="q3" uses="ratingscale.7"
+ratingscale:bubble_size="40"
+ratingscale:bubble_img="pushpin.png"
+ratingscale:radio_img="bg-dot.png"
+ratingscale:radio_selected_img="">
+In this example, we're replacing the default button/marker with a pushpin. The pushpin graphic is an image sprite in that it's a single image that contains both the normal and selected states in a single image and we only show the applicable portion. For this one, the graphic is 80px wide and 40 pixels tall; each state is 40px wide. Here's what it looks like:
+We use ratingscale:bubble_size="40" to set the square dimensions of the image, and ratingscale:bubble_img="pushpin.png" to set the image. For the cells, we want a placeholder image (orange dot, in this case) to appear when that answer is not selected and no image to appear when it is (because it would interfere with our pushpin graphic), so we do that with ratingscale:radio_img="bg-dot.png" and ratingscale:radio_selected_img="" respectively.
+Example 2:
+XML:
+<radio label="q4" uses="ratingscale.7"
+ratingscale:bubble_size="30"
+ratingscale:bubble_css="background: #87e0fd; background: -moz-radial-gradient(center, ellipse cover, #87e0fd 1%, #047ea3 71%, #046887 100%); background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#87e0fd), color-stop(71%,#047ea3), color-stop(100%,#046887)); background: -webkit-radial-gradient(center, ellipse cover, #87e0fd 1%,#047ea3 71%,#046887 100%); background: -o-radial-gradient(center, ellipse cover, #87e0fd 1%,#047ea3 71%,#046887 100%); background: -ms-radial-gradient(center, ellipse cover, #87e0fd 1%,#047ea3 71%,#046887 100%); background: radial-gradient(ellipse at center, #87e0fd 1%,#047ea3 71%,#046887 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#046887',GradientType=1 ); border-radius: 14px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.4)"
+ratingscale:bubble_inner_starting_css="display: none;"
+ratingscale:bubble_inner_answered_css="display: none;"
+ratingscale:radio_inner_css="display: none;"
+ratingscale:radio_css="background: #efefef;"
+ratingscale:radio_selected_css="background: #fff;"
+ratingscale:hide_radio="1">
+This example doesn't use any images, instead it uses CSS to create the bubble. Let's run through the customization, since it's quite a bit more intense than the previous example.
+ratingscale:bubble_size="30" Sets the size of the bubble to 30px
+ratingscale:bubble_css="background: This line sets the gradient effect on the bubble. The ColorZilla CSS gradient tool is useful for setting a gradient effect.
+ratingscale:bubble_inner_starting_css="display: none;" Removes the default arrow icon so that the bubble_css attribute can properly be shown.
+ratingscale:bubble_inner_answered_css="display: none;" Removes the default arrow icon so that the bubble_css attribute can properly be shown when an answer has been made.
+ratingscale:radio_inner_css="display: none;" Removes the default image that appears in the answer grid
+ratingscale:radio_css="background: #efefef;" Sets a light grey background on non-answered cells
+ratingscale:radio_selected_css="background: #fff;" Sets the background to white for selected answer cells
+ratingscale:hide_radio="1" Hides the default radio form; this is necessary when setting ratingscale:radio_img=""
+5: Some Considerations
+5.1: Mobile Support
+This question type will work on mobile devices, but please be aware that more than a few columns will cause horizontal scrolling which may not be obvious on a mobile device. If that happens, you may see an increased number of answers in the first couple columns as participants may not realize there are more columns that appear off-screen.
+5.2: CSS Styling
+There are many cool things that can be done with CSS, but not all browsers will apply it equally. A good example is the rule that set the background gradient above. If you dissect that rule, you'll see that each browser needs its own customization, and even then, support may be limited to modern browsers. A key principle is to use advanced CSS to enhance the experience, but don't rely on it for core functionality.
+6: References
+CSS Help:
+CSS Cheat Sheet
+CSS3 Generator
+CSS Gradients
+Color Scheme Generator

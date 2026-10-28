@@ -1,0 +1,249 @@
+Title: Creating Specialized Charts In Dashboards
+Along with the basic chart types, you have the option to create specialized chart types with more refined data options. Scatter plot and bubble charts are particularly useful in determining the relationship between datapoints.
+Note: There is no export support for any of the specialized chart types, so data for these will only be available within the dashboard itself.
+1: Displaying a Scatter Plot Chart
+It is possible to build a scatter plot chart to display values for multiple variables for a set of data.
+Note: When creating a scatter plot be sure that the dashboard's compat is set to level 3 or greater.
+When displaying a scatter chart, you will need to define the following attributes:
+type scatter
+numeric rows for the x- and y-axis
+A region attribute that specifies the color, coordinates for the polygon areas, and name (optional)
+Note: If you want just the area highlighted, you can omit the region name. Un-named regions are not shown in the legend.
+You can also specify the datapoint display details using the following attributes:
+scatter.pointlabel "text" - displays only the text given
+scatter.pointlabel "value" - displays the x- and y-values and the participant count
+scatter.pointlabel "both"(or unspecified) - displays both labels and values
+Additionally, you can specify scatter.center 1 (on its own line) to center the chart on the x- / y-axis (point 0,0).
+Example:
+chart Scatter Chart
+bannergroup.local
+banner.local By Gender
+segment GENDER.r1 Male
+segment GENDER.r2 Female
+filtergroup.local Gender
+filter.local id=db-2 GENDER.r1 Male
+filter.local id=db-3 GENDER.r2 Female
+type scatter
+width 6
+chartopt xAxis.allowDecimals false
+chartopt xAxis.gridLineWidth 0
+chartopt xAxis.startOnTick true
+chartopt xAxis.endOnTick true
+chartopt xAxis.tickInterval 1
+chartopt xAxis.min -1
+chartopt xAxis.max 12
+chartopt yAxis.allowDecimals false
+chartopt yAxis.gridLineWidth 0
+chartopt yAxis.startOnTick true
+chartopt yAxis.endOnTick true
+chartopt yAxis.tickInterval 1
+chartopt yAxis.min -1
+chartopt yAxis.max 12
+# Red/Green areas. Created by polygon with these coordinates
+region "Red" #00FF00 0,0 999,999 0,999
+region "Green" #FF0000 0,0 999,999 999,0
+stats count
+stats.prec 3
+# X Axis, numeric row
+row PRODUCT_PURCHASED_COUNTS.r1.val "Primary Bank Purchased Products"
+# Y Axis, numeric row
+row PRODUCT_PURCHASED_COUNTS.r2.val "Alternative Bank Purchased Products"
+Note: In the above example, the chartopt customizations are for presentation purposes only and can be removed.
+As shown in the resulting chart below, hover over a datapoint to see its details. Click on a datapoint to drill-down into the responses report showing the participants that comprise the point.
+2: Displaying a Bubble Chart
+A bubble chart is defined similarly to a scatter chart but in the display, the size of the data point (bubble) reflects the number of participants that comprise the point.
+Note: When creating a bubble chart, be sure that the dashboard's compat is set to level 3 or greater.
+When displaying a bubble chart, you will need to define the following attributes:
+type bubble
+numeric rows for the x- and y-axis
+A region attribute that specifies the color, coordinates for the polygon areas, and name (optional)
+Note: If you want just the area highlighted, you can omit the region name. Un-named regions are not shown in the legend.
+Additionally, you can specify 'scatter.center 1' (on its own line) to center the chart on the x- / y-axis (point 0,0).
+Example:
+chart Bubble Chart
+bannergroup.local
+banner.local By Gender
+segment GENDER.r1 Male
+segment GENDER.r2 Female
+filtergroup.local Gender
+filter.local id=db-2a GENDER.r1 Male
+filter.local id=db-3a GENDER.r2 Female
+type bubble
+width 6
+chartopt xAxis.allowDecimals false
+chartopt xAxis.gridLineWidth 0
+chartopt xAxis.startOnTick true
+chartopt xAxis.endOnTick true
+chartopt xAxis.tickInterval 1
+chartopt xAxis.min -1
+chartopt xAxis.max 12
+chartopt xAxis.plotLines function () { return [{color: "'#C0C0C0'", width: 1, value: 5}, {color: "'#C0C0C0'", dashStyle: "'LongDash'", width: 1, value: 0}]; })(
+chartopt yAxis.allowDecimals false
+chartopt yAxis.gridLineWidth 0
+chartopt yAxis.startOnTick true
+chartopt yAxis.endOnTick true
+chartopt yAxis.tickInterval 1
+chartopt yAxis.min -1
+chartopt yAxis.max 12
+chartopt yAxis.plotLines function () { return [{color: "'#C0C0C0'", width: 1, value: 5}, {color: "'#C0C0C0'", dashStyle: "'LongDash'", width: 1, value: 0}]; })(
+# Red/Green areas. Created by polygon with these coordinates
+region #00FF00 0,0 999,999 0,999
+region #FF0000 0,0 999,999 999,0
+stats count
+stats.prec 3
+# X Axis, numeric row
+row PRODUCT_PURCHASED_COUNTS.r1.val "Primary Bank Purchased Products"
+# Y Axis, numeric row
+row PRODUCT_PURCHASED_COUNTS.r2.val "Alternative Bank Purchased Products"
+As shown in the resulting chart below, hover over a datapoint to see its details. Click on the datapoint to drill down into the responses report, which shows the participants counted in the point.
+3: Displaying a Customized Gauge Chart - Examples
+The gauge chart can be customized to control the colors of the different sections within your gauge, the width of the gauge bar, the length of the semi-circle it creates, and more.
+Example:
+chart width=6 "Gauge Chart (customized)"
+type gauge
+point NPSSCORE.val "Score"
+sections 0-100 100-175 175-225 225-250
+palette 00FF66 FFFF66 FF9966 FF0000
+chartopt yAxis.min 0
+chartopt yAxis.max 250
+chartopt pane.startAngle -150
+chartopt pane.endAngle 150
+chartopt plotOptions.series.animation.duration 2000
+chartopt plotOptions.series.animation.easing 'easeOutBounce'
+3.1: Gauge Customization Options
+The following options are available for customizing your gauge chart display:
+benchmark - displays the point label(s) and benchmark label above / outside the gauge chart.
+gauge.thickness - the specified value defines the thickness of each section.
+Example:
+Benchmark Gauge:
+chart "Benchmark Gauge"
+type gauge
+point q2.r1 "Blue"
+sections 0-20 20-40 40-60 60-80 80-100
+benchmark 40 "Benchmark"
+width 4
+Example:
+Benchmark Gauge Thick:
+chart "Benchmark Gauge Thick"
+type gauge
+point q2.r1 "Blue"
+sections 0-20 20-40 40-60 60-80 80-100
+benchmark 55 "Spot"
+gauge.thickness "40%"
+width 4
+Example:
+Fully Customized Gauge Chart:
+chart id=db-12 width=6 "Expenditure Benchmark Rebranded"
+filtergroup.local
+filter.local id=db-13 q4.r1 McDonalds
+filter.local id=db-14 q4.r2 Burger King
+filter.local id=db-15 q4.r3 Subway
+filter.local id=db-16 q4.r4 KFC
+filter.local id=db-17 q4.r5 Dunkin Donuts
+type gauge
+palette FF0000 FF6600 FFFF00 66ff00 00FF00
+stats mean
+point q1.r2.val "Current"
+benchmark 60 "Target"
+# define and style the "sections"
+sections 0-20 20-40 40-60 60-80 80-100
+chartopt yAxis.tickLength 25
+chartopt yAxis.tickPosition 'outside'
+chartopt yAxis.tickColor '#C0D0E0'
+#thickness of the sections
+gauge.thickness '35%'
+# hides the label below the needle
+chartopt plotOptions.series.dataLabels.enabled true
+# style the "needle"
+chartopt plotOptions.gauge.dial.baseLength '0%'
+chartopt plotOptions.gauge.dial.baseWidth 10
+chartopt plotOptions.gauge.dial.radius '95%'
+chartopt plotOptions.gauge.dial.rearLength '0%'
+chartopt plotOptions.gauge.dial.topWidth 1
+4: Additional Chart Customization Examples
+There are a number of additional options you have to further customize your specialized chart types. Two of the more popular customization options include adding a gauge or an image to a pie chart, and the setups for these options are outlined below.
+4.1: Displaying a Pie Chart With a Gauge
+A gauge uses the existing row functionality in a pie chart to create its regions and offers more control with region labeling. With gauge applied, the pie displays as a half circle when the chart is rendered and encounters a point option. Then the point value becomes the needle of the gauge.
+Limitations:
+No banner support
+No export support
+This type of gauge chart has the dials hidden below the pie chart. You may need to make axis adjustments via the dashboard syntax
+Example:
+chart width=6 "Pie Chart w/gauge (Basic)"
+type pie
+row base="NPSSCORE_BRAND.r6.val" "NPSSCORE_BRAND.r6.val" "First Direct"
+row base="NPSSCORE_BRAND.r9.val" "NPSSCORE_BRAND.r9.val" "Nationwide"
+row base="NPSSCORE_BRAND.r11.val" "NPSSCORE_BRAND.r11.val" "Post Office"
+row base="NPSSCORE_BRAND.r12.val" "NPSSCORE_BRAND.r12.val" "Royal Bank of Scotland"
+row base="NPSSCORE_BRAND.r21.val" "NPSSCORE_BRAND.r21.val" "Metro Bank"
+#the "needle" of the gauge
+point NPSSCORE.val "Satisfaction"
+chartopt labels.style.top -20
+chartopt labels.style.left 200
+If a row label is set to be blank (""), then the percentage and count are shown. The default maximum of the point is the total of all rows. For example, if the rows add up to 50, then 50 will be the max. The following examples show percentages and counts on the gauge chart instead of the row text.
+Note: To show percentages and counts, you must use "row" instead of "rows" and you must have quotes with no text inside (empty quotes).
+Example:
+chart width=6 "Pie Chart w/gauge (customized)"
+type pie
+row base="NPSSCORE_BRAND.r6.val" "NPSSCORE_BRAND.r6.val" ""
+row base="NPSSCORE_BRAND.r9.val" "NPSSCORE_BRAND.r9.val" ""
+row base="NPSSCORE_BRAND.r11.val" "NPSSCORE_BRAND.r11.val" ""
+row base="NPSSCORE_BRAND.r12.val" "NPSSCORE_BRAND.r12.val" ""
+row base="NPSSCORE_BRAND.r21.val" "NPSSCORE_BRAND.r21.val" ""
+point NPSSCORE.val "NPS SCORE"
+chartopt yAxis.max 100
+4.2: Displaying a Pie Chart With an Image
+You can display images in the center of a pie chart, and / or specify multiple images within a range and each image will display when the percentage range is met. This allows you to dynamically show/hide images based on a survey variable.
+To add an image to a pie chart, you will need to use the following keywords and attributes:
+chartopt plotOptions.pie.innerSize 'xxx'- Hollows the center of the pie chart making room for the image by the percentage given.
+image imagewidth='50' imageheight='xxx' https://v2.decipherinc.com/example.png - Specifies the image to use, sets the image size in pixels, and provides the path to a image that has been uploaded to a project.
+cond="q1.r1" range='0-50' - Optional for dynamic images. The cond attribute provides the variable to check and returns its percentage value. If that value is within the range given, the image is shown; otherwise, it is hidden.
+Example:
+chart width=6 "Last Brand Experience"
+type pie
+chartopt plotOptions.pie.innerSize '60%'
+image imagewidth='50' imageheight='50' cond="q1.r1" range='0-50' https://v2.decipherinc.com/example.png
+image imagewidth='50' imageheight='50' cond="q1.r1" range='50-100' https://v2.decipherinc.com/example2.png
+row q1.r1 "Much better than expected"
+row q1.r2 "Better than expected"
+4.3: Displaying a Spider Chart
+You can build a Spider chart within the dashboard using either a line or area chart as your base. The below steps outline how to convert and customize a line chart, so that it displays as a spider chart.
+4.3.1: Creating the Base Chart
+Start with the structure of a basic line chart:
+chart Nutritional Information Frequency
+type line
+rows s4.r1-r5
+This will give you the following result:
+4.3.2: Converting the Chart into a Spider Chart
+To make the line chart become circular, and look like a spider chart, add the following chartopt attribute:
+chartopt chart.polar true
+The chart.polar attribute uses the polar coordinate system, so the x-axis will be a circle with the different datapoints you are pulling, and the y-axis represents the values of those datapoints:
+Note: chart.polar can be applied to a column chart to get an umbrella chart design.
+4.3.3: Additional Customization
+There are additional options you can add to the spider chart to enhance its overall look and feel.
+Showing Gridlines
+While chart.polar automatically adds grid lines to the chart, those grid lines are white by default. To make them visible in your dashboard, change their color by setting the gridline color to both the x- and y-axis:
+chartopt xAxis.gridLineColor #ddd
+chartopt yAxis.gridLineColor #ddd
+Showing xAxis grid lines (1) will add a distinct separation between your data point areas, similarly to pie slices. Showing yAxis grid lines (2) will create additional circles to denote different value areas for your data points:
+Changing the Interpolation Shape
+By default, the interpolation area of your spider chart will be a circle, as shown above. This can be controlled via the yAxis.gridLineInterpolation attribute. This attribute takes two possible values: 'circle', which is its default value, and 'polygon'. To change the interpolation area of your line chart, use the following code:
+chartopt yAxis.gridLineInterpolation 'polygon'
+This will produce the following result:
+Hiding the Chart Border Line
+Using the polygon grid line interpolation option does not change the fact that your spider chart area’s border is a circle. To avoid this, hide your chart’s border by changing both the x- and y-axis line colors to white:
+chartopt yAxis.lineColor #fff
+chartopt xAxis.lineColor #fff
+Note: The lineColor attribute is different than the gridLineColor attribute, as it controls only the outer ring of your spider chart.
+This will produce the below chart:
+Final Code Example
+Combining the above steps into a finalized code example, you achieve the below snippet:
+chart Nutritional Information Frequency
+type line
+rows s4.r1-r5
+chartopt chart.polar true
+chartopt yAxis.gridLineInterpolation 'polygon'
+chartopt xAxis.gridLineColor #ddd
+chartopt yAxis.lineColor #fff
+chartopt xAxis.lineColor #fff
+chartopt yAxis.gridLineColor #ddd

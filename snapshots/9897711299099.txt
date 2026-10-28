@@ -1,0 +1,15 @@
+Title: April 17th General Release Notes
+Release Date: April 17, 2018
+Highlights of April 17th Release
+New Features
+Survey Editor
+Change the type or style of a question directly from the question in the Survey Editor.
+Reporting
+Use sum summary percentages for volumetric reporting.
+New Features
+Survey Editor
+The Survey Editor has been updated to allow for easier switching between alternative question types and styles when you need to change how a question is displayed. Additionally, most content and styles already applied to the question will be preserved, so there's no need to worry about redoing long answer lists or response options.
+Start switching your questions now using the new menu in the Survey Editor:
+Reporting
+Crosstabs "sum" summary tables have been updated to include the percentage that each row contributes to the question's sum, allowing for easier volumetric reporting.
+You can find these percentages in summary tables within both Crosstabs and report exports.

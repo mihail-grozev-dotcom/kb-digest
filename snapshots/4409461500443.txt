@@ -1,0 +1,6 @@
+Title: Setting the Row Legend Width
+The Survey Editor allows you to customize the width of any question's row legend (i.e., the column that contains its answer option text) in pixels.
+Note: A question must contain rows for this option to be available.
+To define the custom row legend width, select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right corner of the question and select "Update Styling".
+The "Question Display Options" window will appear. Locate the "Row Legend Width" field and enter the desired width in pixels. Then select "Save and Close" and the row legend width will be set for the question. You may also click "Save and Preview" to see how the custom width looks.
+Tip: Use the "Preview" button to see how the custom width looks for your question.

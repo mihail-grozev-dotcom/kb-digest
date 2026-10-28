@@ -1,0 +1,25 @@
+Title: 154.12 Release Notes 
+Release Date: January 13, 2026
+Release Version: 154.12
+New Features
+Survey
+XML Editor
+Improved error message handling when title and question labels are missing.
+The text highlighting feature, which shows all words matching the selected text, is now disabled by default, and can be enabled on a per-page-load basis from the View Options menu.
+Language Manager
+The following new survey languages have been added: english_philippines, english_saudiarabia, russian_estonia, russian_latvia, russian_ukraine, spanish_bolivia, spanish_paraguay, spanish_puertorico, spanish_uruguay, and spanish_usa.
+Learn More: Available Survey Languages
+Reporting
+Crosstabs
+Saved reports will now be able to show which Crosstabs is the source of pinned tables. New fields- "Pinned From" and "Pinned At" are now added for each data rows.
+If an error or timeout occurs when running a crosstab report, the error is displayed in a modal with a link to the details of the error.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+The AI Compute logic node no longer sends repeated error emails due to multiple retries if it encounters text that the AI cannot process. Instead it skips the problematic respondent record and continues processing the rest.
+Bug Fixes
+Survey
+Language Manager
+The AI translation in Language Manager now ensures that the %s and %d python string interpolation placeholders are unchanged after translation.
+Reporting
+Data Downloads
+The Flat download format correctly uses the selected layout.

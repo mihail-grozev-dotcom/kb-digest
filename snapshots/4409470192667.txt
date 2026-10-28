@@ -1,0 +1,92 @@
+Title: Non-Qualified Participants
+A bold red number or "+" symbol next to any quota tables total indicates the number of participants who were unable to qualify for any quota marker. This is likely caused by a programming error and should be addressed immediately.
+It’s important to identify programming errors during the testing phase. Non-Qualified Participants or NQs are participants who have failed to qualify for a quota bucket and as such are terminated from the survey.
+Participants may fail to qualify for a quota for a variety of reasons, including and not limited to:
+Quota logic that does not account for all participants (holes in logic)
+Quota logic based on optional question/answer options
+Missing variables in the survey URL
+Changes made to the survey without updating the quota
+This document covers identifying and troubleshooting NQs prior to launching your project.
+1: Finding NQs
+You can use the Response Summary to identify NQs and unspecified terminates in your project. After running simulated data, click the "Report" button in the navigation toolbar, and select "Response Summary."
+In the Response Summary, we want to focus on 2 tabs:
+The Quotas tab
+The Terminates tab
+1.1: The Quotas Tab
+Participants who fail to qualify for a quota under any of its cells show on the quotas tab as a red, bold number next to a + symbol, as shown in the example below
+Tip: The NQs display in the total field for the quota in which they were unable to qualify. This can help identify where you need to surround your troubleshooting efforts.
+1.2: The Terminates Tab
+You can verify the NQs for quotas on the terminates tab, as shown in the example below. The Non-qualified: <quota label> row only displays if there are NQs for the quota.
+Note: Participants who have been disqualified through the data editor with no reason given show up as unspecified terminates on the Terminates Tab.
+1.3: Troubleshooting
+Note: For a LIVE survey, the project warnings report provides detailed information about quota misses.
+Identifying the NQs on the quota sheet, is a great way to identify where there is a problem in your survey. Since, the quota sheet gives you an idea of where participants are being failing to qualify for a quota in the survey, you can use this information as a starting point for your troubleshooting efforts.
+In this section, we’ll take a look at troubleshooting a few of the common errors that can lead to NQs.
+2: Checking for Unspecified Quotas
+Quotas are often used by researchers to obtain a sample of participants that is statistically significant to the population that they're analyzing. They are also used to track and monitor the number of qualified completes in a survey.
+In this section, we take a look at some common quota errors that occur when not accounting for all possible participants in the survey.
+2.1: Holes in Logic
+The example below shows a gender quota which isn’t restricted by logic, so technically all participants should qualify into 1 of the 4 cells.
+As you can see below, 56 participants aren’t able to qualify for our Gender Quota.
+So we need to take a look at our quota cell set up and compare it to our survey.
+According to our quota, participants must qualify under the (Client Email Sample OR GMI) participant sources AND must be either Male OR Female.
+Next, we’ll take a look at our survey set up.
+The logic defining participant sources is coming from the Sample Sources element. As shown below, we have our two participant sources, GMI & Client Email Sample. The sample is locked to the listed Sample Sources, which means that participants who take our survey can only enter under one of these two participant sources, and that matches our quota logic.
+Tip: We’re looking for any holes in logic, or places where participants might be allowed into the survey, but not qualify for the quota logic.
+Next, we’ll look at the second condition for the quota, which is determining whether participants are Male or Female. The logic determining whether a participant is Male or Female is based off of s1 in the survey and you can see it in the example below.
+Notice that in this question, participants can select that they are either Male, Female or Prefer not to say.
+Using the question tree in the example above, we can see that there are no terminates based on s1. So, if a participant selects “Prefer not to say”, then they are allowed to continue through the survey until they reach the Gender Quota.
+At the quota, these participants would fail to qualify for either the Male or Female cell markers, and as such would terminate.
+To fix this error, we can either:
+Create a terminate for participants who select r3: Prefer not to say at s1,
+Remove r3: Prefer not to say at s1, or
+Add a Quota two new cells at the Gender Quota. One for GMI & Prefer not to say and the other for Client Email Sample & Prefer not to say.
+Once the error has been resolved, re-run simulated data and verify that the Quotas tab and Terminate tab in the Response Summary do not show any NQs or Unspecified Terminates.
+3: Checking for Unspecified Responses
+The example below shows a gender quota which isn’t restricted by logic, so technically all participants should qualify into 1 of the 4 cells.
+As you can see below, 56 participants aren’t able to qualify for our Gender Quota.
+So we need to take a look at our quota cell set up and compare it to our survey.
+According to our quota, participants must qualify under the (Client Email Sample OR GMI) participant sources AND must be either Male OR Female.
+Next, we’ll take a look at our survey set up.
+The logic defining participant sources is coming from the Sample Sources element. As shown below, we have our two participant sources, GMI & Client Email Sample. The sample is locked to the listed participant sources, which means that participants who take our survey can only enter under one of these two participant sources, and that matches our quota logic.
+Tip: We’re looking for any holes in logic, or places where participants might be allowed into the survey but not qualify for the quota logic.
+Next, we’ll look at the second condition for the quota, which is determining whether participants are Male or Female. The logic determining whether a participant is Male or Female is based off of s1 in the survey and you can see it in the example below.
+Notice that in this question, participants can select that they are either Male or Female, so that matches our quota logic. However, as you can also see, the QA code indicates that this question is optional. So participants can choose to continue through the survey without submitting an answer.
+At the quota, these participants would fail to qualify for either the Male or Female cell markers, and as such would terminate.
+To fix this error, we can make the question mandatory as shown below:
+Once the error has been resolved, re-run simulated data and verify that the Quotas tab and Terminate tab in the Response Summary do not show any NQs or Unspecified Terms.
+4: Checking for Missing URL Variables
+The example below shows a Week quota in a tracker study. This quota only applies to the Client Email Sample list and is determined by a variable in the survey URL.
+As you can see below, 31 participants aren’t able to qualify for our Week Quota.
+So we need to take a look at our quota cell set up and compare it to how the survey is programmed.
+According to the questionnaire, participants must qualify under the Client Email Sample (list=1) AND have a week variable of either 1, 2 or 3 in their survey URL, like this:
+https://v2.decipherinc.com/survey/se...151012?list=1&week=1
+Next, we’ll take a look at our survey set up.
+The logic defining weeks is coming from the Client Email Sample Source. The sample has a required “week” variable with accepted values of 1, 2, and 3, as shown below.
+Tip: We’re looking for any holes in logic, or places where participants might be allowed into the survey, but not qualify for the quota logic.
+Looks like all of the variables match the participant source setup as defined in the questionnaire, so we can move on to checking our quota setup in the Survey Editor.
+The Week Quota is only shown to participants in our Client Email Sample Source (list=1) and only has 2 cells: one for week=1 and the other for week=2.
+Notice that in this quota, participants can only qualify for week 1 or week 2, but not for week 3. All participants who entered the survey with the following URL, would be terminated when they reached the quota:
+https://v2.decipherinc.com/survey/se...151012?list=1&week=3
+The problem in this example is that the total number of week variables, does not match up with the total number of cells in the Week Quota.
+To fix this error, we can either:
+Update the quota to include a quota cell for Week 3
+Update the Client Email Sample by deleting the “3” from the week variable
+Once the error has been resolved, re-run simulated data and verify that the Quotas Tab and Terminate tab in the Response Summary do not show any NQs or Unspecified Terminates.
+4.1: Changes Made to the Survey Without Updating the Quota
+Any changes made to the survey regarding questions/elements that define quota logic, can potentially cause participants to NQ. Keep an eye on how changes can impact quota setup and troubleshoot as needed.
+5: Checking on Quota Placement
+In order for logic to be submitted in the survey editor, there must be a page break. As with any other logic dependent element, the quota must be placed after the controlling element and after a page break.
+The example below shows a gender quota, which isn’t restricted by logic, so technically all participants should qualify into 1 of the 4 cells.
+As you can see below, 59 participants aren’t able to qualify for our Gender Quota.
+So we need to take a look at our quota cell set up and compare it to our survey.
+According to our quota, participants must qualify under the (Client Email Sample OR GMI) participant sources AND must be either Male OR Female.
+Next, we’ll take a look at our survey set up.
+The logic defining participant sources is coming from the Sample Sources element. As shown below, we have our two participant sources, GMI & Client Email Sample. The sample is locked to the listed participant sources, which means that participants who take our survey can only enter under one of these two participant sources, and that matches our quota logic.
+Tip: We’re looking for any holes in logic, or places where participants might be allowed into the survey, but not qualify for the quota logic.
+Next, we’ll look at the second condition for the quota, which is determining whether participants are Male or Female. The logic determining whether a participant is Male or Female is based off of s1 in the survey and you can see it in the example below.
+Notice that in this question, participants can select that they are either Male or Female, and a response is mandatory, so that matches our quota logic.
+Since we’ve verified that there aren’t any holes in our quota logic, we can assume that the reason that participants aren’t able to qualify for our quota is because of its placement in the survey setup.
+5.1: Quotas Placed Before Controlling Elements
+As you can see below in both examples, the quota element is listed in the Question tree after the Sample Sources element, but before s1. With this quota placement (regardless of the page break), participants don’t yet have the chance to submit whether they are male or female before hitting the quota element, and as a result they are terminated.
+Below are two examples of improper quota placement that might cause the NQ shown above.

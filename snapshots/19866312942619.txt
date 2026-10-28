@@ -1,0 +1,119 @@
+Title: Research Defender SEARCH Integration
+The Research Defender SEARCH logic node allows for integration with the Research Defender SEARCH API (v3). Research Defender SEARCH provides digital fingerprinting and fraud identification of survey participants to identify if they are a bot, known fraudulent participant, or a duplicate by retrieving scores from Research Defender. You can then use these scores to disqualify participants to improve data quality of your survey.
+The logic node sends a request to Research Defender at the location you insert the logic node into the survey.
+1: Using the Survey Editor
+To add the Research Defender SEARCH logic node using the Survey Editor, click + Element in the staging area.
+In the Element Library, click Advanced and select the Research Defender SEARCH Integration element from the list. Then click Add.
+The new element will appear in the staging area, where you can specify the settings for your integration.
+1.1: Configuration
+The following options are configurable. Research Defender specific values can be found in your Research Defender account.
+Publishable Key: Required. The unique Publishable Key provided by Research Defender to identify the account. For security, encrypt the key prior to adding it to the logic node.
+Private Key: Required. The Private Key provided by Research Defender. For security, encrypt the key prior to adding it to the logic node.
+Survey ID: A unique Survey ID of your choosing. Used to identify the survey in Research Defender. This field is pipeable.
+Participant ID: Unique identifier for each participant. Use ${uuid} to ensure uniqueness across sample sources. This field is pipeable.
+Display in Report: Select Yes to display the logic node's results in the report and downloads. Select No to hide the results.
+2: Using the XML Editor
+To add the Research Defender SEARCH logic node using the XML Editor, add the following <logic> tag to your survey XML:
+<logic label="fingerprint" uses="researchdefender_search.2"
+researchdefender_search:publishable_key="EXAMPLE-PUBLISHABLE-KEY"
+researchdefender_search:private_key="EXAMPLE-PRIVATE-KEY"
+researchdefender_search:display_report="Yes"
+researchdefender_search:participant_id="${uuid}"
+researchdefender_search:survey_id="YOUR-UNIQUE-SURVEY-ID"
+>
+<title>Research Defender SEARCH Integration</title>
+</logic>
+2.1: Required Attributes
+All attributes should be prefixed with researchdefender_search:.
+Attribute
+Description
+Example
+publishable_key
+Required. The unique Publishable Key provided by Research Defender to identify the account. For security, encrypt the key prior to adding it to the logic node.
+4a05c25b-12ab-34cd-a1dc-8dde1ba4f837
+Default: Empty
+private_key
+Required. The Private Key provided by Research Defender. For security, encrypt the key prior to adding it to the logic node.
+e6b10a92-ab1c-2345-d6e7-0f7da0a43cf0
+Default: Empty
+survey_id
+Required. A unique Survey ID of your choosing. Used to identify the survey in Research Defender. This field is pipeable.
+mybreakfastsurvey
+Default: Empty
+participant_id
+Required. Unique identifier for each participant. Use uuid to ensure uniqueness across sample sources. This field is pipeable.
+${uuid}
+Default: Empty
+display_report
+Required. Use Yes to display the /SEARCH results in the report and downloads, No to hide.
+No
+Default: Yes
+3: Research Defender SEARCH Response
+The API call returns a set of values that can be used for participant validation. This information is automatically stored in a hidden question labeled [label given to the node]_results (for example, fingerprint_results ). Once the information is captured, the participant is taken to the next page of the survey.
+Below is the list of values returned by the logic node:
+Row Label
+Description
+Values
+threat_potential
+Fraudster check
+Low
+Medium
+High
+respondent_risk
+Identifies fraudulent / bad actors (TOR Network, Private VPNs, etc.)
+0 – Low risk
+1 – High risk
+country
+Text description of country of participant (e.g. United States, India)
+String
+duplicate_initial_ud
+If participant is a duplicate, this would contain the previous “resp_id”
+String
+country_mismatch
+Identifies country mismatch between participant country and started country
+1 – True
+0 - False
+duplicate_score
+A float/numeric equivalent of the “duplicate_potential” field.
+0 – Not dupe
+100 - Dupe
+flag
+Identifies previous access to the survey
+1 – True
+0 – False
+duplicate_potential
+Identifies potential duplicates
+Low
+High
+failure_reason
+Reason for participant’s fraudulent status
+"02" - Duplicate entrant into survey
+"03" - Other / undefined
+"04" - VPN usage detected
+"05" - TOR network detected
+"06" - Public proxy server detected
+"07" - Web proxy service used
+"08" - Web crawler usage detected
+"09" - Internet fraudster detected
+"10" - Retail and ad-tech fraudster detected
+threat_potential _score
+Numeric value of participant’s threat level
+Low (1 to 33)
+Medium (34 to 67)
+High (68 to 100)
+country_code
+Text code of country in ISO format (e.g. US, PH, IN)
+String (ISO Code 3166-1 alpha-2)
+survey_number
+The survey_id input when creating the logic node. Used for cross-reference verifications.
+Same as the survey_id (above)
+mybreakfastsurvey
+3.1: Participant Screening
+The values captured in the hidden question can be used to either terminate the participants in real time or to flag them for further review. You can decide which route to take depending on your project's need.
+Forsta recommends starting with the terminate points below. You can adjust them to be more stringent as needed. Using the is_successful property as a condition prevents fatal errors.
+<block label="fingerprint_terms" cond="fingerprint.is_successful">
+<note>Nest terminates in a block that verifies the request to Research Defender was successful using the logic node's `is_successful` property to prevent fatal errors.Country code terminates must be set based on countries the survey is fielded in</note>
+<term label="country_codeTerm" cond="fingerprint_results.country_code.val not in ['CA', 'US']" incidence="0" markers="qcterm" sst="0">Country code is not valid</term>
+<term label="duplicate_scoreTerm" cond="int(fingerprint_results.duplicate_score.val) gt 50" sst="0" incidence="0" markers="qcterm">Duplicate score greater than 50</term>
+<term label="threat_potential_scoreTerm" cond="int(fingerprint_results.threat_potential_score.val) ge 29" sst="0" incidence="0" markers="qcterm">Threat potential score greater than or equal to 29</term>
+</block>

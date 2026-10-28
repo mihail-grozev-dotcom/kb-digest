@@ -1,0 +1,19 @@
+Title: Email Template Manager Overview
+The Email Template Manager allows you to review the list of templates available that you can edit in your company. It also provides a way to create a new template from scratch.
+Templates created from saving an email campaign are also available in the Email Template Manager.
+Warning: Email Templates are shared by all users within a given company. Editing or deleting a template will edit or delete that template for everyone in that company. Users on shared servers who have Campaign access to a project in a different company will not have access to view or edit other companies templates.
+1: Accessing the Template Manager
+To manage email templates for your company, select a project in the Portal and click Email Campaigns from the Responses menu.
+Click on Template Manager just to the left of the “+ New Campaign” button to review your list of templates.
+Note: Staff and supervisors can also access Template Manager from the Portal list page. They can grant access to other users by assigning them permissions in that project.
+2: Interacting with Templates from the List Page
+Click a template name to view the available actions for that template.
+3: Interacting with Templates in the Editor
+Click the Actions menu inside the editor to Duplicate or Delete the template you are editing.
+For more information on interacting with templates in the editor, see Creating an Email Campaign.
+4: Important Considerations
+Seed List and Email Testing for templates operate the same as in the Email Campaign Editor.
+Editing the template is similar to editing a campaign.
+The template manager project will appear in the portal once it is created as a campaign-type project. It is stored in the ec_templates folder.
+The project "Template Manager" can be renamed, but should be kept in the ec_templates folder. Fields in the template manager project overview can also be updated as needed.
+For more information, see Editing a Campaign.

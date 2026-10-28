@@ -1,0 +1,151 @@
+Title: Resource Tag: Create Translatable Resources
+Resource (<res>) tags are a great way to provide additional resources that can be used across a project. Resources reside in a Python dictionary and can be referenced from anywhere within the survey, nstyles file, error messages, <exit> tags, and external pages referenced from an <html> tag.
+A resource tag is picked up by the translation system and easily accommodated in multi-language studies. Consider the following example:
+The dollar sign ($) works great for surveys fielded in the U.S., but it does not work for those fielded in the U.K. In this case, you can use resources tags to alert your translation team to properly translate the dollar sign into the euro (€) for any surveys you would like to field there.
+<res label="currency">$</res>
+<number label="Q1" size="4" verify="range(0, 9999)" ss:preText="${res.currency}">
+<title>How much do you spend on the following items:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</number>
+Note: There are several components of the survey that cannot be detected by the translation system (e.g., attributes such as ss:postText, Python code, XML styles, etc.).
+1: Utilizing a Resource Tag in a Survey
+Typically, you can add a resource tag to a survey using the following syntax, where resname is the label of the resource tag:
+[res resname]
+1.1: Special Use Cases
+There are a few special cases in which you will need to use a slightly different method to add a resource tag.
+1.1.1: Within a Question
+If you would like to embed a resource tag within a question, you would instead use the following syntax, where Q1 is the question label and resname is the label of the resource tag:
+[res Q1,resname]
+1.1.2: Within a Loop
+When working with loops, you must make another adjustment. For example, if you are embedding a resource tag within a question which is inside a loop, you would pipe the resource tag into the survey using the following syntax:
+[res Q1_[loopvar: label],resname]
+Likewise, if you need to add a resource tag inside a loop but not embed it within a question, you would use the following syntax:
+[res Q1_[loopvar: label],resname_[loopvar: label]]
+2: Overriding Error Messages
+Resource tags can also be used when editing question error messages. Consider the following example:
+To edit the text in red, you would use the following syntax, changing only the contents included within the <res> tags:
+<res label="odd_number_error">Please enter an odd number. (You entered %d)</res>
+<number label="Q1" size="3" optional="0" title="Enter an odd number below:">
+<validate>
+if not this.ival % 2:
+error(res.odd_number_error % this.ival)
+</validate>
+</number>
+3: Overriding System Messages
+All of the default system error messages can be overridden using <res> tags.
+For example, you can globally override the default error message displayed when a value has not been supplied for a <radio> question:
+To edit the text in red, you would use the following syntax, changing only the contents included within the <res> tags:
+<res label="sys_noAnswerSelected">Please reread the text and choose the appropriate response.</res>
+<radio label="Q1" optional="0" title="Please choose one.">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+Note: Notice the special syntax used in the code above. To override a system error message, you must prefix the message name with "sys_".
+You may also override system error messages to be displayed differently for specific questions. Consider the following example:
+To edit the text in red for each question, you would use the following syntax, changing only the contents included within each set of <res> tags:
+<res label="sys_noAnswerSelected">Please reread the text and choose the appropriate response.</res>
+<radio label="Q1" optional="0" title="Please choose one.">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+<radio label="Q2" optional="0" title="Please choose one.">
+<res label="sys_noAnswerSelected">You must choose an item here.</res>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+See System Language Resources for more information on the types of error messages available.
+4: Combining With Pipes
+Resource tags can be combined with <pipe> tags to present dynamic content within the survey. First, consider the following example without a <res> tag:
+<pipe label="Main_Concept">
+<case label="c1" cond="hasMarker('c1')"><img src="[rel concept_1.png]"/></case>
+<case label="c2" cond="hasMarker('c2')"><img src="[rel concept_2.png]"/></case>
+<case label="c3" cond="hasMarker('c3')"><img src="[rel concept_3.png]"/></case>
+<case label="c4" cond="1">Bad pipe</case>
+</pipe>
+<html label="Concept_Show" where="survey">
+<p>Please view the following concept. You will be asked additional questions on the next page.</p>
+<p>[pipe: Main_Concept]</p>
+</html>
+In this example, participants are shown a concept image based on the survey marker they were assigned.
+If desired, you can add a <res> tag to store the main content for the concept and instead pipe in only the parts that change per participant / scenario. This not only produces cleaner code, but it also saves time in the event that future adjustments need to be made. Here is the same example with a <res> tag:
+<res label="Concept_Image"><img src="[rel concept_%s.png]"/></res>
+<pipe label="Main_Concept">
+<case label="c1" cond="hasMarker('c1')">1</case>
+<case label="c2" cond="hasMarker('c2')">2</case>
+<case label="c3" cond="hasMarker('c3')">3</case>
+<case label="c4" cond="1">Bad pipe</case>
+</pipe>
+<html label="Concept_Show" where="survey">
+<p>Please view the following concept. You will be asked additional questions on the next page.</p>
+<p>${res.Concept_Image % pipe.Main_Concept}</p>
+</html>
+A more complex example would entail a concept that consists of a large amount of text with only a few parts that change. For example, the following produces a list of several different bullet points that will change depending on participants’ markers:
+<res label="ISP_Concept_Text">
+<p>For a limited time, our brand is offering an exclusive deal to you, our %s customers.</p>
+<p>Have you heard about the latest accusations in regards to your data? Here is a short list of things going on:</p>
+<ul>
+%s
+</ul>
+<p>When you sign up for our internet at the low rate of %s per month, all of those things will still happen but we'll throw in a 50" TV when you sign up before November!</p>
+</res>
+<pipe label="Concept_Customers">
+<case label="c1" cond="Q3.r1">Super Duper Co.</case>
+<case label="c2" cond="Q3.r2">Agile Dojo</case>
+<case label="c3" cond="Q3.r3">Mountain Monster</case>
+<case label="c4" cond="1">bad pipe</case>
+</pipe>
+<pipe label="Concept_ISPActivities">
+<case label="c1" cond="hasMarker('c1')"><![CDATA[
+<li>Your data is sold to 3rd party vendors</li>
+<li>Your online activities are being watched</li>
+<li>Your online identity is at risk</li>
+]]></case>
+<case label="c2" cond="hasMarker('c2')"><![CDATA[
+<li>Your data may be sold to 3rd party vendors</li>
+<li>Your online activities may be actively watched</li>
+<li>Your online identity may be at risk</li>
+<li>The Matrix may have you!</li>
+]]></case>
+<case label="c3" cond="hasMarker('c3')"><![CDATA[
+<li>Your data <span style="background: black;">may be sold to 3rd</span> party <span style="background: black;">vendors</span></li>
+<li>Your online activities may be active<span style="background: black;">ly watched</span></li>
+<li>Your online <span style="background: black;">identity may be at risk</span></li>
+<li><span style="background: black;">The Matrix may have</span> you!</li>
+]]></case>
+<case label="c4" cond="1">bad pipe</case>
+</pipe>
+<pipe label="Concept_PricePoint">
+<case label="c1" cond="hasMarker('c1')">$50</case>
+<case label="c2" cond="hasMarker('c2')">$75</case>
+<case label="c3" cond="hasMarker('c3')">$95</case>
+<case label="c4" cond="1">bad pipe</case>
+</pipe>
+<html label="Show_Concept" where="survey">
+${res.ISP_Concept_Text % (pipe.Concept_Customers, pipe.Concept_ISPActivities, pipe.Concept_PricePoint)}
+</html>
+When added to a survey, the code above produces the following result, with the blanks filled in with the appropriate text for each participant.
+Learn more: Pipe Tag: Show Information Conditionally
+Note: In the examples above, several string operations were performed using Python's "%" syntax. See Python.org to learn more about Python's built-in format function.
+5: Restricting by Language
+It is also possible to restrict resources by language. To restrict the languages in which a resource will be used, add the mls attribute to the resource tag, specifying the desired language(s).
+For example, if you would like to restrict the "$" resource in a spend question to English only, you would add mls="english" to the resource tag for that element:
+<res mls="english" label="currency">$</res>
+<number label="Q1" size="4" verify="range(0, 9999)" ss:preText="${res.currency}">
+<title>How much do you spend on the following items:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</number>
+Likewise, the example below would restrict the translation of sys_noAnswerSelected to custom text for French and use the default sys_noAnswerSelected text for other languages:
+<res label="sys_noAnswerSelected" mls="french">select only one</res>
+Note: Restricted resources will still be displayed in the Language Manager for all survey languages (not counted as "missing"), but will be excluded from the survey’s language translation files.
+6: Reviewing Resource Tags
+Once resource tags have been added to a survey, they can be reviewed at any time using the Language Manager Overview. To view your survey's resource tags, first click “Build” in the navigation menu at the top of any project page. Then click “More Tools” and select “Language Manager”.
+The Language Manager includes a list of all the language resources programmed for each survey language. Select a language using the “Translation” drop-down and then scroll to view the resources for that language.
+Note: If a survey does not contain any additional languages, you must first add a language to view a list of its default resources. See Programming Multi-Language Surveys to learn more about adding new survey languages using the Language Manager.
+You can also click “System Survey Resources” to view a complete list of Decipher’s default language resources.

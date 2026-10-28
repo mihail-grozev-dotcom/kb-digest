@@ -1,0 +1,24 @@
+Title: Adding or Editing Charts
+1: About Charts
+In Crosstabs, charts can be generated for all questions specified in a table set and by any segment criteria specified in the Report Setup menu.
+Note: By default, no charts are visible within Crosstabs.
+You can select from a number of chart types and if desired, you can generate charts for report nets as well as each statistic. Chart data reflects the table configuration settings so any changes, such as performing updates to the table title text or choosing to hide / show answer rows, reflect in the charts.
+2: Adding or Editing a Chart
+To add or edit a chart, click the "..." menu located at the top right of the desired question table and select Add/Edit Charts from the drop-down.
+Check the Frequency Data checkbox and select the chart type from the drop-down. Then click Save to add the chart to the table.
+If your chart contains any report nets or stat rows, you have the option to generate charts for those as well. Once you are satisfied with your selections, click Save to add the chart for the table.
+2.1: Chart Types
+Tip: If you mouse-over a group in the chart, its exact percentage appears.
+2.1.1: Bar Chart
+2.1.2: Column Chart
+2.1.3: Pie Chart
+2.1.4: Area Chart
+2.1.5: Line Chart
+3: Chart Options
+To change the data values or colors displayed within your charts, click Actions and select Chart Options.
+Select your desired value type and color palette from the Chart Options window:
+Data Values: Choose to show "Percentages" or "Counts" as the charted value.
+Color Palette: Select from a wide range of color palettes for your chart.
+Note: The color palette will not affect custom charts such as the Video Analyzer for the Media Evaluator Element.
+4: Removing a Chart
+To remove a chart in Crosstabs, click the "..." menu located at the top right of the desired question table and select Add/Edit Charts from the drop-down. Uncheck the Frequency Data checkbox and click Save.

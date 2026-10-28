@@ -1,0 +1,3 @@
+Title: Downloading the Quota Structure
+To download the structure of the quotas in any survey, open the Response Summary and click "Download".
+The structure will automatically download into an Excel file.

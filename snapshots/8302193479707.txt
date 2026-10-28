@@ -1,0 +1,15 @@
+Title: Integrating Forsta Surveys into Smarthub
+To integrate Forsta Survey into Smarthub you will need to generate an API key.
+For more information how to generate an API key.
+After you generate a key, copy and save it to a safe location.
+Note: This same API key will be utilized for future surveys and ensure to make note of your server url.
+1. Integrating the Survey into Smarthub
+Navigate to the Smarthub to create a hub.
+Click on Manage surveys.
+Click on Use Forsta Surveys.
+Enter your base URL and API key you generated from Forsta Surveys and click continue.
+Next, you will navigate to a page to select your surveys you want to add to Smarthub.
+Note: This page will display all the surveys that you have access to labeled "Available surveys". You can search and select your surveys by clicking on the checkbox next to the survey.
+Once you have selected your surveys, click (+) Add and the surveys will appear in the Selected Surveys.
+Click on ADD SELECTED button after all survey selections are completed.
+Now that you have added your surveys you will be navigated back to your Hub.

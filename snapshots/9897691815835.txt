@@ -1,0 +1,35 @@
+Title: 141.6 Release Notes
+Release Date: March 5, 2019
+Release Version: 141.6
+New Features
+Response Summary
+Optimized the way historical email send data is loaded. Such sends will be marked with a "dagger" icon (†) in the Campaigns tab.
+Programming & Tools
+Added support for using sendgrid directly.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue which prevented Crosstabs and dashboard reports from loading when a project contained images that were too disproportionate to convert into thumbnails.
+Fixed an issue where image filenames containing multiple periods would cause errors and prevent the report from running.
+Dashboard
+Fixed an error caused by exporting charts using transpose with chartopts yAxis.max or legendBase applied.
+Downloads
+Fixed an issue which caused open-ended response values to display incorrectly when exporting options “With Text”.
+Fixed an issue with custom textual headers not working when exporting to Excel 2007.
+View / Edit Responses
+Fixed an issue causing incorrect record data if the loadData key was empty and edits were made to the data.
+Survey
+Fixed an issue with style vars using "state" in their name having values changed when launching the survey.
+Pre Launch Modal
+Fixed an issue which disabled the “Open project settings” link in the pre launch modal when a survey included an incompatible element.
+Participant View
+Fixed an issue causing randomized options in a Rank Sort question to re-shuffle when users submitted incomplete answers.
+Simulated Test Data
+Fixed an issue with errors not displaying when running simulated test data.
+Portal
+Company Settings
+Fixed an issue which was giving incorrect date values when setting app expiration dates to yes.
+Fixed an issue that displayed incorrect values for "Allow Shared Accounts" and "Login Attempts".
+Programming & Tools
+Updated the gcat script to work in Ubuntu 18.
+Fixed an issue causing data to sometimes be encoded incorrectly into the surveydb.

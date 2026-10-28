@@ -1,0 +1,21 @@
+Title: Setting Custom Terminates with Custom Points for Panel Management
+The Decipher and Panel Management integration now allows users to dynamically override the reward points and the survey activity names that are displayed to panelists based on logic conditions, providing greater flexibility beyond the default reward points set for exit conditions.
+This process can help prevent fraud, especially if participants attempt to game the system for disqualification points by declining to participate in the survey.
+Important: To collect custom statuses in Panel Management, contact your Forsta account representative to enable it.
+1: Decipher implementation
+Use the setPanelPoints(points, note, custom_status) function, which will be sent to Panel Management to update the number of points for the participant.
+The setPanelPoints function can be added to an Exec Element in your survey. This exec element should be put on a page after the question used. If being used to prevent fraud, the element should be put at least one page after the question that disqualifies the participant.
+if ds1_Q1.r1:
+setPanelPoints(300, "panelist agreed to participate", "passed")
+elif ds1_Q1.r2:
+setPanelPoints(points=0, note="panelist did not agree to participate", custom_status="declined")
+The function setPanelPoints(points, note, custom_status) will be sent to Panel Management to update the number of points for the participant.
+The points argument must be a non-negative, integer number. This updates the number of points in Panel Management for the participant.
+The note argument will be visible in the rewards redemption history under Admin Note and in the Community site on the Rewards page.
+The custom_status should be a single word with no spaces. Use an Activity Filter in Panel Management to filter panelists by this status.
+2: Panel Management implementation
+Before your panel can receive custom statuses from Decipher, you must ask your Forsta account representative to turn on custom status collection.
+To filter participants by custom_status, create an Activity Filter. Under type, select Custom status specific. In the Filter condition field, add a comma delineated list of custom statuses, matching the appropriate ones set up for the setPanelPoints function in Decipher. The filter will look at the last five custom statuses for each participant (the last five surveys taken that sent a custom status).
+Then, add the activity filter in the location where you wish to Query Data, for example in Panelist Manager.
+You can use this filter in the Panelist Manager to display only participants who have taken a survey that returned a custom_status. Once you have a list of panelists with a specific custom status, you can make changes to their profiles.
+Note: The points and note display in the Point Reconciliation Report in Panel Management,but not the custom_status.

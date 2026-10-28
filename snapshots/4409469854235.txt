@@ -1,0 +1,170 @@
+Title: Data Aggregation
+VirtualQuestions function by calculating a single answer based on the actual participant data from other questions. Aggregate questions work by taking the finished data for the other questions as displayed in the report and then performing calculations on them.
+Aggregates are useful when you want to pick rows from multiple questions and display those rows in a single table. They can also be used to sum up answers from multiple questions into one. For example, if rating 12 products in 3 different categories, you can create a new question with counts per category. Aggregates can also be used to quickly apply custom filtering for each row without having to create and wait for a virtual.
+Use aggregates when:
+you want the response count to sum up multiple questions' answers.
+you want to display counts for some complex table, but want to avoid storage and computation of virtuals.
+you want to apply unusual overrides to an existing table, or create a new highly customized one.
+Use virtuals when:
+your data can be computed for each participant.
+you want to see the data in data downloads: virtuals create a value for each participant, aggregates only create a table.
+1: Data Aggregation in Crosstabs
+Data Aggregation in Crosstabs allows custom Crosstabs table content. You can use it to override the default conditions used to compute counts in any table, adding custom or unusual bases not possible through the Crosstabs user interface. You can sum up multiple participant bases and display them in one cell or perform other unusual computation that sum the results of different questions.
+Note: Custom crosstab tables only appear in Crosstabs. They do not exist in data downloads.
+1.1: Configuration
+The following is an example of setting up a virtual question for use in crosstabs:
+<exec target="q22$" when="crosstabs">
+t.r1 = ((q13.r1)) + ((q15.r1)) + ((q17.r1)) + ((q19.r1))
+t.r2 = ((q13.r2)) + ((q15.r2)) + ((q17.r2)) + ((q19.r2))
+t.r3 = ((q13.r3)) + ((q15.r3)) + ((q17.r3)) + ((q19.r3))
+t.r4 = ((q13.r4)) + ((q15.r4)) + ((q17.r4)) + ((q19.r4))
+t.r5 = ((q13.r5)) + ((q15.r5)) + ((q17.r5)) + ((q19.r5))
+t.total = ((q13.any)) + ((q15.qny)) + ((q17.any)) + ((q19.any))
+</exec>
+<radio>
+label="q22"
+where="report,notdp"
+<title>Likelihood of purchasing fruits that are packaged</title>
+<comment>Select one</comment>
+<row label="r1" value="5">Very Likely</row>
+<row label="r2" value="4">Somewhat Likely</row>
+<row label="r3" value="3">Not Likely or Unlikely</row>
+<row label="r4" value="2">Somewhat Unlikely</row>
+<row label="r5" value="1">Very Unlikely</row>
+</radio>
+Create a question element, and include the attribute where="notdp,report" so it only shows up in reporting and not downloads. This is your virtual question. In the above example, the virtual question starts with <radio>
+label="q22"
+where="report,notdp".
+Add an <exec when="crosstabs" target="q22$"> element. This exec element will runs when Crosstabs runs. You must specify a table target. The table target is your virtual question. Add a a trailing $ to the table's label. For example, if the referenced table is the radio question with label q22, the target will be q22$. The target for a two-dimensional question might be q1$r1$ for q1’s table for row r1.
+Inside the exec element, assign t.rowlabel to assign data to the table’s row. The t variable will be used to configure overrides to table data. For example, t.r1.
+To compute the data, include Crosstabs conditions surrounded by double parentheses (())., You can use most of the conditions you can put in the survey such as q1.r1 , or q1.r1 or q1.r2.
+For example, t.r1 = ((q1.r1)) will configure the counts for row t.r1 in the table to match those in q1.r1. The result of ((q1.r1)) is not just one number: it is one weighted value and one unweighted value for each segment applied to the table.
+As another example, the code t.r2 = ((q2.r1 or q2.r2)) will configure the counts for t.r2 to be participants who selected r1 or r2 in q2.
+Note: You can verify your conditions on the command line using the generate script with the -p option. For example, generate -p . 'q1.r1 or q1.r2' tab uuid q1 would output q1 values that have q1.r1 or q1.r2 condition.
+Surrounding the special Crosstabs conditions with double parentheses (()) allows Crosstabs to identify what it should calculate for every participant, before running your code with the results. The conditions with (()) around them run for every participant, but your custom code runs just once at the end.
+Your Python code can do other checks, but keep in mind that it only runs after all participant data has been computed. Thus you can only look at the table data as a whole.
+1.2: Totals and base
+To modify the table total, assign a calculation to t.total. The default base for a simple question might be q1.any. If you only want to include specific rows in the total, a default base could be q1.r1 or q1.r2 or q1.r3.
+The base will normally be the same as the total. You can apply an if check to the config.base variable for other bases: if you set it to “segment", the base would typically be ALL (everyone in this segment), if "shown" for a checkbox question, q.shown. In those cases, assign a calculation to t.base to apply a custom table base; this will not take effect if config.base is the simplest "answering".
+You can also override the base of a specific row: t.r1_base = ((q2.any)) + ((q3.any))
+This rebases t.r1 to the sum of those answering q2 and q3.
+1.3: Computation
+You can add data from multiple conditions together to “stack” the data. For example, if you have questions q1 and q2 with identical structures, you can create the virtual question q3 to add their counts and bases together:
+<exec target="q3$" when="crosstabs">
+t.r1 = ((q1.r1)) + ((q2.r1))
+t.total = ((q1.any)) + ((q2.any))
+</exec>
+<radio>
+label="q3"
+where="report,notdp"
+<title>Likelihood of purchasing fruits that are packaged</title>
+<comment>Select one</comment>
+<row label="r1">Combined total of q1.r1 and q2.r1</row>
+</radio>
+The addition to add counts and bases together happens outside of the parentheses. In the above example, Crosstabs calculates how many participants selected q1.r1 (which might be an array like [12,5,5], where there are 12 in the total segment, and 5 in the other segments) and add them up with corresponding per-segment data for q2. Modifying the total will rebase the table, resulting in total counts being higher than the number of participants.
+1.4: Built-in options
+Because aggregations can be verbose, you can use built-in DQs to reduce the amount of code written for radio or checkbox questions. You will need to add the following code to the <survey> tag: xmlns:agg_stack="http://decipherinc.com/agg_stack".
+Then, add uses="agg_stack.1" in your virtual question to stack the data. This will add up each matching row, and rebase on the answering counts for the sources.
+Specify the list of source tables using agg_stack:q="q1,q2,q3". Rows that exist in the target question will have their data assigned (if you add agg_stack to the virtual question q4 with r1 through r5, but q1 in the source has r6, q1.r6 is not included in the virtual question q4).
+Note: Only default basing is supported.
+The following code shows the survey tag and a virtual question using agg_stack:
+<survey
+alt="Fruit Survey Wave 2 - Aggregate"
+autosave="0"
+builder:wizardCompleted="1"
+builderCompatible="1"
+compat="154"
+delphi="1"
+extraVariables="source,record,decLang,list,userAgent"
+fir="on"
+html:showNumber="0"
+mobile="compat"
+mobileDevices="smartphone,tablet,desktop"
+name="Survey"
+secure="1"
+setup="term,decLang,quota,time"
+ss:disableBackButton="1"
+ss:enableNavigation="1"
+ss:hideProgressBar="0"
+state="testing"
+xmlns:agg_stack="http://decipherinc.com/agg_stack">
+<radio
+label="q21"
+agg_stack:q="q13,q15,q17,q19"
+uses="agg_stack.1"
+values="order"
+where="report,notdp">
+<title>Likelihood of purchasing fruits that are packaged</title>
+<comment>Select one</comment>
+<row label="r1" value="5">Very Likely</row>
+<row label="r2" value="4">Somewhat Likely</row>
+<row label="r3" value="3">Not Likely or Unlikely</row>
+<row label="r4" value="2">Somewhat Unlikely</row>
+<row label="r5" value="1">Very Unlikely</row>
+</radio>
+1.5: Limitations
+Only supports adding two result objects together: ((q1.r1)) + ((q2.r1))
+Result object types: simple counts only (not numeric nor open-ended)
+Table row types supported:
+simple (those matching a labelled data row)
+total
+base (used only if base exists due to base set to answering)
+Not supported: nets
+Configuration data: config.base will be set to “answering”, “shown”, “variable” or “segment” depending on base selection.
+2: Data Aggregation in Report 2010
+To create an aggregate question for Report 2010, enter the formula inside an <aggregate> tag, similar to the <virtual> tag: the formula is Python code that runs to determine what the question's data displayed in the report should be.
+2.1: Limitations
+Currently only all-rows RadioTag, CheckboxTag, and respective VirtualQuestions can be the input and output questions for aggregates.
+In the aggregate formula, specify e.g. q1.r1 to get the number of users that answered q1 as r1, q1.shown for the number of users shown that question and q1.answered for the number of users that answered that question.
+To actually assign the values, assign to the this object. For example, the stack aggregate function for 3 questions could be implemented in this way:
+<radio title="Aggregate">
+<row label="r1">I like it</row>
+<row label="r2">I don't like it</row>
+<row label="r3">I hate it</row>
+<aggregate>
+this.r1 = q3.r1 + q4.r1 + q5.r1
+this.r2 = q3.r2 + q4.r2 + q5.r2
+this.r3 = q3.r3 + q4.r3 + q5.r3
+this.shown = q3.shown + q4.shown + q5.shown
+this.answered = q3.answered + q4.answered + q5.answered
+</aggregate>
+</radio>
+We set the count for the r1 to be equal to the sum of the r1 rows in q3, q4, q5. Similarly, the shown/answered counts are set to the sum of those 3 questions.
+Note: The aggregate attribute is not supported for secure surveys.
+2.2: Built-in aggregates
+Following built-in aggregates are available:
+2.2.1: stack
+Given a list of questions which must have the same rows as this aggregate question, make this question essentialy be equal to the sum of the other questions row and answered counts. E.g. aggregate='stack(q3,q4,q5)' will make each row in this question be sum of each of the corresponding rows in the 3 questions.
+You can force another base for the question by specifying the rebase argument. E.g. stack(q3,q4,q5, rebase=q0). In such a case, the shown/answered totals will be retrieved from q0.
+2.2.2: stagger
+Given a list of questions, the staggered question will copy the result of the Nth question in the Nth segment. Basically this can be used to (rather awkwardly!) generate a 2D table in the report. In the below example, q6xx will display q6a data in segment 1, q6b in segment 2 etc. The filters on the segments are irrelevant (and in fact, should be the same).
+<radio label="q6xx" title="q6* aggregated" grouping="rows">
+<aggregate>stagger(q6a,q6b,q6c,q6d,q6e,q6f,q6g)</aggregate>
+@fit @top2group1d
+</radio>
+2.2.3: staggerRows, staggerCols
+Copies columns or rows of a function into segments local to this function, enabling a 2D view of a question, e.g.:
+<radio label='q1' title='Rate these items'>
+<col label='c1' value='5' groups='g1'>I feel like I know a lot about them</col>
+<col label='c2' value='4' groups='g1'>I feel like I know a bit about them</col>
+<col label='c3' value='3' groups='g2'>I don't feel I know much about them</col>
+<col label='c4' value='2' groups='g3'>I've only heard the name</col>
+<col label='c5' value='1' groups='g3'>I've never heard of them</col>
+<row label='r1'>Item 1</row>
+<row label='r2'>Item 2</row>
+<row label='r3'>Item 3</row>
+</radio>
+If we want to see this as a single table, rather than 3 separate ones, we can do:
+<radio label='a1' averages='cols' aggregate='staggerRows2(q1)' title='Aggregated'>
+<col label='c1' value='5' groups='g1'>I feel like I know a lot about them</col>
+<col label='c2' value='4' groups='g1'>I feel like I know a bit about them</col>
+<col label='c3' value='3' groups='g2'>I don't feel I know much about them</col>
+<col label='c4' value='2' groups='g3'>I've only heard the name</col>
+<col label='c5' value='1' groups='g3'>I've never heard of them</col>
+</radio>
+So the columns are unchanged but the rows become segments that are valid for just this one question only.
+2.2.4: staggerColsWithTotal
+staggerColsWithTotal is similar to staggerCols, but also adds a Total segment at the beginning. This is useful when enabling horizontalPercentages="1" on the question. staggerColsWithTotal aggregate function accepts the argument across=1 which sums up the totals of all segments to generate the Total-Total.
+Example:
+aggregate="staggerColsWithTotal(questionLabel,across=1)"
+This is also known as "data stacking".

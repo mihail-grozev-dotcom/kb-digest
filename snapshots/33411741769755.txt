@@ -1,0 +1,105 @@
+Title: AI Compute Logic Node
+The AI Compute logic node allows AI-based classification of text in 20 different dimensions, including translation to any language or various types of sentiment analysis, by sending data from Decipher to the OpenAI integration hosted by Microsoft. The results from OpenAI are then displayed in crosstabs.
+Note: Decipher has various AI features that rely on AI Models. New versions of these models are frequently released and older versions are retired. When new models are used, there may be variances in responses based on the newer models.
+Note: To enable this feature, please contact your Forsta account representative to discuss pricing.
+1: Using the Survey Editor
+To add the AI Compute logic node using the Survey Editor, click + Add Survey Element under the staging area. In the Element Library, click Advanced and select the AI Compute element from the list. Then click Add.
+The new element will appear in the staging area, where you can specify the settings.
+1.1: Configuration
+The following options are configurable:
+Fields: Identify the question field(s) for OpenAI to analyze. For example, if the data you want processed is in a rows/cols question, you might enter q5r1c2.
+Prompts: Open the drop-down menu to select the desired prompt(s). Yes/No questions are returned as "Yes" or "No". Select from the following options:
+summary: Concise summary of key insights.
+topic: Identify the main topic(s) from a predefined list.
+sentiment: Classify sentiment as Positive, Negative, Neutral, or Mixed.
+sentiment_score: Rate sentiment from -5 (very negative) to 5 (very positive).
+pii: Detect if the text contains personally identifiable information.
+invalid_text: Check if the text is nonsensical or irrelevant.
+outlier: Identify if the response is significantly different from others.
+translation: Translate the text while preserving meaning and tone.
+language_detection: Determine the language of the text.
+clarity: Assess if the text is clear and easy to understand. A Yes response means the text is clear; a No response means it is not clear.
+relevance: Check if the text is relevant to the topic or question. A Yes response means the text is relevant; a No response means it is not relevant.
+emotion_detection: Identify if the text expresses an emotion and categorize it.
+actionable_feedback: Detect if the text contains useful suggestions or recommendations. A Yes response means the text has actionable feedback; a No response means it has no actionable feedback.
+spelling_and_grammar: Check for spelling or grammatical errors. A Yes response means the text has no errors; a No response means it has errors.
+complexity: Assess if the text is overly complex or difficult to understand. A Yes response means the text is overly complex; a No response means it is not overly complex.
+objectivity: Determine if the response is free of bias and subjective opinions. A Yes response means the text is objective; a No response means it is not objective.
+consistency: Check if the text is logically consistent with its context. A Yes response means the text is consistent; a No response means it is not consistent.
+engagement: Identify if the response shows interest or involvement. A Yes response means the text has engagement; a No response means it lacks engagement.
+originality: Determine if the text contains unique ideas or perspectives. A Yes response means the text is original; a No response means it is not original.
+bias: Check if the text is free from bias or discriminatory language. A Yes response means the text is free from bias; a No response means it is not free from bias.
+Target Language: If translation is selected as a prompt, translate participant responses into the language identified in this field. Use your preferred format to identify the target language. For example, if français is entered, Yes/No questions are returned as "Oui" or "Non".
+Topics:The topic prompt by default tries to classify into one or more of these topics: 'Customer Support, Product Feedback, Complaint, Suggestion, Inquiry, Technical Issue'. When set, these topics replace the default topics. Separate multiple topics with commas. Use any text or phrase that can be use to reasonably classify participant responses.
+Important: If you change any of the fields after setting the survey live, you must open the Logic Debug page and restart the feed for the new prompts to be sent to OpenAI and the existing data to be reanalyzed.
+2: Via the XML Editor
+To add the AI Compute logic node using the XML Editor, add the following <logic> tag to your survey XML:
+<logic label="ln1"
+ai_compute:fields="q1,q2"
+ai_compute:prompts="summary,topic,translation"
+ai_compute:target_language="spanish"
+ai_compute:topics="Customer Support, Product Feedback, Complaint, Suggestion, Inquiry, Technical Issue"
+uses="ai_compute.1">
+<title>AI Compute</title>
+</logic>
+2.1: Attributes
+Attributes
+Definition
+Example
+ai_compute:fields
+The data download labels of all the fields you want to analyze.
+For example if the data you want processed is in a rows/cols question, you might enter q5r1c2.
+ai_compute:fields="q1,q2"
+ai_compute:prompts
+Identify the prompts you want OpenAI to run on the data sent for processing. Available prompts:
+summary: Concise summary of key insights.
+topic: Identify the main topic(s) from a predefined list.
+sentiment: Classify sentiment as Positive, Negative, Neutral, or Mixed.
+sentiment_score: Rate sentiment from -5 (very negative) to 5 (very positive).
+pii: Detect if the text contains personally identifiable information.
+invalid_text: Check if the text is nonsensical or irrelevant.
+outlier: Identify if the response is significantly different from others.
+translation: Translate the text while preserving meaning and tone.
+language_detection: Determine the language of the text.
+clarity: Assess if the text is clear and easy to understand. A Yes response means the text is clear; a No response means it is not clear.
+relevance: Check if the text is relevant to the topic or question. A Yes response means the text is relevant; a No response means it is not relevant.
+emotion_detection: Identify if the text expresses an emotion and categorize it.
+actionable_feedback: Detect if the text contains useful suggestions or recommendations. A Yes response means the text has actionable feedback; a No response means it has no actionable feedback.
+spelling_and_grammar: Check for spelling or grammatical errors. A Yes response means the text has no errors; a No response means it has errors.
+complexity: Assess if the text is overly complex or difficult to understand. A Yes response means the text is overly complex; a No response means it is not overly complex.
+objectivity: Determine if the response is free of bias and subjective opinions. A Yes response means the text is objective; a No response means it is not objective.
+consistency: Check if the text is logically consistent with its context. A Yes response means the text is consistent; a No response means it is not consistent.
+engagement: Identify if the response shows interest or involvement. A Yes response means the text has engagement; a No response means it lacks engagement.
+originality: Determine if the text contains unique ideas or perspectives. A Yes response means the text is original; a No response means it is not original.
+bias: Check if the text is free from bias or discriminatory language. A Yes response means the text is free from bias; a No response means it is not free from bias.
+ai_compute:prompts="summary,clarity"
+ai_compute:target_language
+Use when translation is selected as a prompt. OpenAI translates participant responses into the language identified in this field. Use any format you want for language specification.
+Deafult: English.
+ai_compute:target_language="french"
+ai_compute:topics
+Identify alternative classifications for topics. When set, these topics replace the default topics. Separate multiple topics with commas. Use any text or phrase that can be use to reasonably classify participant responses.
+OpenAI may categorize a response into more than one topic.
+Default topics: 'Customer Support, Product Feedback, Complaint, Suggestion, Inquiry, Technical Issue'.
+ai_compute:testing
+Set to 1 to use the node and send data to be analyzed before the survey is live.
+Note: Contact your Forsta account representative for billing details.
+Default: 0
+3: Additional Considerations
+Changing configuration options (prompts, etc.) requires restarting the feed. Open the Logic Debug page and select restart feed.
+Only the first 2000 characters of each text are sent, due to OpenAI token limitations.
+Data edits to the text being analyzed does not trigger re-analysis. To re-send data to be re-analyzed, open the Logic Debug page and select restart feed.
+4: Data Privacy
+The OpenAI service is part of Forsta's Azure subscription. Once data has been submitted to Azure, it is governed by their data policy.
+No data is stored else where and only participant response data and prompts are submitted. We do not include any metadata.
+Your prompts and participant responses:
+are NOT available to other customers.
+are NOT available to OpenAI.
+are NOT used for training (including improvement of OpenAI models, any Microsoft or 3rd party products or services, etc.)
+For Decipher servers hosted in EU, Regional Azure OpenAI installations are used. The data is routed to the OpenAI installation in Stockholm, Sweden. For non-EU installations, global deployment of OpenAI means, it is processed in the nearest available node.
+Data stored on the Decipher side:
+follows standard Decipher data retention and security including encryption at rest
+logging for OpenAI service (such as request and response) is retained for 5 weeks separate from the retention for the survey data
+ISO certification notes: Microsoft Azure undergoes ISO/IEC 27017 audit for compliance. You can download the list of certifications undergone by it on the Microsoft portal: https://learn.microsoft.com/en-us/azure/compliance/offerings/cloud-services-in-audit-scope
+Third party: Data sent to Azure OpenAI is retained by Azure only for abuse monitoring, if certain indicators trigger possible abuse attempts; see the Data Privacy note for Azure OpenAI above
+Data Flow:

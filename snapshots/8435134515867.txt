@@ -1,0 +1,404 @@
+Title: Managing Group Shuffling and Conditions
+1: Introduction to Shuffling & Groups
+When displaying a question, you will tell the system that rows will be shuffled (shuffle="rows"). The shuffle order will come from another question using shuffleBy , set by running q.rows.shuffle.order = ... or will come from a random order.
+If the rows belong to groups, then after shuffling from any source, the rows will be reordered to fit the original group order unless shuffle="rows,groups" is set – then that group order is also shuffled.
+It is important to note that only rows and not groups have an order. Groups are merely headings that appear before a row if the groups are different than the previous row. Thus if rows r1,r2 and r3 belong to groups g1,g2 and g2 respectively, we will display the heading for g1 before r1, then heading for g2 before r2. As r3 belongs to the same group as r2, no extra heading is displayed.
+A row can belong to any amount of groups (e.g. <row groups="g1a,g1">). The first group mentioned is the “primary” group, and the others are secondary. By default, the primary group is only displayed when displaying a list of rows. The other groups appear if you set groupDepth="2" or higher. This requires you to have a hierarchical group or the resulting display will be confusing.
+Note: Groups can be applied on rows, columns or choices; just “rows” is used as an example below.
+2. Group layout used in these examples
+Here are examples with rows in question contained in groups named g1a, g1b, g2a, g2b.
+The groups are contained in other groups named g1 and g2:
+group g1
+group g1a
+row r1
+row r2
+group g1b
+row r3
+row r4
+group g2
+group g2a
+row r5
+row r6
+group 2b
+row r7
+row r8
+Example:
+<checkbox
+label="q1"
+atleast="1"
+groupDepth="2">
+<title>Please select your favorite drinks by category.</title>
+<comment>Select all that apply</comment>
+<group label="g1">Group 1</group>
+<group label="g2">Group 2</group>
+<group label="g1a" groups="g1">Group 1a</group>
+<group label="g1b" groups="g1">Group 2b</group>
+<group label="g2a" groups="g2">Group 2a</group>
+<group label="g2b" groups="g2">Group 2b</group>
+<row label="r1" groups="g1a">Row 1</row>
+<row label="r2" groups="g1a">Row 2</row>
+<row label="r3" groups="g1b">Row 3</row>
+<row label="r4" groups="g1b">Row 4</row>
+<row label="r5" groups="g2a">Row 5</row>
+<row label="r6" groups="g2a">Row 6</row>
+<row label="r7" groups="g2b">Row 7</row>
+<row label="r8" groups="g2b">Row 8</row>
+</checkbox>
+3. Glossary
+Terminology
+Definition
+Cell
+For a non-radio question, there’s one cell for each combination of a row and column. For example, a checkbox question with 5 rows and 10 columns will have 50 cells that have a potential value.
+Object
+You are writing Python code, which is an object-oriented language, meaning that you are working with objects (e.g. q3 object representing your question q3) which have attributes (e.g. q3.val) which in turn can be more objects (e.g. q3.r1 returns an object representing the row r1 within the question – which in turn can have its value read or written).
+4. Cond= attribute on <group>
+A <group> tag now has a cond attribute specifying a condition. If a group’s condition is not true, all rows that reference the group will be hidden, just as they had a false condition. If both the group and rows have conditions, all must be True to display the row.
+The condition is the same syntax as you can put on a row: The group variable is set to the current group, just like row is set when running rowCond.
+p.visibleGroups = ["g1", "g2", "g4"]
+Your group cond can be group.label in p.visibleGroups to show only groups g1, g2 and g4.
+Example:
+<exec>p.visibleGroups = ["g1", "g2", "g4"]</exec>
+<group label="g1" cond=”group.label in p.visiblegroups”>Group 1</group>
+<group label="g2" cond=”group.label in p.visiblegroups”>Group 2</group>
+<group label="g3" cond=”group.label in p.visiblegroups”>Group 3</group>
+<group label="g4” cond=”group.label in p.visiblegroups”>Group 4</group
+5. GroupCond attribute on questions
+A question can have a groupCond condition, which works similar to rowCond: and it serves as a default condition for every group in a question. If there is a cond on a specific group, it will take precedence.
+The groupCond can reference a special variable: group will be the current group being evaluated. A useful group condition is this: q1[group].any – If set on q2, it will check whether the same-named group on q1 had at least one answer selected. If not, the group in q2 will be hidden (and with it, all its rows).
+<checkbox
+label="q1"
+atleast="1"
+groupDepth="2">
+<title>Example Group set up with groupDepth="2"</title>
+<comment>Select all that apply</comment>
+<group label="g1">Group 1</group>
+<group label="g2">Group 2</group>
+<group label="g1a" groups="g1">Group 1a</group>
+<group label="g1b" groups="g1">Group 2b</group>
+<group label="g2a" groups="g2">Group 2a</group>
+<group label="g2b" groups="g2">Group 2b</group>
+<row label="r1" groups="g1a">Row 1</row>
+<row label="r2" groups="g1a">Row 2</row>
+<row label="r3" groups="g1b">Row 3</row>
+<row label="r4" groups="g1b">Row 4</row>
+<row label="r5" groups="g2a">Row 5</row>
+<row label="r6" groups="g2a">Row 6</row>
+<row label="r7" groups="g2b">Row 7</row>
+<row label="r8" groups="g2b">Row 8</row>
+</checkbox>
+<suspend/>
+<checkbox
+label="q2"
+atleast="1"
+groupDepth="2"
+groupCond="q1[group].any">
+<title>Example of question element utilizing groupCond attribute<title>
+<comment>Select all that apply</comment>
+<group label="g1">Group 1</group>
+<group label="g2">Group 2</group>
+<group label="g1a" groups="g1√>Group 1a</group>
+<group label="g1b" groups="g1">Group 2b</group>
+<group label="g2a" groups="g2">Group 2a</group>
+<group label="g2b" groups="g2">Group 2b</group>
+<row label="r1" groups="g1a">Row 1</row>
+<row label="r2" groups="g1a">Row 2</row>
+<row label="r3" groups="g1b">Row 3</row>
+<row label="r4" groups="g1b">Row 4</row>
+<row label="r5" groups="g2a">Row 5</row>
+<row label="r6" groups="g2a">Row 6</row>
+<row label="r7" groups="g2b">Row 7</row>
+<row label="r8" groups="g2b">Row 8</row>
+</checkbox>
+Rows can belong to multiple groups and if the group's conditions become false, it stops the row from being displayed. For example, if some rows belong to group "g1a" and group "g1" containing g1a, then a condition like group.label == "g1a" will not display anything, because it will be False for the containing "g1" group. You can work around this by setting an explicit cond="1" on the parent groups.
+6: Shuffle="rows,only_groups" to shuffle just the groups
+When shuffling an item, you can specify: shuffle="rows" to randomize the rows, but keep the group order intact. You can set shuffle="rows,groups" to shuffle the rows within the groups, and also randomize the group order (of the primary groups only).
+The shuffle="rows,only_groups" option means the groups only are shuffled, but the rows are not shuffled.
+You can use this with shuffleBy="source" and shuffle this question’s groups by the corresponding groups in the source question. When shuffle contains only_groups the rows within groups are not shuffled. Source would be the question they are wanting to mimic randomization from, and they have to have the same number of groups and rows.
+Example:
+<checkbox label="q2" atleast="1" groupDepth="2" groupCond="q1[group].any" shuffle="rows,only_groups" shuffleBy="q1">
+7. Easier nested groups
+If you would like to add a group above groups g1a, g2a and g2b: g1 will contain g1a, and g2 will contain g2a and g2b.
+There are two ways you can add it:
+<row label="r1" groups="g2a,g2"> – Explicitly mentions the secondary group whenever g2a is mentioned.
+<group label="g2a" groups="g2"> – Mentions it on the <group> tag once instead.
+Example:
+Before:
+<checkbox
+label="q1"
+atleast="1"
+groupDepth="2">
+<title>Example Group set up with groupDepth="2"</title>
+<comment>Select all that apply</comment>
+<group label="g1">Group 1</group>
+<group label="g2">Group 2</group>
+<group label="g1a" groups="g1">Group 1a</group>
+<group label="g1b" groups="g1">Group 2b</group>
+<group label="g2a" groups="g2">Group 2a</group>
+<group label="g2b" groups="g2">Group 2b</group>
+<row label="r1" groups="g1a">Row 1</row>
+<row label="r2" groups="g1a">Row 2</row>
+<row label="r3" groups="g1b">Row 3</row>
+<row label="r4" groups="g1b">Row 4</row>
+<row label="r5" groups="g2a">Row 5</row>
+<row label="r6" groups="g2a">Row 6</row>
+<row label="r7" groups="g2b">Row 7</row>
+<row label="r8" groups="g2b">Row 8</row>
+</checkbox>
+After the add:
+<checkbox
+label="q1"
+atleast="1"
+groupDepth="2">
+<title>Example Group set up with groupDepth="2"</title>
+<comment>Select all that apply</comment>
+<group label="g1">Group 1</group>
+<group label="g2">Group 2</group>
+<group label="g1a">Group 1a</group>
+<group label="g1b">Group 2b</group>
+<group label="g2a">Group 2a</group>
+<group label="g2b">Group 2b</group>
+<row label="r1" groups="g1a,g1">Row 1</row>
+<row label="r2" groups="g1a,g1">Row 2</row>
+<row label="r3" groups="g1b,g1">Row 3</row>
+<row label="r4" groups="g1b,g1">Row 4</row>
+<row label="r5" groups="g2a,g2">Row 5</row>
+<row label="r6" groups="g2a,g2">Row 6</row>
+<row label="r7" groups="g2b,g2">Row 7</row>
+<row label="r8" groups="g2b,g2">Row 8</row>
+</checkbox>
+Both methods are possible and they have exactly the same effect equivalent. Neither are supported within Builder.
+Note: The system does not check that your groups are in a correct hierarchy and you could mix & match them if using groups as categories. If groupDepth=2 or higher is set, each element must then belong to at least 2 groups.
+8. Read the List of Groups in a Question
+Use q3.rows.groups to get a list of groups attached to rows of q3. This returns the primary groups for each question (i.e. the first one in the groups="..." attribute).
+The list of group objects returned has two properties .text and .label.
+.groups object properties
+Description
+Example
+.text
+Returns the current (translated) text of the group
+q3.rows.groups[x].text
+.label
+Returns the label of the group
+q3.rows.groups[x].label
+Note: X is an array item in the array “groups”.
+If you have a row, you can find its primary group by using q1.r1.group.
+The Group returned by .group also has a new .group attribute which will lead to the parent group, or None if there is no parent.
+.group properties
+Description
+Example
+.text
+Returns the current (translated) text of the group
+q1.r1.group.text
+.label
+Returns the label of the group
+q1.r1.group.label
+Use q3.rows.groups.order to return the same groups but now in the order displayed in the survey for this participant.
+This list of groups also have a convenient shortcut property.labels which will return a list of text labels from each group. (E.g. g1.rows.groups.labels might return ["g1", "g2", "g3"] ) If these were the 3 labels of the groups in the XML, you can combine it with .order to get the labels after the rows were shuffled for this user. You can also use .parents to find the parent groups in order: q1.rows.groups.parents.order.labels.
+.group properties
+Description
+Example
+.order
+Return groups in ordered displayed in the survey for participant
+q3.rows.groups.order
+.labels
+Return a list of labels for the question’s groups
+q3.rows.groups.labels
+9. Working with nested groups
+If you have nested groups, you can use q3.rows.groups.parents to go one level up in the group list (this can also be repeated multiple times). If your rows belong to g1a which in turn belongs to g1, the normal .groups will return g1a while applying .parents to it will return g1.
+The .parents can in turn have the .order or .labels applied to it: this will return the order that the group appears for the first time in the question.
+Examples
+Description
+q3.rows.groups.parents
+Returning the groups that are one level above the current groups
+q3.rows.groups.parents.order
+Returning the order of the parent group
+q3.rows.groups.parents.labels
+Returning the labels of the parent group
+q3.rows.groups.parents.order.labels
+Returning the labels of the parent group in the order it was displayed
+10. Copying Group Shuffle Order Between Questions
+Assign a value to q3.rows.groups.order to change the row order to match these groups.
+The value can be one of these:
+A list of groups from another question
+A list of strings that are group labels
+For any group or label given that matches a group in the question, those rows will be shown first. Any remaining rows will be inserted at the end, without changing their original order. Groups given that do not exist in q3b will be ignored and will not generate an error.
+Note: The target question (q3) must have shuffle set to "rows,nogroups". The "rows" must be enabled if you are changing row order. The "nogroups" option is required to avoid groups being reordered back to standard positions after shuffling.
+Examples:
+<# get the list of groups inside q2 and find the current order for this respondent# then reorder groups and their rows in q3 to match
+q3.rows.groups.order = q2.rows.groups.order
+# shuffle groups in q3 in this label order. The rows themselves remain in XML order
+q3.rows.groups.order = ["g2c", "g2b", "g1a", "g2a"]
+q3.rows.groups.order = q2.rows.groups.order
+# shuffle groups in q3 in this label order. The rows themselves remain in XML order
+q3.rows.groups.order = ["g2c", "g2b", "g1a", "g2a"]
+11. Copying shuffle order of the parent groups
+Assuming your rows are contained within groups g1a which in turn are contained within g1: you want to copy the group order of g1 before g2, but not shuffle any groups within that.
+Use:
+q2.rows.groups.order = q1.rows.groups.parents.order
+A manual alternative:
+q2.rows.groups.order = ["g2", "g1"]
+q2 must have the attributes shuffle="rows,only_groups" set.
+12. VectorPlus additions
+You may be familiar with asking for q1.any to see if any item in q1 has been answered, or q2.r1.all to see whether all columns of row r1 have been checked.
+This release extends this to support groups and also adds a more flexible way to deal with multiple data points at a time. You can copy answers between questions, find common answers, add data cells and many others all by accessing a special .vals object.
+You can think of it as the named ranges in Excel: there you can say =SUM(R1:R5) to sum up just a small part of the spreadsheet; here you can say q1.g1.vals.sum() to get the sum of the subset of the q1 data which is contained within the g1 group.
+Here are some examples of what you can do to a group element:
+<# Start with q1, narrow data to only that in g1, then assign 5 to every cell
+q1.g1.vals.val = 5
+# Specify a row or column -- assign to only c1 vals here and not the other columns
+q1.g1.vals('c1').val = 5
+# for every checkbox answered in q1's g1 group, set a corresponding checkbox in q2
+q2[q1.g1.vals] = True
+13: What is .vals
+Calling q1.vals generates a hidden object that might look like this:
+Values for q1:
+r1,c1 is None
+r1,c2 is 1
+r1,c3 is 2
+The .vals knows where it came from but you can also take the data, filter or modify it and place into another question.
+13.1: Select what is in your .vals
+There are many ways to get a .vals object with just the data cells you want:
+Example
+Description
+q1.g1.vals
+All the cells that are part of the group g1
+q1.vals
+Every cell in question q1
+q1.vals("r1 r2 r5")
+Include only cells for rows r1, r2 and r5. You can use this multiple times, and apply it to a group.vals as well. Instead of a string, you can pass a list: q1.vals(["r3", "r5", "r7"]) or a group object, which will filter by the labels of its members, e.g. q1.row_group.vals(q1.col_group) – this is a way to find the cells covered by both group row_group and col_group.
+q1.r1.vals
+Only cells within row r1
+q2[q1.vals]
+Cells within q2 that belong to items answered in q1
+q3[q1.vals == q2.vals]
+Cells within q3 that correspond to cells in q1 and q2 that had the
+q3[q1.vals | q2.vals]
+Cells within q3 where either a corresponding q1 or q2 cells were
+q3.g1[q1.vals & q2.vals]
+Cells within q3, but only within group g1 where both corresponding cells in q1 and q2 were answered
+13.2: Reading from the Values
+When you write q1.g1.vals you have an object that will contain all the labels, columns and values of data within q1, narrowed down to that group.
+To examine the data you can do the following:
+Description
+Short Description
+Example
+.any
+Just like with standard vector logic, this checks whether any cell was answered, returns “True” or “False”
+q1.vals.any
+q1.g1.vals.any
+q1.g1.any
+.count
+Count number of answered cells
+q1.vals.count
+.all
+have all the data cells been answered? Unlike normal vector logic this does NOT narrow the cells by those matching a logic condition, returns “True” or “False”
+q1.vals.all
+q1.g2.vals.all
+q1.g1.val
+.sum
+sum of all values (only valid for numeric questions)
+q1.vals.sum
+q1.g1.vals.sum
+q1.g1.sum
+.dataValues
+all the answered values within the range; need to use .vals with reference to group label – q1.g1.vals.dataValues
+q1.vals.dataValues
+q1.g1.vals.dataValues
+.max
+maximum value within the range (0 if there’s no data); need to use .vals with reference to group label – q1.g1.vals.dataValues)
+q1.vals.max
+q1.g2.vals.max
+.min
+minimum value within the range (0 if there’s no data); need to use .vals with reference to group label – q1.g1.vals.dataValues
+q1.vals.min
+q1.g1.vals.min
+Instead of q1.g1.vals.any you can also use q1.g1.any – the .vals will be implied.
+14: Filtering by Answers to another Question
+You may be familiar with this syntax:
+for row in q2.rows:
+if q1[row]:
+row.val = 1
+This goes over the rows in q2, then find the corresponding row in q1 – matching them up by label – and checks whether it was selected. If so, the value of the row in q2 is set to 1.
+The .vals simplifies this: first, q2[q1.vals] will start by finding all the values in q1. Indexing q2 by that will generate corresponding q2 values, but only where the q1 values were true. The q2 values are selected by matching columns and labels exactly. Extra cells are ignored.
+Afterwards, you can assign to it: q2[q1.vals].val = 1 – this changes every value in q2, where the corresponding cell in q1 was true – no matter how many matching values there are.
+15: Filtering with Conditions
+The vals object can be filtered by specific answers or conditions.
+Examples:
+If q3.vals > 50: – take every value in q3 and then compare each of it to 50. This results in a vals list with only. You can put the result inside an if check to see if at least one cell was above 50, but you can also use this to filter another question: q1[q3.vals > 50].val = 0 will set to 0 every cell in q1, where the corresponding cell was greater than 50.
+You can filter the question by itself as well: q1[q1.vals > 100].val = 100 will change any cell that is above 100 to 100.
+All the standard operators are supported:
+Operators
+Description
+>
+Greater than
+<
+Less than
+>=
+Greater than or equal to
+<=
+Less than or equal to
+==
+Equal to
+!=
+Not equal to
+16: Combining Data from Multiple Questions
+Rather than comparing each value in vals with a specific value, you can compare data in two questions to each other. The comparison will be true for the cell that exists in both questions (i.e. both questions must have at least one element with the same combination of row and column label) and matches the condition.
+For example:
+Example
+Description
+if q1.vals == q2.vals:
+Is there at least one cell that was answered with the same value in both q1 and q2?
+if len(q1.vals > q2.vals) > 5
+Are there at least 5 cells, answered in both q1 and q2, that were larger in q1?
+if q1.vals & q2.vals
+Are there answered cells that were both in q1 and q2?
+q1.vals | q2.vals
+Find the answered cells answered EITHER in q1 or q2 (this is an exception to the matching requirement).
+Like before, the output of this can be used to modify cells.
+For example:
+q3[q1.vals | q2.vals].val = 1 – set every q3 cell that was answered in q1 OR q2 to 1.
+The questions compared do not have to match in any way – but only the row/column labels that do match are compared.
+Note: Cells without answers are not included in the comparison. So “q1.vals != q2.vals” will not consider unequal a cell that was answered in q1 but not in q2
+17: Merging Data from Multiple Questions
+If you have multiple numeric questions, you can add them up cell by cell. The result is another .vals object which can then be assigned to a question or compared:
+if (q1.vals + q2.vals) > 10:
+This adds up every cell in q1 with the corresponding one in q2 (unanswered cells count as 0). Then every combined cell is checked to see whether it is greater than 10: the if the check succeeds if at least one such added cell is greater than 10.
+You can also subtract or multiply values if needed. The computed data can also be assigned to another question:
+q4.vals = q1.vals + q2.vals
+q4[(q1.vals + q2.vals) > 10].val = 1
+The first example adds up q1 and q2 and puts the results into corresponding cells in q4. The second example adds up q1 and q2, finds every cell larger than 10 and sets the corresponding cell in q4 to 1.
+17.1: Writing to the values
+If you have q1.g1.vals you can also write to every cell in that the group consists of by writing q1.g1.vals.val = 42.
+This applies to any .vals object you might get hold of – whether it’s every cell in a question or only a subset. You do not have to have just a single number on the right hand side: it can also be another question’s vals: q1.vals = q2.vals will copy all data from q2 that matches cells on q1 side.
+Both the sides can be combined with all the filtering features we’ve seen above:
+q1[(q2.vals < 10) & (q1.vals > 10)].val = q2.vals + q4.vals
+This finds all the answer in q2 lesser than 10, matches it with corresponding cells in q1 that are greater than 10 and copies that data from q2 added to q4. So if r1 in q2 was less than 10, and the corresponding r1 in q1 was greater than 10, it will receive the value from q2.
+18: Existing features
+Sorting rows alphabetically
+Setting sortRows="asc" will sort the rows within each group but not reorder the groups. This is an existing functionality.
+19: Style attributes
+Group style attributes can be examined within styles code using code like this: $(group.styles.ss.groupClassNames) – this part of the existing style system means you can set ss:groupClassNames="something" to a group to add such a CSS class name to the tag that displays it.
+Example scenarios:
+Questions q1 and q2 have multiple rows with groups (g1a, g1b, g2a etc.) that in turn are inside other groups (g1, g2, g3).
+20: Change the order of groups in q2 to match q1, but let q2 have its own row order within those groups
+q1 must have shuffle="rows,groups". This will shuffle the rows, but also allow groups to be shuffled – rather than groups returned to their XML order.
+q2 must have shuffleBy="q1" shuffle="rows,only_groups". The only_groups will make only the group order, but not the row order within the groups be copied. Without only_groups, the group order in q2 would be returned to the original XML order when done.
+The rows and q1 and q2 can be different in number and labels. There must be at least one common group label between q1 and q2 or the survey will not load.
+Get a list of labels for some items:
+List of labels for the rows in q1: q1.rows.labels – this returns e.g. ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7'] in the order they are defined in the XML.
+List of labels for the q1 rows in the order displayed to the respondent (after shuffling): q1.rows.order.labels –
+Note: This does not take into account conditions or MLS.
+21: Sudoku Validation Example
+Consider an example question q1, which has 9 rows and 9 columns that will be filled with sudoku numbers. To validate a sudoku you must ensure that not only does each row and column have 9 unique values, you must also look at 9 9-element squares that make up the sudoku grid.
+Assuming that the rows r1..r9 are arranged into groups y1 through y3, and same for the columns arranged in groups x1 through x3 this will be simple using this code:
+<for x in q1.rows + q1.cols:
+print "%s = %d unique values" % (x.label, len(set(x.vals.dataValues)))
+for x in q1.cols.groups:
+for y in q1.rows.groups:
+print "%s+%s has %d unique value" % (x.label,y.label,
+len(set(x.vals(y).dataValues)))
+We look at both rows and columns and use the new cell.vals.dataValues to return a list of selected values. Using set() on it removes unique numbers, and len() counts them.
+Review each group attached to columns, then each attached to rows. Using the group.vals(other_group) syntax we take all the values that belong to the group and narrow them down by values belong to the other group. We can then again call .dataValues to return the 9 values in the combination.
+22: Limitations
+Not supported in Crosstab conditions but is supported in virtuals.
+Builder support only in advanced editor, not the Logic Builder.

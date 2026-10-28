@@ -1,0 +1,121 @@
+Title: Creating and Managing Shell Users
+If you are a Cloud user, you can use the umanage script to manage your company users in the shell. This document outlines the potential uses and options available for the umanage script.
+Requires Decipher Cloud
+The umanage script allows you to perform a range of user-related operations such as adding / updating users, getting a full list of current staff users, as well as creating and managing user groups in the shell environment. The umanage script can also be used to generate password reset links for users.
+The umanage script uses the following syntax:
+umanage [option] [username]
+1: Setting Script Options
+The following sections outline the various options that can be set using the umanage script.
+1.1: list
+Displays all users in the system. Uses the following syntax:
+umanage list all
+The list option returns the following information:
+shell username - This is the shell username of the staff account listed. If it is a dash, then it means they are full staff in the portal but do not have shell access.
+email - The staff user’s email address that is used to log into the Portal.
+Flags:
+S - User is a full staff account
+I - Portal account for this user is inactive
+N - Shell account for this user is inactive
+G - User not manageable by your account
+Groups: These are groups the user belongs to. Groups control what level of access a user has to the server.
+supervisors - The user is a supervisor and can use the umanage tool.
+1.2: create
+Creates a new user with the email address entered. Uses the following syntax:
+umanage create email@domain.com
+If the user already exists, it will ask if you want to keep the user or remove them. When a new user is created and shell access is granted, it will output a temporary password to be used to access the server after which a new password must be created by that user.
+1.3: password
+Resets a user's shell password. Uses the following syntax, where "user" is the shell username:
+umanage password user
+Note: For Portal passwords, you can use the password reset link through the Portal or reset using the user management menu on the company page.
+1.4: groups
+Changes the groups to which a user belongs.
+Uses the following syntax to add a user to a group:
+umanage groups user +group
+Uses the following syntax to remove a user from a group:
+umanage groups user -group
+Uses the following syntax to remove a user from all groups:
+umanage groups user -all
+1.5: disable
+Disables a user's access to both the Portal and shell environment (if applicable). Depending on the user's account type, the syntax for the disable option is one of the following, where "user" is the shell username for that person's account.
+If you are disabling a staff user without shell access:
+umanage disable email@domain.com
+If you are disabling a staff user with shell access:
+umanage disable user
+1.6: enable
+Re-enables a user's access to both the Portal and shell environment (if applicable). Depending on the user's account type, the syntax for the enable option will be one of the following, where “user” is the shell username for that person's account.
+If enabling a staff user without shell access, uses the following syntax:
+umanage enable email@domain.com
+If enabling a staff user with shell access, uses the following syntax:
+umanage enable user
+1.7: link
+Associates a shell account to a Portal account that is not already linked. Uses the following syntax:
+umanage link <email><shell>
+Note: Unlinked shell accounts display a - for "email" when using umanage list.
+2: Creating And Managing Restricted Shell Users
+The Restricted Shell system allows you to create shell accounts with limited access to the platform back-end. The Restricted Shell system uses specific configuration files to limit each user to specific projects or company directories.
+3: Creating Restricted Shell Users
+Restricted Shell users can be created by using the standard umanage command:
+umanage create user@email.com
+This prompts you to confirm what type of user you are creating:
+This user has no shell account. Do you want to create a full or restricted one?
+Create shell account? Y/N/R R
+Shell account user created
+Temporary password: wxa16u1d
+Creating v2 non-staff account...
+*** Created user user <user@decipherinc.com> in v2
+.. welcome email sent
+The Create shell account? prompt gives you three possible options:
+Y - create a full shell user
+N - do not create shell account but grant staff access via portal
+R - create a restricted user
+If you select the R option, you will create a standard restricted user, which does not have any access to company or project directories. This user will only have access to standard UNIX or v2 commands.
+4: Managing Existing Shell Users
+4.1: Restricting existing shell users
+To convert an existing user’s staff account to a restricted account, execute the following command:
+umanage restrict user@email.com
+4.2: Unrestricting existing shell users
+To convert an existing restricted user’s account to a staff account, execute the following command:
+umanage promote user@email.com
+Note: When restricting or unrestricting a shell user, that user must log out and back into the shell environment for the changes to take effect.
+5: Managing Restricted Shell User Access Levels
+5.1: Creating Restriction Files
+General or individual user restrictions are created by placing specific files in the /home/hermes/v2/data/restricted server directory. All files should be created using the following naming conventions:
+de_restricted.txt - A general restrictions file. This file will be loaded first for all restricted users on the server.
+<username>.txt - User-specific restrictions. These will be loaded after de_restricted.txt restrictions and will only apply to the <username> specified as the file name.
+5.2: Restriction Files Commands
+Inside each restriction file, you must specify one of the following commands:
+deny - Removes access to the names given as argument.
+allow - Allows access to this file or directory.
+protect - Limits existing access to read-only.
+run - Allows execution of these commands.
+base - Sets the base directory for deny / allow commands so you do not have to type all full paths.
+Note: You can also use the # symbol to write comments related to the restrictions.
+5.3: Configuration Command Examples
+5.3.1: deny
+Disallowing access to company 53c:
+deny /home/hermes/v2/selfserve/53c
+Disallowing access to project 180100:
+deny /home/hermes/v2/selfserve/53c/180100
+Disallowing access to a project 180100's mail folder:
+deny /home/hermes/v2/selfserve/53c/180100/mail
+Disallowing access to all project mail folders in company 53c:
+deny /home/hermes/v2/selfserve/53c/*/mail
+5.3.2: allow
+Disallowing access to all projects in the 53c company, except for 180100:
+deny /home/hermes/v2/selfserve/53c/*
+allow /home/hermes/v2/selfserve/53c/180100
+5.3.3: protect
+Limits access to read-only for all projects in company 53c:
+allow /home/hermes/v2/selfserve/53c/*
+protect /home/hermes/v2/selfserve/53c/*
+Read-only access to file 180100 in the 53c company
+deny /home/hermes/v2/selfserve/53c/*
+allow /home/hermes/v2/selfserve/53c/180100
+protect /home/hermes/v2/selfserve/53c/180100
+5.3.4: run
+Allowing a user to run the generate shell script:
+run /home/hermes/v2/scripts/generate
+5.3.5: base
+Setting the base path of the restricted file to selfserve, so that any additional commands can refer directly to company folders in that directory:
+base /home/hermes/v2/selfserve
+Note: For any of the above examples, you can use the * symbol as a wildcard to include all subdirectories in a path.

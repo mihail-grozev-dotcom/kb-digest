@@ -1,0 +1,67 @@
+Title: Slider Rating Element
+Tip: See Customizing the Rating Scale Element to learn how to customize the Slider Rating element in the XML Editor.
+1: About the Slider Rating Element
+The Slider Rating element allows survey participants to move a slider to a point on a scale to answer a question. The Slider Rating element utilizes a select form and must contain multiple points. Additional sliders are optional. This element does not utilize Flash and is desktop, tablet, and smartphone (iOS5+, Android 2.3+) compatible.
+2: Adding a Slider Rating Element
+Note: You can set the "Show if" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Slider Rating element, first click the "+ Element" button to add a new survey element. Then click "Rate, Rank, and Sort" under Question Types and select the "Slider Rating" element. Then click "Add".
+Enter the question and instruction text in the areas provided. Add the answer options by clicking the "+ New Point" button. If you only want to show one slider with the question text, do not add any answer options.
+Enter the text for the points on the scale, and any additional sliders (optional). Each entry will be a new row and have its own slider. The system automatically provides labels / numbers for the response options, which you can edit later in "Options".
+2.1: Configuring Point Actions
+All answers appear in the question box with labels (e.g., ch1, ch2, ch3, or r1, r2, r3). Labels with the "ch" prefix indicate choices (i.e., points on the slider). Click "+ New Point" to add a new point. Labels with the "r" prefix indicate rows (i.e., sliders). Click "+ New Slider" to add a new slider.
+To edit answer options, click "Point Actions" and "Slider Actions". Click "Answer Piping" to show rows based on the answers of a previous question; to learn more, see Answer Piping.
+3: Style Settings
+To edit the display settings for a Slider Rating element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Question Display Options" window, use the options on the left to specify how the question displays. When you mouse-over an option, information about the feature displays on the right. After you have selected the required styles, click "Save and Close".
+Style Option
+Description
+Initial Slider Position
+Allows you to specify where to start the slider handle.
+Off Scale: Start the slider handle to the left of the slider scale.
+Left End: Start the slider handle at the minimum value of the slider scale.
+Middle: Start the slider handle at the middle value of the slider scale.
+Right End: Start the slider handle at the maximum value of the slider scale.
+Scale Legend Position
+Allows you to choose where the slider legend is positioned.
+Above Slider: Displays the legend above the slider scale.
+Below Slider: Displays the legend below the slider scale.
+Color-Fill Track
+When checked, the track will get highlighted according to the action of the slider, from the minimum value to the slider handle.
+When unchecked, the track will not be highlighted.
+Slider Container Width
+Allows you to modify the width of the slider scale bar by specifying the percentage of the window size it will occupy. The optimal setting for most sliders is 75%.
+Example:
+100% will stretch the slider to the full width of the survey page.
+4: Options for a Slider Rating Element
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it.
+4.1: General Options
+When altered, each of the following options affects all attributes within the Slider Rating element.
+Label: The label assigned to the element. Click to edit the default label for the Slider Rating element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: This is required and the box is checked by default.
+Randomize: Check the boxes to randomize items by type. Items can be randomized by rows, columns, groups, or all.
+Rating/Scale: Enables nets in the report. To learn how to set up your rating scale preferences in the report, see Editing Tables in Crosstabs.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.2: Choice (Points) Options
+When altered, each of the following options only affects specific choice (i.e., point) attributes.
+Label: The label assigned to the choice. Click to edit the default label for the choice.
+Data Value: The value assigned to the choice in the data. Click to edit the default value for the choice if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the choice. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the choice will be shown in if the survey has multiple languages. The default is "all".
+Slider Rating
+Opt Out (Choice): Check to include a "Don't know" option below the choice.
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the choice to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the choice optional and non-mandatory.
+Hidden: Click to hide the choice from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.3: Row (Slider) Options
+When altered, each of the following options only affects specific row (i.e., slider) attributes.
+Label: The label assigned to the row. Click to edit the default label for the row.
+Show If: Click to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the row will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the row to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the row optional and non-mandatory.
+Open End: Allows you to add an open-ended response box to the row by selecting "Mandatory" or "Optional" from the drop-down. "Mandatory" means the participant must enter feedback in the response box to continue if the row is selected, "Optional" means that feedback is not required.
+Hidden: Click to hide the row from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.

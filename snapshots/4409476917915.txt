@@ -1,0 +1,211 @@
+Title: Control where an Element Appears with the Where Attribute
+1: Overview
+The where attribute controls where an element should appear. By default, where="survey,report" is set and elements appear in both the survey and report.
+where is often used to hide questions and to create hidden questions.
+A hidden question is any question that is not seen by participants and still used to store data.
+For example:
+<text label="Q0" optional="0" size="75" where="execute">
+<exec>
+Q0.val = "%s" % datetime.datetime.now()
+</exec>
+<title>
+HIDDEN: Today's date.
+</title>
+</text>
+<html label="Introduction" where="survey">
+Welcome to the survey!
+</html>
+<radio label="Q1" where="report">
+<title>Please choose your language preference:</title>
+<row label="r1">English</row>
+<row label="r2">Spanish</row>
+</radio>
+<radio label="Q2" optional="0">
+<title>Are you ready to start?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+The code above produces the following result:
+Q0 is a hidden question because where="execute" is set. It will appear in the report and in the survey to those who are logged in only when QA codes are turned on.
+Setting where="survey" to the Introduction comment overrode its default setting of where="survey,report", forcing it to appear only in the survey and not the report.
+Q1 only appears in the report because where="report" is specified. Respondents will not see nor answer this question because it no longer appears where="survey".
+Lastly, Q2 appears in both the survey and report because its default setting, where="survey,report", is still in effect.
+2: Where Options
+The where attribute can be set to any of the following:
+Multiple locations may be specified by separating them with a comma
+(e.g. where="survey,report,summary").
+Value
+Description
+survey
+The element will appear in the participants' view of the survey.
+report
+The element will appear in the report.
+execute
+The element will be considered a hidden question and is never shown to participants. It will be visible in the report and in the survey only to those who are logged in with QA codes turned on.
+summary
+The element will appear in the summary tables.
+notdp
+The element will not appear in the datamap or data downloads.
+data
+The element will only appear in the data downloads.
+none
+The element will not appear anywhere.
+<html> elements can only be set to "survey", "report", and/or "none".
+2.1: where="survey"
+Setting where="survey" will force an element to appear in the survey and data downloads, but not in the report.
+This setting is most commonly used for <html> comment elements. For example:
+<html label="Introduction" where="survey">
+Welcome to the survey! Please click "Continue" to proceed.
+</html>
+<suspend/>
+The comment above will only appear in the survey and not in the report. If where="survey" was not set, the comment would appear in both the survey and report.
+2.2: where="report"
+Setting where="report" will force an element to appear in the report and data downloads, but not in the survey.
+This setting is most commonly used for hiding elements. For example:
+<radio label="Q1" cond="Q0.r1" where="report">
+<title>Please select one:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+The question above will appear only the report and data downloads.
+Learn more: Hiding Questions
+2.3: where="execute"
+Setting where="execute" will force an element to become a hidden element. For example:
+<checkbox label="Q1" atleast="1">
+<title>Please choose all that apply:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</checkbox>
+<suspend/>
+<exec>
+vQ1.val = vQ1.r1.index if Q1.count gt 2 else vQ1.r2.index
+</exec>
+<radio label="vQ1" where="execute">
+<title>HIDDEN: More than 2 selected at Q1?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+In the code above, vQ1 is a hidden question that stores additional data relative to the answers selected at Q1. Question vQ1 will be visible in the report, data downloads, and in the survey only when QA codes are turned on.
+Learn more: Hidden Questions
+2.4: where="summary"
+Setting where="summary" will show the element in the summary tables. This setting is most commonly used with <net> elements. For example:
+<radio label="Q1" type="rating" values="order">
+<title>Please rate your experience with the following items:</title>
+<col label="c1">1 - Bad</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5 - Good</col>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<net labels="c1,c2,c3" where="report,summary">Bottom 3</net>
+<net labels="c3,c4,c5" where="report,summary">Top 3</net>
+</radio>
+In addition to the main report tables, both the "Bottom 3" and "Top 3" nets will appear in the summary tables for question Q1.
+2.5: where="notdp"
+Setting where="notdp" will hide an element from the datamap and data downloads. It will not hide it from the survey or the report. For example:
+<checkbox label="Q1_1" atleast="1" where="notdp">
+<title>Please select all that apply:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3" exclusive="1">None of the above</row>
+</checkbox>
+<suspend/>
+<checkbox label="Q1_2" atleast="1" where="notdp">
+<title>Please select all that apply:</title>
+<row label="r1">Item 3</row>
+<row label="r2">Item 4</row>
+<row label="r3" exclusive="1">None of the above</row>
+</checkbox>
+<suspend/>
+<checkbox label="Q1" atleast="1" where="execute">
+<title>HIDDEN: Answers selected at Q1_1 & Q1_2</title>
+<exec>
+if Q1_1.r3 and Q1_2.r3:
+Q1.r5.val = 1
+else:
+Q1.r1.val = Q1_1.r1.val
+Q1.r2.val = Q1_1.r2.val
+Q1.r3.val = Q1_2.r1.val
+Q1.r4.val = Q1_2.r2.val
+</exec>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+<row label="r5" exclusive="1">None of the above</row>
+</checkbox>
+In the code above, question Q1 is a hidden question that accumulates the selections made at Q1_1 and Q1_2. Both questions Q1_1 and Q1_2 are seen by participants but not available in the data downloads. Since Q1 accounts for all of the selections made at these two questions, we can set where="notdp" for the other questions since there is no need for them to appear in the data.
+Note: Removing where="notdp" from a live survey will not add the question back to the datamap and data downloads. To re-add the question, go to the Data Layout Manager, choose Standard from the Data Layout drop-down menu, then click Edit. In the move selected variables box, select Set to Survey Order. This will re-add the question back to the datamap and data downloads.
+2.6: where="data"
+Setting where="data" will force an element to appear only the data downloads. This setting is rarely used and is similar to specifying where="execute" except that the question will not appear in the survey even when QA codes are turned on.
+For example:
+<checkbox label="vQ1" where="data" atleast="1">
+<exec>vQ1.r1.val = 1</exec>
+<title>HIDDEN: Will not have any data.</title>
+<row label="r1">Yes</row>
+</checkbox>
+<exec>vQ2.r1.val = 1</exec>
+<checkbox label="vQ2" where="data" atleast="1">
+<title>HIDDEN: Will have data.</title>
+<row label="r1">Yes</row>
+</checkbox>
+In the code above, question vQ1 will appear in the data downloads without any data. Question vQ2, on the other hand, will always be set to 1. This is because elements with where="data" are not loaded into the survey. The <exec> block inside question vQ1 will not be evaluated, but the <exec> block outside of vQ2 will properly execute.
+2.7: where="none"
+Setting where="none" will hide the element from the survey, report, datamap and data downloads completely. For example:
+<radio label="Q1" where="none">
+<title>Please select one:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+Question Q1 in the code above will not be visible anywhere.
+Note: When using where="execute,none", the question will still show in the survey. "none" does not override "execute".
+Note: Removing where="none" from a live survey will not add the question back to the datamap and data downloads. To re-add the question, go to the Data Layout Manager, choose Standard from the Data Layout drop-down menu, then click Edit. In the move selected variables box, select Set to Survey Order. This will re-add the question back to the datamap and data downloads.
+3: Examples
+3.1: Hidden Questions
+Hidden questions are created by setting where="execute" inside the question element's tag. These kinds of questions are often used to store additional data that logic can be built from later on.
+For example, we can use a hidden question to categorize a participant's age:
+<number label="Q1" title="What is your age?" size="3"/>
+<suspend/>
+<radio label="vQ1" optional="0" where="execute">
+<title>Hidden: AUTO AGE PUNCH</title>
+<exec>
+ages = ['1-17', '18-24', '25-34', '35-44', '45-54', '>= 55']
+for index, age in enumerate(ages):
+if Q1.check(age):
+vQ1.val = index
+break
+</exec>
+<row label="r1">1-17</row>
+<row label="r2">18-24</row>
+<row label="r3">25-34</row>
+<row label="r4">35-44</row>
+<row label="r5">45-54</row>
+<row label="r6">55+</row>
+</radio>
+If we specify an age of 65 at Q1, we'll see the following results on the next page for hidden question vQ1:
+The hidden question above can be used to create additional logic from, such as creating quota buckets for each age group or checking to see if a participant is an adult (e.g. not vQ1.r1).
+3.2: Hiding Questions
+Questions can be removed from the survey without affecting the datamap by setting where="report". For example:
+<checkbox label="Q10" atleast="1" where="report">
+<title>Which of the following systems do you use?</title>
+<row label="r1">Nintendo 64</row>
+<row label="r2">Super Nintendo</row>
+<row label="r3">Nintendo</row>
+<row label="r4">Gameboy Color</row>
+<row label="r5">Gameboy</row>
+<row label="r6" exclusive="1">None of the above</row>
+</checkbox>
+The question will still appear in the report and the data downloads, but not in the participants' view.
+Setting where="report" is different (and sometimes better) than setting where="none" because it will not change the datamap's layout. This is important for certain types of projects such as tracker studies where retaining the layout of the datamap is very important.
+It's important to retain the datamap because, in some cases, data processing programs are written based on the data's layout. If any of the variables change location, the program will need to be updated.
+Similarly, you can also hide a question from the survey by setting cond="0". This approach, however, may lead you to overwrite any existing condition logic that was already in place. This could potentially lead to problems if the question needs to be added back into the survey. You (or someone else) will have to remember to find the logic that existed previously.
+Tip: Use where="report" to safely hide elements from the survey.
+4: Learn More
+Adding Condition / Skip Logic
+Exec Tag: Execute Python Code

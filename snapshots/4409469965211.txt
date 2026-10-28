@@ -1,0 +1,8 @@
+Title: Adding Survey Logic
+Limited warnings are displayed when reordering elements in the tree where there are logic references in element conditions such as "Show If" logic and "Answer Piping".
+Warnings are shown when:
+Moving an element with logic based on another question above the question referenced.
+Moving an question below another element which references the question in logic.
+Warnings are not shown when:
+Moving an element with logic based on another question below the element referenced but above a page break ( i.e., placing both elements on the same page).
+Additionally, warnings will be displayed if dependent questions or elements are removed from a survey. See Removing Survey Elements to learn more about warnings shown when deleting questions.

@@ -1,0 +1,61 @@
+Title: Viewing a Survey's Performance
+Requires Decipher Cloud
+1: Overview
+The howfast script uses the most recent simulated data run to determine a survey's performance. For this script to provide meaningful results, the simulated data must include at least 200 qualified completes.
+Use the following to run the howfast script:
+howfast selfserve/123/456
+where selfserve/123/456 represents the survey's path.
+2: Viewing the Results
+Below is an example of output from running the howfast script.
+Using SST run from: Wed Mar 18 09:20:55 2015
+Page performance: 13 ms
+Per second: 106.3
+Pages per hour: 382563
+Average pages per complete 16
+Completes per hour: 23910
+The table below details how some data points are calculated.
+Data Point
+Calculation
+(completes) Per second
+Time for generating one page with simulated data multiplied by what it takes in production multiplied by the number of process used while executing the survey.
+Pages per hour
+"Per second" divided by the number of pages to complete the survey. Note that this data point assumes participants are distributed evenly and the survey is undisturbed (e.g. no data edits, or changes to the survey including style changes).
+2.1: Calculating Performance
+If you do not have shell access, you can view the "SST list" report to see the mean time:
+Here, the mean time for simulated data to show a page is 0.012 seconds on average. Using this value you can calculate the "Completes per hour", the output from running the howfast script.
+To calculate the" Completes per hour":
+Step 1: First calculate the "Pages per Hour":
+Take 5000 and divide it by the page performance (0.012). This number reports the page views per hour. In this example, the page views per hour is approximately 410000.
+Step 2: Next calculate the Completes per hour:
+Take the "Pages per Hour" (calculated in step 1) and divide by the number of pages in the survey for completion. In this example, there are 16 average pages per complete. The resulting number represents approximately the "Completes per hour".
+3: When Performance is a Concern
+You evaluate survey performance based on how much sample the client intends to send out. Consider these points:
+If the client sample is limited, then survey performance is not likely to be an issue. It is acceptable for the "Completes per hour" to be low.
+If the client sample is large and you plan for 10,000 completes per hour but the script reports 5,000 "Completes per hour", you should take action to increase the survey performance. Otherwise, most participants will drop out due to the overloaded server.
+If a survey exceeds peak capacity so that participants have to wait, new participants receive the error screen, "survey too busy."
+4: Improving Survey Performance
+If survey performance is below your requirements, you can take the following steps to increase the "Completes per hour":
+Reduce the number of pages in the survey so multiple questions are asked on the same page.
+Set the scaling survey attribute to a higher number. This allows for more CPUs to run the survey. You can typically increase this number up to scaling='5' but above this number may result in limited returns. By default, the scaling factor is set to 4.
+Set markerTimeout='0'. This action turns off "pending markers” for quotas and also allows the same source to start the survey multiple times. Synchronizing this information can take awhile.
+You can also use a survey’s tsst --profile to determine what questions or elements take a long time to execute in the survey and then optimize those items.
+4.1: Overview of the tsst --profile Output file
+The tsst --profile output file lists all of the questions within a survey and shows three columns of data per element:
+type of request - This column shows the type of request made, along with the question/call name.
+number of requests made - This column shows the total number of requests made to that individual question.
+total time for all requests of this type - This column shows the total amount of time spent (in seconds) for calling all requests for that question.
+For example, this is what a tsst --profile output might look like for 500 simulations run on a survey with six questions:
+get survey.respview 4000 12.191026
+display q6 500 1.187447
+display q5 500 1.137169
+get sys.thankspage 500 0.945147
+display q1 500 0.764799
+display q2 500 0.749749
+display q3 500 0.613445
+display q4 500 0.671377
+Typically, most question display requests are executed once per participant, while other request types, such as get survey.respview​ may be executed more or less often. These other requests are mostly connected to survey styling and display. Since certain styles are called more than once per page, the number of requests is higher (or lower, depending on the request) than the amount of simulations being run.
+Some requests may also be system calls that are run automatically. These types of requests are usually quick to load, but may take longer if they are overwritten in the survey files.
+4.2: Reading the tsst --profile Output File
+To determine the time spent processing an individual question request, you can simply divide the time provided in the third column by the total number of requests shown in the second column.
+Using the above example, column three shows that it took display q6 1.187447 seconds to process all 500 requests. Dividing that number by the total number of simulations in column two (500), you can see that the system spent about 0.002 seconds to process each record (1.187/500 = 0.002374), which is more than fast enough.
+Question requests generally take about 0.1 second per record or less to process. If a question takes longer than 0.1s per record to display, then you may want to investigate it and attempt to optimize.

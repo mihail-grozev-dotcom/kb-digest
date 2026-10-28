@@ -1,0 +1,63 @@
+Title: Saving to the Element Library
+The Element Library is a shared element repository where you can store commonly used elements for future use in your current survey or other projects. It allows you to save:
+New and customized survey elements
+Survey templates using multiple elements
+Response options that contain images
+Text that contains a pipe (e.g., "[pipe:q1]")
+Block elements
+Python logic enclosed in an <exec> statement
+Additionally, custom table settings can be attached to any elements saved in the Element Library. Attached settings are automatically applied to reports when saved elements are added to new surveys.
+Tip: See Table Settings in the Question Library for more information on what report table settings are included for elements saved in the Element Library.
+1: Viewing Saved Elements
+Once saved, new and customized survey elements are displayed under the "Elements" tab in the library. Any templates created using multiple survey elements appear under the "Templates" tab.
+1.1: Saving Elements
+To save a new or customized question or element, first select the question so that it appears in the staging area of the Survey Editor. Then, click the "..." button at the top right of the question and select "Add to Library".
+1.2: Saving Templates
+To save multiple questions or elements as a survey template, first select two or more elements from the question tree, then click "Save Template to Library".
+Tip: Click the first element to select it, then press the "ctrl" or "shift" key to make additional selections.
+2: Specifying Element Options
+Whether you are saving a single survey element or creating a template using multiple elements, you must specify the settings and sharing options for your new content prior to saving it.
+First, enter a name for the element or template and add search tags (optional). If adding multiple tags, press the "Enter" key after adding each one to add the next.
+Next, set up the element or template's sharing options as described below.
+2.1: Sharing
+Users with Survey Editor access can add any library elements they can view to a survey. When adding an element or a response set to the library, you can specify how this content is shared with other users. By default, sharing is set to "Off".
+The following sharing options are available when saving both survey elements and templates:
+Setting
+Shared With
+View/Edit
+Off
+No one.
+View: Only you.
+Edit: Only you.
+Users
+Specific users specified by their email address.
+View: You and specified users.
+Edit: You and specified users.
+Company
+All users in your company.
+View: You and all users in your company.
+Edit: Only you.
+Global (staff only), if available
+All users on the server.
+View: You and all users on the server.
+Edit: Only you.
+Note: Once an element is locked, it cannot be deleted or unlocked..
+2.2: Advanced Settings for Elements
+If you want to assign a different ID to an element or template or lock it to disable editing, click the "Advanced Settings" link to expand the dialogue.
+Then, enter a different ID or check the box next to “Lock” to lock the element and click "Save".
+2.2.1: Element ID
+The element ID is unique across the server and can be used to reference the element in the question library API.
+2.2.2: Lock
+A locked element:
+Cannot be deleted from the library. This ensures that any surveys in the field using the element are not broken.
+When inserted into a survey can not generally be edited. A semi-transparent overlay displays on locked elements in a survey as a reminder. However, attributes such as the label, "show if logic", and "answer piping" can be edited so that logic can be updated as necessary for consistency.
+Has a library XML attribute added and set to equal the unique element ID. However, you can specify a different one.
+<radio label="q10" library="gH198zky" optional="0">
+Note: Finalize the element before adding it to the library in a "locked" state. Locked elements cannot be deleted from the library.
+3: Saving Response Options
+To save a set of response options, first set up the question, then click "Answer Actions" and select "Save Answers to Library".
+Enter a name and add tags (optional), then click "Save". For multiple tags, press "Enter" after adding each one. Next, set up the sharing options for your response set by selecting from the list.
+Once you are satisfied with your settings, click “Save” to add the response set to the library.
+3.1: Advanced Settings for Response Sets
+If you want to assign a different ID for a set of response options, click the "Advanced Settings" link, and enter a different ID in the text box. This ID is unique across the server.
+Note: Response Sets saved to the library may not be locked. That feature is available only when saving a survey element or template to the library.

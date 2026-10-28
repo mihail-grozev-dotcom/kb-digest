@@ -1,0 +1,16 @@
+Title: 153.44 Release Notes
+Release Date: November 5, 2024
+Release Version: 153.44
+New Features
+Portal
+In the Company Settings modal, "Archive Report Settings" has been renamed to "Notification Settings", and the "Email Report To" field is now titled "Email".
+Responses
+Bulk
+Bulk invite and list files are now required to be UTF-8 encoded, and the -e flag to specify the output encoding for the bulk build command is now ignored because the encoding is always set to UTF-8.
+Bug Fixes
+Survey
+Survey Editor
+An issue that caused a fatal error when selecting the non-numeric value for the Alert element's "Send Reminder Alert After # days of inactivity" option has been resolved.
+Reporting
+Crosstabs
+An issue causing some inaccuracies to be displayed in the stat test groups shown at the top of a report has been resolved.

@@ -1,0 +1,196 @@
+Title: Decipher Technology: Python
+The Decipher platform is written almost entirely in the Python programming language.
+The language is powerful, open-source, easy to learn, and has an effective approach to object-oriented programming. Python's dynamic typing and interpreted nature makes it an ideal and flexible language for creating surveys.
+If you are new to Python or would like to learn more, you can find a variety of free coding tutorials at Codecademy.com.
+1: When is Python Used?
+As a programmer, you will use Python often to:
+Create condition / skip logic.
+Create, read, update and delete variables.
+Automate tasks (such as importing data).
+Validate participant data.
+Call various built-in functions.
+Python code can be written in cond, exec, validate and virtual elements.
+2: How is Python Written?
+Applied to survey programming, Python code will be written as an expression or as a statement. The difference lies in:
+A Python expression is a bit of code that represents something and evaluates to a value (e.g., "True"
+, "False", 0, 1, 99, "red", etc.).
+Python statements are instructions of code that are executed and do something (e.g., if x: do_y();, etc.).
+2.1: Python Expressions
+Expressions are commonly written within the cond attribute. For example:
+<radio label="Q1">
+<title>Did you enjoy your vacation?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<textarea label="Q2" cond="Q1.r1">
+<title>What did you enjoy about your vacation?</title>
+</textarea>
+<suspend/>
+If "Yes" is selected at "Q1", then the expression, cond="Q1.r1", will evaluate to True. Questions will only be shown if the cond attribute is True (by default, it is True).
+The variable "Q1" holds the results of the question with label "Q1" and contains all of the information relative to the question object. To access the question's data information and attributes, use the dot . operator (e.g., Q1.r1).
+Note: Question data can only be accessed after submitting the responses (e.g., after a <suspend/> tag, through a <validate> tag, etc.).
+Each survey object is equipped with a number of attributes that can be accessed using the dot operator.
+See Overview of Question and Element Tags to learn more about the survey attributes.
+2.2: Python Statements
+While Python expressions reside mostly in the cond attribute, Python statements are normally written inside an <exec>, <validate> and <virtual> element. A Python statement is one or more lines of Python instruction code that are executed to do something. For example:
+<exec>
+question = Q1
+count = 0
+row_items = []
+for eachRow in question.rows:
+count += 1
+row_items.append(eachRow.text)
+print "There are", count, "rows in", question.label
+def print_items(items):
+for i in items:
+print i
+print_items(row_items)
+</exec>
+<radio label="Q1">
+<title>
+Python Statement Example
+</title>
+<row label="r1">Row Item 1</row>
+<row label="r2">Row Thing 2</row>
+<row label="r3">Row 3</row>
+</radio>
+<suspend/>
+The code above would show the following to someone testing the survey:
+Note: The green box reflects the printed statements in the <exec> block. This is used for debugging purposes only and will not appear in the actual survey.
+This code uses several Python statements to accumulate the number of rows in "Q1" and print each row's text value. There are many ways to control the flow of instructions.
+See Python.org to learn more about the Control Flow tools.
+2.3: Python Logic Operators
+Use Python operators to add logic to your surveys. For example:
+<exec cond="Q1.ival gt 5 or (Q2.r1.ival gt Q2.r2.ival)">
+if Q1.ival gt 5:
+Q3.val = "More than 5 selected at Q1"
+else:
+Q3.val = "More value given to Q2.r1 than Q2.r2"
+</exec>
+In the code above, several of the operators described below are used to properly add value to "Q3".
+Operator
+Description
+Example
+gt
+Compares two values and returns True if the left side is
+GREATER THAN ">" the right side.
+1 gt 2 == False
+ge
+Compares two values and returns True if the left side is
+GREATER THAN OR EQUAL TO ">=" the right side.
+2 ge 2 == True
+lt
+Compares two values and returns True if the left side is
+LESS THAN "<" the right side.
+2 lt 2 == False
+le
+Compares two values and returns True if the left side is
+LESS THAN OR EQUAL TO "<=" the right side.
+1 le 2 == True
+or
+Returns the evaluation of the first value if it is True
+otherwise returns the second value.
+0 or 1 == True
+and
+Returns the evaluation of the first value if it is False
+otherwise returns the second value.
+0 and 1 == False
+not
+Returns the inverse of a value.
+not False == True
+Learn more: Adding Condition / Skip Logic
+2.4: Python Reserved Words
+There are numerous words that you should avoid using as labels or variables in your survey. Both the Python language and Decipher programming platform has reserved words that may become problematic if overwritten:
+and
+as
+assert
+break
+chr
+class
+continue
+def
+del
+dict
+djs
+dollar
+elif
+else
+enumerate
+eval
+except
+exec
+file
+filter
+finally
+float
+for
+from
+getattr
+getMarker
+global
+globals
+goto
+gv
+hasattr
+id
+if
+import
+in
+inf
+input
+int
+is
+iter
+js
+lambda
+len
+locals
+map
+max
+min
+not
+o
+open
+or
+ord
+p
+_p
+pass
+print
+qjs
+quote
+raise
+range
+reduce
+removeMarker
+return
+round
+set
+setMarker
+str
+sum
+this
+timing
+try
+type
+uqjs
+vars
+while
+yield
+3: Additional Resources
+The official Python documentation page is a great resource for all Python-related questions:
+The Python Tutorial
+The Python Language Reference
+Lexical Analysis
+Data Model
+Compound Statements
+Here are some other great resources for learning Python:
+Codecademy
+Google's Python Class
+To view Decipher-specific Python code examples, check out the following articles:
+Adding Condition / Skip Logic
+Basic and Advanced Randomization
+Randomizing Response Options in Groups
+Exec Tag: Execute Python Code
+Streamline Conditions with Vector Logic

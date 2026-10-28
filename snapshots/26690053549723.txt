@@ -1,0 +1,37 @@
+Title: 153.34 Release Notes
+Release Date: June 18, 2024
+Release Version: 153.34
+New Features
+Survey
+Survey compats 29 and below are now deprecated (changed from 18 and below).
+Learn More: Survey Compat Levels
+Dynamic Questions
+The current version (2) of Date Picker now supports the French (Canada), English (UK), and Uzbek languages.
+Participant View
+Participant View's default survey footer now includes a link to an Accessibility Statement complying with Web Content Accessibility Guidelines 2.1 A/AA.
+Reporting
+Crosstabs
+A new color palette is available for charts.
+Responses
+Participant Sources
+A new sample provider "Full Circle Research" is now available.
+Bug Fixes
+Portal
+The welcome email for new Single Sign On users will now direct to their server login page, instead of the company's Single Sign On portal. Additionally, the reset password email instructs the user to contact their company admin for password assistance, rather than providing a link.
+The width of the survey list now adjusts to fill the viewport, and survey path text is right-aligned, resulting in less truncation of critical text.
+Survey
+Dynamic Questions
+The current version of Video Player (videoplayer.2) now plays normally in Participant View when Survey Testing Tools are enabled.
+Survey Editor
+Changing the survey path no longer causes some surveys to auto-archive.
+noanswer rows can no longer be dragged into row groups.
+Learn More: NoAnswer Tag: An Opt-Out Response Option
+Responses
+Participant Sources
+Fixed an issue that prevented the use of letters in Participant source list values.
+Programming and Tools
+API
+Accessing an email campaign created in the UI but edited via API no longer causes an error.
+Custom Code Elements (Logic Nodes)
+Optimized variable replacement for Research Defender SEARCH (researchdefender_search.2) and REVIEW (researchdefender_review.1) logic nodes to handle fatal errors.
+Improved error handling and logging for the Research Defender SEARCH Logic Node (researchdefender_search.2).

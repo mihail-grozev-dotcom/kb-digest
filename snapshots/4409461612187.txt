@@ -1,0 +1,138 @@
+Title: Building a Crosstab
+This document outlines the process for building a new crosstab report. You can build a new crosstab with segments using this guide.
+1: Building a New Crosstab
+To build a new crosstab, open Crosstabs for your project and select New Crosstab.
+Next, create your crosstab using the available tools and features in the New Crosstab modal.
+You can jump to any of the following steps as needed.
+1: Add Your Segments
+2: Configure Your Segments
+3: Define Crosstab Settings
+4: Preview Your Crosstab
+5: Save Crosstab or Run Without Saving
+6: Editing Crosstab XML
+1: Add Your Segments
+When you create a new crosstab, it includes a Total segment, representing all participants. You have the option to edit the Total segment or delete it once additional segments are added.
+Segment options include:
+"+ Segment": Adding a single segment
+"+ Multiple": Adding multiple segments
+"+ Group": Adding groups
+1.1: Adding a Single Segment
+To add a single segment, click + Segment. Enter the segment name and then configure the logic.
+1.2: Adding Multiple Segments
+To add multiple segments at the same time, click +Multiple. Select the logic configuration, then click Create X Segments, ("X" is the number of segments you have generated).
+The segment names reflect the chosen logic (for example: answer options or dates).
+1.3: Adding a Group
+Grouping segments places the header in the report and changes the stat testing results, so items in the same group are tested together.
+To add a new group, click +Group. Rename the group and then drag segments into the group.
+2: Configure Your Segments
+There are three different ways to configure your segments:
+2.1: Question Logic: Use Question Logic to create segments based on responses to survey questions, or existing additional variables.
+2.2: Date Logic: Allows you to show responses based on a date range.
+2.3: Saved Crosstab Segment: Allows you to create segments based on a previously saved Crosstab segment.
+2.1: Question Logic
+Use Question Logic to create segments based on responses to survey questions, or existing additional variables. The screen varies slightly between adding a single segment and adding multiple segments at once.
+Select Question Logic, then:
+1. Select an option from the drop-down menu.
+2. Choose the answers you want as segments.
+3. Select the logic. Below is a table of available logic operations based on question type:
+Question Type
+Available Logic Operations
+Single Select
+any of these (selected)
+none of these (selected)
+Multiselect
+any of these (selected)
+none of these (selected)
+all of these (selected)
+count is ("equal to, not equal to, less than, greater than" #)
+Number
+Equal to (single #, list of #s, range of #s, < or > #, a combination of all)
+Not equal to (single #, list of #s, range of #s, < or > #, a combination of all)
+Less than
+Greater than
+Range
+Has a value
+Text / Open End (OE)
+equal to (text string)
+not equal to (text string)
+contains (text string)
+does not contain (text string)
+count is ("equal to, not equal to, less than, greater than" text string)
+Note: For numeric questions, select "Has a value" to exclude empty data fields from the logic (when applicable). Otherwise, empty data fields will be evaluated to "0" and included in the logic. Specifying "Has a value" is the same as using <questionLabel>.val is not None in XML.
+4. Click Done.
+Tip: If adding multiple segments at once, adding Group Header will display the header in the report and change the stat testing results, so items in the same group are tested together. This is optional.
+2.2: Date Logic
+Allows you to show responses based on a date range.
+Select Date Logic, then follow the steps below:
+1. Select the From and To range in the fields provided.
+2. Create segments for each: Choose how the dates are broken into segments. (Only shown when adding multiple segments).
+Day
+Rolling 7 days
+Rolling 30 days
+Custom (specify an exact number of days in a segment interval)
+3. Create Group Header: (Optional; only available when creating multiple segments) The header displays in the report and changes the stat testing results, so items in the same group are tested together..
+4. Click Create a group with X Segments if adding multipe segments ("X" is the number of segments you have generated.) or Done if adding only one segment.
+2.3: Saved Crosstab Segment
+Allows you to create segments based on a previously saved Crosstab segment.
+Select Saved Crosstab Segment, then follow the steps below:
+1. Select an option from the drop-down menu. You can run the crosstab as saved or modify the segments shown.
+2. Choose the answers you want as segments.
+3. (Optional; only available when creating multiple segments) Creating a Group Header displays the header in the report and changes the stat testing results, so items in the same group are tested together.
+4. Click Create a Group with X Segments if adding multiple segments ("X" is the number of segments you have generated) or Done if adding only one segment.
+2.4: Total (Net) Segment
+While creating a segment, you can select the logic option Total (Net) available under Question Logic.
+When you add this segment to a group, it displays the count/percentages of the segments within the group only.
+When the Total (Net) is not in a group, the count/percentages are based on all segments in the crosstab (where each segment is joined by the Boolean "OR" function). If there are no segments to net, then the Total defaults to All Respondents (same as in the Total Frequency report).
+Select + Segment and then select Question Logic:
+1. Select Total (Net) from the drop-down.
+2. Name the segment.
+3. Drag the segment into a group, if desired.
+4. Click Save or Run.
+2.5: Compound Logic
+Creating compound logic means applying more than one logic condition to an existing segment.
+To create compound logic, build the first level of logic. Then add an additional layer of logic by clicking on + Logic.
+Repeat the steps for defining the logic, based on Question Logic, Date Logic, or a Saved Crosstab Segment.
+Next, select the logic joiner.
+Logic (condition) joiners include:
+And: Joins two logic conditions with AND, which filters participantdata where both conditions must be true.
+Or: Joins two logic conditions with OR, which filters participant data where either condition can be true.
+And not: Joins two logic conditions with AND NOT, which filters participant data where the first condition must be true and the second condition must be false.
+Or not: Joins two logic conditions with OR NOT, which filters participant data where the first condition can be true or the second condition can be false.
+Finally, rename the segment to reflect the compound logic.
+To nest additional logic, see 2.5.1: Creating Compound Logic with Multiple Conditions or 4.2: Nested Segments with Groups.
+2.5.1: Creating Compound Logic with Multiple Conditions
+Note: You can also create compound logic by nesting segments in the preview are. See 4.2: Nested Segments with Groups to learn more.
+When creating compound logic with three or more conditions, you have the option to define the order of operations for the logic function by merging two of the conditions. Merging logic works similarly to the parentheses included in a math equation, considering all conditions inside the parenthesis as a whole, rather than looking at each condition individually.
+For example, if you wanted to use the following conditions as logic, first add each condition as a separate layer of logic for the segment. The conditions you want to merge must be added in order.
+[(Males AND Age 18-24) AND the any of 6 items]
+Then click the button.
+Once merged, the conditions are grouped in the segment editor.
+Tip: To unmerge logic conditions, click Unmerge.
+3: Define Crosstab Settings
+Click Settings to define the settings for the crosstab.
+See Configuring Crosstab Settings to learn more.
+4: Preview Your Crosstab
+As you build your crosstab, a preview of your segments is shown along the top.
+The preview displays the segments as they will appear when you run your crosstab.
+When you select a segment or group to preview, the following actions are available:
+Duplicate Segment/Group: Makes a copy of the segment or group (including all segments nested in the group).
+Delete Segment: Deletes the segment from the crosstab.
+Delete Group: Deletes the group. All segments that comprised the group will remain in the crosstab. To delete the remaining segments, select "x" on each segment.
+4.1: Drag and Drop
+The crosstab preview has a drag-and-drop feature enabled, which allows you to quickly reorder segments or groups in your crosstab. You can also use the drag-and-drop feature to add or remove segments from groups.
+To activate the drag-and-drop feature, select a segment or group with your mouse and move it into the crosstab preview.
+4.2: Nested Segments with Groups
+You can quickly create nested segments by using the drag-and-drop feature while working with groups.
+When working with two groups, you can activate the feature by selecting one group header and dragging the group above or below another group.
+Dragging one group above another will nest the segments into multiple groups.
+Here is how multiple groups look:
+Dragging one group above another will nest the segments into single groups:
+Here is how single groups look:
+By using the drag-and-drop feature to nest groups, you can quickly create compound logic.
+5: Save Crosstab or Run Without Saving
+Once you have configured the crosstab, select one of the following:
+Save: Saves the crosstab for future use. Name your crosstab, provide a description, and define its view/edit permissions.
+Run: Runs the crosstab without saving.
+6: Editing Crosstab XML
+If you are familiar with coding, you can view the Crosstab XML to edit or modify the report and find errors that might not be visible from the user interface.
+See Using XML to Edit Crosstabs to learn more.

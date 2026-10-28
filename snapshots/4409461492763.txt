@@ -1,0 +1,11 @@
+Title: Question Settings
+The Question Settings section of the Project Settings Summary menu allows you to quickly review and adjust the question settings for your survey.
+1: Accessing the Question Settings
+To view the question settings for your survey, first click the "Settings" button at the top right of the Survey Editor or XML Editor.
+In the "Survey Summary" window, select "Question Settings" from the "Summary" drop-down menu or click the blue "Question Setting" header on the left.
+2: Configuring Question Settings
+Select whether each question type is mandatory or optional by default, and edit the instructions that appear below the question text. The settings can be modified in the Survey Editor for individual questions later.
+If your survey already has questions, you may choose to apply the configured settings to them as well.
+3: Saving Question Settings
+Click "Save" to save any changes made to the question settings for the project.
+You can also click the arrow next to the "Save" button to select "Save for this project", or if you would like these question settings to be set as the defaults for future projects as well, select "Save and set as defaults".

@@ -1,0 +1,13 @@
+Title: 153.46 Release Notes
+Release Date: December 3, 2024
+Release Version: 153.46
+Bug Fixes
+Portal
+Simulated Data
+An issue preventing the quota increase indicator icon from displaying has been resolved.
+Reporting
+Crosstabs
+The favorites download for Video Testimonial questions in Crosstabs no longer includes formerly favorited videos for records that have been deleted.
+Programming and Tools
+API
+Using the API to change a library element's locked attribute to true now prevents edits to that element in the Survey Editor stage, as expected.

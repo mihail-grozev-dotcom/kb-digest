@@ -1,0 +1,24 @@
+Title: 139.4 Technical Release Notes
+Release Date: August 21, 2018
+Release Version: 139.4
+New Features
+CINT Panel Integration
+Added a new custom code element for retrieving and updating CINT panelist data directly from a Decipher survey.
+Compacting Data
+Add the ability to compact text data in older surveys using the compact-results script.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue where stat testing would run for aggregate / grid tables with more than 26 segments
+Fixed an issue where adding nets with open-ended starting values (i.e., -100) would disable table editing
+Fixed an issue with RIM Weighting where the Root Mean Square was miscalculated when a segment was equal to zero
+Survey
+Survey Editor
+Fixed an issue where Single Select Button Grid questions without columns were not editable
+Fixed an issue where the Survey Editor would freeze when uploading an XLS (.xls) file
+Fixed an issue where the Survey Editor would not save row answer text
+Fixed an issue where some conditional logic added to custom support links was causing project settings to become inaccessible
+Fixed an issue where tabbing through the input fields for Multi-Select Button Grid questions would cause the text input to disappear
+Fixed an issue where the Conditions drop-down menu would close when using the Answer Piping tool
+Programming & Tools
+Fixed an issue where autorecover would hang when processing recover requests

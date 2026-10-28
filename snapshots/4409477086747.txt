@@ -1,0 +1,33 @@
+Title: Overview of the Survey Elements Menu
+The Survey Elements menu located inside the Survey Editor contains all of the survey elements available to you.
+1: Overview
+The primary features of the Survey Elements menu are described below.
+1. Show Elements: Select a category of questions or elements to display in the menu.
+Show All Elements: Shows all elements, including ones that are incompatible with your Project Settings
+Only Show Compatible Elements: Only shows elements compatible with your Project Settings
+Only Show Optimized Elements: Only shows elements that are specifically optimized for participants based on your Project Settings. These are adapted beyond just being compatible.
+2. Search: Enter an element name or associated keywords to search for it in the menu.
+3. Elements: Displays each of the available elements that match the selected type or search terms.
+4. Element Types: Displays all of the available question and element types. Choose from any of the following to sort elements:
+Favorites: Questions marked as favorites (starred)
+Question Types
+Single and Multi Select
+Open End
+Rate, Rank, and Sort
+Stimulus
+Participant Upload
+Advanced
+Logic Elements
+Structural Elements
+Custom
+Library
+Panel Datapoints: Datapoint elements available when using a Panel Management sample source.
+Note: The "Panel Datapoints" category is only visible if your company has enabled a Panel Management integration and will appear grayed out if your survey does not contain at least one Panel Management sample source.
+5. Element Details: Provides a description of the selected question or element with an example.
+Learn More: Click to jump to the knowledge base documentation
+Demo: Click to view a demo of the selected element (if available)
+Star: Click on the star to mark as favorite
+6. Add: Adds the selected question or element to the survey.
+2: Learn More
+Add an element to your survey using the Survey Element menu: Adding and Removing a Question or Element.
+Descriptions of each element type and links to each element's documentation: Question and Element Types.

@@ -1,0 +1,30 @@
+Title: Survey Recorder
+The Recorder feature in the survey testing toolbar tracks your current testing path to assist you with identifying errors or issues that may arise during testing. The Recorder tracks all of your survey data up to the current page, allowing you to copy your current survey path for re-testing if you run into any problems.
+Tracked data includes any values assigned to you for survey variables, all questions you have viewed, and the answers you selected while testing the survey.
+1: Reviewing Your Testing Path
+To review your current testing path, click the "Recorder" button to expand the feature.
+From here, you can scroll to view all of your past survey data or jump directly to another question in the survey using the drop-down menu at the top.
+Note: Only previously submitted questions will have data in the Recorder. You cannot view your responses to questions that have not yet been submitted, even if they are on the same page as your currently selected question.
+1.1: Jumping Forward
+When using the question drop-down to jump past the currently selected question, the Recorder will automatically answer any incomplete questions between this question and the question you select with dummy responses.
+Questions with unsatisfied base logic will not be accessible from the drop-down menu. You will need to test through the survey using a qualifying path in order to view those questions in the Recorder.
+1.2: Jumping Backward
+When using the question drop-down to jump back to an earlier survey question, the Recorder will continue to store all of your responses up to your last submitted question (unless a change is made). If you jump to a previously submitted question and submit a different response, the Recorder will clear your responses to all questions appearing after the changed question.
+2: Supported Element Types
+The following element types are supported in the Recorder:
+Survey questions
+Blocks
+Loops
+Termination points
+Quotas
+Elements set to be displayed based on survey language
+The content of a descriptive content element
+Hidden questions, including those with where="report" and those hidden by the question element logic evaluating to "false"
+Note: When a question is displayed because the question logic is evaluated to "false", a message is displayed. This only applies to question-level evaluation and does not include questions that would not be displayed due to the parent or answer element logic evaluation, where the question is displayed without a warning or skipped respectively.
+3: Additional Considerations
+Although running simulated data is not required for using the Recorder, you can run simulated data to automatically complete a testing path for you.
+When you click the "Finish" button in the survey, the Recorder will reset and all of your current survey data will be erased.
+Child elements will not be displayed when using a merged question (e.g., a question with rightOf / below).
+When the Recorder is open, you can resize it by clicking the top of the toolbar and dragging it up or down.
+If required conditional logic is bypassed when jumping to a question or element, the Recorder will display a warning message and highlight the affected element(s).
+If a survey contains multiple languages, the Recorder drop-down menu will display only the questions and elements specific to the currently selected language.

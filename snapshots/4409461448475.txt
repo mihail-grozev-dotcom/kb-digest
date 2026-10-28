@@ -1,0 +1,39 @@
+Title: Sample Marketplace FAQ
+See below for answers to some of our most frequently asked questions regarding the Sample Marketplace.
+Defining Your Sample Needs
+Q: How do I determine my Length of Survey?
+A: Your survey length is the average amount of it will take to fully complete the survey in one sitting. If you do not know your survey length, ask some of your colleagues or team members to test through your survey as a participant and report on the amount of time it takes them to complete it. A few of these test cases should help you determine a good average.
+Q: How do I calculate my Qualifying Rate?
+A: Your survey’s Qualifying Rate indicates the percentage of people in the general population that will qualify (or meet the desired criteria) for your survey. If you do not know your Qualifying Rate, you can use U.S. Census data to help you calculate this.
+Q: How do I know if my survey collects personally identifying information?
+A: Personally Identifying Information (PII) includes any information that can be used to distinguish or trace an individual’s identity. If you are asking participants to provide sensitive information, such as their email addresses, full names, phone numbers, or postal addresses, your survey collects PII. Most surveys do not collect PII.
+See The Sample Marketplace to learn more about configuring your sample criteria in the Sample Marketplace.
+Q: How do I purchase sample in a different country or language?
+A: You can select the desired region and language for your survey from the “locale” drop-down on the Sample Purchase page.
+Adding Targeting Criteria
+Q: I’d like to see what a target question looks like before I add it to my qualification list. How can I preview it?
+A: To preview a target question, click the “Add Target” button and hover over that question in the drop-down.
+Note: If a target question appears in another language, you must first add it then use the language toggle button to view a preview of the question in your native language.
+Q: Can I use target questions to track participant information without screening anyone?
+A: Yes. If you want to collect the information specified in any target question but not target for it, add the question and leave all answers selected.
+Q: Can I add a target question without setting a quota/limit for it?
+A: Yes, but keep in mind that by not entering a quota for each field, you are allowing sample to fall out naturally across the question’s response options.
+Important: To avoid additional charges from oversampling, we recommend adding quotas for all surveys with purchased sample. Learn more about using quotas to limit your survey completes.
+Q: If I decide I don’t want to use a target question I’ve already added, how do I remove it from my sample criteria?
+A: If you do not wish to target for or collect the information included in a target question, select the question and click “Remove Target”.
+See Purchasing Survey Sample to learn more about adding and editing target questions in the Sample Marketplace.
+Q: Can I target survey participants by zip code?
+A: Yes, zip code targeting is available for surveys fielded in English within the United States.
+See Targeting Sample by Zip Code to learn more about targeting zip codes.
+Launching a Participant Source
+Q: Can I soft-launch a participant source prior to going live with it?
+A: Yes. You can soft-launch a participant source by creating multiple bids for that source. While individual bids can only have one set of specified sample criteria, surveys can have any number of participant sources. To soft-launch a participant source, create one bid with the criteria for the soft-launch and a second for the rest of the sample you require.
+Q: I need to make changes to my live bid, what do I do?
+A: If you need to make changes to a live bid, first close the bid to stop traffic and ensure no one else enters your survey. Then create a new sample bid with the necessary changes. When you’re ready to go live again, set the new bid live and leave your original bid as-is.
+Note: If your survey includes any quotas/limits, you will need to increase these before re-launching it using a new bid.
+See Purchasing Survey Sample to learn more about creating bids in the Sample Marketplace.
+Access to Sample Marketplace
+Q: Are there limitations on what servers are allowed access to the Sample Marketplace?
+A: Yes. Access to the Sample Marketplace requires that your account be up-to-date with all software releases and installs managed by Forsta. Accounts lacking the latest software or those which have an on-premise install will not have access to the Sample Marketplace.
+Q: Are there any other restrictions on who is allowed access to the Sample Marketplace?
+A: Yes. The Sample Marketplace is enabled at the company level and your company supervisor must have completed a specialized marketplace training program in order to add the Sample Marketplace to your account. If you are interested in enabling the Sample Marketplace for your company, contact your Forsta representative for more information.

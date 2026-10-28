@@ -1,0 +1,22 @@
+Title: 151.2 Release Notes
+Release Date: September 13, 2022
+Release Version: 151.2
+New Features
+Surveys
+Participant Sources
+Added an additional variable to the Dynata Sample Provider default exit links.
+Bug Fixes
+Survey
+Respondent View
+Fixed an error where the “scale” firStyle radio button was not appearing for compat 149+ surveys.
+Campaign Manager
+Fixed an issue that prevented users from editing email campaign recipient lists.
+Fixed an issue that prevented users from saving an email campaign as a template if a recipient list was attached to that campaign.
+Reporting
+Crosstabs
+Fixed an issue where pagination for video testimonial thumbnails were stacking on top of each other instead of one above and one below the list of video thumbnails.
+Fixed a bug in Crosstabs where rows with certain labels were not properly displaying the NPS slider for those rows.
+Fixed an issue that sometimes prevented bulk export of Video Testimonial content in Crosstabs.
+Data Downloads
+Fixed an issue with BCG-Excel data format (non-standard and must be manually enabled) that prevented output of non-blank data in the Raw_Data_Text tab.
+Fixed an issue with the SPSS option, so the reserved word lt when used as a variable, will now be correctly escaped and output as xlt.

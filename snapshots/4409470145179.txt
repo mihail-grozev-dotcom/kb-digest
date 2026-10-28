@@ -1,0 +1,14 @@
+Title: Exporting Tables in Crosstabs
+You can export individual tables in Crosstabs. However, before you can export individual table sets within Crosstabs, you must first run a report.
+See Running a Total Crosstab to learn how to run a default total report.
+1: Exporting a Table
+After you have run a report, navigate to the table for the question you would like to export. Then click Export and select the format in which you would like to receive your table data:
+1.1: Excel
+The Excel format will export the data into one Excel file, with the response percentages on the first worksheet and counts on the second.
+1.2: Powerpoint
+The Powerpoint format will export the data into one PowerPoint file with a cover page and other elements broken into individual slides, including any charts you've added for the table in Crosstabs . All of the standard editing options are available.
+1.3: PDF
+The PDF format will export the data into one PDF file, with elements broken out into individual pages, including any charts you've added for the table in Crosstabs. All of the standard editing options are available.
+2: Limitations and Other Considerations
+Exporting the data for a single table is very similar to exporting table sets; however, there are some small differences. Keep in mind the following when exporting single table data:
+Report settings summaries shown in global exports are not included with single table exports.

@@ -1,0 +1,13 @@
+Title: Creating Logic With Raw Code
+The Survey Editor allows you to write or edit survey logic for questions and response options in the form of raw code.
+Tip: To learn how to build logic using the standard method (i.e., without using raw code), see Adding Logic to a Question or Response Option.
+To edit or create survey logic with raw code, first select the desired question or response option so that its options appear to the right of the staging area. Then click "Show if" and click either the "+ condition" button to create a new condition or click an existing condition to edit that condition.
+In the "Logic Conditions Setup" window, click the "Show Raw Code" link to open the raw code editing field.
+If you have already created a logic condition, the raw code appears for it.
+To add to the logic, type valid code into the field, as shown below. If the code is valid, the logic description gets updated. Review the description to confirm its correctness. Then click "Save," or "Save As" if you wish to name the condition for later use in the Survey Editor.
+Click the links below for more information on writing raw code:
+Python Expressions
+Python Functions
+Vector Logic
+If the logic entered is complex (i.e., it involves nesting, statements, or vector logic) or is invalid, a message that states "custom code has been entered for this condition" appears.
+Tip: Run test data on the survey to test that the logic is valid.

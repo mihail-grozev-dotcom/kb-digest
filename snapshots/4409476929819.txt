@@ -1,0 +1,337 @@
+Title: Customizing the Text Highlighter Element
+Using the Survey Editor? Learn more about the Text Highlighter Element.
+1: Overview
+The text highlighter element allows participants to highlight elements to make selections. Compatible on desktops, tablets and smartphone devices, this dynamic question style is a great way to gain insight on what participants think about advertisements, concepts and any kind of textual information.
+The text highlighter element is customizable. You can:
+disable certain elements
+update highlighter colors
+incorporate HTML elements
+provide an opt-out option
+include numerous selection options (for example, "Like", "Neutral", "Dislike")
+2: Underlying Question Architecture
+The text highlighter element sits on top of a <select> question. See below for an example of the base XML code required.
+<select label="Q1" optional="1">
+<title>How do you feel about the following statement?</title>
+<comment>Please make a selection.</comment>
+<choice label="ch1">Like</choice>
+<choice label="ch2">Neutral</choice>
+<choice label="ch3">Dislike</choice>
+<row label="r1">The</row>
+<row label="r2">quick</row>
+<row label="r3">brown</row>
+<row label="r4">fox</row>
+<row label="r5">jumps</row>
+<row label="r6">over</row>
+<row label="r7">the</row>
+<row label="r8">lazy</row>
+<row label="r9">dog</row>
+</select>
+The XML code above produces the following result:
+3: Converting to the Text Highlighter Element
+To add the text highlighter style to this question, update the <select> tag as shown below:
+<select label="Q1" optional="1" uses="hottext.4">
+This change produces the following result:
+That's all it takes to transform the simple select question into a mobile-friendly, interactive question. You may now select a highlighter from the buttons above and make selections to the text provided (for example, green for "Like", blue for "Neutral" and red for "Dislike").
+4: Customization
+Listed below are all of the attributes available for this element. Override them to create a custom look and feel for your text highlighter element.
+Attribute
+Type
+Description
+Example
+hottext:atleast
+int
+The number of required highlighted answers that must be selected before the "Continue"/"Finished" button is enabled.
+Default: 1
+Example: hottext:atleast="5" requires the participant to highlight five items before continuing.
+hottext:atmost
+int
+The maximum number of highlighted answers that can be selected.
+Default: 9999
+hottext:atmost="10" means the participant can highlight up to ten items and no more.
+hottext:marker_color
+string
+The color of the marker for the <choice> element.
+Defaults:
+1 choice: #39B54A
+2 choices: #39B54A, #ED1C24
+3 choices: #39B54A, #00AEEF, #ED1C24
+4+ choices: #39B54A, #00AEEF, #ED1C24, [...] the rest are transparent
+<choice label="ch1" hottext:marker_color="#00000">Redact</choice> will change the marker color to black, allowing you to perform NSA-like redacting.
+hottext:nospace
+bool
+Determines whether a trailing space is added after the <row> item.
+Default: 1
+<row label="r1" hottext:nospace="0">run/</row> will not add a whitespace after "run/".
+hottext:prefix_html
+string
+HTML code to insert before this <row> element. Values provided here will not be selectable.
+<row label="r1" hottext:prefix_html="<br/>">The</row> will add a break before "The", displaying "The" on its own line.
+<row label="r1" hottext:prefix_html="How now ">brown cow</row> will add the words "How now " before "brown cow" and only "brown cow" will be selectable.
+hottext:suffix_html
+string
+HTML code to insert after this <row> element. Values provided here will not be selectable.
+<row label="r1" hottext:suffix_html=" <i class='fa-icon-star' />twinkle twinkle little</row> will display the star icon just after the words "twinkle twinkle little" and only "twinkle twinkle little" will be selectable.
+hottext:disable
+bool
+Determines whether to disable the row item so that it cannot be selected.
+Default: 0
+<row label="r1" hottext:disable="1">Chapter 1:</row> will display "Chapter 1" normally, but it cannot be selected.
+hottext:containerCSS
+CSS
+CSS for the main text highlighter container.
+hottext:containerCSS="border: 5px solid black;" will add a thick black border to the main container.
+hottext:headerCSS
+CSS
+CSS for the header container containing the highlighter marker buttons.
+hottext:headerCSS="background-color: red;" will update the background color from gray to red.
+hottext:headerStickyCSS
+CSS
+CSS for the header container containing the highlighter marker buttons when it is in "sticky mode". This happens when the participant has scrolled down far enough to make the header follow the view, sticking to the top of the screen for convenience.
+hottext:headerStickyCSS="border: 1px solid black;" will add a thin black border when the header is scrolling with the view, in "sticky mode".
+hottext:buttonGroupCSS
+CSS
+CSS for the container containing the highlighter markers.
+hottext:buttongGroupCSS="margin: 0px;" will reduce the overall vertical space that the buttons take up.
+hottext:markerCSS
+CSS
+CSS for the highlighter marker buttons.
+hottext:markerCSS="font-weight: bold; color: black;" will update the marker text from a thin gray to a thick black.
+hottext:iconBrushCSS
+CSS
+CSS for the brush icons present in the highlighter marker buttons.
+hottext:iconBrushCSS="border: 1px solid black;" will add a thin black border around only the brush icons.
+hottext:markerSelectedCSS
+CSS
+CSS for the highlighter marker button currently in use.
+hottext:markerSelectedCSS="font-weight: bold;" will display bold text in the marker currently in use.
+hottext:contentCSS
+CSS
+CSS for the container containing the selectable elements that can be highlighted.
+hottext:contentCSS="font-weight: bold; padding: 2px;" will embolden all of the selectable text and reduce the overall padding.
+hottext:spotImageCSS
+CSS
+CSS for the containers containing any images present within the content area.
+hottext:spotImageCSS="padding: 15px;" will increase the overall padding for each image, making the selection color more visible.
+hottext:spotDisableCSS
+CSS
+CSS for any <row> elements that are hottext:disabled="1"
+hottext:spotDisableCSS="background: white; font-style: italic;" will remove the default gray background color and display any text in italics.
+hottext:footerCSS
+CSS
+CSS for the footer that can (optionally) contain the opt-out option.
+hottext:footerCSS="background: #efefef; border: 1px solid #ccc; border-top: none;" will style the footer to look similar to the default header.
+hottext:overlayCSS
+CSS
+CSS for the overlay that is (by default) not visible.
+hottext:overlayCSS="width: 100%; height: 100%; opacity: 0.2; filter: alpha(opacity=20); background: red;" to add a light red overlay covering the entire text highlighter question.
+hottext:report_custom_chart
+enum
+The default custom chart to display in the Crosstabs report (ransomword, colorcodeword, wordcloud).
+Default: ransomword
+hottext:report_custom_chart="wordcloud" will show a HTML5 word cloud in the Crosstabs report.
+hottext:report_legend_palette
+string
+Custom colors to provide to replace the color palette used in the Crosstabs report (delimited by double pipes, || ). It is suggested to provide at least 4 colors and no more than 12.
+Default: #E2A29D||#A1B9CC||#B8D4B1||#C8B7CD||#E5C395||#E6E6B8
+hottext:report_legend_palette="#000000||#3d3d3d||#6d6d6d||#9d9d9d||#d1d1d1" will use a color palette of grays, from dark to light.
+5: Customization Examples
+Using the attributes above, we can customize the default look and feel of the text highlighter element. See the examples below that help illustrate a few of the possibilities.
+5.1: Example 1
+Using a number of the attributes, we can change the overall look of our question style. Using the hottext:suffix_html and hottext:prefix_html attributes, we added spacing and displayed icons that cannot be selected. View the XML code for this example below:
+5.1.1: Example 1 XML Code
+<select label="Q1" optional="0" uses="hottext.4"
+hottext:contentCSS="text-align: center;"
+hottext:headerCSS="background: #acecef;"
+hottext:footerCSS="background: #acecef; border: 1px solid #ccc;
+border-top: none;"
+hottext:markerCSS="border: 2px solid black;"> <title> Please highlight the parts of the song you
+<span style="color: #39B54A">Like</span>,
+<span style="color: #ED1C24">Dislike</span>,
+and feel <span style="color: #00AEEF;">Neutral</span> about.
+</title>
+<comment>Use the available markers to highlight your preferences.</comment>
+<choice label="ch1">Like</choice>
+<choice label="ch2" hottext:marker_color="#ED1C24">Dislike</choice>
+<choice label="ch3" hottext:marker_color="#00AEEF">Neutral</choice>
+<row label="r1" hottext:prefix_html="<i class='fa-icon-quote-left' /> ">How</row>
+<row label="r2" >can</row>
+<row label="r3" >the</row>
+<row label="r4" >life</row>
+<row label="r5" >of</row>
+<row label="r6" >such</row>
+<row label="r7" >a</row>
+<row label="r8" hottext:suffix_html="<br/>">man</row>
+<row label="r9" >Be</row>
+<row label="r10" >in</row>
+<row label="r11" >the</row>
+<row label="r12" >palm</row>
+<row label="r13" >of</row>
+<row label="r14" >some</row>
+<row label="r15" >fool's</row>
+<row label="r16" hottext:suffix_html="<br/>">hand?</row>
+<row label="r17" >To</row> <row label="r18" >see</row>
+<row label="r19" >him</row>
+<row label="r20" >obviously</row>
+<row label="r21" hottext:suffix_html="<br/>">framed</row>
+<row label="r22" >Couldn't</row>
+<row label="r23" >help</row>
+<row label="r24" >but</row>
+<row label="r25" >make</row>
+<row label="r26" >me</row>
+<row label="r27" >feel</row>
+<row label="r28" >ashamed</row>
+<row label="r29" >to</row>
+<row label="r30" >live</row>
+<row label="r31" >in</row>
+<row label="r32" >a</row>
+<row label="r33" hottext:suffix_html="<br/>">land</row>
+<row label="r34" >Where</row>
+<row label="r35" >justice</row>
+<row label="r36" >is</row>
+<row label="r37" >a</row>
+<row label="r38" hottext:suffix_html="<br/><br/>">game.</row>
+<row label="r39" >Now</row>
+<row label="r40" >all</row>
+<row label="r41" >the</row>
+<row label="r42" >criminals</row>
+<row label="r43" >in</row>
+<row label="r44" >their</row>
+<row label="r45" >coats</row>
+<row label="r46" >and</row>
+<row label="r47" >their</row>
+<row label="r48" hottext:suffix_html="<br/>">ties</row>
+<row label="r49" >Are</row>
+<row label="r50" >free</row>
+<row label="r51" >to</row>
+<row label="r52" >drink</row>
+<row label="r53" >martinis</row>
+<row label="r54" >and</row>
+<row label="r55" >watch</row>
+<row label="r56" >the</row>
+<row label="r57" >sun</row>
+<row label="r58" hottext:suffix_html="<br/>">rise</row>
+<row label="r59" >While</row>
+<row label="r60" >Rubin</row>
+<row label="r61" >sits</row>
+<row label="r62" >like</row>
+<row label="r63" >Buddha</row>
+<row label="r64" >in</row>
+<row label="r65" >a</row>
+<row label="r66" >ten-foot</row>
+<row label="r67" hottext:suffix_html="<br/>">cell</row>
+<row label="r68" >An</row>
+<row label="r69" >innocent</row>
+<row label="r70" >man</row>
+<row label="r71" >in</row>
+<row label="r72" >a</row>
+<row label="r73" >living</row>
+<row label="r74" hottext:suffix_html="<br/>">hell</row>
+<row label="r75" >That's</row>
+<row label="r76" >the</row>
+<row label="r77" >story</row>
+<row label="r78" >of</row>
+<row label="r79" >the</row>
+<row label="r80" hottext:suffix_html="<br/>">Hurricane</row>
+<row label="r81" >But</row>
+<row label="r82" >it</row>
+<row label="r83" >won't</row>
+<row label="r84" >be</row>
+<row label="r85" >over</row>
+<row label="r86" >till</row>
+<row label="r87" >they</row>
+<row label="r88" >clear</row>
+<row label="r89" >his</row>
+<row label="r90" hottext:suffix_html="<br/>">name</row>
+<row label="r91" >And</row>
+<row label="r92" >give</row>
+<row label="r93" >him</row>
+<row label="r94" >back</row>
+<row label="r95" >the</row>
+<row label="r96" >time</row>
+<row label="r97" >he's</row>
+<row label="r98" hottext:suffix_html="<br/>">done</row>
+<row label="r99" >Put</row>
+<row label="r100">him</row>
+<row label="r101">in</row>
+<row label="r102">a</row>
+<row label="r103">prison</row>
+<row label="r104">cell</row>
+<row label="r105">but</row>
+<row label="r106">one</row>
+<row label="r107">time</row>
+<row label="r108">he</row>
+<row label="r109">could-a</row>
+<row label="r110" hottext:suffix_html="<br/>">been</row>
+<row label="r111">The</row>
+<row label="r112">champion</row>
+<row label="r113">of</row>
+<row label="r114">the</row>
+<row label="r115" hottext:suffix_html=" <i class='fa-icon-quote-right' />&lt;br/&gt;<i class='fa-icon-music' />">world.</row>
+</select>
+5.1.2: Example 1 XML Code Description
+Here's a brief description of each attribute that was added to create this style:
+hottext:contentCSS="text-align: center;"
+This attribute was used to center the text displayed in the content area.
+hottext:headerCSS="background: #acecef;"
+Instead of the default gray color, it was updated to a light blue color.
+hottext:footerCSS="..."
+Using CSS, we styled the footer to look similar to the header.
+hottext:markerCSS="border: 2px solid black;"
+We added emphasis to the marker buttons by adding a thicker black border
+<choice ... hottext:marker_color="...">
+To be consistent, we arranged the marker buttons as presented in the title text. We overrode the default color values so that the participant could easily identify which button to use.
+<row ... hottext:prefix_html="..."
+This attribute includes additional HTML code to be presented before the row text. The values provided here are not selectable.
+This helped us add fun icons to reflect that the text the participant is reading are lyrics from a song.
+<row ... hottext:suffix_html="..."
+This attribute includes additional HTML code to be presented after the row text. The values provided here are not selectable.
+Lyrics should be read like a poem, so many line breaks were added according to the way the lyrics were written.
+5.2: Example 2
+In this example, there are images that can be highlighted and certain text that cannot be selected. For participants who have not used any of the social networks provided, an opt-out option has been included. See the XML code below.
+5.2.1: Example 2 XML Code
+<select label="Q2" optional="0" title=" " alt="Social Networks"
+uses="hottext.4"
+hottext:contentCSS="text-align: center;">
+<choice label="ch1">I use this</choice>
+<row label="r0" hottext:disable="1">
+<h1 class="large-text">Social Networks</h1></row>
+<row label="r1">
+<hottext:prefix_html><![CDATA[
+<h2 class="medium-text">Please highlight the apps you use</h2>
+]]></hottext:prefix_html>
+<img src="[rel facebook.png]" class="icon" /></row>
+<row label="r2"><img src="[rel twitter.png]" class="icon" /></row>
+<row label="r3"><img src="[rel vine.png]" class="icon" /></row>
+<row label="r4"><img src="[rel linkedin.png]" class="icon" /></row>
+<row label="r5"><img src="[rel diaspora.png]" class="icon" /></row>
+<row label="r6"><img src="[rel pinterest.png]" class="icon" /></row>
+<row label="r7"><img src="[rel myspace.png]" class="icon" /></row>
+<row label="r8"><img src="[rel google.png]" class="icon" /></row>
+<noanswer label="r99">I don't use any of these</noanswer>
+</select>
+<style name='respview.client.css' with="Q2"> <![CDATA[
+<style>
+.icon { width: 50px; }
+.large-text { font-size: 32px; margin-bottom: 10px; }
+.medium-text { font-size: 16px; }
+</style>
+]]></style>
+<suspend/>
+5.2.2: Example 2 XML Code Description
+Here's a brief description of each attribute that was added to create this style:
+hottext:contentCSS="text-align: center;"
+Since we wanted all of the content centered, we added the text-align attribute here to center the text and images.
+<row ... hottext:disable="1">
+Since we only wanted the participant to select the social networks, we disabled this additional instructional text which is not be allowed to be selected.
+hottext:prefix_html="..."
+This is another way to present disabled text. Just before the "Facebook" image, we displayed additional instructional text which is not be allowed to be selected.
+<noanswer ... >I don't use any of these</noanswer>
+Since it's likely some participants have not heard of or use these social networks, we added an opt-out option using the <noanswer>element.
+<style name='respview.client.css' ... >
+Additional CSS was added to the question to reduce the image sizes, increase the font sizes and margins present in the content area.
+6: Additional Considerations
+6.1: Limitations
+The text highlighter is designed to be used with text and not images. If images are included, participants must click the image. Participants are unable to highlight images and words together with a single stroke. Forsta reccomends using the hottext:prefix_html and hottext:suffix_html attributes to display images that cannot be highlighted to improve the participant experience.
+Using more than 100KB (e.g. 10 images of 10 KB) in the text highlighter will cause the survey page to load noticeably slower. Page timeouts are possible with more than 10 images.
+Due to the potential for discrepancies in word count between multiple languages, the highlightable text within the Text Highlighter question cannot be translated directly (i.e., using a survey file or via the Language Manager). To translate highlightable text, you must manually adjust the text within the question.
+Tip: If your project is to be fielded in multiple languages, create a hidden question with the highlightable text in its original format. This will provide translators with context for more accurate translations.

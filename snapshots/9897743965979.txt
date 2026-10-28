@@ -1,0 +1,21 @@
+Title: M42 Release Notes
+Release Date: March 19, 2019
+Release Version: 142
+New Features
+Survey
+Added Italian (Switzerland) as an available survey language.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue where piped text was displayed incorrectly in rows and columns.
+Fixed an issue where RIM weighting requests could slow down server performance.
+Response Summary
+Fixed an issue where the number of opened emails from cached bulk email sends were not being counted in the Campaigns tab.
+Survey
+Survey Testing Tools
+Fixed a styling issue affecting the Quick Links menu.
+Programming & Tools
+Fixed an error caused by the generate-dashboard script generating a fake user object.
+Fixed an issue where the layout script would not run correctly.
+Portal
+Fixed an issue with survey documents not working when exported to Microsoft Word.

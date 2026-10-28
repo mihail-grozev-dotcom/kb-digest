@@ -1,0 +1,11 @@
+Title: 154.19 Release Notes
+Release Date: May 5, 2026
+Release Version: 154.19
+Bug Fixes
+Survey
+Participant View
+Fixed a visual issue where the last rank in Rank Sort (version 8) questions did not display correctly on desktop browsers.
+Themes
+Resolved an issue where the "Overwrite?" prompt appeared in situations where it did not apply.
+XML Editor
+Fixed an issue that prevented compat level changes to retired live or closed surveys.

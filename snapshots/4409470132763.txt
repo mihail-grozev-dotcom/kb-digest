@@ -1,0 +1,28 @@
+Title: Adding Custom Tables in Crosstabs
+In Crosstabs, you have the ability to create custom tables to view and sort data using predefined configurations.
+Custom tables will only apply to participant data from previous survey questions. These tables appear only within reports and cannot be used to build survey logic.
+1: Creating a Custom Table
+To create a custom table, select Create Custom Table from the Actions menu in Crosstabs while viewing a specific crosstab.
+The Custom Table Editor will appear, allowing you to configure your custom table. The following options are available within the Custom Table Editor:
+1. Table Title: Enter a title for your custom table. The title will help you identify your table in the report. The title is searchable within Crosstabs.
+2. View Datamap: Opens the Direct to Browser version of your survey datamap in a new tab.
+3. + Table Row: Creates an additional row in your table. Custom tables are created with one row by default.
+Note: While you can clear the row title and condition information for the default table row, the row itself cannot be removed.
+4. Row Title: Click into the box to enter a title for the row. Each row must have a title.
+Note: Attempting to save a table with an untitled row will generate an error message; to resolve the issue, verify that your row includes a title.
+5. Condition: Click into the boxes to enter the condition logic for each row. Row conditions accept most report XML code, except the ALL and ALL_IN_GROUP attributes. All conditions should reference question and response labels (not altlabels).
+See Using XML to Edit Crosstabs for more information on writing condition logic.
+Note: Entering invalid logic will generate an error message; to resolve the issue, verify that your logic is referencing the correct question and response labels.
+6. Delete Row: Delete the row.
+7. Move Row: Click and hold to drag the row to a new location in the editor.
+8. Save: Saves the table and adds it to the report.
+2: Configuring Your Table
+To configure your custom table, click into each text-box and enter the associated information. To enter a name for your custom table, click into the Table Title box in the editor.
+To add the necessary details for each row, click into the text boxes under Row Title and Condition.
+To add a new row, click + Table Row at the top right once for each additional row you need.
+3: Applying Your Table to the Report
+Once you are satisfied with your custom table, click Save to apply it to the report. Crosstabs will automatically refresh and you will be redirected to view the full report.
+From the search drop-down, select the table that you created.
+Once added to the report, custom tables are permanent and can not be removed. Be sure to verify that all your table row information is correct before clicking Save in the editor.
+4: Editing a Custom Table
+Once a custom table is added to the report, you can edit it at any time using the Menu button. To edit an existing custom table, click Menu and select Edit Table from the drop-down.

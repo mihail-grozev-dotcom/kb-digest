@@ -1,0 +1,93 @@
+Title: Using XML to Edit Reports
+You may edit the XML for all saved reports in a survey, edit the XML for an individual report or create a new report with XML.
+1: Accessing the XML for All Saved Reports
+To access the XML for all saved reports in a survey, select "view report/get data" in the quick links menu, or via the Portal.
+In your report screen, click on the drop down arrow next to "Edit XML."
+A window will drop down making the code for the survey report visible. From here, you can directly edit the report using XML. If you are familiar with coding, this can be an easy way to edit or modify the report and find errors not always visible from the graphical user interface (GUI). Select the blue "Update" button once you have completed your edits. Running the report prior to selecting "Update" will revert your code back to its previous content and any changes you made will be lost.
+2: Accessing the XML for a Single Saved Report
+To access the XML for an existing report or new report, first select "view report/get data" in the quick links menu, or via the Portal. Then select the edit icon for the existing report, or click "+New Report" to create a new report.
+The banner/segment builder will appear. Click "Edit XML," located below the segment restriction section, and the XML window will appear.
+Edit the XML in the area provided. There is a link to the datamap below the XML window. This allows you to view the labels for use in the XML. When you've finished editing the XML you must select "Update report from XML" to update the banners/segments. If you do not select "Update report from XML" any changes made in the XML will be lost.
+If you receive a "Parse Error" message it means the XML is not entered correctly and cannot update the report. Review the description provided in the error message and make the corrections to the XML. Once the XML is entered correctly the report will update.
+Note that the labels in the XML are case sensitive.
+Once the XML has been updated in the report, select "Save" to save and name the report for future use, or select "Run Report without Saving."
+3: Creating A Custom Report with XML
+There are four XML tags and 2 conditions that can be used to create custom reports.
+3.1: XML Tags
+<reports> - The outer most tag that defines that you will have custom reports.
+<report> - Each custom report will be setup in a <report> tag.
+<seg> - Defines a specific banner point within your custom report.
+<cond> - Outlines the specific logic that defines your specified banner point.
+All tags that are opened must also be closed, using the forward slash (/). In the example below both the <seg> and <cond> tags are opened and closed properly; the opening <seg> tag includes the name attribute (name="").
+<seg name="Male">
+<cond>+q1: r1</cond>
+</seg>
+3.2: Conditions
++ (and) - Specifies what should be included in the segment.
+! (not) - Specifies what should not be included in the segment.
+The conditions can be used on both the question labels and the attribute labels (rows, cols, choices). Below is an example of applied conditions:
+<cond>+q1: +r1 +r2</cond>
+For text and textarea questions, this example will match q2’s textual value against this string -- case sensitively
+<cond>q2: "some text" "other text"</cond>
+For Number/Float questions, this example will check for items within that range, 400 and above, or less than 50
+<cond>q3: 1-100 400+ &lt;50</cond>
+3.3: Combining Tags and Conditions
+The XML file is a series of nested XML tags. There will be only one set of <reports></reports> tags that surround all of your custom reports. Nested in the <reports></reports> tags will be one or more <report></report> tags; these define each of your custom reports, and like the <seg> tags, must include the name of your custom report (name="").
+<reports>
+<report name="Male 18-34">
+</report>
+</reports>
+Inside each report, you must use the <seg></seg> and <cond></cond> tags to define your banners. There is one <seg></seg> for each banner point you want to include in your report, and must include a name (name=""). The <cond></cond> tags are then nested to define the logic for each banner point; you can have one or more <cond></cond> tags inside each <seg></seg>.
+<seg name="Male 18-34">
+<cond>+q1: r1</cond>
+<cond>+q2: r2 r3</cond>
+<cond>!q9: +r1 +r2</cond>
+</seg>
+<seg name="Male 44 or under">
+<cond>+q1: r1</cond>
+<cond>!q2: r5</cond>
+<cond>+q9: +r1 +r2</cond>
+</seg>
+3.4: Defining Variable Names
+In the above example using the <cond></cond> tags, the logic was defined using the syntax '+q1: r1'. These references, 'q1' and 'r1' are specific variable names used within the survey. To find the appropriate variable references, you can download the survey datamap, available in the download feature of the report. You can use the "direct to browser" option, which loads the datamap in your current browser. The datamap shows each question and the associated label. For more information on how to find the proper report, see Data Downloads and Formatting Options.
+3.5: Defining the Proper Logic
+The labels and conditions are used to create the proper logic for specifying each segment. Using a portion of a datamap, below is the description of custom segments using the <cond></cond> tags.
+Example Datamap:
+[q1]
+Gender:
+r1 - Male
+r2 - Female
+[q2]
+Please select your age range:
+r1 - Under 18
+r2 - 18-24
+r3 - 25-34
+r4 - 35-44
+r5 - 45 or older
+[q3]
+Which is your favorite brand?
+0 - Unchecked
+1 - Checked
+r1 - Brand A
+r2 - Brand B
+r3 - Brand C
+r4 - Brand D
+Example #1
+<seg name="Male">
+<cond>+q1: r1</cond>
+</seg>
+Example #2
+<seg name="Male and not (45 or older)">
+<cond>+q1: r1</cond>
+<cond>!q2: r5</cond>
+</seg>
+Example #3
+<seg name="Male and (Brand A or B)">
+<cond>+q1: r1</cond>
+<cond>+q3: r1 r2</cond>
+</seg>
+Example #4
+<seg name="Male and (Brand A and B)">
+<cond>+q1: r1</cond>
+<cond>+q3: +r1 +r2</cond>
+</seg>

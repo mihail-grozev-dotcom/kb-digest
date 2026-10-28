@@ -1,0 +1,41 @@
+Title: Flagging Open End Responses
+Overview
+The OE Flag (Open Ended Flag) logic node verifies whether responses to open-ended questions are gibberish (nonsensical strings) and whether a participant provided identical inputs to multiple open-ended questions. The OE Flag logic will analyze all open-ended responses by default, but also allows you to specify a list of questions to be ignored when checking.
+Using the Survey Editor
+To use OE_CHECK an OE Flag element must be included in the survey.
+Note: The position of the node in the survey is irrelevant.
+To add an OE Flag element, first go to the Survey Editor. Then click + Element > Question types > Advanced > OE Flag:
+Next, configure the gibberish threshold and specify any questions you would like to skip checking.
+Threshold (required)
+This is an integer value which represents the sensitivity when determining if a response is gibberish. The default value is 82. The acceptable range is 0-100, but the algorithm works best in the 80-85 range.
+<logic label="ln1" oe_check:gibberishThreshold="85" uses="oe_check.2"></logic>
+Lower values (80 and lower) increase the chances that a gibberish input will be flagged as such, but there is a risk of flagging inputs that are not gibberish. Higher values (85 and higher) decrease the chances that a gibberish input will be flagged.
+Skip questions (optional)
+If you want certain open-ended questions to be exempt from gibberish detection, specify them in the Skip questions field. They should be specified as a comma-separated list of questions to be skipped (for example, “q1, q2”).
+Note: If you do not want to skip any questions, this field should be left empty.
+Using the XML Editor
+To add the OE_Check logic node, add the following logic tag to your survey XML, specifying both a gibberish threshold and any questions you would like skipped:
+1<logic label="ln1" oe_check:gibberishThreshold="85" oe_check:skipQuestions="q1,q2" uses="oe_check.2">
+2 <title>OE Flag</title>
+3</logic>
+Note: If no questions should be skipped, the oe_check:skipQuestions="..." part should be omitted.
+Parameters
+Parameter
+Description
+Example
+Required
+Default
+gibberishThreshold
+Sensitivity of flagging a response as gibberish
+85
+No
+82
+skipQuestions
+Questions that should be ignored by this logic node
+q1,q2
+No
+Empty
+Reviewing Gibberish and Duplicate Responses
+Once you have collected some survey data, you can review which responses were marked as gibberish by going to Responses >View/Edit Responses. Choose Columns and select the ln1_oe_validation: Open-End Validation Check column.
+This will update the report table to include columns with a list of gibberish and duplicate responses for each participant:
+Note: The validation column will be empty if none of the responses by a participant were detected as gibberish.

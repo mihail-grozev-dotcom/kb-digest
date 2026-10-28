@@ -1,0 +1,165 @@
+Title: Customizing the Media Evaluator Element
+The media evaluator element is a great way to get feedback on a video, enabling participants to rate the video in real-time using a slider.
+1: Underlying Question Architecture
+This dynamic style uses a <textarea> question as its base. See below for an example of the base XML code required.
+<textarea label="Q1" optional="0">
+<title>
+As you're viewing the following video, please drag the slider to rate your level of enjoyment.
+</title>
+<comment>Please hit play to view and rate the video</comment>
+</textarea>
+The code above produces the following result:
+2: Converting to the Media Evaluator Element
+To add the media evaluator element to this question, update the <textarea> tag attributes as shown below:
+<textarea label="Q1" optional="0" uses="bcme.8">
+<title>
+As you're viewing the following video, please drag the slider to rate your level of enjoyment.
+</title>
+<comment>Please hit play to view and rate the video</comment>
+</textarea>
+This change produces the following result:
+3: Customization
+Listed below are all of the attributes available for this element. Override them to create a custom look and feel for your media evaluator element:
+Style Setting
+Description
+Name
+Type
+Notes
+Report Color
+Color for the base frame in the report
+bcme:report_base_color
+string
+XML only.
+Note: This controls the color of the scale in the video overlay.
+Video ID
+The unique video id provided in the file manager. Learn more.
+bcme:video_id
+string
+Example: bcme:video_id="25489134688552" will reference video with the ID number provided. The video ID must not be an evaluated expression (e.g. a resource tag or pipe).
+Video Width
+The video's width in pixels
+bcme:width
+int
+Default: 640
+Example: bcme:width="1280" will display the video with a width of 1280px.
+Video Height
+The video's height in pixels
+bcme:height
+int
+Default: 360
+Example: bcme:height="720" will display the video with a height of 720px.
+Allow Pause
+Allow the participant to pause the video playback
+bcme:pause_enable
+bool
+Default: 0
+Example: bcme:pause_enable="1" will allow the video to be paused.
+Allow Auto-Start (Desktop)
+(Desktop browsers only) Start the video immediately after load
+bcme:autostart
+bool
+Default: 0
+Example: bcme:autostart="1" will start playing the video immediately when it has loaded.
+Auto Advance
+Automatically advance to the next page when the video has finished playing
+bcme:autosubmit
+bool
+XML only.
+Default: 0
+Example: bcme:autosubmit="1" will go to the next page as soon as the video has played through.
+Watermark
+The text to display as a watermark on the video
+bcme:watermark
+string
+Example: bcme:watermark="${uuid}" will show the participant's uuid variable on the video as it plays.
+Watermark Position
+The position of the watermark text relative to the video (Top Left, Top Right, Bottom Left, Bottom Right)
+bcme:watermark_position
+enum
+Default: Top Left
+Example: bcme:watermark_position="Bottom Right" will display the watermark text in the bottom right of the video.
+Slider Orientation
+The orientation of the rating slider (Horizontal, Vertical)
+bcme:slider_orientation
+enum
+Default: Horizontal
+Example: bcme:slider_orientation="Vertical" will show the slider to vertically to the right of the video instead of horizontally below the video.
+Slider Minimum
+The minimum rating value of the slider (must be less than slider_max)
+bcme:slider_min
+int
+Default: 0
+Example: bcme:slider_min="10" will not allow a rating value any less than 10.
+Slider Maximum
+The maximum rating value of the slider (must be greater than slider_min)
+bcme:slider_max
+int
+Default: 100
+Example: bcme:slider_max="50" will not allow a rating value any greater than 50.
+Slider Fill Range
+Select whether a colored range should be shown on the track from the minimum or maximum value (none, min, max)
+bcme:slider_range
+enum
+Default: none
+Example: bcme:slider_range="max" will add a colored fill from the right side of the track to the slider handle.
+Slider Scale Interval
+A whole number representing the interval of each slider point.
+bcme:slider_step
+int
+Default: 1
+Example: bcme:slider_step="10" will increment/decrement the value by ten with every movement of the slider.
+Note: The value range of the slider (max - min) should be evenly divisible by the interval.
+Slider Minimum Legend
+Text to display on the left-most slider point
+bcme:legend_left
+string
+Example: bcme:legend_left="Completely Dissatisfied" will display "Completely Dissatisfied" on the far left of the slider track.
+Slider Middle Legend
+Text to display on the middle slider point
+bcme:legend_middle
+string
+Example: bcme:legend_middle="Neither Satisfied nor Dissatisfied" will display "Neither Satisfied nor Dissatisfied" on the middle of the slider track.
+Slider Maximum Legend
+Text to display on the right-most slider point
+bcme:legend_right
+string
+Example: bcme:legend_right="Completely Satisfied" will display "Completely Satisfied" on the far right of the slider track.
+Engagement Text
+Text to display after the engagement time to remind the participant to engage with the video by sliding the slider
+bcme:engagement_text
+string
+Default: Please use the slider to indicate your preference for the video.
+Example: bcme:engagement_text="Don't forget to slide the slider!" will update the text shown to participants after the engagement time has passed.
+Engagement Time (seconds)
+The number of seconds that the slider handle is inactive for before displaying the engagement text
+bcme:engagement_time
+int
+Default: 10
+Example: bcme:engagement_time="5" will show the engagement text after 5 seconds if the handle hasn't been slid.
+Engagement Skin
+The skin (style) of the engagement text (black, blue, cloud, dark, facebook, lavender, light, lime, liquid, salmon, yellow)
+bcme:engagement_skin
+enum
+Default: light
+Example: bcme:engagement_skin="black" will update the style of the engagement text dialog to black.
+Allow Tune Out
+Allow the participant to virtual tune out of the video
+bcme:tuneout
+bool
+Default: 0
+Example: bcme:tuneout="1" will show an additional button to allow the participant to tune out of the video, setting the slider to the lowest possible value (or whatever is specified for bcme:tuneout_value).
+Tune Out Button Text
+Text to display on the tune out button
+bcme:tuneout_text
+string
+Default: Tune Out
+Example: bcme:tuneout_text="Not Paying Attention" will change the text of the tune out button.
+Tune Out Value
+When the tune out button is clicked, what value should the slider move to? (keep, min)
+bcme:tuneout_value
+enum
+Default: min
+Example: bcme:tuneout_value="keep" will keep the value where the slider is when the button was pressed.
+Note: If the video is inactive (no views) for more than six months, it may be removed.
+4: What's Next?
+Check out the Media Evaluator Element article if you need to add this dynamic style using the Survey Editor.

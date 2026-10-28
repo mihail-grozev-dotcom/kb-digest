@@ -1,0 +1,71 @@
+Title: Attributes for Display Settings
+There are a variety of <survey> attributes that can be used to configure the behavior of both surveys and their questions across Decipher's various tools and features.
+You can use the following attributes to control the various display settings for any Decipher survey:
+Attribute
+Purpose
+Description
+newStyle
+Load nstyles files
+Implicitly added for all surveys with a compat level of 23+ (compat="23+").
+When newStyle="1" is specified, the style system automatically loads additional configurations specified in the nstyles file located in your project's root directory.
+Tip: Use the XML Style System instead of the older NewStyle system.
+OldProgress
+Use Old Progress Calculations
+Controls which system to be used for calculating survey progress shown by the progress bar.
+If oldProgress="1" is specified, then the old system for calculating survey progress is used.
+progressOnTop
+Show Progress Bar on Top
+Controls where the progress bar is displayed in the survey.
+If progressOnTop="0" is specified, the progress bar will appear at the bottom (footer) of the page.
+ss:customCSS
+Load a Single CSS File
+Allows you to load one CSS file located in your project's static directory. For example, if your CSS file is named customStyle.css, then specify ss:customCSS="customStyle" to load it from the static / directory.
+ss:customJS
+Load a Single JavaScript File
+Allows you to load one JS file located in your project's static directory. For example, if your script is named customScript.js, then specify ss:customJS="customScript" to load it from the static / directory.
+ss:hideProgressBar
+Hide Progress Bar
+Hides the progress bar.
+If ss:hideProgressBar="1" is specified, then the progress bar will not be displayed on the survey page.
+ss:includeCSS
+Load Multiple CSS Files
+Allows you to add a comma-separated list of CSS files to your project (e.g., ss:includeCSS="/survey/selfserve/9d3/proj1234/style1.css, proj1235/style2.css").
+ss:includeJS
+Load Multiple JavaScript Files
+Allows you to add a comma-separated list of JavaScript files to your project (e.g., ss:includeJS="/survey/selfserve/9d3/proj1234/script1.js, proj1235/script2.js").
+ss:logoFile
+Specify the Path to the Logo Image File
+Allows you to specify a path to a logo that will be shown in the survey (e.g., ss:logoFile="selfserve/9d3/proj1234/logo.png").
+ss:logoPosition
+Specify the Position of the Logo Image
+Controls the logo's position in the survey.
+By default, ss:logoPosition="middle" is specified and the logo appears centered on the survey page.
+Specify ss:logoPosition="left" or ss:logoPosition="right" to change the logo's placement.
+ss:logoAlt
+Specify alternate text
+Provides alternate text for participants with screen readers. Additionally, the alternate text is displayed if the image cannot be shown (i.e., there is a missing resource).
+By default, ss:logoAlt="Logo" even if you set it to an empty string, ss:logoAlt="".
+Note: This attribute requires surveys to have a compat level of 133+ (compat="133+").
+fir
+Replace survey form inputs with better images
+Note: The fir attribute requires surveys to have a compat level of 125+ (compat="125+").
+Overrides the standard form inputs (e.g. radios and checkboxes) with custom SVGs (Scalable Vector Graphics).
+By default, fir="off" is specified and the standard browser inputs shown below appear for all questions.
+If fir="on" is specified, then these standard inputs will be swapped out with better image graphics.
+The fir attribute can be applied at the global survey level or at an individual question. There are additional FIR attributes(firStyle, firColors and firSize) that control the style, color, and size of the graphic used.
+Learn more: Modifying Form Buttons
+Note: This attribute, although named alike, has nothing to do with and is not related to the "Form Image Replacement" dynamic question style.
+listDisplay
+Specify how one-column questions should be displayed
+Note: The ss:listDisplay attribute requires surveys to have a compat level of 125+ (compat="125+").
+Controls how one-column questions should appear.
+If ss:listDisplay="1" is specified, then questions containing a single column will appear as lists instead of tables.
+If ss:listDisplay="0" is specified, then questions containing a single column will appear as tables instead of lists unless the page has been mobile-optimized.
+What's Next?
+Click below to learn more about other types of <survey> attributes:
+Overview of the Survey Tag and Quick Links
+Attributes for Project Settings
+Attributes for Question Settings
+Attributes for Field Settings
+Attributes for Device Settings
+Attributes for Report Settings

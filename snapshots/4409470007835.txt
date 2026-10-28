@@ -1,0 +1,55 @@
+Title: Survey Resume System
+Survey lengths can vary, and longer surveys have a direct correlation with high drop-out rates. Starting over a survey can be a nightmare for participants and can guarantee a non-completion. You can increase completion rates by simply allowing participants to resume where they left off.
+There are two ways to do this within a Decipher survey - by tracking user sessions via a Decipher cookie or URL variable keys. This article explains how to enable the survey resume system feature in a Decipher survey and the benefits and limitations of using both methods.
+Note: Please refer to the Decipher Data Retention policy for more information about how long this data is available for your project.
+1: Enabling the Survey Resume System
+1.1: Using Decipher Cookies
+To enable the survey resume system using cookies, select the “Remember Participant's Place” setting within the survey Field Settings menu and click "Save".
+When checked, participants can return to their place in the survey with their original survey link. They also have the option to restart the survey.
+1.1.1: Using Decipher Cookies in the XML Editor
+To enable the survey resume system using Decipher cookies within the XML Editor, add autosave="1" to your survey's <survey> tag.
+Note: Adding variable keys or enabling the partial recovery system enables autosave by default; this means that if either of these methods is used, the autosave="1" element will be hidden from within the survey XML (although it will still function properly).
+Note: Using when="autosaveRestored" in a survey with delphi="1" allows you to display a "welcome back" block to participants prior to returning to survey contents.
+1.2: Using URL Variable Keys
+A "key" can be used to require a unique variable in the URL, allowing them to go back to the survey from any machine or browser. To enable the survey resume system using URL variable keys, select the “Remember Participant's Place” setting within the survey Field Settings menu and enter the variable in the “Key” field and click "Save".
+Multiple keys can be entered, but you must separate each key value with a comma. Key variables are case-sensitive, so you may also want to review the survey's Survey Summary page to ensure that the key matches the variable in the survey URL.
+When no key is specified, the default key value is “session”, which is a cookie. If you specify a different key, the system uses the key you have specified, and if that value does not exist in the URL, then it uses the “session” value instead.
+Note: In surveys with delphi="1", if the specified key does not exist in the URL, the survey will not remember the participant's place.
+See Adding Sample and Panel API to learn more about configuring URL variables in Decipher.
+Once the survey resume system is enabled using either of the above methods and your project has been launched (set LIVE), participants will be able to close their browser window and resume the survey at a later time.
+1.2.1: Using Variable Keys in the XML Editor
+To enable the survey resume system using variable keys within the XML Editor, add autosaveKey="xxxx" to your survey's <survey> tag, where “xxxx” is the URL key within your survey.
+2: How It All Works
+2.1: Using Decipher Cookies
+Decipher automatically tracks each individual survey participant by injecting a unique cookie into their browser. This cookie stores the participant’s “state”, or last accessed page and initial browser information.
+Once enabled, the survey resume system verifies the participant’s cookie upon re-entering the survey and recalls their “state” so that they resume at the last question they saw.
+Note: Decipher cookies are browser-specific, so one cookie does not work across multiple browsers or devices.
+2.2: Using URL Variables
+If your survey uses a unique URL variable, individual participants are tracked using this variable. Similar to Decipher cookies, these variables store and recall each participant’s “state” once enabled.
+This method is particularly useful for tracking participants across multiple browsers and devices, as users’ URL variables remain the same, regardless of which browser or device they use to access the survey.
+3: Disabling the Survey Resume System
+To disable the survey resume system, deselect the “Remember Participant's Place” setting within the survey Field Settings menu and remove any unique URL variables you added from your survey.
+4: Limitations & Unsupported Features
+The survey resume system is not compatible with SQL due to the complexity of these settings.
+The Decipher cookie method is browser-specific, so it allows tracking only through the browser in which participants use to start their survey.
+Any changes made to the survey page that gets recalled will not be applied if they were made after the participant's “state” was saved, so participants always resume on the original version of the last question they saw; however, any changes past this page should be applied as normal.
+Participant markers are only saved for 15 minutes and then reset within the system, so if quota limits are met before participants resume their “state”, they will be counted as an overquota upon completion. See Adding Quotas Using the Survey Editor to learn more about how the Quota element works.
+All device information that is stored in a user’s “state” is saved from the moment they first entered the survey; this means that even if you are using URL variables to track users across browsers, their data always show the device on which they originally entered the survey.
+If you are using the URL variables method, variables across participant sources must be unique.
+5: FAQs
+Here is a list of some frequently asked questions regarding the survey resume system:
+If I forgot the check the “Remember Participant’s Place” box before fielding my survey, can I recall an individual participant’s place in the survey?
+In surveys with delphi="1", the autosave attribute is on by default; you can check the “Remember Participant’s Place” box mid-fielding and autosave will work retroactively to check participants against partial participant data.
+In surveys without delphi="1", you must check the “Remember Participant’s Place” box before starting fielding if you want to allow users to exit the survey and come back later to complete it.
+Can I reset participant links so that they can start the survey over from the beginning?
+Yes, there are two ways to reset links:
+Uncheck the “Remember Participant’s Place” box in the project field settings menu.
+Delete the user’s ID from the survey data. See About the View / Edit Responses Report for more information on how to edit user data within Decipher.
+Can I add a “Come back later” button within the survey itself so that participants are aware that they can leave and return later with their progress saved?
+Yes, it is possible to add this button in the survey using HTML and CSS. You can create this button using XML styles.
+Will I be able to see my saved survey progress in “Testing” or “Dev” state?
+No, the survey resume system will only work while the survey is in a “Live” state.
+If a participant decides to re-start their survey from the beginning, can I recall their previous progress after they have re-started?
+No, once a survey is re-started, all previous progress is overwritten for that user; this applies to both Decipher cookie and URL variable methods.
+Will a suspended user be able to re-enter the survey once the survey is closed?
+No, once a survey is closed, the participant will see the survey closed message upon re-entering using either method.

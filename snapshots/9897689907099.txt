@@ -1,0 +1,28 @@
+Title: July 10th Technical Release Notes
+Release Date: July 10, 2018
+New Features
+GDPR Compliance
+Updated the Decipher login page to require cookie consent for all login methods
+Survey Editor
+Updated structural elements, such as quotas, autofills, skips, alerts, and terminates to automatically add preceding page breaks.
+Portal
+Optimized search functionality to allow for the "/" character.
+Updated the project creation process to minimize the amount of customization presented to the creator by default.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue with table settings not being applied correctly for elements with summary tables, custom base count of responses, or numeric nets when saved to the library
+Fixed an issue where some color palette selections would display an error when exported with more than 9 segments
+Dashboard
+Fixed an issue where precision was not consistent within PPT / PDF exports
+View/Edit Responses
+Fixed an issue where participants marked as overquota were not having the "overquota" marker removed when their record was re-qualified
+Downloads
+Fixed an issue where unicode characters in noanswer rows caused a fatal error when using the Triple-S export
+Survey
+Fixed an issue where an error was displayed if the mls attribute was set to the survey's primary language
+Fixed an issue where question-modifying exec commands were negatively affecting survey performance when applied to questions with a large amount of rows (700+)
+Upload System Files
+Fixed an issue where some uploaded files were not saved to live surveys
+Misc / Custom Projects
+Removed access to some older, unused features: mobile field report, legacy panel, PSB, project manager

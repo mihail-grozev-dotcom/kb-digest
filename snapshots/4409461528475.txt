@@ -1,0 +1,240 @@
+Title: Search Capabilities
+The Decipher Portal has powerful search capabilities that allow you to search for projects with ease. This document details the various methods available for searching and filtering through your projects.
+1: Searching for a Project
+The search bar is located at the top of the Portal screen. Type the word or phrase you want to search for and select the magnifying glass (or press "Enter" on your keyboard). The results will show the list of projects on one page.
+Note: Any project path that starts with "temp, tmp, sst, preview" (for example, template2) will not be found.
+Note: The Portal only displays the first 500 surveys with your results. To refine your search, see 3: Refining Searches below.
+2: Saving Searches
+2.1: Saving Search Parameters
+Once you have entered a search parameter you can save it for future use. To save the search, select the save icon that appears to the right of the search bar.
+In the Save Search window, type a name to identify the search criteria, then select Save. Saving the search updates the Saved Searches menu with the name of the search.
+2.2: Using Saved Parameters
+To use a saved search, select All Surveys to open the survey list menu and select the desired search option from the Saved Searches section. Then select Apply.
+Once applied, only surveys matching the selected criteria are displayed.
+3: Refining Searches
+If you cannot remembering the project name or number, or the search results are still too broad to locate your project, use the Refine Search menu to further refine and filter your results. To refine a search, first select the caret at the left of the search bar.
+Then select one or more of the options and select Go. The following options are available in the Refine Search menu:
+Note: The Portal will only display the first 500 surveys with your results.
+3.1: Project Type
+Refine the search results based on the state of the project.
+Any: Projects in any state
+Active: A project is considered to be in an active state when any of the following have occurred:
+Respondents collected in the past 72 hours
+Project has been edited in the Survey Editor, XML, testing environment, Response Summary, or project settings
+Simulated data has been run
+Survey has been launched or closed
+Email campaign created or sent
+Created saved report, data layout or table set
+Project description edited
+Project renamed
+Any State: Decipher projects in any state
+Dev: Decipher projects created by Decipher staff are set to dev state while they are built
+Draft: Decipher projects in testing state/mode
+Live: Decipher project is actively collecting responses
+Closed: Decipher project is closed and no responses may be submitted
+Campaign Only: Projects created as campaign only
+Information Only: Projects created as information only
+SPSS Import: Projects created as SPSS Import
+3.2: Field Date
+Refine the search results based on specific dates it was in field (i.e., in "Live" state).
+Any: Any field date
+Date Range: Select the checkbox to specify a date range from the day the first participant completed the survey to the last (qualified or not). Click in the "From" and "To" fields to select the month/day/year from the calendar. You may also type in the date range in the format mm/dd/yy (or yyyy)
+3.3: Project Has...
+Refine the search based on project features.
+Any
+Survey
+Campaign
+Saved Report
+Dashboard
+Files
+3.4: My Projects
+Refine the search based on projects you've been involved with.
+Any
+Favorites: Projects you marked as favorites (starred)
+Edited by Me: You have done any of the following:
+Edited in the Survey Editor, XML, testing environment, Response Summary, or project settings
+Ran simulated data
+Launched/closed a survey
+Created/sent email campaign
+Added/removed tags (excluding mass editing)
+Renamed project
+Accessed by Me: Any project you have accessed and have done any of the following:
+Edited in the Survey Editor, XML, testing environment, Response Summary, or project settings
+Ran simulated data
+Launched/closed a survey
+Created/Sent email campaign
+Created saved report, data layout or table set
+Accessed project page, survey, Response Summary, Crosstabs, saved report, data downloads, dashboard
+Added/removed users or user groups (excluding mass editing)
+Added/removed tags (excluding mass editing)
+Survey exported
+3.5: Project Content
+Refine the search based on specific text (alphanumeric) found in the selected context.
+Project Name: Name of the project in the portal
+Project Description: Description for the project
+Tags: Tags attached to the project
+Survey Content: Any text within the survey (specifically, the survey.xml file), excluding external files such as quotas, appended XML or other language translations
+3.6: Users / User Groups
+Refine the search based on users or user groups assigned to the project.
+Any: Any users / groups
+Users / User Groups: Select from users or groups within your company. Click Show All Users / Groups for the full list.
+3.7: Project Tags
+Refine the search based on tags attached to the project.
+All: Any tags
+Tags: Select from tags created. Click Show All Tags for the full list.
+You can also check Show Detailed Search Results to highlight your search term(s) in the results, and / or Show Hidden Projects to include any hidden projects in the results.
+3.8: Compat
+Refine the search based on the compat level of the project. To learn more about compat levels, see Survey Compat Levels.
+Compat: Type the compat level of the project you want to search for. You can search for an individual compat level (for example, 155), or you can list multiple compats (for example, 153,155 searches for projects with compat 153 or 155).
+When searching for multiple compats, you must include a comma between each compat level. Entering invalid content may prevent results from being filtered by compat.
+4: Sorting Surveys
+If desired, you can sort your surveys by a variety of preset specifications. To sort your surveys, or to further filter search results, select the date header to open the Sort By drop-down.
+The following options are available in the Sort By menu:
+Accessed by Me
+Accessed by Anyone
+Edited Date
+First Participant
+Last Participant
+Survey Path
+Directory
+Then select the desired sort order, "Newer First" or "Older First", and select "Apply".
+You can also sort by selecting any of the column headers.
+Name: Select to sort alphabetically (A-Z or Z-A).
+State: Select to select a project state by which to sort (Dev, Draft, Live, etc.).
+Sort By: Select to select sorting criteria (user access, edited date, participant activity, etc.) and whether to display results in ascending or descending order.
+Responses: Select to sort by the total number of qualified survey completes in either ascending or descending order.
+5: Viewing Survey Filters
+The portal offers predefined search filters that allow you to filter your projects.
+To apply a new filter, select All Surveys to open the survey list menu and select the desired filter option from the View section. Then select Apply.
+The following options are available:
+Search Results: When search parameters have been applied, the "Search Results" view is shown.
+Favorites: View only the projects you have marked as favorites (starred).
+Active Projects: View only projects with recent activity
+.
+Respondents collected in the past 72 hours
+Project has been edited in the Survey Editor, XML, testing environment, Response Summary, or project settings
+Simulated data has been run
+Survey has been launched or closed
+Email campaign created or sent
+Created saved report, data layout or table set
+Project description edited
+Project renamed
+Recent Projects: View only projects that have been edited recently.
+Project has been edited in the Survey Editor, XML, testing environment, Response Summary, or project settings
+Simulated data has been run
+Survey has been launched or closed
+Email campaign created or sent
+Created saved report, data layout or table set
+Accessed project page, survey, Response Summary, Crosstabs, saved report, data downloads, dashboard
+Added/removed users or user groups (excluding mass editing)
+Added/removed tags (excluding mass editing)
+Project description edited
+Survey exported
+Retired Surveys: View only projects with a compat level that has been retired. Learn More: Survey Compat Levels
+Deprecated Surveys: View only projects with a compat level that will be retired soon. Learn More: Survey Compat Levels
+All Projects: View all projects without any filters applied.
+Saved Searches: View results from searches you've saved.
+Show Hidden Projects: View projects that have been hidden.
+6: Using Advanced Search Syntax
+The search engine also allows you to enter your own search string parsers in the search field. The following limitations and requirements apply when using advanced search syntax:
+Simple boolean expressions such as AND, OR and NOT can be used against filters (case-sensitive, must be all caps).
+Nested expressions are not supported.
+Use commas to separate OR conditions. Use spaces to separate AND conditions.
+For example:
+type:live OR has:campaign
+NOT type:live OR NOT has:campaign
+has:(campaign AND report) is same as has:(campaign report)
+type:(live OR testing) is same as type:(live,testing)
+Quotes should be used to search for phrases. Individual words are usually used to match results. For example:
+“What is your age?” within:survey will look for an exact match and return only if “What is your age” is found
+What is your age within:survey will return if any of these words are found (“what”, “is”, “your”, “age”)
+Below is a list of the available search keys and descriptions of how they can be used.
+Search Key
+Description
+Type
+survey
+Searches against the survey path.
+Examples:
+survey:selfserve/53a/123456
+selfserve/53a/123456
+123456
+String
+type
+Searches against the type value of a project.
+Examples:
+type:any
+type:(active,dev)
+Single/Enclosed enum(s)
+title
+Searches against the title/name value of a project.
+String
+description
+Searches against the description value of a project.
+String
+tags
+Searches against the tags associated with a project. Values can be a single string, or multiple strings separated by spaces enclosed in parentheses.
+Examples:
+tags:test
+tags:(test,fish,donkey,”tag with spaces”)
+Alternatively, hash tags can be used.
+Examples:
+#tag
+#tag1 #tag2
+"#tag with spaces"
+Single/Enclosed string(s)
+within
+Searches against survey name, tags, file names, description, and survey content.
+Values: (name (default), description (default), tag (default), filename, survey)
+Examples:
+within:name
+within:(name,description,content,tag)
+Single/Enclosed enum(s)
+directory
+Searches projects associated with matching companies.
+String
+user
+Searches projects associated with matching users.
+Examples:
+user:michael
+user:(michael,carl)
+String
+start_date
+Searches for projects with an active date greater than this value. Must be in ISO 8601 format.
+Examples:
+start_date:2013-06-17
+Date
+end_date
+Searches for projects with an active date less than this value. Must be in ISO 8601 format.
+Examples:
+end_date:2013-06-18
+Date
+has
+Searches across the survey’s peripheral elements. Values can be a single string, or multiple strings separated by spaces enclosed in parentheses.
+Values: (any, campaign, report, dashboard, files, mls)
+mls checks for multi language surveys.
+report returns if there are any saved reports.
+dashboard returns if there are any saved dashboards.
+files returns if any files are in the project.
+Examples:
+has:campaign
+has:(campaign,report)
+Single/Enclosed enum(s)
+my
+Searches across projects relative to the user based on criteria.
+Values: (any, favorite, edited, accessed)
+Examples:
+my:favorite
+my:(edited,accessed)
+Single/Enclosed enum(s)
+hidden
+Searches projects with hidden status as follows.
+Values: (true, false)
+Examples:
+hidden:true
+Boolean
+hibernated
+Searches projects with hibernated status as follows.
+Values: (true, false)
+Examples:
+hibernated:true
+Boolean

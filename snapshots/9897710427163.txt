@@ -1,0 +1,12 @@
+Title: 139.3 General Release Notes
+Release Date: August 7, 2018
+Release Version: 139.3
+Highlights of August 7th Release
+New Features
+Crosstabs: Editing Banner Tables
+With the new table logic editor, you have even more control over how you view your segmented reports.
+Traditionally, tables created from Crosstabs banners were static and customizing them required editing and re-running the banner for the whole report. Now, you have the freedom to change row labels and logic definitions for each table without ever having to change your original crosstab.
+The logic editor is available from the table menu within Crosstabs:
+Fulcrum Automatic Sample: Syncing Quota Limits
+Running a project with Fulcrum sample is now easier than ever! With an upgraded syncing system, quota limit edits you make in the Decipher Field Report or via the Quota Limit API will now automatically sync with your project in Fulcrum.
+No more manually syncing changes or flipping between platforms - let your quotas work for you.

@@ -1,0 +1,3 @@
+Title: How do I make live changes to my project?
+You can edit your survey after it has gone live by going to “Edit Live Survey” under the Build Pan Menu. From the project page, select project controls, select “Edit Live Survey”. You will then be taken to the “Survey Editor” to make your desired changes. Once complete, you will need to run Simulate Data under the Test pan menu. Once you have verified your changes you will navigate to the Distribute pan menu and select “Save to live survey” to update your live survey. Please see following KB page below as well.
+See Editing a Live or Closed Survey to learn more about making live changes.

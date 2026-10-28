@@ -1,0 +1,552 @@
+Title: Creating a MaxDiff Question - Indices Method
+Note: This document outlines the process for creating a MaxDiff question via XML using the Indices method. Using the Survey Editor? Learn how to create a MaxDiff question using the MaxDiff Element.
+The MaxDiff - Indices question is a special question type that requires custom modifications to your survey to get up and running. To create this question in your survey, you need to:
+Setup the design file.
+Setup the quota sheet.
+Copy the MaxDiff - indices method template into your survey.
+Modify the template according to your design requirements.
+Before starting the steps in this document, you should double-check to confirm that the data set is in the "Indices" format. With the "Indices" method, a design file with twelve attributes where only four are shown creates a data file that indicates which item from the entire list of attributes was selected.
+In the "Alternatives" method, the data file that is created shows values 1-4 and indicates which attribute of those four was selected. If you want to create a MaxDiff question with the "Alternatives" method instead, see Creating a MaxDiff Question - Alternatives Method.
+1: Setting Up the Design
+You need to provide your own MaxDiff design file. You can either create the design file yourself, or you can obtain one from a third party company specializing in statistical software (e.g., Sawtooth).
+Note: Forsta Support cannot generate MaxDiff design files.
+1.1: Creating a Design File
+The MaxDiff design file must be a tab-delimited file saved in .dat format. The design file shown below has been set up in Excel format for easier viewing, but this must be changed to tab-delimited (.dat) after the design has been configured.
+1. Version: The first column in the design file, containing the number given to identify the group of sets/tasks.
+2. Set: The second column in the design file, containing the number given to identify the group of items.
+3. Item [1,2,...]: Each "Item" column becomes a statement place in the MaxDiff question, and the statement is determined by the number.
+4. Ordering: These numbers correspond with the statements for the question.
+To change this file to a tab-delimited file, select "Save as", and select "tab-delimited (.txt)" format, then click "Save".
+Then edit your file name and manually replace ".txt" with the ".dat" extension and save.
+The result will be the tab-delimited .dat file required by the system.
+Important: If you are converting an Excel file to a tab-limited format while using an Apple computer, newline characters may save with the wrong type of newline character and a workaround may be needed to properly format the file for usage.
+1.2: Preparing the Design File
+You can follow along by downloading this design file and this quota.xls file.
+First, extract the attributes from the design file. The attributes are the actual text elements that will be displayed to the participant. If you are following along with the design file above, then pasted below are all of the attributes to be used in this MaxDiff. The order of attributes is important and each attribute should retain its position relative to the other attributes.
+Traditional
+Innovative
+Steady
+Fast-paced
+Technology-oriented
+Community-focused
+Industry leader
+Expert
+Consultative
+Customer-focused
+Revenue-focused
+Proactive
+The next step is to convert the raw design file into a tab-delimited text document. To convert the raw design file, select "Save as" and choose the tab-delimited format. In Microsoft Excel, there is an option for this. In LibreOffice Calc, you can save the sheet as comma-separate values (CSV) and select the {TAB} character in the "Field delimiter" drop-down. Verify that your tab-delimited text file is named design.txt. Then edit your file name and manually replace ".txt" with the ".dat" extension and save (design.dat). The design file has now been prepared and you should upload it to the project's directory.
+1.2.1: Setting Up the Quota Sheet
+Setting up the quotas is relatively easy. Each participant is assigned a single version and sees the tasks present for that version only, however many tasks are present for each version. In the example below, there are ten versions accommodated with twelve tasks. You need to create a marker for each version present in your design file. Since the design example has ten, you only need to create ten randomly assigned markers. You may name these markers anything, but it is a good practice to name them "ver_1" to "ver_10". It is not uncommon to have around a hundred different versions. The final quota setup is illustrated below, in a sheet called "Q1_MaxDiff".
+Note: If you change the name of the markers, they should still end with "_#" where # represents the version number as defined in the design file.
+After you have created your quota sheet to match your design, upload the quota.xls file to your project's directory.
+The final step is to link everything together in your project's XML. Fortunately, most of the heavy lifting has been automated with a template.
+1.3: Copying the MaxDiff Indices Template into the Survey
+Copy the following MaxDiff template into your survey.xml to initialize the MaxDiff survey elements. Copy it to the location where the MaxDiff question is deployed. This code sets up the logic and question style necessary to achieve the MaxDiff effect. The next step is to modify this template to match your MaxDiff design.
+<note>MaxDiff Indices Template --Start--</note>
+<exec when="init">
+def setupMaxDiffFile(fname, fileDelimiter="\t"):
+try:
+f = open("%s/%s" % (gv.survey.path, fname))
+mdObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
+d = dict( ("v%s_t%s" % (row[0], row[1]), row[2:]) for row in mdObj )
+except IOError:
+d = {}
+return d
+def setupMaxDiffItemsI(d, vt, question):
+item_index = dict( (r.o.label.strip("item"), r.index) for r in question.rows )
+items = d[vt]
+for r in question.rows:
+if r.o.label.strip("item") not in items:
+r.disabled = True
+question.rows.order = [ item_index[i] for i in items ]
+print "*****STAFF ONLY*****"
+print "Version_Task: %s" % vt
+for i in range(len(items)):
+print "Item %s: %s" % (i+1,items[i])
+</exec>
+<exec when="init">Q1_md = setupMaxDiffFile("md_design.dat")</exec>
+<quota label="Q1_quota" overquota="noqual" sheet="Q1_Maxdiff"/>
+<number label="Q1_Version" size="3" optional="1" verify="range(1,16)" where="execute">
+<title>Q1 - MaxDiff Version</title>
+<exec>
+print p.markers
+for x in p.markers:
+if "/Q1_Maxdiff/ver_" in x:
+Q1_Version.val = int(x.split("_")[-1])
+break
+</exec>
+</number>
+<suspend/>
+<exec>p.startTime = timeSpent()</exec>
+<loop label="Q1_md_loop" vars="task" randomizeChildren="0">
+<title>Q1 - MaxDiff Loop</title>
+<block label="Q1_md_block" randomize="1">
+<radio label="Q1_[loopvar: task]" adim="cols" grouping="cols" shuffle="rows" unique="1" ss:questionClassNames="Q1_maxdiff">
+<title>Title update [MDcount]</title>
+<comment>Select one</comment>
+<exec>
+setupMaxDiffItemsI( Q1_md, "v%d_t%d" % (Q1_Version.val, [loopvar: task]), Q1_[loopvar: task])
+p.MDcount = str(Q1_md_loop_expanded.order.index([loopvar: task]-1)+1)
+</exec>
+<col label="best">Most Important</col>
+<col label="worst">Least Important</col>
+<row label="item1">Item 1</row>
+<row label="item2">Item 2</row>
+<row label="item3">Item 3</row>
+<row label="item4">Item 4</row>
+<row label="item5">Item 5</row>
+<row label="item6">Item 6</row>
+<row label="item7">Item 7</row>
+<row label="item8">Item 8</row>
+<row label="item9">Item 9</row>
+<row label="item10">Item 10</row>
+<row label="item11">Item 11</row>
+<row label="item12">Item 12</row>
+<row label="item13">Item 13</row>
+<row label="item14">Item 14</row>
+<row label="item15">Item 15</row>
+<style name="question.header" mode="before">
+<![CDATA[
+<style type="text/css">
+.Q1_maxdiff tr.maxdiff-header-legend {
+background-color: transparent;
+border-bottom: 2px solid #d9d9d9;
+}
+.Q1_maxdiff tr.maxdiff-header-legend th.legend {
+background-color: transparent;
+border: none;
+}
+.Q1_maxdiff tr.maxdiff-row td.element {
+border-left: none;
+border-right: none;
+border-top: none;
+border-bottom: 1px solid #d9d9d9;
+text-align: center;
+}
+.Q1_maxdiff tr.maxdiff-row th.row-legend {
+background-color: transparent;
+border-left: none;
+border-right: none;
+border-top: none;
+border-bottom: 1px solid #d9d9d9;
+text-align: center;
+}
+</style>
+]]>
+</style>
+<style name="question.top-legend">
+<![CDATA[
+\@if ec.simpleList
+$(legends)
+\@else
+<$(tag) class="maxdiff-header-legend row row-col-legends row-col-legends-top ${"mobile-top-row-legend " if mobileOnly else ""}${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)">
+${"%s%s" % (legends.split("</th>")[0],"</th>")}
+$(left)
+${"%s%s" % (legends.split("</th>")[1],"</th>")}
+</$(tag)>
+\@if not simple
+</tbody>
+<tbody>
+\@endif
+\@endif
+]]>
+</style>
+<style name="question.row">
+<![CDATA[
+\@if ec.simpleList
+$(elements)
+\@else
+<$(tag) class="maxdiff-row row row-elements $(style) colCount-$(colCount)">
+${"%s%s" % (elements.split("</td>")[0],"</td>")}
+$(left)
+${"%s%s" % (elements.split("</td>")[1],"</td>")}
+</$(tag)>
+\@endif
+]]>
+</style>
+</radio>
+</block>
+<looprow label="1">
+<loopvar name="task">1</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="task">2</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="task">3</loopvar>
+</looprow>
+<looprow label="4">
+<loopvar name="task">4</loopvar>
+</looprow>
+<looprow label="5">
+<loopvar name="task">5</loopvar>
+</looprow>
+<looprow label="6">
+<loopvar name="task">6</loopvar>
+</looprow>
+<looprow label="7">
+<loopvar name="task">7</loopvar>
+</looprow>
+<looprow label="8">
+<loopvar name="task">8</loopvar>
+</looprow>
+<looprow label="9">
+<loopvar name="task">9</loopvar>
+</looprow>
+<looprow label="10">
+<loopvar name="task">10</loopvar>
+</looprow>
+<looprow label="11">
+<loopvar name="task">11</loopvar>
+</looprow>
+<looprow label="12">
+<loopvar name="task">12</loopvar>
+</looprow>
+<looprow label="13">
+<loopvar name="task">13</loopvar>
+</looprow>
+<looprow label="14">
+<loopvar name="task">14</loopvar>
+</looprow>
+<looprow label="15">
+<loopvar name="task">15</loopvar>
+</looprow>
+</loop>
+<float label="Q1_Timer" size="15" where="execute">
+<title>Q1 - MaxDiff Timer (Minutes)</title>
+<exec>Q1_Timer.val = (timeSpent() - p.startTime) / 60.0</exec>
+</float>
+<note>MaxDiff Indices Template --End--</note>
+2: Updating the Template
+The section below gives you a walkthrough of each section of the code in the template above to get a better understanding of what is going on. You can update it where necessary so that it matches your MaxDiff question design. Click here to skip the walkthrough and go to the final result below.
+2.1: Beginning of the MAXDIFF Template - Informational
+def setupMaxDiffFile(fname, fileDelimiter="\t"):
+try:
+f = open("%s/%s" % (gv.survey.path, fname))
+mdObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
+d = dict( ("v%s_t%s" % (row[0], row[1]), row[2:]) for row in mdObj )
+This is the beginning of your MAXDIFF class. It takes in the name of your design file as an argument (e.g., "design.dat"). Line 4 in the code above creates a dictionary object where the key represents the version and task number, and the value is the attribute items to display (e.g., {"v1_t1" : [5,1,11,10], ... }, where "v1_t1" means version #1, task #1, and the four items to be shown are 5, 1, 11, and 10.)
+Since this section is for informational purposes only, you do not need to update this code.
+2.2: Calling the Indices Function - Informational
+def setupMaxDiffItemsI(d, vt, question):
+item_index = dict( (r.o.label.strip("item"), r.index) for r in question.rows )
+items = d[vt]
+for r in question.rows:
+if r.o.label.strip("item") not in items:
+r.disabled = True
+question.rows.order = [ item_index[i] for i in items ]
+print "*****STAFF ONLY*****"
+print "Version_Task: %s" % vt
+for i in range(len(items)):
+print "Item %s: %s" % (i+1,items[i])
+This is the function (setupMaxDiffItemsI) that is called if you are using the "Indices" data format. It takes in three values, the string corresponding to the items you are going to show in the dictionary that was created (e.g., "v3_t1"), the question to apply the function to (e.g., Q1), and the string representing the parent label.
+Since this section is for informational purposes only, you do not need to update this code.
+Tip: This function prints helpful debugging information in the participant testing environment. You must be logged in to Decipher to see this.
+2.3: Updating the Design File Name
+<exec when="init">
+Q1_md = setupMaxDiffFile("md_design.dat")
+</exec>
+This is where you initialize the MAXDIFF class. It takes in the name of the design file you uploaded to the project's directory. Update md_design.dat to reflect the name of the design file you uploaded to your project directory (e.g., design.dat).
+2.4: Globally Updating the MaxDiff Question Label
+From within the template, do a global find and replace to replace all instances of Q1 to match your question label.
+2.5: Updating the Sheet Name in the Quota File
+The following code calls the "Q1_MaxDiff" quota sheet and assigns the participant a version number. You need to update the sheet name in the quota call to match the sheet name in the quota file you created to track the version.
+<quota label="Q1_quota" overquota="noqual" sheet="Q1_MaxDiff"/>
+2.6: Updating the Range Specification
+Update the range on the "_version" question to match the number of versions in the quota for your MaxDiff question.
+<number label="Q1_Version" size="3" optional="1" verify="range(1,16)" where="execute">
+<title>Q1 - MaxDiff Version</title>
+<exec>
+print p.markers
+for x in p.markers:
+if "/Q1_Maxdiff/ver_" in x:
+Q1_Version.val = int(x.split("_")[-1])
+break
+</exec>
+</number>
+<suspend/>
+2.7: Updating the Sheet Name / Default Version Markers
+If you updated the quota sheet name or the default version markers, be sure to update the following line of code (if "/Q1_Maxdiff/ver_" in x:) to reflect your changes.
+for x in p.markers:
+if "/Q1_Maxdiff/ver_" in x:
+Q1_Version.val = int(x.split("_")[-1])
+break
+</exec>
+</number>
+<suspend/>
+2.8: Updating the Question and Loop
+This is the MaxDiff question element. It is incorporated into a Loop element (<loop>) and will run for as many tasks that are provided in each loop row (<looprow>). The <style> tags were shortened for the sake of saving space. They simply restructure the question format so that a column is presented on both sides of the row options. Here is a list of items that should be updated to reflect your project design.
+Update the <radio> question's <title> and <comment> tags. Title and comment tags represent the question and instruction text (respectively) that is displayed to the participants for each task in the MaxDiff.
+Verify that shuffle="rows" is specified for this question. Unlike the "Alternatives" method, this attribute is required for the indices method.
+If the client requests to randomize tasks in addition to what the randomization design file is already doing, change the randomizeChildren value to "1". By default it is set to "0" and it is typically left unchanged.
+Update the question's text (e.g., "Most favorite", "Least favorite")
+Replace the rows in the template to have one row per attribute with rows programmed in attribute order. The template provides for fifteen rows (row).
+Update the number of tasks (looprow) to match the number of tasks in your design file.
+Note: If accordion style is enabled for your survey, add the ss:accordionDisplay="0" attribute to the MaxDiff <radio> tag.
+<loop label="Q1_md_loop" vars="task" randomizeChildren="0">
+<title>Q1 - MaxDiff Loop</title>
+<block label="Q1_md_block" randomize="1">
+<radio label="Q1_[loopvar: task]" adim="cols" grouping="cols" shuffle="rows" unique="1" ss:questionClassNames="Q1_maxdiff">
+<title>Title update [MDcount]</title>
+<comment>Select one</comment>
+<exec>
+setupMaxDiffItemsI( Q1_md, "v%d_t%d" % (Q1_Version.val, [loopvar: task]), Q1_[loopvar: task])
+p.MDcount = str(Q1_md_loop_expanded.order.index([loopvar: task]-1)+1)
+</exec>
+<col label="best">Most Important</col>
+<col label="worst">Least Important</col>
+<row label="item1">Item 1</row>
+<row label="item2">Item 2</row>
+<row label="item3">Item 3</row>
+<row label="item4">Item 4</row>
+<row label="item5">Item 5</row>
+<row label="item6">Item 6</row>
+<row label="item7">Item 7</row>
+<row label="item8">Item 8</row>
+<row label="item9">Item 9</row>
+<row label="item10">Item 10</row>
+<row label="item11">Item 11</row>
+<row label="item12">Item 12</row>
+<row label="item13">Item 13</row>
+<row label="item14">Item 14</row>
+<row label="item15">Item 15</row>
+<style name="question.header" mode="before">
+<![CDATA[
+...
+]]>
+</style>
+<style name="question.row">
+<![CDATA[
+...
+]]>
+</style>
+<style name="question.top-legend">
+<![CDATA[
+...
+]]>
+</style>
+</radio>
+</block>
+<looprow label="1">
+<loopvar name="task">1</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="task">2</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="task">3</loopvar>
+</looprow>
+<looprow label="4">
+<loopvar name="task">4</loopvar>
+</looprow>
+<looprow label="5">
+<loopvar name="task">5</loopvar>
+</looprow>
+<looprow label="6">
+<loopvar name="task">6</loopvar>
+</looprow>
+<looprow label="7">
+<loopvar name="task">7</loopvar>
+</looprow>
+<looprow label="8">
+<loopvar name="task">8</loopvar>
+</looprow>
+<looprow label="9">
+<loopvar name="task">9</loopvar>
+</looprow>
+<looprow label="10">
+<loopvar name="task">10</loopvar>
+</looprow>
+<looprow label="11">
+<loopvar name="task">11</loopvar>
+</looprow>
+<looprow label="12">
+<loopvar name="task">12</loopvar>
+</looprow>
+<looprow label="13">
+<loopvar name="task">13</loopvar>
+</looprow>
+<looprow label="14">
+<loopvar name="task">14</loopvar>
+</looprow>
+<looprow label="15">
+<loopvar name="task">15</loopvar>
+</looprow>
+</loop>
+2.9: Recording the Participant's Time - Informational
+This is the question in which the participant's time is recorded. It is recorded in minutes and is available in the report.
+<float label="Q1_Timer" size="15" where="execute">
+<title>Q1 - MaxDiff Timer (Minutes)</title>
+<exec>Q1_Timer.val = (timeSpent() - p.startTime) / 60.0</exec>
+</float>
+Since this section is for informational purposes only, you do not need to update this code.
+3: Results of Template Modifications
+Below is the revised code adapted to fit the needs of the example design file. It is renamed to "Q24" instead of "Q1" and uses the "Indices" data format.
+The example design file may be downloaded by clicking here, and the example quota.xls file is available here.
+<note>MaxDiff Indices Template --Start--</note>
+<exec when="init">
+def setupMaxDiffFile(fname, fileDelimiter="\t"):
+try:
+f = open("%s/%s" % (gv.survey.path, fname))
+mdObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
+d = dict( ("v%s_t%s" % (row[0], row[1]), row[2:]) for row in mdObj )
+except IOError:
+d = {}
+return d
+def setupMaxDiffItemsI(d, vt, question):
+item_index = dict( (r.o.label.strip("item"), r.index) for r in question.rows )
+items = d[vt]
+for r in question.rows:
+if r.o.label.strip("item") not in items:
+r.disabled = True
+question.rows.order = [ item_index[i] for i in items ]
+print "*****STAFF ONLY*****"
+print "Version_Task: %s" % vt
+for i in range(len(items)):
+print "Item %s: %s" % (i+1,items[i])
+</exec>
+<exec when="init">Q24_md = setupMaxDiffFile("design.dat")</exec>
+<quota label="Q24_quota" overquota="noqual" sheet="Q24_Maxdiff"/>
+<number label="Q24_Version" size="3" optional="1" verify="range(1,10)" where="execute">
+<title>Q24 - MaxDiff Version</title>
+<exec>
+print p.markers
+for x in p.markers:
+if "/Q24_Maxdiff/ver_" in x:
+Q24_Version.val = int(x.split("_")[-1])
+break
+</exec>
+</number>
+<suspend/>
+<exec>p.startTime = timeSpent()</exec>
+<loop label="Q24_md_loop" vars="task" randomizeChildren="0">
+<title>Q24 - MaxDiff Loop</title>
+<block label="Q24_md_block" randomize="1">
+<radio label="Q24_[loopvar: task]" adim="cols" grouping="cols" shuffle="rows" unique="1" ss:questionClassNames="Q24_maxdiff">
+<title>Title update [MDcount]</title>
+<comment>Select one</comment>
+<exec>
+setupMaxDiffItemsI( Q24_md, "v%d_t%d" % (Q24_Version.val, [loopvar: task]), Q24_[loopvar: task])
+p.MDcount = str(Q24_md_loop_expanded.order.index([loopvar: task]-1)+1)
+</exec>
+<col label="best">Most Important</col>
+<col label="worst">Least Important</col>
+<row label="item1">Traditional</row>
+<row label="item2">Innovative</row>
+<row label="item3">Steady</row>
+<row label="item4">Fast-paced</row>
+<row label="item5">Technology-oriented</row>
+<row label="item6">Community-focused</row>
+<row label="item7">Industry leader</row>
+<row label="item8">Expert</row>
+<row label="item9">Consultative</row>
+<row label="item10">Customer-focused</row>
+<row label="item11">Revenue-focused</row>
+<row label="item12">Proactive</row>
+<style name="question.header" mode="before">
+<![CDATA[
+<style type="text/css">
+.Q24_maxdiff tr.maxdiff-header-legend {
+background-color: transparent;
+border-bottom: 2px solid #d9d9d9;
+}
+.Q24_maxdiff tr.maxdiff-header-legend th.legend {
+background-color: transparent;
+border: none;
+}
+.Q24_maxdiff tr.maxdiff-row td.element {
+border-left: none;
+border-right: none;
+border-top: none;
+border-bottom: 1px solid #d9d9d9;
+text-align: center;
+}
+.Q24_maxdiff tr.maxdiff-row th.row-legend {
+background-color: transparent;
+border-left: none;
+border-right: none;
+border-top: none;
+border-bottom: 1px solid #d9d9d9;
+text-align: center;
+}
+</style>
+]]>
+</style>
+<style name="question.top-legend">
+<![CDATA[
+\@if ec.simpleList
+$(legends)
+\@else
+<$(tag) class="maxdiff-header-legend row row-col-legends row-col-legends-top ${"mobile-top-row-legend " if mobileOnly else ""}${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)">
+${"%s%s" % (legends.split("</th>")[0],"</th>")}
+$(left)
+${"%s%s" % (legends.split("</th>")[1],"</th>")}
+</$(tag)>
+\@if not simple
+</tbody>
+<tbody>
+\@endif
+\@endif
+]]>
+</style>
+<style name="question.row">
+<![CDATA[
+\@if ec.simpleList
+$(elements)
+\@else
+<$(tag) class="maxdiff-row row row-elements $(style) colCount-$(colCount)">
+${"%s%s" % (elements.split("</td>")[0],"</td>")}
+$(left)
+${"%s%s" % (elements.split("</td>")[1],"</td>")}
+</$(tag)>
+\@endif
+]]>
+</style>
+</radio>
+</block>
+<looprow label="1">
+<loopvar name="task">1</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="task">2</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="task">3</loopvar>
+</looprow>
+<looprow label="4">
+<loopvar name="task">4</loopvar>
+</looprow>
+<looprow label="5">
+<loopvar name="task">5</loopvar>
+</looprow>
+<looprow label="6">
+<loopvar name="task">6</loopvar>
+</looprow>
+<looprow label="7">
+<loopvar name="task">7</loopvar>
+</looprow>
+<looprow label="8">
+<loopvar name="task">8</loopvar>
+</looprow>
+<looprow label="9">
+<loopvar name="task">9</loopvar>
+</looprow>
+<looprow label="10">
+<loopvar name="task">10</loopvar>
+</looprow>
+<looprow label="11">
+<loopvar name="task">11</loopvar>
+</looprow>
+<looprow label="12">
+<loopvar name="task">12</loopvar>
+</looprow>
+</loop>
+<float label="Q24_Timer" size="15" where="execute">
+<title>Q1 - MaxDiff Timer (Minutes)</title>
+<exec>Q1_Timer.val = (timeSpent() - p.startTime) / 60.0</exec>
+</float>
+<note>MaxDiff Indices Template --End--</note>
+4: Learn more
+Creating a MaxDiff Question - Alternatives Method
+MaxDiff Element

@@ -1,0 +1,32 @@
+Title: 149.8 Release Notes
+Release Date: February 1, 2022
+Release Version: 149.8
+New Features
+Portal
+Launch Survey
+Added a warning that occurs during re-launch of a survey when there is a quota mismatch between the temporary version and the live version.
+Dynamic Questions
+Added a new version (v2) for the Autosuggest Dynamic Question element which supports a new attribute `characterLimit` which can change the minimum character count needed for survey participants to see suggestions as they type.
+Learn More: Customizing the Autosuggest Element
+Programming & Tools
+Added a new parameter to the update video api endpoint. (surveys/{survey}/videos/{video_id})to allow setting the privacy level manually.
+Bug Fixes
+Portal
+Portal
+Fixed an issue that caused JavaScript in the Description input field on the Company Settings page to run instead of just saving.
+SPSS Importer
+Fixed an issue where extra whitespace in question titles prevented those titles from displaying properly during import.
+Survey
+Survey Editor
+Fixed an issue that caused the column headers to display improperly in the Autosuggest Answer Source File selector modal.
+Fixed an issue that prevented questions from using “Show If” conditions when a three-dimensional Dropdown Element only had a single column.
+Fixed an issue where certain custom scripts intended to only run in the Participant View would also run inside the Survey Editor.
+Dynamic Questions
+Fixed an issue that prevented some areas of Decipher from loading correctly in non-secure surveys when an Autosuggest element was present.
+Fixed naming of Croatian language in language selector DQ (corrected from “Hrvat” to “Hrvatski”).
+Responses
+Campaign Manager
+Fixed an issue that caused an error when creating a new campaign.
+Programming & Tools
+API
+Fixed an issue that caused an error during survey.xml file uploads under certain conditions.

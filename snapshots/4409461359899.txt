@@ -1,0 +1,38 @@
+Title: Single Select Question Attributes
+1: Overview
+The <radio> element is a single select question type that allows selections to be made from a list of items.
+<radio label="Q1" optional="0">
+<title>Are you...</title>
+<comment>Please select one</comment>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+The code above produces the following result:
+2: Attributes
+In addition to the Question Attributes available, the <radio> element has access to the following attribute:
+2.1: unique - Prevent Duplicate Responses
+The unique attribute is a boolean value that prevents a participant from selecting duplicate responses.
+If unique="1" is specified, then a unique response must be submitted for all items. Consider the following examples:
+<radio label="Q1" unique="1" grouping="cols">
+<title>Which of the following brands is your favorite and least favorite?</title>
+<col label="c1">Favorite</col>
+<col label="c2">Least Favorite</col>
+<row label="r1">Brand 1</row>
+<row label="r2">Brand 2</row>
+<row label="r3">Brand 3</row>
+<row label="r4">Brand 4</row>
+</radio>
+In the example above, the same row cannot be selected for both columns.
+<radio label="Q1" unique="1">
+<title>Which of the following brands reflect the characteristics below best?</title>
+<col label="c1">Brand #1</col>
+<col label="c2">Brand #2</col>
+<col label="c3">Brand #3</col>
+<row label="r1">Best value</row>
+<row label="r2">Best customer service</row>
+<row label="r3">Best quality</row>
+</radio>
+In the example above, the same column cannot be selected twice for any row.
+3: What's Next?
+Single Select Element
+Single Select Question XML

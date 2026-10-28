@@ -1,0 +1,15 @@
+Title: Editing Quota Limits in Field
+It is possible to adjust quota limits during field directly from the Quotas tab in the Response Summary.
+For an overview of the Quotas tab, see Monitoring Quotas in Field.
+1: Editing Quotas
+To edit quotas in the Response Summary, first click Edit Quotas in the top right corner of the Quotas tab to open the quota editor.
+The names and limits for all editable quotas will be converted into textboxes. Click into the box for the field you want to edit, type in your changes, and click Save. You can also use your keyboard’s Tab key to navigate between textboxes.
+If you make changes to any quota limits, the totals on the right will automatically be updated to reflect those.
+Note: When specifying cells in a quota with a predefined total limit, using the asterisk (*) notation will divide the specified total equally across each cell with an asterisk. To leave a cell open, use the inf notation for that cell.
+1.1: Creating Soft Quotas
+Instead of limiting a quota to one exact number, soft quotas can be set to allow for a range of participants. In the example below, the hard quotas of 500 male, 500 female, and 500 other are changed to a range of 400-500 each, with a total quota of 1500 participants.
+Editing soft quotas follows the exact same process as shown above, except instead of editing one number, you can enter a range of numbers.
+After saving your edits, your new quotas will automatically update and adjust to reflect any data that has already been collected.
+1. Limit Range: The limit ranges will automatically adjust for the totals already collected towards the quota.
+2. Total Range: When entering a total for soft quotas, you can only enter one number, not a range. Your total limit must equal the sum of the minimum and maximum numbers set in all categories. The minimum in the range will automatically be set based on the sum of minimum values you set for each category and the survey will continue allowing participants into the survey until the maximum total number is reached.
+3. Floating Participants: This value (+300) represents the number of floating participants that can be used beyond the soft quotas set.

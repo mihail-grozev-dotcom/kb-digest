@@ -1,0 +1,54 @@
+Title: Imperium RelevantID Integration
+Imperium's RelevantID is a third-party service which supports advanced fraud detection and data quality. RelevantID gathers data from participants' computers and uses deterministic algorithms to create a unique fingerprint of each computer. These fingerprints are used in surveys to identify participants and prevent them from “gaming” questions.
+Note: This functionality is achieved without the knowledge of the participant and therefore no consent is required. There are no client-side application downloads of any kind and no personally identifiable information is gathered.
+You can use the Logic Library to add RelevantID to your survey. This can be done using either the "Imperium RelevantID Integration" element in the Survey Editor or the "relevantid" logic node in the survey XML.
+Note: Imperium RelevantID logic node cannot be added to a survey that includes a Dynata QualityScore Integration logic node as the Dynata QualityScore logic node includes RelevantID services.
+1: Adding RelevantID Using the Survey Editor
+To add RelevantID verification using the Survey Editor, click + Element under the element tree.
+In the Element Library, click Advanced under Question Types and select the Imperium RelevantID Integration element from the list.
+Then click Add. The new element will appear in the staging area, where you can specify the settings for your integration.
+The following options are configurable:
+Client ID: Your client ID as provided by Imperium.
+Panelist ID: The unique ID for each participant (e.g., ${uuid}).
+Survey ID: The ID for the survey you would like to use.
+Geographic Codes: The GeoCodes for GeoIP verification.
+Verity ID: The Verity ID for each participant. If specified, then the geolocation fraud check will be performed and its flag set.
+Custom Factor: Any custom value you would like to use for deduping new participants against past survey records. If set, RelevantID checks all participant records and returns some additional fields for each record which indicate whether that participant was a duplicate of a previous record. The following fields are returned:
+CustomFactorFlag: Returns a boolean value indicating whether the participant is a duplicate of a previous record. If set to “1”, the participant is a duplicate. If set to “0”, they are not.
+CustomFactorPanelistId: The uuid tied to the record for which the CustomFactor value was recorded. Will be “0” if the CustomFactor value has not been seen before.
+CustomFactorDate: The date on which the CustomFactor value was last recorded.
+CustomFactorCompleteDate: The date that the original participant completed the survey. This will be set to “0” unless you are using Imperium’s CSO service.
+Note: The Custom Factor parameter does not affect Imperium’s Fraud Profile Score™ for the flagged record.
+2: Adding RelevantID Via the XML
+To include Imperium's fingerprinting functionality in a survey using the RelevantID logic node, you will need to add the following <logic> tag to your survey XML:
+<logic label="relevantid"
+relevantid:ClientID = "your client id"
+relevantid:PanelistID = "the panelist id"
+relevantid:SurveyID = "the survey id"
+uses="relevantid.6"/>
+Note: To avoid showing participants a blank screen within the survey, the logic tag should be added to the same page as another survey question.
+A suspend will automatically be added after the logic node along with a hidden text question,<label>_result, with the results. If there was a problem, there is an error row in the hidden question that will be populated.
+In addition to the hidden question, the results will be stored in a persistent variable based on your logic node label, p.client_<label>. In the example above, on the next page p.client_relevantid would contain the results of the logic node.
+2.1: Required Attributes
+The following attributes are required for the logic node to function properly:
+ClientID - Unique ID assigned to client by Imperium
+PanelistID - Panelist ID - this can be a unique identifier from the survey
+SurveyID - Survey ID
+Note: The attributes above should be provided by Imperium. You will need to purchase an Imperium license to use this integration.
+2.2: Optional Attributes
+GeoCodes: Physical addresses segmented by county, MSA, and postal route
+Domain: Returns the domain for the participant's
+IP address (e.g. www.forsta.com).
+FraudFlagCount: Total number of fraud flags
+detected.
+ErrorCode: A number indicating the following
+error message:
+0: No error occurred.
+1: Required fields missing.
+2: Unknown error occurred.
+CustomFactor: Optional. Any custom value you would like to use for deduping new participants against past survey records. If set, RelevantID checks all participant records and returns some additional fields for each record which indicate whether that participant was a duplicate of a previous record. The following fields are returned:
+CustomFactorFlag: Returns a boolean value indicating whether the participant is a duplicate of a previous record. If set to “1”, the participant is a duplicate. If set to “0”, they are not.
+CustomFactorPanelistId: The uuid tied to the record for which the CustomFactor value was recorded. Will be “0” if the CustomFactor value has not been seen before.
+CustomFactorDate: The date on which the CustomFactor value was last recorded.
+CustomFactorCompleteDate: The date that the original participant completed the survey. This will be set to “0” unless you are using Imperium’s CSO service.
+Note: The CustomFactor parameter does not affect Imperium’s Fraud Profile Score™ for the flagged record.

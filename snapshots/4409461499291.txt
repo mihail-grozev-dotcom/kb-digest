@@ -1,0 +1,15 @@
+Title: Setting the Placement of Row Legends
+If your question contains rows, the Survey Editor allows you to change the position of the answer option legend in relation to the radio button, check-box, drop-down menu or open-ended text field. By default, legend text appears to the left of an answer option, but it may also appear to the right, both to the left and right, or above it.
+Note: The question must contain rows for this option to be available.
+1: Choosing a Legend Position
+To change the layout of row legends, first select the question so that it appears in the staging area. Then click the "..." menu and select "Update Styling".
+In the Question Display Options menu, locate the "Row Legends" drop-down and select from the following:
+optimize: Displays row legends in the best position based on the question type.
+left: Displays row legends on the left side of each answer option.
+right: Displays row legends on the right side of each answer option.
+both: Displays row legends on both the right and left side of each answer option.
+above: Displays row legends above each answer option.
+Note: The "above" option is only available for Text, Essay, and Number questions with rows, and Dropdown questions with choices and rows.
+2: Applying the New Layout
+Once you are satisfied with your selection, click "Save and Close" or "Save and Preview" to preview the legend layout prior to returning to the Editor.
+Tip: Because layout results can vary based on question type, project settings, and configuration of style settings, it's good practice to use the "Save and Preview" feature to verify that your legends appear as desired.

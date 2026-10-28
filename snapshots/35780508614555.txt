@@ -1,0 +1,34 @@
+Title: 153.50 Release Notes
+Release Date: April 8, 2025
+Release Version: 153.50
+New Features
+Survey
+Language Manager
+Added four generic Arabic translations options for Language Manager which use the primary Arabic language translations.
+Learn More: Available Survey Languages
+Programming and Tools
+API
+Documentation for endpoints that return survey information has been updated.
+Bug Fixes
+Survey
+Dynamic Questions
+An issue causing the Open Assist question to sometimes freeze during question text generation has been resolved.
+The Open Assist question now works as expected when a non-ASCII answer is submitted.
+An issue causing raw HTML to display in some open-end answer rows in ranksort questions has been resolved.
+Participant View
+Empty piped response texts now show as blank rather than the text "None", as expected.
+For dynamic question slidernumber.6, an issue allowing participants to select a value higher than the maximum in some cases, was resolved.
+Survey Editor
+An issue allowing <script> tags to execute from within question text fields has been resolved. Such tags will still execute in Participant View, as before.
+Language Manager
+An issue preventing users from seeing translation resources when selecting or deselecting "All Resources" has been resolved.
+Responses
+View/Edit Responses
+Filter variables with Unicode characters are now handled correctly.
+The report table now displays correct values for checkbox open-end responses that are integers.
+Reporting
+Data Downloads
+Datamap downloads in non-default languages are now handled better to avoid issues with surveys that contain looped elements.
+Programming and Tools
+API
+The rh/companies/<companyID>/surveys endpoint now properly returns the accessed key as a boolean, rather than as null or a timestamp.

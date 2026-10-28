@@ -1,0 +1,57 @@
+Title: Attributes for Question Settings
+There are a variety of <survey> attributes that can be used to configure the behavior of both surveys and their questions across Decipher’s various tools and features.
+You can use the following attributes to control the various question settings for any Decipher survey.
+Note: Click to enlarge each image.
+Attribute
+Purpose
+Description
+displayOnError
+Specifying Which Questions to Show on Error
+The displayOnError attribute controls can be set to "bad" or "all" and controls which questions are displayed on a page if a validation error occurs.
+If displayOnError="all" is specified, then all questions that exist on the page are shown along with the error message(s).
+If displayOnError="bad" is specified, then only the question that received the error is shown with the error message(s).
+html:showNumber
+Showing Question Numbers
+The html:showNumber attribute is a boolean value that controls whether or not to show a number alongside each question see by the participant. Regardless of the labels provided, each question will be numbered starting with 1. (e.g., 1. What is..., 2. Please specify..., 3. Choose one of...).
+Note: If a question is skipped, the question numbering skips as well. For example, you may see "1" immediately followed by "5" if each question in between was skipped.
+newVirtual
+Using Python Virtual Elements
+The newVirtual attribute is implicitly added for all surveys compat="20+".
+If newVirtual="1" is specified (default), then you can use the same syntax for <virtual> elements as you do for all other survey elements (e.g., Python code).
+Tip: Learn more about Virtual Questions and Python Expressions.
+pipeAltLabels
+Using Alternative Labels for Pipes
+The pipeAltLabels attribute allows you to pipe question responses using the question's altlabel attribute instead of the label attribute.
+For example, if pipeAltLabels="1" is specified, then the following will work as expected:
+<radio label="Q1" altlabel="Baby_Gender">
+<title>Is it a...</title>
+<row label="r1">Boy</row>
+<row label="r2">Girl</row>
+</radio>
+<suspend/>
+<html label="Congrats" where="survey">Congrats on your [pipe: Baby_Gender lower]!</html>
+pipeErrors
+Generating a Fatal Error for Invalid Piping
+The pipeErrors attribute allows you to generate a fatal error whenever the system encounters invalid piping. By default, invalid piping is displayed as text within the survey.
+For example, if you want to pipe in "some_pipe", but forget to set p.some_pipe, your pipe would appear as "INVALID PIPE '[some_pipe]'" in the survey.
+Note: The pipeErrors attribute can be applied only to persistent variable piping, [pipe:question_not_found] will always show a textual error.
+uses
+Setting Which Dynamic Question Styles to Use
+The uses attribute allows you to specify global styles to apply across the entire survey.
+For example, if uses="fir.2" is specified, all applicable questions (radios & checkboxes) use the Form Image Replacement dynamic style. As illustrated below, you can specify default values to use for the question style inside the <survey> element.
+<survey name="Survey"
+...
+...
+uses="fir.2"
+fir:icon_css="color: red;"
+...
+...>
+See Dynamic Question Versioning to learn more about the current dynamic question version numbers used currently.
+Learn More:
+More information about all of the <survey> element's attributes is provided in the documents below.
+Overview of the Survey Tag and Quick Links
+Attributes for Project Settings
+Attributes for Display Settings
+Attributes for Field Settings
+Attributes for Device Settings
+Attributes for Report Settings

@@ -1,0 +1,43 @@
+Title: Scripting Logic
+We’ve already scripted a basic survey. Now we need to add some logic to our survey to guide participants through it along a pre-designated path. In this section, we'll learn about Python, the programming language used to implement logic in Decipher. We'll also encounter some common logic-based tasks within the platform.
+Python Overview
+Before going any further, we need to have a basic understanding of the Python programming language. Python is the basis for much of the Decipher platform, so even a foundational knowledge of the platform goes a long way to prepare a user for scripting surveys. In this lesson, we’ll be introduced to Python with many expressions and tasks that are common in programming Decipher surveys.
+For a complete tutorial, please review the free online course linked in the reference materials below.
+Reference Materials:
+Decipher Technology: Python
+Learn to Code | Codecademy
+Logic I
+Now that we have foundational knowledge of Python, it’s time to put what we learned into practice. In this lesson, we’ll begin adding logic conditions to our survey. In Decipher surveys, the cond attribute is used to apply skip logic to many survey elements. Conditions can also be applied to an entire list of answer options with rowCond, colCond, and choiceCond.
+Reference Materials:
+Adding Condition / Skip Logic
+Participant Sources
+Participant sources determine how participants get into the survey and where they are directed at survey completion. This lesson will outline the configurations we can use in the <samplesources> tag to meet the needs of the current project, including the name, URL variables, error messages, and exit pages for our participant sources.
+Reference Materials:
+Configuring Participant Sources
+Basic Quotas
+In this lesson, we’ll cover the basics of the Decipher quota system and build a simple quota.xls file. This file can uploaded to the System Root directory and called through a <quota> tag to limit and monitor our sample, ensuring that our desired specifications are met.
+Reference Materials:
+Adding Quotas Using the XML Editor
+Monitoring Quotas in Field
+Logic II
+Continuing on from the Logic I lesson from earlier, this lesson will outline some of the more advanced applications of Python logic within Decipher . We’ll also learn about the question object, how to build hidden and virtual questions, make our code more efficient with vector logic, and perform custom data quality checks using the <validate> tag.
+Reference Materials:
+Exec Tag: Execute Python Code
+Python Expressions
+Hidden Questions
+Adding Virtual Questions to the Report
+Streamline Conditions with Vector Logic
+Validate Tag: Custom Data Quality Checks
+Pipes
+There are several methods for piping content into Decipher surveys. In this lesson, we'll learn how to set up each method, and review that method's benefits and limitations.
+Reference Materials:
+Variable Replacement
+Creating Hidden Tracking Questions with Autofill
+Pipe Tag: Show Information Conditionally
+Resource Tag: Create Translatable Resources
+System Language Resources
+Advanced Shuffling I
+In this lesson, we'll get an introduction to advanced shuffling in Decipher , focusing on controlling and tracking the order of answer elements. We'll also learn how the order attribute for randomized elements can be accessed and re-assigned using a Python list, allowing us to fully control the order of answer options, or match the order across multiple questions.
+Reference Materials:
+Basic and Advanced Randomization
+Randomizing Response Options in Groups

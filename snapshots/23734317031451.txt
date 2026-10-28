@@ -1,0 +1,22 @@
+Title: 153.27 Release Notes
+Release Date: March 12, 2024
+Release Version: 153.27
+New Features
+Survey
+Running Simulated Data
+The "Learn More" link is now visible even when the test configuration area is collapsed.
+Reporting
+Data Downloads
+CSV export now exports with the .csv extension instead of the incorrect .txt extension.
+Programming and Tools
+API
+Updated API documentation to include the rh/companies/<company>/retention endpoint.
+Bug Fixes
+Survey
+Dynamic Questions
+Upgraded the Video Testimonial element (videocapture.3) to ensure videos play back in the correct orientation.
+Survey Editor
+Panel Management data points will no longer visually truncate, regardless of row count.
+Reporting
+Data Downloads
+When the OData modal is shown, menus now display as expected.

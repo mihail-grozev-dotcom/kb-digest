@@ -1,0 +1,5 @@
+Title: Grouping Answer Options in the Report
+Decipher automatically groups two- and three-dimensional elements by rows, columns, or choices in the report based on which one of these has the most answer options. You can override this and define how you want them to appear in the report.
+To specify how the data will be shown in the report, first click the element so the options panel appears to the right of the staging area. Then click "More Options" and select "adim" from the drop-down. From the "adim" drop-down, select auto, rows, cols, or choices to define how you want to group the data in the report.
+The example below shows the data for a two-dimensional Single Select element grouped by row.
+The example below shows the data for a two-dimensional Single Select element grouped by column.

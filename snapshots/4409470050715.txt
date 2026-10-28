@@ -1,0 +1,19 @@
+Title: Tagging Projects
+Tags are a good way to organize projects, and also the primary way to search for specific projects in Decipher. Tags are usually terms or phrases that help describe the project and are displayed on the bottom right of the project page.
+Projects can contain any number of tags.
+Example use of tags:
+Tag all your Customer Satisfaction surveys as “Customer Sat”. You can now view the collection of them at once by searching for the “Customer Sat” tag.
+Tag your project with the sample provider to quickly see all projects using that particular vendor.
+Tag projects using a specific methodology, such as "MaxDiff" or "NPS".
+With tags, you can search for projects by a defined categorization(s) similar to how user groups allow you to find projects managed by particular teams.
+Note: Tags are only viewable on a project if you have survey edit access. For example, if you’re a sample vendor provided with Response Summary access only, you won’t see the project’s tags. Most users will have the proper survey access to view tags, though.
+1: Tagging a Project
+You can add tags to projects at any time. To add tags to a new survey, click into the Tags field under "Survey Options" in the New Survey window and enter the desired terms.
+See Creating a New Survey to learn more about creating projects in Decipher.
+Note: Auto-complete helps identify existing tags as you type.
+To add tags to an existing survey, click into the "Tags" field on the project page and enter the desired terms.
+1.1: Tagging Multiple Projects
+To tag multiple projects at once, first check the boxes to the left of the desired project names in the Portal. Then click the tag icon and type in the name of the tag in the field provided.
+Once the tags are entered, select "Apply" to apply the tags to all selected projects.
+2: Removing Tags
+To remove tags from a project, select the project in the portal to open the project page. Then locate the tag you want to remove and click the 'x' for that tag.

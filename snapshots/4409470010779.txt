@@ -1,0 +1,8 @@
+Title: Undo / Redo Changes
+The Survey Editor allows you to easily undo or redo an action while creating or editing a survey.
+1: Undo an Action
+To undo a change in your survey, click the counterclockwise arrow icon located at the top left corner of the staging area.
+Tip: You can also use your keyboard and click ctrl+z (or cmd+z for Mac devices).
+2: Redo an Action
+To redo a change in your survey, click the clockwise arrow icon located at the top left corner of the staging area.
+Tip: You can also use your keyboard and click ctrl+shift+z (or cmd+shift+z for Mac devices).

@@ -1,0 +1,60 @@
+Title: Dropdown Menu Question Attributes
+1: Overview
+The <select> element is a single select question type that allows selections to be made from a dropdown list of items.
+<select label="Q1" optional="0" unique="rows">
+<title>Please rank your preference for each item below from 1 - 3.</title>
+<choice label="ch1">1</choice>
+<choice label="ch2">2</choice>
+<choice label="ch3">3</choice>
+<choice label="ch4">4</choice>
+<choice label="ch5">5</choice>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</select>
+The example code above produces the following result:
+2: Attributes
+In addition to the Question Attributes available, the <select> element has access to the following two attributes:
+2.1: unique - Prevent Duplicate Responses
+The unique attribute can be set to "none", "rows", "cols", or both "rows,cols".
+If unique is specified, then a unique selection must be made for each set of elements. For example:
+<select label="Q1" unique="rows">
+<title>Considering the same store attributes you just evaluated, please indicate which ONE retail store you are...</title>
+<col label="c1">Most Likely To Go To </col>
+<col label="c2">Least Likely To Go To</col>
+<choice label="ch1">Office Supply</choice>
+<choice label="ch2">Supply Depot</choice>
+<choice label="ch3">Staplers Plus</choice>
+<choice label="ch4" okUnique="1">None of the above</choice>
+<row label="r1">Their prices/value</row>
+<row label="r2">The way they lay out and organize the store</row>
+<row label="r3">Has employees available who can answer questions</row>
+</select>
+In the example above, the same choice cannot be selected twice for any given row. This means that "Office Supply" cannot be selected as "Most Likely..." and "Least Likely.." at any row.
+If a participant does duplicate responses, the following error message will be shown:
+Please select each answer only once in each row.
+You may specify okUnique="1" on a <choice> element to allow multiple selections to be made for that element. For example, you can select "None of the above" for both "Most Likely..." and "Least Likely..." in any of the rows above.
+2.2: minRanks - Set the Minimum Number of Rankings
+The minRanks attribute is an integer value that sets the minimum number of rankings (selections) to be made. If the minimum number of rankings is less than the number of choices available, the selections made must be the first choices listed (up to the minimum number).
+Consider the following example:
+<select label="Q1" minRanks="4" unique="cols">
+<title>Please rank the nutritional value of the foods below:</title>
+<choice label="ch1">1st</choice>
+<choice label="ch2">2nd</choice>
+<choice label="ch3">3rd</choice>
+<choice label="ch4">4th</choice>
+<row label="r1">Cheese</row>
+<row label="r2">Biscuits</row>
+<row label="r3">Jam</row>
+<row label="r4">Beer</row>
+<row label="r5">Apples</row>
+</select>
+In the example above, a participant must make four selections for the entire question to proceed. If a participant fails to rank at least four items in the example above, the following error message will be shown:
+Please rate at least 4 items.
+Setting the minRanks attribute to 2 or more automatically applies the unique="none,cols" attribute (after saving and refreshing the page) to ensure that a participant does not select the same <choice> for each <row>. This forces a unique selection for each row.
+In this example, applying minRanks="4" and unique="cols" creates a legitimate ranking question to gather the nutritional value for each food item provided, from most nutritional to least.
+If the example had minRanks="2" instead of ="4", only the choices named "1st" and "2nd" must be selected. No other choices are required to submit the question.
+Note: If you set the attribute minRanks to 0, minRanks will make the question optional, even if you have the attribute optional="0" (mandatory) applied on that question.
+3: What's Next?
+Dropdown Menu Element (Survey Editor)
+Dropdown Menu Question XML

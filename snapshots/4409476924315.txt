@@ -1,0 +1,241 @@
+Title: Customizing the Card Sort Element
+With a Card Sort question, survey participants sort response options ("Cards") into categories ("Buckets"). There are two ways of moving the cards into the buckets.
+The primary interaction is clicking: participants simply click the bucket(s) that apply to the current card.
+The secondary interaction is dragging: participants can also drag and drop the cards into the buckets.
+Drag and drop is secondary because it requires a lot more motor/cognitive skills and can be more difficult depending on the device type and size.
+The following includes some of the main features and options for the Card Sort question:
+It works on both Single Select and Multi-Select questions, allowing participants to select either a single bucket or multiple buckets to apply to each card.
+Navigation between response options is optional. It is up to you to decide whether to allow participants to go back and change any choices they have already made.
+Showing bucket contents is optional. If enabled, participants will be able to see how many cards there are in each bucket.
+1: Underlying Question Architecture
+The base question types for Card Sort questions are Single Select and Multi-Select questions. In the survey XML, the cards are rows and the buckets are columns. Most of the options that can be applied to Single Select or Multi-Select questions can also be applied to Card Sort questions, including randomizing rows/columns, making answers exclusive, setting options to mandatory vs. optional, etc.
+Note: Card Sort questions require a minimum of two rows and two columns.
+Example:
+XML:
+<radio label="q1">
+<title>What do you think of these actors' portrayal of James Bond?</title>
+<row label="r1">Sean Connery</row>
+<row label="r2">George Lazenby</row>
+<row label="r3">Roger Moore</row>
+<row label="r4">Timothy Dalton</row>
+<row label="r5">Pierce Brosnan</row>
+<row label="r6">Daniel Craig</row>
+<col label="c7">Perfect</col>
+<col label="c9">Great</col>
+<col label="c8">So-So</col>
+<col label="c10">Bad</col>
+<col label="c5">Terrible</col>
+<col label="c6">Who?</col>
+</radio>
+2: Converting to Card Sort
+To convert an existing survey question to a Card Sort question, add uses="cardsort.11" to the question tag.
+Example:
+XML:
+<radio label="q1" uses="cardsort.11"
+Note: Only the radio tag is being shown here as the rest of the question (including its rows/columns) is the same as above.
+3: Customization
+The Card Sort question can be customized by modifying the CSS in the survey XML. Each style is prepended with cardsort:. For example, displayNavigation becomes cardsort:displayNavigation to customize the question styling.
+Note: If you add a Card Sort question using the Survey Editor, you will notice that there are several new XML variables added to the question tag. You only need to include the ones you want to customize.
+In the examples below, only the question tag is shown. No changes are required to the <row>/<col> tags to implement new styles.
+3.1: Options
+XML
+Description
+Type
+Example
+cardsort:displayNavigation
+Toggle showing the navigation buttons (previous, next).
+Bool (0 = HIDE, 1 = SHOW); default=1
+cardsort:displayNavigation="0" hides the nav buttons
+cardsort:displayCounter
+Toggles the card counter on the bucket.
+Bool (0 = HIDE, 1 = SHOW); default=1
+cardsort:displayCounter="0" hides the card counter
+cardsort:displayProgress
+Toggles the progress indicator for the current card versus the total number of cards.
+Bool (0 = HIDE, 1 = SHOW); default=1
+cardsort:displayProgress="0" hides the progress indicator
+cardsort:animationDuration
+Sets the duration of the transition (the card sliding into place).
+Integer; value in milliseconds; default=500; 0 to disable
+cardsort:animationDuration="1000" slows the transition animation to a full second
+cardsort:wrapBuckets
+When enabled, causes the buckets to wrap to the width of the parent container; when disabled, the buckets will always appear in a single row (on desktop), which may result in horizontal scrolling. Used in conjunction with cardsort:bucketsPerRow.
+Bool (0 = OFF, 1 = ON); default=1
+cardsort:wrapBuckets="0" forces the buckets into a single row
+cardsort:bucketsPerRow
+When coupled with the cardsort:wrapBuckets variable, each row will have this many buckets (on desktop only). If the number is zero, the system will automatically calculate the number of buckets per row based on the normal word wrap behavior of the parent element, which may not produce consistent results. Used in conjunction with cardsort:wrapBuckets.
+Type: Bool (0 = OFF, 1 = ON); default=1
+cardsort:bucketsPerRow="3" limits each row to 3 buckets.
+cardsort:themeFile
+Use an optional CSS file to define the CSS attributes for the Card Sort question. This option can be set at the folder level for consistency in the appearance of all Card Sort questions without needing to configure the variables for each Card Sort individually.
+URL
+cardsort:themeFile="custom-card-sort.css" would set the Card Sort question to use the styling defined in the custom-card-sort.css located in the project's static directory
+cardsort:automaticAdvance
+Applies to Single Select questions only. When set to true (default), participants will automatically advance to the next card after selecting a bucket.
+Bool (1 = ON, 0 = OFF); default = 1
+cardsort:automaticAdvance="0" will disable the automatic advancement of cards. To show the next card, the "Next" button must be clicked.
+cardsort:automaticSubmit
+The page is automatically submitted when the question is answered. This happens upon sorting the last card, or by pressing next if automaticAdvance is turned off or if the question is Multi Select.
+Bool (1 = ON, 0 = OFF); default = 0
+cardsort:autoSubmit="1" sets the Card Sort question to automatically advance to the next question, or will submit the survey if it is the last question.
+3.2: Navigation Buttons
+XML
+Description
+Type
+Example
+cardsort:iconButtonCSS
+Sets the style of the navigation buttons.
+CSS
+cardsort:iconButtonCSS="background: #266c13;" would set the background color of the navigation buttons to #266c13
+cardsort:iconButtonDisableCSS
+Sets the style of the disabled state for the navigation buttons.
+CSS
+cardsort:iconButtonDisableCSS="background: #ddd;" would set the background color of the navigation buttons to a light grey when they are disabled
+cardsort:iconButtonHoverCSS
+Sets the style of the hover-over state for the navigation buttons.
+Note: Mobile devices do not have a hover-over state, so this would not apply in mobile surveys.
+CSS
+cardsort:iconButtonHoverCSS="background: #000;" would set the background color of the navigation buttons to black when a participant hovers over them
+cardsort:buttonPreviousHTML
+Sets the content of the "Previous" navigation button.
+string
+cardsort:buttonPreviousHTML="BACK" would set the text to say "BACK"
+cardsort:buttonNextHTML
+Sets the content of the "Next" navigation button.
+string
+cardsort:buttonNextHTML="FORWARD" would set the text to say "FORWARD"
+3.3: Cards
+XML
+Description
+Type
+Example
+cardsort:cardCSS
+Customizes the appearance of all cards. Unlike most of these variables, this one can be placed in the question tag OR in an individual <row> tag in the event you want to make one card look different from the others.
+CSS
+cardsort:cardCSS="font-size:24px;" would set the font size in the card to 24px
+cardsort:cardDisableCSS
+Customizes the appearance of disabled cards.
+Note: Cards cannot become disabled without unique, explicit programming, so it is unlikely you will need to set this.
+CSS
+cardsort:cardDisableCSS="background: #ddd;" would set the background color of disabled cards to a light grey
+cardsort:cardHoverCSS
+Customizes the appearance of cards during hover-over.
+Note: Mobile devices do not have a hover-over state, so this would not apply in mobile surveys.
+CSS
+cardsort:cardHoverCSS="border-color: #f80;" would set the border color to orange when a participant hovers over the card
+cardsort:cardSelectCSS
+Customizes the appearance of cards which have at least one selected bucket.
+CSS
+cardsort:cardSelectCSS="background: #f80;" would set the background color to orange if that card has been put into any bucket already
+cardsort:dragAndDrop
+Enables or disables drag and drop functionality for the cards.
+Bool (1 = ON, 0 = OFF); default = 1
+cardsort:dragAndDrop="0" would disable the ability to drag cards onto buckets. The only interaction available would be to click on the bucket to bucketize a card.
+3.4: Buckets
+XML
+Description
+Type
+Example
+cardsort:bucketCSS
+Customizes the appearance of all buckets. Unlike most of these variables, this one can be placed in the question tag OR in an individual <row> tag in the event you want to make one bucket look different from the others.
+CSS
+cardsort:bucketCSS="font-size: 24px;" would set the font size in the bucket to 24px
+cardsort:bucketDisableCSS
+Customizes the appearance of disabled buckets.
+CSS
+cardsort:bucketDisableCSS="background: #ddd;" would set the background of disabled buckets to a light grey
+cardsort:bucketHoverCSS
+Customizes the appearance of cards during hover-over (both mouse cursor hover and drag-over hover).
+Note: Mobile devices do not have a hover-over state, so this would not apply in mobile surveys.
+CSS
+cardsort:bucketHoverCSS="border-color: #f80;" would set the bucket's border color to orange when a user hovers over it
+cardsort:bucketSelectCSS
+Customizes the appearance of buckets which have been selected for at least one card.
+CSS
+cardsort:bucketSelectCSS="background: #f80;" would set the background of the bucket(s) chosen for the current card to orange
+cardsort:bucketCountCSS
+Customizes the appearance of the card count button on each bucket. This button is only enabled when a bucket has cards in it.
+CSS
+cardsort:bucketCountCSS="background: #000;" would set the background of the card count button to black
+cardsort:bucketCountDisableCSS
+Customizes the appearance of the disabled card count button on each bucket.
+CSS
+cardsort:bucketCountDisableCSS=" background: #ddd;" would set the background of disabled card count buttons to light grey
+cardsort:bucketCountHoverCSS
+Customizes the appearance of the hover-over state for the card count buttons.
+Note: Mobile devices do not have a hover-over state, so this would not apply in mobile surveys.
+CSS
+cardsort:bucketCountHoverCSS=" background: #000;" would set the background of disabled card count buttons to black
+3.5: Other
+XML
+Description
+Type
+Example
+cardsort:progressCSS
+Sets the appearance of the progress indicator (e.g., 3/7).
+CSS
+cardsort:progressCSS="font-size: 16px;" would set the font size of the progress indicator to be 16px
+cardsort:contentsCardCSS
+Sets the appearance of all cards inside the bucket contents view; these appear when you click the bucket count to view the cards inside a bucket.
+CSS
+cardsort:contentsCardCSS="background: #fc6;" would set the background color of the cards inside the bucket
+cardsort:completionHTML
+Sets the message content shown when a participant has sorted all the cards.
+string
+cardsort:completionHTML="Congrats! You are done here! Move along"
+cardsort:completionCSS
+Changes the look of the completion message (see cardsort:completionHTML).
+CSS
+cardsort:completionCSS="border: 1px solid #777;" would put a grey border around the completion message
+4: Customization Example
+The following example question uses several of the configurable variables listed above.
+Survey:
+XML:
+<radio label="q3" uses="cardsort.11"
+cardsort:displayCounter="0"
+cardsort:iconButtonCSS="background: #266c13;"
+cardsort:buttonNextHTML="Forward &lt;i class=&quot;icon-hand-right&quot;&gt;&lt;/i&gt;"
+cardsort:buttonPreviousHTML="&lt;i class=&quot;icon-hand-left&quot;&gt;&lt;/i&gt; Go Back"
+cardsort:bucketCSS="height: 80px; line-height: 80px; background: url('[rel cork-light.png]'); color: #333; font-weight: bold; font-size: 18px; border: 3px solid #81a976; padding: 0"
+cardsort:bucketHoverCSS="background: url('[rel cork.png]'); border: 3px solid #266c13;"
+cardsort:bucketSelectCSS="background: url('[rel cork.png]'); border: 3px solid #266c13;"
+cardsort:cardCSS="background: #fff799; padding: 40px; border: 1px solid #fff143; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.3); font-family: 'Noteworthy', 'Comic Sans MS', sans-serif;">
+5: Customizing the Error Messages
+If you want to customize specific error messages for the Card Sort element, you can do so using resource (<res>) tags.
+The following is a list of all the available resource tags used to change the error messages in the Card Sort Single Select and Multi-Select question types:
+<res label="sys_noAnswerSelected">Please select a bucket for this card.</res>
+<res label="sys_check-error">Please select $(which) $(count) bucket for this card (you selected $(actual)).</res>
+<res label="sys_check-error-atLeast-plur-column">Please select at least $(count) buckets for this card (you selected $(actual)).</res>
+<res label="sys_check-error-atLeast-plur-row">Please select at least $(count) buckets for this card (you selected $(actual)).</res>
+<res label="sys_check-error-atLeast-sing-column">Please select at least $(count) bucket for this card (you selected $(actual)).</res>
+<res label="sys_check-error-atLeast-sing-row">Please select at least $(count) bucket for this card (you selected $(actual)).</res>
+<res label="sys_check-error-atMost-plur-column">Please select at most $(count) buckets for this card (you selected $(actual)).</res>
+<res label="sys_check-error-atMost-plur-row">Please select at most $(count) buckets for this card (you selected $(actual)).</res>
+<res label="sys_check-error-atMost-sing-column">Please select at most $(count) bucket for this card (you selected $(actual)).</res>
+<res label="sys_check-error-atMost-sing-row">Please select at most $(count) bucket for this card (you selected $(actual)).</res>
+<res label="sys_check-error-exactly-plur-column">Please select exactly $(count) buckets for this card (you selected $(actual)).</res>
+<res label="sys_check-error-exactly-plur-row">Please select exactly $(count) buckets for this card (you selected $(actual)).</res>
+<res label="sys_check-error-exactly-sing-column">Please select exactly $(count) bucket for this card (you selected $(actual)).</res>
+<res label="sys_check-error-exactly-sing-row">Please select exactly $(count) bucket for this card (you selected $(actual)).</res>
+The following example question uses several of the resource tag customizations listed above.
+Survey:
+XML:
+<checkbox
+label="q2"
+cond="condition.skip_featurephone"
+atleast="2"
+uses="cardsort.11">
+<title>New Card Sort Multi-Select Question</title>
+<comment>Place each card into the buckets that apply.</comment>
+<res label="sys_check-error-atLeast-plur-row">Please select at least $(count) bucket for this card (you selected $(actual)).</res>
+<row label="r1">Card 1</row>
+<col label="c1">Bucket 1</col>
+<col label="c2">Bucket 2</col>
+<col label="c3">Bucket 3</col>
+</checkbox>
+6: References
+CSS Help:
+CSS Cheat Sheet
+CSS3 Generator
+CSS Gradients
+Color Scheme Generator

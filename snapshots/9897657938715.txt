@@ -1,0 +1,92 @@
+Title: Decipher (previously Decipher) M33 Technical Release Notes
+Release Date: May 10, 2016
+Mission Statement
+New survey compat level is 133. Use compat=”133” for all new surveys”. This enables:
+Single select (radio) questions using FIR can be unchecked
+The virtual table vterm is automatically added to reporting when setup survey attribute includes the value term
+A new survey tag style attribute, ss:logoAlt, allows you to add the survey logo alt text.
+New Features
+Survey Builder
+#21864: Survey builders will see visual indications in the survey elements menu, on the question tree, on the survey element, in device settings and when launching a project if an element is incompatible the project settings. Currently indications are for mobile devices only.
+Because of the new device feedback feature, DQs have a new attribute <device>(meta.xml) which affect the warnings and the compatibility table shown in the survey element menu.
+Theme Editor
+Theme Editor Permissions brings control to supervisors over what themes are available for their sub-users to use on surveys. The options are: Full, Use All, Use Company, Use System, and None.
+Field Report
+#21925: Added additional metrics to the campaign tab. You can now split campaigns by email domains (gmail, yahoo, hotmail, aol, apple, and other). There is also a row displaying spam % on sends.[03/09/16]
+#4222: The terminates tab now include rows for "Non-qualified" for quotas and "Disqualified" for data edits when a reason is given. Unspecified terminates that do not fall into the categories above will continue to be listed as "Unspecified Terminates."
+Dashboards
+#21694: Added a new publish button in dashboards to easily share public dashboards with other users. Also added a new duplicate button to easily copy an existing dashboard in a project. Note: This will only show for surveys created after 3/22/2016.[03/23/16]
+Reporting
+#22071: Multi-threaded reporting. Certain parts of the crosstabs/dashboard engine run in parallel. This can greatly accelerate very large reports. The number of threads is controlled by config.py option reportingThreads defaulting to 6. Certain large servers may benefit from higher setting. [4/20/16]
+Crosstabs
+#21561: Rows that are not randomized in the survey are no longer randomized in tables and charts when sorting [3/31/16]
+#21600: Compat 133+ surveys using setup="term" will generate a virtual question, vterm, showing how each user was terminated
+#22063: Table Editor now allows the user to exclude rows from mean statistics [4/27/16]
+Dashboards
+#21968: Word clouds can now use the keyword cloud.palette to use custom colors [3/29/16]
+#21746: Survey titles can now be piped using {{survey.title}}[3/29/16]
+Usage Statistics
+#21496: Usage statistics has a new column for Video Testimonial counts, VT Responses Separated. This contains the counts for responses per question in a comma separated list. *NOTE: For existing surveys this count will not match the VT Responses column. The VT Responses Separated count begins the day it is merged [3/29/16]
+Survey
+Survey Builder
+#21901: Fir size is now only shown for compat 128 and below [3/30/16]
+#21710: Logo ALT text should be customizable in Builder
+XML Editor
+#22083: Automatic indentations are now smarter and will copy the indentation from the previous line, whether using spaces, tabs or a mix of both [4/14/16]
+Simulated Data
+#21346: A new message is shown when if the CPU time is greater than .2 to indicate why the project using excessive CPU can't be launched.
+Participant View
+#21792: Single Select/Radio question can be unselected when using global fir
+Portal
+#22013 New logo for login page [3/18/16]
+#22008: Users Tab in grid detail or single project view is hidden for user without Admin:full permission or supervisor/staff access [3/12/16]
+#19985: A link to reset user's password is available in the edit users modal and as an api call [4/28/16]
+Upload System Files
+#22081: Added pagination when over 500 items are displayed [4/11/2016 ]
+Programming & Tools
+#21833: Update to allowed domains for umanage [3/30/16]
+#22046: Bad search now allows searching by date range [3/29/16]
+Bug Fixes
+Survey Builder
+#21810: Fixed issue with datasource element not being able to read boolean values. Adds a warning listing first cell in first that is invalid. [3/24/16]
+#21610: Fixed issue where RTE source editor would display <p> tags and a class, when plain text should be shown [3/29/16]
+#21624: Fixed mislabeling of case sensitivity option, error when checking/unchecking option [3/30/16]
+#21929: Using enter or shift + enter will add a line break instead of adding a paragraph tag
+#22138: Fixed Library issues that were specific to IE11
+XML Editor
+#21893: Survey-specific themes can be overwritten by using ss:includeLESS for a survey that is Live or Closed [3/10/16]
+Participant View
+#21523: No answer text is shown for compats 126, 127 and 128 in mobile view [3/10/16]
+#21911 : Text Highlighter (hottext.3) now highlights the correct phrase on mobile view [3/10/16]
+#21784: onerowatatime.3 can be used for groups and/or repeated column headers [3/21/16]
+#22033: Noanswer was not clearing out selected option in <select> question is now fixed [04/07/16]
+Theme Editor
+#21863: Fixed issue with legacy less themes file being replaced [3/29/16]
+Dynamic Questions
+#21863: Fixed issue with legacy less themes file being replaced [3/29/16]
+SPSS Importer
+#18567 Fixed issue with importing radio question type with no values [3/24/16]
+Campaign Manager
+#19609: Fix issue launched project from campaign manager email editor [3/30/16]
+Dashboard
+#21186: Colors on charts are showing correctly while exporting dashboards in pptx, xlsx, and pdf formats for bar, column and pie charts [3/15/16]
+#16690: User with only “view” permission dashboards could create a “new” dashboard [3/17/16]
+#21646: Fixed issue where export data in Dashboards not working with datapostfix. [4/06/16]
+#21947: Fixed error shown when using dynamic html extensions and project had no data [4/7/16]
+#22082: Dashboards tables are now sortable when using stats formula [4/13/16]
+Crosstabs
+#22004: Fixed issue where the default total segment would not apply ‘net’ to Crosstab. [4/05/16]
+#22085: Filter applied on the table in Crosstabs is now shown when exported in excel format [4/12/16]
+Responses Report
+#21590: Fixed an issue where logged in users sessions would appear in the View Responses report when the survey is live. [3/30/16]
+Field Report
+#18629: Fixed issue with project link in quota alert email [4/12/16]
+Downloads
+#21955: Fixed an issue where SPSS files would be corrupted when downloaded [03/09/16]
+#21999: Changed to replace instead of ignore when doing optional cp1252 recoding [3/29/16]
+#22044: Prior to the change the user would get an exception error when attempting to download survey data (via Data Downloads) if they had a question with missing labels (e.g. a row with a blank label, etc.) [04/06/16]
+#21609: Non-breaking space html is now converted to a space when data is downloaded and the characters appear correctly in the survey.
+Portal
+#22064: Fixed issue launching project in IE [4/6/16]
+Programming Tools
+#21690: Fixed not being able to save a logic node in a block [3/29/16]

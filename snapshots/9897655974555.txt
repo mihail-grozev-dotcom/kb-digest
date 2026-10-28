@@ -1,0 +1,65 @@
+Title: Beacon M20 Release Notes
+Release date: April 8, 2014
+M20 is the first release using our “Quick Release” schedule.
+New Features
+Alert Management System: A report accessible inside Research Hub that aggregates all alerts from surveys into one place. Allows for greater visibility on alerts, tracking of resolution & activity and ultimate “closing of the loop”.
+Release: Monday March 31st, prior to m20
+#17816 Alert elements can be edited from the alert center.
+#17802 Option to restrict which user/groups can see alert cases.
+“Users with report access to project” group shown by default
+Available only from edit-alert dialog
+#17781 Permission changes:
+Staff, Supervisors, and users with report.edit permissions to the project will have unrestricted access to the alert center
+Users report.view permissions will have access to view and edit cases for the project.
+An alert with a restricted list of users will only be seen by those in that list (and Staff/Supervisors/report.edit)
+#17851 Improved alert case style
+#17887 Email styles can be overridden in nstyles
+#17865 Question content displayed in order added during setup
+#17705 Alt attributes will be displayed in place of given text in question content
+#17892 Option to send an email when changing case owner
+#17852 Owner selection no longer requires multiple clicks
+#17816 question label for alert elements no longer shown as part of the options menu
+Crosstabs & Classic Reporting
+#17554 Custom table filter information is displayed in whiteboard/saved report creator
+#17899 When a project has a weight file uploaded, data weighting information is displayed in the report summary
+#17918 Data weighting information is displayed in PPTX/Excel/PDF exports summary
+#17880 Crosstabs doesn’t autorun for very large projects (will autorun if report tables + qualified participants/500) < 500
+#17932 Data weighting information is displayed in table summary on whiteboard/saved reports
+#17951 Data weighting information is displayed in exports (PPTX/Excel/PDF) for saved report exports
+Research Hub / Portal
+#17581 Macro Groups: A macro user group may contain both individual users and existing user groups, each with unique permission levels within the group.
+#17581 Users can be added to projects with different permissions. e.g. You can add User A with View Only, and User B with Vendor at the same time
+Builder
+#17816 question label for alert elements no longer shown as part of the options menu
+IE11 Tier 2 support
+Survey & CMS
+#17826 The <style> tag allows you to override survey.completion to replace the progress bar
+Dynamic Questions Toolkit Updates
+#17068 DQ’s can now provide their own custom editor usable within Builder.
+Programming & Tools
+#17281 The subscribe script can be used to view and edit survey subscriptions
+#17803 The subscribers hook can be used to programmatically modify who gets emails for support request, errors and other team emails. See Extended Documentation below.
+#17646 If you create a Database in a secure survey, you can read data from another survey as long as that survey has a proper ACL file
+Bugfixes
+Crosstabs & Classic Reporting:
+#17267 Corrected exception when running report
+#17605 Charts show in saved report preview
+#17647 Pinning now works in IE11
+#17758 Legacy reports support virtuals
+#17785 Fixed splitting by sample source
+#17341 Fixing logic problems in Banner Creator
+#17302 Banners must be given a unique name. If not the banner is not saved and a warning is shown.
+#17265 Progress indicator (spinner) now shows more often to indicate the report is still loading
+#17665 When a project has a weight file uploaded, banner creator shows per segment weighting option again
+#16431 Report 2010: PPTX export displays all rows in summary table
+Misc
+#17867 compat=120+ surveys automatically add a userAgent even if not explicitly present in survey.xml. Set agents=”none” if you absolutely do not want to see the vbrowser/vos tables that break down different browser versions
+A number of interesting database reports are available off the admin page:
+abandoned - list of surveys with recent live participants but lacking a subscriber
+90 days of spam complaints
+all active users
+Append .csv to the URL to get the file as CSV
+#17791 Fixes manual grouping problems in SPSS importer
+#17949: compat=120+ surveys now have more consistent styling across different device types
+Developers
+#17315, #17636 Grunt+Karma test runner in place, allowing developers to write and execute unit tests easily against modern applications

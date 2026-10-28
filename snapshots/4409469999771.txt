@@ -1,0 +1,84 @@
+Title: Partial Recovery System
+This document outlines the partial recovery system and partial data recovery within a Decipher survey.
+Note: For surveys with delphi="1", partial data is tracked by default in all reports and collection cannot be turned off. Partial records are available as soon as each participant submits their last survey page.
+1: Overview of the Partial Recovery System
+Partial data can be useful to researchers for a variety of reasons and is captured within every Decipher survey. Decipher defines a partial record as a participant who has not fully completed a survey before dropping out or closing their browser window.
+However, while partial data is included in every survey, it is not accessible using any of the reporting tools in the project portal. The partial recovery system allows you access to partial records within Crosstabs.
+Note: Please refer to the DecipherData Retention policy for more information about how long this type of data is available for your project.
+2: Enabling the Partial Recovery System
+By default, all partial data is stored in the survey "state.db" file and is used by the system to save each participant's state between survey pages.
+To enable the partial recovery system and access your partial data through Crosstabs, check the “Auto Recover Data” setting within the survey Field Settings menu and click "Save".
+Note: This setting is not displayed for surveys with delphi="1".
+Once "Auto Recover Data" is enabled and your project is launched (set LIVE), survey data begins recovering automatically. Partial data is available within 15 minutes in Crosstabs.
+3: How It All Works
+The partial recovery system tracks partials by the system-generated uuid variable and stores all partial data in a separate database, so you must enable this system for each project individually.
+Every 5 minutes, Decipher scans your survey for potential partial records. To be considered a partial record, the participant must have not submitted a survey page in the last 120 seconds for that run.
+The system checks each uuid against all previously recovered uuids in its memory and either appends or replaces the data.
+If the partially recovered participant completes the survey, their latest partial record is converted to a standard complete record.
+Note: By default, a partial record will take a maximum of 7 minutes to be recovered (5 minutes + the 120-second delay). You will also never have duplicate uuid entries for partial data. All partial data in the survey "state.db" file can become recovered partial data in the main data file once the partial recovery system is enabled.
+4: Project-Specific Overrides
+If needed, you can further tune the system to access your partial data sooner. An XML attribute called “autoRecoverDelay” controls the delay timer, and can be set to something other than the default 120 seconds.
+To ensure the quickest recovery of the partial data, you can set this attribute to “0” via the XML Editor by adding autoRecoverDelay="0" to your survey's <survey> tag.
+Regardless of the value you set, keep in mind that:
+Constant recovery of partials decreases the performance of any hidden virtual data and email campaign sends, as the partial recovery system resets certain cached data. This is more visible in larger surveys.
+Even at 0, the lowest possible threshold for partial data recovery is 5 minutes.
+The default settings require that a partial be recovered after a maximum of 7 minutes since their last activity (5-minutes + the 120-second delay).
+5: Finding / Interpreting Partial Data
+Records for partial data participants have a distinct “recovered” marker and are excluded from what Decipher normally considers “completes”. There are some limitations as to where you will find partial data, and how each Decipher tool treats it.
+5.1: Crosstabs
+Within Crosstabs, partial data is included in participant bases only when you select "All and Partials" or "Partials Only" as the participant status for the report.
+The partial recovery system also adds a virtual question to Crosstabs called “vdropout”, which records the question last viewed by each participant.
+5.2: Response Summary
+The "Click Through" count displayed in the "Completion" tab of the Response Summary includes all survey partials, along with a "Partial Completes" count listed directly below it.
+Partials are also shown in the "Drop Outs" tab in the Response Summary, as all clicks per question are shown there by default.
+5.3: Data Downloads
+All output data follows Decipher's standard report settings. Partial records will always have a status of “4” and contain two additional markers / data fields: “autorecover” and “last_XX”, where "XX" is the label of the participant's last viewed question.
+Note: The "vdropout" virtual uses the "autorecover" and "last_XX" markers.
+5.4: Email Campaigns
+In email sends, partials always receive a reminder (the Decipher email system does not consider partial records as completes).
+5.5: Command Line
+Requires Decipher Cloud
+When using the generate command, the config status of “all” does not include partials; use “partials” to output partials only or “everything” to get all complete and partial data combined.
+6: Editing Partial Data
+Recovered partial data can be edited in the same way that you edit complete data, using the "View/Edit Responses" report, available under "Responses" in the navigation menu at the top of any project page. To learn more about editing data, see About the View / Edit Responses Report.
+Note: If a recovered participant returns and completes the survey at any time while the partial recovery system is still enabled, their data and status gets updated. This process overwrites any previous changes made via the View / Edit Responses tool. This does not apply when partial records are deleted.
+7: Disabling the Partial Recovery System
+To disable the partial recovery system, de-select the “Auto Recover Data” setting within the survey Field Settings menu. This disables the system from running every 5 minutes. Once disabled, you should wait 5-10 minutes for any pending partial data runs to complete before pulling down your partial data.
+Note: This does not delete / remove any already recovered partial data from Crosstabs. If you wish to remove your partial data from Crosstabs, you can clear them out using the View / Edit Responses report.
+8: Partial Recovery System Logs
+Requires Decipher Cloud
+8.1: Project-Level Logging
+All partial events are logged on the server for each enabled survey. This is located in the root folder of the project in the survey.log file.
+Example: /home/hermes/v2/project_directory/survey.log
+In the survey.log file, you will find timestamps of when each partial uuid was restored and when that existing partial uuid record was updated.
+8.2: Global Logging
+Global logging is available for “staff” level users and can be found in the following location:
+/home/hermes/v2/logs/autorecover.log
+All partial events for each project are logged here. This includes when the project began restoring data (and its delay), when a partial record was restored, where it was restored, and a small summary of how many records were restored / converted to completes.
+9: Limitations & Unsupported Features
+The partial recovery system is not compatible with loadData, allowDupe or sql due to the complexity of these settings.
+Matching participant data by another variable, such as “source” or a participant source variable is not possible. You can only match back data using uuid.
+10: Frequently Asked Questions
+Here is a list of some frequently asked questions regarding the partial recovery system:
+Q: If a user drops out and then re-enters the survey, will they have the same uuid?
+A: No, the partial recovery system assigns a new uuid each time a user enters the survey, unless you have Autosave enabled. To learn more about resuming surveys in Decipher, see Survey Resume System.
+Q: If there are multiple partial records, how do I match a user to their assigned uuids?
+A: It is recommended that you use an additional unique identifier for each user if you would like to match partial data back to specific records (for example, a user’s “source” value will remain the same for all of their partial records).
+Q: If a uuid eventually completes the survey, does the partial system delete that partial record from the recovery process?
+A: Yes, it will overwrite the most recent partial record with the participant’s complete data. Before recovering a uuid, the system checks whether it has completed the survey, so there is also a minimal chance of duplicate records.
+Q: What if the system picked up that ID in a prior run?
+A: On a survey with the partial recovery system enabled, subsequent recovery runs or completes will update each uuid's place in the data file and will not save a new record.
+Q: Does the 5-minute recovery process run at 8:00/8:05/8:10, etc. or some other 5-minute interval?
+A: It will run at 12:00 am and then again every 5 minutes after that.
+Q: Can I change the 5-minute timer?
+A: No, this is a server setting and such an override function does not exist.
+Q: On which data variable is autorecover / autoRecoverDelay based?
+A: Both of these processes will always be based on each user’s unique identifier or uuid.
+Q: Can I enable the partial recovery system after the survey has fielded?
+A: No, for a closed survey, you must submit a ticket to support to enable this data. Also note that the data must be available per the Decipher Data Retention policy.
+Q: For how long is partial data available?
+A: By default, partial data is stored in Decipher for 3 weeks from the date the last participant finished the survey. After 3 weeks, all non-recovered partial data is erased completely. You should recover any partial data you wish to save past this point.
+Q: Can I extend the allowed storage time for my partial data?
+A: There is no way to extend the storage. It is recommended you enable the system from the start of fielding so that all partial data is available for you in Crosstabs.
+Q: Is there a limit to how much partial data I can store on a survey?
+A: Currently, there is no limit to this. Note that additional storage costs may be incurred due to partial data storage. See your Contract or Account Manager for details.

@@ -1,0 +1,48 @@
+Title: 151.4 Release Notes
+Release Date: October 11, 2022
+Release Version: 151.4
+New Features
+Portal
+Increased the default rate limit for Portal survey searches from 10 computing seconds to 60 computing seconds.
+Removed the additional projects count from the Recent Projects menu in the company level user settings. It now reads "Show all projects in Portal" instead of "+ # more (Show in Portal)".
+Survey
+Smarthub Integration
+Single-choice questions (radio and select) now send the value option configured in the survey to Smarthub. When explicit row attributes are set (i.e. values="order" or values="reverse"), this allows the question to be used for KPI and other scoring in Studio, allowing easy access to averages.
+When a Forsta Surveys project is added to Smarthub, Forsta Surveys will attempt to send the survey data right away. Future updates will continue to be sent every 5 minutes.
+Respondent View
+Updated the company logo for certain survey templates.
+Responses
+Response Summary
+Improved the performance of the Response Summary dropout page for surveys with hundreds of pages.
+Reporting
+Data Collection
+Improved the data collection performance for surveys with over a thousand markers.
+Programming & Tools
+API
+Added documentation for the rh/surveys/current API endpoint.
+Added documentation for the umerge API endpoint.
+Bug Fixes
+Portal
+When a user with access to multiple companies creates a new survey, the survey path will update with the chosen company.
+Survey
+Languages with non-Latin characters now display correctly in the Description field of the Project Overview page.
+Adding a new user to a project with custom permissions no longer causes dropdown menus to sometimes change appearance when an option is modified.
+Smarthub Integration
+Surveys with question or row labels longer than 32 characters can now synchronize to Smarthub.
+Surveys containing a checkbox question without any rows or columns now consistently sync to Smarthub.
+Duplicates in the “record” variable no longer cause sync failures to Smarthub.
+Survey Editor
+The formatting toolbar now remains accessible when adding multiple variables in a loop.
+Changing the domain in the “Host Survey From a Different Domain” dropdown (located on the Settings page under the header Field Settings) now sets the correct value in the associated survey XML attribute builder:cname.
+Fixed an error caused by using 'inuse' as an attribute for the 'samplesource' xml tag.
+Response Summary
+Filtering responses by date in the Terminates tab no longer causes an error.
+Help text shown after clicking “Edit Quotas” in the Quotas tab now persists instead of disappearing.
+Campaign Manager
+Fixed an issue where some emails that did not include the correct survey link failed to send with an error about a missing global opt-out link.
+Reporting
+Viewing a public research dashboard or saved (pinned) Crosstabs report without being logged in no longer causes an error.
+Crosstabs
+Crosstabs named with non-ASCII characters no longer return an error when running.
+Images with a non-lowercase file extension now display correctly in Crosstabs.
+The table actions menu now displays correctly when there are video testimonial thumbnails in the table.

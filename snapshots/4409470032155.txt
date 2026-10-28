@@ -1,0 +1,68 @@
+Title: Creating Hidden Tracking Questions with Autofill
+The Autofill element is a multi-purpose hidden question that can simplify some of the more complex tracking features within a survey. It can be used to create report segments for splitting data or tracking quotas or to implement advanced answer piping.
+1: Adding an Autofill to the XML
+To include an Autofill element in your survey, add the <autofill> tag after the question you would like to track, specifying the label, where, and autofill attributes.
+<number
+label="q2"
+optional="0"
+size="10">
+<title>How many children do you have?</title>
+<comment>Please input 0 if you are not a parent.</comment>
+</number>
+<autofill label="is_parent" where="execute,survey,report">
+<title>Children tracker</title>
+<row label="r1" autofill="(q2.check('>0'))">Has children</row>
+<row label="r2" autofill="(q2.check('0'))">No children</row>
+<row label="none" autofill="thisQuestion.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+</autofill>
+label
+The label attribute sets the unique identifier for the Autofill element, and how it will be displayed in reporting tools.
+<autofill label="is_parent" where="execute,survey,report">
+If you are using the Autofill element for piping, you can use this attribute as a reference. For example, if you specified age_recode as your label, use the following pipe to recall this attribute:
+[pipe: age_recode]
+where
+The where attribute keeps the question hidden from participants. By default, this needs to be set to where="execute,survey,report", so that it is hidden from participants but still available for piping and visible within the reports.
+Note: To find out more about the where attribute, see Control where an Element Appears with the Where Attribute.
+<autofill label="is_parent" where="execute,survey,report">
+autofill
+The autofill attribute is added at the row level, and is used to specify the condition under which the corresponding row will be selected. The autofill attribute can contain any Python expression that returns either True or False, and will be similar to what would be specified in a cond statement.
+<row label="r1" autofill="(q2.check('>0'))">Has children</row>
+<row label="r2" autofill="(q2.check('0'))">No children</row>
+<row label="none" autofill="thisQuestion.count == 0"
+1.1: Autofill Row Structure
+Each row of the Autofill element represents a different segment or pipe text that will be tracked in the survey and is auto-populated via the autofill attribute, which holds a condition to punch the corresponding row. Any condition specified in this attribute that evaluates to True will result in the corresponding row being selected automatically. As such, the Autofill element can have more than one response option selected at a time.
+<row label="r1" autofill="(q1.check('18-24'))">18-24</row>
+<row label="r2" autofill="(q1.check('25-34'))">25-34</row>
+<row label="r3" autofill="(q1.check('35-44'))">35-44</row>
+<row label="r4" autofill="(q1.check('45-54'))">45-54</row>
+<row label="r5" autofill="(q1.check('>54'))">55+</row>
+Another default row exists with the text “None of These Classifications Apply”, which will be auto-populated if no other conditions in the Autofill are valid.
+<row label="none" autofill="thisQuestion.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+Note: When used for piping, if multiple selections are true in the <autofill> element, they will be piped in separated by a comma.
+2: Use Case Example
+If you want to track the age group of a participant and then use that information to show them a customized message later on in your survey, use the example shown below:
+<number
+label="q1"
+optional="0"
+size="10">
+<title>What is your age?</title>
+<comment>Enter a number</comment>
+</number>
+<suspend/>
+<autofill label="age_recode" where="execute,survey,report">
+<title>Age Capture</title>
+<row label="r1" autofill="(q1.check('&gt; 18')) and (q1.check('&lt;= 24'))">18-24</row>
+<row label="r2" autofill="(q1.check('&gt; 24')) and (q1.check('&lt;= 34'))">25-34</row>
+<row label="r3" autofill="(q1.check('&gt; 34')) and (q1.check('&lt;= 44'))">35-44</row>
+<row label="r4" autofill="(q1.check('&gt; 44')) and (q1.check('&lt;= 54'))">45-54</row>
+<row label="r5" autofill="(q1.check('&gt;54'))">55+</row>
+<row label="none" autofill="thisQuestion.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+</autofill>
+Then add the message recalling the label you specified within the Autofill element:
+<suspend/>
+<html label="cm1" where="survey">Many people aged [pipe: age_recode] have been using in our product !
+We'd like to ask you a few questions about our brand in order to gauge the level of satisfaction among people [pipe: age_recode] of age.</html>
+Once added, the following page would display a message regarding the captured age group.
+3: Learn More
+Learn more about using the Autofill Element in the Survey Editor.
+Learn about more advanced piping setups using the Autofill element at Using the Piping Tool.

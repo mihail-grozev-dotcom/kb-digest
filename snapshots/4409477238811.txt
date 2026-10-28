@@ -1,0 +1,27 @@
+Title: Sending Reminders
+Once the initial email send is done and the reminder email has been created, the reminder email can be sent to contacts in the recipient list who have not yet completed the survey, have not reported a previous email as spam, and are not a bounce-back or opt-out.
+You may send more than one set of reminder emails. After the initial round of reminder emails have been sent out, follow the same steps (as outlined below) to send additional reminders to recipients in the list who have not completed the survey.
+1: Launching Reminders
+To send reminder emails, click the project in the Campaign Manager and select Launch Reminders.
+Tip: If the Launch Reminders action is grayed out, you most likely have not sent test emails for the reminder to the recipients in the seed list. Open the reminder email and click Send Test Email.
+1.1: Reviewing the Campaign Information
+A new window appears with the campaign name and recipient list, including the number of recipients in the list. Review this information before proceeding with the send.
+1.2: Seed List
+By default, the seed list is included in the email send. Uncheck the box if you do not want to include the seed list in the email send.
+Note: For surveys using the ADB feature (ADB=1), survey links in Campaign Manager seed email sends will only open the survey if those recipients can test the survey (that is, the recipient is logged in, or the survey is in testing mode).
+1.3: Exclude Clickthroughs
+Check the Exclude Clickthroughs box to send only to participants who have never entered the survey. Checking this box will exclude partials, qualified, overquotas, and terminates.
+1.4: Filtering by Variable (Optional)
+The Campaign Manager gives you the option to filter your recipient list by a variable, allowing you to send emails to a specific group. This step is optional. Click Add Recipient List Filter to add a filter variable.
+Select the variable from the drop-down menu. Then enter how you want to filter the chosen variable. To further restrict this filter, click + AND and add additional restrictions. To add a second, independent filter, click Add Filter and follow the same steps. Once finished, click Apply Filters.
+Once applied, you have the option to edit or delete the filter.
+1.5: Scheduling the Send (Optional)
+By default, a soft send occurs 20 minutes after Send Reminder Emails is clicked. If you prefer to set a specific date and time for the email send to go out, expand the Schedule Delayed Send section. This specified time must be set for at least 20 minutes after the time you click Send Reminder Emails. Click into the field and select the date in the calendar pop-up, then click in the date field to select the exact time of the send and select the time zone from the drop-down menu.
+The selected date / time appears in the fields as you adjust them. If a field is left empty, the first 10,000 emails will be sent at the default time of 20 minutes and the remainder will be sent after 20 minutes.
+If you are sending emails in batches, a Send Remaining field is included, allowing you to specify the number of remaining emails to send and schedule the date and time they will be sent out.
+1.6: Send Reminders
+If everything looks good, click Send Reminders to initiate the email send.
+If the reminder send has not been scheduled for a specific time and date, reminder emails are sent to the seed list immediately and a soft send will go out after 20 minutes. The status will display the count-down. This allows time to review the reminder email and cancel the soft send if changes are needed.
+The reminder email send can only be cancelled during the 20 minute count-down, while the send is being prepared. Once the 20 minutes are up, the reminder email send cannot be cancelled.
+The soft send will go out to the first 10,000 recipients of the reminder email campaign. If the entire reminder email campaign contains 10,000 recipients or less, then the entire recipient list will be emailed in the soft send.
+The rest of the reminder email send (i.e., full send) will go out 12 hours after the initial soft send. The status is displayed in the status column of the email campaign.

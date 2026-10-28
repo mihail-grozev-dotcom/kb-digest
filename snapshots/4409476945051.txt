@@ -1,0 +1,216 @@
+Title: Including Campaign Manager Data Using the Automated Database System (ADB)
+The automated database management system makes it very easy to include tab-delimited sample files into your survey. The system can be used to automatically lock down the survey and capture all external participant data based on a single source variable.
+Note: Thesourcevariable is the only one that works with ADB, source is automatically applied to lists uploaded to the Campaign Manager.
+For example, given the following data file:
+source list co firstName postal address
+abc123 1 us John 2468 Appreciate Ave.
+Once the system is enabled, we can send John an invitation to the survey with only the source variable appended to the URL. For example:
+http://.../survey/selfserve/9d3/proj...?source=abc123
+The link above is equivalent to and will result in the same behavior as if we had sent John the following URL:
+http://.../survey/selfserve/9d3/proj...3&list=1&co=us
+When John enters the survey with his source variable appended to the URL, he will automatically fall into the <samplesource> that matches the list value found in the file (e.g. 1) and his external data will be available for us to pipe into the survey or store into the data. For example, the following syntax is acceptable after the first page of the survey:
+<checkbox label="AddressValidation" atleast="1">
+<title>
+<p>According to our records, your name is ${adb.firstName} and you live at ${adb['postal address']}.</p>
+<p>Is this information still accurate?</p>
+</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</checkbox>
+The code above produces the following result:
+Continue reading to learn how you can incorporate the automated database system into your next project.
+1: Enabling the Automated Database System
+To enable the automated database system, set the comma-separated lists attribute in the main <survey> tag to 1 or more of:
+Value
+Description
+Example
+SAMPLE_FILE.txt
+The name of the tab-delimited text file located in your survey directory (e.g. selfserve/9d3/proj1234/SAMPLE_FILE.txt). You cannot reference any file from any other directory or project.
+<survey ...
+lists="us-sample.txt,jp-sample.txt">
+mail
+This will implicitly add all files located in the project's mail/ directory in alphabetical order. These files must be properly named with the 'list' prefix and '.txt' suffix (e.g. list-us.txt, list-sampleco.txt, list5.txt, etc...).
+<survey ...
+lists="mail">
+All sample data files must be tab-delimited, encoded in UTF-8, and include (at the minimum) two columns for source and list. The source should be unique across all sample data files and will be matched case sensitively (e.g. "abc123" is not the same as "ABC123"). If the source variables are not unique, the first match will be used.
+Column field names are also case sensitive (e.g. "MyVar" is distinct from "myvar").
+2: Survey Options
+With the automated database system enabled, you will need to make a few more adjustments to your survey in order to reference the sample data you wish to append.
+2.1: Configuring Sample Sources
+Specify adb="1" on all of the sample sources that you wish to load data for. For example:
+<samplesources>
+<samplesource list="1" title="Sample Co." adb="1">
+<exit cond="qualified">...</exit>
+<exit cond="terminated">...</exit>
+<exit cond="overquota">...</exit>
+</samplesource>
+</samplesources>
+At least one sample source (<samplesource>) must have this value set if lists is specified in the <survey> element. Sample sources that do not have this attribute will ignore the system entirely.
+When a participant enters the survey with a source variable, the key is looked up in all of the available sample files. If a match is found, the system will look inside the data file for the list variable to accurately line up the sample source. All of the variables (columns) specified in the sample data file will be loaded into the data as if they were specified and passed in through the participant's URL. Any global or extraVariables from other sample sources are not read into the data.
+Warning: Once a survey has launched, the automated database system cannot not be turned off for individual lists. Removing adb="1" from any one or more sample sources during field will disable sending for all lists.
+2.2: Utilizing Raw Data in a Survey
+You can pipe raw data into a survey using the following syntax:
+[adb fieldname]
+where fieldname is the name of the field.
+2.3: Locking Down the Survey
+If you explicitly specify <var name="source"/> inside a <samplesource>, the source must exist in one of the sample files but does not have to be unique. This means that the same source will be allowed to complete the survey multiple times. You should also specify browserDupes="" in such a case.
+If the source variable is not explicitly defined, then the source variable is validated against the sample data files and must be unique.
+Note: If you intend to lock the survey down by source, do not leave any open sample sources. Instead, require an explicit selection of the list to use.
+Learn more: Configuring Participant Sources
+2.4: Accessing the Raw Data with Python
+Use the following syntax to retrieve the value for the "field_name" column for the current participant: adb.field_name
+Use the following syntax to retrieve the value for a "field name" column that is not a valid Python identifier: adb["field name"]
+Tip: All values are escaped by default. To reference a value without escaping its entities, add "_unsafe" to the variable's name when referencing it (e.g. adb['field name_unsafe']).
+For example:
+<pipe label="name">
+<case label="c1" cond="adb.firstName != ''">${adb.firstName}</case>
+<case label="c2" cond="1">anonymous survey taker</case>
+</pipe>
+<exec>
+# check "state" field to see if participant is local to California
+if adb.state == "CA":
+vLocation.val = "Local"
+else:
+vLocation.val = "Out of state"
+# check "country of origin" field to see if born in US
+if "US" in adb["country of origin"]:
+vBornInUS.r1.val = 1
+# check "age" field to see if eligible for senior discounts
+if adb.age != "" and int(adb.age) gt 55:
+vSeniorCitizen.r1.val = 1
+</exec>
+All values returned will be represented by a string. An empty string will be returned if the variable cannot be found inside the data file.
+Note: You must first convert the value to an integer to perform any numerical operations such as comparisons. For example: int(adb.age) gt 55
+2.5: Saving Data in a Question
+The automated database system works like a <datasource> element.
+For example, if the data file contained a "user_type" column with values 1 and 2, then we can create the following question to store this data into:
+<radio label="vQ10" title="User Type" dataSource="adb" dataRef="user_type">
+<row label="r1">User Type 1</row>
+<row label="r2">User Type 2</row>
+</radio>
+In the example above, the dataSource attribute is set to "adb" and the name of the column to reference is specified using the dataRef attribute.
+If the data values start at 0 rather than 1, then we can specify the value attribute to accurately capture this data. For example, if the values for the "user_type" column were 0 and 1, we can use the following question to store this data into:
+<radio label="vQ10" title="User Type" dataSource="adb" dataRef="user_type">
+<row label="r1" value="0">User Type 1</row>
+<row label="r2" value="1">User Type 2</row>
+</radio>
+If the data values are not integers, then we can specify the dataValue attribute to accurately capture this data. For example, to properly store the data for the "co" field, we can use the following question:
+<radio label="vQ11" title="Country" dataSource="adb" dataRef="co">
+<row label="r1" dataValue="us,america,usa">US</row>
+<row label="r2" dataValue="uk">UK</row>
+<row label="r3" dataValue="jp,japan">JP</row>
+</radio>
+The dataValue matching is case-insensitive (e.g. "US" is equivalent to "us"). You may specify multiple values by separating them with a comma (e.g. dataValue="us,usa,america").
+After sending out the survey invitations and before the participant begins taking the survey, you can update any of the participant variables or add new ones that will be loaded into the survey. In the event where you need to make a change but the participants have already begun taking the survey, you can create a <virtual> question to read in any updated data.
+To use the automated database system within a virtual question, specify dataVirtual="1". For example:
+<radio label="vQ11" title="Country" dataSource="adb" dataRef="co" dataVirtual="1">
+<row label="r1" dataValue="us,america,usa">US</row>
+<row label="r2" dataValue="uk">UK</row>
+<row label="r3" dataValue="jp,japan">JP</row>
+</radio>
+If you need to split the Response Summary by a specific variable from your data file, then include the variable inside the survey's extraVariables attribute or inside the <samplesource> using the <var/> tag. For example:
+<samplesources>
+<samplesource list="1" title="Sample Co." adb="1">
+<var name="variable_from_data_file" values="0,1,2"/>
+<exit cond="qualified">...</exit>
+<exit cond="terminated">...</exit>
+<exit cond="overquota">...</exit>
+</samplesource>
+</samplesources>
+The example above is the preferred method and will enable you to split the Response Summary by the "variable_from_data_file" variable with the values 0, 1 or 2. If you do not include the values attribute, then you will need to create a <virtual> question that captures the variable's data. For example:
+<radio label="vvariable_from_data_file" dataSource="adb" dataRef="variable_from_data_file" dataVirtual="1">
+<title>Variable From Data File</title>
+<row label="r1" value="0">0</row>
+<row label="r2" value="1">1</row>
+<row label="r3" value="2">2</row>
+</radio>
+3: The Participant's Unique URL
+For enabled sample sources, only the source variable needs to be included in the invitation link. For example:
+http://.../survey/selfserve/9d3/proj...ource=[source]
+Other variables can be specified, but they will be overwritten by the data present in the data file.
+Tip: Avoid using hard-coded variables in email invitations; the Response Summary will not understand them when using bulk splits.
+The source variable will be matched against the sample data files to properly pull in all of the other variables such as list, co, firstName, etc...
+If your project contains multiple sample sources and not all of them utilize the automated system, then be sure to explicitly pass in the list variable for those participants that are not pulled from a data file. For example, given the following sample sources:
+<samplesources>
+<samplesource list="1" title="Sample Co." adb="1">
+<exit cond="qualified">...</exit>
+<exit cond="terminated">...</exit>
+<exit cond="overquota">...</exit>
+</samplesource>
+<samplesource list="2" title="open">
+<exit cond="qualified">...</exit>
+<exit cond="terminated">...</exit>
+<exit cond="overquota">...</exit>
+</samplesource>
+</samplesources>
+In order to invite participants to the survey through the "open" sample, we will need to use the link below:
+http://.../survey/selfserve/9d3/proj...e]&list=[list]
+Note: The [list] variable above should evaluate to 2 to use the "open" sample.
+4: Technical Considerations
+4.1: Sample Data Validation
+If lists="mail" is specified, then all data files are validated when you run bulk test or bulk send. The following rules apply:
+The list variable is matched to an existing sample source
+The variables used by this sample source must exist
+If a variable element is used by the sample source and it has values="..." specified, then the list file must match those values
+Variables that use the adb.var_name or dataSource syntax are not validated.
+If you send invitations to a list and then edit the list file, those edits are not validated.
+4.2: Copying Surveys
+If you copy a survey to a temp directory, the copy will implicitly use the lists from the parent (main) directory. This applies to any copied survey and temporary directory named temp-*. If this were not the case, then you would have to copy all of the list data files to the temporary directory in order to test them.
+If you are testing new list data files in your temporary directory, then specify adbMaster="1" in the temporary survey's <survey> element. This will force the list data files to load from the temporary directory instead.
+For example:
+<survey ...
+lists="newSampleFile.txt"
+adbMaster="1">
+4.3: Simulated Data Support
+When simulated data is run, a random source value will be picked from a random file.
+4.4: Command Line Support
+A script named adb is available and allows a few tasks to be accomplished from the shell:
+Command
+Description
+Example
+adb check FILENAME
+Validates FILENAME's data against the survey found in the same directory
+[user@server proj1234]$ adb check my_good_list.txt
+OK.
+[user@server proj1234]$ adb check my_bad_list.txt
+/selfserve/9d3/proj1234/my_bad_list.txt: 1 errors detected
+0: missing source
+adb export [VARIABLE]
+Generate one big data file from all data files. Optionally, you may specify a space-separated list of column fields to export instead of the entire data set.
+adb export > giant-data.txt
+adb export source email list > all-emails.txt
+adb search SOURCE
+Find out more information about a given source
+[user@server proj1234]$ adb search abc123
+found in selfserve/9d3/proj1234/my_good_list.txt
+source abc123
+list 0
+firstName John
+co us
+postal address 2468 Appreciate Ave.
+adb freq
+Output useful stats such as the top-10 frequency for every field in every list, and the percentage of those that are not blank.
+[user@server proj1234]$ here adb freq
+filename: selfserve/9d3/proj1234/my_good_list.txt
+== All values of source are unique ==
+== All values of list are unique ==
+== All values of co are unique ==
+== All values of firstName are unique ==
+== All values of postal address are unique ==
+4.5: Performance Data
+Records used in adb are indexed using the Berkeley DB library. This allows for quick lookup via a participant's source key.
+On Decipher: Equinix Los Angeles the initial indexing of a file containing 25k records as of 2014 takes roughly 0.8 seconds.
+Note: Indexing is only necessary the first time Decipher loads a file. However, if changes are made to the file it will require re-indexing.
+Looking up a specific record for a participant in the 25k indexed file took Decipher approximately 0.0025 seconds.
+Another benchmark of a survey containing approximately 4.7GB of emails (roughly 13 million records) took Decipher approx. 4 minutes to initially index. Once indexed, looking up an individual record out of the 13 million possible, took 0.0037-0.0162 seconds.
+Looking up a source that doesn't exist in any of the email files takes a similar amount of time as the worst case. i.e. 0.0162 seconds in this survey.
+If adb is being used retroactively (i.e. post fielding in a virtual), it will take the average adb lookup time per participant for a full virtual update. After which performance should increase with the virtual cache.
+4.6: Best Practices
+Upload new lists to the main directory rather than a temp, where lists are automatically loaded from the main directory anyway. This will allow you to test the survey without duplicating files and/or making changes that need to be reverted before re-launching.
+If possible, use lists="mail" rather than specifying lists individually to eliminate the possibility of accidentally omitting or misspelling the names of sample files.
+5: What's Next?
+The automated database system is a good replacement for the following methods and technologies:
+Datasource Tag: Pull Data From a Tab-Delimited File
+Learn more:
+Configuring Participant Sources
+Email Sends with Bulk

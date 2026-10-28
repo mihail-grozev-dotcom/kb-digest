@@ -1,0 +1,63 @@
+Title: Dashboard Permissions
+The dashboard system utilizes multiple permission layers for both creation and general viewing. To view, edit or create a dashboard, you must have the proper permissions enabled. There are three levels of user permissions available for dashboards:
+Build: You may create and edit all dashboards associated with the project
+View: You may view all dashboards associated with the project
+None: No access to dashboards associated with the project
+Note: In order to access dashboards, your company must have application access to dashboards enabled.
+See Create and Manage Users to learn more about learn more about managing user permissions within Decipher.
+1: Public Versus Private Dashboards
+Along with setting the access permissions, you can control the sharing settings on any dashboard you have created. A dashboard can be set to either private or public status.
+A private dashboard requires you to be logged-in to view or make any edits to the dashboard. A public dashboard allows anyone to view the dashboard as long as they have the link to the specific viewing page and the dashboard has been published.
+By default, dashboards are set to be private. This setting can be modified from within the dashboard editor.
+Note: Participants' textual data appears in public dashboards only for users who are currently logged in and who have data viewing permissions for the associated survey.
+2: Publishing a Dashboard
+You can publish a dashboard at any time by clicking the Publish button next to it within the dashboard menu.
+You can also publish your dashboard directly from the preview window by clicking Publish Dashboard within the yellow banner at the top of the page.
+Regardless of which publishing option you choose, a pop-up screen will provide the link to your newly published dashboard. Click the Copy Link button to copy the link to your clipboard for sharing, or close the alert by clicking Done.
+If you make a mistake or need to make additional edits to your dashboard after you have published it, put it back into development by clicking Unpublish in the dashboards menu.
+Note: If you unpublish a dashboard, previously created share links will no longer be valid.
+3: Setting Dashboard Access Levels
+Once you have published your dashboard, you may want to share some elements with only a few individuals. You can restrict dashboard viewing access to a specific list of users by adding an access control list (acl) to any elements you wish to share with them.
+Note: HTML is not supported within an acl.
+To do this, add the following script to the filter, filtergroup,page, table, or chart definitions where you want to allow permissions:
+acl="<acl name>,<acl name>,<acl name> … "
+Note: If listing more than one acl, be sure to include quotation marks around the full list and to not leave any blank spaces between acl names.
+In the code above, the <acl name> variable is predefined using:
+acl [anonymous=1] <acl name> username1 username2 ...
+Note: anonymous=1 is optional, and allows anonymous users to be part of a group.
+If a filter, filtergroup, page, chart or table does not have an acl, then anyone can view it according to their user permissions.
+Note: The filter acl is applied globally and will not apply to filters that are specific to tables or charts (filter.local).
+Example:
+acl anonymous=1
+acl executives someone@decipherinc.com someone2@decipherinc.com
+acl supervisors someone3@decipherinc.com someone4@decipherinc.com
+acl regulars someone5@decipherinc.com someone6@decipherinc.com
+acl group1 user1@email.com supervisor@email.com
+acl group2 user2@email.com supervisor@email.com
+filtergroup Gender
+filter acl=executives2 id=db-3 q1.r1 Males
+filter id=db-4 q1.r2 Females
+filtergroup acl=executives1 Smartphone Usage
+filter id=db-31 q2.r1 iPhone 7
+filter id=db-41 q2.r2 Galaxy S5
+filter id=db-51 q2.r3 LG G5
+filtergroup multi=or filterlabel="Country" "Region"
+filter id=db-52 filterlabel="State" filterlevel=1 "q3.r1" "United States of America"
+filter id=db-53 filterlabel="County" filterlevel=2 "q4.r1" "California"
+filter id=db-54 "q5.r1" "Fresno County"
+filter id=db-55 "q5.r2" "Kern County"
+filter id=db-56 "q5.r3" "Kings County"
+filter id=db-57 filterlabel="County" filterlevel=2 "q4.r2" "Nevada"
+filter id=db-58 acl=executives2 "q5.r4" "Carson City"
+filter id=db-59 "q5.r5" "Clark County"
+filter id=db-522 acl=executives1 filterlabel="State" filterlevel=1 "q3.r2" "Outside the USA"
+page acl="anonymous, supervisors" "a tab for anonymous and predefined supervisor users"
+html "hello from page 1"
+page "html shown to everyone, table shown to executives, chart shown to regulars,"
+html "hello from page 2"
+table acl=executives "a table for predefined executives"
+rows q1.r1-r3
+chart acl=regulars "a chart for regulars"
+type column
+rows q1.r1-r3
+In the above example, the <acl names> are first defined and then used to control filter, filtergroup, page, table and chart access.

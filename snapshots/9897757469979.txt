@@ -1,0 +1,33 @@
+Title: M50 Release Notes
+Release Date: March 29, 2022
+Release Version: 150
+Survey Versioning
+The new survey compatibility level is 150. The system automatically uses compat="150" for all new surveys. This improves the following:
+The browser “Back” button disablement feature includes updated support for the latest versions of supported browsers.
+Learn More: Field Settings
+New Features
+Portal
+Company Settings
+Creating a new user when Forsta Single Sign-On (SSO) is enabled will now send a welcome email from Forsta SSO instead of from Forsta Surveys.
+Learn More: Logging in to Your Account
+Survey
+Survey Testing Tools
+Improved QA Tools to show answer conditions set at the question level and display information about the condition upon mouseover: rowCond, colCond, and choiceCond.
+Language Manager
+Added “Outdated Resources Without Existing Translations” option to the Language Manager Export and --without-existing to the xlate script. When using this option, the translation column will display the text from the primary language instead of pulling any existing outdated translations.
+Learn More: Language Manager Overview, Xlate: Pulling Survey Translation Files
+Programming & Tools
+API
+Added documentation for the Global Search API endpoints to the Forsta Surveys API docs page under Miscellaneous > Global Search.
+Bug Fixes
+Survey
+Survey Editor
+Added a warning message for quota names longer than 31 characters to resolve an issue when downloading quotas to excel.
+Fixed an issue that sometimes prevented participants from entering Open End responses on Button Select question elements.
+XML Editor
+Added a warning in the XML Editor to prevent the use of duplicate labels within a Reusable Answer List.
+Language Manager
+Fixed an issue where errors sometimes occurred when complex piping existed in imported translations.
+Responses
+Response Summary
+Fixed a bug where surveys without delphi=1 sometimes generated errors in the Terminate tab when there were duplicate terminates.

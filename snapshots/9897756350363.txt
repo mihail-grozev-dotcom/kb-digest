@@ -1,0 +1,21 @@
+Title: 150.4 Release Notes
+Release Date: May 24, 2022
+Release Version: 150.4
+New Features
+Portal
+Logic Nodes
+Added the ability to detect gibberish and duplicated text responses for open-ended (OE) questions. With the “OE Flag” logic node, you have the ability to flag and evaluate responses to your surveys’ OE questions. You may also skip checking for specific questions using their question labels. The following limitations apply when using the OE Flag logic node:
+Gibberish detection is for English only.
+Duplication detection will not trigger for OE questions that are skipped using the skip input within the logic node.
+Threshold recommendation is between 80-90% (default is 82%). Anything below 80% becomes less accurate (example: gibberish may be detected if a 20% threshold is not reached).
+Duplication detection occurs when a user copies their response from one question to the next and does not detect across all participant data.
+Participant Sources
+Updated some buttons in the Sample Marketplace and Participant Sources screen to reflect the recent rebranding.
+Campaign Manager
+Updated the styles of some elements in the Email Campaign Manager to reflect the recent rebranding.
+Bug Fixes
+Portal
+Fixed an error that allowed users to grant themselves higher permissions.
+Architecture/DevTools
+Added a script for bulk transfer of archives to the S3 storage.
+Added a new script that populates missing created_on and created_by information regarding the user creation command line that existed before two properties.

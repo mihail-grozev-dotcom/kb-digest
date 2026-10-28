@@ -1,0 +1,9 @@
+Title: April 21, 2026 Release Notes
+Release Date: The following items were released between April 7, 2026 and April 21, 2026.
+Bug Fixes
+Survey
+Participant View
+Fixed an issue where the mouse cursor appeared incorrectly when hovering over survey content while logged in.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+Improved error handling to prevent unintended terminations.

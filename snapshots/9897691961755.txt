@@ -1,0 +1,28 @@
+Title: 142.1 Release Notes
+Release Date: April 16, 2019
+Release Version: 142.1
+New Features
+Crosstabs
+Added a progress bar indicator that will display when running reports in projects with large amounts of data.
+View/Edit Responses
+Added the ability to clear all currently selected survey variables with a single click when choosing columns.
+Survey Editor
+Updated sample variables and redirect links for the LightSpeed sample source.
+Portal
+Added a redirect to the login page so that logged-in users will instead see their Portal page.
+Added Microsoft ADFS compatibility for SAML login requests.
+Added a 30-second timeout for search queries. In addition, search queries are now logged in logs/search.log with the ID of the user who performed the query.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue with datasource data not being displayed in reports after certain datasources are deleted.
+Fixed an issue with datasources not being displayed after custom tables are created.
+Fixed an issue with PDF reports not exporting when a split segment in a chart legend contained a right single quotation mark (Unicode u2019).
+Fixed an issue where reports would not load if the survey contained an Autofill element imported from the library.
+Dashboards
+Fixed an issue with PDF exports not showing applied pie chart labels.
+Fixed an issue with gauge numbers overlapping charts when displaying gauge charts.
+Fixed an issue with special characters not being properly escaped on open-ended questions.
+Portal
+Fixed an issue with searches returning zero results when searching projects by shared users with access to one or more projects.
+Fixed a styling issue in Version Control.

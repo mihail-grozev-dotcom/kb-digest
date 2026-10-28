@@ -1,0 +1,14 @@
+Title: Project Settings
+The Project Settings section of the Project Settings Summary menu allows you to quickly review and adjust the general settings for your survey.
+1: Accessing Project Settings
+To view the project settings for your survey, first click the "Settings" button at the top right of the Survey Editor or XML Editor.
+In the "Survey Summary" window, select "Project Settings" from the "Summary" drop-down or click the blue "Project Settings" header on the left.
+2: Configuring Project Settings
+In the Project Settings menu, you can modify the general settings for your project, including the following:
+Project Name: The name used for the survey in the portal. Respondents do not see this name.
+Portal Location: The directory or subdirectory in which the survey should be stored.
+Project Path: The URL path to the survey. Click the text in blue to change the project number (alphanumeric ID code).
+Note: Only supervisors are permitted to modify project paths.
+Primary Language:The default language for the survey. You can select a language from the drop-down or click "Edit Languages" to access the Language Manager Overview.
+3: Saving Project Settings
+To apply these settings to your project, click the "Save" button at the bottom right.

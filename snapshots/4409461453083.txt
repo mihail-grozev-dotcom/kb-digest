@@ -1,0 +1,31 @@
+Title: Monitoring Quotas in Field
+The "Quotas" tab in the Response Summary tracks the quotas you have set for your survey.
+Note: The "Quotas" tab is only available if you have quotas set in your survey.
+1: Viewing Quotas
+Below is a numbered overview of the "Quotas" tab, along with descriptions of each feature.
+1. Preferences: The Response Summary Preferences offers the option to display in progress participants and overquota participants in separate columns. It also allows you to enable quota definition tooltips. See 1.1: Response Summary Preferences below for details.
+2. Manage Alerts: The alert system allows you to turn on an alert for any quota cell so that a notification will be sent to you once the cell is full. Learn more: Adding Quota Alerts in the Response Summary.
+3. Edit Quotas: Edit the quotas directly from the Response Summary. To learn how to edit quotas, see Editing Quota Limits in Field.
+4. Download: If available, download the quota sheet in Excel format.
+5. Sheet: The name of the quota sheet. Click to show or hide the sheet. Additional quota sheets for concepts, conjoints, etc., may appear below the main quota sheet.
+6. Table: The name of the quota table. Click the caret to show or hide the table.
+7. Quota Name: The name of each individual quota and quota cell.
+8. Quota Limit: This column specifies the limit for each individual quota and quota cell.
+9. Quota Total: This column contains the actual number of participants that have filled the quota or quota cell, in real time. Refresh your browser window to view the latest counts. Quota totals are color-coded in order to identify whether the quota is open, full, overquota, and if participants are currently taking the survey.
+Note: If you have chosen to display In Progress and Overquota participants in a separate column using Preferences, there are no color changes. See 1.1: Response Summary Preferences below for details.
+Black: The quota is open.
+Black & Bold: The quota is full and no participants have gone overquota.
+Red & Bold: The quota is full and the total number is greater than the limit. This can happen if the quota limit is changed or if multiple participants complete the survey at the same time when the quota is almost full.
+Green in parenthesis: The number of participants currently taking the survey who will qualify for the quota once they complete the survey.
+Red number in parenthesis: The number of overquota participants.
+Red in parenthesis: The number of overquota participants that completed after the quota was filled.
+Red & Bold with + sign: The total indicates the number of participants who were unable to qualify for any quota marker. This is likely caused by a programming error and should be addressed immediately.
+Note: When running simulated data, quotas with smaller limits may run overquota. This must be done to ensure that enough test data is run through the survey to qualify it for launch.
+Note: Quota cell limits will always be prioritized over the total limit of the same quota.
+10. Quota Need: The number of participants currently needed to fill the quota or quota cell.
+1.1: Response Summary Preferences
+You can update how quotas are viewed by using the Response Summary Preferences. Click the gear icon near the top right of the page to open the Response Summary Preferences modal. Selections can be made under the Quotas header.
+Checking Display In Progress in a Separate Column moves the In Progress participant number into its own column. The In Progress number is no longer displayed in green parentheses in the Total column.
+Checking Display Overquota in a Separate Column moves the Overquota participant number into its own column. The Overquota number is no longer displayed in red parentheses in the Total column.
+Checking Enable Quota Definition Tooltips shows the logic definition for each quota cell when you hover over the cell name with your mouse pointer.
+Tip: Refresh your browser for the selected options to take effect.

@@ -1,0 +1,33 @@
+Title: 153.16 Release Notes
+Release Date: September 12, 2023
+Release Version: 153.16
+New Features
+Portal
+Two-factor authentication can now be enabled per server, company, and/or user.
+Learn More: Managing Two Factor Authentication
+The amount of company storage is now shown on the company setting page.
+Learn More: Managing Your Company Page
+Supervisors are now able to change the email addresses of other users in their company.
+Learn More: Create and Manage Users
+Survey
+Participant View
+Added an accessibility compliant survey theme (the "Accessible" theme).
+Survey Testing Tools
+Added the QA code label "RAL" to questions that rely on reusable answer list elements.
+XML Editor
+Setting a survey’s compat level to a retired compat level is no longer permitted.
+Responses
+Campaign Manager
+Emails that are dropped by SendGrid due to previous bounce-backs or spam reports are now correctly reported as additional suppressions.
+Reporting
+Data Downloads
+Updated the datamap export generator for SPSS to generate the datamap in languages included in the project.
+Added the optional language argument to the /surveys/<path>/datamap API endpoint.
+Added support for the Coverage report in Data Downloads.
+Programming and Tools
+API
+Added the coverage API endpoint /surveys/<survey path>/coverage which accomplishes feature parity with Report 2010.
+Bug Fixes
+Survey
+Dynamic Questions
+The MaxDiff dynamic question no longer supports the accordion style attribute. Setting ss:accordionDisplay="1" at the survey level or question level will have no effect on its appearance.

@@ -1,0 +1,26 @@
+Title: Monitoring Drop-outs in Field
+The "Drop-outs" tab is available for every project. It allows you to quickly identify possible issues by calculating the drop-out rate for each question. Terminated participants are not included in the calculation.
+1: Viewing the Drop-Outs Tab
+Each column of the “Drop-Outs” tab is described below:
+Page: Contains a clickable link that takes you directly to view each survey page.If a page states "None," it is likely representing a hidden question or variable.
+Question: Displays the question label and text of the first question on that specific page.
+Total:
+Completed: The number of participants who submitted the page divided by the number that viewed the page (excluding terminates). This is also represented as a percentage that completed the page.
+Dropouts: The number of participants that did not submit the page divided by the number that viewed the page (excluding terminates). This is also represented as a percentage that did not submit the page.
+Time: The average time spent on the age based on individual page submissions. (total time/total page submissions)
+Note: In surveys without delphi="1", the following changes may alter page data:
+Adding new page breaks (</suspend> elements).
+Moving questions between pages.
+Adding elements that contain implicit page breaks (e.g., <quota>, <term>, and <goto> elements).
+2: Special Considerations
+2.1: Page Events Report
+For surveys with delphi="1", you can click each page cell to view a page events report. The page events report contains the following page event values for each survey participant:
+uuid: The participant’s unique record identifier.
+label: The page label registered for the event.
+secs: The number of seconds (a floating point number) the participant spent on the page before submitting it. If blank, the participant loaded the page but did not submit it.
+tstamp: The time the event occurred.
+dcua: The participant’s dcua identifier at the time the page was loaded. This can be used to detect device changes throughout the survey.
+flags: Single character flags recorded during page loading events:
+E -- There was a validation error, so the submitted page was redisplayed.
+R -- The page was shown by restoring the participant using autosave.
+N -- The survey was restarted from scratch after using autosave.

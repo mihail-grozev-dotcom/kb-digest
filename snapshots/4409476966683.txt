@@ -1,0 +1,51 @@
+Title: Recovering Data
+Requires Decipher Cloud
+The recover command allows users to recover data from the state.db file into a survey directory.
+Note: This command is not usable in surveys with delphi="1".
+The recover command will not work if the state.db file does not exist. The state.db file is deleted 21 days after the last participant has taken the survey. The recover command will also not recover partial participants as partials, but instead as terminates.
+Note: To recover records as partials in surveys without delphi="1", use the autoRecover attribute instead.
+1: Running the Command
+To recover data, run the below recover command in the main survey directory.
+recover PROJECTDIRECTORY
+The recover command will use the main directory's state.db file and import all non-completed records as terminates (status: terminate) to the main directory. All recovered participants who have quota markers will count towards the quotas by default.
+If you use the recover command in a temporary directory, it will automatically look into the main directory for records and recover them into your temporary directory. If your temporary directory does not have any data in it, running recover will recover all records with their final survey status.
+2: Syntax and Modifiers
+The recover command uses the following syntax and modifiers:
+recover [-E] [-f location] [-k key] [-L] [-p] [-q questionlabel]
+[-S extraVariable] [--force-display] [--only filename] [--rescue uidfile]
+PROJECTDIRECTORY
+Modifier
+Description
+-E
+Skips errors in rare cases where the state.db file is corrupted.
+-f location
+Specifies another location for the state.db file.
+-k key
+Makes a record unique per the specified key.
+-L
+Recovers participants who were logged in while taking the survey.
+-p
+Prefixes qualified and quota markers with "HAD:" so participants do not count as qualified / quota completes.
+-q questionlabel
+Recovers only participants who have answered the specified question.
+-S extraVariable
+Creates a tab-delimited file containing the specified extra variables and the final survey state for each participant.
+The state can be added to a link to allow users to continue the survey. For example:
+http://v2.decipherinc.com/survey/......eb8&_restart=1
+--force-display
+Displays extra information when recovering partials.
+--only filename
+Recovers data only for the uuids included within the specified file (filename).
+--rescue uidfile
+Enables "rescue mode" - recovers data only for the uids included within the specified file (uidfile).
+3: Rescue Mode
+Sometimes, the unique ID that is used to identify each question in partial data files may be lost. When this happens, you can use "rescue mode" to recover the lost ID. To use "rescue mode", run the following command, specifying a file with a list of all the uids used in the survey:
+recover --rescue=uidfile.txt
+The specified uid file must include a list of lines containing label = <list of uids>.
+Note: You may discover lost uids using the state-dump command (e.g., here dev/state-dump).
+The following examples illustrate how to dump state (partial) data from a survey for a single uuid, some other extra variable, or for all participants:
+[user@host] here dev/state-dump . wmeqf4bukg7v0tcz
+[user@host] here dev/state-dump . ipAddress=184.106.203.86
+[user@host] here dev/state-dump . all
+The uuid variable allows you to examine partial data records and the data stored in each. An unnamed uid like ans1234.0.0 = 3 would indicate that there is a question that had uid=1234 whose identity is no longer known. Additionally, the uuid displays a _time entry (timestamp) for each completed page.
+In "rescue mode", while all of the partial records for each participant are merged, any ansX nodes are remapped to real questions based on the uid file.

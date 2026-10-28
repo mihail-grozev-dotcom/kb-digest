@@ -1,0 +1,28 @@
+Title: 153.52 Release Notes
+Release Date: May 6, 2025
+Release Version: 153.52
+New Features
+Survey
+Dynamic Questions
+Several improvements have been made to de_dcm.1.
+Learn More: Discrete Choice Model (DCM) Conjoint Element
+Language Manager
+Support for the Armenian language is now available.
+Programming and Tools
+API
+A new endpoint api/v1/rh/users/{user} allows retrieval of a single user, either by ID or by email address. Learn More: GET rh/users/{user}
+Bug Fixes
+Survey
+Survey Editor
+An issue that allowed custom JavaScript in the survey footer to run inside Survey Editor has been resolved. Valid custom scripts present in the survey footer will still run as expected in Participant View.
+Responses
+Participant View
+An issue that produced a fatal error on any survey page where an image upload question was followed by any other kind of question, has been resolved.
+An issue preventing Chrome users on Android 15 mobile devices from taking a new picture to submit to the Image Upload dynamic question, has been resolved.
+View/Edit Responses
+The PDF export of an individual response in View/Edit Responses now correctly renders Chinese, Japanese, and Korean characters. Support for these character sets is based on the value of decLang or if that is not set, the primary survey language.
+Programming and Tools
+API
+An issue where the results of data edit API calls could not be retrieved when those calls were made with forceTask=1 has been resolved.
+Architecture and DevTools
+A rare issue affecting 2FA login for some users has been resolved.

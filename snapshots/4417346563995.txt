@@ -1,0 +1,28 @@
+Title: Creating a Random Concept Picker
+Creating a random content picker can be useful in any survey where your goal is to have participants evaluate only one or more concepts out of a larger group, rather than every concept in the group.
+In Decipher, you can create a random concept picker using the Quota element.
+Step 1: Program the Survey
+Create all survey elements (including the concepts) using the Survey Editor.
+Step 2: Create a Quota for Random Assignment
+First, click the "+ Element" button to add a new survey element. Then click "Logic Elements" under Question Types and select the "Quota" element. Then click "Add".
+Update the quota's title and then click "Edit Quota".
+Next, click the "Add Row" button to add cells to the quota.
+In the "quick quotas" pop-up window, select "randomly assign quotas(+quotas)" from the drop-down menu. Next, enter the concepts, with each concept name on its own line to create a cell for each concept in the quota. Then, click "OK".
+Step 3: Set up the Number of Cells to Assign Multiple Concepts
+Update the “Maximum Number of Cells to Assign:” field to the total number of concepts to be shown to the participants. In the example below, each participant will see two out of the three listed concepts.
+Note: The quota will assign participants to concepts based on the "least full" rule.
+Learn more: Create Quotas from Randomly Assigned Quotas
+Step 4: Add Limits to the Quota
+Optionally, limits can be set in the quota cells to specify the exact number of participants who will see each concept. In the example below, each concept is set to display to 500 participants.
+Learn more: Setting Limits for Cells
+Step 5: Save All Changes to Your Quota
+Click "Save" on the "Quota Editor" pop-up window to save and apply all changes to your Quota element.
+Step 6: Assign Logic
+Now that the random concept picker is complete, it is time to assign conditional logic to the concept questions. Participants should see the concept question based on their assignment in concept quota.
+In this example, the concept questions are in a loop, to be repeated for each concept (see the loop variables).
+To assign logic, first click "Edit Pipe Variables", then click “all” under the condition column to update the logic for that row.
+Using the logic editor, assign a condition to the loop variable. In this case, select the named condition that was created from the randomly assigned quota.
+The result displays in the "Pipe Variables Setup" window. Repeat this process for each loop row.
+Now, participants will go through the loop a total of two times, only seeing the loop for the concepts for which they were assigned.
+Step 7: Test Your Survey
+Manually test the survey to make sure that the concept assignment is functioning as expected.

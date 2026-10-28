@@ -1,0 +1,26 @@
+Title: Training
+Onboarding
+Essentials
+Advanced Training
+Decipher Cloud
+Live Training Topics
+Filtered Training
+Quick Start Guide
+Access video training most relevant to your current role, and learn all you need to be successful in ForstaDecipher.
+Company Administrators
+Project Managers
+Quality Assurance Managers
+Data Processors
+Vendors
+How-to guides
+Piping Open-Ended Responses
+Piping Answers from a Multi-Select Question
+Creating a MaxDiff Question - Alternatives Method
+Creating a MaxDiff Question - Indices Method
+Creating a Discrete Choice Model (DCM) Question
+Validating Zip Codes From a File
+Adding a Typing Tool or Segmentation Algorithm
+Creating a Random Concept Picker
+Tracking and Terminating Survey Speeders
+Creating an "Other (Specify)" Answer Option
+View all how-to guides

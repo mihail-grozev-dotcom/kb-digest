@@ -1,0 +1,64 @@
+Title: Field Settings
+The Field Settings section of the Project Settings Summary menu allows you to quickly review and adjust the field settings for your survey.
+1: Accessing Field Settings
+To view the field settings for your survey, first click the "Settings" button at the top right of the Survey Editor or XML Editor.
+In the "Survey Summary" window, select "Field Settings" from the "Summary" drop-down menu or click the blue "Field Settings" header on the left.
+2: Configuring Field Settings
+2.1: Survey Browser Title
+The name entered in this field appears at the top of the browser when participants take the survey.
+2.2: Enable Participants to Navigate Backward Through Survey
+By default, this option is not checked to prevent most participants from using the "Back" button on their browser to navigate back through the survey.
+Note: Even when this option is checked, some browsers will still allow participants to use the browser "Back" button to navigate back through the survey.
+When this option is checked, all participants will be able to use the "Back" button on their browser to navigate back through the survey. If the back button is enabled, you then have the option to add a "Back" button to the bottom of each page in the survey.
+Tip: To ensure that participants' responses are properly submitted, it is recommended that you instruct participants to use the survey back button rather than the browser's "Back" button to move backward through a survey.
+2.3: Hide Progress Bar
+The progress bar shows participants how far along they are in the survey.
+Check this option to hide the progress bar from participants.
+2.4: Show Question Numbers
+Check this option to show question numbers sequentially in the survey to participants.
+2.5: Remember Participant's Place
+When checked, participants can return to their place in the survey with the original survey link. They will also have the option to restart the survey.
+A "key" can be used to require a unique variable in the URL, allowing them to go back to the survey from any machine or browser. Enter the variable in the "key" field. Multiple keys can be entered; separate each "key" with a comma. Key variables are case sensitive, view the survey project summary to ensure the "key" matches the variable in the survey URL.
+Note: This feature is activated after the survey is set live.
+2.6: Verify Unique Participants
+Select the level of detection for verification of unique participants in order to eliminate duplicate submissions.
+Level
+Description
+Requirements
+Expiration
+No Checking
+Allows participants to submit multiple responses, meaning they can retake the survey as many times as they want.
+None
+Cookie Only
+Participant duplication prevention is based on cookies. Participants using the same browser are not permitted to retake the survey.
+None
+Expires after 30 days
+Advanced Detection
+Participant duplication prevention is based on cookies as well as unique identifiers stored using the following methods:
+HTML5: A cookie that has a more modern storage method than old-style cookies.
+ETag: A value stored within the browser cache, allowing cross-domain detection when surveys use a CNAME.
+Flash: A cookie stored inside Flash Local Storage.
+These methods are considered safe with no chance of false positives.
+A modern browser (e.g., IE9+, Firefox, Chrome)
+Flash 9.0+ (released 2006)
+Never expires
+Strict Detection
+Participant duplication prevention is based on the browser digital fingerprint, which includes:
+fonts on the user's system (retrieved via Flash object)
+screen resolution and depth (e.g., 1920*1200 pixels, 32-bit color)
+plugins on the system and their versions (e.g., Adobe Flash, Acrobat & Windows Media Player versions)
+browser version
+This is currently experimental and precision is not yet known.
+Flash 9.0+ for font detection
+Never expires
+2.7: Allow Logged In Users To Submit Results
+Normally users who are logged in to the system cannot submit data. When checked, logged-in users may submit data.
+Note: If users are allowed to submit data, it may compromise results.
+2.8: Collect IP Address
+To comply with GDPR guidelines and other data privacy regulations, Decipher surveys with compat 139+ do not collect participant IP addresses unless this box is checked. When checked, IP addresses are collected and made available within the survey's reports.
+Note: Surveys with compat 138 or lower will collect participant IP addresses by default. You can adjust your PII levels to hide IP addresses within lower compat surveys.
+2.9: Host Survey From A Different Domain
+If you have already set up a different domain (CNAME) with Decipher, enter it in the field and your survey links will take that domain into account.
+3: Saving Field Settings
+Click "Save" to save any changes made to the field settings for the project.
+You can also click the arrow next to the "Save" button to select "Save for this project", or if you would like these field settings to be set as the defaults for future projects as well, select "Save and set as defaults".

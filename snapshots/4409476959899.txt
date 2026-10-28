@@ -1,0 +1,98 @@
+Title: Number Element Attributes
+1: Overview
+The <number> element is a question type that accepts only positive numerical input.
+<number label="Q1" optional="0" size="1" unique="1" verify="range(1,3)">
+<title>Please rank the following items from 1 - 3.</title>
+<comment>Enter 1 for the best item and 3 for the worst.</comment>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</number>
+The example code above produces the following result:
+2: Attributes
+In addition to the Question Attributes available, the <number> element has access to the following attributes:
+It is required that a <number> element have a label specified and one of the following attributes: size, points or range.
+2.1: amount - Set the Total Number to Match
+The amount attribute is an integer value that controls the total number of points available in each cell grouping. All of the values provided must total to the amount provided.
+For example, you can ask the participant to supply percentage values that must add up to 100%.
+<number label="Q1" size="3" optional="0" amount="100" ss:postText="%" verify="range(0, 100)">
+<title>What percentage of your time is spent awake and asleep?</title>
+<comment>Your total must add up to 100% exactly.</comment>
+<row label="r1">Awake</row>
+<row label="r2">Asleep</row>
+</number>
+The code above produces the following result:
+If the amount is not met, the following error message is shown:
+You can use the Autosum Element to automatically show the total number of points distributed by the participant.
+The amount can be set dynamically within an <exec> block:
+<exec>
+Q1.amount = 5
+</exec>
+2.2: size - Set the Input Field's Width
+The size attribute is an integer value that changes the width of a <number> element's input field(s).
+size can be applied at the question level or for each individual question element. For example:
+<number label="Q1" optional="1" size="9">
+<title>Please give us your identity:</title>
+<row label="r1" size="2">Age:</row>
+<row label="r2" size="7">Phone #:</row>
+<row label="r3">SSN:</row>
+<row label="r4" size="25">Favorite #:</row>
+</number>
+The example code above produces the following result:
+The default input size is set to 9 and individual sizes were set for r1, r2, and r4.
+2.3: points - Set the Total Number of Points Available
+The points attribute is an integer value that controls the total number of points available in each cell.
+If the size attribute is set to a number greater than 0, then the points attribute will not do anything. However, if size="0" is specified or the attribute isn't included at all, then the points attribute will create a drop down list of numbers (starting at 0) up to the value provided. For example:
+<number label="Q1" points="10" optional="0">
+<title>How many children do you have?</title>
+</number>
+This code produces the following result:
+The points attribute can be set dynamically within an <exec> block:
+<exec>
+Q1.points = 5
+</exec>
+2.4: unique - Prevent Duplicate Responses
+The unique attribute is a boolean value that prevents duplicate responses.
+If unique="1" is specified, then each number provided must be unique within each cell grouping. For example:
+<number label="Q1" optional="0" size="1" unique="1" verify="range(1,3)">
+<title>Please rank each brand's ability to reflect the following characteristics:</title>
+<comment>Use the numbers 1 - 3 where 1 is the best and 3 is the least.</comment>
+<row label="r1">Brand 1</row>
+<row label="r2">Brand 2</row>
+<row label="r3">Brand 3</row>
+<col label="c1">Value</col>
+<col label="c2">Customer Service</col>
+<col label="c3">Quality</col>
+</number>
+The code above produces the following result:
+If duplicate responses are provided at any of the rows, the following error message will be shown:
+2.5: ignoreValues - Set Which Values to Ignore
+The ignoreValues attribute is an integer value that controls which numerical responses should not be counted towards the question's standard deviation and average calculations in the report.
+For example, if ignoreValues="999" is specified, then a response of 999 will not be counted towards those attributes in the report. This also means that 999 is a valid response even if it's not within the ranges specified.
+<number label="Q1" optional="0" size="9" ignoreValues="0" verify="range(1, 999999999)">
+<title>How much money do you make in a year?</title>
+<comment>Enter 0 to skip this question.</comment>
+</number>
+In the example above, a participant could enter 0 to skip the question even though 0 does not exist within the range verifier. The participant will still show up in the total base for the question, but the provided value will not be used when calculating stddev or averages.
+2.6: verify - Set Which Data Verifiers to Use
+The verify attribute controls which Data Verifier to use.
+Things like range and character length are all controllable with the verify attribute. For example:
+<number label="Q1" optional="0" size="3" verify="range(1, 125)">
+<title>What is your age?</title>
+</number>
+A participant may only supply an age between 1 and 125 in the question above.
+If the response provided is not within the range specified, the following error message is shown:
+2.7: range - Set the Minimum/Maximum Values
+The range attribute is similar to the points attribute and can be used to limit the drop down menu to only a certain selection of numbers. For example:
+<number label="Q1" range="2,4,6,8" optional="0">
+<title>2, 4, 6, 8 -- Which of these numbers do you appreciate?</title>
+</number>
+This code produces the following result:
+The range attribute is perfect for creating a question corresponding to year selection:
+<number label="Q1" range="1900-2014" optional="0">
+<title>In what year were you born?</title>
+</number>
+This code produces the following result:
+3: What Next?
+Number Element
+Number Element XML

@@ -1,0 +1,33 @@
+Title: Introduction to the Portal
+Your company Portal page is your home base within Decipher. From here, you can view all of the surveys and other projects created within your company. You can also configure your personal user profile and access your company settings, as well as the login pages for your other Forsta products.
+1: Viewing the Portal
+Below you will find an overview of the Portal page, along with a short description of each of its primary features.
+Note: The Portal only displays the first 500 surveys. To view surveys beyond the first 500, use the search bar to refine your search.
+1. Product Pages: Click the caret to view links to other Forsta products. Learn More: Quick Switch App
+2. Company: Click your company name or logo / icon to access your Company Page, where you can configure the settings and user permissions for your company.
+3. Search: Use search to find your projects based on project name, descriptions, tags, users and even search for specific contents, like a file name or even question text. Click the caret to see advanced search options. Learn more: Search Capabilities
+Note: Search terms or text must have been saved at least 30 minutes prior to appearing in search results.
+4. Help Links: Click to access your survey support resources.
+Knowledge Base: View all help resources and product documentation.
+Help Desk: Contact the Decipher help desk for hands-on support.
+5. Notifications: Click to view Decipher news flashes and other notifications in a new tab. The bell icon will light up to let you know when there are new system updates or release news.
+6. User Profile: Click your profile picture or username to access your user profile and other options for your account.
+7. All Surveys: Click to view or apply your saved survey views and searches. If you find an interesting view using search or sorting, you can save it to this menu to recall that view on demand. Learn more: Search Capabilities
+8. Survey Total: Displays a count of all surveys created within your company. Check the box next to the count to add tags or apply specific actions to all selected surveys.
+9. User Actions: When available, click to add or remove users from the selected survey(s).
+10. Tags: When available, click to add new tags to the selected survey(s).
+11. Bulk Actions: When available, click to favorite / unfavorite or hide / unhide multiple surveys at once.
+12. New Survey: Click to create a new survey.
+13. Select Survey: Check the box next to any survey to select it for the next action.
+14. Mark as Favorite: Click the star next to any survey to add it to your favorites list. You can view favorited surveys using the saved views in the "All Surveys" menu.
+15. Survey Name: Click the name for any survey to navigate to its Project Overview page. The Project Overview page displays project performance stats, including key data from the Response Summary and campaign information. Additionally, it allows you access to the project's user and group controls, as well as any shared files or saved reports. Learn more: The Project Overview Page
+Note: The Portal only sorts the first 500 surveys displayed. To view surveys beyond the first 500, use the search bar to refine your search.
+16. State: The current state of each survey. Click to filter surveys by one or more specific states.
+Note: The Portal only filters the first 500 surveys displayed. To view surveys beyond the first 500, use the search bar to refine your search.
+17. Sort by: Sorts all displayed surveys by the selected criteria. Click to sort surveys by survey path, directory, or when the survey was last accessed or edited. You can also sort surveys based on participant activity and decide whether to show newer or older events first.
+Note: The Portal only sorts the first 500 surveys displayed. To view surveys beyond the first 500, use the search bar to refine your search.
+18. Build: Click the "Build" icon to edit the survey within the Survey Editor.
+19. Responses: Displays the current response count for the survey. Can be real or simulated data. Click the response count to access the Response Summary page.
+Note: The Portal only sorts the first 500 surveys displayed. To view surveys beyond the first 500, use the search bar to refine your search.
+20. Report: Click the "Report" icon to view the survey data in Crosstabs.
+21. Actions: Click the "..." button to view the Project Actions menu.

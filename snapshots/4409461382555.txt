@@ -1,0 +1,23 @@
+Title: Randomizing Response Options Based on a Previous Question
+The Survey Editor allows you to randomize a question's response options in the same order as any previous survey question with the same number of response options.
+Randomizing response options based on a previous question requires the following:
+Both questions must have the same number of answer options.
+The response options for both questions should be entered in the same order, utilize the same labels and the text should match exactly.
+If you want a response option to show in one question but not the other, you must include the response option in both questions and then hide it from participants in the desired question by selecting "Hidden".
+1: Adding the Source Question
+To begin, create the question that will be the source of the randomization order for the response options.
+Add a new question with the response options you would like to use. Then, under “Randomize” in the "Options" menu, check the box next to the type of response you would like to randomize.
+2: Adding the Target Question
+Next, create the question that will copy the randomization order of the source question. This question must be placed after the source question in the survey.
+Add a new question and enter the same response options. The response options here must exactly match those used in the source question, including the text as well as the number of options and their labels. In the "Options" menu, check the box next to the type of response you would like to randomize. This selection should also mirror the randomization specifications of the source question.
+Then, locate the "More Options" drop-down and select "shuffleBy".
+In the "shuffleBy" field, enter the question label of the source question.
+2.1: Hiding Response Options
+If you want a certain response option to appear only in one question and not in the other, you can hide that response option from participants. The hidden response option will still appear in the report because it must be present in order for the "shuffleBy" condition to function. However, the count for it will be zero because participants will not see it in the survey.
+To hide a response option, click it so its option settings appear to the right of the staging area. Then, check the box for "Hidden".
+Note: If QA codes are on (i.e., “Show QA Codes” is selected), the "Hidden" tag will appear next to the hidden option in the staging area.
+3: Testing the Randomization
+To test this setup, click "Preview" in the navigation menu and select "Test Survey". Then click “Show Survey with Tools” to test the survey using QA codes. When you reach the source question, make note of the order of its response options.
+Tip: It is helpful to have QA codes enabled so you can see the question and answer labels.
+When you reach the target question, compare the order of its response options to what you saw in the source question.
+If QA codes are enabled, you will also see the SHF (i.e., randomize) tag next to the question label, indicating the question by which the target question is randomizing. If any of the answer options are hidden, they will not appear in the survey.

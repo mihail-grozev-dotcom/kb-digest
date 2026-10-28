@@ -1,0 +1,91 @@
+Title: What's New in This Release
+Release date: October 16, 2015
+1: Highlights of Decipher (previously Decipher) M30 Release:
+New Dynamic Question: Video Testimonial. A participant provides feedback to a question via a video recording captured from their webcam or mobile device. Now quantitative + qualitative research can be combined.
+Previewing a Question: When creating a new survey, you can preview the question in a desktop, tablet, or mobile environment
+Dashboard capabilities: Expanded dashboard functionality that includes new:
+widgets
+keywords/keyword attributes
+new compat level
+local table/chart filtering and splitting
+2: Video Testimonial Element
+The video testimonial element utilizes an essay form without the traditional answer options. Here, the video testimonial element allows a participant to provide feedback to a question via a video recording. Through the video testimonial, the true voice of the participant is captured because with a video recording you can additionally read voice tone and volume and even the facial expression of the participant.
+This element is also desktop, tablet and mobile compatible.
+To insert the video testimonial element, add a new survey element, select Multimedia" and choose "Video Testimonial". Then click "Insert".
+While taking the survey, a video testimonial question opens to the participant as shown.
+The participant can click "Record your Video" or "Upload your Video". The participant can also click to skip the question, if needed.
+2.1: Usage Statistics Report
+Video testimonial statistics are now included in the Usage Statistics Report as shown in the table settings graphic below.
+VT Responses: The number of video testimonial responses in live surveys is added to "All Clients", "Summary" and "Detail View".
+VT#: The number of video testimonial elements in live surveys, is added to "Detail View"
+1. The number of video testimonial elements in live surveys.
+2. Responses: The number of video testimonial responses in live surveys.
+3: Previewing a Question
+When previewing a question for a new survey, you can now choose the preview display mode: desktop (default), tablet or smartphone.
+The Device Preview functionality applies to new surveys (compat level: 130+).
+In the graphic below, the device preview has been set to mobile. The question now displays as it would to a participant inside a mobile device.
+4: Dashboard
+The dashboard functionality has been greatly enhanced as described in the sections below.
+4.1: Data Points
+For the chart keyword, you can use the chart.data<option> attribute to specify the unit of measurement for non-numeric and numeric data points.
+Non-numeric data points
+The default unit of measurement for non-numeric input data is percent. The following units are now available for non-numeric input: pct percent (default), count, hpct, effbase, ubase.
+Numeric data points (for numeric questions):
+You can use the chart.stat<option> attribute to specify the unit of measurement for numeric data points. The default unit of measurement for numeric input data is the mean statistic. The following units are now available:
+mean
+stddev
+median
+sum
+stderr
+count
+pct
+4.2: Showbase
+The New keyword showbase allows you to add the base (count) below a bar or column in the chart.
+1. N=21452 displays the bar or column where 21452 is the total base (count) for the column/bar.
+4.3: Nesting Filters
+Filters can be nested to provide multiple levels on which you can drilldown. You can create a nested filter when you add thefilterlevel attribute to a filter keyword and assign it a number (1,2,3 and so on). For example, to specify the top level of an hierarchy set filterlevel=1. Then any filters under that one are children of that filter. Assign the next nesting level filterlevel=2 and so on. Children of a filter are hidden in the filters dropdown menu until selected.
+4.4: TableDrilldown
+A new TableDrilldown generator opens for a cell on any table opens the responses report. When you click a cell to view the responses report, it displays the participants that were a part of the cell.
+4.5: Nesting Rows
+For the row keyword you can add a row hierarchy for tables so rows can be placed in groups and be collapsed and expanded.
+4.6: New Compat Level
+When you create a new dashboard the compat level is now three. This level combines local filters with global filters for charts and tables.
+4.7: Showif
+The filter.local keyword has a new showif attribute that can be added to rows and local filters. You can now specify the filter/rows that are shown with certain filters.
+The following example shows certain filters/rows when the Desktop filter is applied and different filters/rows when the Mobile Device filter is applied. Both local filters and rows are changed based on the filter selection.
+When the Desktop filter is applied, the following local filter and rows are shown:
+When the Mobile Device filter is applied, this local filter and these rows are shown:
+4.8: Net Promoter Score
+A new widget, NPS allows you to create a column or bar chart that displays the Net Promoter Score (NPS) statistic.
+4.9: Table of Open End Responses
+A new Open End widget allows you to create a table of open end responses. You can also specify to link to a participant's full response page.
+4.10: WordCloud
+A new WordCloud widget so you can turn any “Open End” widget into a word cloud with uses WordCloud. This widget uses the same setup and options as the Open Ends widget. By default, the widget displays the top 50 frequently used words among all the responses.
+In the WordCloud example below the font size of a word indicates the usage frequency of the word in the responses. You can click one or more words to add them to the search box to search through the responses. Words added to the search box display in black font in the WordCloud.
+This action opens the table of responses with the search results displayed. The count of search matches the display below the table. If respview=1, you can drill down to the individual response report from the table of responses.
+4.11: Options for Open Ends and Word Cloud Widgets
+Open End Responses table and WordCloud widgets have attributes to specify the open end responses used to create a table of Open End Responses and the WordCloud.
+oe.random X - based on random open end responses
+oe.first X - based on first received responses
+oe.last X - based last received responses
+Where X indicates the number of open end responses.
+4.12: Saved Views
+You can now save the view of a dashboard display and then quickly retrieve it. For example, you might have applied a set of filters to the dashboard and want to save the filter setup so you can view it at another time.
+4.13: Local Split Dropdown
+New keyword bannergroup.local so you can add local splits to charts and tables. Local splits with always take priority over global splits.
+4.14: Local Filter Dropdown
+New keyword filtergroup.local so you can add dropdowns for selectable filters on charts and tables. These filters are applied in addition to any global filters.
+4.15: Clearing Applied Filters
+You can quickly clear any filters you have applied to the dashboard.
+To clear an applied filter:
+For Compat 1 dashboards: Click the "Clear Filters" link.
+For Compat 2+ dashboards: Click the "Save" icon at the end of the filter bar.
+Added ability to clear global filters quickly. “x” at end of filter bar in compat 2+, button next to filters in compat 1.
+4.16: Custom Data Layout for Responses Report
+When using a TableDrillDown generator, Open End, or WordCloud widgets you can apply a predefined custom data layout for the report.
+To apply a predefined layout, add this code to the dashboard:
+data.layout <layout id>
+where <layout id> is the predefined layout number.
+To located any predefined layouts for a project, select "Data Downloads" from the Report menu. Next access the <layout id> from the "Data Layout" drop down.
+4.17: Restricting Viewing Access
+You can now restrict viewing access to a specific list of users when you add an access control list (acl) to a tab, table, or chart definition.

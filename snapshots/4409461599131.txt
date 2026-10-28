@@ -1,0 +1,50 @@
+Title: Scripting Basics
+This section outlines the basics of building surveys within the XML Editor. Here, we'll learn everything we need to know to script a simple survey in Decipher, from installing the necessary programs to understanding the basic structure of XML in Decipher.
+Setting Up Your Computer
+First, let's make sure your computer is equipped with the tools necessary for the job.
+Although you may have your own preferred coding interfaces, we suggest using one of those mentioned in the reference materials for this lesson, as they allow for the use of custom programming clips that will save you a great deal of time in scripting Decipher surveys.
+Using Vim:
+Using Sublime:
+Using NoteTab:
+Reference Materials:
+Decipher Clips Installation
+XML Overview
+The XML programming language is the foundation for programming surveys using the Decipher platform. In this lesson, we'll get our first glimpse into the XML Editor in Decipher, focusing primarily on the syntax, structure, and uses of XML in general, as well as some differences between XML and HTML.
+Reference Materials:
+XML Syntax
+HTML Codes
+Creating Surveys
+Now that we understand the structure of Decipher XML, we're going to start configuring the settings for a new project. The <survey> tag in Decipher contains all of the project-level settings for a given survey. Adding and configuring particular attributes here will allow users to fine-tune general project settings, survey display, field settings, device compatibility, and report configurations.
+In this lesson, we'll will take a look at many of the most commonly used survey attributes. For an exhaustive list of survey attributes, please review the articles listed in the reference materials below.
+Reference Materials:
+Overview of the Survey Tag and Quick Links
+Attributes for Project Settings
+Attributes for Display Settings
+Attributes for Question Settings
+Attributes for Field Settings
+Attributes for Device Settings
+Attributes for Report Settings
+Basic Question & Element Types
+In this lesson, we'll learn about many of the survey, question, and answer element tags in Decipher. We'll also learn how these compare to the basic question types added through the Elements Manager in the Survey Editor:
+Survey Comments: <html>
+Question Elements: <row> / <col> / <choice>
+Questions Types: <radio> / <checkbox> / <select>
+Open End Question Types: <text> / <textarea> / <number>
+Page Breaks: <suspend/>
+Reference Materials:
+Overview of Question Types
+HTML Tag: Create a Comment Element
+Single Select Question XML
+Dropdown Menu Question XML
+Multi-Select Question XML
+Number Element XML
+Text Question XML
+Survey Formatting
+Now that our project has some questions in it, we can start adjusting the basic format of the survey. In this lesson, we'll learn about common question attributes that are used to update question-level settings. We'll also learn how to use premade checks for data quality, create structure within our questions, and control the route participants take through our survey.
+Reference Materials:
+Question Attributes
+Data Verifiers
+NoAnswer Tag: An Opt-Out Response Option
+Group Tag: Group Response Options
+Term Tag: Terminate/Screen Out Participants
+Goto Tag: Jump to a Different Section

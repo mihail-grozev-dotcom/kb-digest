@@ -1,0 +1,45 @@
+Title: Image Upload Element
+Тhe Image Upload element allows you to request, collect, and manage images uploaded by survey participants.
+Participants have the ability to select an existing image or use their mobile device camera to take a new snapshot and provide feedback to a question by uploading an image.
+1: Adding an Image Upload Element
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add an Image Upload element, first click the "+ Element" button to add a new survey element. Then click "Participant Upload" under Question Types and select the "Image Upload" element. Then click "Add".
+Enter the question and instruction text in the areas provided. Then use the “Options” menu to the right of the staging area to customize the Image Upload element.
+2: Configuring Style Settings
+To configure the style settings for the Image Upload element, click the "..." button at the top right of the question in the staging area and select "Update Styling".
+In the "Question Display Options" window, configure the settings for the element using the options on the left. Additional information about each feature will appear when you mouse-over the text. Click "Save and Preview" to preview the settings. Once you are satisfied with your settings, click "Save and Close".
+3: Configuring Question Options
+The general options available for the Image Upload element are located to the right of the staging area. You can set rules for the entire question by clicking near the question text. The "Options" menu will show the question label and type for the element you have selected to edit.
+Label: The label assigned to the element. Click to edit the default label for the Image Upload element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: Check the box to force participants to provide a response. When checked, participants will be unable to continue the survey without completing the question.
+Randomize: Check the boxes to randomize items by type. Items can only be randomized by rows.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the settings for that option. For more information on each option, see More Options - Advanced Features.
+4: Uploading an Image
+While taking the survey, the Image Upload element appears to each participant as shown below.
+The participant can click the "Camera" button to select an existing image for upload from their desktop or take a new snapshot using their mobile device camera. The participant can also check the box below the "Camera" button to skip the question, if needed. This is a default setting available in the element's style settings.
+The following image formats are accepted for uploading:
+JPEG
+PNG
+GIF
+SVG
+Note: The maximum file size for any image is 5 MB and only one upload is allowed per question.
+Important: The Image Upload element is incompatible with feature phones.
+5: Viewing Results in Crosstabs
+Participant results can be viewed in Crosstabs reports with links to view individual responses, download the image, or mark it as a favorite. You can also filter the image thumbnails by any segments you have defined.
+5.1: Retrieving Uploaded Images
+After your survey has collected data, you can retrieve any images participants have uploaded using Crosstabs.
+Below shows the Image Upload element in a total frequency report.
+From Crosstabs, you can:
+See the uploaded images.
+Mark an image as a favorite. Favorites are used for filtering in the Dynamic Questions chart.
+View the Responses table to see all participants' answers.
+Download the images to your device.
+Learn more: Running a Total Crosstab
+5.2: Downloading All Uploaded Images
+You can download a ZIP file containing all uploaded files from the Data Downloads page. From the navigation menu, select REPORT, then Data Downloads. Select Other Data Formats from the drop-down menu. On the Data Downloads page, select Uploaded Files under the header Open Formats.
+Selecting this option downloads a ZIP file containing all files uploaded with the following naming format: RECORD_QLABEL_FILENAME.
+5.3: Filtering Thumbnails by Segment
+Once you have created some crosstabs with segments, you can filter the image thumbnails for the defined segments.
+Learn more: Building a Crosstab

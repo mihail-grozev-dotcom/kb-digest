@@ -1,0 +1,15 @@
+Title: Writing Logic Based on a Loop Element
+After sending participants through a series of looped survey questions, you may want to ask them one or more follow-up questions based on their responses within the loop. The steps below explain how to add logic to a question following a group of looped elements, based on participants' responses to a question within the loop.
+To learn more about looping survey elements, see Loop Element.
+1: Identify the label of the loop variable that you wish to use in the logic.
+To identify the label for the loop variable you would like to use in the follow-up question, select the desired Loop element so it appears in the staging area, then click "Edit Pipe Variables".
+In the "Pipe Variables Setup" window, locate the desired loop variable and make note of its label.
+2: Identify the labels for the question and response option.
+Next, identify the labels for the question and response option that provide the desired response for the logic you want to create.
+3: Write the logic for the follow-up question.
+Now write the logic for your follow-up question.
+First, select the follow-up question so it appears in the staging area, then select "Show If" and click "+New Condition". In the Logic Condition Setup window, click "show raw code" to open the raw code editor, then enter the code in the area provided and click "Save".
+Tip: Click "Save As" to name the condition for later use in your survey.
+Once saved, the logic condition will appear for the question.
+4: Testing the Survey.
+To test the setup, select "Test Survey" from the "Preview" drop-down in the navigation menu. Then test through the survey, verifying that you see the follow-up question only after selecting the response you indicated in the condition logic for that question.

@@ -1,0 +1,112 @@
+Title: Dashboard Variables
+To improve the look and feel of your dashboard, use the many options available in the dashboard system. The following is a collection of the most popular dashboard keywords and attributes to make dynamic dashboards.
+See the Highcharts Options Reference guide for even more customization options.
+Keyword/Attribute Name
+Description of Use
+banner
+Can be used to split a dashboard by segments.
+banner dynamic
+Can be used to dynamically split a dashboard by segments.
+banner.local
+Defines a set of banner segments and applies them to a table or chart.
+bannergroup.local
+Adds local splits applied to charts and tables. Local splits take priority over global splits.
+base
+Re-bases the percentage calculation based on the condition. This overrides basing from the total row and banner segments.
+chart
+Can be added to a table to create a chart based on the rows in the table. A standalone chart can be added in the same way a table is added.
+chart.data
+Can be used to specify the unit of measurement for non-numeric data points. The default unit of measurement for non-numeric input data is percent.
+chart.stat
+Allows you to specify the unit of measurement for numeric data points. The default unit of measurement for numeric input data is the mean statistic.
+chartopt
+Adds customization to the chart including a chart title, background color, axis scale, segment stacking, chart legend, data labels, data label rotation and axis styling.
+conds
+Allows you to display a grid question in a single table or chart. You can define multiple conditions on each row that correspond to different segments.
+counts
+Allows you to control the displaying of the counts. The default is 0. Set counts=off to disable.
+filter
+Allows you to restrict the participants' data that is included in the dashboard. If a filter does not have a title, it will always be applied and you won't be able to toggle it on / off. In the dashboard, click on the gear icon to choose and apply filters. Add default=1 to select a filter by default.
+filter datepicker
+Allows you to filter data by a date range. Once applied, a date picker will be available for your input from the left drop-down filter panel when viewing the dashboard. While using this filter, make sure that the dashbaord compat is set to "2 (faster)" / "1 (Compat 123)" or higher.
+filter.local
+Allows restricting participants' data within a table or chart. This overrides all other filters.
+filtergroup
+Allows you to create dynamic grouped filters.
+filtergroup.local
+Allows restricting participants' data within a table or chart. This overrides all other filters.
+filterlabel
+Can be added as a description for the next drop-down. The filterlabel displays with the options "All" and "Multiple".
+filterlevel
+Allows you to add nested filters in order to provide multiple levels on which you can drill-down.
+group
+Allow displaying multiple elements in one container, where filters and zooming can be applied to all elements. By default, only one dashboard element is shown per container.
+hp
+Adds horizontal percentages based on the first banner segment with the precision specified on a table or row. By default, this feature is disabled.
+html
+Inserts raw HTML code into the dashboard. If the html code exceeds one line, the keyword end should be added at the end of the code.
+id
+System-generated keyword that can be changed to add a custom identifier (name) to any table, banner or filter. That element's id keyword can then be referenced in any custom hooks that you have set up for your dashboard.
+keepwith
+Moves elements to the same column as the specified element.
+layout
+Allows you to specify how many elements are shown horizontally in a container before starting over at the left-most part of the container. The values are separated by comma.
+net
+Adds a net row including participant counts for the next count rows. If the count is negative, the net includes the previous rows.
+page
+Creates new tabs within a dashboard. This keyword has two sub-attributes, page.header and page.subheader.
+page.header
+Sub-attribute of page that is optional and will be displayed before any tables or charts.
+page.subheader
+Sub-attribute of page that is optional and will be displayed before any tables or charts.
+palette
+Configures the default color palette used for banner segment colors in charts. Color codes are in six hexadecimal character format. When a chart needs more colors than specified, the coloring will restart from the beginning.
+Note: Do not use a # before a hexidecimal color character - the system will consider all values after a # to be coding comments.
+pct
+Allows you to control the precision of vertical percentages. The default precision is 0. Set pct=off to disable.
+pos before
+Can be used to display the chart before the table it is created from. By default, charts that are not standalone will be displayed after the table they are based on.
+row
+Adds a single row with this condition to a table.
+rowlevel
+Allows you to create a nested table row when added to a filter and assigned a number (1,2,3, and so on).
+rows
+Adds multiple rows to a table.
+segment
+Defines a segment created within a banner using survey questions or logic.
+showbase
+Allows you to add the base (count) below a bar or column in the chart.
+showif
+Can be added to rows, local filters and local segments so you can specify the filters / segments / rows that are shown with certain filters. The showif condition only applies if at least one filter from the same filtergroup is selected.
+sigtest
+Allows you to add significance testing to a dashboard. You can enable sigtest for the entire dashboard, or on a per-table basis.
+sortable
+Enables sorting on a chart.
+stats
+Enables calculation of statistical data rather than showing a percentage on numeric data.
+stats.precision
+Used to specify the decimal digit of precision for statistics.
+style
+Allows you to specify CSS style for various page elements. Styles can be applied globally, spanning across the entire dashboard, or locally, specifically targeting an individual element.
+sum
+Adds a sum row counting response counts for the next count rows. If the count is negative, then sum includes the previous rows (typically used for checkboxes).
+table
+Adds a new table to the dashboard. If a title is not specified, the question's title will be used.
+tooltip.valuePrefix
+Allows you to add a string before a tooltip.
+tooltip.valueSuffix
+Allows you to add a string after a tooltip.
+total
+Adds a row which will count participants that fulfill the condition for all other rows in this table. If a title is not specified, total is used.
+transpose
+Interchanges all rows with available segments.
+type
+Sets the chart type. The default chart type is a bar chart.
+uses
+Allows you to create custom dashboard generators for any table or chart type.
+weight
+Can be applied to a specific segment or globally to all surveys to add per-record weighting.
+where
+Allows you to specify where each table and chart should be displayed. Use export to display only in the exported files and dashboard to display only in the dashboard.
+width
+Allows you to customize how wide each container should be displayed. The default and maximum width is 12.

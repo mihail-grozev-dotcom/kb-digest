@@ -1,0 +1,110 @@
+Title: Macro System: Create Reusable Elements
+Important: Macros cannot be used with the Survey Editor. Unless unmacro="0" is set, editing a survey with macros using the Survey Editor will unravel the macros (i.e., they will be "pasted" at all occurrences).
+Note: Macros have been replaced by the <loop> element. Consider using the Loop Tag instead.
+The macro system increases productivity by reducing the need to copy & paste elements in your survey.
+Instead of rewriting the same code multiple times, you can use macros to write it once and call it multiple times across your survey. For example:
+@define myScalesMacro
+<col label="c1">1 <br/>Bad</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5 <br/>Great</col>
+@end
+<radio label="Q1" type="rating" values="order">
+<title>How would you rate your experience?</title>
+@myScalesMacro
+</radio>
+<suspend/>
+<radio label="Q2" type="rating" values="order">
+<title>How would your rate the customer service?</title>
+@myScalesMacro
+</radio>
+<suspend/>
+Instead of rewriting the 5 column elements at Q1 and Q2, you can write them once using a macro and include the macro at each question. This not only reduces the number of lines in the code, but it also decreases the amount of work that you would need to do in order to make a change. For example, if a change was requested to change the word "Bad" to "Terrible", you would only need to update the code in one place.
+1: How it Works
+The macro system works just like copy & paste - everything between the @define and @end for a particular macro is copied and pasted everywhere it's used (e.g. @myScalesMacro).
+For example, if the code above is opened using the Survey Editor, the following code will take its place:
+<radio label="Q1" type="rating" values="order">
+<title>How would you rate your experience?</title>
+<col label="c1">1 <br/>Bad</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5 <br/>Great</col>
+</radio>
+<suspend/>
+<radio label="Q2" type="rating" values="order">
+<title>How would your rate the customer service?</title>
+<col label="c1">1 <br/>Bad</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5 <br/>Great</col>
+</radio>
+<suspend/>
+Tip: If you lost your macros, you can revert the changes using the Change Management and Version Control System. Just remember to add the changes that were made (if any) back into your survey.
+2: Macro Syntax
+Macros begin with the @define keyword and end with the @end keyword. The syntax is below:
+@define MACRO_NAME VARIABLE_1=DEFAULT VARIABLE_2=DEFAULT
+CODE TO COPY
+...
+@end
+For example:
+@define test_macro elementType=row labelPrefix=r
+<$(elementType) label="$(labelPrefix)1">One</$(elementType)>
+<$(elementType) label="$(labelPrefix)2">Two</$(elementType)>
+<$(elementType) label="$(labelPrefix)3">Three</$(elementType)>
+@end
+<radio label="Q1">
+<title>First question</title>
+@test_macro
+</radio>
+<radio label="Q2">
+<title>Second question</title>
+@test_macro elementType=col labelPrefix=c
+</radio>
+<select label="Q3">
+<title>First question</title>
+@test_macro elementType=choice labelPrefix=ch
+<row label="r1">Choose one:</row>
+</select>
+The code above produces the following result:
+Macros can also be used with other macros (e.g., @define myMacro variable=@someOtherMacro).
+3: Macro Example - Reusing & Looping Questions
+Macros can be used to create "loops" in a survey by reusing question elements.
+Tip: Use the Loop Tag instead.
+For example:
+<checkbox label="Q1" atleast="1" shuffle="rows">
+<title>Which of these brands have you heard of?</title>
+<row label="r1">Brand 1</row>
+<row label="r2">Brand 2</row>
+<row label="r3">Brand 3</row>
+<row label="r4">Brand 4</row>
+</checkbox>
+<suspend/>
+@define Q1_LOOP label=x brand=x
+<block label="Loop_Block_For_$(label)" randomize="1" cond="Q1.r$(label)">
+<radio label="Q2_$(label)">
+<title>Did you purchase anything from $(brand)?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<textarea label="Q3_$(label)" cond="Q2_$(label).r1">
+<title>Please tell us what you purchased from $(brand):</title>
+</textarea>
+<suspend/>
+</block>
+@end
+<exec>Shuffle_Q1_LOOP.order = Q1.rows.order</exec>
+<block label="Shuffle_Q1_LOOP" randomizeChildren="1">
+@Q1_LOOP label=1 brand=${Q1.r1.text}
+@Q1_LOOP label=2 brand=${Q1.r2.text}
+@Q1_LOOP label=3 brand=${Q1.r3.text}
+@Q1_LOOP label=4 brand=${Q1.r4.text}
+</block>
+In the example above, questions Q2 and Q3 are asked for every item selected at Q1. Instead of rewriting these questions 4 times for each brand at Q1, we used a macro to declare the questions once and reuse them numerous times.
+Using the <block> elements, we were able to conditionally show Q2 and Q3 only for those brands that were selected at Q1 (e.g. cond="Q1.r$(label)") and were able to shuffle the order of the questions asked based on the shuffle order of Q1 (e.g. Shuffle_Q1_LOOP.order = Q1.rows.order).
+4: What's Next?
+Macros have been replaced by the Loop Tag.
+Learn more about Modifying Survey Structure with Mutators, specifically the copy function.

@@ -1,0 +1,11 @@
+Title: 155.6 Release Notes 
+Release Date: September 22, 2026
+Release Version: 155.6
+New Features
+Portal
+A new search parameter compat is available on the Portal list page.
+Learn More: Search Capabilities
+Bug Fixes
+Survey
+Dynamic Questions
+An issue preventing the cardSortDisabledCSS attribute from working properly in Rank Sort versions 9 and 10 has been resolved.

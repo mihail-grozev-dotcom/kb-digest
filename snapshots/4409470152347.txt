@@ -1,0 +1,43 @@
+Title: Adding Individual Response Tables
+Sometimes you need to include more than just aggregate data in a survey dashboard. To view individual participant answers alongside your tables and charts, use individual response tables to display individual question data for participants. Fields displayed within individual response tables are defined using data labels from the survey datamap, and can be customized to include other important links.
+Note: Adding individual response tables require dashboard compat level 4 or higher, and both data:download and dashboard:view project permissions.
+1: Adding the Response Table
+Note: If a question has an altlabel, the altlabel must be used instead.
+To add an individual response table to your dashboard, first add a new table using the table variable.
+Then add the following syntax, specifying the label for the desired question or response option in place of <datamap label>, separated by commas:
+table
+uses TableResponse
+tableresponse.columns "<datamap labels>"
+Note: If you do not add an element ID, the dashboard editor will automatically generate one the next time the dashboard is saved.
+Example #1
+Adding a table for a single variable open-end question or a one-dimensional single-select question:
+table
+uses TableResponse
+tableresponse.columns "q1"
+Example #2
+Adding a table for a one-dimensional multi-select question, a one-dimensional text question, or a two-dimensional question:
+table
+uses TableResponse
+tableresponse.columns "q1r1"
+Example #3
+Adding a table for a two-dimensional multi-select question, a two-dimensional text question, or a two-dimensional number question:
+table
+uses TableResponse
+tableresponse.columns "q1r1c1"
+1.1: Adding Report Links
+If desired, you can include links to the View/Edit Responses report to view additional project data for individual participants. To add report links to your individual response table, add the record variable to the tableresponse.columns attribute.
+table
+uses TableResponse
+tableresponse.columns "record, q1r1"
+1.2: Adding Participant Image Links
+You can also include links to any images uploaded by participants via the Image Upload question. To add image links, add the variable for the Image Upload question ("imageq1") to the tableresponse.columns attribute.
+table
+uses TableResponse
+tableresponse.columns "imageq1, q1r1"
+Note: To view images, you must also have report:view project permissions.
+2: Limitations and Additional Considerations
+The following limitations apply when adding individual response tables:
+Tables do not support survey data that has been merged via the dashboard.
+Tables are hidden from public reports and can only be viewed by those with data:download and dashboard:view project permissions.
+Tables do not support exports.
+Tables do not support the use of local banners.

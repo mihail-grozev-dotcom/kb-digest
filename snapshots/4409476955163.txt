@@ -1,0 +1,328 @@
+Title: Modify Survey Structure with Mutators
+Mutators are functions that modify the structure of the survey (e.g., creating new questions or question rows). Here's a code snippet of the mutator function, copy.
+<checkbox label="Q1" atleast="1" shuffle="rows">
+<title>Please choose the items you've heard of.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</checkbox>
+<suspend/>
+<radio label="Q2" optional="0" onLoad="copy('Q1', rows=True)" rowCond="Q1[row]" exec="Q2.rows.order = Q1.rows.order" title="Which one is
+your favorite?" />
+In the example above, Q2 will show all rows selected at Q1. The mutator function, onLoad="copy(...)", copies all rows from Q1 exactly. The rowCond="..." function only shows those rows that were selected at Q1.
+Continue reading to learn about all of the mutator functions available.
+1: onLoad - The Mutator Attribute
+The onLoad attribute is used to call each of the mutator functions listed below when loading a survey.
+Note: The onLoad mutator will not work in loops and is not fully compatible with the Survey Editor. You will get an error message if your mutator logic is incompatible with another element in the editor.
+Important: If you introduce anything but the most basic expressions in onLoad, it is possible to persistently corrupt the survey's global state. Be sure to create unique function names (e.g., def __blah()) and DO NOT import modules globally.
+1.1: copy - Copy a Question's Row/Col/Choice/Group Elements
+The function, copy, enables you to copy rows, columns, choices and groups from one question to another.
+1.1.1: Function Syntax
+onLoad="copy(source, rows=False, cols=False, groups=False, choices=False, forceType=None, transform=util.identity, filterFun=lambda x: True,
+include=None, exclude=None)")
+1.1.2: Function Variables
+Argument
+Type
+Description
+source
+string
+The original question containing the elements to copy.
+rows
+bool
+Copy the rows from the source question?
+cols
+bool
+Copy the columns from the source question?
+groups
+bool
+Copy the groups from the source question?
+choices
+bool
+Copy the choices from the source question?
+forceType
+string
+Do Not Use (See Bug #10450). Transforms the elements to a different type. For instance, if forceType="col" is specified when copying rows, the rows will become cols.
+transform
+lambda function
+Adjust attributes of the elements being copied.
+filterFun
+lambda function
+Additional logic to perform on each element being copied.
+prepend
+bool
+Copy the additional elements before the elements already present? (Default: False | appends copied elements)
+include
+string
+Space-separated list of element labels to be copied. Only the labels provided will be copied over.
+exclude
+string
+Space-separated list of element labels to exclude from being copied over. The labels provided here will not be copied over.
+1.1.3: Function Examples
+Using the following question, "Q1", as our source question:
+<radio label="Q1" type="rating" values="order">
+<title>Please rate the following.</title>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+<row label="r5" cond="0">Item 5 (Hidden until Q5)</row>
+</radio>
+<suspend/>
+Illustrated below are a few examples of using the copy function to create additional questions with the same elements as "Q1" above.
+<checkbox label="Q2" atleast="1" onLoad="copy('Q1', rows=True)" rowCond="Q1[row].c4 or Q1[row].c5">
+<title>You rated these items pretty high. Which do you use often?</title>
+</checkbox>
+<suspend/>
+<radio label="Q3" onLoad="copy('Q1', rows=True)" rowCond="Q2[row]">
+<title>Which is your favorite?</title>
+</radio>
+<suspend/>
+<radio label="Q4" onLoad="copy('Q1', cols=True)" type="rating" values="order">
+<title>On a scale from 1 - 5, how would you rate [pipe: Q3 lower]?</title>
+</radio>
+<suspend/>
+<radio label="Q5" onLoad="copy('Q1', rows=True, prepend=True, exclude='r1', transform=lambda x: (lambda f=x.copy(): f.__setitem__('cond', '') or f)())" rowCond="not Q3[row]">
+<title>Which of these items is your least favorite?</title>
+<row label="r99" randomize="0">None of the above</row>
+</radio>
+<suspend/>
+At Q2, the rows from Q1 are copied and the rowCond shows only those rows that were rated c4 or c5.
+At Q3, the rows from Q1 are copied and only those that are used often from Q2 are displayed.
+At Q4, the cols from Q1 are copied and the favorite selected at Q3 is piped into the question title.
+At Q5, all rows from Q1 except r1 are copied. Since prepend=True is specified, the rows will be prepended to the current list of elements, showing r99 at the bottom of the list. The transform resets the cond attribute for each element, showing r5 at this question for the first time.
+If you need to stack calls to the copy function (e.g., to copy rows and columns), consider the following examples:
+<radio ... onLoad="copy('Q1', rows=True, cols=True)">
+...
+</radio>
+<radio ... onLoad="copy('Q1', rows=True), copy('Q2', cols=True);">
+...
+</radio>
+Note: The filterFun argument was not shown here because everything it can do can be done with the rowCond/colCond/choiceCond attributes. Currently, the forceType argument does not work as expected and should not be used.
+createTransient - Create a Question or Response Element
+The function, createTransient, allows you to create new question or response elements within the survey. It accepts any element type (question, row, HTML comment, etc.), as well as the label and cdata values for that element.
+Note: Elements created using createTransient are not saved in the survey.xml file and will not be visible nor accessible within the Survey Editor.
+1.1.4: Function Example
+The code below will create a virtual question called “Status Disposition” that contains three separate rows to flag qualified, terminate, and overquota (OQ) participants.
+def createVStatus(ctx):
+from hermes.elements import Radio, Row
+if 'vStatus' in ctx:
+return
+el = ctx.root.createChild(Radio.Radio, label="vStatus", title="Status Disposition")
+el.transient = True
+el.attr['virtual'] = '''
+if "qualified" in markers:
+data[0][0] = 2
+elif "OQ" in markers:
+data[0][0] = 1
+else:
+data[0][0] = 0
+'''
+el.createTransient(Row.Row, label='r1' , cdata="Term")
+el.createTransient(Row.Row, label='r2' , cdata="OQ")
+el.createTransient(Row.Row, label='r3' , cdata="Quals")
+el.notifyEnd(0)
+def onLoad(ctx):
+createVStatus(ctx)
+ctx.root.attr['spssSimpleCheckbox'] = '1'
+ctx.root.attr['fwoe'] = 'text,textarea,other'
+1.2: makeLabelledRows - Create Labelled Rows from a List of Items
+This function does not work in SECURE surveys. For more information about secure surveys, see Secure Surveys Overview.
+The function, makeLabelledRows, creates rows in a question with custom labels. It accepts a list of (label, name) pairs.
+1.2.1: Function Example
+onLoad="makeLabelledRows([('r1', 'Item 1'), ('r2', 'Item 2'), ('r4', 'Item 4')])"
+Applied to a <radio> question, the code above will produce the following result:
+You may also reference a file to process and create rows from. Consider a file containing the following:
+r1|Item 1
+r2|Item 2
+r4|Item 4
+We can use a Python generator expression to process and create rows from the file above:
+onLoad="makeLabelledRows(x.split('|') for x in open('selfserve/9d3/proj1234/file.txt'))"
+This produces the same result as the example above.
+1.3: makeRows - Create Rows from a List of Items
+This function does not work in SECURE surveys. For more information about secure surveys, see Secure Surveys Overview.
+The function, makeRows, creates rows from a list. Labels are created automatically and begin at "r0". Consider the following example:
+1.3.1: Function Example
+onLoad="makeRows('%s', ['Item 0', 'Item 1', 'Item 2'])"
+Applied to a <radio> question, the code above produces the following result:
+You may also use generators to make rows from a file. Consider a file containing the following:
+Item 0
+Item 1
+Item 2
+We can use create a list from this file using Python's split function to read in each line as a row item. Consider the following code:
+onLoad="makeRows('%s', open('selfserve/9d3/proj1234
+/file.txt').read().split('\n')[:-1])"
+This produces the same result as the example above.
+1.4: countChecked - Count the Number of Checkbox Selections Made
+This function does not work in SECURE surveys. For more information about secure surveys, see Secure Surveys Overview.
+The function, countChecked, can be used to create a virtual <radio> question that accumulates the number of checkboxes checked at a single dimension <checkbox> question.
+1.4.1: Function Example
+<checkbox label="Q1" atleast="1">
+<title>Please select all that apply.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+<row label="r5">Item 5</row>
+</checkbox>
+<radio label="Q1_Counts" onLoad="countChecked('Q1')" title="Total Checked at Q1" />
+The code above will add a single row at "Q1_Counts" for every row at "Q1" (beginning at "r0"). It will generate the virtual code required to populate the response representing the number of checkboxes checked at "Q1".
+For example, if 3 items were selected at "Q1", then "r2" will be selected at "Q1_Counts".
+This function does not work for 2D <checkbox> questions. You can replicate this functionality by writing your own <virtual> code.
+1.5: rowsFromAnswers - Create Rows from a Question's Answers
+The function, rowsFromAnswers, is normally used with the virtual function, textSearch, to create rows based on answers provided for a specified variable. Each time the survey is loaded, the system checks for an answers file. If it cannot be found, a row will be generated for each of the answers provided.
+1.5.1: Function Example
+<text label="Q1" optional="0" title="What is your favorite color?" />
+<radio label="Q1_Colors" onLoad="rowsFromAnswers('Q1')" virtual="textSearch(Q1[0][0])" title="Colors from Q1"/>
+The virtual question "Q1_Colors" will have a row for every answer provided for "Q1". Here's what that may look like in the report:
+Warning: This function can cause some serious performance issues for large surveys. Here are some points to consider:
+Only use this in a survey with few participants or after fielding has been closed.
+To update the virtual question with new answers, you must remove the file: data/QX-answers.txt.
+Since the answers are sorted, the datamap will change with new additions. Do not use in projects where fixed data layout is important.
+1.6: pasteContents - Append Multiple HTML Elements
+This function does not work in SECURE surveys. For more information about secure surveys, see Secure Surveys Overview.
+The function, pasteContents, appends multiple <html> elements together.
+1.6.1: Function Example
+<html label="Introduction" where="survey" cond="0">
+<p>Hello, world!</p>
+</html>
+<html label="Welcome_Text" where="survey" cond="0">
+<p>This survey is awesome.. Are you ready?</p>
+</html>
+<html label="Go_Text" where="survey" cond="0">
+<p>If you're ready... Click the "Continue" button below.</p>
+</html>
+<html label="Survey_Introduction" where="survey" onLoad="pasteContents('Introduction', 'Welcome_Text', 'Go_Text')" />
+The code above produces the following result:
+1.7: mergeQuestions - Combine Data From Another Survey
+Note: This attribute is not usable in surveys with delphi="1"or SECURE surveys. For more information about secure surveys, see Secure Surveys Overview.
+The function, mergeQuestions, is used to combine data from multiple surveys into one. You can also use loadRecord to accomplish this.
+1.7.1: Function Example
+<onLoad>
+mergeQuestions('srv', 'selfserve/9d3/proj1234 survey2', """
+q1: *
+v1: *
+q2: selfserve/9d3/proj1234:q2b
+q3: survey2
+""")
+</onLoad>
+<radio label="srv" title="Source survey">
+<row>selfserve/9d3/proj1234</row>
+<row>survey2</row>
+</radio>
+<label label='$mergeQuestions'/>
+<radio label="v2">
+<title>This is a virtual</title>
+<virtual>if q2[0][0] == 0 or q2[0][0] == 1:
+data[0][0] = 0
+else:
+data[0][0] = 1
+</virtual>
+The first parameter of mergeQuestions, "srv", represents the question which will be set with the survey that is the source of the current record. The second is a list of all surveys to merge using their relative paths. The third parameter is the question configuration. Specify each of the questions to pull into the survey followed by the source of the survey to pull for. For example, q1: * means pull the question "q1" from all surveys, q2: selfserve/9d3/proj1234:q2b means pull the question "q2b" from proj1234 and store it as "q2" here, and q3:survey means pull the question "q3" only from survey2.
+Note: If you pull a question from multiple surveys, the questions must be the same.
+The code, <label label="$mergeQuestions"/>, is optional. The merged questions will be inserted immediately following the label. This is useful if you need to create new virtual questions based off of the data, like at "v2".
+1.8: createTerminateTables - Create a Report Table for Terminates
+The function, createTerminateTables, creates a virtual question that contains a row for each terminate point and the number of participants who were terminated at each one.
+1.8.1: Function Example
+<radio label="Q1" optional="0">
+<title>Are you...</title>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<number label="Q2" size="3" verify="range(1, 120)">
+<title>What is your age?</title>
+</number>
+<suspend/>
+<term cond="Q1.r1">Q1: Male</term>
+<term cond="not Q2.check('18-64')">Q2: Age less than 18 or greater than 64</term>
+<label onLoad="createTerminateTables()" />
+The code above will create the following table in the report:
+Illustrated below, the createTerminateTables function also accepts optional arguments for the question title and label.
+<label onLoad="createTerminateTables(label='vTermTable', title='Participant Term Counts')" />
+1.9: createQuotaTables - Create a Report Table for Quotas
+The function, createQuotaTables, creates a virtual question with one quota per row and another question tracking overquotas. Each question will track the number of participants who obtain the markers shown.
+This function creates the same tables created when including "quota" in the <survey> tag's "setup" attribute. An error will occur if both are included.
+1.9.1: Function Example
+<radio label="Q1" optional="0">
+<title>Are you...</title>
+<radio label="r1">Male</radio>
+<radio label="r2">Female</radio>
+</radio>
+<quota sheet="Gender" />
+<label onLoad="createQuotaTables()" />
+The code above produces the following tables:
+Illustrated below, the createQuotaTables function also accepts optional arguments:
+<label onLoad="createQuotaTables(notdp=1, splitQuota=False)"/>
+If notdp="1" is passed, only report tables are created and no variables. If splitQuota=False is passed, the tables are split for each quota sheet rather than shown in one giant question.
+1.10: createTables - Create a Report Table for Terminates & Quotas
+The function, createTables, calls both the createTerminateTables and createQuotaTables functions mentioned above. The two arguments, notdp and splitQuota, are optional and can also be passed.
+1.10.1: Function Example
+<label onLoad="createTables()" />
+1.11: randomOrder - Track a Question's Shuffle Order
+This function does not work in SECURE surveys. For more information about secure surveys, see Secure Surveys Overview.
+The function, randomOrder, creates a virtual number question to track the shuffle order of a particular question.
+For every shuffled item, a virtual row will be created tracking its position in the shuffle order. For example, [r3, r2, r1, r4] will have the values (2, 1, 0, 3) for "r1" - "r4".
+1.11.1: Function Example
+<radio label="Q1" shuffle="rows">
+<title>Please select one.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</radio>
+<number onLoad="randomOrder('Q1', 'rows')" />
+The code above will create the following table in the report:
+Both the label and title were automatically generated. You may specify the label and title to use by including it in your number question or function call. Consider the following example:
+<radio label="Q1" shuffle="rows,cols">
+<title>Please select one.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+<col label="c1">Brand 1</col>
+<col label="c2">Brand 2</col>
+<col label="c3">Brand 3</col>
+</radio>
+<number label="Q1_Row_Order" onLoad="randomOrder('Q1', 'rows')" title="Q1 ROW ORDER"/>
+<number onLoad="randomOrder('Q1', 'cols')">
+<row label="r1" where="none"></row>
+</number>
+The code above tracks both the row and col order. The tables below reflect the end result:
+Learn more: Advanced Randomization
+1.12: extractMarker - Track Markers Assigned to a Participant
+This function does not work in SECURE surveys. For more information about secure surveys, see Secure Surveys Overview.
+The function, extractMarker, creates a virtual radio or checkbox question to track the marker(s) assigned to the participant.
+1.12.1: Function Example
+<checkbox label="Q1" atleast="1">
+<title>
+Please select all that apply.
+</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+<row label="r5">5</row>
+</checkbox>
+<suspend/>
+<exec>
+for eachRow in Q1.rows:
+if eachRow:
+setMarker("Q1_M_%s" % eachRow.label)
+setMarker('Some_Marker')
+</exec>
+<checkbox label="vQ1_Markers" atleast="1" onLoad="extractMarker('Some_Marker Q1_M_r1 Q1_M_r2 Q1_M_r3 Q1_M_r4 Q1_M_r5')">
+<title>
+Marker Tracking for Q1
+</title>
+</checkbox>
+In the code above, we provided every marker that we wanted to track using a space-separated list of marker names. Since a participant can obtain more than one marker, we used a checkbox question to store the results. If you selected r1, r2 and r3 at Q1, the following table would be produced in the report:
+2: What's Next?
+Learn more:
+Basic and Advanced Randomization
+Validate Tag: Custom Data Quality Checks
+Adding Condition / Skip Logic

@@ -1,0 +1,54 @@
+Title: Col Tag: Create Columns
+1: Overview
+The <col> element can be added to any question type to create column headers and expand the number of selections available in a question.
+<checkbox label="Q1">
+<title>
+Question
+</title>
+<comment>Please select all that apply</comment>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<row label="r3">Row 3</row>
+<col label="c1">Col 1</col>
+<col label="c2">Col 2</col>
+<col label="c3">Col 3</col>
+</checkbox>
+The code above produces the following result:
+2: Attributes
+In addition to the Cell Attributes available, the following attributes are unique to the <col> element and may only be applied within a <checkbox> question type:
+2.1: favorite - Change the Checkbox Question Style
+The favorite attribute is a boolean value that adds special functionality to an entire column.
+Instead of displaying checkboxes, the column will appear as radio inputs and remain disabled until the corresponding selection has been made in the previous column.
+When applying the favorite attribute, you should respect the following restrictions:
+The question must be grouped by columns (e.g. grouping="cols")
+There must be at least 2 <row> elements present
+There must be exactly 2 <col> elements present
+The second <col> element must be the one with favorite="1" specified
+For example:
+<checkbox label="Q1" grouping="cols">
+<title>
+Which items are you aware of and which of them is your favorite?
+</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<col label="c1">Heard of</col>
+<col label="c2" favorite="1">My Favorite!</col>
+</checkbox>
+2.2: radio - Change a Column to Single Select Inputs
+The radio attribute is a boolean value that forces the entire column to use radio inputs instead of checkboxes.
+No matter what question grouping is set, only one selection can be made for the entire column when radio="1" is specified.
+For example:
+<checkbox label="Q1" atleast="1" grouping="cols">
+<title>
+Which of these items have you used, used most recently and is your favorite?
+</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<col label="c1">Used this</col>
+<col label="c2" radio="1">Most recently used this</col>
+<col label="c3" radio="1">My Favorite!</col>
+</checkbox>
+3: What's Next?
+<row> elements can be shown conditionally based on a number of variables. See Adding Condition/Skip Logic.

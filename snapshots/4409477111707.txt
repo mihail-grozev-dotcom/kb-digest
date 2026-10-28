@@ -1,0 +1,83 @@
+Title: Editing XML
+The XML Editor can be used to create and edit survey elements programmatically.
+1: Accessing the XML
+To access the XML Editor, click "Build" in the navigation menu at the top of any project page. Then click "More Tools" and select "Edit XML".
+2: Viewing the XML
+The XML Editor consists of the following tools and features:
+1. Actions: Contains useful actions, supported by keyboard shortcuts.
+Save (ctrl+enter)
+Revert to Last Save
+Find (ctrl+f)
+Find Next (ctrl+g)
+Find Previous (ctrl+shift+g)
+Replace (ctrl+shift+f)
+Replace All (ctrl+shift+r)
+2. View Options: Allows you to show any errors in the XML (keyboard shortcut: ctrl+shift+f).
+3. Undo / Redo: Click the arrows to undo or redo recent changes.
+4. Settings: Click to open the Project Settings Summary menu, where you can view and change the survey’s display and field settings.
+5. Launch Survey: Click to launch the survey with the current XML setup.
+Note: In a live survey (temp-edit-live), clicking "Launch Survey" saves the latest changes and then initializes the launch process.
+6. Survey XML: This field allows you to edit the survey XML.
+7. Test Survey: Saves changes and opens the survey for testing.
+8. Save: Saves changes.
+3: Making Changes
+You must make your changes in the XML Editor using the appropriate XML syntax.
+Tip: Click the "Save" button to save changes periodically. If the changes you are attempting to save contain errors, a warning message appears, identifying these errors for your review.
+Once you have finished making changes, click the “Save” button to save them. Then you may select "Test Survey" to review the survey or use the navigation menu to navigate to another location.
+If there are unsaved changes when you attempt to navigate away from the XML Editor, you will be asked if you would like to stay on the page or leave. If you choose to leave, your changes will be lost.
+Important: If you close the browser window that contains the XML Editor, any unsaved changes will be lost.
+3.1: Supported by the Survey Editor
+Not all XML tags are accepted by the Survey Editor. If you are planning to use the Survey Editor to manage your project settings, ensure that your XML contains only the following tags and attributes:
+3.1.1: Tags
+<image>
+<exec>
+<res>
+<pipe>
+<languages>
+<timeout>: Allowed within <samplesource> and <exit> tags.
+<style>: Allowed within <samplesource> and <exit> tags.
+<title>: Can be used within a <samplesource> tag instead of the title attribute.
+<if>: Will be converted to <block> tags; any cond attributes remain intact.
+<random>: Will be converted to <block> tags with randomize enabled.
+<net>: Allowed within question tags.
+<nets>: Allowed within <float> and <number> tags.
+<sbase>: Allowed within <survey> and question tags.
+<onLoad>
+<weights>: Allowed within <survey> tags.
+<alt>: Allowed within <survey> and question tags. In question tags, <alt> tags will be converted into attributes.
+<comment>: Allowed within question tags.
+<suspend/>
+Note: Leading <suspend/> tags are required by the Survey Editor. If no <suspend/> tags are added via the XML Editor, they are automatically inserted by the Survey Editor.
+3.1.2: Attributes
+list: Allowed within <samplesource> tags; supports string data.
+invalid: Allowed within <samplesource> tags.
+newVirtual: Allowed within <survey> tags.
+trackCheckbox: Allowed within <survey> tags.
+flatShowEmpty: Allowed within <survey> tags.
+cond: Allowed within <suspend/> tags.
+incidence: Allowed within <term> tags.
+filename: Allowed within <var> tags (when nested within <samplesource> tags).
+database: Allowed within <var> tags (when nested within <samplesource> tags).
+Note: If you use the filename or database attributes, you will be shown a warning when attempting to edit participant sources in the Survey Editor.
+3.2: Not Supported by the Survey Editor
+The following tags and attributes are NOT supported by the Survey Editor and will cause validation errors:
+3.2.1: Tags
+<comment>: Allowed only within question tags.
+<else>
+<finish>
+<group>: Supported to a maximum level of 1.
+<notify>
+<onLoad>
+3.2.2: Attributes
+doit: Not supported within <quota> tags.
+Note: If <onLoad> functionality is desired, you can add a reusable answer list with <insert> instead.
+If needed, you can add the above tags and attributes (along with any macros) within a <blackbox> tag, which is editable in the Survey Editor. For example:
+<blackbox id="UNIQUE1" label="bar">
+<arg id="UNIQUE2" name="label" datatype="str">bar</arg>
+<arg id="UNIQUE3" name="code" datatype="longstr"/>
+<code>
+<exec>
+print 'Hello, world!'
+</exec>
+</code>
+</blackbox>

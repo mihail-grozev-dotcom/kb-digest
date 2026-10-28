@@ -1,0 +1,29 @@
+Title: Overview of Question Types
+When it comes to collecting survey data, there are a few different basic question types you can use to obtain information. Each question type can be designed and structured to accommodate the specific needs of your project.
+Survey questions can be closed-ended or open-ended.
+1: Closed-Ended Question Types
+A closed-ended question is one that limits participants with a finite list of response options from which they need to choose. These are also known as dichotomous or saturated type questions.
+Closed-ended questions can be programmed to accept a single response or multiple responses.
+1.1: Single Response Questions
+A single select question allows participants to select one answer from a list of choices. There are currently two elements you may choose from to obtain a single response from participants.
+Note: Click each image to view an enlarged version.
+Single Select Elements
+Single Select Question
+Single Select questions offer both one and two-dimensional (rows and columns) options, allowing the flexibility of one answer per row or per column in two-dimensional questions. For more information on Single Select questions, see Single Select Question XML.
+Dropdown Menu Question
+Dropdown menu questions allow for one, two, or three dimensions (rows, columns, and/or choices). For more information on Dropdown menu questions, see Dropdown Menu Question XML.
+1.2: Multiple Response Questions
+A multi-select question allows participants to select one or more responses from a list of choices. There is currently only one element that will allow multiple responses from a participant.
+Note: Click the image to view an enlarged version.
+Multiple Select Elements
+Multi-Select Question
+Multi-Select questions are available in one or two-dimensions, and response options can also be set to be exclusive. For more information on Multi-Select questions, see Multi-Select Question XML.
+2: Open-Ended Question Types
+An open-ended question is one that does not limit participants to a finite list of response options. This type of question allows for longer responses, thus enabling more room for creativity and information. These are also known as infinite or unsaturated type questions.
+Open-ended questions can be programmed to accept numeric or alpha-numeric values.
+Note: Click each image to view an enlarged version.
+Open-Ended Elements
+Number Question
+Number questions restrict participants to entering only numeric values. For more information on Number questions, see Number Element XML.
+Text Question
+Text questions allow participants to enter alpha-numeric responses. For more information on Text questions, see Text Question XML.

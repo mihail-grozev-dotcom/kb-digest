@@ -1,0 +1,126 @@
+Title: Decipher Tiers and Features
+There are two different account types or tiers within Decipher, each with its own set of user permissions and features. The tables below outline the permissions and features available to users of each tier.
+If you would like to upgrade your Decipher account or receive additional details on how tiers work, please reach out to your main Decipher contact.
+1: Usage Allowances
+Usage Allowances
+Now
+Enterprise
+# of Completes
+100 / survey
+Custom
+# of Surveys (Live)
+1
+Unlimited
+# of Question per survey
+20
+Unlimited
+# of Users
+1
+Unlimited
+2: Access Permissions
+Administrative Access
+Now
+Enterprise
+Edit Profile
+None
+Enabled
+API Access
+None
+Enabled
+Enable Shell Access
+None
+None
+Server Encryption
+None
+Cloud Server Only
+Audit Log
+None
+Enabled
+Adding Users to Projects
+None
+Enabled
+Edit Company
+None
+Enabled
+Survey Editing Access
+Now
+Enterprise
+Basic Question Types
+Enabled
+Enabled
+Other Survey Components
+Advanced Elements
+Language Selector
+Shopping Cart
+Exec
+Alert
+Import Data
+None
+Enabled
+Logic (raw survey code)
+None
+Enabled
+Custom Themes
+None
+Enabled
+Language Manager
+None
+Enabled
+Edit XML
+None
+Enabled
+View XML
+None
+Enabled
+Distribution / Reporting Access
+Now
+Enterprise
+Sample Sources
+None
+Enabled
+Campaign Manager
+None
+Enabled
+Crosstabs
+Enabled
+Enabled
+View/Edit Responses
+Enabled; restricted from importing data using the View/Edit Responses report.
+Enabled
+Data Exports
+Excel & SPSS
+Enabled
+PPT Exports
+Enabled
+Enabled
+Weighting
+RIM Weighting
+None
+Enabled
+Crosstab Exports
+Excel, SPSS, PPT
+Enabled
+Dashboards
+None
+Enabled
+Saved Reports, Pinning New Reports, & White Board
+Enabled
+Enabled
+Save to Library
+Enabled
+Enabled
+Response Summary
+Enabled
+Enabled
+Miscellaneous Apps
+Now
+Enterprise
+CATI
+None
+Custom
+White Labeling
+None
+Available
+SSO
+None
+Available

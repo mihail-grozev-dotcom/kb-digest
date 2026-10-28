@@ -1,0 +1,21 @@
+Title: 155.8 Release Notes 
+Release Date: October 20, 2026
+Release Version: 155.8
+New Features
+Survey
+Language Manager
+Adds three more languages (Lao, Tetum, and Sinhala) in language manager.
+Learn More: Available Survey Languages
+Bug Fixes
+Portal
+Word Importer
+An issue preventing the Word Importer (non-agentic) from functioning has been resolved.
+Survey
+Participant View
+An issue preventing Slider Element dynamic questions from working properly in Safari on iPads has been resolved.
+Responses
+View/Edit Responses
+Open-end responses are no longer stripped of quotations when converting the survey to delphi.
+Programming and Tools
+Scripts
+The cronwrap and mailimp scripts no longer sometimes fails when sending e-mail from a custom SendGrid domain.

@@ -1,0 +1,22 @@
+Title: Creating a Data Feed Using the Decipher API
+Note: The below article uses examples of accessing the Decipher REST API from a Unix system that has the beacon library package installed. See Decipher REST API to learn more about accessing the Decipher REST API.
+The Data Feed API allows you to retrieve data from multiple live surveys at the same time using a single API endpoint (optionally restricted by date and survey paths). Using this approach, you can create any amount of simultaneous feeds and retrieve data for only a subset of surveys, rather than all of the surveys available to you.
+1: How It Works
+Unless an explicitly defined list of projects is provided, every live or closed survey accessible to your user account will be considered for the Data Feed call. The list of surveys to include in the feed is considered on every request, and new surveys will be added to the feed as they are set live or closed.
+Once a complete list of surveys has been generated, only participants whose data was updated after the last executed call for the feed are retrieved. Each call will return up to 10,000 participant records and include both a completion flag (complete) and a feed acknowledgement key (ack).
+The complete flag will tell you whether all of the available data has been pulled or not. If the complete field returns true, there is no more data to be pulled. If the complete field returns false, you need to advance your feed and execute the call again.
+The ack is the unique identifier tied to the current set of data that you have pulled. When making concurrent calls to retrieve more data, you need to first use the ack field to advance your feed, so that only data that has not yet been pulled is retrieved. By advancing your feed, you make sure that no duplicate records are pulled between multiple concurrent calls.
+Note: All data returned by the Data Feed API call is returned in JSON format.
+You can use the following API calls to perform a variety of data feed tasks. Click any call name to view more information.
+Call Name
+Description
+Creating a Data Feed
+Creates a data feed for all projects available to you.
+Advancing a Data Feed
+Advances the specified data feed with new data.
+Clearing a Feed's State
+Clears the state of the specified data feed.
+Retrieving a Feed's State
+Returns the internal state of the specified data feed.
+Updating a Feed's State
+Updates the internal state of the specified data feed.

@@ -1,0 +1,25 @@
+Title: 153.4 Release Notes
+Release Date: March 28, 2023
+Release Version: 153.4
+New Features
+Survey
+When your project exceeds the threshold for tracked checkbox variables, a warning will now display when you attempt to launch your project. (To disable this feature, please contact your account representative.)
+Learn More: Question Attributes
+Responses
+Campaign Manager
+Added an "Optout" section to the campaign editor's Settings tab to indicate if a campaign is branded or unbranded.
+Learn More: Creating an Email Campaign
+Architecture and DevTools
+The request network now allows more than 1024 simultaneous connections.
+Bug Fixes
+Survey
+Checkbox questions used in non-reporting datasources now correctly have their variables reset to 0 (rather than blank) for rows seen by the respondent.
+Language Manager
+DQs applied globally (to the <survey> tag) now have their stylevars exported for translations as expected.
+Survey Testing Tools
+In live surveys, an existing temp-edit-live copy of the survey no longer prevents use of the Tasks tool.
+Reporting
+Crosstabs
+Crosstabs report tables with conditions that reference non-existent answers are now editable as expected.
+Data Collection
+The NUL control character is now stripped from the data to prevent data issues in surveys with delphi=1.

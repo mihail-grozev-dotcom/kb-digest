@@ -1,0 +1,25 @@
+Title: 144.3 Release Notes
+Release Date: December 17, 2019
+Release Version: 144.3
+New Features
+Participant Sources
+Sample Marketplace
+Added the Sample Marketplace Partner API version 1.0 (Beta).
+Allows sample providers to integrate with the Forsta Sample Marketplace to provide sample to Decipher surveys.
+For more information, please view the ForstaPartner API documentation
+Programming & Tools
+API
+Updated the Campaign Manager API documentation to include survey targeting information.
+Added an endpoint that provides logic node debug information.
+Bug Fixes
+Survey
+Survey Editor
+Fixed an issue causing the Dynata participant source to incorrectly pipe their unique psid
+Survey Testing Tools
+Fixed an issue causing some simulated survey test data (SST) to fail when certain attributes were present in surveys without delphi="1".
+Reporting
+Crosstabs
+Fixed an issue which made it impossible to run saved public reports.
+Programming & Tools
+API
+Made corrections to the Datasource API documentation regarding its endpoint parameters.

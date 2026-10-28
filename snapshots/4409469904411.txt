@@ -1,0 +1,11 @@
+Title: Capturing the Referer URL
+You can add a hidden question to your survey to capture where the participants were just prior to entering the survey. For example, if you posted the survey link on multiple sites such as www.facebook.com or www.youtube.com, you can track the full URL of the site participants visited before starting the survey.
+To capture the referer URL, add the vReferer question at the top of your survey right after the <samplesources> tag.
+The code below creates the first hidden question in your survey. After your survey has collected data, the answer to this question provides you with the referer URL.
+<text label="vReferer" size="40" optional="0" where="execute">
+<title>Capture Referer</title>
+<exec>
+vReferer.val = gv.request.getFirstHeader('referer')
+</exec>
+</text>
+Note: Be sure to enter "referer" and not "referrer", as "referer" is the spelling the system will recognize.

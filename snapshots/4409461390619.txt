@@ -1,0 +1,25 @@
+Title: Creating an Autosuggest Answer List
+Using the Autosuggest Element requires the creation of a valid answer file, which contains a list of all the answers you would like to be suggested to participants as they type. The answer file can be created using a simple spreadsheet application, like Microsoft Excel or Google Sheets.
+1: File Requirements
+Your answer file must be uploaded in .xls, .xlsx, .txt, .csv, or .dat format. Additionally, the following requirements apply to each type of answer file:
+.txt and .csv file contents must be either tab-delimited or comma-separated.
+.dat file contents must be tab-delimited.
+Note: Any valid non-.dat answer file will be converted to .dat format on upload.
+Note: If your answer file was originally saved in Excel (in .xls or .xlsx format), you can use the excelToTab option for the Upload/Replace Files API endpoint to convert your file to .dat format prior to uploading. This option is automatically enabled when uploading files via the Autosuggest element.
+1.1: Required Variables
+The answer file must contain at least two columns – an answer key column as well as an answer value column. These columns should be labeled as follows:
+uniqueKey: The unique ID for each answer value.
+answerKey: The answer values that are suggested as participants start typing.
+In addition to these two columns, the list may include additional variables to filter how answer values are suggested.
+1.2: Optional Variables
+The following additional variables are optional:
+language: The survey language code (decLang value) to be used for displaying answers. Only answers with language values matching a participant’s assigned survey language will be suggested.
+filter1: One or more unique values to be used for displaying answers. Only answers matching the values a participant entered will be suggested. Multiple filter values should be comma-separated.
+filter2: Additional values to be used for displaying answers. Only answers matching the values a participant entered will be suggested. Multiple filter values should be comma-separated.
+Note: You may specify up to two filters for a single element. Additional filters of this type are not supported at this time.
+1.3: Additional Considerations
+The following considerations and limitations apply when creating an answer list:
+Larger files (i.e., files containing 10,000+ rows) may affect performance and cause loading delays.
+You can upload files up to 50 MB in size.
+2: Example File
+Below is an example of an answer list created in Notepad, which contains the required key variables, as well as two filter variables and a language variable.

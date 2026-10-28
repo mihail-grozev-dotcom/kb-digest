@@ -1,0 +1,14 @@
+Title: Inserting XML Styles with a Command
+Requires Decipher Cloud
+It is recommended to avoid cut-and-pasting the entire XML system style to make minor changes. The preferred method is to use mode=before/after or intercept arguments when possible. When necessary, the sxml command can be used to generate the correct HTML. This command searches through the system style (survey.style) only. Even if working remotely you could run ssh your-server sxml button.continue.
+Example of running sxml button.continue in the shell:
+<style name='button.continue'>
+<![CDATA[
+<input type="submit" name="continue" id="btn_continue" class="btn continue survey-button" value="@(continue) &raquo;" />
+]]></style>
+The code can be cut and paste into a survey. xml or you can insert the style directly while editing the survey. The override will appear right in your XML code at your cursor. Be sure to check for @ and escape them using \@.
+To insert in nano
+Control-R Control-X sxml button.continue
+To insert in vim
+:r !sxml button.continue
+To view XML style blocks and descriptions, see XML Style System.

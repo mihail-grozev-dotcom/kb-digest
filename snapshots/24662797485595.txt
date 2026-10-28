@@ -1,0 +1,23 @@
+Title: 153.29 Release Notes
+Release Date: April 9, 2024
+Release Version: 153.29
+New Features
+Survey
+Language Manager
+Users with "View Only" access to a survey now have restricted access to Language Manager. They can view translations and languages, and export translations.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+A new logic node element called Redirect (redirect.1) is available in the Advanced section of the element menu. It redirects respondents to an external website while retaining their survey progress.
+Learn More: Redirect Logic Node
+Alert reminders will now only be send for open surveys or surveys that have been closed within the last 30 days.
+Bug Fixes
+Survey
+Participant View
+For Rank Sort questions with hidden rows and ranksort:alwaysSubmitOE enabled: participants can now reset their open-end answer to blank text, as expected.
+Dynamic Questions
+The new version of Slider Number (slidernumber.6) has a wider input field to prevent truncation of the default maximum value of 100.
+Responses
+Response Summary
+Response Summary performance when filtering completions by date has been improved.
+Architecture and DevTools
+The nightly script that processes new opt-outs now continues to process opt-outs in cases where an email address has been removed from a list after the send.

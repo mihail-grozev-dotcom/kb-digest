@@ -1,0 +1,75 @@
+Title: Decipher Cloud Server Structure
+Requires Decipher Cloud
+Understanding the structure of a Decipher Cloud server is the first step to using your server.
+1: Connecting to the Server
+To connect to the Decipher Cloud server, you need to establish a secure channel with it via an SSH client (e.g., PuTTY). Input the following settings to establish a secure channel with the server:
+Host Name: shellusername@serverdomain>
+Port: 22
+Connection Type: SSH
+You also need to enable Decipher shell access for yourself by whitelisting your IP.
+See Enabling Shell Access to learn how to whitelist your IP in Decipher.
+2: Navigating the Server
+2.1: Company Files
+Once you have connected to the Decipher Cloud server, you can access all of your company files, directories, and other resources by navigating to the subfolders contained within the the "v2" folder.
+2.1.1: v2 Folder
+The "v2" folder is the main folder of a Decipher Cloud server, and where all other folders referenced within your company are contained.
+To get to the v2 folder /home/hermes/v2, run the v2 command from the shell.
+2.1.2: exceptions Folder
+The "exceptions" folder contains all of the daily log errors and is located in /home/hermes/v2/exceptions. Daily log errors can be accessed individually by running grep.
+For example:
+grep "ERRORCODE" *
+Exceptions that were generated in previous days can be found in the /home/hermes/v2/exceptions/old folder. All exceptions for a single day will be located in a TAR archive file. For example, Jan-01-2018.tar.gz would contain all of the log errors for January 1st 2018.
+2.1.3: hermes Folder
+The "hermes" folder contains all of the files that control system behaviour and is located in /home/hermes/v2/hermes. For example, the survey.styles file in the /home/hermes/v2/hermes/styles/compat folder controls all of the styles used within a survey.
+Similarly, files labeled survey-pre#.styles are survey styles for previous compats; these are organized according to the compat number in the file name (e.g., survey-pre130.styles would contain survey styles from before compat 130).
+2.1.4: lang Folder
+The "lang" folder contains all of the system language translation files and is located in /home/hermes/v2/lang. The title of each file in the lang folder is the name of the language it controls. Inside each file are the translations, formatted as follows: *keyword:translation. These files can be used to compare survey translations back to the original englishfile.
+Note: Files stored within the lang folder should only be used for reference. They should never be altered, and no new files should be added to the lang folder.
+If desired, you can add another lang folder at the company level to enable company-specific translations for languages currently in the system. To add a company lang folder, create a lang folder inside of /home/hermes/v2/selfserve/companydir. Then create your language and translation files just as they would appear in the main lang folder.
+Note: Any translations added to language files located in the company lang folder will overwrite the system level translations found at /home/hermes/v2/lang.
+2.1.5: static Folder
+The "static" folder contains all server-wide loadable files and is located in /home/hermes/v2/static.
+Note: Files stored within the static folder should only be used for reference. They should never be altered, and no new files should be added to the static folder.
+Tip: If you are in need of a directory to store publicly available files that can be used across multiple surveys (e.g., images or javascript files), you can instead create a static folder inside of /home/hermes/v2/selfserve and put those files there. Files stored in this folder can be referenced at http://servername.com/survey/selfserve/FILE.
+2.1.6: lib Folder
+The "lib" folder contains all dynamic questions and logic nodes available on the server and is located in /home/hermes/v2/lib. While usage of the lib folder is restricted to Forsta staff, you can access the local, steam, or sys folders located inside of it.
+steam – Decipher-created dynamic questions are stored here. These should be used for reference only.
+sys – Decipher-created logic nodes are stored here. These should be used for reference only.
+local – Server-wide custom dynamic questions or logic nodes are stored here. This folder may not be found on all servers. If it does not exist on your server and you would like it created, please reach out to your main Forsta contact for assistance.
+Warning: Do not add new dynamic questions or logic nodes directly to the local folder, as broken code can cause issues with the Survey Editor software.
+A lib folder can be created for any server at the company level to have company-specific dynamic questions or logic nodes, or for these to take priority over standard ones. To add company-specific dynamic questions or logic nodes, first create a lib folder inside of the company directory (/home/hermes/v2/selfserve/companydir). Then create the question or node directory inside that folder.
+Note: When creating new dynamic questions or logic nodes, it is recommended to first create them in a non-production sandboxed company directory.
+2.2: Company Directories
+All company directories for a server are located in the company folder (/home/hermes/v2/selfserve) for that server. Each company folder corresponds to a different company and can be found under "Directories" within the company's Company page in the Decipher Portal.
+Company directories can contain their own lang, lib, and static directories. In addition, they may contain theme folders which contain all themes created in that company, as well as subdirectories which can contain anything contained by a company.
+The majority of folders located inside a company directory are project directories. Each project directory contains information specific to that individual project.
+2.3: Project Directories
+Project directories contain all the project-specific files a survey needs to work and are located inside of a company directory. Project directories can also contain their own lang and lib directories, as well as any one or more of the following files.
+2.3.1: root Folder
+The root folder within a project directory contains all files designating the survey structure:
+survey.xml – Contains the survey XML. Changes made within the Survey Editor are reflected in this file. Likewise, changes made to this file are reflected in the Survey Editor.
+append.xml – Contains any additional XML loaded by the survey. Normally, virtual questions or questions created by the Import Data tool are located in here.
+survey.log – Contains a log of all survey-specific events.
+quota.xls – Contains the structure of the survey quota(s). This is the same file that can be downloaded from the Response Summary.
+quota.xls.log – Contains information on when participants enter quotas.
+reports.json – Contains the structure for all survey reports within Crosstabs.
+reports.xml – Contains the structure for all survey reports within Report 2010.
+report.log– Contains a log of all report-specific events.
+dashboards.json – Contains the structure for all survey dashboards.
+dashboard.log – Contains a log of all dashboard-specific events.
+layouts.json – Contains all data layouts created within the Data Layout Manager.
+sst.txt – Contains all custom test data configurations.
+progress.bin – Controls the progress bar and is automatically generated by running test data or setting a survey live. Required for live surveys.
+2.3.2: data Folder
+The data folder within a project directory contains all survey data files:
+completions.dat – Controls and contains all information for the "Drop Outs" tab of the About the Response Summary.
+data.db – Contains survey-specific databases, including auxiliary databases.
+exit.log – Contains a log of every participant who has exited the survey through its sample sources. Includes each participant's total survey time, uuid value, completion status, and method for exiting the survey.
+last-record – Contains the last used participant record. Record numbers will increment based on this file.
+results.bin – Contains all of the survey's closed-ended data.
+results.strings – Contains all of the survey's open-ended data.
+variables.dat – Controls and contains all information for the survey's About the Response Summary.
+2.3.3: static Folder
+The static folder contains all survey images uploaded using the image manager. This is also the place where you should put any LESS, CSS, and JS files.
+2.3.4: mail Folder
+The mail folder contains all files used by the Campaign Manager. This is also the place where you should store any email files if sending emails using bulk.

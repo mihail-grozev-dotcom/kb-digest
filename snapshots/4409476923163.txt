@@ -1,0 +1,225 @@
+Title: Customizing the Card Rating Element
+A Card Rating question allows participants to rate concepts using a dynamic card and bucket design. When a concept card is displayed, participants click a category bucket to rate the card. The card is then automatically moved to the selected bucket and the card carousel advances to the next card.
+As an alternative for desktop users, cards can also be dragged and dropped into buckets. The Card Rating element can also be customized to allow participants to return to a previously categorized card and select for it a different bucket.
+1: Card Rating Requirements
+The Card Rating question requires:
+A minimum of two rows and two columns.
+A survey compat level of 131+.
+Use of the fir="off" question attribute.
+Use of the grouping="rows" question attribute.
+Additionally, the following restrictions apply:
+The Internet Explorer 9 browser does not support this question's unique animations or transitions.
+Android 5.0+ is required for browser support of the participant view.
+2: Underlying Question Architecture
+The base question type for Card Rating questions is a Single Select Grid question. In the survey XML, the cards are rows and the buckets are columns. Most of the options that can be applied to Single Select Grid question can also be applied to Card Rating questions, including row/column randomization, etc.
+See Single Select Grid Element to learn more about the Single Select Grid question.
+3: Converting to the Card Rating Element
+To convert a Single Select Grid question into a Card Rating question, add uses="cardrating.1" to the question tag and set the attributes fir="off" and grouping="rows".
+For example, imagine you have the following Single Select Grid question currently added to your survey:
+XML
+<radio
+label="q1">
+<title>How important are these features to your dream car?</title>
+<col label="c1">Must have</col>
+<col label="c2">Nice to have</col>
+<col label="c3">Not necessary</col>
+<row label="r1">Great accelaration</row>
+<row label="r2">Bold color</row>
+<row label="r3">Navigation</row>
+<row label="r4">Parking assist</row>
+<row label="r5">Voice recognition</row>
+<row label="r6">Advanced safety features</row>
+<row label="r7">Auto drive</row>
+<row label="r8"><p>Internet access/Wireless local area network</p></row>
+</radio>
+After adding the Card Rating style and attributes, your question would look like the following:
+XML
+<radio
+label="q1"
+fir="off"
+grouping="rows"
+uses="cardrating.1">
+<title>How important are these features to your dream car?</title>
+<col label="c1">Must have</col>
+<col label="c2">Nice to have</col>
+<col label="c3">Not necessary</col>
+<row label="r1">Great acceleration</row>
+<row label="r2">Bold color</row>
+<row label="r3">Navigation</row>
+<row label="r4">Parking assist</row>
+<row label="r5">Voice Recognition</row>
+<row label="r6">Advanced safety features</row>
+<row label="r7">Auto drive</row>
+<row label="r8">Internet access/Wireless local area network</row>
+</radio>
+4: Customization
+The table below provides a list of all attributes available for customizing the display of a Card Rating question.
+Attribute
+Type
+Description
+cardrating:themename
+string
+After selection, cards animate as being moved to behind the next card.
+Not available in the Survey Editor.
+Options:
+hpush - After selection, cards animate as sliding left or right.
+vstack - After selection, cards animate as dropping below the buttons and then fade out of view.
+Example:
+cardrating:themename="vstack"
+cardrating:themepath
+URL
+Path to the custom theme CSS file to apply.
+Not available in the Survey Editor.
+Example:
+cardrating:themepath="<path to custom theme CSS file>"
+cardrating:animation
+enum
+Speed used to animate certain elements.
+Not available in the Survey Editor.
+Options:
+slow (750 millisecond duration)
+medium (500 millisecond duration)
+fast (250 millisecond duration)
+Example:
+cardrating:animation="medium"
+cardrating:previcon
+string
+Font-Awesome class name of the icon used for the "Previous" arrow button.
+Not available in the Survey Editor.
+Example:
+cardrating:previcon="fa-icon-caret-right"
+cardrating:prevtext
+res
+"Previous" arrow button text.
+Not available in the Survey Editor.
+Example:
+cardrating:prevtext="Back"
+cardrating:nexticon
+string
+Font-Awesome class name of the icon used for the "Next" arrow button.
+Not available in the Survey Editor.
+Example:
+cardrating:nexticon="fa-icon-carat-right"
+cardrating:nexttext
+res
+Text displayed on the "Next" arrow button.
+Not available in the Survey Editor.
+Example:
+cardrating:nexttext="Next"
+cardrating:dragdrop
+bool
+Allows participants to drag & drop of cards into buckets on desktop devices.
+Available in the Survey Editor.
+Example:
+cardrating:dragdrop="1"
+cardrating:navigation
+bool
+Allows participants to navigate back and forth between cards to change their previous answers.
+Available in the Survey Editor.
+Example:
+cardrating:navigation="1"
+cardrating:progress
+bool
+Shows a progress bar below the cards.
+Available in the Survey Editor.
+Example:
+cardrating:progress="1"
+cardrating:completion
+res
+Message displayed to participants after all cards are rated.
+Available in the Survey Editor.
+Example:
+cardrating:completion="All done"
+cardrating:btnlayout
+enum
+Defines the layout of the bucket alignment. Can be set to one of the following:
+vertical
+tiled
+horizontal
+Available in the Survey Editor.
+Example:
+cardrating:btnlayout="horizontal"
+cardrating:lrg_minheight
+string
+For horizontal layouts: Defines the minimum height allowed for larger screens in pixels, em's or a percentage (e.g., 25px, Auto, 1em or 10%). If the unit is not specified, it defaults to a percentage.
+Available in the Survey Editor.
+Example:
+cardrating:lrg_minheight="25px"
+cardrating:lrg_maxheight
+string
+For all layouts: Defines the maximum height allowed for larger screens in pixels, em's or a percentage (e.g., 50px, Auto, 2em, or 20%). If the unit is not specified, it defaults to a percentage.
+Available in the Survey Editor.
+Example:
+cardrating:lrg_maxheight="50px"
+cardrating:lrg_minwidth
+string
+For vertical layouts: Defines the minimum width allowed for larger screens in pixels, em's or a percentage (e.g.,100px, Auto, 4em, or 40%). If the unit is not specified, it defaults to a percentage.
+Available in the Survey Editor.
+Example:
+cardrating:larg_minwidth="100px"
+cardrating:lrg_maxwidth
+string
+For all layouts: Defines the maximum width allowed for larger screens in pixels, em's or a percentage (e.g., 200px, Auto, 8em, or 80%). If the unit is not specified, it defaults to a percentage.
+Available in the Survey Editor.
+Example:
+cardrating:lrg_maxwidth="200px"
+cardrating:lrg_btnalign
+enum
+Specifies the alignment of the buckets in relation to the page for larger screens. Can be set to one of the following:
+Left
+Center
+Right
+Available in the Survey Editor.
+Example:
+cardrating:lrg_btnalign="Center"
+cardrating:lrg_cntalign
+enum
+Specifies the alignment of the content within buckets for larger screens. Can be set to one of the following:
+Left
+Center
+Right
+Available in the Survey Editor.
+Example:
+cardrating:lrg_cntalign="Center"
+cardrating:sml_minheight
+string
+For horizontal layouts: Sets the minimum height allowed for smaller screens in pixels, em's or a percentage (e.g., 25px, Auto, 1em or 10%). If the unit is not specified, it defaults to a percentage.
+Available in the Survey Editor.
+Example:
+cardrating:sml_minheight="25px"
+cardrating:sml_maxheight
+string
+Defines the maximum height allowed for smaller screens in pixels, em's or a percentage (e.g., 50px, Auto, 2em, or 20%). If the unit is not specified, it defaults to a percentage.
+Available in the Survey Editor.
+Example:
+cardrating:sml_maxheight="50px"
+cardrating:sml_minwidth
+string
+For vertical layouts: Defines the minimum width allowed for smaller screens in pixels, em's or a percentage (e.g., 100px, Auto, 4em, or 40%). If the unit is not specified, it defaults to a percentage.
+Available in the Survey Editor.
+Example:
+cardrating:sml_minwidth="100px"
+cardrating:sml_maxwidth
+string
+Defines the maximum width allowed for smaller screens in pixels, em's or a percentage (e.g., 200px, Auto, 8em, or 80%). If the unit is not specified, it defaults to a percentage.
+Available in the Survey Editor.
+Example:
+cardrating:sml_maxwidth="200px"
+cardrating:sml_btnalign
+enum
+Defines the alignment of buckets in relation to the page for smaller screens. Can be set to one of the following:
+Left
+Center
+Right
+Available in the Survey Editor.
+Example:
+cardrating_sml_btnalign="Left"
+cardrating:sml_cntalign
+enum
+Defines the alignment of content within buckets for smaller screens. Can be set to one of the following:
+Left
+Center
+Right.
+Available in the Survey Editor.
+Example:
+cardrating:sml_cntalign="Center"

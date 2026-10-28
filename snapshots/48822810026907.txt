@@ -1,0 +1,14 @@
+Title: 154.18 Release Notes
+Release Date: April 7, 2026
+Release Version: 154.18
+New Features
+Dynamic Questions
+A New API endpoint has been added to bundle and download media files for Media Testimonial Question
+Bug Fixes
+Responses
+Participant Sources
+An issue affecting how exit links were displayed for sample provider Dynata has been resolved.
+An issue causing the S2S checkbox to be checked by default for sample providers lacking an S2S configuration has been resolved.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+Research Defender REVIEW v1 and SEARCH v2 logic nodes now include additional debug logging. Research Defender REVIEW v1 and SEARCH v2 logic node service request timeout thresholds have been increased to 10 seconds.

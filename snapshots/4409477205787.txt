@@ -1,0 +1,213 @@
+Title: Creating a Dashboard
+A dashboard is a useful tool for data analysis and presentation. It is composed of a number of pages which can contain any number of tables and/or charts for illustrating trends within survey data. Each table or chart is designed using a set of conditions like the ones that can be used to build segments in Crosstabs or hide questions within the survey editor.
+The following sections introduce the fundamentals for creating beautiful and informative dashboards. In addition to this document, you may supplement your understanding by watching the following training video on programming basic dashboards.
+Note: While the user interface of this training video has changed, the method of programming basic dashboards remains the same.
+1: Accessing the Dashboard Menu
+Dashboards can be programmed and viewed within the dashboard menu, which is specific to each project. To access the dashboard menu for your project, click REPORT in the project navigation menu, then click MORE TOOLS and select Dashboards.
+The dashboard menu contains a list of every dashboard created for that project, and allows you to create a new dashboard using the dashboard editor.
+For an overview of the dashboard menu, see The Dashboard System.
+To create a new dashboard, click on the + New Dashboard button at the top right of the dashboard menu.
+2: Overview of the Dashboard Editor
+A new dashboard will be created and opened within the dashboard editor. The editor includes both a survey datamap and a creation window, along with a variety of other task options.
+1. Actions: Allows you to save your progress, as well as quickly search for and replace pieces of dashboard code.
+2. Quick Reference: View the dashboard reference guide, where you can review the definitions and syntax for basic dashboard keywords and attributes.
+3. Survey Elements: The survey elements tree is on the left side of the dashboard menu and is included for reference during programming. Click the arrow next to any question label to expand and view its associated row labels.
+Note: By design, the survey elements tree will not display for surveys with over 200 questions.
+4. Dashboard Name: Upon creation, the system will generate a random name for your dashboard. You can change the dashboard name at any time.
+5. Privacy: A dashboard can be marked as private or public:
+Private: Reporting or Crosstabs permissions are required to view the page. The default setting is private.
+Public: Anyone with a link can view the dashboard as long as the dashboard has been published.
+Note: A public dashboard does not grant any further permissions such as editing the dashboard, viewing its code or accessing the reports for the project.
+6. Compat: Change the dashboard compat level using the drop-down menu. New dashboards default to the latest Compat leve. For details on dashboard compat levels, see Dashboard Compat Levels.
+Note: Any time you change the Compat level of your dashboard, you will need to ensure that all of your current dashboard elements will still function properly.
+7. Scripting Window: Enter the actual script for programming the dashboard.
+8. All Dashboards: Click to return to the project dashboard menu.
+9. Save & Preview: Click to save your dashboard settings and preview the dashboard as it will appear once published.
+10. Save: Click to save your dashboard settings.
+Note: Use the following keystrokes within the dashboard editor for easy editing:
+CTRL+S to Save
+SHIFT+ENTER to switch between the dashboard editor and Save & Preview windows
+CTRL+SPACEBAR to see a list of suggested keywords
+3: Programming a Dashboard
+Dashboards are programmed using a simple line-based script where each line begins with a keyword and ends with a number of arguments separated by spaces. The basic syntax is: keyword argument/attribute
+Note: While no tags are necessary for programming a dashboard, you can borrow some syntax from other languages if you prefix your code with the html keyword.
+Once you have created a dashboard using the steps above, you can start building it out within the scripting window beneath the info section in the dashboard editor:
+During programming, you can preview the functionality and appearance of your script at any time by clicking on the Save & Preview button at the bottom of the page.
+Note: The dashboard editor will interpret the hash (#) value as a comment indicator - anything after the # will be treated as a comment and so hidden within the script. For example, the words “Minimal Dashboard” above will only appear in the code itself, not in the dashboard.
+3.1: Required Variables
+Although there are many different keywords you can use to customize your dashboard, only a few are required to build one. Every dashboard requires using at least the page, table, and chart keywords and their attributes for basic functionality.
+For a full list of available dashboard variables, see Dashboard Variables.
+3.1.1: page
+By default, each dashboard contains one tab. The keyword page creates new tabs, which will appear as clickable buttons at the top of the dashboard:
+page Pie Chart
+table id=db-1 What kind of smartphone do you own?
+total
+net 2 "Top 2"
+rows Q3.r1-r5
+net -2 "Bottom 2"
+page Bar Graph
+The page keyword has two sub-attributes, page.header and page.subheader. Both of these sub-attributes are optional and will be displayed before any tables or charts.
+page [title]
+page.header <title>
+page.subheader <title>
+Example:
+page Satisfaction Summary
+page.header How satisfied are our customers?
+page.subheader Quarter 4
+The above script adds the title "Satisfaction Summary" to the first tab and creates two headers that display at the top of that tab:
+If the number of pages in your dashboard exceeds the available screen space, the tabs will automatically be horizontally scrollable.
+If preferred, you can set the page titles to appear within a drop-down menu instead by adding scrollabletabs 0 to your code.
+Note: The drop-down will only appear if you have too many pages in the tab bar. The drop-down is not scrollable.
+3.1.2: table
+The keyword table adds a new table to the dashboard which will pull data from a question. Each table requires both a title and at least one row value. The title can be anything, and if one is not specified, the base question's title will be used. The row adds a single row to the table, and should have both a condition and title specified:
+table [title]
+row <condition> [title]
+Example:
+table Gender of Participants
+row Q1.r1 Male
+row Q1.r2 Female
+row Q1.r3 Non-Binary
+row Q1.r4 Self-Describe
+In the second example below, a special syntax (attr) is used to reference the base question's attributes. This is mandatory only when you need to access question attributes that are not valid Python identifiers:
+table Gender of Participants
+row 'Q1.attr("1")' Male
+row 'Q1.attr("2")' Female
+row 'Q1.attr("3")' Non-Binary
+row 'Q1.attr("4")' Self-Describe
+For example, the following rows contain invalid Python names and could only be referenced using the attr syntax.
+<row label="1">Male</row>
+<row label="2">Female</row>
+<row label="3">Non-Binary / Third gender</row>
+<row label="4">I prefer to self-describe:</row>
+You can also use the keyword rows to add multiple rows to a table, and these can be identified using individual row labels with name-spacing, or as ranges:
+rows [row] [row] ...
+rows [questionLabel.startingRow]-[endingRow]
+For example, the two segments below would produce the same result:
+table Favorite Color
+rows Q2.r1 Q2.r2 Q2.r3 Q2.r4 Q2.r5
+table Favorite Color
+rows Q2.r1-r5
+To save time, the dashboard system is also equipped with an easy-to-use templating system. Consider the following example:
+table Top Vehicle Satisfaction
+row "Q2.r1.c9 or Q2.r1.c10" Toyota
+row "Q2.r2.c9 or Q2.r2.c10" Ford
+row "Q2.r3.c9 or Q2.r3.c10" Honda
+row "Q2.r4.c9 or Q2.r4.c10" Tesla
+row "Q2.r5.c9 or Q2.r5.c10" Chevrolet
+This example displays the counts of those who rated c9 or c10 for the cars shown. The following example produces the same result and requires much less typing:
+table Top Vehicle Satisfaction
+rows code="$.c9 or $.c10" Q2.r1-r5
+This code produces the same result because the default condition logic is overridden using the code keyword and the dollar sign ($). The dollar sign is a copy of the default condition and everything else is additional logic.
+For example, the code rows Q2.r1-r5 produces 5 rows with the default conditions Q2.r1, Q2.r2, Q2.r3, Q2.r4, Q2.r5. The system stores these default conditions into the dollar sign variable and enables you to extend the logic using the code attribute. The example below produces the same result and should help you better understand how the code attribute works, but it is not nearly as efficient as either of the two examples above:
+table Top Vehicle Satisfaction
+row code="$.c9 or $.c10" Q2.r1 Toyota
+row code="$.c9 or $.c10" Q2.r2 Ford
+row code="$.c9 or $.c10" Q2.r3 Honda
+row code="$.c9 or $.c10" Q2.r4 Tesla
+row code="$.c9 or $.c10" Q2.r5 Chevrolet
+As illustrated below, the dollar sign variable may also be used with the base keyword. The following two examples produce the same result:
+table Top Vehicle Satisfaction
+rows base=$.any code="$.c9 or $.c10" Q2.r1-r5
+table Top Vehicle Satisfaction
+row base=Q2.r1.any "Q2.r1.c9 or Q2.r1.c10" Toyota
+row base=Q2.r2.any "Q2.r2.c9 or Q2.r2.c10" Ford
+row base=Q2.r3.any "Q2.r3.c9 or Q2.r3.c10" Honda
+row base=Q2.r4.any "Q2.r4.c9 or Q2.r4.c10" Tesla
+row base=Q2.r5.any "Q2.r5.c9 or Q2.r5.c10" Chevrolet
+3.1.3: chart
+The chart keyword can be used to add a chart as a visual representation of your survey data. There are two ways to add a chart, and both methods require that you specify at least its title and type:
+1. The keyword chart can be added to a table to create a chart based on the rows within the table.
+Example:
+table Gender of Participants
+rows Q1.r1-r4
+chart Gender Pie Chart
+type pie
+2. A standalone chart can also be added in the same way a table is added - by adding the chart keyword with its title, type, and row base.
+Example:
+chart Gender Pie Chart
+type pie
+rows Q1.r1-r4
+A chart’s title can be anything, but its type needs to be one of the following available types:
+Vertical Bar (column) Chart
+Horizontal Bar (bar) Chart
+Line (line) Chart
+Area (area) Chart
+Pie (pie) Chart
+Gauge (gauge) Chart
+Scatter Plot (scatter plot) Chart
+Bubble (bubble) Chart
+Note: If you do not specify a type for your chart, the system will default it to a bar graph.
+3.2: Other Essential Variables
+The following is a list of some other essential keywords and attributes for dashboard creation. Along with the page, table, and chart keywords, these attributes can help make your dashboard appear more robust:
+id
+width
+sortable
+pos before
+transpose
+pct
+counts
+where
+For a complete list of available dashboard variables and their descriptions, see Dashboard Variables.
+Note: You can also click on the “Quick Reference” button located in the top-left corner of the dashboard editor to conveniently reference the above keywords and more while building your dashboard.
+3.2.1: id
+The keyword id is a system-generated variable that will appear after every keyword and attribute you add once you have saved your dashboard:
+You can change the id to add a unique custom identifier (or name) to any attribute, which can then be referenced in any custom hooks that you may set up for your dashboard in future.
+3.2.2: width
+By default, charts, tables and html blocks sit within containers that use the full width of the screen. Dashboards use a 12-column layout and the keyword width allows you to customize how wide each container should be displayed. The default and maximum width is 12.
+Example:
+Page Smartphone Owners
+table width=4 Gender of Participants
+total
+rows Q1.r1-r4
+chart width=8
+In this example, the table takes up 33% of the width and the chart takes up 66% of the width. They are laid out on the same line, side by side, since their total widths do not exceed 12. Any combination is possible, but below are a few examples of common layouts:
+3.2.3: sortable
+The keyword sortable enables sorting on a chart.
+sortable 1
+Example:
+chart Gender of Participants
+rows Q1.r1 Q1.r2 Q1.r3 Q1.r4
+sortable 1
+With sortable turned on, charts can be sorted by text or by counts.
+3.2.4: pos before
+By default, charts that are not standalone will be displayed after the table. Use pos before to display the chart before the table it is created from.
+pos before
+Example:
+table width=6 Gender of Respondents
+rows Q1.r1-r4
+chart width=6 Pie Graph
+type pie
+pos before
+3.2.5: transpose
+The keyword transpose interchanges all rows with segments.
+Example:
+table width=6 Gender
+rows Q1.r1-r4
+table width=6 Gender (transposed)
+rows Q1.r1-r4
+transpose
+3.2.6: pct
+The keyword pct allows you to control the precision of vertical percentages. The default precision is 0. Set pct=off to disable.
+Example:
+table width=6 Gender
+rows q1.r1-r4
+pct 3
+This configuration will show the percentage values precisely to the thousandth decimal place.
+3.2.7: counts
+By default, each row displays a count and vertical percentage. The keyword counts allows you to control the displaying of the counts. The default is counts 0. Set counts off to disable.
+Example:
+table width=6 Gender
+rows q1.r1-r4
+counts off
+This configuration hides the counts and only displays the percentages.
+3.2.8: where
+By default, charts and tables are displayed in both the dashboard and exported files (Excel, PDF, PowerPoint). The keyword where allows you to specify where each table and chart should be displayed. Use export to display each element only in the exported files and dashboard to display it only in the dashboard.
+Example:
+table Gender of Participants
+where export
+The above configuration will only show the gender table in the exported files and hide it from the dashboard view.
+4: Additional Customization
+Dashboard creation doesn’t end with the basics! There are many other options available for customizing the look & feel of your dashboard. If you are interested in re-structuring your dashboard, adjusting its style, or changing your data options, see Customizing the Dashboard Layout for advanced programming instructions.
+For element-specific customization:
+Creating and Customizing Dashboard Tables
+Creating Dashboard Charts

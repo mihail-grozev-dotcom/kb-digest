@@ -1,0 +1,69 @@
+Title: Decipher (previously Decipher) M31 General Release Notes
+Release Date: December 15, 2015
+Highlights of Decipher M31 Release
+Element Library: Rebuilt user interface from the ground floor up with more options and advanced features for you to manage your library elements.
+New Project dialog: Create a new project in 1-step. Plus, you can choose to start a survey from a template, if desired.
+Previewing a question: Toggle the preview between portrait and landscape views for tablet and mobile devices.
+Theme Editor Export/Import: Export an existing theme to your system and then use it as a template to customize the theme or even create a new theme.
+Dashboard capabilities:
+New gauge chart
+New scatter plot chart
+New bubble charts
+Able to plotting two sets of data in a single chart
+Able to display a grid question on a single table or chart
+Able to apply customized formulas to aggregated data sets
+Internet Explorer 8: Support dropped.
+Element Library
+With the new element library, you can:
+Save and reuse multiple survey elements
+Control sharing permissions on an individual element basis
+Lock question elements to ensure that their text is not modified
+Load survey elements from an existing project and then insert them into your project
+Preview elements before inserting them into your project
+Wrap and insert multiple elements in a block for simpler organization
+All previously saved library elements are loaded from the company’s library.xml file. These elements are frozen and cannot be removed without updating the XML file.
+New Project Dialog
+This release features a New Project dialog where you can create a new project in a single step.
+Additionally, you can use a template to start out your new survey.
+Previewing a Question
+When previewing a question in a table or mobile device, you can now rotate the device to toggle between portrait and landscape views.
+Portrait View
+Landscape View
+This functionality also applies when previewing a survey theme.
+Theme Editor Export/Import
+Customizing a theme programmatically gives you fine control over the look of a theme. You can export an existing theme and then use it as a template to customize the theme or even create a new theme to apply to your surveys.
+This process involves downloading the theme.less file to your system according to your browser's settings. Then, using your text editor of choice, make changes to the theme using the available less XML attributes. Finally, import (upload) the file back to Decipher when changes are complete.
+Dashboard Capabilities
+The addition of more charts and more functionality, enhances your ability to create stunning dashboard displays.
+Displaying a Gauge Chart
+When creating a gauge chart be sure that the dashboard's Compat is set
+to level 3+.
+There are two methods for showing a chart with a gauge:
+Use pie as the chart type and the point option
+Use gauge as the chart type
+Pie Chart with Gauge
+Chart Type: Gauge
+Displaying a Scatter Plot
+When creating a scatter plot be sure that the dashboard's Compat is set
+to level 3+.
+When displaying a scatter chart, define:
+type scatter
+numeric rows for the X and Y axis
+region attribute that specifies the color, coordinates for the polygon areas, and name (optional)
+Displaying a Bubble Chart
+When creating a scatter chart be sure that the dashboard's Compat is
+set to level 3+.
+A bubble chart is defined similarly to a scatter chart but in the display the size of the data point (bubble) reflects the number of participants that comprise the point.
+When displaying a bubble chart, define:
+type bubble
+numeric rows for the X and Y axis
+region attribute that specifies the color, coordinates for the polygon areas, and name (optional)
+Plotting Two Sets of Data
+You can plot two sets of data on a single chart. When combining data sets, there are no restrictions to the chart type or compat level. However, for best results you should use a line chart when combining two sets of data.
+Displaying a Grid Question
+You can use the conds attribute to display a grid question in a single table or chart. Before you had to create multiple charts or tables to display this information. To create this display, you define multiple conditions on each row that corresponds to each segment.
+For a chart, each row renders as a stacked bar and the columns render in the relative color for each stacked bar.
+Customizing Data Calculations
+You can apply customized formulas to aggregated data sets. There are multiple variables available that you can use as building blocks for your customized formula.
+Internet Explorer 8
+Internet Explorer 8 support has been dropped. If you need Internet Explorer 8 participant view support, set the version to "Previous (Decipher M30)" when starting a new project.

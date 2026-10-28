@@ -1,0 +1,99 @@
+Title: Creating a Bconvert File
+Bconvert is a text based conversion tool for importing survey content into the survey builder.
+1: Creating a Bconvert File
+A Bconvert file can be created in any plain text editor, e.g., TextEdit, NoteTab. The file name should end in ".txt." It should contain the question label, element type, question text and instructions, modifiers (i.e., rows, columns, choices) and page breaks.
+Step 1: Bconvert files currently support basic elements. First, enter the question label in brackets, then specify the element type in a new set of brackets, as shown in the table below. The question label and element type should occupy one line.
+Element type:
+Enter as:
+Single-select/Radio element
+[radio]
+Multi-select/Checkbox element
+[checkbox]
+Select element
+[select]
+Number element
+[number]
+Text element
+[text]
+Comment element
+[comment]
+Example:
+[q1][radio]
+Step 2: The following 2 lines should contain the question text and the participant instructions.
+Example:
+[q1][radio]
+Are you...?
+Select one.
+Step 3: Below the participant instructions specify if the question should have rows, columns or choices, in brackets, as shown in the table below. Then enter the text for each row, column or choice on its own line.
+Element modifier:
+Enter as:
+Can be used with:
+Rows
+[rows]
+Radio, Checkbox, Select, Number, Text
+Columns
+[cols]
+Radio, Checkbox, Select, Number, Text
+Choices
+[choices]
+Select
+Example: Question with rows
+[q1][radio]
+Are you...?
+Select one.
+[rows]
+Male
+Female
+Example: Question with rows and columns
+[q4][radio]
+Please rate how much you like each color.
+Select one for each row.
+[cols]
+1 - I really like it
+2
+3 - I don't like it at all
+[rows]
+red
+orange
+yellow
+Step 4: Entering page breaks: Page breaks should be entered as "[break]," on a new line.
+Note: If questions should appear on the same page, do not leave any blank lines between the end of one question and the beginning of the next.
+Example: A page break between 2 questions
+[q1][radio]
+Are you...?
+Select one.
+[rows]
+Male
+Female
+[break]
+[q2][radio]
+Please select your age group.
+Select one.
+[rows]
+Under 18
+18-24
+25-34
+35-44
+45-54
+55-64
+65 or older
+Example: 2 questions that will appear on the same screen (no page break)
+[q1][radio]
+Are you...?
+Select one.
+[rows]
+Male
+Female
+[q2][radio]
+Please select your age group.
+Select one.
+[rows]
+Under 18
+18-24
+25-34
+35-44
+45-54
+55-64
+65 or older
+2: Uploading Your Bconvert File
+You can upload your new Bconvert file using the survey editor, just as you would any other survey file. See Survey Importer for more information on importing survey files to the survey editor.

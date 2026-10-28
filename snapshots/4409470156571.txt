@@ -1,0 +1,143 @@
+Title: Customizing Charts via chartopt
+The keyword chartopt adds customization to the chart including a chart title, background color, axis scale, segment stacking, chart legend, data labels, data label rotation and axis styling.
+Base syntax:
+chartopt <option> <value>
+1: Chart Style Options
+The chartopt keyword can be used to even further customize dashboard charts. Using the system's syntax with the available options from the Highcharts API, you can modify a chart's look and feel, CSS style, size, and display attributes.
+Some of the most commonly used chartopt functions are listed below with descriptions on how to use them.
+Attribute
+Description
+title.text
+Changes the title in the chart (to show within exports, etc.).
+title.style.color
+Changes the color of the chart title. You can use the name of any color that can be defined with CSS, or use the hex value (without the #).
+chart.backgroundColor
+Changes the background color of a chart.
+xAxis.min
+Controls the minimum value set on the x-axis of the chart.
+xAxis.max
+Controls the maximum value set on the x-axis of the chart.
+yAxis.min
+Controls the minimum value set on the y-axis of the chart.
+yAxis.max
+Controls the maximum value set on the y-axis of the chart.
+yAxis.stackLabels.enabled
+Changes bar charts to be stacked.
+plotOptions.column.stacking
+Change column charts to be stacked.
+plotOptions.column.dataLabels.color
+Changes the color of the column headers in a chart.
+plotOptions.series.animation
+Enables / disables the initial animation when a series is displayed. Possible values are 1 and 0.
+plotOptions.series.animation.duration
+Controls the duration of a series' animation in milliseconds.
+plotOptions.series.animation.easing
+A string reference to an easing animation function. Set to 'easeOutBounce'.
+legend.enabled
+Enables / disables the chart legend.
+legendPrecision
+If the chart legend is enabled, sets the precision for the legend. The count equals the number of decimal places displayed for a label. Valid values are 0 - 20 (by default, this option is set to 0).
+plotOptions.series.dataLabels.enabled
+Enables data labels (the visible values for any point).
+plotOptions.series.dataLabels.style
+Sets CSS styling properties for data labels.
+plotOptions.series.dataLabels.rotation
+Slants data labels to the degree specified.
+(x|y)Axis.labels.style
+Sets the general chart style using CSS properties for each axis label.
+chartopt legendBase
+Set to 0 if you want to hide the base for each segment displayed in the chart legend.
+chartopt plotOptions.series.dataLabels.enabled
+Set to true / false to show or hide the data labels in a chart.
+chartopt plotOptions.<charttype>.dataLabels.format
+Takes a string as an argument to change the text displayed in data labels.
+1.1: Locating chartopt Attributes within the Highcharts API Documentation
+Decipher adapts the Highcharts API in order to build and style charts. There are many additional attributes available in the Highcharts API documentation that you can search through for more customization options. The Highcharts API options are separated into different categories that can be accessed by using the chartopt keyword in the Decipher Dashboard Editor.
+The plotOptions section is the main category for customizing charts and manipulating the information displayed in them.
+As the API documentation suggests, the plotOptions attribute is a container for all configuration options for the series displayed within a chart. Other options of interest include:
+the xAxis and yAxis option groups, which control items such as axis labels and ticks.
+the labels and legend option groups, which control legend and label texts.
+the chart group, which gives you access to modifying the full displayed chart and not just its contents.
+Each option group has different subsections to it. For example, in the plotOptions section of the Highcharts docs, there are different attributes grouped mainly by chart type, such as area, bar, bubble, column, gauge, and pie.
+Within these chart types, there are options tied to the specific chart type. For example, a pie chart type will have the startAngle attribute to specify the start angle for slices of the pie in degrees.
+1.2: Applying Highcharts Attributes to a Dashboard
+Decipher uses the chartopt keyword to access most of the Highcharts chart attributes. When using the chartopt keyword to specify a Highcharts attribute, start with the outermost attribute in the menu.
+For example, if you want to control the animation duration of a pie chart, look for that attribute under plotOptions, then pie, then animation. You would then use the order of reference of these attributes to build out your chartopt syntax.
+Chain these attributes with a dot to create a valid chartopt value:
+chartopt plotOptions.pie.animation.duration
+Then, specify a valid value for the duration, as explained in the duration attribute documentation on the API page.
+Use this approach for any attribute listed in the Highcharts API.
+Note: Decipher uses an older version of the Highcharts API. Some listed functionalities on the API page may not be supported by Decipher dashboards.
+2: Customizing Charts
+2.1: Customizing Chart Colors
+The below syntax can be used to produce a fully styled chart, with different colors and font weights for each displayed item. Each option used has comments that outline which part of the chart they control:
+chart General Population
+type column
+banner.local
+segment s1.r1 Male
+segment s1.r2 Female
+row GEN.r1 Millenials
+row GEN.r2 Generation X
+row GEN.r3 Baby Boomers
+#chart title options
+chartopt title.text "General Population" #add a title inside the chart itself
+chartopt title.style.color #00CC52 #set the title color
+chartopt title.style.fontWeight bold #set the title font weight
+#chart options
+chartopt chart.backgroundColor #16263B #set the chart background color
+chartopt xAxis.labels.style.color #00CC52 #set the color for each column label in the chart
+chartopt xAxis.labels.style.fontWeight bold #set the font weight for each column label in the chart
+chartopt plotOptions.series.dataLabels.style.color #FFFFFF #set the color for the percentage labels displayed in the chart
+chartopt plotOptions.series.dataLabels.style.fontWeight bold #set the font weight for the percentage labels displayed in the chart
+chartopt yAxis.labels.style.color #00CC52 #set the color for the percentage values displayed along the y axis
+chartopt yAxis.labels.style.fontWeight bold #set the font weight for the percentage values displayed along the y Axis
+chartopt legend.itemStyle.color #00CC52 #set the color of the legend text in the banner legends.
+palette 00BEBE 00D3E7 #set the color palette to be applied to the segments in your banner split
+Note: If copying the above syntax, make sure to remove the comments.
+Note: The above syntax is universal for all basic chart types. Some custom chart types such as gauge and stacked charts may require different syntax to achieve the same styling.
+The above syntax will produce the following fully styled chart:
+2.2: Adjusting Chart Axes
+By default, the chart x-axis (or y-axis depending on the chart type) values will be dynamically set based on the highest value to be pulled in from your datapoints. If you want to set a custom x- / y-axis minimum or maximum value, you can use the xAxys.min/yAxis.min and xAxis.max/yAxis.max chartopt attributes. The below chart is an example of the default calculated yAxis values:
+To modify the yAxis of this chart to always show values between 0 and 100% rather than 0 to 25%, you can use the below syntax:
+chart Nutritional Information Frequency
+type column
+rows s4.r1-r5
+chartopt yAxis.min 0
+chartopt yAxis.max 100
+Which will produce the following result:
+2.3: Using chartopt to Format Chart Data Labels
+Use the chartopt attribute to enable, disable, and modify the data labels of each datapoint displayed within your chart.
+2.3.1: Enable or Disable Data Labels
+To enable or disable the data labels for a chart, use the below base syntax:
+chartopt plotOptions.series.dataLabels.enabled false true/false
+Applying chartopt plotOptions.series.dataLabels.enabled false to a column chart will produce the following chart:
+2.3.2: Format Chart Data Labels
+Use the chartopt attribute to display different types of information related to the datapoint that the label belongs to. By using the format attribute, you can modify what text you display in your data label and how you display it.
+Base syntax:
+chartopt plotOptions.<charttype>.dataLabels.format ‘some string with formatting applied to it’
+Note: <charttype> will change depending on the type of chart you are using. You can use column, pie, area, line, or bar.
+When changing the formatting you can use the {point} keyword to access different information related to the datapoint you are displaying. Below is a list of the attributes you can access using {point}.
+Attribute
+Description
+point.percentage
+Stacked series and pies only. The point's percentage of the total.
+point.name
+The point name, if defined. For pie charts, this will be the name of the referenced data points. For other chart types, the default is “All” if no splits are applied to the chart. If a banner split is added, this will display the segment name for that point.
+point.series
+The series object. The series name is available through point.series.name. The series name is similar to the point name - “All” if no splits are defined and the segment name if any splits are applied.
+point.total
+Stacked series and pie charts only. The total value at this point's x value.
+point.x:
+The x value of the point - used for bar charts.
+point.y:
+The y value of the point - used for line / area / column charts.
+Below is an example of modifying the data labels of a pie chart to include both the point name of a pie chart, as well as the point percentage:
+chart id=db-10 Gender of Respondents
+type pie
+row Q1.r1 Male
+row Q1.r2 Female
+row Q1.r3 Non-Binary
+row Q1.r4 Self-Describe
+chartopt plotOptions.series.dataLabels.enabled true
+chartopt plotOptions.pie.dataLabels.format '{point.name} <br/> {point.percentage:.1f}%'
+In addition to adding the point.name and point.percentage keywords, you also use the :.1f syntax to format the displayed percentage up to the first decimal symbol. This will produce the below result:

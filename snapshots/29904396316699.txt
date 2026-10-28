@@ -1,0 +1,19 @@
+Title: 153.42 Release Notes
+Release Date: October 8, 2024
+Release Version: 153.42
+Bug Fixes
+Portal
+Upload System Files
+An issue preventing file exports has been resolved.
+Usage Statistics
+An issue preventing the use of tag-based searching in Detail View has been resolved.
+Survey Editor
+An issue which caused misplaced <div> tags in question titles has been resolved.
+Responses
+Campaign Manager
+An issue which caused campaigns created from templates to inherit the template's recipient list size has been resolved.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+Research Defender auth token failures are now handled more efficiently.
+Language Manager
+An issue preventing some survey elements (<res> tags, <exit> tags, and <loopvar> rows) from respecting the <translateable="0"> attribute has been resolved.

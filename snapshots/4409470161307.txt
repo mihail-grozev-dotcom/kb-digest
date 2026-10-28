@@ -1,0 +1,10 @@
+Title: Choosing Tables in a Custom Report
+Overview
+While creating a custom report, you have the ability to choose specific tables to view in your report.
+1: Accessing the Tables Menu
+The option to select specific tables for your report is found by clicking the "Tables" tab within the custom report area:
+2: Adding and Removing Tables
+A new window will open showing a list of tables included in your report. The default is set to automatically include all the tables.
+Select the tables you'd like to remove from the report in the left column and click "Remove". You can also add tables back in to the report by selecting them in the right column and clicking "Add":
+When you have finished selecting the tables you'd like to view in the report, you can click back to the banner point area of the screen.
+When you are finished creating your custom report banner points and specific table selections, be sure to click "Save" at the bottom of the page:

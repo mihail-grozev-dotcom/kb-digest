@@ -1,0 +1,37 @@
+Title: Decipher (previously Decipher) M34 General Release Notes
+Release date: July 19, 2016
+Highlights of Decipher M34 Release
+Survey Builder
+Offline feedback that notifies you of incompatible elements or attributes in your survey.
+Data in API:
+Allows creating of new questions and uploading data for use in reporting
+Dashboards
+New responsive design
+Ability to modify the layout of elements with new keywords
+Ability to group phrases in wordcloud
+Campaign Manager
+Ability to select filters when sending reminders
+Ability to export bounce backs (main server only)
+Localization
+Ability to select user's application language for portal and survey builder
+Survey Builder
+To ensure that your offline survey functions correctly during field, Decipher prevents you from adding incompatible survey elements and provides feedback that notifies you when elements or settings in your survey are incompatible with offline surveys.
+survey elements menu
+switching project types in the project settings
+survey builder element tree, options panel, and stage
+launching your survey
+Note: All feedback warnings must be resolved before launching your survey.
+Survey Elements Menu
+Survey Builder Elements Tree, Options Panel & Stage
+Project Settings
+Launching Your Survey
+Dashboards
+The header rearranges to better accommodate the navigation and features.
+Multiple elements can be added to a single container and the layout can be customized.
+Using group
+Using layout
+Using keepwith
+A word cloud allows a phrase, here "coca cola" and "pepsi cola" are phases.
+Campaign Manager
+Ability to select filters when sending reminders
+Ability to export bounce backs (main server only)

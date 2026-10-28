@@ -1,0 +1,24 @@
+Title: Creating an "Other (Specify)" Answer Option
+When building a survey, it's not always possible to include a complete list of responses for a question, especially if that question's content is more subjective than objective. On such occasions, you can use an "Other (specify)" option to give participants the chance to write in a response not provided in the question's answer list.
+Tip: Although "Other (specify)" answer options can be used in a variety of question types, the best practice is to use them as rows for single-dimensional questions.
+Programming the Question
+First, create the desired question, including an "Other (specify)" row. Once the question has been built, the "Other (specify)" row must be customized in order to look and function properly.
+Anchoring the Row
+It is generally good practice to exclude any "Other (specify)" options from row randomization. If you would like to randomize your question responses, but anchor the "Other (specify)" row at the bottom of the list, select the "Other (specify)" row. In the "Row Options" panel to the right of the screen, check the box next to "Do Not Randomize".
+Creating the Open-End
+To allow open-end responses, first select the "Other (specify)" row. In the "Row Options" panel to the right of the screen, click the drop-down under "Open End" and select one of the following response settings:
+no: Does not display an open-end response box for the row.
+mandatory: Requires participants to type in a response if the row is selected.
+optional: Allows participants to select the row and continue without typing in a response.
+Note: If the open-end is set to mandatory, participants will receive an error message if they select the "Other (specify)" option and do not include an open-ended response. They will not be allowed to submit the page until a response has been entered.
+Adding a Character Limit
+By default, participants can enter unlimited content in the input box for an "Other (specify)” answer option. However, if desired, you can add some validation logic via the survey XML to set a limit on the number of characters allowed.
+To add the validation logic, first navigate to the XML Editor by clicking "More Tools" in the navigation menu at the top of the screen and selecting "Edit XML".
+Next, find the question you created and add the following syntax to the question tag, where "xx" is the question label, "yy" is the row label for the open-end, and "zz" is the maximum number of characters allowed for the response:
+Note: The value you set for "zz" will include any spaces entered by participants.
+<validateRow>
+if len(xx.yy.open) gt zz: error("ERROR MESSAGE")
+</validateRow>
+Finally, customize the "ERROR MESSAGE" as you want it displayed when the character limit is exceeded. Be sure to include both the parentheses and quotation marks as above.
+Once you're satisfied with your changes, click "Save" to apply them to the survey.
+Note: Because the error message is hard-coded in Python, it will not be included in the translation file of a multi-language survey. Creating a translatable error messages requires the use of resource tags in the survey XML. To learn more about using translatable resources, see Resource Tag: Create Translatable Resources.

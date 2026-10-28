@@ -1,0 +1,89 @@
+Title: Suspend Tag: Adding a Page Break
+The <suspend/> tag is a control element used to create page breaks in your survey. Add a page break to your survey using the XML <suspend> tag.
+In the example below, questions "S1" and "S2" are shown on separate pages.
+<radio label="S1" optional="0">
+<title>Are you...</title>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<number label="S2" size="3" verify="range(1, 125)" optional="0">
+<title>Please enter your age below.</title>
+</number>
+<suspend/>
+<exec cond="S2.ival gt 30">
+setMarker('cannot_be_trusted')
+</exec>
+A <suspend/> tag must be used before referencing another question. In other words, you cannot reference data at another question that exists on the same page. This is because data is not stored until the page is submitted, and pages can only be submitted when a <suspend/> tag (or the end of the survey) is reached.
+For example, the <exec> condition in the code above, cond="S2.ival gt 65", would have generated the error "Error: Data reference to S2 which does not have data yet" if a <suspend/> did not exist after the question "S2".
+Note: Anytime you need to reference selections made or data supplied at a particular question, there must be a <suspend/> tag between the logic and the question it is referencing.
+1: Attributes
+There are two attributes applicable to <suspend/> tags:
+cond
+url
+1.1: cond - Set When to Display the Page Break
+The cond attribute can be applied to the <suspend/> tag to conditionally execute the <suspend/> element. If the condition evaluates to "False", it will not execute.
+For example, in the example below, each question will be displayed on their own page only if "No" is selected at question "Q1".
+<radio label="Q1" optional="0">
+<title>Would you like to show the rest of the survey on a single page?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<text label="Q2" optional="0" title="How do you feel about driving?" />
+<suspend cond="Q1.r2"/>
+<text label="Q3" optional="0" title="How do you feel about flying?" />
+<suspend cond="Q1.r2"/>
+<text label="Q4" optional="0" title="How do you feel about swimming?" />
+<suspend cond="Q1.r2"/>
+<text label="Q5" optional="0" title="How do you feel about the suffix, -ing?" />
+<suspend cond="Q1.r2"/>
+1.2: url - Redirect to an External URL
+The url attribute can be set to a URL address to redirect participants out of the survey.
+When a participant reaches a page with <suspend url="..."/> specified, they will immediately redirect out of the survey to the link / URL provided. A variable, state, is automatically appended to the URL that can be used to link the participant back to the survey where they left off.
+Note: The state variable is unique and is generated automatically on each page of the survey.
+This is often used to force participants to an external page where they can answer additional questions on a different system (such as Sawtooth), view a concept hosted somewhere else, or take a break and come back later.
+Important: There must be at least one labeled element before the suspend url element, otherwise the redirect will not work. If your project has multiple suspend elements, include a labeled element between each <suspend>.
+For example, in the example below, if a participant selects "Yes" at "Q1", they will be redirected the following URL: http://SOME_URL.com?state=50m3n07S0j...h57aT3v4r14Bl3.
+<radio label="Q1" optional="0">
+<title>Would you like to take a break from this survey?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<html label="placeholderredirect" where="none">Redirect placeholder so that the redirect executes</html>
+<suspend sst="0" cond ="Q1.r1" url="http://SOME_URL.com"/>
+<html label="Welcome_Back" where="survey" cond="Q1.r1">
+<p>Welcome back! Please click "Continue".</p>
+</html>
+<suspend cond="Q1.r1"/>
+Note: Using the suspend url attribute to redirect participants outside of the survey will prevent simulated test data from successfully completing the survey. To ensure that this does not happen, please make sure to add the sst="0" attribute to any suspend tags that use the url attribute.
+The participant can return to the survey using the original survey URL and their unique state variable appended to the end.
+http://.../survey/selfserve/9d3/proj1234?state=50m3n07S0j1b83r15h57aT3v4r14Bl3
+Tip: If you redirect participants to your website, make sure to capture the state variable and provide them with a full link to return to the survey.
+2: Advanced Suspended Redirects
+Similar to the <suspend url="..."/> method mentioned above, you can use the suspendExternal(URL) function to manually redirect participants.
+Important: There must be at least one labeled element before the suspendExternal function call, otherwise the redirect may not work properly. If your project has multiple suspend elements, include a labeled element between each <suspend>.
+For example:
+<exec sst="0">
+if Q999.r1:
+suspendExternal("http://SOME_URL.com?return-url=[return]")
+</exec>
+Note: Using the suspendExternal attribute to redirect participants outside of the survey prevents simulated test data from successfully completing the survey. To ensure that this does not happen, please make sure to add the sst="0" attribute to any exec tags that use the suspendExternal attribute.
+Using this method, you can append the variable, return, to the URL which contains the full link back to the survey. Use this return URL to redirect participants back to the survey and continue where they left off.
+Tip: The return variable automatically appends the state variable to the link.
+If you need to execute special code when a participant returns to the survey, use an <exec when="returning"> tag. For example:
+<exec when="returning">
+setMarker('RETURNED_FROM_REDIRECT')
+</exec>
+If you need to access any additional data that was also passed into the returning URL, use gv.request.get("VAR") to access these variables.
+For example, if a participant re-entered the survey using the following URL:
+/proj1234?state=...&extraInfo=approved
+We can use gv.request.get("VAR") to grab the "extraInfo" data and store it inside a question. In the example below, vOtherData is set to "approved".
+<exec when="returning">
+vOtherData.val = gv.request.get("extraInfo") or "NO DATA"
+</exec>
+3: Learn More
+Adding or Removing a Page Break (Survey Editor)
+Exec Tag: Execute Python Code
+Adding Condition / Skip Logic

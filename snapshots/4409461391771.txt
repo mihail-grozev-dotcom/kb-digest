@@ -1,0 +1,51 @@
+Title: Date Picker Element
+The Date Picker element uses a text area type question with a date range and format validation. It allows participants to select a date from a pre-configured calendar or manually type in the date.
+Note: Adding the Date Picker element to a survey requires a survey compat level of 153
+1: Adding a Date Picker Element
+To add a Date Picker element via the Survey Editor, first click the + Element button to add a new survey element. Then click Open End under Question Types and select the Date Picker element. Then click Add.
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+Once you have added the Date Picker, enter your desired question text, instructions, and response options.
+2: Configuring Question Options
+The general options available for the Date Picker element are located to the right of the staging area. You can set rules for the entire question by clicking near the question text or set rules for individual rows by clicking the row you wish to edit. The "Options" menu will show the question or row label and type for the option you have selected to edit.
+2.1: Question Settings
+When altered, each of the following options affects all attributes within the Date Picker element.
+Label: The label assigned to the element. Click to edit the default label for the Date Picker element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: Check the box to force participants to provide a response. When checked, participants will be unable to continue the survey without completing the question.
+Randomize: Not used.
+Response Length:Click into each box to assign a value range to validate the participant's response.
+Verify: Select a date format by which to verify participant answers. Can be set to MM / DD / YYYY, DD / MM / YYYY, or YYYY / MM / DD.
+Date Range: Select a start date for your calendar:
+Any Date: Calendar will allow participants to select a date on or after January 1, 1900.
+Specific Date: Calendar will allow participants to select only the specified date or later. You must enter the specific date in the date format you selected in Verify. Entering an invalid date format will revert the date to today's date (in your local system time). If you do not add a date, this will revert to Any Date. If the start date is after the end date, the start date will be set to the same date as the end date.
+Dynamic Current Date: Calendar will allow participants to select only the current UTC date or later. If today's date is after the end date, the start date will revert to to Any Date.
+To: Select an end date for your calendar:
+Any Date: Calendar will allow participants to select a date on or before December 31, 9999.
+Specific Date: Calendar will allow participants to select only the specified date or earlier. You must enter the specific date in the date format you selected in Verify. Entering an invalid date format will revert the date to today's date (in your local system time). If you do not add a date, this will revert to Any Date. If the start date is after the end date, the start date will be set to the same date as the end date.
+Dynamic Current Date: Calendar will allow participants to select only the current UTC date or earlier.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+2.2: Response Settings
+When altered, each of the following options only affects specific response options (i.e., rows, columns, or groups).
+Label: The label assigned to the response option. Click to edit the default label for the response option.
+Show If: Click to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the response option will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the option to remain stationary.
+Optional: This option is only available if the "Randomize" general option is selected. Check the box to force the option to remain stationary.
+Hidden: Check the box to hide the option from participants.
+No Answer: Check the box to convert the option into an exclusive checkbox response.
+Response Length: Click into each box to assign a value range to validate the participant's response.
+Verify: The verify attribute uses regular expressions to check the alpha-numeric content of a participant's response. You can add a data verifier at either the question or response option level for a Date Picker element.
+Row Pre-Text: Enter a value to appear before the response field.
+Row Post-Text: Enter a value to appear after the response field.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+2.3: Update Styling Options
+You can provide a suggested date using the “Update Styling” option in Survey Editor. Click the "..." button at the top right of the element in the staging area and select Update Styling.
+2.3.1: Changing the Week Start Day
+By default, the Date Picker calendar starts every week on a Sunday. If desired, you can change the Calendar Week Start Day to instead start every week on a Monday.
+2.3.2: Changing the Suggested Date
+By default, the Date Picker calendar will display the current day based on local system time (the participant’s device / browser). If desired, you can change the Suggested Date to display a different date first. To change the initial date displayed, enter the date you want displayed in the format you set in Verify attribute.
+Note: You must match the date entry format identified in the Verify attribute. Otherwise, the Date Picker calendar will display the current day based on local system time.
+The suggested date is highlighted when the participant opens the Date Picker calendar. If the participant opens the calendar and presses Enter on their keyboard, that date will be selected as their answer to the question.
+3: Learn More
+Learn how to add via XML Editor: Customizing the Date Picker Element

@@ -1,0 +1,27 @@
+Title: Clearing Data
+You can use the Logic Library to force the removal of data from your survey at a pre-specified time. This can be done using either the "Schedule Clearing Data" element in the Survey Editor or the "clear" logic node in the survey XML, and is particularly useful in cases where you have used PII to collect participant data and would like to clear it post-field.
+1: Using the Survey Editor
+To clear data using the Survey Editor, click "+ Add Survey Element" under the staging area:
+In the Element Library, click "Custom" and select the "Schedule Clearing Data" element. Then click "Insert":
+The new element will appear in the staging area, where you can specify your data clearing settings:
+The following options are configurable:
+Variables: The list of variables to clear. Use the survey default datamap as a reference when adding variables. Data will not be cleared if there is a label mismatch.
+When: When the survey data will be cleared. Click into the text-box and select a date from the calendar that appears. Then set a time using the "Hour" and "Minute" drop-down menus.
+Clear All Variables: Toggle clearing all variables. Set to "1" to clear hidden variables from data downloads.
+2: Using the XML
+To remove unwanted or unnecessary data, you will need to add a <logic> tag to your survey XML, specifying both a label and uses="cleardata.1", as well as the fields you'd like cleared. For example, if you wanted to clear the data at q1 for both rows 1 and 2, you might run the following script:
+<logic label="clear" cleardata:at="2015-07-31 13:48" cleardata:fields="q1r1,q1r2"
+cleardata:allVariables="1" uses="cleardata.1" />
+As this logic node executes only once, you should set the cleardata:at variable to run after the survey has closed and no further completes are appearing.
+2.1: Parameters
+The following parameters can be passed to the clear data logic node:
+Attribute
+Description
+cleardata:at
+The date and time to clear the data; should be entered in YYYY-MM-DD HH:MM format.
+cleardata:fields
+A comma-separated list of variable names exactly as they appear in the default datamap. If there is a mismatch, you will get an error when the logic node executes and the data will not be cleared.
+Tip: If you receive an execution error, you can modify the survey.xml file and refresh the survey to re-run the logic node, or use the "trigger" button from the logic list.
+cleardata:allVariables
+Set to "1" to also allow clearing of any variables hidden from data downloads.
+After successful completion, an email will be sent out containing the number of participants, individual data cells, and variables affected by the data edit. The data edit is also included in the survey.log.

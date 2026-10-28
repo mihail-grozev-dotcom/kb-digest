@@ -1,0 +1,23 @@
+Title: 143.2 Release Notes
+Release Date: May 29, 2019
+Release Version: 143.2
+New Features
+Participant Sources
+Added the Participant Sources menu, where users can add survey links and CAPI sample without entering the Survey Editor.
+Survey
+Updated survey Privacy Policy links to redirect to the new Forsta privacy statement.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue where uploading some images to a project resulted in reports not loading.
+Survey
+Survey Editor
+Fixed the title text displayed for Polish and Slovak languages.
+Fixed an error that prevented users from applying the tv attribute to questions in surveys with trackVars enabled.
+Dynamic Questions
+Removed "Smartphones” from the list of optimized devices for the Text Highlighter dynamic question.
+Portal
+Company Page
+Fixed an issue with searching by project title in the detailed view of the Usage Statistics report.
+Programming & Tools
+Removed an extra div from the invited.not resource for the Japanese language.

@@ -1,0 +1,27 @@
+Title: Exporting a Survey
+If desired, you can export your survey to a readable, questionnaire-style format via PDF, Word, Text, HTML, or Open Office ODT. To export your survey as a questionnaire, first locate the survey in the Portal and click the "..." button under Actions to open the survey actions menu. Then select Export Survey.
+In the Export Survey window, you can configure a variety of additional data options for your export.
+See below for information on the data options available to you.
+After you have finished making your selections, click your desired format to download the file.
+Once you are satisfied with your exports, click "OK" to close the export dialog.
+1: Options
+Check the box next to any option to include additional data in your export.
+Show Labels: Includes the programmed labels (e.g., q1, r1, c1) for all survey questions and answer options.
+Show sequential labels: Includes default labels for questions and elements based on the order in which they are programmed in the survey (e.g., Q1, Q2, Q3), regardless of their programmed labels.
+Show logic syntax: Includes any programmed logic for survey questions and answer options.
+Show programming notes: Include any programming notes added as comments via the ‘Notes’ element or XML Editor.
+Show quotas: Includes any quotas elements as programmed in the survey.
+Show meta tables: Include all default metadata report tables (e.g., vlist, qtime, vos, vbrowser, etc.).
+2: Languages
+By default, the survey will download in the primary language selected for your account. If there are multiple language versions of your survey, you can choose to include any of these versions in the export. Check the boxes next to languages to include them. If your survey does not include multiple languages, these checkboxes will not appear.
+When downloading the survey in multiple languages, the system will automatically convert the export to a .zip folder, with a separate file for each language version in the format you have chosen.
+3: Compare
+By default, multiple language versions of a survey are split into separate files upon export. If desired, you can combine certain languages into a single file for comparison. Check the boxes next to languages to combine them. If your survey does not include multiple languages, these checkboxes will not appear.
+4: Available Formats
+After you have finished making your selections, click your desired format to download the file. A new tab will open with your file. You can choose from the following formats:
+PDF
+Word
+Text
+HTML
+Open Office ODT
+Once you are satisfied with your exports, click "OK" to close the export dialog.

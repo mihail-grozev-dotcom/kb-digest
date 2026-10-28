@@ -1,0 +1,43 @@
+Title: 147.11 Release Notes
+Release Date: July 20, 2021
+Release Version: 147.11
+New Features
+Survey
+Survey Editor
+Added the Multi-User Editing tool, which allows users to split their surveys into separate sections that can be programmed simultaneously by multiple users.
+Once sections are defined, users may check them out and make edits to those sections without affecting the rest of the survey.
+When users are done editing a section, they can check it back in to update the main survey with the changes they have made.
+Multi-User Editing must be enabled at the company level prior to use. If you are interested in utilizing this feature, please contact your Forsta representative to get set up.
+Learn More: Preparing a Survey for Multi-User Editing, The Multi-User Control Panel
+Programming & Tools
+API
+Launched the new Decipher API Documentation site, featuring a more modernized look & feel and improved documentation structure. The new site also includes:
+A search bar and upgraded navigation menu, making it easier for users to find their favorite API endpoints.
+Updated endpoint names for added clarity and an improved browsing experience.
+New request and response examples for various endpoints to help users get started when making new calls.
+Learn More: Decipher REST API
+Added the ability for users with full access to a survey to create a copy of that survey, even if they are not a member of the survey’s company. This functionality was previously available to all companies and servers but is now disabled by default. If you are interested in re-enabling it for your account, please contact your Forsta representative for details.
+Bug Fixes
+Portal
+Upload System Files
+Fixed an issue causing additional rows to sometimes be deleted when attempting to delete multiple rows at once using the File Manager.
+Fixed an issue causing the table sorting icons to disappear when column headers with long names were truncated within the File Manager.
+Survey
+Survey Editor
+Fixed an issue causing <noanswer> rows to clear responses for only one question in hybrid elements consisting of two merged questions.
+Dynamic Questions
+Fixed an issue preventing participants from recording videos for the Video Testimonial element on certain mobile devices.
+Responses
+Campaign Manager
+Fixed an issue preventing some secure links from working in campaign invite emails.
+Fixed an issue causing decreased performance for some emails sends when old entries were removed.
+Reporting
+Dashboard
+Fixed an issue causing the question label in some gauge charts to appear next to the gauge pointer within the chart.
+Programming & Tools
+API
+Fixed an issue preventing some records from being returned when using the start parameter for the Survey Data endpoint due to inconsistent rounding for timestamps in calls and responses. All timestamps are now rounded to the nearest second.
+Architecture/DevTools
+Fixed an issue causing some participants to receive out-of-office messages for support emails.
+All project support emails now require a single “noreply” email address in the “From” field.
+Additional support contact information may only be included in the body of the email.

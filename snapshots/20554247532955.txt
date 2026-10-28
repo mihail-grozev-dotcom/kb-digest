@@ -1,0 +1,14 @@
+Title: November 21, 2023 Release Notes
+Release Date: November 21, 2023
+The following items were released between November 7 and November 21, 2023.
+New Features
+Portal
+Improved the impact of Project Warnings usage on Portal response times.
+Reporting
+Data Downloads
+Excel datamap downloads now support non-English languages in multi-language surveys.
+Learn More: Data Downloads and Formatting Options
+Bug Fixes
+Reporting
+Crosstabs
+Using the special "Favorites" tableset in a Crosstab no longer saves that Crosstab with an access level of null.

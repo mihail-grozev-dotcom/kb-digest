@@ -1,0 +1,186 @@
+Title: About the View / Edit Responses Report
+The View / Edit Responses report allows you to view and edit the responses of every participant in a survey. It is useful for projects with a low incidence rate, where more attention can be given to participants based on their progress, as well as email sends, as it includes the start status for every participant in the list.
+Note: In surveys without delphi="1", you must enable autoRecover in order to display the survey's partial data, and set adb to display its email send data. To convert your survey to use delphi, see About the View / Edit Responses Report--2.1: Convert to Delphi.
+Note: Surveys with 30K+ participants and surveys that have a lot of data points may experience longer load times.
+1: Accessing the Report
+To access the View / Edit Response report, click RESPONSES in the navigation menu and select View/Edit Responses.
+Note: To access this feature, you must have report:view and data:download permissions. To learn about user permissions, see Create and Manage Users.
+2: Viewing the Report
+The View / Edit Responses report has a variety of options to help you perform a complete review of your survey data. The following is an overview of its available tools and features:
+1. Filter Responses: Filters the data displayed in this report. Click to restrict the participants shown in the results by the following criteria:
+Saved Filters: Filters with previously saved record criteria.
+Participant Status:
+Qualified: Qualified participants.
+Overquota: Non-qualified participants due to full quotas.
+Terminated: Terminated participants.
+Partial: Data recovered for participants who partially completed the survey (detailed data is not available for these participants unless partial data is recovered).
+In-Progress: Participants who are currently taking the survey.
+Email Status:
+Sent Invite: The email has been sent.
+Opened Invite: The email was opened by the participant but they did not click the survey link.
+Bounce-Back: The email was returned from the server (address no longer exists).
+Opt-out: People who have opted out.
+Duplicate Address: Marked as duplicate, unless the email send is done using the --dupes flag.
+Malformed: Incorrectly formatted email addresses.
+Not Sent: Emails that have not been sent.
+Participant Source: All participant sources configured for the project.
+Variables: All variables configured for the project.
+Note: Filtering by variables for open-end responses searches for substrings automatically. Wildcard (*) values are not supported.
+Custom Filter: Allows you to input your own custom filtering criteria using report logic.
+Note: Once you have selected your desired filters, click Apply to apply them to the report.
+2. Filter List: Displays the currently applied filters. You can hover over an applied filter and click "x" to remove the filter.
+3. Edit Data (2010): Click to modify participant data using the 2010 version in a new tab. See 5: Editing Data to learn more.
+4. Edit Data: Click to modify participant data from the Edit Data or Advanced tabs. See 5: Editing Data to learn more.
+Note: To access the Edit Data feature, you must have full data access.
+5. Import Data: See Importing Data Using the View / Edit Responses Report to import data from an external source.
+Note: To access the Import Data feature, you must have full data access.
+6. Export Data: Click to export the participant status report in an Excel file.
+Note: This Excel file cannot be used for importing data back into the report. To import data within the View / Edit Responses report, you must use a properly formatted Excel file.
+7. Save Filter: Click to save all applied filter criteria as a single filter for later use.
+8. Search: Enter a word or phrase to search the text in all responses.
+9. Matching Records: The total count of records matching the current filter criteria.
+10. Choose Columns: Click to edit the options (columns) included in the table. Once configured, click Apply.
+11. Results Table: The results table offers a summary of the progress of every survey participant, according to the filters you have applied:
+Record: The unique identifier assigned to each survey completion attempt.
+Participant ID:
+Source: The source ID assigned to a participant based on how she/he accessed the survey. Learn More: Participant Sources
+UUID: The universal unique identifier assigned to the participant when he/she first accessed the survey.
+Progress / Timing:
+Status: The current status of the participant (Qualified, Partial, Terminate or OQ).
+Participant Source: The participant source or value based on the list or vlist variable.
+Started Survey: A timestamp of when the participant began the survey.
+Last Activity: The participant's start time combined with the duration of their survey session (value based on qtime).
+Last Seen Question: (Partial Completes only) The label of the question last submitted by the participant.
+Duration: The total amount of time the participant spent on the survey (based on qtime).
+Finished Survey: A date/timestamp of when the participant submitted the survey.
+Markers: Markers assigned to the participant based on any quotas or other criteria for which they are qualified. Quota markers are shown as tags with values that match the quota text displayed in the Response Summary.
+Note: Surveys with a lot of markers may load more slowly than normal.
+Note: Show or hide any of the options (columns) by editing the table settings. Learn More: 3: Configuring the Table
+12. Page Menu: The page menu allows you to toggle between pages of matching record data. This is useful when applying broad filtering criteria.
+Note: If there are multiple questions on one page, the "Last Seen Question" field will show the label of the last question on the page, regardless of which question was answered last. If the questions are randomized, the last question on the page will be determined by the question order in the survey XML.
+For example, if you had questions Q1, Q2, and Q3 on one page and a participant answered only Q1 or Q2 before clicking Continue, their Last Seen Question would still be Q3.
+2.1: Convert to Delphi
+When the survey you are viewing does not have delphi="1", the Convert to Delphi option will display. This allows you to upgrade your survey to use delphi="1", which is required starting with Compat 151.
+Selecting Convert to Delphi opens a modal explaining that conversion will:
+Set delphi="1" and convert any existing data to the delphi format
+Temporarily close the survey during the conversion.
+During conversion, users should not perform data edits. To view the status of the conversion and see the results, leave the modal open.
+Select Start Conversion from the Delphi Conversion modal to convert the data.
+When the conversion is complete, the modal will display a success message. Click Done to close the Delphi Conversion modal.
+3: Configuring the Table
+You can control what data appears in the View / Edit Responses report by selecting the survey variables for which you would like to view responses in the table settings menu.
+To configure your table data, click Choose Columns. In the Choose Columns menu, check the box for each variable you would like to add to your table. Then, click Apply to apply your selected criteria.
+3.1: Viewing Custom Variables
+If you would like to view responses according to custom survey or question variables, select those variables from the Survey Variables (Columns) drop-down.
+Both single and multi-variable questions will appear as single variables in the drop-down.
+When a multi-variable question is selected, each of its variables appears as a separate column in the response table.
+3.1.1: Open-Ended Responses
+You also have the option to add all open-ended response variables to the table. To add all open-ends, click Open-Ends in blue.
+Note: When adding open-ends, virtual and meta open-end variables are not included.
+3.2: Saving a Table Layout
+If desired, you can save the layout you have created for later use. To save the layout you have created, click Save Column Layout.
+Enter a name for your layout and click Save.
+3.3: Applying a Saved Layout
+To apply a previously saved layout, click Choose Columns. Then click the name of the layout you would like to apply, and click Apply.
+4: Filtering Data
+The View / Edit Responses report also allows you to search your survey data for specific records by selecting where to search and by what unique value(s). The results will present data only for records that match your specifications.
+You can either search for a value by entering it directly into the search bar, or you can add filters to search for a value using additional qualifiers.
+If the value for which you need data is unique (a source code, or panel or sample identifier), type this value into the search bar and press Enter or click the magnifying glass to sort the data.
+If your value is not unique (a question response like “0” or “1”), then you may instead want to use filters to refine your search.
+4.1: Creating Filters
+There are many filters you can use to narrow your search criteria if the value you are looking for is used in multiple places within the data. In the Filters menu, these are split into four main groups: Participant Status, Email Status, Participant Source, and Variables.
+You also have the ability to create custom filters and save any filters you create to re-apply them later.
+4.1.1: Using Status Values as Filters
+To add a filter for Participant Status, Email Status, or Participant Source, select the desired drop-down box, check the options you would like to include in your search, and click Apply.
+4.1.2: Using Survey Variables as Filters
+Using survey variables as filters requires that you define each variable you need and its necessary values before applying them. To add a filter for any variable, you must first click the + Add Filter Variables button within the Filters menu to bring up the Variables menu.
+In the Variables menu, select which variable(s) you would like to use for filtering, and enter or select the values you want to apply for that variable. Then, click Done to add those values to your search.
+If you need to filter by multiple variables, you can click the Add Filter Variables button within this menu and select additional variables to use for filtering. Once you have added all the variables you need, click Add Variables to add these to your Filter menu.
+To apply your filters and sort the data by what you have specified, click Applyin the Filters menu.
+4.1.3: Creating a Custom Filter
+Custom filters are logic conditions which include the data labels for the questions / columns / rows you would like to reference (e.g., Q1.r1, Q2.r2.c2, Q1.r1 and Q3.r1, Q1.r1 or Q1.r3, etc.).
+Note: Logic conditions entered here must use raw logic labels and not altlabels.
+To create your own custom filter, select Custom Filter, click into the box, and input your report logic. Then click Apply.
+In addition to the basic and / or logic functions, the Custom Filter field will accept the following:
+Function
+Short Description
+Examples
+any
+Show records where any response was selected at the question / row / column.
+Q1.any
+Q1.r1.any
+Q1.c1.any
+but
+Exclude records with the specified selection at the question / row / column.
+Q1.but(Q1.r1).any
+Q1.r1.but(Q1.r1.c1, Q1.r1.c3).any
+all
+Show records where all responses were selected at the question / row / column.
+Q1.r1.all
+Q1.c1.all
+Q1.r1.c1.all
+Q1.c1.all or Q1.c2.all or ...
+(e.g., the participant straight-lined)
+count
+Show records where only the specified count was entered at the question / row / column.
+Q1.r1.count
+Q1.c1.count
+Q1.r1.c1.count
+Q1.but(Q1.c1, Q1.c2).count
+sum
+Show records where only the specified sum matches the response at the question / row / column.
+Q1.sum
+Q1.r1.sum
+Q1.c1.sum
+Q1.but(Q1.c1, Q1.c2).sum
+4.2: Applying a Saved Filter
+The Saved Filters menu allows you to apply filters you have previously saved within the View / Edit Responses report. To add a previously saved filter, select the name of the filter and click Apply.
+4.3: Reviewing Filtered Data
+Once you have applied all your filters, you will see only data for records that meet those qualifications listed in blue.
+From here, you can continue to refine your search by adding more filters or by using the search bar. If you need to remove any filters, you can remove them by clicking on the “x” next to their label in the Filters menu.
+You also have options to save and share any applied filters. To save your current filter set, click Save Filter. In the filter window that appears, enter a name for your filter and then click Save.
+All saved filters will appear within the Saved Filters group in the Filters menu.
+5: Editing Data
+To open the editing tool, click the Edit Data link.
+The editing toolbox will appear, where you can edit data using the Edit Data or Advanced tabs.
+5.1: Using the Edit Data Tab
+From the Edit Data tab, you can specify the following updates to a single record:
+Change an individual response
+Delete the record
+To edit responses for a record using the Edit Data tab, click into a cell and select or enter the desired response. You can also click the "-" icon next to a record to mark it for deletion.
+Note: As you specify updates, the Update button maintains a count of the intended updates.
+Once you are finished editing the data, click Update to apply the changes.
+5.2: Using the Advanced Tab
+From the Advanced tab, you can modify multiple records at once. To edit responses for multiple records, select an action from the drop-down menu and check each record you would like to edit.
+The following actions are available from the drop-down:
+Delete Selected Records: Removes the selected records from the survey.
+Disqualify Selected Records:
+Changes the record status to "terminated".
+Removes disqualified participants from any quotas for which they qualified.
+Specify a disqualifying reason (optional). The reason is added as a marker to the participant. The markers for each participant can be viewed within both the report and any data exports.
+Requalify Selected Records: Selected records with a "terminated", "partial", or "in-progress" status are changed to "qualified" status. Requalifying records adds a marker to them with the requalified date ("requalified-2016-Feb-11").
+Note: When you re-qualify a record, any markers you have previously set for the disqualify reason (such as "straight-liner") must be removed manually.
+Modify Record Data: Displays text / drop-down boxes for you to modify the answers of selected participants.
+If you choose Modify Record Data, you must then click into a column drop-down to change the desired responses for each record.
+Note: As you specify updates, the Update button maintains a count of the intended updates.
+Once you are finished editing the data, click Update to apply the changes.
+5.3: Applying Updates
+The Update button shows the total number of records you have edited. Click the Update button to apply your changes to the data.
+A confirmation window displays for you to verify the changes. Click Update to apply the changes to the data, or Cancel to revert all changes and return to editing the data set.
+5.4: Edit Data (2010)
+Click Edit Data (2010) to open the Edit Data (2010) view in a new tab.
+Select the field and value(s) you want to search with; click View Datamap in New Window to identify the values that belong to each variable. Use the drop-down menu to select the data you want to display in the search results. The search will show you only the first 100 results. To see all results, uncheck Limit to First 100 Results; if your project is large, the page may take some time to load.
+Click Find Records to find results.
+On the following page, use the Actions Menu drop-down and select Modify Record Data. Make the appropriate changes, then click modify data at the bottom right. The selected records have now been edited.
+6: Importing Data
+You also have the option to import and modify data from another survey or data set. To import data from an external source, click Import Data at the top right of the screen.
+See Importing Data Using the View / Edit Responses Report for more information on importing data within the View / Edit Responses report.
+7: Exporting Data
+To share your search results or saved data edits, click Export Data at the top right of the screen to download an Excel copy of the current data table.
+7.1: Detailed Per-Participant View
+While viewing or editing responses, you can click any participant's Record link in the table to view the full details of their survey progress:
+This includes their activity information, responses to survey questions, and device information, as well as a list of all their captured and system variables.
+1. Participant activity information: Includes all activity information for the selected participant.
+2. Export Record: Allows you to export only the data for the selected participant.
+3. Question Responses: Includes all question responses for the selected participant.
+4. Participant Information: Includes all identifier information for the selected participant.

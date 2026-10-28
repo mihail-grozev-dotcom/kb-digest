@@ -1,0 +1,48 @@
+Title: Exporting Crosstabs
+After running a crosstab report, you have the option to export that report into a variety of formats.
+1: Selecting a Format
+To export a crosstab report, first run your crosstab and click Exports to view the Crosstabs export menu. Then select the format in which you want to export your data under Export Crosstabs. The following formats are available:
+Excel: Exports the data into a single Excel document. Each Excel export includes a summary of the crosstab on the first worksheet. Percentages and counts are available on their own worksheets.
+PowerPoint: Exports the data into a single PowerPoint file. Each PowerPoint export contains all report elements broken out into slides.
+PDF: Exports the data into a single PDF file. Each PDF export contains all report elements broken out into individual pages, including any charts that you have added in Crosstabs.
+You can also download the raw data using one of the five most popular formats or by clicking View All Data Formats. To learn more about these exports, see Data Downloads and Formatting Options.
+2: Configuring Export Preferences
+You also have the option to configure the settings for a report prior to exporting it. To adjust your report settings, click the gear icon for your desired export format. The following sections detail the configurable options available for each export format.
+2.1: Excel Export Preferences
+The Excel Export Preferences menu allows you to configure the following options:
+Table properties to include:
+Percentages: Display percentages in tables.
+Counts: Display counts in tables.
+Significance testing: Display significance testing labels in tables.
+Display report tables on:
+Single Sheet: Display report tables on one sheet.
+Separate Sheets: Display report tables across multiple sheets, separated by data type (for example, Counts, Percentages, and Summary).
+Once you are satisfied with your export preferences, click Save.
+2.2: PowerPoint Export Preferences
+The PowerPoint Export Preferences menu allows you to configure the following options:
+Table properties to include:
+Percentages: Display percentages in tables.
+Counts: Display counts in tables.
+Significance testing: Display significance testing labels in tables.
+Maximum table rows: Set the maximum number of rows allowed per table.
+Chart properties to include:
+Include charts: Display all charts that have been added to tables.
+Question title: Display the question text for each chart as its title.
+Gridlines: Display gridlines in charts.
+Data labels: Display data labels in charts.
+Significance testing: Display significance testing labels in charts and chart legends.
+Legend: Select a display position for chart legends. Can be set to display below, above, or to the left or right of charts.
+2.3: PDF Preferences
+The "PDF Preferences" menu allows you to configure the following options:
+Table properties to include:
+Percentages: Display percentages in tables.
+Counts: Display counts in tables.
+Significance testing: Display significance testing labels in tables.
+Chart properties to include:
+Include Charts: Display all charts that have been added to tables.
+Gridlines: Display gridlines in charts.
+Data Labels: Display data labels in charts.
+Legend: Display chart legends.
+Page options:
+Page size: Select the size for each page. Can be set to appear as a Letter or A4 document.
+Layout: Select whether the page appears in Landscape or Portrait orientation.

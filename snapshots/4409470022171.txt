@@ -1,0 +1,9 @@
+Title: View the Survey Setup or XML
+To access the Survey Editor or XML Editor in view-only mode, select either View Survey Setup or View XML under More Tools in the navigation menu.
+1: View Survey Setup
+Clicking View Survey Setup opens the Survey Editor in view-only mode:
+In view-only mode, you can select questions and examine the setup. Changes cannot be made or saved. Viewing can be done on closed projects too, without needing a re-launch.
+Tip: You can save questions to the element library while viewing the survey setup.
+2: View XML
+Clicking View XML opens the survey XML in view-only mode:
+In view-only mode, you can examine the survey XML. Changes cannot be made or saved.

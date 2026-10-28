@@ -1,0 +1,299 @@
+Title: Creating a Logic Node
+Requires Decipher Cloud
+This is a reference guide for creating logic nodes for use in the Logic Library. If you would like to learn more about logic nodes or how to use them in a survey, see Adding Logic Nodes Using the XML Editor.
+There are three different types of logic nodes: in-survey, planned, and periodic. Regardless of the type of logic node you are creating, all logic node code should be located inside of a logic.py file.
+Note: Logic nodes are completely Python based, and creating them requires a basic understanding of object-oriented programming in Python and the Decipher Cloud Server Structure.
+1: Where to Put the Logic File
+Note: Once added to a shared folder, logic nodes can be loaded across all projects with access to that folder. To ensure proper functionality of all building tools and features, we recommend testing your logic node for errors within a sandbox company before moving it to lib/local or your company's selfserve folder.
+A logic node is contained entirely in a logic.py file which can be found or placed in the following locations:
+lib/local/lnname/v1: This location houses global logic nodes, which will apply to all companies on a server.
+selfserve/company directory/lib/lnname/v1: This location houses company and folder-specific logic nodes, which will apply to a single company on a server.
+lib/sys/lnname/v1: This location houses only Forsta-created standard logic nodes, which will apply server-wide.
+Note: The sys folder is a version-controlled location where all standard Forsta-created Logic Nodes are stored and can only be accessed by Forsta staff.
+2: Configuring the Logic File
+At the beginning of your logic node, create a class with a name that matches the folder in which it's located. For example, if you are creating a logic node in a folder called "newnode", you would use the following:
+from hermes.collect.logic import Logic
+class Newnode(Logic):
+In this case, the directory path would be newnode/v1.
+Note: Planned and periodic logic nodes would use "Planned" or "Periodic" instead of "Logic". Additionally, these node types require import statements to work correctly. See Periodic and Planned Logic Nodes below to learn more about planned and periodic logic nodes.
+2.1: Required Class Attributes
+All of the following classes and methods must be added within your logic node class.
+2.1.1: Meta
+The meta class contains the variables that define what is shown in the Elements Menu within the Survey Editor.
+Note: Once created, logic nodes will automatically appear under the "Custom" filter in the Element menu.
+The following attributes are required within the meta class:
+Attribute
+Type
+Description
+title
+string
+The title for your logic node, as displayed in the Elements Menu.
+state
+string
+The status of your logic node. Can be set to one of the following:
+live: The logic node is ready to use and will show in the Elements Menu.
+testing: The logic node is still in development, and will not show in the Elements Menu.
+closed: The logic node is no longer supported and will not show in the Elements Menu.
+Note: Must be set to live to show in the Elements Menu.
+description
+string
+The description for your logic node, as displayed in the Elements Menu.
+Example:
+class meta:
+title = "New Logic Node"
+state = "live"
+description = "My new logic node."
+2.1.2: Args
+The args class allows you to specify variables that can be customized for use later in your logic node code. It uses the following syntax:
+class args:
+format = Enum("week day custom")
+code = ""
+You can specify the following types of variables in your args class:
+String: If a variable is set to a string, the string will be the default when using the logic node; otherwise, it can be set to "".
+Int: If a variable is set to a number, the number will be the default when using the logic node. A number has to be defined for a variable to be recognized as an Int variable.
+Important: When referencing Int type variables in logic, use int(self.VARNAME) instead of self.VARNAME. Not doing so may result in the value being returned as a string rather than an integer.
+Enum(): Setting a variable to Enum() requires the function to be imported from the Logic Library. Options should be space-separated. Once set, creates a drop-down menu to allow selection of one of the options.
+Note: The first item in an Enum() variable will be its default value.
+Set(): Setting a variable to Set() requires the function to be imported from the Logic Library. Can contain a mixture of values and allows for the selection of multiple options; multiple options should be space-separated. Saves as a set.
+Note: You must include a default value for the drop-down after the comma within the parentheses.
+Email(): Setting a variable to Email() requires the function to be imported from the Logic Library. Allows a field for a single email.
+Emails(): Setting a variable to Emails() requires the function to be imported from the Logic Library. Allows for a list of valid emails, separated by commas.
+Datetime(): Setting a variable to Datetime() requires the function to be imported from the Logic Library. Allows for setting a time and date in the following format: YYYY-MM-DD HH:MM
+HTML(): Setting a variable to HTML() requires the function to be imported from the Logic Library. Creates an input field with a Rich Text Editor.
+Expression(): Setting a variable to Expression() requires the function to be imported from the Logic Library. Creates an input field for Python code.
+Other args specific variables:
+Additionally, there are some optional args variables that allow you to specify whether a value is required or can be piped, or if it is encrypted.
+PIPEABLE: Allows piping syntax to be used in the field (i.e., ${q1.val} or [pipe: q1]). Allows for a list of values.
+Note: Int type variables do not support pipes.
+REQUIRED:Arguments that are required. Allows for a list of values and shows a warning message when left blank.
+ENCRYPTED:The field will include a link to the logic node debug page for encryption in the description. Allows for a list of values.
+Example:
+from hermes.collect.logic import Enum, Set, Email, Emails, Datetime, HTML, Expression
+...
+class args:
+subject = "My Email Subject"
+emailsSent = 1
+emailType= Enum("Initial Reminder Reminder2")
+senderBrands = Set("Brand1 Brand2 Brand3 Brand4", "Brand1")
+from = Email("nobody@decipherinc.com")
+recipients = Emails()
+sendDate = Datetime()
+content = HTML("Hello world!")
+emailPass = ""
+pythonCode = Expression("")
+PIPEABLE = "subject from recipients content".split()
+REQUIRED = "subject emailsSent emailType from recipients sendDate content".split()
+ENCRYPTED = "emailPass".split()
+2.1.3: Titles
+The titles class defines the title of each argument in the Survey Editor. The format is ARGUMENT = "Title text".
+Example:
+class titles:
+subject = "Subject"
+emailsSent = "Emails Sent"
+emailType= "Email Type"
+senderBrands = "Email Brand"
+from = "From"
+recipients = "Recipients"
+sendDate = "Send Date"
+content = "Content"
+emailPass = "Password"
+pythonCode = "Python Code"
+2.1.4: Descriptions
+The descriptions class defines the description for each argument in the Survey Editor. The format is ARGUMENT = "Description text".
+Example:
+class descriptions:
+subject = "Subject of the email"
+emailsSent = "Number of emails that have been sent"
+emailType= "Type of email to send"
+senderBrands = "Brands to send emails for"
+from = "Email sender"
+recipients = "Email recipients"
+sendDate = "Time to send emails"
+content = "Content of the email"
+emailPass = "Password used to send emails"
+pythonCode = "Extra python code"
+2.1.5: Properties
+Each logic node has its own persistent data area which stores properties specific to that node. The properties class defines which of these properties the API can see. The format is ARGUMENTVAR = "Description text".
+Example:
+class properties:
+markerName = "Returns the marker name that was set to the participant"
+Properties in the dictionary can be set using self.p. For example, to create a property called " markerName", you would write:
+@export_property
+def markerName(self):
+try:
+return self.p["name"]
+except KeyError:
+name = self.p["name"] = self.nextMarkerName
+return name
+Here, the markerName function is marked with the decorator @export_property. Before a property can be accessed within a survey, @export_property must be imported from the logic library using the following:
+from hermes.collect.logic import export_property
+Once a property has been set, you can use its function to call it. For example, to call the markerName property, you would write:
+<logic label="marker" uses="dmarker.1" />
+<exec>
+print marker.markerName
+</exec>
+2.1.6: Builder
+The builder class allows the logic node to be displayed in the Survey Editor. It also contains additional variables to control how the Survey Editor reads the logic node.
+You can specify the following optional variables in the builder class:
+Attribute
+Type
+Description
+kb
+string
+Not required but may appear in Forsta-created logic nodes.
+order
+string
+The string of arguments in the order shown in the Survey Editor. Variables not listed in order will not be shown in the Survey Editor.
+Tip: You can add headers by putting variables on different lines and inputting "Header:". For example, where "Email Contents" is the header and "subject content" are the variables:
+order = """
+Email Contents: subject content
+"""
+releaseDate
+datetime
+The release date of the logic node listed in YYYY/MM/DD format. Adds a "NEW" tag to the logic node in the Elements Menu for 45 days from the release date.
+daysNewFor
+Int
+The number of days to include a "NEW" tag for the logic node within the Elements Menu. Use if you do not want to use the default 45 days for the "NEW" tag; requires use of releaseDate.
+template
+string
+Templated elements that should be added to the survey when the logic node is added in the Survey Editor.
+Note: If you have multiple elements and want to apply the same labeling to all of them, you can use {x} to specify the generated label.
+Example:
+class builder:
+kb = ""
+order = """
+Email Contents: subject content
+sendDate
+Emails: from recipients
+"""
+releaseDate = "2018/12/31"
+daysNewFor = 14
+template = """
+The logic node is being used here.
+"""
+Note: To add custom icons for the logic node, include the following files in the logic node's static folder:
+survey element menu - pan.png
+survey editor tree/library - tree.png
+2.1.7: Events
+Inside your logic node class, you can also include methods called "events" that are executed at predefined points in your survey. You must include at least one event for a logic node to do anything in a survey.
+on_display()
+The on_display event runs when the logic tag is shown in the survey and allows you to run special custom code you cannot normally run in a survey, (e.g., set markers, check status, etc.).
+Some helpful things to do:
+Call self.debug to write to the debug log for the logic tags. The log is accessible from Crosstabs and the portal using the "Logic" menu.
+Call self.env to get the environment that normal Python code executes in. This can be used to create survey markers and perform other tasks via Python code.
+Call gv.isSST() to check whether a participant is test data.
+Example:
+def on_display(self, q, out, style):
+name = self.markerName
+self.debug("Setting marker %s" % name, out)
+self.env["setMarker"](name)
+q = the logic tag in the survey.
+out = Use this function to write HTML to the survey.
+style = The current user style object. Used to pull in specific style blocks.
+on_load()
+The on_load event runs when the survey loads. This can be used to create new HTML elements.
+Some helpful things to do:
+Call el.parent.createTransient to create new elements in your survey. This includes creating questions.
+Note: You cannot create questions dynamically (e.g., generate different questions or question elements per participant), as that will not store data correctly.
+Call element.moveBefore(element) and element.moveAfter(element) to move your newly created element around the survey.
+Example:
+def on_load(self, ctx, el):
+html = el.parent.createTransient('html', label='%s_intro' % self.label, where="survey", cdata="You're about to go through the logic node.")
+html.moveBefore(el)
+el.parent.createTransient('suspend').moveAfter(html)
+el = the logic element in the survey.
+ctx = The "survey mutation context." This can be used to find other already loaded elements in the survey.
+on_verify()
+The on_verify event allows you to run verification code after the survey has been fully loaded. This allows you to check that the logic node has its arguments defined correctly. Additionally, you can raise a ValueError to generate an error message.
+Example:
+def on_verify(self):
+if self.numOfDays
+try_decrypt
+try_decrypt is a function you can import from the Logic Library to decrypt passwords that have been encrypted using the logic node debug page. This will attempt to decrypt the password if it is encrypted; otherwise, it uses it as-is.
+Encrypted passwords start with Q1J: and the encrypted string contains the survey path for which the password is valid (i.e., the self.survey.path argument). Copying and pasting the password in another survey will prevent it from being used.
+Example:
+from hermes.collect.logic import try_decrypt
+...
+def on_verify(self):
+self.decryptedPassword = try_decrypt(self.password, self.survey.path)
+on_debug()
+The on_debug information will return information on the Debug screen.
+Within the Debug screen, you have the options to view debug data for a logic tag. By overriding on_debug you can control what information is output there. For example, the "Date Marker" logic node will let you see what the next marker name is that would be set.
+Example:
+def on_debug(self):
+return "current marker: %s" % self.nextMarkerName
+on_init()
+The on_init event will call information when the survey has been fully loaded and all its data is validated.
+Example:
+def on_init(self):
+self.debug("The survey has been loaded")
+on_finish()
+The on_finish event will call information when a participant has finished the survey.
+def on_finish(self):
+self.debug("A participant has finished the survey")
+on_async()
+The on_async event will call information when performing a complex asynchronous task, like an API call or a database connection. If this event is not used, the system will block participants when performing such tasks.
+on_async has a 300-second timeout and in general, it is called like this:
+def on_async(self, args):
+Note: The "args" referenced in the above example are the arguments sent using self.send in on_display.
+on_async should be done in three steps that use the on_load and on_display events:
+STEP 1
+First, when loading the survey, create a <suspend/> tag that will execute the asynchronous call (it can be added right after the <logic> tag). Then, input the following:
+def on_load(self, ctx, el):
+self.createAsyncSuspend(ctx, el)
+STEP 2
+Then, when displaying the tag, optionally send extra information to the asynchronous process. Here, the q argument is sent as "42", although this is not strictly necessary:
+def on_display(self, q, out, style):
+self.send(q="42")
+Note: You can also save the data in the persistent storage.
+STEP 3
+Finally, the on_async method will execute in a separate, long-running process:
+def on_async(self, args):
+r = requests.post("https://www.google.com/recaptcha/api/siteverify", data=dict(
+secret=self.secret,
+response=args['q'],
+remoteip=gv.request.getRemote()) # check with 2 levels of proxies here
+)
+self.debug("recaptcha reply: %s" % r.json())
+return r.json()
+You can do anything you want here, though keep in mind that there is a 300-second timeout. on_async should return the data you want to return to the main survey.
+Note: All variables returned in an async process are stored in the logic node's self.p.results variable.
+on_trigger
+The on_trigger event is run when a Periodic or Planned logic node runs and inherently has an r argument, which is used to run the Decipher API (r.api).
+Example:
+def on_trigger(self, r):
+self.debug("The scheduled node has run.")
+3: Additional Considerations
+3.1: Periodic and Planned Logic Nodes
+Periodic and Planned logic nodes run differently than other logic nodes and require the on_trigger event to run.
+3.1.1: Periodic
+Periodic logic nodes run either on a daily or hourly schedule and inherently have arguments of time and period, which control when the periodic node is run.
+period:Drop-down menu of either "Hourly" or "Daily".
+time: Time in a 24-hour format of HH:MM or MM.
+Example:
+from hermes.collect.logic import Periodic
+class Crosstabs(Periodic):
+def on_trigger(self, r):
+r.api("distribute/email", method="POST",
+recipients = self.recipients,
+subject = self.subject,
+body = self.message,
+sources=[dict(
+method="POST",
+api="surveys/%s/crosstabs/saved/%s/export/%s" % (self.survey.path, self.saved, self.format))
+])
+3.1.2: Planned
+Planned logic nodes run at a specific time that is scheduled in advance and inherently have an at argument, which is a datepicker-type argument that controls when the node is scheduled to run (must be provided in YYYY-MM-DD HH:MM format).
+Example:
+from hermes.collect.logic import Planned
+class Cleardata(Planned):
+def on_trigger(self, r):
+resp = r.api("surveys/%s/data/edit" % self.survey.path, method="PUT",
+key="status",
+allVariables = self.allVariables,
+data = data
+)
+self.survey.emailTeam("Data in these variable was automatically cleared for %d participants.\n%d cells are now blank.\n\n%s" % (
+resp['stats']['rewritten'], resp['stats']['fieldsUpdated'], self.fields), "Data Clear Complete")
+3.2: Using Logic Nodes in Panel Management-Integrated Surveys
+While logic nodes are compatible with Panel Management, the questions created by them are not. Any question created using a logic node in a Panel Management-integrated survey (e.g., a Decipher Registration Survey) will not have an associated datapoint in Panel Management.

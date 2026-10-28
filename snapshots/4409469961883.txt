@@ -1,0 +1,31 @@
+Title: Reporting API Calls
+Note: The below article uses examples of accessing the Decipher API from a Unix system that has the Beacon library package installed. See Decipher REST API to learn more about accessing the Decipher REST API.
+You can use the following API calls to perform a variety of tasks within your company's Portal pages. Click any call name to view more information.
+Call Name
+Description
+Execute Crosstab
+Runs the specified crosstab report.
+Crosstab Configuration
+Retrieves any crosstab segments and global weighting variables configured for the specified survey.
+Table Settings
+Resets all crosstab tables to the default state for the specified survey.
+Saved Reports
+Retrieves a list of all saved reports for the specified survey.
+Run Saved Report
+Runs the specified saved crosstab report.
+Export Saved Report
+Exports the specified crosstab report.
+Add Weights
+Creates and computes the specified weighting scheme.
+Validate Logic
+Checks whether a piece of logic is a valid Crosstabs condition.
+Table Nets
+Creates or updates nets for crosstab tables.
+Note: By default, API calls in the shell output information directly to the console screen. If you want to reuse that output, you will want to save it to a file.
+Note: If you are using a web call method to access the API, you will need to have a way of providing your API key. See Decipher REST API for more information.
+Note: You will need to change v2.decipherinc.com to the domain that you use to log into the Decipher platform.
+1: Viewing Returned Data
+You can use the global select parameter to retrieve a subset of any GET call's returned data. You can pass in select as an argument set to a comma-separated list of properties to return.
+For example, select=id, login, active will only retrieve these three specific fields when calling in the User List API:
+beacon get rh/users select=id,login,active
+Note: The select parameter should only be used on GET method API calls to filter information retrieved via an API call, and not information that you send (e.g., via a PUT or POST method) to Decipher.

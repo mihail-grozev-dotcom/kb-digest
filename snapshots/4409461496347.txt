@@ -1,0 +1,115 @@
+Title: Reusable Answer List Element
+The Reusable Answer List element allows you to save the response options you create within one survey element for use in other elements.
+1: Adding a Reusable Answer List in the Survey Editor
+To add a reusable answer list in the Survey Editor, you must first create the answer list by adding and configuring a Reusable Answer List element, or by copying answer options directly from an existing survey element.
+1.1: Adding the Reusable Answer List Element
+To add a Reusable Answer List element, first click the "+ Element" button to add a new survey element. Then click "Logic Elements" under Question Types and select the "Reusable Answer List" element. Then click "Add".
+1.1.1: Copying Answer Options from an Existing Question
+To create a reusable answer list from an existing survey question, select the element with the desired response list and click "Create Reusable Answer List" from the "Row Actions" drop-down.
+In the list creation module, enter a name for your reusable answer list. Then select all of the response options you would like to add to your list, and click "Create".
+Note: If response options are listed in a group, all of the answers within that group will be included in your selection. Likewise, all selections must be contiguous.
+1.2: Viewing the Reusable Answer List
+Once created, the reusable answer list appears in the element tree, and you can click the list name to review it at any time.
+The Reusable Answer List will include the following details:
+Name: The name of the reusable answer list, which appears in both the element tree and the drop-down menu within the Reusable Answer List element.
+Options: Additional options for saving and using the reusable answer list.
+Answer Actions: Additional options for customizing your response content.
+Answers: The response options included within your reusable answer list. You can edit these responses just as you would for any other survey element. See Adding and Removing a Question or Element to learn more about editing response options in the Survey Editor.
+New Answer: Adds a blank row to input an additional response option.
+Linked Elements: Displays a link to each question that utilizes the reusable answer list. You can use these links to quickly navigate between questions sharing the reusable answer list.
+1.3: Linking the Reusable Answer List to a Question
+After adding a reusable answer list, you can add it to other survey questions by linking them to the list element. To link a question to the list element, click "Insert Reusable Answer List" in the "Row Actions" drop-down for the target question.
+Note: The Reusable Answer List element must exist above the element that uses it.
+Then select the desired list element from the drop-down and click "Insert".
+Once inserted, all of the responses from your reusable answer list appear in the target question, along with options to either "Edit" or "Unlink" the question from the list element.
+These options will have the following effects:
+Edit: Redirects you to the Reusable Answer List element, where you can edit the answer options for all questions linked to the list element.
+Unlink: Keeps the imported response options but unlinks the question from the reusable answer list, allowing you to make changes to the response options as they appear in the current element without affecting any other questions linked to the reusable answer list.
+Note: Once questions are unlinked, they will not reflect any changes made within the Reusable Answer List element. Be sure to re-insert answer lists for any questions you want to tie to the reusable answer list after making question-specific changes.
+1.4: Editing the Reusable Answer List
+You can edit your reusable answer list just as you would edit other survey elements, and any changes you make to the "Answers" rows will be applied to all questions linked to the Reusable Answer List element (elements listed under "Linked Elements").
+1.5: Limitations
+When adding a reusable answer list in the Survey Editor, you are unable to perform the following actions:
+Exclude individual response options from the list; however, these options can be removed once the reusable answer list has been inserted
+Specify which attributes to strip; however, the Survey Editor does automatically add values that can later be used for stripping.
+Reference the answer list’s response options in a loop source; however, these options can manually be added to loops.
+2: Adding a Reusable Answer List in the XML Editor
+To add a reusable answer list in the XML Editor, you must add two new elements to the XML: the <define> tag, which is the template for the list, and the <insert> tag, which is added to the element that will display the answers. The <define> tag must be declared before being used, and only one <insert> tag is allowed per answer axis per element.
+2.1: Creating the Reusable Answer List
+First, add the <define> tag to define the reusable answer list. The following attributes can be used with the <define> tag:
+label (string) - the unique identifier.
+builder:title (string) - text used for name of element in Survey Editor.
+builderHint (string) - the list of elements that previously contained an <insert> referencing this element.
+Additionally, the <define> allows use of the following children:
+<row>
+<group>
+2.1.1: Example
+The code below illustrates how to structure a reusable answer list using <define>.
+<define label="p1" builder:title="Brand list 1"
+builderHint="{&quot;unlinked&quot;:[]}">
+<row label="p1r1">Brand 1</row>
+<row label="p1r2">Brand 2</row>
+<row label="p1r3">Brand 3</row>
+<row label="p1r4">Brand 4</row>
+</define>
+2.2: Linking the Answer List to a Question
+Next, link the reusable answer list to a survey question by adding the <insert> tag to that question. The following attributes can be used with the <insert> tag:
+source (label) - the label of the <define> to insert.
+as (ienum/rows,cols,choices) - the cell type to non-group cells as. Default: rows.
+exclude (slist) - list of cell labels to exclude.
+strip (slist) - list of attributes to strip from the expanded cells.
+2.2.1: Example
+The code below illustrates how to insert a reusable answer list to target question "q1" as rows, and to question "q3" as columns. The "q3" column also uses the new option reverse for values:
+<define label="p1" builder:title="Brand list 1" builderHint="{&quot;unlinked&quot;:[]}">
+<row label="p1r1">Brand 1</row>
+<row label="p1r2">Brand 2</row>
+<row label="p1r3">Brand 3</row>
+<row label="p1r4">Brand 4</row>
+</define>
+<checkbox
+label="q1"
+atleast="1"
+shuffle="rows">
+<title>Which of these Brands have you heard off?</title>
+<comment>Select all that apply</comment>
+<insert source="p1"/>
+<row label="r5" exclusive="1" randomize="0">NA</row>
+</checkbox>
+<suspend/>
+<checkbox
+label="q2"
+atleast="1"
+rowCond="q1[row.index]"
+shuffle="rows"
+shuffleBy="q1">
+<title>Which of these Brands have you used?</title>
+<comment>Select all that apply</comment>
+<insert source="p1"/>
+<row label="r5" cond="1" randomize="0">NA</row>
+</checkbox>
+<suspend/>
+<radio
+label="q3"
+averages="rows"
+grouping="cols"
+shuffle="cols"
+type="rating"
+values="reverse"
+colCond="q2[col.index]">
+<title>Please rate these Brands</title>
+<comment>Select one for each option</comment>
+<exec>
+q3.cols.order = q1.rows.order
+</exec>
+<insert as="cols" source="p1"/>
+<row label="r1">Excellent</row>
+<row label="r2">Very good</row>
+<row label="r3">Good</row>
+<row label="r4">Fair</row>
+<row label="r5">Poor</row>
+</radio>
+2.3: Limitations
+The following limitations apply to any reusable answer lists created using XML:
+<define> attributes are not allowed within <loop> tags.
+Labels are not changed when inserting tags into a different axis; however, you can use onLoad to modify this.
+Note: Adding onload will only work in a non-secure survey environment.

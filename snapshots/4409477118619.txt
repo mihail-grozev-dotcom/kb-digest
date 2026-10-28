@@ -1,0 +1,1637 @@
+Title: Glossary
+The glossary for all market research & survey-related information.
+1: Overview
+Use this document to look up and reference terms relative to the market research industry and survey programming at Decipher. This document is constantly growing with new information.
+Use CTRL + F to Find what you're looking for.
+2: Glossary (A-Z)
+Click on a letter in the table of contents to visit that section.
+A
+A Priori Segmentation:
+Market segmentation which is not empirically based. It involves segmenting markets on the basis of assumptions, custom or hunches.
+Accuracy:
+The ability of a measurement to match the actual value of the quantity being measured.
+Ad Blocker:
+Ad blockers prevent an Internet browser from displaying online advertisements. However, ad blockers can prevent useful Internet browsing functions.
+Ad Concept Testing:
+Testing on a target market segment employed to evaluate advertising theme concepts. The testing results can determine the most appropriate pricing, brand concepts, appeals, and positioning strategy concepts. Respondents provide responses to questionnaires, surveys or interviews.
+Ad Hoc Surveys:
+A developed survey for the target audience with no previous contact by the examiner.
+Ad Recall:
+This measures a participant’s recollection or recall of an advertisement. The participant’s answers provide insight to the most memorable attribute of the advertisement. Generally, ad recall is requested immediately after the participant views the advertisement. Recall is lessened over time.
+Ad Tracking Research:
+A study tracking an advertisement over time. The performance of the advertisement is reported throughout the duration of the study.
+Adaptive Conjoint Analysis (ACA):
+Sawtooth Software enhances traditional conjoint analysis with Adaptive Conjoint Analysis. The software measures the participant’s answers to the initial interview questions. Based upon these initial responses, the software adapts and focuses on subject matter most valued by the participant. This method overcomes burdening the participant with extraneous information which can reduce the participant’s attention span.
+Aggregate:
+The rows or columns with aggregate="1" specified will not be counted when averages, standard deviation and means are calculated.
+Algorithm:
+A procedure or formula for solving a problem. Algorithms can perform a calculation, process data, or even perform automated reasoning.
+Allowable Sampling Error:
+An acceptable amount of error during the research.
+Alternative Hypothesis:
+A statement of what a statistical hypothesis test is set up to establish. The test result is communicated by rejecting the null hypothesis in favor of the alternative hypothesis or not rejecting the null hypothesis. The test does not reach an acceptance or rejection of the alternative hypothesis.
+American Standard Code of Information Interchange (ASCII):
+Code used for transmitting data from one database to another.
+Anthropomorphic:
+A research method requiring participants to assign human like characteristics to inanimate objects, animals or forces of nature.
+Applet:
+Applets typically are Java programs that can display interactive animation, execute immediate calculations, and provide more uses for a market research questionnaire.
+Application Service Provider (ASP):
+An ASP is a company that hosts services, products and applications on their server. Individuals then can purchase a subscription to access those services, products and applications hosted on the server.
+Applied Research:
+Research directed toward a current need. The purpose of the research is to discover results that can be applied to the need.
+Area Samples:
+A sample design targeting specific geographic areas.
+Attitude, Awareness & Usage (AAU) Study:
+A market research tracking study recording changes in consumer attitudes, awareness and usage levels for a product category or specific brand.
+Attitudinal Scaling:
+A two dimensional technique in which the participant determines the two most important characteristics of a product.
+Audio Computer-Aided Self-Administered Interviewing (ACASI):
+A survey that the participant self-administers by listening to the interview with computer aided audio. The participant’s interview answers are typically recorded via a computer questionnaire. Related terms: Audio SAQ
+Audit:
+The examination of the marketing plan. The marketing plan is researched before and during implementation. Internal and external influences are evaluated allowing for plan adjustment.
+Augment:
+This is the process of increasing the amount of research interviews for a particular subgroup within the population. If the client requires 30 completed surveys from Hispanic males and only 20 were completed from the initial research, an augment of 10 surveys of Hispanic males would be conducted.
+Autocorrelation:
+The same variable is observed over time. The observations produce different values which are correlated.
+Awareness:
+The familiarity of a product, brand name, company, new concept or trademark.
+B
+B2B Exchanges:
+Online market places where businesses can offer specific companies products or services at discounted prices, products or services through an auction, and buyers can receive tentative bids. The most successful B2B exchanges are with products that can be easily interchanged. It is predicted, however, that more services will begin to be offered through these exchanges which could include the fieldwork for market research.
+Baby Boom:
+Currently America's largest generation consisting of Americans born after World War II (1946-1964).
+Baby Boomlet:
+Children of baby boomers that lead to the peak of births from 1977 to the present.
+Baby Bust:
+The generation referred to as "generation X" when birth rates were dramatically lowered from 1965-1976.
+Back Checking:
+The participants is contacted after the research and questioned about the interview and the interviewer. This process authenticates the collected data by ensuring responses were provided by the actual participant.
+Balanced Scales:
+This is the column data set in a cross tab computer table.
+Banner Point:
+These are descriptive vertical headings of data breakouts.
+Base:
+The number used to compute percentages in a table.
+Baseline Market Segmentation Study:
+The first segmentation study conducted by an organization which will act as the initial state of the segment and will be compared to future studies.
+Basic Research:
+Research conducted to gain knowledge as opposed to research aimed to solve specific problems.
+Bayesian Statistics:
+Probability calculations that are derived from statistics which include both previous knowledge as well as accumulated experience.
+Behavioral Component of Attitude:
+A consumer's reaction, both mental and physical, toward a product or event.
+Benchmark:
+An existing source used as a target to compare to a similar project or product.
+Benefit Segmentation:
+These are specific subsets of a population based upon their needs and desires rather than on lifestyle of demographic measurements.
+Bernoulli Response Variables:
+Responses that consist require the choice of one out of two possibilities. Examples would be yes/no or on/off questions.
+Bias:
+A misrepresentation of the population from the taken sample. Question wording, data entry, interviewing techniques, and a non-representative sample can all cause biases.
+Biased Sample:
+The research sample contains inequal unit proportions to the population unit of interest.
+Bimodal:
+A two-peaked frequency curve distribution. A mode consists of a single peak.
+Binomial Experiment:
+A study that independently draws from the Bemoulli population to create a sequence of trials.
+Bipolar Scale:
+A measuring tool spanning two negative points at opposite ends of the spectrum with an ideal situation placed in the middle. Examples include soft/hard, too spicy/too bland.
+Birth Rate:
+A population measurement noting the births in a year for every 1,000 in the population.
+Bivariate Data Set:
+An experiment where units are subject to be tested on two different variables.
+Bivariate Regression Analysis:
+A linear regression line created to determine the strength of the relationship of two variables, an independent and dependent variable.
+Bivariate Techniques:
+Multiple statistical strategies to analyze how two variables relate to one another.
+Blind Study:
+The brand or product is hidden from the participant during the testing.
+Boundary:
+The perimeter that defines the market area that is being researched.
+Box Plot:
+A visual tool used to graph the data and exposed outliers.
+Brand:
+The physical attributes of a product or service, together with the beliefs and expectations surrounding it. A unique combination which the name or logo of the product or service should evoke in the mind of the audience.
+Brand Associations:
+Consumer opinions of brand that are generally exposed and analyzed by qualitative research.
+Brand Equity:
+A company's level of awareness as well as consumer goodwill determined by consumer's views of company brand and/or products.
+Brand Extension:
+The development of new products to be marketed under an existing brand name.
+Brand Impact:
+A technique used to measure the effectiveness of advertising.
+Brand Switching:
+A consumer that purchases multiple brands of a product. For example, a consumer that purchases Pepsi one week and Coke the next week.
+Brand Value:
+The value which a brand would be given if represented on a company balance sheet.
+Break Off (aka Drop Out):
+The participant decides to terminate the research interview before completion. This is more common for self-administered surveys than it is with research conducted by an actual interviewer.
+Bricks and Mortar:
+A company which requires consumers to travel to a physical location in order to have access to the company's products or services. Companies that also operate online are often called clicks and mortar companies. Pure plays refer to companies that exist solely on the Internet.
+Briefing:
+A discussion between a client and the assigned researcher designed to find the most efficient research methodology for the client's needs.
+Business Intelligence:
+Information considered for company planning, strategy and decision making. Business Intelligence relies upon data analytic tools and data mining solutions.
+Business to Business (B2B):
+Refers to the buyer and seller of a product or service. This market consists of a business selling its product or service to another business instead of selling to consumers. Specific market research is conducted with businesses to meet B2B needs.
+Business to Consumer (B2C):
+Describes the market of a business selling a product or service to a consumer. To service B2C markets, consumers are studied in market research.
+Buying Behavior:
+A process buyers go through when deciding whether or not to purchase goods or services. Buying behavior can be influenced by a variety of external factors and motivations, including marketing activity.
+Buying Intent:
+A technique used to measure the level of which a participant intents to buy a particular product.
+C
+Callback:
+Pursuing contact with a person that was not contacted on the first attempt or used to describe a follow-up with someone where contact was established (after an interview).
+Cartoon Tests:
+A technique that allows participants to compose dialogue for a drawn character within a cartoon.
+Categorical Data:
+Responses with no numeric value to one another. Such response could be hair color, or eye color.
+Category Usage:
+Certain products or services among a population requiring a study. This is an incident rate for that product or service. For example, the category usage of powder laundry detergent is 40% of the population that uses laundry detergent.
+Causal Research:
+Research that attempts to explain the relationship between two variables (if A cause s B to occur).
+Causation:
+The conditional statement of inferring that the change in a single variable is responsible for a resulting change in another variable.
+Cell Size:
+The most basic unit that can be varied during a study.
+Census:
+A survey that is administered to an entire population.
+Census Areas:
+Zones identified by the United States Census Bureau. There are four census regions and nine census divisions.
+Census Divisions:
+The groups of states that are included in the nine census divisions are: 1. Pacific: Alaska, California, Hawaii, Oregon, & Washington 2. Mountain: Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah & Wyoming 3. West North Central: Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota & South Dakota 4. East North Central: Illinois, Indiana, Michigan, Ohio & Wisconsin 5. West South Central: Arkansas, Louisiana, Oklahoma & Texas 6. East South Central: Alabama, Kentucky, Mississippi & Tennessee 7. South Atlantic: West Virginia, Delaware, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia & Washington, DC 8. Middle Atlantic: New Jersey, New York, Pennsylvania & Rhode Island 9. New England: Connecticut, Maine, Massachusetts, New Hampshire & Vermont.
+Census Regions:
+The groups of states that are included in the four census regions are: 1. West: Washington, Oregon, California, Idaho, Montana, Wyoming, Colorado, New Mexico, Arizona, Utah, and Nevada 2. Midwest: North Dakota, South Dakota, Nebraska, Kansas, Missouri, Iowa, Minnesota, Wisconsin, Illinois, Indiana, Ohio, and Michigan 3. South: Texas, Oklahoma, Arkansas, Louisiana, Mississippi, Alabama, Florida, Georgia, South Carolina, North Carolina, Virginia, Washington, DC, Maryland, West Virginia, Kentucky, Delaware, and Tennessee 4. Northeast: Pennsylvania, New Jersey, New York, Connecticut, Rhode Island, Massachusetts, Vermont, New Hampshire, and Maine.
+Census Tract:
+Segments that identify similar social and economic households within the ZIP code group. Tracts usually include 2,500 to 8,000 households.
+Census Undercount:
+Percentage of Americans that were not accounted for by the census due to not answering the census.
+Central Limit Theorem:
+Theory that states that if you have a collection of a large number of sample means, the means will have a normal distribution regardless of the population used for the sample.
+Central-Location Study:
+A study that takes place at a physical site that is convenient for all participants to access.
+Checkbox:
+A question type that allows multiple selections.
+Chi-Square:
+A statistical test that measures significance of the accuracy between the expected distribution and the observed distribution.
+Children's Online Privacy Protection Act (COPPA):
+A 1998 law passed in the United States that protects children on the Internet by setting guidelines and regulations for websites that attract children or could deal with children of the United States in fashion.
+Children's Online Privacy Protection Rule (COPPR):
+The rules that outline the regulation used for COPPA. An example is the rule that requires privacy statements to be linked on all websites that children of the United States might visit.
+Choice Modeling:
+Discrete choice analysis involves conjoint research in which the results must match closely with the current market responses.
+Choropleth Maps:
+Maps that use shading to specify certain characteristics in geographical areas with colors and shading.
+Churn:
+This is the amount of participants that leave a panel during a specific time frame.
+Clarifying:
+A technique used to follow up on open-ended responses by asking participants to further explain their response to make it clearer. Can also be referred to as probing.
+Click Rate:
+A percentage measuring the amount of people that click on an ad compared to the amount of people that are exposed to the ad.
+Clicks and Mortar:
+These are companies that exist both in a physical location and on the Internet. E-tailers are clicks and mortar companies if they use both stores and websites to conduct business, but are considered pure-play if they only exist online. Clicks and mortar evolved from the terms bricks and mortar which describes physical location stores only.
+Clinical Focus Groups:
+Focus groups that are looking to expose a consumer's behaviors and the moderator uses techniques to explore the participants subconscious motivation.
+Closed-End Question:
+A question that offers the participant answers from which they must choose from.
+Cluster:
+Describes a group of homes that are assumed to have similar demographic, social, and economic characteristics as one another within a neighborhood.
+Cluster Analysis:
+A statistical technique that helps in determining which category individuals of a population belong to. Multiple characteristics are used to determine the groups, and differences within a category need to be less than differences between categories. Cluster analysis is a good demographic tool for consumer segmentation in marketing research.
+Cluster Sampling:
+Consists of selecting clusters of units in a population and then performing a census on each cluster. The selection of clusters could be based on some desired feature of the population or could be a random sample of clusters in the population.
+Coding:
+A process used to quantify data so that it can be used to statistical analysis and data processing.
+Coefficient of Determination:
+A statistics term used with regression. The coefficient represents the percentage that the independent variable explains in the dependent variable.
+Cognitive Component of Attitudes:
+The interpretation of a particular attitude projected at a person, object, or event.
+Cognitive Dissonance:
+The emotion that runs through a consumer after they have made a major purchase and begin to rethink their purchase when new alternatives are exposed. Consumers will try to rationalize their purchase by focusing on the advantages to the product that they bought.
+Cohort:
+Those in a study with similar demographic characteristics.
+Cohort Measures:
+Recording and analyzing a cohort's activities for an extended period of time.
+Collinearity:
+A bias in statistical procedure due to the correlation of multiple independent variables that influence a single dependent variable. This makes it difficult to recognize which independent variable is really causing the change in the dependent variable.
+Comparative Scales:
+Scales that require participants to judge an object, concept, or person as compared to another in the same category.
+Complement of Event "A":
+A group containing all events that do not occur in event A.
+Completes:
+Interviews that have been completed.
+Completion Rate:
+A percentage representing the number of qualified participants involved with completed interviews or surveys.
+Computer-Aided Personal Interviewing (CAPI):
+An interview that is administered through a computer-based survey.
+Computer-Aided Self-Administered Interviewing (CASI):
+A computer-based survey that participants complete usually at a central location after being recruited.
+Computer-Aided Telephone Interviewing (CATI):
+Interviews that are conducted over the telephone between a consumer and a computer.
+Computer-Aided Web Interviewing (CAWI):
+A form of interviewing that is conducted over the Internet.
+Concentric Circle:
+A geometric study area with a common center. Also called a ring.
+Concept Description:
+The brief summary to describe a new product or service.
+Concept Testing:
+Gauging market responses new ideas or their implementation.
+Conceptual Mapping:
+A qualitative technique used to understand how participants view products or services by asking them to assign the products/services to certain areas of a diagram. Primarily this is used to stimulate a discussion on the certain products or services and why they are viewed a particular way.
+Conclusions:
+The findings that are presented in the final report of a research project. A conclusion usually includes an explanation of what was uncovered by the conducted research.
+Concomitant Variation:
+The observed relationship between causes and effects and the degree to which they occur together.
+Concurrent Validity:
+Using past results to predict a current very similar project because of valid measurement techniques.
+Conditional Probability:
+Additional information offered that changes the initial probability of an event occurring.
+Confidence Intervals:
+A statistical range that is placed to ensure that the true population parameter will be included in the survey results.
+Confidence Level:
+A probability that is used to determine, with confidence, that the true population value is represented in the statistical distribution.
+Confounded:
+The result of an independent and an extraneous variable indistinguishably affecting a dependent variable. Control groups are often used to prevent confounding in research.
+Conjoint Analysis:
+A way to quantify consumer's values associated with different product attributes using multivariate techniques. Participants compare products to establish preferences and can then explain the importance of different attributes. Functional brands benefit more from conjoint analysis than do fashionable brands as the analysis relies on utility theory and consumer rationality. There are several conjoint analysis tools.
+Conjoint Association:
+A technique that allows moderators to present hypothetical products or services with different attributes to participants in an effort to stimulate conversation on the importance of certain attributes to products or services to help the researchers understand the value associated with each attribute.
+Consolidated Metropolitan Statistical Area (CMSA):
+A group made up of primary metropolitan statistical areas (PMSA), examples include Minneapolis-St. Paul. CMSAs can be subdivided into metropolitan statistical areas (MSAs).
+Constant Sum Scales:
+Scales asking participants to assign their individual values perceptions of certain attributes so that the sum of all attribute values equals a certain number of points (100 is a common number).
+Constitutive Definition:
+A construct is defined by other constructs in the set and the relationship that occurs between the constructs. This helps in setting boundaries for constructs.
+Construct:
+An idea that powers research, for example, hypotheses or concepts are considered constructs.
+Construct Validity:
+The accuracy of the construct, determined by observations and measurements, that allows legitimate inferences to be made from the construct.
+Consumer Behavior:
+The buying trends and habits of consumers in the purchasing and usage of goods and services.
+Consumer Drawings:
+A qualitative method in which participants are asked to express their feelings or perceptions about a product by drawing it.
+Consumer Expenditure:
+The dollar amount that expresses what consumers put toward a purchase on goods and services.
+Consumer Expenditure Survey (CEX):
+An ongoing survey administered by the Bureau of Labor Statistics that monitors consumer expenditures.
+Consumer Orientation:
+After identifying target markets, it is the process of finding specific firms or individuals that might be interested in purchasing the company's product or service.
+Consumer Price Index (CPI):
+A way of measuring inflation that is computed by taking a basket of goods and services and determining the price of those goods and services in a base year and the current price. The values can then be compared over several years to determine the increase in nominal value of the goods and services.
+Consumer Unit:
+A household represented by an individual, related families, or unrelated roommates that make consumer purchasing decisions together.
+Contact:
+When the interviewer has actual interaction with a potential research participant.
+Contact Rate:
+This is the amount of participants reached for a survey that are responsible members of the household.
+Contamination:
+A sample group that possesses an individual or group that does not represent the population.
+Content Analysis:
+A process used to examine a prepared report based on predetermined criteria to ensure that all required information is included in the write-up. Content analysis is often applied to advertising copy.
+Content Integration:
+The act of combining advertising information with actual web content rather than placing an ad on the site. An example would be to write a report featuring an advertiser to gain exposure for the advertising company by mentioning it and talking about its features.
+Continuous Variable:
+A variable that has the potential to represent infinite numbers falling between a given interval. Continuous variables are usually used as part of a measuring process. Grade Point Averages are continuous variables (can exist anywhere between 0.0 and 4.0).
+Control & Test:
+Two study groups are comprised of members from a similar population. One study group will interact with a stimulus while the second study group will not receive that stimulus. The first group is the test group, and the second group is the control group.
+Control Cell:
+Otherwise known as the control group. The control cell does not receive the stimulus that the test group receives. The control cell is compared to the results of the test group.
+Controlled Substitutions:
+Replacing current subjects in a study with a different subject that is consistent with the parameters of the initial subject.
+Convenience Sample:
+A non-random sample that is collected based on those units that are made easily available to the researchers. There are no quotas or qualifications necessary for sample selection in a convenience sample.
+Convergent Validity:
+Understanding how constructs that should be related to one another actually are related to one another through measurement processes that prove the relationships.
+Co-op Payment:
+Compensation paid to research participants as an incentive for participation in focus groups, interviews, or surveys. The difficulty level of recruiting participants correlates to the amount that participants receive. Also referred to as an honorarium or incentive.
+Cooperation Rate:
+The percentage of qualified participants that actually participate in the research project. The cooperation rate is subject to the research topic, length of interview and other various factors.
+Copy Testing:
+The process of determining the level of understanding, impact, awareness and credibility that your advertisement generates.
+Corporate Marketing Research Department:
+An internal department that conducts research in order to sustain and improve their company's marketing effectiveness.
+Correlation Analysis:
+A statistical technique that helps in determining the strength of the relationship between variables.
+Cost Per Interview (CPI):
+The dollar value of completing an interview in a survey research project.
+Council of American Survey Research Organizations (CASRO):
+CASRO is a trade organization for survey research. They provide guidelines, codes of ethics and much more.
+CPH:
+Completes per hour.
+Criterion Related Validity:
+The effectiveness of forecasting a criterion variable using a measurement instrument.
+Criterion Variables:
+Variables in a study that the researchers are examining in an effort to understand the causes behind past performances as well as predicting future results. Can be called the dependent variable as well.
+Critical Industry Restriction:
+Respondents might be disqualified for the survey research based upon their industry of employment. It is typical that the research study excludes those participants that are employed in the industry related to the research subject matter.
+Cross-Elasticity:
+Consumer behavior that proves which products are acceptable substitutes for one another. Marketers attempt to reduce cross-elasticity by differentiating their products and by establishing brand equity.
+Cross-Tabulation:
+A process used to analyze data that attempts to better understand the results of a survey by comparing the answers of one question to the way each participant answered one or more questions on the rest of the survey. Crosstabs can generate statistical outputs from research tables.
+Current Population Survey (CPS):
+A monthly survey administered by the United States Census Bureau to 60,000 households in an effort to monitor changes that occur between the decennial censuses.
+Custom Marketing Research:
+Market research that is tailored to a specific client's needs.
+Customer Relationship Management/Marketing (CRM):
+A method of identifying and creating a relationship with long-term customers through customer service techniques that track information about a given customer such as their activities and preferences.
+Customer Satisfaction Research:
+Conducted research to better understand how satisfied customers are with particular products or services and the attributes of the product or service.
+D
+Data:
+A set of observations.
+Data Collection:
+The process of collecting market research data. Data collection is accomplished through interviewing and surveying.
+Data Entry:
+The organizing procedure that allows for the collection of data to be analyzed. The process involves recording, classifying, sorting, summarizing, calculating, disseminating and storing data.
+Data Mining:
+Data mining is the ability to query large data sets. This requires advanced skills and is a promising solution.
+Data Processing:
+Research that attempts to explain the relationship between two variables (if A cause s B to occur).
+Data Protection:
+National and international laws that cover the appropriate and required methods to be used in protecting data privacy. Organizations also have guidelines to be followed for data privacy, in which companies must adhere to the guidelines in order to be associated with the organization (ESOMAR/ARF).
+Data User News:
+The United States Census Bureau's monthly newsletter.
+Data Warehouse:
+A data warehouse is a massive collection of essential business intelligence. The use of data warehouse is evolving to include operational and analytic data.
+Database Management Software:
+Computer-run software that manages data and allows for saving and updating the data so that the data can effectively be used and manipulated at a later date.
+Datatset:
+The raw data obtained from a survey.
+Day-After Recall:
+A measurement tool for advertisers that measures a proportion of the population that remembers a specific television ad within 24 hours of its initial airing.
+Daytime Population:
+The population during the daytime hours in a particular area as opposed to those that live in a particular area (measured by the United States Census Bureau).
+Decennial Census:
+A census that is conducted every ten years during the beginning of the decade.
+Deduping:
+Removing potential participants from the research sample.
+Deliberated Poll:
+Respondents are polled twice to measure changes in opinion. The first poll gauges their overall opinions. The participants then are provided some more information relevant to the topic and are then polled for a second time. Changes in opinion are then examined.
+Delphi Technique:
+A long-term forecasting technique that allows for expert judgment without empirical data. There are three stages to this technique. First, experts are anonymously polled. Next, the results are distributed to the group of experts who are then individually polled again after seeing their colleague's opinions. The process is repeated until the group arrives at a general consensus about the issue at hand.
+Demand Bias:
+Corruption of the research when the participants assume to know or actually know the research agenda. This can occur when the research sponsor is revealed to the participants.
+Demographics:
+Statistics that describe a population's objective or quantifiable characteristics. Examples of demographics include age, sex, birth and mortality rates, income, marital status, occupation, and household characteristics.
+Demography:
+The study of an area's characteristics which include its size, structure and changes to specific populations.
+Density:
+A measurement to identify the crowdedness in a given area by computing the total population of the geographic unit and dividing it by the land area (usually in miles or kilometers).
+Dependent Variable:
+A concept that's value changes as an independent variable changes. Statistics are used to explain the strength of the relationship between the two variables. Can also be called a criterion variable.
+Depth Interview:
+Interviews that exist between a participant and an interviewer in which the interviewer asks probing questions to really understand the participants motivations by using nondirective techniques.
+Descriptive Function:
+Data that is collected to provide facts rather than causal or exploratory research.
+Descriptive Studies:
+Studies that cover the basic who, what, when, where, and how questions.
+Design Control:
+A pre-experiment set-up designed to reduce or eliminate extraneous causal factors.
+Designated Marketing Area (DMA):
+An area that represents the way that NPD/Nielsen measures its television market audiences.
+Dev Question:
+A question that is not seen by the participant used to store extra information as the participant takes the online survey. Questions that have where="dev" or where="execute" specified are considered "dev questions" or "hidden questions".
+Diagnostic Function:
+A diagnosis or identification of a problem that is supported by data or actions.
+Diary Panel:
+A group of participants that are asked to keep journals on their buying, watching, or listening habits over a period of time.
+Dichotomous Questions:
+Questions that offer only two possible responses. An example would be yes or no question.
+Digital Signatures:
+A way to electronically prove the sender of an email or electronic document. The digital signatures authenticate the sender and can therefore legally endorse contracts and agreements.
+Digitizing:
+A system that involves identifying coordinates of a market area as latitude and longitude, and then being able to return and re-identify each twist and turn that the market makes.
+Direct Computer Interviewing:
+Interviews that are conducted entirely on a computer (questions are asked and responses are accepted). Respondents are usually recruited and complete the interview at a central location.
+Directory Database:
+A collection of data that is kept in an index or directory so that that it can be easily revisited.
+Disappointment Score:
+Study results that reveal the proportion of participants that claim that they would not buy a product even after trying that product.
+Discrete Variable:
+A quantitative variable that has a set amount of possibilities as opposed to continuous variables which have an infinite set. An example would be the number of individuals in a family.
+Discretionary Income:
+An individual's income after taxes and necessities are accounted for. This amount is available for consumer spending and is also referred to as disposable income.
+Discriminant Analysis:
+A technique used to understand a set of independent variables and their ability to predict outcomes of dependent variables.
+Discriminant Coefficient:
+The value that is placed in front of the independent variable and describes the level of affect that the variable carries.
+Discriminant Score:
+A value that is assigned to an object which then determines which group the object will belong to.
+Discriminant Validity:
+The idea that two constructs that are supposed to be different are in fact observed to be different.
+Discussion Guide:
+An outline for the focus group moderator to be sure that all necessary topics are addressed. Can also be called a moderator guide.
+Discussion Question:
+An open-ended question that does not have a set amount of responses available, but allows the participant to share all that comes to mind in order for them to answer the question in their own words.
+Disguised Observation:
+An observation in which the people, objects, or occurrences do not know that they are being monitored.
+Disk-by-Mail (DBM):
+A survey that is distributed through the mail by a disk, and participants complete the survey on their own computers.
+Disposable Income:
+The amount of money that individuals have after removing taxes and other required payments. Disposable income is then available to spend as the consumer wishes. See also discretionary income.
+Disproportional or Optimal Allocation:
+Sampling that attempts to represent the true population by means of proportions of individuals with given characteristics. Disproportional refers to a non-representative sample and optimal refers to a well represented sample.
+Distribution Check:
+The ability to study a particular product and have information available for the product such as how many stores carry it, the number of facings, special displays, and the prices associated with the particular product.
+Door-to-Door Interviewing:
+Interviews that are conducted face to face in the consumer's homes.
+Double Jeopardy:
+A reality for small brands in which their products are purchased less frequently and by a smaller group of people.
+Double Sampling:
+A sample that is pulled from an existing larger sample because of the inexpensive first sample. The sub-sample is then selected from the larger sample based on desired population characteristics.
+Drop Off/Out:
+Respondents that leave the survey prior to termination or survey completion.
+Dropout Rate:
+The is the amount of participants that start a research survey, but these participants cannot be identified as completing the survey, being screened out, or are members of the over quota.
+Duplicate Number Validation:
+A procedure used during focus group recruiting that collects names and phone numbers for future focus group participants, and verifies that the screened individual has not participated recently in more focus groups than what is desired.
+Dyad:
+Qualitative research where two participants are being interviewed by a single interviewer. This method of research is common when the participants are relatively equal as far as their ability to make purchase decisions for a company.
+E
+E-Spread:
+The distance between the first and seventh sample eighths.
+E-Tailer:
+An online retailer that exists only online and does not have a physical store location.
+Editing:
+A system of checking and verifying that questionnaires were properly completed and accurate to the participant’s best knowledge.
+Efficiency:
+The ability of the sample to truly represent a population.
+Elasticity:
+A measurement that explains the volume of the shift in a single variable as a response to movement of another variable.
+Electroencephalogram (EEG):
+A device used to measure and record electrical activity in one’s brain.
+Electronic Data Interchange (EDI):
+EDI is a well-established form of electronic commerce that has traditionally taken place over proprietary networks. One way of reducing the cost of EDI, and making it more accessible to smaller companies, is to migrate EDI standards to the Internet, various systems are currently competing to offer this service.
+Electronic Data Processing (EDP) Systems:
+Computer processing that is able to manipulate raw data and uncover relationships with little intrinsic value. Declarative and summary reports can be produced using electronic data processing.
+Element Sampling:
+Random sampling which gives an equal chance to each unit of a population of being selected.
+Enumeration Districts (EDs):
+Areas that are defined by the Census and generally contain 500 inhabitants.
+Epsem Sample:
+A sample that allows each unit the same probability of being selected (with non-zero probabilities).
+Equivalent Form Reliability:
+A testing method using two similar instruments to obtain the same or very similar measurements of a single object.
+Error Checking Routines:
+Computer programs that accept instructions from the user to check for logical errors in the data.
+Error Sum of Squares:
+Any variation that is not known to be caused by regression.
+ESOMAR:
+ESOMAR is the European based international association of market researchers. Amongst many other activities, ESOMAR issues guidelines on the conduct of market research, and these guidelines are binding on it members. These guidelines include sections on using the Internet for market research.
+ESOMAR/ARF Internet Guidelines:
+The most important guidelines for researchers using the Internet are those provided by ESOMAR and ARF. These rules include guidance on providing Privacy Policies, of the special rules for interviewing children, and the need to avoid spam. The guidelines can be downloaded from ESOMAR.
+Estimate:
+A value that is projected to a population’s parameter after examining a statistical sample.
+Evaluate Research:
+A research process used to identify the levels of effectiveness and efficiency in certain programs.
+Event (simple):
+A sample’s subset. Events that are simple contain only a single outcome as a result of that event. An example would be in rolling a die, only a single outcome is allowed, this set of outcomes consists of six simple events (1,2,3,4,5,6).
+Exchange:
+Defined as the prefix (first three numbers) of a telephone number. The numbers represent the town, community or neighborhood that the telephone number is assigned.
+Executive Summary:
+The highlighted conclusion that includes that basis for why the research was performed, the results that concluded from the research and where they will take the company, and what moves the management should make to best react to the research findings.
+Exhibit:
+Anything that is on display during a qualitative discussion with participants. Examples could include posters, advertisements, category lists, or television clips. Exhibits are also referred to as external stimuli.
+Expected Value:
+A probability distribution’s mean value. It represents that value that the sample is expected to take in the long run.
+Experiencing Focus Groups:
+Qualitative research that allows clients to observe and hear consumer’s thoughts and opinions regarding the client’s product or service.
+Experiment:
+A set of observations that are performed in an attempt to solve a question or problem.
+Experimental Design:
+A research design which allows the researcher to manipulate the independent variables and observe the reactions caused by such changes.
+Experimental Effect:
+The result that occurs to the dependent variable after the treatment variable has been altered.
+Experimental Unit:
+The smallest base object that is targeted during an experiment. Can also be referred to as a unit, subject, participant, participant, or unit of analysis.
+Exploratory Focus Groups:
+Qualitative research that brings concepts to a group of people so that they can address customer needs, concepts for new products or evaluate existing products.
+Exploratory Research:
+The most basic level of research that is performed to clarify the exact problem at hand.
+Exponential Smoothing:
+Simply data recorded by time intervals.
+Expressive Drawing:
+A qualitative technique in which the moderator asks the participants to illustrate their feelings toward a particular product or service by creating a picture.
+External Stimuli:
+Physical objects that are presented in focus groups to so that the participant’s reactions can be measured. Also called an exhibit.
+External Validity:
+The reality in which measured causal relationships in an experiment can be applied to uninvolved people, times and settings.
+F
+F-Test:
+A statistical probability test measuring a calculated value’s ability to occur due to chance.
+Face Validity:
+Determining that a measurement truly represents that which it is intended to measure.
+Factor:
+The independent variable which is subject to being manipulated by the researcher so that different results may be observed.
+Factor Analysis:
+A search performed by researchers through rating scales that allow another smaller set of factors or composite variables to emerge and can then identify underlying information.
+Factor Loadings:
+The identified correlation taking place between the original variables and each factor score.
+False Accuracy:
+A misleading statistic that fails to be accurate because of some missing detail. For example, .78 and .7899 represent different probabilities.
+Family:
+Officially defined by the Census Bureau as two or more persons that live together in one household that are related by birth, marriage, or adoption. A one-person household or multiple unrelated persons do not constitute a family.
+Fertility Rate:
+Generally given based on the number of births per year by 1,000 women who are between 15 and 44 years old. A total fertility rate refers to how many live births occurred per 1,000 women at some point in their lifetimes.
+Field Experiments:
+Research conducted in the actual setting environment (i.e. outside of the laboratory).
+Field Management Companies:
+Companies that act as subcontractors to collect data, format questionnaires, and screen write for market research firms.
+Field Service:
+The process of collecting survey data.
+Final Report:
+A complete description of the research for the client after the research has been conducted. A typical report would include a summary of the methodologies used, key findings, and interpretations drawn from the collected data that would aid the company in future success. Recommendations for future action may also be included in this report.
+Findings:
+Reported in the final report as the facts that were uncovered during the research. There should not be an interpretation of the facts in the findings section of the final report.
+Finite Population Correction Factor (FPC):
+A noted adjustment to a required sample size when the sample needs to be greater than or equal to a stated percentage of the total population.
+Fixed Personality Association:
+A qualitative technique used by a moderator where images of people, places, or things are shown to participants and they are then asked to interpret the pictures around a given topic. The same images are shown in several sessions to different participants so that results can be applied as norms.
+Float:
+A variation on the number question type that allows the input of a decimal.
+Focus Group:
+A marketing research technique for qualitative data that involves a small group of people (6-10) that share a common set characteristics (demographics, attitudes, etc.) and participate in a discussion of predetermined topics led by a moderator.
+Focus Group Facility:
+A central location in which focus groups are held. Conference rooms are connected to observation rooms by a two-way mirror so that researchers can observe the participant’s words and actions. Facilities also offer services that might include focus group recruiting, food for participants, competitive product samples, and/or session videotaping.
+Focus Group Moderator:
+The trained professional that leads the focus group and is appointed by the client.
+Forecast:
+An estimate on future occurrences based on past performance data. Projections are often made about trends such as births, deaths, or migration or demographic characteristics as in population growth rates.
+Frame Error:
+An inaccurate or incomplete sample frame that results in an error.
+Frequency:
+The numerical value assigned to how often an event occurs, sometimes within a given time period.
+Fresh Participants:
+Recruits that are participating in a focus group for the first time or have not participated for several years.
+Full Group:
+A focus group comprised of 8 to 10 participants. Mini-groups consist of less than 8 participants.
+Full Text Database:
+An index with access to full text versions of source documents like articles.
+G
+Geocoding:
+Physical addresses are segmented by county, MSA, and postal route in order to compare them with information about the demographics and psychographics of those geographies. Geocoding is integral to demographically-enhanced mailing lists and cluster analysis.
+Geodemographic Segmentation System:
+A multivariate statistical classification technique for discovering whether the individuals of a population fall into different groups by making quantitative comparisons of multiple characteristics.
+Geodemographics:
+An analysis technique combining geographic and demographic variables.
+Geodemography:
+The study of population characteristics set within a spatial context.
+Geographic Information System:
+A business tool for interpreting data that consists of a demographic database, digitized maps, a computer and software.
+Geographics:
+Subdividing a list based on geographic or political subdivisions
+Geometric Study Area:
+A market site in the shape of a concentric circle or polygon that is to be analyzed.
+Graphic Rating Scales:
+Graphic continuums anchored by two extremes presented to participants for evaluation of a concept or object.
+Grid:
+A graphic provided to focus group participants in conceptual mapping and attitudinal scaling exercises.
+Grid Test:
+A means of testing more than one variable at a time.
+Gross Income:
+The total amount of money people have before taxes.
+Group Dynamics:
+Group interaction. An effective moderator can enable group dynamics to promote a beneficial discussion, as well as minimize the potentially negative effects of group dynamics.
+Group Interview:
+A qualitative research technique involving a discussion with a group of participants, led by a moderator. Otherwise known as focus groups, group discussions, panels, and group depth interviews.
+Grouping:
+A way to group rows or columns under a specified header.
+Growth Rate:
+The total increase or decrease in a population during a given period divided by the average population in that period.
+GMI (Global Marketing Insite, Inc.):
+GMI offers an integrated platform of powerful online market research tools that includes online survey software, online panel management, data analysis software, survey programming services and more.
+Guesstimate Questionnaire:
+Individuals are requested to guess the outcome of the research results. Those predictions are then compared to the actual results of the survey to assess how closely perceptions match reality.
+H
+Head of Household:
+An outdated term of the U.S. Census Bureau. Householder, the new term, is the person who completes the Census Questionnaire.
+Health Insurance Portability & Accountability Act:
+HIPAA provides the requirements for security and privacy of health data. Before conducting health care research become familiar with HIPAA.
+Hedonic Scale:
+A scale for measuring general, overall opinion of a product.
+Heteroscedasticity:
+In regression analysis the condition of nonconstant variance.
+Hidden Questions:
+Questions in an online survey that are not seen by the participant.
+History:
+Changes that occur between the beginning and end of an experiment.
+Homogeneous Groups:
+Groups in which the units or individuals have extremely similar characteristics.
+Homoscedasticity:
+In regression analysis it is the condition of constant variance.
+Honorarium:
+The incentive for focus group participants. The amount can vary depending upon on the difficulty of recruiting the participants.
+Hostess:
+The individual responsible for welcoming the focus group participants and for preparing the focus group room. The hostess also provides food for the participants and the client observers, and re-screening participants.
+House to House Distribution:
+Delivery of goods or literature to the consumer's front door or mailbox.
+Household:
+All persons who occupy a housing unit.
+Householder:
+This is the person in whose name the home is owned or rented, or the individual that completed the survey or interview. The U.S. Census Bureau defines the householder as the person who completed the Census Questionnaire.
+Housing Unit:
+A house, apartment, group of rooms, or a single room occupied as separate living quarters.
+HTML:
+Hyper Text Markup Language. Used for publishing hypertext on the World Wide Web.
+Humanistic Inquiry:
+A research method in which the researcher is immersed in the system or group being studied.
+Hypothesis Test of Proportions:
+Test to determine whether the difference between proportions is greater than would be expected because of sampling error.
+I
+Immigration:
+Movement of people from one country to another country.
+In-house Recruiting:
+The focus group recruiting of people who are physically located within the facility.
+Incentive:
+The payment to participants for coming to a focus group or participating in survey research. The amount varies depending upon various circumstances.
+Incidence:
+Any figure referring to the percentage of people in a category.
+Income:
+Wage or salary income; self-employment income; interest, dividend, or net rental income; Social Security income; public assistance income; all other income, which includes unemployment compensation, veterans' payment, pensions, & alimony.
+Independent Samples:
+Measurement of a variable in one population has no effect on the measurement of the variable in the other.
+Independent Variable:
+A variable that is controlled or manipulated by the researcher.
+Interactive Advertising Bureau (IAB):
+The IAB is a US based trade association promotes and regulates Internet advertising.
+Intercept:
+A recruitment method in which an interviewer contacts potential participants in a mall or other public location and administers survey.
+Internal Consistency Reliability:
+Ability to produce similar results using different samples to measure a phenomenon during the same time period.
+Internal Database:
+Database developed from data within the organization.
+Internal Marketing:
+The process of eliciting support for a company and its activities among its own employees, in order to encourage them to promote its goals. This process can happen at a number of levels, from increasing awareness of individual products or marketing campaigns, to explaining overall business strategy.
+Internal Validity:
+The extent to which competing explanations for the experimental results observed can be avoided.
+Interrupted Time-Series Design:
+Research in which the treatment interrupts ongoing repeated measurements.
+Interval:
+Taking a given number of units equally selected over the full population of study. The nth number interval is derived by dividing the total number of units by the sample number desired.
+Interval Estimates:
+Inferences regarding the probability that a population value will fall within a certain range.
+Interval Scale:
+Ordinal scale with the additional property that the distance between observations is meaningful. An example would be the temperature.
+Interviewer:
+The person responsible for recruiting participants for a focus group or the person administering a questionnaire.
+Interviewer Error:
+Error that results from conscious or unconscious bias in the interviewer's interaction with the participant.
+Interviewer's Instructions:
+Written directions instructing how to conduct the interview.
+Invisible Processing:
+The process of collecting information about participants without their knowledge.
+Itemized Rating Scales:
+Scales in which the participant selects an answer from a limited number of ordered categories.
+J
+Judgment Sample:
+probability sample comprised of individuals with judgments and attitudes about the subject matter being researched.
+Jump Page Ad:
+page may be a pop-up window or animation page directing the Internet user to a product or service. This usually occurs when the browser is loading up another page unrelated to the jump page advertisement.
+K
+Key Verifying:
+An entry process involving 2 or more individuals entering the same data for 100% accuracy.
+Keypunch:
+The process of punching holes in a card by a machine for data processing.
+Keyword:
+Keywords are words that have significant relevancy to a specific web page. Keywords are purchased for ad placement on search engines through Pay-Per-Click marketing.
+Knowledge Management:
+A system that affords control, dissemination, and usage of information. This is often a Net-enabled corporate initiative.
+Kolmogorov-Smirnov Test:
+This test determines if two data sets are significantly different. It answers the question if a sample originates from a population with a specific distribution.
+L
+Labor Force:
+Any civilians of working age that are currently employed or seeking employment, and members of the Military currently living in the United States.
+Labor Force Participation Rates:
+An age and sex segment of the population in the labor force as compared to the total population of that segment both in and out of the labor force.
+Laddering:
+Used in focus groups to build on responses until met with a psychological need for the ego or status. A consumer's attitude toward a product will yield "why" questions until the motive for the behavior is identified.
+Latent Click Through:
+An instance when a consumer comes across an online banner ad, then visits the advertised website later because they had seen it earlier. It is only a latent click through if the consumer does not click directly on the banner ad. Also referred to as a "view through."
+Leg:
+Phases of the research project in which participants will participate.
+Legacy:
+This is a demand that new software and operating systems can read or convert old data and will work with the new technology. Legacy issues strain productivity and damage efficiency by preventing a company for upgrading to improved solutions.
+Lelly Triads:
+Often used by advertising agencies, consumers are presented with three cards with the product (or service) displayed and are asked to choose the odd card and then explain why it was chosen. The words the consumer uses are carefully noted as the consumer describes the differences on the card. This is also referred to as repertory grids.
+Level of Significance:
+When using statistics, it is the probability that a Type I error will be made. A Type I error occurs when the relationship of two things is rejected when in all actuality it is true.
+Lifestyle Research:
+Research conducted in order to explain behavior by means of consumer opinions, activities, hobbies, and attitudes. This analysis can be used along with psychographic research. (Studying responses to statements about one's own activities, interests, and opinions).
+Lifestyle Selectivity:
+Consumer behaviors that can be attributed to a certain population segment's lifestyle. This includes interests, ownership, and hobbies.
+Likert Scale:
+An attitude scale that measures the level to which the participant "agrees" or "disagrees" with a given statement in regard to a particular product or service. The scale will give an odd number of choices with an equal amount of agreement/disagreement choices on either side of a neutral option.
+List Order Bias:
+This is the idea of primacy and recency. A participant is most likely to recall the beginning of the message or list, primacy, and the last portion of the message or list, recency. The participant's recall is weaker in regards to the items located in the middle of the list.
+List Rotation:
+The beginning of the survey is selected randomly in order to prevent List Order Bias.
+Listed Sample:
+A list of people with a certain set of demographic information to fulfill a targeted market in marketing research.
+Listed Telephone Households:
+Telephone numbers which are available in public lists, like a directory.
+Loaded Question:
+A question that attempts to illicit a specific response through influential language.
+Logit Model:
+Binary model of regression analysis that utilizes an S-shaped curve. For each question, responses can only be one of two options, like yes or no; or zero or one.
+Long Census Form:
+One of two censuses issued in the United States every ten years that contains 26 additional population questions and 20 additional housing questions than what the short form contains. Data for large geographic areas is accessible, but not smaller areas due to protecting participant anonymity.
+Longitudinal Study:
+A research study conducted over time by observing a certain sample set to understand developmental trends. Can use the same sample set over decades, or could utilize a new sample at set intervals.
+M
+M-Commerce:
+Media commerce that refers to any kind of commerce occurring over any kind of mobile device (i.e. an Internet enabled mobile phone).
+Machine-Readable Data:
+Data that has been encoded into a form that is recognizable for a computer. Optical character recognition (OCR) is able to read magnetic encoding.
+Macros:
+A single computer instruction that stands for a sequence of operations.
+Mail Panels:
+A set of the sample which has been screened and previously accepted to participate in studies with a particular company. The company then proceeds to periodically send surveys to such participants.
+Mail Questionnaires:
+Surveys sent through the mail. Respondents complete the surveys and mail back to the research organization.
+Mailout Rate:
+The amount of surveys sent to participants. Monitor the server capacity when sending out survey invitations.
+Mall-Intercept Interviewing:
+Occurs when consumers are shopping in public areas and are approached about taking a survey at the shopping center. These can be conducted on paper or face-to-face.
+Mapping:
+Computer generated maps that include all types of demographic information relating to a particular geographic area. The software that generates these maps is also developed to identify the geographic sites that best target a particular market.
+MAPPing:
+Mathematical Analysis of Perception and Preference (MAPP). A technique used to chart a consumer's perceptions and preferences regarding a particular product with a visual aid, like a graph or map.
+Marginal:
+For each question on a survey, the marginal is how many people responded to a particular question. It becomes the parameter for responses on each question. The marginal is generally computer-generated and is used to monitor panel response integrity.
+Market:
+All individuals or organizations that are in a category of potential buyers for a given product or service.
+Market Research Society (MRS):
+The United Kingdom's market research organization.
+Market Research Society Australia (MRSA):
+Australia's market research organization.
+Market Segmentation:
+The process of taking a market and dividing it by a measurable characteristic (usually demographics) to be able to identify a consumer that is within the target market.
+Market Share:
+A percentage of the market that is purchasing a particular brand, product or supplier.
+Market Simulation:
+The research technique that creates an actual market situation. The effects of a new product's advertising, price changes, and more can be measured with controlled variables.
+Marketing:
+A set of activities that businesses and other organizations create transfers of value between themselves and their customers. Generally revolves around products and services for the customer.
+Marketing Concept:
+The idea that marketing should cater to the customer needs and wants as opposed to than what the company wants.
+Marketing Information Systems (MIS) :
+Computer systems that present data that is seemly insignificant until the system produces and distributes information that is coherent throughout an organization.
+Marketing Mix:
+A mix of product, price, promotion, and place (distribution) that best meet the needs of targeted customers.
+Marketing Research:
+An objective approach to finding solutions to problems in marketing. Involves qualitative and quantitative research and analysis of the findings to help marketers' best target and reach their audiences.
+Marketing Strategy:
+A company's projected marketing campaign that identifies resources available as well as past and future marketing capabilities.
+Markov Model:
+Process using matrices to find the probability of users in one brand category switching to a different brand the next time they buy in that category. Represents significant results and can now be measured by retail scanners.
+Maturation:
+The stage in a product's life where sales are steady and the product is well known.
+Mean:
+An average found by summing all observations then dividing the sum by the number of observations.
+Mean Square Error:
+Used in statistics when measuring total errors expected to be found in a sample estimate. It is calculated by taking the square root of the sum of the standard error squared and the bias squared.
+Measure of Location:
+The specific location of a single quantity in a frequency distribution. For example, the mean is found in the middle of the frequency distribution.
+Measurement:
+Finding a way to consistently represent quantities or attribute qualities.
+Measurement Error:
+A difference between an expected measurement and the actual information that was measured.
+Media Marketing Areas:
+Defines the television audiences thanks to sampling. Can be called ADI (Areas of Dominant Influence) or DMA (Designated Market Areas).
+Median:
+A specific observation found directly in the middle of a numerically sorted list.
+Methodological Log:
+A recorded account of the exact process and times used to conduct a humanistic inquiry. Biases or distortions need to be especially noted.
+Methodology:
+The procedure used as a proven method that, when repeated, should yield the same result. Steps need to be recorded properly so that the procedure can be redone exactly.
+Metric Scale:
+Metrics are determined by measurable variables that define progress. There are several categories of metrics, from weight measurements to sales measurements in a company. The intervals between metrics on a particular scale are significant ratios to be used when quantifying metrics.
+Metropolitan Statistical Area (MSA):
+A metropolitan area that is surrounded by several non-metropolitan counties which are geographically removed from other metropolitan areas. MSAs are organized by population size and are given government FIP codes.
+Microdata:
+Files that show the full range of responses individuals complete in a certain category (i.e. occupation, place of work, etc.) on the United States Census. This information is connected to an anonymous participant and is available for the public at the Public-Use Microdata Samples.
+Microsite:
+An individual site or cluster of pages that are connected to its parent site, that usually are on the same server, and are accessed by clicking on an initial ad.
+Migration:
+Process of relocating one's residence into a new political area.
+Minigroup:
+A focus group conducted with four to six participants. Seven or more members constitute a full focus group, while less than four is considered a triad or dyad.
+Mix Mode Data Collection:
+Employing various research techniques for on research project. This can be a time consuming and costly technique. Advances in Net-centric solutions are making this proven research method more feasible now.
+Mixed Groups:
+A focus group comprised of male and female members.
+Mobility:
+The opportunity that one has to change residence by means of geographic movement.
+Mode:
+In statistics, the data that occurs the most frequently. On a frequency curve, the mode would appear at the peak.
+Modeling:
+The formulation of mathematically-expressed variables to simulate a business decision environment. For example, a model could be formulated using demographics and a company's financial data to select new markets that have the same combination of factors that are present in currently successful markets.
+Moderated Email Group (MEG):
+A MEG is an asynchronous qualitative technique. The e-mail moderator sends a series of e-mails to the group members, who in turn reply to the moderator. Members of the group do not communicate directly with each other.
+Moderator:
+The individual leading the discussion group or focus group by questioning the participants.
+Moderator Guide:
+Used in focus groups as the outline for the moderator so that the group discussion stays on track. The moderator develops the guide before the focus groups begins so that all of the desired topics will be discussed in a particular order and given the necessary emphasis.
+Monadic:
+Consumer test where only a single product is evaluated.
+Mood Board:
+A visual tool that represents the atmosphere or feel of an intended advertisement or to research a consumer's experience of a brand or product.
+Mortality:
+Occurs during an experiment, when a subject that was being tested is no longer involved in the study. This is unfortunate since each participant was chosen to find systematic differences between subjects.
+Multi-Coded Questions:
+Respondents are allowed to give a number of responses to one question.
+Multicollinearity:
+Addressed when finding a linear relationship with multiple independent variables. This problem often occurs because of the difficulty in identifying and separating the independent variable that is influencing the dependent variable.
+Multidimensional Scaling (MDS):
+Procedure to detect underlying dimensions that allow researchers to explain observed similarities or dissimilarities between investigated objects.
+Multiple Choice Questions:
+Questions that offer more than two possible answer choices and require a participant to choose from the listed options.
+Multiple Mentions:
+More than one response is recorded per question for each participant.
+Multiple Regression Analysis:
+Statistical procedure identifying the relationship between two or more independent variables in an effort to identify patterns within the relationship.
+Multiple Time-Series Design:
+A study that is conducted using a control group for a particular set of time (e.g. month), but is not continuously conducted, rather revisited within the span of the study's time set.
+Multivariate Analysis:
+A statistical method that analyzes more than one measurement at a single time.
+Mutually Exclusive:
+Set of events is considered mutually exclusive if only one event from given set can occur at any given time. This implies that if events (E1,E2,E3,E4) are mutually exclusive and event E2 occur then no events of (E1,E3,E4) did occur at that time.
+Mystery Shoppers:
+People conducting market research that are disguised as consumers while they shop at competitor's stores and their own stores to compare prices, displays and customer service.
+N
+Natural Observation:
+The research method of observing the participant in the least obtrusive manner. This would include watching the participant without questioning the participant.
+Net Effects:
+Annual conferences held by ESOMAR that explore interfaces within market research and the Internet.
+Neural Network:
+A process of quantifying text information from focus groups by coding appropriately into a computer and then analyzing results. When using a computer, results can identify patterns, draw abstractions and find relationships within the input data.
+Neuromarketing:
+A technique that measures how consumers will react to brands and advertising. The brain is mapped, using functional Magnetic Resonance Imaging to record conscious and subconscious responses to advertising, products or brands.
+Niche Marketing:
+Marketing a product to a small and well-defined segment.
+Nixie Rate:
+The Nixie Rate measures the amount of survey invitations that are returned to the sender because the participant address is incorrect.
+No-Show:
+A designated member of a focus group who agrees to participate, even the same day, and then never arrives for the group. Facilities often over-recruit to adjust for no-shows.
+Nominal Grouping Session:
+Qualitative research method in which consumers, brought together in small groups, independently generate ideas about a subject and hence discuss the ideas.
+Nominal Scale:
+A measurement scale identifying variable categories. For example, male/female, user/nonuser.
+Non-Balanced Scales:
+Scales that are unevenly weighted and favor a particular direction.
+Non-Comparative:
+An evaluation of an object, concept, or person with out referring or comparing it to another item.
+Non-Family Household:
+Defined by the census bureau as a person living in a household with non-relatives or by themselves.
+Non-Probability Sample:
+A sample of the population chosen by the investigator rather than by using probability to choose the participants. By doing this, a true representative cross section of the population is foregone.
+Non-Random:
+Occurs when probability is not a good predictor of future results because some part of the experiment is weighted.
+Non-Response Bias:
+Resulting error identifying a systematic difference in those who do and do not respond to the measurement instrument.
+Non-Sampling Error:
+Any errors or inaccuracies in a study not including those considered sampling errors. A few examples are leading by the interviewer and recording/data entry errors.
+Normal Distribution:
+A bell-shaped distribution that is bisymmetric to the mean.
+Not-At-Home:
+The attempt to conduct an interview, but the participant was not available at the location.
+Nth Selection:
+Process of choosing every "nth" name as an interval of "N" on a list, and using those subjects throughout the study. Also called an interval.
+Null Hypothesis:
+Initial assumption made with a statement that is being tested with a significance test.
+Number:
+A question type that only allows the input of a whole number.
+Numeric Database:
+A database comprised of raw survey data over a wide range of topics that has not yet been analyzed.
+O
+Objectives:
+Objectives are the goals or purpose of the research study. The reason why the study is being conducted.
+Observation:
+The accepted value given for a single instance of a sample study.
+Observation Research:
+An experiment conducted without any direct interaction between the investigators and the participants. Also known as a quasi-experiment.
+Observation Room:
+The location that is separated from the room that contains the subjects usually by a one-way mirror that allows investigators to observe the reactions and hear what is going on during a focus group. They can also be referred to as the back room or viewing room.
+Occupancy Status:
+Determined as whether or not a housing unit is occupied or vacant (available).
+Omnibus Panel:
+A study conducted in intervals that allow several companies to purchase a few questions on a single survey that will be administered to a large audience. The survey results for each question will be delivered to the company that posted that particular question as well as surveyed demographic information. This is also known as a piggyback survey.
+On-Air Testing:
+The impact of television and radio measured after the program has gone on the air.
+One-Group Pre-Test Post-Test Design:
+A design developed before the experiment with measurements before and after the test to note the difference since no control group is used.
+One-on-One:
+A qualitative interview involving only a moderator and a single participant.
+One-Shot Case Study:
+An experiment design developed before the study that only measures the post-test results and does not use a control group.
+One-Way Frequency Table:
+A way of charting how often particular responses are used for each question on a survey.
+One-Way Mirror:
+The mirror used so that observations can be made from a room separate from the room that contains the subjects being observed. This mirror allows the investigators to view the subjects, but the subjects only see themselves through a mirror when looking at the same piece of glass. Most focus groups are conducted with a one-way mirror.
+Open Ended Question:
+A survey question that allows the participant an opportunity to write in the response that best answers the question for them. There are no options to chose from so the participant must use their own wording. Also referred to as a subjective question.
+Open Observation:
+An instance where people know they are being studied by observers.
+OpenSurvey:
+An organization promoting open standards in market research.
+Operational Definition:
+Identifies which characteristics will be used to observe or measure a particular concept and the value that will be attributed to the observation.
+Opt-In:
+A way of obtaining permission from participants so that they may be contacted in the future. Double-opt in refers to participants that sign up for a service online and are then sent an email in which they confirm to the service by responding to the email’s prompts. They are essentially agreeing twice to be involved with a particular company.
+Opt-Out:
+A system set up so that people will continue to be contacted by the company that they signed up with until the participant chooses to terminate the relationship. At that time the participant is able to request no further contact.
+Optical Character Reader (OCR):
+A computer program that is able to scan printed characters and translate those codes into electronic data.
+Optical Scanner:
+A device that is able to read and electronically store data from questionnaires or barcodes.
+Order Bias:
+This occurs when the sequence of interview questions or answers to the questionnaire influence how the participants answer during the study.
+Ordinal Scale:
+A scale that allows categories to be ranked in order from smallest to largest-even though the space between two categories is insignificant. Example responses might be excellent, good, fair, and poor.
+Outlier:
+This data is uncharacteristic of the normal distribution. It is common for this data to be removed from the results in order to prevent skewing of the means or averages. For example, 98% of the participants purchase a particular product 4 times a week, but 2% of the participants purchase that product 40 times a week. Researchers will remove the data of the 2% that purchased the product 40 times.
+Outmigration:
+Process of relocating from a particular location in a given country to a different area within that same country.
+Overrecruit:
+The act of inviting more people to participate in a focus group than the study actually allows compensating for people who are planning on attending but do not.
+P
+Packaging Tests:
+A form of research that measures reactions to differing packing approaches.
+Paired Comparison:
+An evaluation of two products that are given values based on set criteria as means of comparing the two items.
+Paired Depths:
+Depth interviews that are conducted with two participants simultaneously. This technique is often employed with a child that is interviewed with a friend to lessen the apprehension of the interview situation.
+Panel:
+A group of participants that participate in multiple surveys over an extensive period of time. Respondents willing participate with the market research project in return for some compensation. There are massive panels and databases of people available for research.
+Pantry Check:
+This is an audit conducted by the participant. The participant is requested to create an inventory of the products and brands found in their kitchen pantry or refrigerator. This prevents research corruption from a participant’s poor recollection.
+Paper and Pencil Interviewing (PAPI):
+A traditional method used for surveying that involves participants filling out a physical paper questionnaire that had been administered by an interviewer.
+Paradata:
+Information collected about the research process. Often includes time and date of interviews as well as duration, number of questions answered, number of errors, length of text used in open-ended questions, etcetera Used to make the research process more efficient.
+Parameter:
+Determines the numerical summary associated with a population distribution.
+Parent (underlying) Distribution:
+Measurements of the original population distribution.
+Part Worths:
+An amount determined by participants regarding value or utility that is associated with product/service attributes at different levels.
+Participant:
+A person that has agreed to be involved in a survey, focus group, or study. Can also be referred to as a subject, unit, experimental unit, unit of analysis, or participant.
+Past Participation:
+Some researchers may exclude participants that have participated in research studies of the same topic or that have participated in research studies during a particular time frame. Thsi process can remove potential bias.
+Pearson's Correlation Coefficient:
+Most commonly used method to determine the strength associated with a set of variables.
+Penetration Analysis:
+An analysis performed to determine the market share held by a particular company or product in a market segment determined by demographics or various classification universes.
+People Meter:
+A way of measuring demographic information related to national television audiences overnight through a microwave computerized rating system.
+People Reader:
+The ability to document a participant’s reading material as well as their eye reaction at the same time by using a machine.
+Per Capita Income:
+Value of the average income for an entire population. This is computed by dividing a country’s total income by its total population.
+Percentile:
+A percentage scale from 0 to 100 that is associated with an item to show which percentage of the distribution is above and below the item.
+Perceptual MAPPing:
+Mathematical Analysis of Perception and Preference (MAPP). A technique used to chart a consumer’s perceptions and preferences regarding a particular product with a visual aid, like a graph or map.
+Permission Based Research:
+In marketing research, this is the process of only contacting people who have previously agreed to be contacted. This group could include people who have not disagreed to be contacted.
+Personal Income:
+An individual’s income that includes both dollar amounts and some non-cash related benefits.
+PGS:
+Primary grocery shopper.
+Phone-Mail-Phone:
+The participant is contacted by phone initially and then sent a lengthy questionnaire through the mail. When the participant completes the questionnaire they are contacted by phone and the responses are collected.
+Photo Sort:
+A study used where participants are given pictures of several types of people and are then asked to associate people with the products or services that they might use.
+Physical Control:
+Maintaining the consistency of extraneous variables throughout a study so as to prevent these variables from affecting the outcome.
+Pick Favorite:
+A method to carry over the selected answers from one question to another question.
+Piggyback:
+This is also known as Omnibus. Clients share costs conducting joint research studies.
+Pilot:
+Preliminary research is conducted before the actual study to assess project logistics (i.e. the sample, methodology). The objective is to refine the actual research for improve accuracy and efficiency.
+Piping:
+A method in which the answer a participant provided in a given question is place in a question text or answer list of another question.
+Placement Interview:
+A study where a participant is given a product to use and test in a PMSA (primary metropolitan statistical area).
+Plus One Dialing:
+This process add one to a randomly selected phone number from a directory. This includes unlisted numbers in the sample.
+Point Estimator:
+Computed numerical value that serves as an estimate of the true parameter before data is collected.
+Poll:
+A poll is a survey gathering opinions from the participants. Polls are often used during political elections to gauge voter sentiment about one candidate over the other.
+Pop-Up:
+When using the Internet, a pop-up is a new window that opens to gain attention by blocking the previously displayed window. Often times pop-ups display ads or invitations to participate in market research surveys.
+Population:
+The entire set of subjects that an experiment is attempting to identify. Usually samples of the population are used to represent a population because it would be nearly impossible to collect information from each unit or subject in a population.
+Population Centroid:
+The peak of a population distribution that contains equal amounts distributed both above and below it.
+Population Distribution:
+A distribution displaying population by frequency elements.
+Population Pyramid:
+A pyramid-shaped chart showing the ages and sex that make up a population. This chart is generally represented with two bar graphs (males on the left and females on the right) divided into age groups on the y-axis and frequency on the x-axis.
+Population Specification Error:
+An error that is associated with a lack of specification for the population of a particular study of which a sample is to be taken from.
+Population Standard Deviation:
+Standard deviation for a variable in relevance to its population distribution.
+Portal:
+A web interface for users to login and access information pertaining to their accounts. Services offered in portals often include news, links, email, and entertainment possibilities.
+Positioning:
+The way that a product is introduced to its market audience. This includes pricing, packaging, prestige, store placement and how consumers view it as opposed to the product’s competitors.
+Post Hoc Segmentation:
+Using empirical data to be able to identify segments within markets.
+Poverty:
+An income level defined by the Census Bureau that determines a family’s poverty status. This level is adjusted yearly as changes occur in the national economy’s Consumer Price Index and costs of living.
+Pre-Coding:
+This occur before the interviewing process. Computer codes are created and added to the questionnaire in order to accelerate the data processing of the participant’s answers.
+Pre-Experimental Design:
+A research design that is set and does not have control over extraneous factors.
+Pre-Recruited Central-Location Test:
+An interview located at a convenient location in which participants that have been contacted and qualified prior to the interview go.
+Pre-Test:
+An evaluation of a questionnaire prior to its distribution. The survey can be sent to a small sample to ensure that questions are comprehended correctly and that responses are clear.
+Precision (lack of):
+Relates to accuracy in sampling and consistency in repeated sampling. If data seems to be widely scattered and would be difficult to duplicate, there would be a lack of precision due to the high standard error. A larger sample size will yield improved precision in any case.
+Predictive Dialing:
+A telemarketing method where a computer dials the phone number and then, if a connection is established, an interviewer takes over the call.
+Predictive Function:
+Using descriptive and diagnostic research to pre-determine the success of a marketing plan prior to its execution.
+Predictive Validity:
+The accuracy of forecasting with a particular measurement scale whose success is monitored to determine whether it will be a good predictor in the future.
+Predictor Variables:
+Factors that are considered in determining future success of a marketing campaign. Examples of these independent variables are demographics and attitudes of the target market.
+Prefix:
+Refers to the first three digits of a telephone number, also called an exchange. These digits are a way to identify the area that the phone number is located in.
+Presentation Software:
+Software that is easy-to-use on personal computers to prepare presentations and produce effective reports.
+Primary Data:
+Data that is gathered to solve a particular problem as opposed to secondary data which is previously gathered and would need to be located to solve a problem.
+Primary Metropolitan Statistical Area (PMSA):
+Defined by the U.S. Census Bureau as two metropolitan areas that are adjacent to each other.
+Primary Research:
+Research conducted in search of new data to solve a marketing information discrepancy.
+Primary Sampling Units:
+The geographic units that will be covered by a survey.
+Privacy Policy:
+A company’s policy as stated on the webpage that explains the privacy rights of the consumer and the company by confirming data collection techniques, data storage, how the data is used, and who will have access to the data.
+Probability (or density) Function:
+Identifies the probabilities of each of the possible values to be achieved. Generally comes in the form of a table or an equation. Also referred to as a probability distribution.
+Probability of a Simple Event:
+The numerical value representing the likelihood of an event occurring. The value will be between one and zero, with one occurring every time and zero never occurring. The sum of all probabilities associated with a sample must equal one.
+Probability of an Event:
+Determined by adding together the probabilities of all of the simple events that contribute to an event.
+Probability Sample:
+Each element in the population has a known nonzero probability of being selected for inclusion in a study. Also called random sampling.
+Probing:
+Follow-up questions to clarify why a particular response was given. Can occur in quantitative or qualitative research.
+Probit Model:
+A type of multiple regression analysis where the categorical dependent variable using a cumulative normal curve as opposed to a logistic one.
+Processing Error:
+An inconsistency in data due to an error in the transfer of information from the document data was collected on to the computer.
+Product Concept Testing:
+A pretest of a particular product with a consumer group before the product is placed in the market.
+Product Movement Data Syndicated Services:
+Retail and wholesale data that a company collects, packages, and sells to many firms.
+Product Placement Study:
+A study in which consumers participants are asked to try products in their own homes as they would normally use the product, instead of in a lab setting. Can also be called a product test.
+Product Positioning Research:
+Research performed to measure how brands are perceived compared to one another’s key dimensions so that they can be properly positioned in a target market.
+Product Pricing Research:
+A look at consumer sensitivity to a range of prices for a particular product.
+Professional Participant:
+A term with negative connotation that refers to participants that participate often in market research studies with different companies. Moderators look to remove professional participants so that they might have a new unpracticed approach with a fresh participant. Also, often times professional participants participate for the incentives rather than truly contributing to the marketing research efforts.
+Profiling:
+A process of meeting customers needs by collecting information about them. This information can be obtained with volunteered/declared information from the customer or collected passively (observing the customer’s behavior patterns).
+Programmatic Research:
+Research performed to better understand more efficient marketing processes by looking at market segmentation, opportunity analysis, and/or consumer attitude and product usage.
+Projectability:
+The ability for market researchers to take the results from their sample and be able to apply those results to the entire population thereby assuming that the sample was a true representative of the population.
+Projection:
+An expected future result based on birth, death, and migration assumptions to describe a particular demographic characteristic for population or number of households. Also called forecasting.
+Projective:
+Techniques used in focus groups or interviews to stimulate the participant’s minds by having them think in more creative and subjective ways than they might without the moderator’s techniques. Sentence completion, expressive drawing, anthropomorphization and associations are all examples of projective techniques.
+Proportional Allocation:
+A study that is sampled with a proportion that is maintained between the sample and the size of the stratum and the size of the stratum compared to the size of the population.
+Proportional Sample:
+The sample elements drawn is proportional to the relative number of elements of the population.
+Proprietary Research:
+Market research that is owned exclusively by the client who purchased the research.
+Psychographics:
+The “why” of consumer research to attempt to explain why consumers behave the way that they do. Research is conducted by observing and analyzing personality traits and values. Very closely related to lifestyle research.
+Pupilometer:
+Changes in pupil dilation to certain stimuli are measured by this machine.
+Purchase Intent Scales:
+A way of measuring a participant’s intention to buy a particular product.
+Purpose:
+A set of objectives that a research project is meant to achieve. The main focus of the research is how the information gathered will be used.
+Purposive Sampling:
+This process is the selection of a particular sample on purpose. Popular with qualitative research, the variables to which the sample is drawn up are analytically and theoretically linked to the research questions.
+Push-Poll:
+This is a political campaign technique. The individual convinces the participant that they are participating in research when the actual objective is to influence the views of the participant.
+Python:
+An interpreted, interactive, object-oriented programming language. It is often compared to Tcl, Perl, or Java. Hermes is written in Python and C++.
+Q
+Q-Sorting:
+A ranking process using card sorts.
+Q-Spread:
+A measurement taken to see the difference between sample quartiles one and three.
+Qualified Participant:
+The participant meets the requirements for inclusion in the sample. (Those who have the "qualified" marker.)
+Qualifying Questions:
+These questions are used to determine whether or not a potential participant is qualified to proceed with the research interview or survey.
+Qualitative:
+Research conducted that cannot be quantified or analyzed quantitatively. Qualitative data requires subjective analysis as it is not collected empirically. Focus groups, interviews, and open-ended questions are all forms of qualitative research.
+Qualitative Variable:
+A result that cannot be quantified but rather belongs to a category or classification. Marital status, sex, and occupation are examples.
+Quantitative Research:
+Research performed in search of empirical evaluations explaining consumer attitudes, behavior, and/or performance. Conducted to forecast numerical measurements of product acceptance and consumer purchase intents.
+Quantitative Variable:
+Variables that already exist as numbers or variables that are continuous or discreet. Age, weight, and income are all examples.
+Quartiles:
+The four quarters in an observation distribution that each identify 25% of the observations.
+Quasi-Experiments:
+A study that cannot be assigned to a participant at random due to the need of a pre-existing condition or a lack of control for scheduling.
+Query:
+A search function within a database designed to find the answer to a question.
+Questionnaire:
+A group of carefully worded questions that, with consumer responses, would aid researchers in achieving necessary data to fulfill research objectives.
+Quota:
+The required number of units.
+Quota Sample:
+A sample requiring a set number of participants that possess specific and identified characteristics. The sample is not random because of the specificity of the target participants.
+R
+Race:
+A group of people within a family, tribe, or nation that belong to the same species. Similar to a breed. Types acknowledged by the U.S. Census Bureau are: Aleut, American Indian, Asian, Black (or Negro), Chinese, Eskimo, Filipino, Guamanian, Hawaiian, Japanese, Korean, Samoan, Vietnamese, White, or "other."
+Radio:
+A question type that allows a single selection.
+Random:
+A process of selection that gives an equal opportunity for each item to be chosen.
+Random Digit Dialing (RDD):
+A computer based form of telephone sampling that pulls telephone numbers at random whether they be listed or not listed to provide a representative survey sample.
+Random Error:
+Unexpected errors that occur in a measuring process to skew the data in a way that could not be recreated.
+Random Sampling:
+A sample chosen that allows all subjects an equal probability of being selected. Can also be called a probability sample.
+Random Variable:
+A dependent variable that is evaluated by an outcome when that outcome has an equal probability of occurrence. An example would be either the “heads” or “tails” of a coin toss, where the outcome becomes the random variable.
+Randomization:
+Within an experiment, randomization is the process of choosing subjects at random to be part of all groups to include all characteristics in each group.
+Range:
+The spread of data, from the lowest variable to the highest variable.
+Rank-Order Scales:
+A technique used for measuring a participant’s rank preference when comparing a set of items.
+Rate:
+A fixed ratio that represents the relationship between two things.
+Ratio:
+A measurement that explains one number or object in relation to another number or object.
+Ratio Scale:
+A response scale for a survey or questionnaire that categorizes responses ranking them from smallest to largest and has a consistent range between each of the category choices. This scale is for variables that have a definitive zero as in age, weight, and height. An example of a ratio scale would be, “What height group do you belong to,” with options “[<5’] [5’-5’6”] [5’7”-6’] [6’<] and so on.
+Real-Time Tracking:
+Continuous research and instantaneous data collection. Data reporting and analysis are possible with an online system.
+Recommendations:
+A conclusion at the end of a report to a client that offers suggestions for action that is reinforced from the research that was conducted.
+Recontact:
+The process of contacting a survey participant and asking additional interview questions.
+Recruitment:
+A process that involves and confirms participants that will be used in present and future marketing research studies.
+Referral:
+Respondents endorse others that are potentially qualified participants.
+Refusal Rate:
+The amount of participants that refuse to cooperate in the research study.
+Refusals:
+These are the participants that refuse to participate in the research study.
+Regression Analysis:
+A statistical technique that compares a dependent variable to an independent variable(s) in order to identify a relationship between the two or more variables.
+Regression Coefficients:
+Values associated with the strength of a relationship and how one variable effects another between independent and dependent variables.
+Regression to the Mean:
+An observation throughout an experiment when the participants tend to progressively move toward the mean average of the behavior.
+Rejection Region:
+A set of values that land outside of an acceptable range of the t-statistic. This leads to rejecting the null hypothesis.
+Related Samples:
+Multiple samples taken from the same sample group where each sample from a particular participant influences later samples taken from that same participant.
+Relationship Marketing:
+Marketing strategies that focus on the lifetime relationship with the customer rather than the individual transactions of the customer in order to increase profit. Relationship marketing captures customer share, or the share of the customer dollar rather than the amounts of customers within the market share.
+Reliability:
+A consistent method that often yields the same results each time that it is measured.
+Repeat-Pairs Technique:
+A technique used when participants are asked to identify which they prefer out of two products, and then are asked again to compare two products that are exactly the same as the first two studied.
+Repeat Rate:
+A proportion outlining the opportunity of first time users purchasing a product for the second time.
+Replicate:
+A sub-sample that is selected in accordance to a planned geographically representative group within a sample region.
+Report:
+A formal record of the data collected from the participants.
+Representative Sample:
+An accurate sample that provides, at random, a true indication of what the population is comprised of. Can also be called a probability sample or a random sample.
+Re-Screening:
+A step in the market research process to confirm that participants truly qualify to the sample being studied. Re-screening typically occurs when participants arrive at a research location and are examined before the research process begins. The questions asked of the participant often contain questions that were originally part of the recruiting process.
+Research Design:
+An overall plan of action to be followed during an experiment to be sure that the objectives are met. Often the specific procedures to solve problems are included in the research design.
+Research Methods:
+This is how the research is being conducted. The research method is found in the research report. This allows for research replication.
+Research Proposal:
+This describes the design, schedule and budget for conducting a research project.
+Research Specifications:
+These are the design characteristics of the proposed research.
+Residual Error:
+The portion of an error that is unexplainable after computing regression coefficients. Often due to error in measurement or omissions.
+Participant:
+This is the individual that provides data to be collected during the research process. Also referred to as a unit, unit of analysis, participant, experimental unit, or subject.
+Participant Fatigue:
+During a lengthy research project participants can lose interest sometimes providing invalid responses.
+Response Bias:
+An error in given answers to an interviewer’s questions due to misinterpretation by the participant, or the participant responding in such a way that they believe the interviewer wishes them to answer as opposed to their true feelings. Therefore, response bias can occur both deliberately and unintentionally.
+Response Rate:
+The proportion of those originally drawn at random from the population who actually participate in a survey. This indicates whether the data collected accurately reflects the views of the population interviewed. Response rate can also assess whether weighting or other methods might improve the quality of the data.
+Rewards:
+These are also known as incentives. Respondents are provided with an incentive to participate in the research study.
+Rule:
+A well defined command instructing the researcher on what is and what is not an acceptable way to act or perform within a research study.
+Rustbelt:
+A geographically defined area encompassing manufacturing regions in the United States that surround the Great Lakes.
+S
+Sample:
+A group that is selected to study as a representative of the true population for a given experiment. The study is often conducted to understand how the population will react to an item by first testing it on a sample that represents the population that the item will target.
+Sample Distribution:
+A measurement of the responses given from a single sample organized by frequency.
+Sample Population:
+The description of the characteristics that define a particular population from which a sample is taken.
+Sample Size:
+Number of sample units to be included in the sample.
+Sample Space:
+A set including all possible outcomes for a particular experiment.
+Sampling:
+A process using a segment (sample) of a population to represent the entire population’s activities, attitudes, opinions, and interests and the results from the sample study can be inferred upon the population.
+Sampling Distribution of the Proportion:
+A normally distributed graph showing combined proportion frequencies from many samples within a single population.
+Sampling Distribution of the Sample Means:
+A normally distributed graph showing combined mean frequencies from many samples within a single population.
+Sampling Distribution of the Sample Statistic:
+A probability distribution displaying probabilities of all possible variables that might occur with repeated sampling.
+Sampling Error:
+An assumed inaccuracy associated with using the sample results as an indication of the behavior of the population.
+Sampling Fraction:
+The ratio comparing sample size to population size.
+Sampling Frame:
+A set defining which individuals, households, or institutions qualify for a sample, then the sample is drawn from those elements.
+Sampling Interval:
+The process of taking a list, and selecting each nth unit as a participant in a study. The interval creates random selection throughout the population and is decided upon by dividing the total population by the number of sample units desired. Also referred to as interval or Nth selection.
+Sampling Unit:
+Those units that qualify to be sampled and are available during the sampling process to be selected.
+SBASE:
+Specifies the base of the question and indicates why the base of the given question differs from the total number of qualified participants.
+Scale:
+A technique used for participants to measure an object based on set characteristics. Scales are close-ended questions that require one of the offered responses as the participant’s answer.
+Scaled-Response Questions:
+Select answer choices that are offered to contain the intensity of the attitude of the participant toward the object being measured.
+Screener:
+Testing questions used to determine if participants are suitable for specific studies.
+Screening:
+Contacting, qualifying and inviting participants to participate in additional research.
+Screenout:
+This is a participant that do not meet the qualifying criteria to participate in the survey research.
+Secondary Data:
+Data that was collected previously and not for the particular study at hand.
+Secondary Research:
+The analysis of research that had been collected at an earlier time (for reasons unrelated to the current project) that can be applied to a study in progress.
+Sectional Center Facility (SCF):
+Geographic regions identified by the first three digits of a ZIP code.
+Segment:
+A selected area defined by demographic characteristics as identified by a researcher.
+Segmentation:
+Separating the population into subsets by common attributes. Age, income, product preference are just a few attributes.
+Select:
+A question type that allows a single selection using a drop-down box.
+Selection:
+Procedure used to distinguish which records to investigate on means of targeted characteristics from a population.
+Selection Bias:
+A bias that is present when choosing between the test group and the control group due to logical differences in the units.
+Selection Error:
+An error that occurs in sampling when the researcher is pursuing sampling procedures that are either improper or incomplete.
+Selective Perception:
+The act of a listener or reader choosing to filter out or not pay attention to stimuli either consciously or unconsciously.
+Selective Research:
+The process researchers go through to determine which, of many alternatives, they will choose to study.
+Self-Administered Questionnaire (SAQ):
+Questionnaires that are executed without an interviewer.
+Semantic Differential:
+A scale that compares competitors by recognizing how each competitor ranks with a pair of words or phrases. The score or average measurement determines the correlation between a word and the object being tested. Similar to Likert Scale.
+Sentence and Story Completion:
+A technique used to stimulate participants where the researcher begins a sentence or story and has the participant finish the thought in their own words. This allows creativity to flow in the mind of the participant in ways that might not have surfaced on their own.
+Sequential Testing:
+When a participant is utilized to test a single product, then, after evaluating the first product, is asked to test and evaluate a second related or unrelated product to the first.
+Sex Ratio:
+A ratio finding the number of males in a population for every 100 females in the same population.
+Shopper Patterns:
+An observed mapping that establishes the patterns used by shopper’s footsteps within a store.
+Short Census Form:
+A form that each American household is asked to answer every ten years for the U.S. Census Bureau.
+Sigmoid Curve:
+The S-shaped regression curve measuring growth prior to T and after T. This line is non-linear which allows it to illustrate regression of a dependent variable such as growth.
+Sign-Out Sheets or Sign-Off:
+Records completed at the end of a study so that a facility has an accurate account of which participants participated so that the facility keeps track of how they need to compensate the individuals.
+Significant Difference:
+In a statistical test, it must be proven that the results found are strong enough to prove that the hypothesis needs to be rejected or fails to be rejected. Variance in confidence levels change the strength of the difference needed to be substantial.
+Simple Random Sample (SRS):
+A sample conducted in which each member of the population has an equal opportunity of being selected. Can also be called a random sample.
+Simulated Sales Test:
+A setup used to test the success of a product’s sales potential through trial and use in an artificial market setting that imitates the true conditions of the marketplace.
+Simulated Test Market (STM):
+The testing of a product’s success done through statistics and data analysis from survey results. This method is less expensive than a market simulation.
+Single-Number Research:
+A lack of research so that results are dependent on a single statistic.
+Site Evaluation:
+Assessing a geographical location by the demographic and economic characteristics that it contains as a process of determining whether the area yields a market that will cater to the offered good or service.
+Skewed:
+A weighted distribution that is not symmetrical which results in having one tail longer than the other on a frequency curve. The skew is titled after the longest tail, for example, if the right side had the longest tail, it would be called skewed right.
+Skip Logic:
+Programming logic which, based on the participant's answer to a specific question, skips the responded over questions to a different point in the survey.
+Skip Pattern:
+A survey format that reacts to the participant’s previous answer to a question. The survey might read “If no, skip to question 6” because the questions that immediately follow the initial question will relate to the initial.
+Snowball Samples:
+An additional convenience sample pulled from referrals that were given by current participants.
+Social Indicator:
+The quality of life analyzed to produce a numerical measure.
+Solomon Four-Group Design:
+Research in where two groups of both the experimental and control groups are studied to reduce the likeliness of irrelevant variables in the research.
+Spearman Rank-Order Correlation:
+A method of analysis for ordinal data and correlation relationships.
+Specialized Service or Support Firms:
+Firms that complete specific parts of the research for several corporate clients. Examples of provided services are data processing or statistical analysis.
+Specifications:
+A list of characteristics that participants must possess in order to qualify for a particular survey, interview, or focus group. These characteristics often include demographics, product use behavior, product awareness, etc.
+Speedsters:
+Speedsters are participants that do not read the survey research questions and only select random answers to finish the survey as fast as possible.
+Split-Half Technique:
+A method used to check measuring instruments where half of the data is computed and is then correlated against the other half of data. A correlation coefficient of .9 would ensure an acceptable level of reliability in measurement.
+Sponsor:
+The client or organization paying for the research.
+Sponsor/Sponsorship:
+Corporate attempts to gain association with a site by helping to fund that site by placing an advertisement on the site. The advertiser gains from either a content integration or a conventional ad.
+Spurious Association:
+Additional relationships to the dependent variable that, when changed, may cause changes in the dependent variable.
+Stability:
+Consistency in results after being tested multiple times. Mostly refers to the low probability of varying each time the object is tested.
+Standard Deviation:
+A measure of dispersion that is found mathematically by the positive square root of the average squared difference between the mean and the sample or population values.
+Standard Error:
+The error between the mean and the actual value as defined by the standard deviation. Standard error can also be found by taking the square root of the variance.
+Standard Industrial Classification (SIC):
+Assigned codes (usually 4 digits but can be as many as 6) from the U.S. Department of Commerce used to classify businesses. Codes with additional characters relate to the specificity of the classification.
+Standard Metropolitan Statistical Area (SMSA):
+A term, no longer used by the U.S. Bureau of Census, that represented a region including one or more counties surrounding a central urban stretch.
+Standard Normal Distribution:
+A distribution curve that is centered on the mean which is equal to zero and the standard deviation is one.
+Stapel Scale:
+A scale ranging from -5 to +5 that asks participants to choose how well a given word (characteristic) describes a product or service and whether that strength portrays a positive or negative image.
+Starting Point:
+The initial number chosen when utilizing an Nth sampling interval.
+State Data Center:
+A central location that organizes all of the state’s data (a planning agency, university, or library) that the U.S. Census Bureau utilizes for training, assistance, and consultation purposes.
+Static-Group Comparison:
+Pre-testing a research design using both an experimental and a control group. There is a lack of random selection for the sample and there are no taken pre-measurements.
+Statistic:
+A calculated numerical quantity derived from the number of observations and occurrences in a sample.
+Statistical Control:
+An adjustment to an equation to prevent confounded variables from adjusting the dependent variable’s value within each treatment condition.
+Statistical Inference:
+Making conclusions about a population from the results of a sample.
+Statistical Test:
+Measures of significance applied to collected data using a probability sample. This determines if the null hypothesis might be rejected and there is a degree of reliable difference between the two data sets.
+Statistics:
+Practice of collecting, organizing, describing, and analyzing data to draw conclusions from the data to apply to a cause.
+Stochastic Fancy:
+Another term describing chance or randomness.
+Strata:
+A population segment based on stated characteristics.
+Strategic Partnering:
+A partnership entered by two or more market research firms with difference skills and resources to provide their clients with a more complete package.
+Stratified Random Sample:
+A more specific representative sample that first divides the population into strata per certain characteristics, then a particular number participants are randomly selected from each strata (determined by percentages in the actual population).
+Structured Observation:
+A research study in which the observer records what they are witnessing. Can be done by filling out a questionnaire form or counting the occurrences of a certain activity.
+Structured Query Language (SQL):
+Interfacing programming language that accesses data from a data warehouse.
+Structured Question:
+A questionnaire that already includes fixed answers. The interviewer reads the question and answers and records which answer the participant selected.
+Structured Response:
+The participant must choose from predetermined responses provided on the questionnaire.
+Stub:
+Represents the dependent variable as a heading in computer tables.
+Styles:
+A file that contains definitions that modify the look and feel of the questions. Used to define (or redefined) default survey/report elements or to create custom elements.
+Sub-Block:
+Recognized by the U.S. Census Bureau as the smallest segment of the country for which demographic data is provided.
+Subject:
+The item that the study is being performed on. Subjects are also referred to as participants, participants, experimental units, units, or units of analysis.
+Subjective Question:
+A survey question that requires the participant to generate a response in their own words as opposed to selecting an answer from a list. Subjective questions are also called open-ended questions.
+SUGGING:
+This is the unethical practice of selling under the guise of research. The individual purports to collect market research from the participant but is actually attempting to make a sale. SUGGING is quite harmful for participant cooperation.
+Sum of Squares due to Regression:
+Using regression to explain variation.
+Sunbelt:
+The South and West regions of the United States defined by the U.S. Census Bureau.
+Supervisor's Instructions:
+Exact directions written for the field service so that each survey will be conducted the same way.
+Surrogate Information Error:
+An error formed by an inconsistency between the information sought by the researcher and the information that is needed to solve a problem.
+Survey:
+The act of collecting data by asking various questions. A survey is comprised of question types and logic.
+Survey Objectives:
+The information that researchers are looking to use as decision making information from the questionnaire results.
+Survey Research:
+A method of research to collect participant responses on facts, opinions, and attitudes through questionnaires.
+Synchronous Online Groups:
+An online focus group formed by one or more moderators, participants (usually around six), and clients have an opportunity to participate also in modified rooms.
+Syndicated Research:
+Research performed by a firm that decides the population, questions to be asked, and intervals between studies. Syndicated research results are often purchased by multiple clients who then share results and costs.
+Syndicated Service Research Firms:
+Marketing research firms that collect, package and sell their data to many clients (each client receives the same information).
+Systematic Sample:
+A method of randomly selecting a sample by using every Nth unit from a population until the sample quota is reached. This type of interval sampling should also start with a random unit.
+Systemic Error:
+An error in the methods or implementation of the research.
+T
+T-Commerce:
+All commerce that occurs through interactive television.
+T-Distribution:
+A frequency distribution used with small samples that does not peak as high as a normal distribution.
+T-Test:
+A statistically hypothesis test that is based on a single mean when the sample size is not large enough to use the Z-test.
+Tab or Code and Tab:
+Tabulating or calculating collected survey responses. The tabulations or calculations are can completed by computer or manually.
+Table of Random Digits:
+Digits appearing in a completely random order within a table.
+Tachistoscope (T-scope):
+A device used for recognition tests by changing the intensity and exposure of images. This device is often used in package testing.
+Target Population:
+A population with specific characteristics that researchers are studying.
+Taste Test:
+Research involving the comparison of food products to each other. For example, the participant will taste various versions of cola and determine which cola they prefer based upon palatability, desirability and preference.
+Telephone Areas:
+Areas defined by codes in telephone numbers (the first six digits of a phone number).
+Telephone Focus Groups:
+A focus group conducted through a telephone conference call. Usually 7-10 individuals are involved including a moderator that leads the discussion about a predetermined topic.
+Telephone Sample:
+A group of individuals that respond to surveys via the telephone.
+Television Market:
+Defined individually by the company that measures the market. Arbitron samples Areas of Dominant Influence (ADIs), while NPD/Nielsen measures Designated Market Areas (DMAs).
+Temporal Sequence:
+The logical order of causal events to occur.
+Temporary Population:
+An area where residents may be seasonal. Examples include commuters, tourists, snowbirds, etc.
+Terminate or Midway Term:
+The participant decides not to complete the interview and will cooperate no further.
+Test Market:
+A procedure used when a new product or service is offered to a small scale market to test its success.
+Test Statistic:
+A statistic computed from the sample data and is then used to test the hypothesis.
+Test-Retest Reliability:
+Consistency in test results when using the same instrument under nearly the same conditions for each test.
+Tests of Significance:
+A mathematical test to determine if the findings in an experiment were due to influences of one or multiple variables on a dependent variable or merely by chance.
+Testing Effect:
+A result that is due to the research process as opposed to the experimental variable.
+Text:
+A question type that prompts participants for a short (single line text box) input.
+Textarea:
+A question type that prompts participants for a longer (multi-line text box) input.
+Thematic Maps:
+Geographic maps that also contain demographic data as well as information specifically targeted to a particular company (ie sales in that area). Thematic maps are generally computer-generated.
+Theory-Construction Diary:
+A humanistic researcher’s thoughts, hypotheses, and reviews in thinking recorded in a journal.
+Third-Person Techniques:
+A technique used to reveal the true feelings of the participant by asking them to answer the way that their “neighbor” or “most people” might answer the question.
+Time Series Analysis:
+Data recorded by time intervals. Also referred to as exponential smoothing.
+Time Use Survey:
+A long-term questionnaire in which participants record how they utilize their time, what they are doing as well as how they are doing it, in a journal spanning a few days to a few weeks.
+Top-of-Mind Awareness:
+The initial mentioning of a brand, product, vendor name, services and so forth.
+Topic Guide:
+This tool provides the moderator with a list of subject matter for the discussion group or focus group. This process allows for flexibility as the moderator is not constrained by a structured questionnaire.
+Topline:
+Results from a preliminary survey projecting how the population will respond to a few key questions.
+Total Unaided Recall:
+These are responses that are provided without any assistance of the interviewer when questioned to identify a brand, company, message and so forth.
+Touch Tone Aided Telephone Interviewing (TATI):
+Telephone surveying initiated by an interviewer, but participants respond by pushing the touch-tone buttons of their phone. Can also be called tough tone data entry (TDE).
+Touch-Tone Data Entry (TDE):
+Telephone surveying initiated by an interviewer, but participants respond by pushing the touch-tone buttons of their phone. Also known as touch-tone aided telephone interviewing (TDE).
+Tracking:
+Subsequent studies that monitor consumer opinion, behavior, and attitude changes in brands or product categories.
+Trade Area:
+The geographical area that represents where a business’s customers are coming from. The size can vary greatly from a part of a city to an entire nation.
+Traffic Counters:
+Devices that measure the amount of vehicles that passes over a particular section of a road.
+Transcript:
+The written record of an interview or focus group. This is a verbatim account.
+Treatment:
+The changes that are being made to the independent variable in a research study.
+Trend Data:
+Survey responses demonstarting the change of views and perceptions about a particular topic over time.
+Triad:
+A focus group involving a moderator and three participants. It is expected that with this few of participants, the moderator is able to gain more information from the participants than they might in a larger group.
+Trial Rate:
+The amount of people measured as buying a product a least one time.
+Trimmed Mean:
+Found by taking the mean after altering the distribution by eliminating outliers and reducing the high and low ends of a distribution by a percent each.
+True Experimental Design:
+The layout for a research project in which units are randomly assigned into both an experimental and a control group.
+Two-Way Focus Groups:
+A focus group observes a second focus group and then the first group discusses what the participants learned from their observations.
+Type I Error (A Error):
+Rejecting a null hypothesis when it should not have been rejected because it is true.
+Type II Error (B Error):
+Accepting a null hypothesis when it should have been rejected because it is false.
+U
+U-Commerce:
+The term U-Commerce reflects the move to start to retail across multiple platforms, for example by combining E-commerce, T-commerce, and M-commerce.
+Unbiased Estimator:
+The mean of the sample distribution and estimate distribution are equal.
+Unbiased Samples:
+This is a way of limiting the sampling error as a result of randomness only by deriving the samples from an unbiased source.
+Unidimensional Scaling:
+This process measures only one single attribute of an object or participant.
+Union:
+The event containing all simple events for both event A and event B. The concept of union can be extended to more than two events.
+Unipolar:
+An ordinal scale with one positive end and one negative end.
+Unit of Analysis:
+Units that constitute the population and the units selected for measurement.
+Univariate Data Set:
+A data set in which one measurement (variable) has been made on each participant.
+Universe:
+The set of all the units from which a sample is drawn. Also called the population.
+Unstructured Observation:
+A study in which the observer simply makes notes on the behavior being observed.
+Unstructured Question:
+This is a question that does not provoke or influence the answer of the participant in any way.
+Unstructured Segmentation:
+Process of segmenting a market using data and analysis when no prior ideas are held about the number of segments, what they are, or how and why they are different.
+Urban Population:
+As defined by the 1980 census, all persons living in urbanized areas and in places of 2,500 or more inhabitants outside urbanized areas.
+Urbanized Areas:
+A central city or cities and the surrounding (contiguous) closely settled territory. Must have at least 50,000 inhabitants.
+UUID:
+Universal Unique Identifier. Used to identify and distinguish cases within a dataset. Each participant is assigned a UUID when he/she first loads a survey.
+V
+Validation:
+A survey integrity safeguard where the participant is contacted to confirm their survey responses.
+Validity:
+Validity questions whether the research measured what it was actually intended to measure.
+Variability:
+The difference among scores. The variability of scores in a sample is known as the standard deviation.
+Variable:
+A quantity with an assigned value that may change during research.
+Variance:
+Variance measures the dispersion of a variable about its mean. The formula for calculating variance is the sum of the difference between the observed value and the mean value divided by the sample size.
+Verbatim:
+Transcribing or recording the provided responses of the participant in their exact words.
+Verified Data:
+This method ensures data entry accuracy by entering the data multiple times.
+Verifying 100%:
+This is the process of dual data entry and comparing both data sets for anomalies.
+Video Focus Groups:
+The ability to conduct real time focus groups with participants situated at different physical locations using video technology.
+Viewing Room:
+A room where researchers observe a focus group through a one way mirror.
+Viral Marketing:
+The effective way or advertising or producing brand exposure through social networks. The technique spreads throughout the network rapidly by word of mouth or by Internet resources like e-mail, blogs or other services. Like a virus, it replicates and spreads quickly. The cost of such a campaign is relatively low compared to the high rate of exposure to the target audience.
+Virtual Reality:
+Computer generated artificial environment.
+Virtual Question:
+A question that is hidden from the participant in the online survey and has its value computed based on other questions or external data.
+Voice Pitch Analysis:
+A test examining the human voice frequency reaction to emotion or stimulation.
+W
+Wave:
+A tracking study where multiple waves are conducted over time.
+Web Bug:
+The ability to detect whether or not an e-mail or advertisement has been opened by the recipient. The web bug can provide other characteristics of the recipient’s connection and browser. Market researchers should review the ESOMAR Guidelines before using web bugs.
+Weighted Sample:
+When weighting is applied to a sample it is a weighted sample.
+Weighting:
+A process of determining how much advertising is necessary to reach your target audience. There are three factors to consider. How many impressions will your ad receive or how often is it viewed. Reach measures how much of the target audience has been exposed to the advertisement. Finally, frequency measures the how often the target audience was exposed to your ad.
+Winsorized Sample:
+The elimination of the highest and lowest survey result replaced by the second highest and second lowest result.
+Word Association Tests:
+Swiss psychiatrist, Carl Jung, developed this technique. The interviewer will state a word or phrase and the participant must provide a one word answer immediately.
+Word of Mouth:
+The process of promoting or marketing through human interaction. Customers share their opinions creating buzz. The Internet is a fantastic forum for this marketing technique. Blogs, readers and discussion boards are popular online tools for generating buzz. A form or viral marketing.
+Working Phone Rate:
+The number of working or assigned residential telephone numbers as a proportion of the entire sample.
+Write-Down:
+Focus group participants write their views on a topic during the session. This practice assists in getting participants to commit to their point of view before other participants can influence them.
+X
+XML:
+eXtensible Markup Language. A useful structured text format used to code surveys in Hermes.
+Y
+Z
+Z-Test:
+Any statistical test for which the distribution of the test statistic under the null hypothesis can be approximated by a normal distribution. Crosstabs uses the z-test.

@@ -1,0 +1,38 @@
+Title: Variable Replacement
+You can use variable replacement to dynamically display survey variables and other data within survey questions (this process is also known as data piping).
+1: Piping Survey Variables
+To display a variable within the question text of a survey question, enter the variable name in brackets within the <title> tag of the question. In order to display a variable in a question, the variable must have previously been set in the survey's persistent storage using an <exec> tag.
+For example:
+<exec>
+p.school = q1.valName
+</exec>
+<radio where="survey">
+<title>You selected [school] as your college/university. Is this correct?</title>
+<row label="a1">Yes</row>
+<row label="a2">No</row>
+</radio>
+2: Piping Previous Responses
+To display a participant's response from a previous survey question in a new question, use the following syntax, where QLABEL is the label of the question to pull from:
+[pipe: QLABEL]
+For example:
+<radio label='q1' title='Favourite fruit'>
+<row label='r1'>Banana</row>
+<row label='r2'>Pinepapple</row>
+<row label='r3' open='1'>Other, specify</row>
+</radio>
+<suspend/>
+<html> I see you like [pipe: q1]!</html>
+You can use [pipe: QLABEL] to pipe the result of one-dimensional single select questions, one-dimensional multi-select questions, drop-down questions, open-ended questions, or essay questions.
+You can also modify your piping using survey attributes pipeAltLabels and pipeErrors.
+For open-ended questions, if you pipe results from a question which has multiple rows or columns checked, the results are joined together, to form a text statement (e.g., "red, green and blue"). These separators are language-dependent. If desired, you can use the pipeMultiple attribute on the <checkbox> tag to instead specify the text of a different row when multiple rows have been checked.
+3: Transforming Piped Results
+You can enter one or more of the following attributes after the pipe label to modify a pipe:
+upper
+lower
+title
+capitalize
+For example, using [pipe: q1 lower] converts the piped text to lowercase before displaying it. Given the input of "hello, World", the transformations would have the following result:
+upper: HELLO, WORLD (all letters are in upper case).
+lower: hello, world (all letters are in lower case).
+title: Hello, World (the first letter of every word is in upper case).
+capitalize: Hello, world (only the first letter of the input is in upper case).

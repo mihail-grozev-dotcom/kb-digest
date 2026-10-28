@@ -1,0 +1,19 @@
+Title: Using Digital Feedback with Forsta Surveys
+Set up your desired survey in Forsta Surveys.
+Add Forsta Digital Feedback sample source from Participant Sources.
+Synchronize your survey to Smarthub. See Integrating Forsta Surveys into Smarthub to learn how to connect a Decipher survey to Smarthub.
+Note: Your Forsta Survey needs to be launched in order to use Digital Feedback.
+Navigate to Smarthub.
+Select the Digital Feedback tile within Smarthub.
+Click + New Program.
+Click the Edit button on the left panel. You will be navigated to a page to create your Digital Feedback program. See Creating a New Program.
+In Digital Feedback, create a scenario, a container, an invitation, and survey(s).
+Tip: Refer to these KB articles to complete the following:
+How to add a scenario
+How to add a container
+How to add an invitation
+How to add a survey
+Once you have added your survey, switch the toggle to the scenario you would like to turn on and select PUBLISH.
+Click the Overview button.
+Click the copy icon to copy the Program Loader Script.
+Provide this script to your Website Administrator to add the script to the header of the desired page so the script will load.

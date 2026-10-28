@@ -1,0 +1,68 @@
+Title: Essay Element
+In the Essay element, the participant is given a larger open-end answer field than in the traditional Text element, where they may enter a longer open-ended, alpha-numeric response. This element can have a single entry form or multiple rows and/or columns.
+Mobile Optimized: Yes
+1: Adding an Essay Element
+To add an Essay element, first select the + Element button to add a new survey element. Then select Open End under Question Types and select the Essay element. Select Add.
+In the staging area, enter the question text and instructions, add your desired response options, and configure the question's style settings.
+Tip: If your question requires only a single entry form, there is no need to add rows or columns.
+1.1: Adding Rows
+Select + New Row to add each new row, then enter the answer option in the text field.
+Note: Do not number the answer options unless you want that numeric text to appear for the participant. The system will automatically provide labels with the prefix r and/or numbers for the rows which you can edit later in View Options.
+1.2: Adding Columns
+Select + New Column to add each new column, then enter the answer option in the text field.
+Note: Do not number the answer options unless you want that numeric text to appear for the participant. The system will automatically provide labels with the prefix c and/or numbers for the columns which you can edit later in View Options.
+1.3: Customizing Response Options
+Select Row/Column Actions to perform the following actions for selected response options:
+Import Answers
+Save Answers to Library
+Copy All Answer Text
+Insert Reusable Answer List (only available if you have previously saved
+an answer list)
+Create Reusable Answer List
+Add Answer Group
+Answer Piping
+Reverse Values
+Reset Values
+Reset Labels
+Delete All Answers
+Edit All Answers
+2: Configuring Style Settings
+To configure the style settings, click the "..." button at the top right of the element in the staging area and select Update Styling.
+Learn more: Editing Question Styles
+To prevent participants from copying text from and pasting text into the text field in surveys with compat level 154+, change the style from Basic to Disable copy/paste.
+3: Configuring Question Settings
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it. Options vary based on the item selected.
+3.1: Question Options
+Select the question to set the following options:
+Label: The label assigned to the element. You may edit the default label for the element here.
+Show If: Allows you to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Select what languages will the element be shown in if the survey has multiple languages. The default is "all languages."
+Mandatory: When checked this option will force participants to provide a response. The participant will be unable to continue the survey without completing the question.
+Randomize: Show answer options in random order. Check Rows, Columns, and/or Groups or Groups Only to randomize.
+Response Length: This option assigns a response length range for each open-end field in the question. For example, "10-3000" will only allow the participant to enter 10 to 3000 characters in each open-end answer field.
+More Options: Use the drop-down menu to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+3.1: Row Options
+Select a row to set the following options for that specific row:
+Label: The label assigned to the row. You may edit the default label for the row here.
+Data Value: The value assigned to the row in the data. You may edit the default value for the row here if the option is available.
+Show If: Allows you to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: Select what languages will the row be shown in if the survey has multiple languages. The default is "all languages."
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Checking this box will force the line to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. When checked it will allow for the row to become optional and non-mandatory.
+Open End: Allows you to add an open-end response box to the row by selecting "mandatory" or "optional" from the drop-down menu. "Mandatory" means the participant must enter feedback in the response box to continue if the row is selected, "optional" means that feedback is not required.
+Hidden: This option will hide the row from participants.
+No Answer: This option will replace the open end text box form with an exclusive checkbox form. It is primarily used if there is a "Don't know" or "None of these" answer choice in the question.
+Response Length: This option assigns a response length range for each open-end field in the question. For example, "10-300" will only allow the participant to enter 10 to 300 characters in each open-end answer field.
+More Options: Use the drop-down menu to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+3.3: Column Options
+Select a column to set options for that specific column:
+Label: The label assigned to the column. You may edit the default label for the column here.
+Data Value: The value assigned to the column in the data. You may edit the default value for the column here if the option is available.
+Show If: Allows you to create new logic conditions or select an existing logic condition for the column. For more information, see Adding Logic to a Question or Response Option.
+Languages: Select what languages will the column be shown in if the survey has multiple languages. The default is "all languages."
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Checking this box will force the line to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. When checked it will allow for the row to become optional and non-mandatory.
+Hidden: The option will hide the column from participants.
+More Options: Use the drop-down menu to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4: Learn More
+TextArea Question Attributes

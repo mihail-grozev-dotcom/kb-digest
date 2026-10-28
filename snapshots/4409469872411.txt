@@ -1,0 +1,458 @@
+Title: Question Attributes
+1: Question Attributes
+All question elements have access to the following attributes:
+Attribute
+Purpose
+Description
+adim
+The primary report dimension (rows, cols, choices or auto).
+The adim attribute controls the primary dimension displayed in the report. Usually, if a report is two-dimensional, then one table is created for each item in the shortest dimension showing all items in the second dimension. The adim attribute enables you to override this primary dimension.
+<radio label="Q1" adim="rows">
+Type: enum
+Default: auto
+aggregate
+Bases the question on data from other questions
+The aggregate attribute is for virtual questions. It allows you to perform calculations on the data derived from other questions.
+<radio label="Q1_Q2_Q3_Aggregated">
+<row label="r1">I like it</row>
+<row label="r2">I'm neutral about it</row>
+<row label="r3">I hate it</row>
+<aggregate>
+this.r1 = Q1.r1 + Q2.r1 + Q3.r1
+this.r2 = Q1.r2 + Q2.r2 + Q3.r2
+this.r3 = Q1.r3 + Q2.r3 + Q3.r3
+this.shown = Q1.shown + Q2.shown + Q3.shown
+this.answered = Q1.answered + Q2.answered + Q3.answered
+</aggregate>
+</radio>
+Type: string
+Learn more: Data Aggregation
+alt
+Alternative <title> text displayed in the report
+The alt attribute allows you to specify an alternative short text for the element. If the element contains a <title> attribute, the alt attribute will override this text in the report and data downloads.
+Type: string
+altlabel
+Alternative label to be used everywhere except within the survey XML
+The altlabel attribute is an alternative label that is displayed in all other areas except within the survey. This can be used for re-coding or relabeling data.
+averages
+Shows the average (mean) calculation for (none, rows, cols, choices or nosummary, summary)
+The averages attribute controls which averages are calculated for the question. The acceptable value is a comma-separated set containing rows, cols, choices or nosummary. By default, summary tables are automatically generated for two-dimensional questions. Set averages="nosummary" to show a summary table.
+<radio label="Q1" averages="rows,nosummary">
+Type: set
+Default: none
+below
+Defines the label of the question below which the curren question is to be placed.
+The below attribute allows you to group questions together vertically. The number of columns must be the same to use the below attribute.
+<text label="Q1" title="Please specify a few of your favorite car brands.">
+<row label="r1">Car brands</row>
+<col label="c1">Brand #1</col>
+<col label="c2">Brand #2</col>
+<col label="c3">Brand #3</col>
+</text>
+<checkbox label="Q1_Ownership" title="Favorite car brand ownership" below="Q1" optional="1">
+<row label="r1">Do you own a car of this make?</row>
+<col label="c1"></col>
+<col label="c2"></col>
+<col label="c3"></col>
+</checkbox>
+Type: string
+blankIfZero
+Outputs blank data if the value is zero
+The blankIfZero attribute is only applicable to <checkbox> elements and will change 0 data to blanks.
+<checkbox label="Q1" atleast="1" blankIfZero="1">
+Type: bool
+Default: zero
+blankValue
+Sets the value for blank responses in the data file
+The blankValue attribute allows you to set the value for blank data. If blankValue="No Data" is set, then the data will show the string "No Data" for blank values. This can be applied globally from within the <survey> element, or for each question type.
+<checkbox label="Q1" atleast="1" blankValue="No Data">
+Type: string
+Default: zero
+choiceCond
+Shows each choice if this condition is true
+The choiceCond attribute allows you to specify condition logic that will show or hide each <choice> element.
+<select label="Q2" title="Which pizza is your favorite?" choiceCond="Q1.rows[choice.index]">
+<choice label="ch1">Cheese</choice>
+<choice label="ch2">Pepperoni</choice>
+<choice label="ch3">Meat-Lovers</choice>
+<choice label="ch4">Combination</choice>
+<choice label="ch5">Sausage</choice>
+</select>
+Type: string
+choiceGroups
+To specify where to show the choice groups (report, survey, restrict)
+The choiceGroups attribute allows you to specify where the <group> element associated with each choice will appear. By default, the groups will appear in the survey and report. If choiceGroups="restrict" is set, then the groups will only appear when creating a custom report.
+Type: set
+Default: report, survey, restrict
+choiceShuffle
+Allows you to specify the permutations of the <choice> randomization (flip, rflip, rotate, rrotate)
+The choiceShuffle attribute allows you to specify the randomization order of <choice> elements. For example, if there are three choices in total, specifying choiceShuffle="ch1,ch2,ch3;ch3,ch2,ch1" will show in ascending order for the first participant and in descending order for the second.
+Note: The order used depends on the participant's record number. The randomization order will not be balanced for qualified completes.
+In addition to specifying the order using the choice labels, you may also use the keywords flip, rflip, rotate and rrotate.
+flip : This means that 50% of the participants will see the choices in order and the other 50% will see the choices in reverse order.
+rflip : Similar to "flip" except that the first participant will see the choices in reverse order and the next will see the choices in order.
+rotate : The randomization order wraps around for each new participant. For example, "ch1,ch2,ch3" for the first, "ch2, ch3, ch1" for the second, "ch3,ch1,ch2" for the third, and back to "ch1,ch2,ch3" for the fourth.
+rrotate : The randomization order wraps in the reverse direction. For example, "ch1,ch2,ch3" for the first, "ch3,ch1,ch2" for the second, "ch2,ch3,ch1" for the third, and back to "ch1,ch2,ch3" for the fourth.
+Type: string
+colCond
+Shows each column if this condition is true
+The colCond attribute allows you to specify condition logic that will show or hide each <col> element.
+<radio label="Q2" title="Which pizza is your favorite?" colCond="Q1[col]">
+<col label="c1">Cheese</col>
+<col label="c2">Pepperoni</col>
+<col label="c3">Meat-Lovers</col>
+<col label="c4">Combination</col>
+<col label="c5">Sausage</col>
+</radio>
+Type: string
+colGroups
+Allows you to specify where the col groups should show up (report, survey, restrict)
+The colGroups attribute allows you to specify where the <group> element associated with each column appears. By default, the groups appear in the survey and report. If colGroups="restrict" is set, then the groups will only appear when creating a custom report.
+Type: set
+Default: report, survey, restrict
+colLegend
+Placement of the legend for columns (none, both, top, bottom, group and beforeGroup)
+The colLegend attribute allows you to specify the placement of the column legend. If colLegend="bottom" is specified, the legend will appear on the bottom. The possible values are none, both, top, bottom, group and beforeGroup.
+Type:enum
+colLegendRows
+Additional rows to have column legend
+The colLegendRows attribute allows you to specify additional locations of the column legend. The value accepted is a comma-separated list specifying the row indices where the legend should appear before. For example, colLegendRows="4,7,9" will display the legend between row 3 and row 4, row 6 and row 7, and row 8 and row 9.
+Type: list
+colShuffle
+Allows you to specify the permutations of the <col> randomization (flip, rflip, rotate and rrotate).
+The colShuffle attribute allows you to specify the randomization order of <col> elements. For example, if there are three columns in total, specifying colShuffle="c1,c2,c3;c3,c2,c1" will show in ascending order for the first participant and in descending order for the second.
+Note: The order used depends on the participant's record number. The randomization order will not be balanced for qualified completes.
+In addition to specifying the order using the col labels, you may also use the keywords flip, rflip, rotate and rrotate.
+flip : This means that 50% of the participants will see the cols in order and the other 50% will see the cols in reverse order.
+rflip : Similar to "flip" except that the first participant will see the cols in reverse order and the next will see the cols in order.
+rotate : The randomization order wraps around for each new participant. For example, "c1,c2,c3" for the first, "c2,c3,c1" for the second, "c3,c1,c2" for the third, and back to "c1,c2,c3" for the fourth.
+rrotate : The randomization order wraps in the reverse direction. For example, "c1,c2,c3" for the first, "c3,c1,c2" for the second, "c2,c3,c1" for the third, and back to "c1,c2,c3" for the fourth.
+Type: string
+cond
+Displays the question if this condition is "True".
+The cond attribute allows you to specify a Python expression that must evaluate to "True" in order for the question to be displayed.
+<radio label="Q1" cond="list == '1'">
+Type: string
+comment
+Additional information displayed in the participant view beneath the title.
+The comment attribute allows you to specify additional text to display beneath the question's title attribute. This is often used to help participant answer the question.
+<comment>Please select one.</comment>
+Type: string
+dataSource
+Label of the <dataSource> element to get data from
+The dataSource attribute allows you to specify which <datasource> element is to be used to read data into the question.
+Learn more: Datasource Tag: Pull Data From a Tab-Delimited File
+Type: string
+dataRef
+Allows you to specify Which <dataSource> column to get data from.
+The dataRef attribute, in associate with the dataSource attribute, specifies the column in the data source to read data from. This attribute is only applicable if the question contains one data point. For example, a <text> or <radio> element, or an individual row within a <checkbox> element.
+Learn more: Datasource Tag: Pull Data From a Tab-Delimited File
+Type: string
+exec
+Executes the Python code before displaying the question.
+The exec attribute enables you to execute Python code before displaying the question. This attribute is commonly used and oftentimes to manually set the question's randomization order, disable question elements, and update question elements on-the-fly.
+Type: string
+groupDepth
+When rows are grouped, displays nested group titles to participants
+The groupDepth attribute controls how the question's <row> elements are displayed to the participant. For example, when groupDepth="1" is specified, only the nested subgroup headers are displayed. When this attribute is set to 2, the subgroup and its parent group headers are displayed.
+Learn More: Group Tag: Group Response Options
+Type: int
+grouping
+Grouping of the question's components (auto, rows, columns).
+The grouping attribute controls how the question's <row> and <column> elements are grouped. For example, when grouped by rows, then answers are selected on a per-row basis. On the other hand, when grouped by columns, selections are made on a per column basis.
+Type: enum
+Default: auto
+horizontalPercentages
+Calculates percentages across.
+The horizontalPercentages attribute allows you to toggle the direction from where the question's base is calculated. When horizontalPercentages="1" is specified, the base is calculated horizontally for each cell instead of vertically.
+Type: bool
+Deafult: zero
+id
+Uniquely identifies each element
+The id attribute is used by the Decipher survey variable to uniquely identify each element.
+Type: string
+keepWith
+Displays these other questions on the same page even after an error.
+The attribute keepWith allows you to display questions on the same page together even after an error has occurred. In the example below, "Q1" will be shown on the same page as "Q2" even if an error is presented at "Q2". The keepWith attribute is not transitive, meaning "Q2" will not be shown with "Q1" if only an error is present at "Q1".
+<checkbox label="Q1" atleast="1" title="Do you?">
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</checkbox>
+<checkbox label="Q2" atleast="1" title="Do you, really?" keepWith="Q1">
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</checkbox>
+Type: string
+label
+Symbolic name for the question.
+The label attribute is the symbolic name for the element. The system uses the label as the target when performing various Python-related functions. A label must be a valid Python identifier.
+Type: string
+noTranslate
+Disables translations for the values specified.
+The noTranslate attribute allows you to disable translations for specific values. This can be helpful when you only need to translate certain parts of a virtual or hidden question (e.g., when piping only row content to the survey from a virtual question).
+Type: set
+Default: title, comment
+open
+Placement of the open-ended input field (default, left, right).
+The open attribute allows you to control the placement of the open-ended input field for rows that have open="1" specified. The default placement of the input field is just after the row legend. If open="right" is specified and the row legend appears on the left, the input field will appear on the right without any legend text.
+Type: enum
+optional
+Allows the user to skip this question.
+The optional attribute allows you to specify whether or not a participant must provide a response to the question. If optional="1" is specified, the participant can skip the question.
+Type: bool
+Default: zero
+pii
+Allows you to specify an integer between 0 and 9999, inclusive, to set the personally identifiable information protection level.
+The pii attribute allows you to set the personally identifiable information (PII) protection level (0-9999, inclusive) to restrict data access. This protection level applies only to textual data. For example, a PII level cannot be set on a radio or a checkbox question. Afterward, in order for the question data to be visible to a user, the user's PII level must meet or exceed that specified for the question. See for the details for setting PII access restrictions.
+Type: integer
+Default: zero
+ratingDirection
+To specify which end of the rating scale is the high end (default, reverse).
+The ratingDirection attribute allows you to specify the direction of the scale for any type="rating" question. If ratingDirection="reverse" is specified, the report will reverse the "Top 2" and "Bottom 2" accumulations.
+<radio label="Q1" type="rating" values="order" ratingDirection="reverse">
+<title>Please rate this question.</title>
+<row label="r5">5</row>
+<row label="r2">4</row>
+<row label="r3">3</row>
+<row label="r2">2</row>
+<row label="r1">1</row>
+</radio>
+Type: enum
+rightOf
+The label of the question to place this question to the right of.
+The attribute rightOf allows you to group questions together horizontally. The number of rows must be the same to use the rightOf attribute.
+<text label="Q1" title="Please specify a few of your favorite car brands.">
+<row label="r1">Car brands</row>
+<col label="c1">Brand #1</col>
+<col label="c2">Brand #2</col>
+<col label="c3">Brand #3</col>
+</text>
+<checkbox label="Q1_Ownership" title="Car brand ownership" rightOf="Q1" optional="1">
+<row label="r1">Do you own any of these types of cars?</row>
+</checkbox>
+Type: string
+rowCond
+Show each row if this condition is "True".
+The rowCond attribute allows you to specify condition logic that will show or hide each <row> element.
+<radio label="Q2" title="Which pizza is your favorite?" rowCond="Q1[row]">
+<row label="r1">Cheese</row>
+<row label="r2">Pepperoni</row>
+<row label="r3">Meat-Lovers</row>
+<row label="r4">Combination</row>
+<row label="r5">Sausage</row>
+</radio>
+Type: string
+rowGroups
+Allows specifying where the row groups should show up (report, survey, restrict)
+The rowGroups attribute allows you to specify where the <group> element associated with each row appear. By default, the groups appears in the survey and report. If rowGroups="restrict" is set, then the groups will only appear when creating a custom report.
+Type: set
+Default: report, survey, restrict
+rowLegend
+Placement of the legend for rows (default, both, right, left)
+The rowLegend attribute allows you to specify how the row legends are displayed. By default, row legends are displayed on the left. If rowLegend="both" is specified, then the row text will appear on both sides. Illustrated in the example below, you may use the rightLegend attribute on a per-row basis to specify alternative text for the right row legend.
+<radio label="Q1" rowLegend="both">
+<title>
+Test
+</title>
+<comment>Please select one</comment>
+<row label="r1" rightLegend="4">1</row>
+<row label="r2" rightLegend="5">2</row>
+<row label="r3" rightLegend="6">3</row>
+</radio>
+Type: enum
+rowShuffle
+Allows you to specify the permutations of the <row> randomization (flip, rflip, rotate , rrotate)
+The rowShuffle attribute allows you to specify the randomization order of <row> elements. For example, if there are three rows in total, specifying rowShuffle="r1,r2,r3;r3,r2,r1" will show in ascending order for the first participant and in descending order for the second.
+Note: The order used depends on the participant's record number. The randomization order will not be balanced for qualified completes.
+In addition to specifying the order using the row labels, you may also use the keywords flip, rflip, rotate and rrotate.
+flip : This means that 50% of the participants will see the choices in order and the other 50% will see the choices in reverse order.
+rflip : Similar to "flip" except that the first participant will see the choices in reverse order and the next will see the choices in order.
+rotate : The randomization order wraps around for each new participant. For example, "r1,r2,r3" for the first, "r2, r3, r1" for the second, "r3,r1,r2" for the third, and back to "r1,r2,r3" for the fourth.
+rrotate : The randomization order wraps in the reverse direction. For example, "r1,r2,r3" for the first, "r3,r1,r2" for the second, "r2,r3,r1" for the third, and back to "r1,r2,r3" for the fourth.
+Type: enum
+showSource
+Display the source code of the question for logged-in users
+The showSource attribute allows you to view the source code of the question. If showSource="1" is set, users that are logged in with QA codes enabled will see the question's underlying source code.
+Type: bool
+Default: 0
+shuffle
+Elements to randomize (none, row, cols, choices)
+The shuffle attribute allows you to specify which of the question's elements to randomize. If shuffle="rows,cols,choices" is specified, then the question will randomize each of the <row>, <col> and <choice> elements.
+Type: set
+Default: none
+shuffleBy
+The label of the question to randomize the elements by
+The shuffleBy attribute allows you to specify another question's label to randomize the current question's elements by. The shuffleBy attribute uses the element's index value to match the randomization order, so the number and meaning of the elements should be the same.
+<radio label="Q1" shuffle="rows" title="First question.">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+<radio label="Q2" shuffle="rows" shuffleBy="Q1" title="Second question.">
+<row label="r1">Similar Item 1</row>
+<row label="r2">Similar Item 2</row>
+<row label="r3">Similar Item 3</row>
+</radio>
+Type: string
+sort
+Sort the results in the report (none, row, cols, choices, desc, asc, percentages)
+The sort attribute allows you to specify the sort order of the results in the report. If sort="rows,percentages,desc" is specified, the order of the results will be sorted based on the row's percentage values instead of the count values and in descending order. If sort="choices,asc" is specified, the question's choices will be sorted based on the count values in ascending order.
+Type: set
+Default: none
+sortChoices
+Sort choices alphabetically (none, asc, desc, survey, report)
+The sortChoices attribute allows you to specify the order in which to display the <choice> elements. If sortChoices="asc,report,survey" is specified, the choices will appear sorted alphabetically in ascending order for both the report and survey view of the question. In the example below, the choice elements will be sorted alphabetically in descending order in the survey view and remain in the order shown in the report view.
+<select label="Q1" sortChoices="desc,survey">
+<choice label="ch1">c</choice>
+<choice label="ch2">b</choice>
+<choice label="ch3">a</choice>
+<choice label="ch4">d</choice>
+</select>
+Type: set
+Default: none
+sortCols
+Sort columns alphabetically (none, asc, desc, survey, report)
+The sortCols attribute allows you to specify the order in which to display the <col> elements. If sortCols="desc,report,survey" is specified, the columns will appear sorted alphabetically in descending order for both the report and survey view of the question. In the example below, the col elements will be sorted alphabetically in ascending order in the report view and remain in the order shown in the survey view.
+<checkbox label="Q1" sortCols="asc,report">
+<col label="c1">c</col>
+<col label="c2">b</col>
+<col label="c3">a</col>
+<col label="c4">d</col>
+</checkbox>
+Type: set
+Default: none
+sortRows
+Sort rows alphabetically (none, asc, desc, survey, report)
+The sortRows attribute allows you to specify the order in which to display the <row> elements. If sortRows="asc,survey" is specified, the rows will appear sorted alphabetically in ascending order in the survey view of the question. In the example below, the row elements will be sorted alphabetically in ascending order in the survey view and remain in the order shown in the report view.
+<radio label="Q1" sortRows="asc,survey">
+<row label="r1">c</row>
+<row label="r2">b</row>
+<row label="r3">a</row>
+<row label="r4">d</row>
+</radio>
+Type: set
+Default: none
+sst
+Determines whether simulated data should try to understand and/or populate the element
+The sst attribute enables you to prevent the survey stress tester from testing the element. When sst="0" is set, the simulated data system will ignore the element.
+Type: bool
+Default: 1
+title
+The displayed title of the question (required).
+The title attribute is required for all question elements and can be seen in both the report and survey view. The title attribute is also subject to variable replacement, meaning that variables from other survey components can be piped into the question's title text.
+<radio label="Q1" title="Please choose your favorite color:">
+<row label="r1">Red</row>
+<row label="r2">Green</row>
+<row label="r3">Blue</row>
+<row label="r4" open="1">Other:</row>
+</radio>
+<suspend/>
+<text label="Q2">
+<title>Why is [pipe: Q1] your favorite color?</title>
+</text>
+Type: string
+translateable
+Excludes text from translation file
+The translateable attribute enables you to exclude elements from the translation file. When translateable="0" is set, the element will not appear within the translation file and will not get translated by the system.
+Type: bool
+Default: 1
+type
+The type of question (none, rating).
+The type attribute is used to affect the report output for rating questions. If type="rating" is specified, the question's table in the report will show a "Top 2" and "Bottom 2" net in addition to the average rating. The question must have the values attribute specified at the question level or on a per-row basis.
+Type: enum
+Default: none
+uses
+The dynamic question (DQ) style to use.
+The uses attribute is used to modify the question's layout and presentation using the dynamic question styles. The shorthand notation for any of the dynamic questions available can be supplied and the question will transform into the DQ style specified.
+<radio label="Q1" title="Please select a bucket for each item below." uses="cardsort.3">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<col label="c1">Bucket 1</col>
+<col label="c2">Bucket 2</col>
+<col label="c3">Bucket 3</col>
+</radio>
+Type: string
+values
+Sets the values for the question (none, order).
+The values attribute allows you to override the default data values of the question's <row>, <col>, or <choice> elements. If values="order" is specified, the data values for each element will correspond to the order in which it sits. In the example below, the data value for "r3" will be 3 (corresponding to the position), the data value for "r5" will be 99 since a specific value was set, and the value for any non-checked item will be 0.
+<checkbox label="Q1" title="Please select all that apply." values="order">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+<row label="r5" exclusive="1" value="99">None of the above</row>
+</checkbox>
+This attribute also accepts the reverse option, which excludes explicit value answers first. This means you can have an input like: 5,-1, 9.
+Type: string
+Default: none
+virtual
+Python code to compute the data values.
+The virtual attribute allows you to evaluate Python expressions each time the report is run. Any question with a virtual attribute declared is a virtual question. A virtual question can compute its value based on other non-virtual questions.
+Note: Set newVirtual="1" inside the main <survey> tag to enable the same syntax for your virtual code that's available in the survey.
+<text label="vQ1">
+<virtual>
+this.r1.val = "$" + Q1.r1.val
+this.r2.val = S5.r1.val + ", " + Q1.r2.val
+</virtual>
+<row label="r1">Income</row>
+<row label="r2">City, State</row>
+</text>
+Type: string
+where
+Specify where the variable should be available (survey, report, summary, none, notdp).
+The where attribute controls where a variable should be available. It can be set to any of the following:
+survey: The element will be shown in the survey.
+execute: The element will be shown as a hidden question in the survey.
+report: The element will be shown in the report.
+summary: The element will appear in the report summary table.
+none: The element will not appear anywhere (neither survey nor report).
+notdp: The element will appear in the survey and report, but not in the data downloads.
+By default, most elements are set to where="survey,report" and will appear in both the survey and report. If where="none" is specified, the element will not appear anywhere.
+For example:
+<text label="Q1" optional="0">
+<title>
+(Default) Shown in survey and report.
+</title>
+</text>
+<text label="Q2" optional="0" where="execute">
+<exec>
+# do something here
+</exec>
+<title>
+Shown as hidden question in survey.
+</title>
+</text>
+<text label="Q3" optional="0" where="none">
+<title>
+Not shown at all.
+</title>
+</text>
+<text label="Q4" optional="0" where="report">
+<title>
+Only shown in report.
+</title>
+</text>
+<text label="Q5" optional="0" where="notdp">
+<title>
+Shown in survey and report, but not in data downloads.
+</title>
+</text>
+The code above produces the following result:
+Note: Click image to enlarge.
+Learn more: Control where an Element Appears with the Where Attribute
+Type: set
+Default: survey, report
+tv
+Change trackVars settings at the question level for surveys with trackVars="checkbox" specified (auto, off, force, record)
+The tv attribute applies to surveys with trackVars="checkbox" specified and enables you to control how trackVars (tv) works at the question level.
+By default, tv="auto" is specified and tv will behave as expected, showing the percentage calculation base based on individual checkboxes.
+When tv="off" is specified, tv will be disabled for this question and normal checkbox calculations will be performed (a data value of blank will only exist when the question was not seen altogether).
+When tv="force" is specified, tv will assume that allow checkbox items were seen and none were hidden.
+If you want to use trackVars on a question with where="execute", use tv=record to show the percentage calculation base based on individual checkboxes.
+Learn more: Setting an Answer Option Base to Total Shown
+Type: enum
+Default: auto
+2: Learn More
+Overview of the Survey Tag and Quick Links
+Element Attributes

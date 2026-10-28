@@ -1,0 +1,124 @@
+Title: Customizing the Image Map Element
+You can use the Image Map element to discover what participants think about an image, concept or design. This dynamic question style enables participants to easily map out areas of an image into categories.
+1: Underlying Question Architecture
+The base question type for the Image Map element is a <textarea> question. It requires at least one column and no rows to be present.
+1.1: Base XML
+<textarea label="Q1">
+<title>
+Please tell us how you feel about the following workspace.
+</title>
+<col label="c1">I like this</col>
+<col label="c2">I dislike this</col>
+</textarea>
+The XML code above produces the following result:
+2: Converting to the Image Map Element
+To transform this question into the Image Map element, specify the question style to use and the image file to load.
+<textarea label="Q1" uses="imgmap.6" imgmap:image="workspace.jpg">
+This change produces the following result:
+3: Customization
+Use the following options to configure and customize the Image Map element to fit the needs of your project.
+imgmap:image
+The image file name to present.
+Type: String
+Example:imgmap:image="concept_1.jpg" loads the image specified from the static directory of the project. The file name must be path to image file and not an evaluated expression (e.g., a resource tag or pipe).
+imgmap:loading
+The text that is displayed while the image is loading.
+Type: String
+Default: <i class='fa fa-icon-spinner fa-icon-spin'></i>
+Example:imgmap:loading="Please wait..." displays text instead of a spinning icon before the image is loaded.
+imgmap:paletteSchema
+The color palette used in the reporting tool to display the category frequencies.
+Type: String - comma and pipe delimited (e.g., r,g,b,a|%||r,g,b,a|%||, etc.)
+Example:255,50,50,0|0||255,50,50,100|100 will update the heatmap colors shown in the Crosstabs report to go from fully transparent red (i.e. white) at 0% to fully visible red at 100%.
+imgmap:color
+The color of the category and selection area to be created. If there are multiple columns, separate colors using pipes.
+Type: String - any valid CSS color (e.g., black, #000, rbg(0, 0, 0), etc.)
+Default:
+1 column: #39B54A
+2 columns: #39B54A |#ED1C24
+3 columns: #39B54A|#00AEEF |#ED1C24
+4+ columns: #39B54A |#00AEEF |#ED1C24 |transparent
+Example:<col label="c1" imgmap:color="#000">...</col> will show a black marker and selection area
+imgmap:default
+The marker that should be selected initially upon loading the question.
+Type: String
+Default: The first column
+Example:imgmap:default="c3" will select column "c3" as the default marker to use
+4: Customization Example
+Below is an example demonstrating the different options available for customizing the Image Map element. Use this as a reference to help you customize the look and feel of this question style to fit the needs of your project.
+4.1: Example 1
+Using the attributes listed above, we can modify the look and feel for this question style both for the participant's view and within Crosstabs. View the XML code below to see what was modified:
+4.1.1: Example 1 XML Code
+<textarea label="Q1" optional="0" uses="imgmap.6"
+imgmap:image="workspace.jpg"
+imgmap:loading="<i class='fa fa-icon-spinner fa-icon-spin'></i> Please wait..."
+imgmap:paletteSchema="255,0,0|0||0,255,0|50||0,0,255|100"> <title> Please highlight all the areas in the following image that you find interesting or boring.
+</title>
+<col label="c1">Interesting</col>
+<col label="c2" imgmap:color="#000">Boring</col>
+</textarea>
+4.1.2: Example 1 XML Code Description
+Here's a brief description of each attribute that was added to create this style:
+imgmap:image="workspace.jpg"
+This attribute is required and points to the image that we are displaying to the participant
+The image should be located in your project's static directory (e.g., /selfserve/9d3/proj1234/workspace.jpg)
+imgmap:loading="..."
+This attribute updates the text displayed when loading the question style
+By default, only a spinner icon is shown. This example, as shown below, displays the text "Please wait..." in addition to the default spinner icon.
+imgmap:paletteSchema="..."
+This attribute updates the heatmap colors shown in the Crosstabs report
+By default, the entire color spectrum is used to illustrate the areas that participants have selected
+The value provided goes from red to green to blue, as shown below:
+<col label="c2" imgmap:color="#000">...</col>
+Instead of the default red marker color, we've updated the "Boring" selection color to black.
+5: Customizing the Error Messages
+If you want to customize specific error messages for the Image Map element, you can do so by using <res> tags.
+5.1: Example
+5.2: XML
+<textarea
+label="q6"
+cond="condition.skip_smartphone"
+grouping="rows"
+height="10"
+imgmap:image="/survey/selfserve/216a/160901/Jellyfish_00.jpg"
+optional="0"
+ss:questionClassNames="sq-imgmap"
+sst="0"
+uses="imgmap.6"
+width="50">
+<title>New Image Map Question</title>
+<comment>Using your mouse, map each region using the specified color.</comment>
+<res label="sys_textNoAnswerSelected">Please use the marker to map an area.</res>
+<col label="c1">Positive Label</col>
+<col label="c2">Neutral Label</col>
+<col label="c3">Negative Label</col>
+</textarea>
+This is a list of all the available resource tags used to change the error messages in the Image Map question type:
+<res label="sys_textNoAnswerSelected">Please use the marker to map an area.</res>
+6: Configuring Simulated Data
+Running simulated data won't generate very meaningful data for the Image Map element. Add the following code to your XML if you'd like generate better, fake selection data:
+<exec when="init">
+# this function generates fake rectangular coordinates
+# for image map elements
+def imgmap_generateShapes(cols, height, width):
+for col in cols:
+count = random.randint(0, 15)
+if (count):
+shapes = []
+for i in xrange(0, count):
+x1 = random.randint(0, width)
+y1 = random.randint(0, height)
+x2 = random.randint(x1, width)
+y2 = random.randint(y1, height)
+shapes.append("%s %s %s %s" % (x1, y1, x2, y2, ))
+col.val = "\n".join(shapes)
+else:
+col.val = ""
+</exec>
+<exec cond="gv.isSST()">
+# UPDATE THIS CODE FOR EACH QUESTION
+# imgmap_generateShapes(QUESTION.cols, IMAGE_HEIGHT, IMAGE_WIDTH)
+imgmap_generateShapes(Q1.cols, 449, 550)
+</exec>
+7: What's Next?
+Check out the Image Map Element document if you'd like to add this dynamic question style using the Survey Editor.

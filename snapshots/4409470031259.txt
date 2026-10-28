@@ -1,0 +1,58 @@
+Title: Supported Browsers and Devices
+Forsta Surveys supports the current major version of the browsers and operating systems listed below for the various areas within Forsta Surveys. Forsta actively tests and verifies that Forsta Surveys displays properly on these browsers prior to Forsta Surveys upgrades and new releases.
+Requirements for all browsers:
+All browsers require JavaScript to be enabled.
+The minimum supported browser resolution (i.e., for Decipher, not the participant view) is 1024 x 768. This is the smallest window size for which we will fix critical functional issues.
+Click here to view the global "browser stats" page that contains a breakdown of the current/last 30 days mobile devices and operating system usage. You must have Decipher Staff access to view this page.
+1: Participant View
+1.1: Online Surveys
+The online participant view is supported on the following browsers for desktop and mobile devices.
+1.1.1: Desktop
+Supported browsers for participant view on a desktop:
+Windows 10, Windows 11
+Edge
+Firefox
+Chrome
+Mac OS
+Firefox
+Chrome
+Safari
+1.1.2: Mobile Devices
+Supported browsers for participant view on a mobile device:
+iOS
+Safari
+Android
+Chrome
+UC Browser
+1.2: Offline Surveys
+The offline participant view is supported on the following browsers for desktop and mobile devices. See Creating an Offline or Multi-Mode Survey for more information on offline survey functionality.
+1.2.1: Desktop
+Windows 10, Windows 11, Mac OS:
+Firefox
+Chrome
+1.2.2: Mobile Devices
+Android
+Chrome
+1.2.3: Offline App
+iOS
+Android
+2: Application
+The application is supported on the following browsers.
+2.1: Desktop
+Windows 10, Windows 11:
+Edge
+Firefox
+Chrome (recommended)
+Mac OS
+Firefox
+Chrome
+3: Email Clients
+The following email clients are supported for system-created emails:
+Apple Mail (desktop and mobile)
+Gmail (desktop, web-based, and mobile)
+Outlook (desktop)
+4: Exported Files
+The following are supported for non-data file exports:
+Windows: Microsoft Office (.docx, .pptx)
+5: Software Release Testing
+Software testing is a combination of physical devices and emulators.

@@ -1,0 +1,39 @@
+Title: 153.20 Release Notes
+Release Date: November 7, 2023
+Release Version: 153.20
+New Features
+Portal
+The Portal list page now performs some tasks more quickly.
+Survey
+Integration: SmartHub
+New last_touched data is now sent to Smarthub, allowing access to some new Studio widgets.
+The request body in API GET requests is no longer sent to SmartHub.
+Dynamic Questions
+The Rank Sort element has been upgraded to version 6 (ranksort.6). This upgrade adds the new style attribute ranksort:alwaysSubmitOE. When setting ranksort:alwaysSubmitOE="1", if data has been entered into an open end answer, the answer must be ranked.
+Learn More: Customizing the Rank Sort Element
+Responses
+Sample Marketplace
+InnovateMR's logo and marketing text have been updated.
+Reporting
+Data Downloads
+SPSS 16+(.sav) and SPSS 15 (.sav) files are now available to download for non-English languages.
+Learn More: Data Downloads and Formatting Options
+Programming and Tools
+API
+The rh/users endpoint now includes user 2FA configuration status information.
+Bug Fixes
+Survey
+Participant View
+Extraneous whitespace no longer displays in Safari for Card Rating questions containing images.
+Survey Editor
+The Survey Summary now correctly displays duplicate participant settings, 1-column question display settings, and single select grid question display settings.
+Survey Testing Tools
+Editing questions which contain images no longer prevents those images from displaying properly in Survey Editor.
+Dynamic Questions with type="res" stylevars now correctly save text changes made via the Survey Testing Toolbar in Participant View.
+Responses
+Participant Sources
+CATI samples will no longer replace '0' with a null value during import.
+Reporting
+Data Downloads
+The fixed-width variants of the SPSS datamap (*.sps file) now use UTF-8 encoding, allowing languages such as Chinese to display correctly.
+When a datamap is requested in a non-primary language, HTML tags are now correctly stripped and the alt= attribute is used when no translation is provided.

@@ -1,0 +1,52 @@
+Title: Decipher Clips Installation
+Forsta offers programming "CLIPS" designed to help with building Decipher surveys in a few select text editors. The CLIPS allow you to convert a text-based questionnaire to an XML document that can then be uploaded to the Decipher XML Editor.
+Decipher CLIPS are available for the following text editors:
+Sublime Text
+NoteTab
+Vim
+The following sections outline the CLIPS installation process for each of these. If you have multiple text editors, we recommend installing Decipher CLIPS on the editor with which you are most familiar.
+NoteTab CLIPS Installation
+If you have NoteTab (Pro or Light), follow the steps below to install Decipher CLIPS:
+Install Python 2.7.
+Download the latest NoteTab CLIPS files from Github (click "Clone or Download", then "Download ZIP").
+Save them to C:\Program Files (x86)\NoteTab 7\Libraries.
+Open NoteTab and select them (the files should show up on the bottom toolbar).
+Tip: If you do not have NoteTab but would prefer to use this editor for survey programming, click here to download the latest version. While NoteTab Pro includes additional features, we recommend installing NoteTab Light if you will only be using your text editor for survey programming, as it is freeware without a time/use constraint.
+Sublime Text CLIPS Installation
+If you have Sublime Text, follow the steps below to install Decipher CLIPS:
+Install Python 2.7.
+Download the latest Sublime Text CLIPS files from the Decipher GitHub (click "Clone or Download", then "Download ZIP").
+Unzip the downloaded file.
+Copy the folder "decipher-sublimetext3-clips-master" into your "Sublime Text 3 Packages" folder.
+For Windows 7, the default path is: C:\Users\<yourUserName>\AppData\Roaming\Sublime Text 3\Packages. The "AppData" folder may also be hidden for this operating system. If you type "C:\Users\<yourUserName>\AppData\" into your Windows Explorer’s address bar, you will be taken to that location.
+Update "<yourUserName>" to the name of your user directory.
+Open the Sublime Text 3 editor and create a new file with the .xml extension.
+Verify that the CLIPS are present by right-clicking in the new document and checking that "Dec-Question Types" and "Dec-Question Element" are displayed.
+Tip: If you do not have Sublime Text but would prefer to use this editor for survey programming, click here to download the latest version. Sublime Text can be downloaded and evaluated for free, but you must purchase a license for continued use.
+Vim CLIPS Installation
+Note: Cloud users can use Vim CLIPS to create and edit the survey.xml file directly from the shell environment.
+If you have Vim, you can install Decipher CLIPS via either the pathogen method or by direct upload:
+Method 1: Pathogen
+1. Install Python 2.7.
+2. Download the latest Vim CLIPS pathogen files from GitHub (click "Clone or Download", then "Download ZIP").
+3. Copy the pathogen file to your "autoload" folder. You can use this command as a shortcut:
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \curl -LSso
+~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+If you're using Windows, change all occurrences of ~/.vim to ~\vimfiles.
+4. Vim is configured by a .vimrc file. Add this to your .vimrc file:
+execute pathogen#infect()
+If you're brand new to Vim and lacking a .vimrc, type vim ~/.vimrc and paste in the following super-minimal example:
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+Any plugins you wish to install can be extracted to a subdirectory under ~/.vim/bundle, and they will be added to the "runtimepath".
+5. Download the latest Vim CLIPS files from the Decipher GitHub (click "Clone or Download", then "Download ZIP").
+6. Extract the files and move the extracted folder (via the Decipher ftp server) to ~/.vim/bundle/.
+Method 2: Direct Upload
+Install Python 2.7.
+Download the latest Vim CLIPS files from the Decipher GitHub (click "Clone or Download", then "Download ZIP").
+Extract the files and move the extracted folder to ~/.vim folder*.
+If you don’t have a ~/.vim folder, create one before extracting.
+Once you have completed your installation, you can use the "Cheat Sheet" commands listed on the Vim CLIPS GitHub. To get started, go into visual mode and type your leader and shortcut keys.
+Note: By default, the leader for both methods is "\"; however, you can overwrite this to almost any other character in your .vimrc file with :let mapleader = ",".
+Tip: If you do not have Vim but would prefer to use this editor for survey programming, click here to download the latest version for free.

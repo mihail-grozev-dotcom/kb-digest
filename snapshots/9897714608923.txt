@@ -1,0 +1,21 @@
+Title: 143.1 Release Notes
+Release Date: May 14, 2019
+Release Version: 143.1
+New Features
+Crosstabs
+Optimized the way Crosstabs handles loading numeric question types, decreasing load times.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue when exporting charts to PowerPoint that would randomize colors after the fourth answer option.
+Fixed an issue where sorted tables wouldn’t be sorted in the export when exporting from the Crosstabs front page.
+Fixed an issue where exports would fail if the project contained no images.
+Fixed an issue with custom base descriptions not appearing in Excel exports.
+View/Edit Responses
+Fixed an error caused by loading data (adb="1") on sample sources when using a float or number question.
+Fixed an issue with quota names being displayed as “undefined” when the quota definitions contained markers matching parts of quota titles.
+Survey
+Survey Editor
+Fixed an issue with quota titles displaying HTML in quick quotas.
+Downloads
+Fixed an issue with datamaps containing duplicate condition labels when identical labels had previously been differentiated with appended characters (underscores).

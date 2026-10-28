@@ -1,0 +1,8 @@
+Title: Section Element
+The Section element creates a section title that can be used for question and element organization or to establish anchor points for survey logic. Section elements and their content are hidden from survey participants.
+1: Adding a Section Element
+To add a Section element, first click the "+ Element" button to add a new survey element. Then click "Structural Elements" under Question Types and select the "Section" element. Then click "Add".
+Enter the section title in the area provided.
+2: Options for a Section Element
+Element customization options are located to the right of the staging area. The title text and label of the Section element appear in the options section.
+Label: The label assigned to the element. Click to edit the default label for the Section element.

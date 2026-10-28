@@ -1,0 +1,51 @@
+Title: Net Promoter Score (NPS)
+The Net Promoter Score (NPS) is calculated based on participant responses to a question that would indicate their willingness to recommend a company's products or services to others. For example, an NPS question might ask "How likely is it that you would recommend our company / product / service to a friend or colleague?". The scoring for this response is most often based on a 0 to 10 scale.
+Those who respond with a score of 9 or 10 are labeled Promoters and are considered likely to exhibit value-creating behaviors, such as buying more, remaining customers for longer, and making more positive referrals to other potential customers.
+Those who respond with a score of 0 to 6 are labeled Detractors and they are believed to be less likely to exhibit the value-creating behaviors.
+Responses of 7 and 8 are labeled Passives and their behavior falls in the middle of Promoters and Detractors.
+The NPS is usually calculated by subtracting the percentage of customers who are Detractors from the percentage of customers who are Promoters. For purposes of calculating a Net Promoter Score, Passives count towards the total number of participants, but do not directly affect the overall net score.
+1: Calculating the NPS
+Using the below recommendation question as an example, you can use the participant's response to this question to calculate the NPS.
+<radio label="Q1" type="rating">
+<title>How likely would you be to recommend <u>Company A</u> to a friend, family member or colleague?</title>
+<comment>Please select one.</comment>
+<col label="c0" value="0">0 = Not at all likely</col>
+<col label="c1" value="1">1</col>
+<col label="c2" value="2">2</col>
+<col label="c3" value="3">3</col>
+<col label="c4" value="4">4</col>
+<col label="c5" value="5">5</col>
+<col label="c6" value="6">6</col>
+<col label="c7" value="7">7</col>
+<col label="c8" value="8">8</col>
+<col label="c9" value="9">9</col>
+<col label="c10" value="10">10 = Extremely Likely</col>
+</radio>
+<suspend/>
+To calculate the NPS, you can either first calculate what type of participant they are, or go straight into the score. Below is a quick and easy way to track your Promoters, Passives, and Detractors in the report. Using a Single Select type question, you can use the below code.
+<radio label="NPS" title="NPS Promoter, Passives, Detractors">
+<virtual>
+if Q1.val != None:
+if Q1.val in [9,10]:
+NPS.val = NPS.r0.index
+elif Q1.val in [7,8]:
+NPS.val = NPS.r1.index
+else:
+NPS.val = NPS.r2.index
+</virtual>
+<row label="r0">Promoter</row>
+<row label="r1">Passive</row>
+<row label="r2">Detractor</row>
+</radio>
+Note: This uses a virtual question, which only runs when the report runs. See Adding Virtual Questions to the Report for more information. You can alternatively run this as a “hidden question” (where="execute"), but you would need to make sure you put this in place before launching the survey.
+The actual score of the participant is going to be calculated using a Float question type. You need to assign a value of 100 for Promoters, 0 for Passives, or -100 for Detractors, as shown below. You can also use the above virtual question to determine what score to assign.
+<float label="NPS_Score" title="NPS Score" size="1">
+<virtual>
+if NPS.r0:
+data.val = 100
+elif NPS.r1:
+data.val = 0
+elif NPS.r2:
+data.val = -100
+</virtual>
+</float>

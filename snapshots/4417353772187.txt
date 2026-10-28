@@ -1,0 +1,31 @@
+Title: Adding Logic Nodes Using the XML Editor
+This document provides detailed instructions on using the Logic Library and its re-usable logic segments, or "logic nodes".
+All of the logic nodes available within the Logic Library can be added to Decipher surveys using the XML Editor.
+1: Adding a Logic Node
+To add a logic node to a survey using the XML Editor, add a <logic> tag to your survey with logic that runs code when encountered.
+The tag should have at minimum the following attributes:
+<logic label="marker"
+uses="dmarker.1" />
+The label attribute uniquely identifies a logic node, similar to specifying a question label. Logic nodes that store data will store it under the unique label. Just like a question, the label also creates a variable in Python code that provides additional functionality that is dependent on the marker.
+The uses attribute selects the name and version of the logic node. Similar to dynamic questions, functionality is versioned so that version 1 of a logic node stays unchanged, receiving only bug fixes.
+Each logic node may take parameters. Some logic can be scheduled to run at some point in the future: either once or repeatedly.
+2: Debugging Information
+If you have a survey with logic nodes, you can view a list of all the logic nodes and any debug information that has been logged on the project logic debugging page. Select "Logic" from the Report menu or use the direct link:
+https://[server]/apps/logic/[path/to/project]:debug
+From the command line, you can issue the command "beacon get schedule" to get a list of what actions scheduled and for when. You can issue the command "beacon post surveys/{survey}/logic/{label}/trigger" to trigger an event.
+Once a node is added, a "Logic" menu item is available for debugging from the Report menu:
+Important: Avoid updating the attribute debug_level in the XML as it can greatly increase system resource and storage usage without any benefit to the project or user. This attribute should only be set by Forsta Staff.
+See Logic Debug for more information.
+3: Scheduling Logic Nodes
+Some logic nodes are scheduled to run periodically such as those for sharing the project's Response Summary and Crosstabs, while others (such as the nodes for clearing data and closing a survey) are scheduled to run only once.
+The following applies to all logic nodes:
+The nodes never trigger automatically in any temp-XXX survey.
+If you visit the project logic debugging page, you can ask for the node to trigger immediately, even in testing surveys. This can be used to verify that file data delivery works correctly.
+The action is scheduled when the survey is loaded and only when the survey is live. Thus if you edit the survey.xml in the shell, you must also load the survey.
+Any errors from the action are sent via email to all the subscribers on the survey.
+If an error occurs when executing the trigger, it will be retried after 1 hour, 2 hours, etc. All survey subscribers are notified of the failure.
+The node triggers under the credentials of the oldest subscriber to the survey that is still an active user (likely the project launcher) or failing that, under the system user hermes@decipherinc.com. Future versions of the logic system will have a way to embed a specific user's credentials.
+The following applies only to periodic logic nodes:
+The next scheduled time can be seen in the project logic debugging page.
+If the node triggers and the survey is still live, it is re-scheduled according to the selected period. If the survey is closed, the node can still trigger but it will not be re-scheduled.
+Modifying the time or period the node fires triggers a reschedule: the existing scheduling is canceled and a new one is added.

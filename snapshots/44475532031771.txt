@@ -1,0 +1,31 @@
+Title: 154.11 Release Notes
+Release Date: December 16, 2025
+Release Version: 154.11
+New Features
+Portal
+The permission report's primary page has been simplified. It now shows only a list of all groups, and a list of all users.
+Learn More: Viewing the Permission Report
+Survey
+Survey Editor
+Tasks are now accessible in Survey Editor and in a new Tasks management page.
+Learn More: Using Tasks to Provide Feedback
+XML Editor
+When using View/Edit XML, highlighting at least three characters of text will now highlight all instances of that text. This allows for more easy identification of tags, etc.
+Dynamic Questions
+Media Testimonial version 2 is now available, featuring a new, feature-flagged, AI transcription option.
+Learn More: Media Testimonial Element, Customizing the Media Testimonial Element
+Integration
+For Kinesis Panel datapoint questions, you can now disable autopopulation of panelist data in participant view using the "Include Panel Data" checkbox.
+Learn More: Pulling Panel Management Datapoints into a Decipher Survey
+Responses
+Response Summary
+Response Summary now includes a "Last 24 Hours" option for the date range.
+Architecture and DevTools
+Supervisors now have permission to edit the notification email in Company Settings.
+Bug Fixes
+Survey
+XML Editor
+A visual issue affecting line-height has been resolved.
+Reporting
+Crosstabs
+An issue causing skipped Media Testimonial questions to generate thumbnails in Crosstabs has been resolved.

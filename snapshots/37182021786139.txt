@@ -1,0 +1,28 @@
+Title: 153.53 Release Notes
+Release Date: May 20, 2025
+Release Version: 153.53
+New Features
+Portal
+Beginning May 20, 2025, email notifications will be sent to project subscribers regarding live surveys that have not been accessed by users or completed by participants within the past 18 months.
+To prevent these surveys from being automatically closed due to inactivity, please ensure that the project is accessed through the portal prior to July 1, 2025.
+Usage Statistics
+Usage Statistics no longer displays obsolete fields such as Standard/Mobile Completes and counts related to Video/IU/VT.
+Dynamic Questions
+A new version 8 of cardsort is available, with native support for autoSubmit in both single-select and multi-select forms.
+Learn More: Customizing the Card Sort Element, Card Sort Multi-Select Element, Card Sort Single Select Element
+The Discrete Choice Model (DCM) element is now available to all users.
+Learn More: Discrete Choice Model (DCM) Conjoint Element, Customizing the DCM Conjoint Element
+Media Testimonial now has camera and microphone health check indicators which inform the participant when lighting is poor or when no sound is detected.
+Learn More: Media Testimonial Element
+Removed inaccurate description within AI Assist’s "Delay after typing" option in Display Options.
+Survey Editor
+When viewing a temporary copy of a survey, users can no longer add new elements, duplicate existing elements, or change the "Show if" logic for elements.
+Bug Fixes
+Survey
+Dynamic Questions
+An issue that prevented playback of recorded and uploaded videos in Media Testimonial on iOS devices has been resolved.
+Participant View
+Using the survey back button no longer triggers validation errors when one of the previous questions was a number or float question that used ignoreValues and the submitted value was one of the ignore values.
+Responses
+Email Campaigns
+An issue that sometimes inserted unnecessary whitespace in mailto: links that included a subject= parameter has been resolved.

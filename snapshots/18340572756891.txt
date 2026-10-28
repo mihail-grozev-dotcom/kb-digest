@@ -1,0 +1,15 @@
+Title: 153.15 Release Notes
+Release Date: August 29, 2023
+Release Version: 153.15
+New Features
+Survey
+Survey Editor
+The Quester ITB element has been removed from the Survey Elements menu. Surveys with existing Quester ITB questions will not be affected.
+Responses
+View/Edit Responses
+Added a link to the legacy Edit Data (2010) page in View/Edit Responses. Previously, the Edit Data (2010) page was only available through Report 2010.
+Learn More: About the View / Edit Responses Report
+Bug Fixes
+Survey
+Participant View
+The Card Rating question no longer displays extra whitespace in portrait-oriented browser windows (including mobile devices).

@@ -1,0 +1,109 @@
+Title: Setting Up Automated Tasks
+Requires Decipher Cloud
+Decipher allows for the scheduling of automated jobs using a tool called cronwrap. When using cronwrap, user scripts are created in the shell environment and are scheduled to run periodically.
+1: Creating Your Script
+Your shell script can be written in Bash, Python, or any other Unix programming language, though it is recommended to use Bash or Python. It is also recommended that you store these script files in your project directory or in your /home/user folder.
+In the example below, the bash script file is located in the /home/user/myscript.sh folder.
+See Script / Automation Examples below for various example scripts that can be used within Decipher.
+2: Scheduling / Testing Your Script
+2.1: Creating a Configuration File
+Navigate to the folder /home/hermes/v2/data/cronwrap.d.
+Copy the template config file below and name it myscript.conf (or whatever you like).
+#Group name
+[my_automations]
+comments = "My Automation Project"
+#Job Name
+[[my-job-1]]
+name = "My Job Name"
+command = "bash /home/user/myscript.sh"
+maxtime = 1200
+fail_only_recipients = "fail@domain.com fail2@domain.com"
+all_recipients = "recipient@domain.com recipient2@domain.com"
+error_list =
+success_list =
+Tip: Indenting the file is optional but recommended. You can add another job with the relevant variables (e.g., my-job-2).
+Below are the definitions for each of the variables described in the .conf file.
+Variable
+Description
+name
+Name of job.
+command
+Script or command you need to run.
+maxtime
+If the job does not finish in its given maximum time (seconds), the process gets killed.
+fail_only_recipients
+Recipients who will get an email ONLY if job fails.
+all_recipients
+Recipients who will get an email all the time.
+error_list
+Job will fail if these strings are matched in stdout. They can be regular expressions.
+success_list
+Job will fail if these strings are NOT found in stdout. They can be regular expressions.
+Note: Ad-hoc projects are included in 01projects.conf.
+It is important to have a fair idea of how long the process would take to run when specifying the maxtime.
+After creating a job / group, run cronwrap -c to make sure there are no errors in the config file. It is important to run it every time you make a change or else other jobs might fail.
+2.2: Scheduling the Job to Run
+In the shell, type the below command:
+crontab -e
+The server may prompt you for a text editor to use as your default. "nano" or "vim" are recommended. To change this, you can run select-editor in the terminal to re-select your editor.
+Once inside crontab, supply the config group / task to run and the time to run it. Be sure to include lines 1-2 at the top of your crontab. This will set up the required environment variables.
+PATH=$PATH:/usr/local/bin:/home/hermes/bin:/usr/bin:/usr/local/bin:/bin:/usr/sbin:/sbin
+HERMES2_HOME=/home/hermes/v2
+0 6 * * 1-5 /home/hermes/bin/cronwrap --group=my_automations --task-name=my-job-1
+In the above example (line 3), the script will run at 6am local server time on Monday-Friday only. To get the local server time, type date in the command line and press enter.
+The first five positions represent the minute, hour, day, month, and day of the week, respectively.
+minute — any integer from 0 to 59.
+hour — any integer from 0 to 23.
+day — any integer from 1 to 31 (must be a valid day if a month is specified).
+month — any integer from 1 to 12 (or the short name of the month such as "jan" or "feb").
+day_of_week — any integer from 0 to 6, where 0 represents Sunday.
+Here are some more examples and the syntax used.
+Example
+Syntax
+Run once a year at midnight of January 1st
+0 0 1 1 *
+Run once a month at midnight of the first day of the month
+0 0 1 * *
+Run once a week at midnight on Sunday morning
+0 0 * * 0
+Run once a day at midnight
+0 0 * * *
+Run once an hour at the beginning of the hour
+0 * * * *
+For further assistance, you can access the crontab generator page.
+2.3: Testing Your Script
+To test your automation, duplicate your crontab -e entry above (line 3 in this example) and change the time to run five minutes from your current time.
+For example, if it is 8:15 AM local server time, you would duplicate your entry and adjust the following to run at 8:20 AM local server time.
+#Original group/task
+0 6 * * 1-5 /home/hermes/bin/cronwrap --group=my_automations --task-name=my-job-1
+#My test run, Duplicated and adjusted time to 8:20am.
+20 8 * * * /home/hermes/bin/cronwrap --group=my_automations --task-name=my-job-1
+Wait until 8:20 AM local server time and ensure the job ran successfully. Once deemed successful, you can delete the duplicate entry by going back to crontab.
+2.4: Reviewing the Automation Report Page
+You can use the format of the link below to review automation jobs for your server.
+https://your-server.decipherinc.com/apps/automations This report shows you the status of each cron run and shows all automations scheduled on your server (where "your-server" is your cloud server sub-domain).
+For example, if your Portal login page is this URL: https://client.decipherinc.com/apps/portal,
+You would use this link format to access the automation report, where client is the client's name:
+https://client.decipherinc.com/apps/automations
+3: Script / Automation Examples
+The following scripts are examples meant to help you start writing your own custom scripts. When using any of these scripts, be sure to update relevant areas of the script, such as its survey path, email addresses, path to script, etc.
+3.1: Emailing Users
+You can use the following script to generate the latest Excel data file and email it to a list of users.
+Click here to download the files. Files included are listed below.
+example-excel-data-file-email.conf
+crontab -e.txt
+example-excel-data-file-email.sh
+3.2: Generating User Lists
+You can use the Decipher REST API to generate a list of active users.
+Click here to download the files. Files included are listed below.
+example-api-user-list-python.conf
+crontab -e.txt
+example-api-user-list-python.sh
+example-api-user-list-python.py (this file is executed in theexample-api-user-list-python.sh script file)
+3.3: Uploading Weekly Files
+You can use the Decipher REST API to get a weekly CSV file and datamap and upload these to an SFTP server.
+Click here to download the files. Files included are listed below:
+example-api-csv-data-sftp.conf
+crontab -e.txt
+example-api-csv-data-sftp.sh
+Note: This script requires you to know how to set up an SSH private / public key using ssh-keygen. See DigitalOcean.com for a tutorial on how this is done.

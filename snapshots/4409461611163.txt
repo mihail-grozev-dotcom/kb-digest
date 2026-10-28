@@ -1,0 +1,74 @@
+Title: Applying RIM Weighting
+You can define and implement weighting schemes in Crosstabs without the aid of a Data Processor or external weighting programs. Weights can also be easily rerun if new data is collected, and you can run weights on one or more subsets of data simultaneously.
+Note: RIM weighting is only available for surveys with compat 135 +.
+1: What is RIM Weighting?
+Random Iterative Method (RIM) Weighting allows researchers to adjust multiple characteristics within a dataset while keeping the characteristics proportionate as a whole. This means that you can run separate weights by data subsets and tailor your weighting schemes by wave, country, or any other data segment within your survey.
+In Crosstabs, you have two options for adding RIM Weighting to your survey data:
+You can use the Weighting Scheme Editor to create a weighting scheme by selecting questions and assigning weighting percentages to each of their response options. This article details how to create and apply a weighting scheme manually using the Weighting Scheme Editor.
+You can upload a pre-configured weighting file directly to Crosstabs. See Creating and Uploading a Weighting Scheme for instructions on uploading an existing weighting scheme directly to Crosstabs.
+Note: You will need report:edit permission to access the RIM weighting features available within Crosstabs.
+2: Accessing the Weighting Scheme Editor
+There are two ways to access the Weighting Scheme Editor.
+Option 1: Open the Crosstabs Actions drop-down menu and select New Weighting Scheme.
+Option 2: In the Crosstabs report settings menu, click New under Weighting.
+Regardless of the access method you choose, the Weighting Scheme Editor appears in a new window.
+3: Weighting Scheme Editor Overview
+The Weighting Scheme Editor allows you to customize your survey weights and run test cases to ensure that your final reports are calculated exactly as needed.
+The Weighting Scheme Editor includes the following functions:
+1. Variable Name: The name for your weighting scheme, as it appears in Crosstabs. Click into the text-box to add or edit the scheme name.
+2. Weighting Dimensions: Use this drop-down menu to select which survey question you would like to use for data weighting.
+Note: Only closed-ended, single-dimension questions and variables are displayed in the Weighting Scheme Editor. See Using Advanced RIM Weighting to learn how to add weights to more complex question types using the Advanced Weight Editor.
+3. + Dimension: Click to create an additional drop-down menu. This allows you to select another question to use in your weighting scheme.
+4. Filters: All selected filters are displayed in this box. Click Edit to add or edit filters.
+5. Switch to Advanced Weight Editor: Click to access to the Advanced Weight Editor, where you can programmatically adjust the weights and filters for your weighting scheme. Any weights and filters you have already added in the Weighting Scheme Editor will remain intact. See Using Advanced RIM Weighting to learn more about using the Advanced Weight Editor.
+6. Efficiency icon: Depending on your current weighting scheme, this can be a green checkmark or a red exclamation point. Mouse over this icon to view the estimated Weight Factor Efficiency Output rating for the current weighting scheme, along with any error messages. Click the hyperlink displayed under the efficiency rating to open a new window with the results of computed weights.
+7. Save: Click to add your weighting variable to the Crosstabs "Weighting" menu, where it can be applied to the report at any time.
+4: Building a Weighting Scheme
+To start building out your new weighting scheme, first provide a name for the weighting scheme in the Variable Name text box. This name will appear in the Weighting drop-down in the Crosstabs report settings menu.
+4.1: Adding Weights
+Once you have a name, you can use the drop-down box under Weighting Dimensions to start adding weights. To add a survey question to your scheme, click the box and select the desired question from the list.
+Note: The drop-down box has a limit of 199 questions. Surveys with 200+ questions will not display anything in the drop-down and will not include a datamap when using the Advanced Weight Editor.
+Then, enter your weights as a percentage for each of the question's response options. The system will sum all responses as they are entered and display a dynamic total for your reference.
+Note: The Weighting Scheme Editor does not accept decimal values for weights. To use decimal values within weights, switch to the Advanced Weight Editor.
+To apply multiple questions to your weighting scheme, click + Dimension and select an additional question from the new drop-down that appears.
+Repeat this process to add as many questions as needed.
+4.2: Adding Filters
+You can use the Filters box to add filters based on participant status and any previous Crosstabs reports you have created. This can be helpful for applying weights only to a certain question, row, or column data, or to specific logic blocks.
+To add filters to your weighting scheme, select Edit.
+Then choose a participant status and any other saved report filter you would like to apply to your weighting scheme.
+4.2.1: Participant Status
+The Participant Status filter allows you to filter the data by participant status.
+Qualified: Participants who have completed your survey as a qualified user.
+Terminated: Participants who have completed your survey as a terminate user.
+Overquota: Participants who have completed your survey as an overquota user.
+All Complete Participants: Participants who have completed your survey with any completion status.
+4.2.2: Crosstabs Reports
+The Additional Filter field allows you to add filters based on previously run Crosstabs reports and is pre-populated with Crosstabs reports you or your project collaborators have already created. If you or your teammates have not created any Crosstabs reports, this field will appear locked as None.
+Note: Crosstabs reports must be set to View Only or Editable in order for other project collaborators to view them.
+See Building a Crosstab for more information on creating reports within Crosstabs.
+4.3: Advanced Options
+It is possible to add report logic to further customize your weighting scheme. For advanced scheme building options, click Switch to Advanced Weight Editor at the bottom left of the New Weighting Scheme window.
+To learn more about programming weights manually using the Advanced Weight Editor, see Using Advanced RIM Weighting.
+5: Running Weights
+Weights are run automatically as you build out your weighting scheme, but are not added to Crosstabs until you click Save at the bottom right. Each time you add a weighting dimension or filter, the system automatically re-runs your weighting scheme and displays an icon at the bottom of the screen indicating your current scheme's efficiency rating.
+The icon's appearance changes depending on the estimated efficiency of your current weighting scheme. A green checkmark means that your weighting scheme has met at least 70% efficiency and is safe to apply to your data. A red exclamation point means that your weighting scheme has not met at least 70% efficiency.
+Note: While it is possible to apply weighting schemes with low-efficiency ratings, it is recommended to achieve an efficiency of 70% or higher before applying a weighting scheme to your data.
+Mouse over the icon to view the estimated efficiency for your current weighting scheme.
+5.1: Viewing Calculation Details
+Click the Click This Link for Details hyperlink to display the system calculations for your scheme's current Weight Factor Efficiency Output and Root Mean Square (RMS).
+5.1.1: Evaluating the Efficiency Output
+Viewing these calculations allows you to evaluate your efficiency rating before actually applying any weights to your data. If the efficiency output is not what you expected, you can adjust your weighting scheme and re-calculate it as many times as you like.
+Note: The system will calculate the efficiency output as close as possible, so the maximum difference will never be more than 0.5%.
+5.1.2: Evaluating the Root Mean Square (RMS)
+The Details box also provides the RMS and number of iterations. The Decipher Weighting tool runs a maximum of 50 iterations of the RIM weighting algorithm, stopping only if convergence is reached. Convergence is reached once the RMS is less than 0.000005.
+For example, the results of the weighting scheme illustrated below indicate convergence was met after one iteration and, therefore, the weighting scheme is considered a success.
+If the weighting scheme does not reach convergence after 50 iterations, it is considered a failure. When convergence fails, the system will display a warning message with details of the failure.
+Note: A failed weighting scheme can still be applied, but researchers should be cautious about drawing conclusions from a data set with a failed weighting scheme applied.
+6: Applying Weights
+Once you are satisfied with your weighting scheme, select Save to add your weighting scheme to Crosstabs.
+Note: If your Total does not equal 100%, the Save button will be disabled and you will not be able to apply your current weighting scheme.
+To apply a saved weighting scheme, return to the report settings menu within Crosstabs. Then select the desired weighting scheme under the Weighting menu, and click Apply.
+After you add your weighting scheme using the Weighting Scheme Editor, it is available within the Crosstabs report settings menu, and you can toggle it on or apply a different weighting scheme at any time. To create another weighting scheme, just repeat this process for each individual scheme.
+7: Additional Considerations
+7.1: Editing Existing Weighting Schemes
+Once you have applied a weighting scheme within Crosstabs, you can edit or delete it at any time. To view the options for existing weighting scheme, mouse over the scheme name within the Weighting drop-down in the report settings menu.

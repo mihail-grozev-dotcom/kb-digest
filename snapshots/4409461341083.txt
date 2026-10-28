@@ -1,0 +1,11 @@
+Title: Hiding Low Base Segments in Reports and Exports
+By setting a restriction using an attribute in the survey XML, you can disable data for segments that fall below a specified number of completes. This may be required in some UK studies to meet certain market research regulations.
+1: Adding the Attribute
+Within the survey tag, enter minimumSegment="X", where X is the minimum number of completes required for segments to appear in the report, exports and dashboard.
+Example:
+<survey ...
+minimumSegment="5"
+In this example, only segments that have at least 5 completes in the "Total" will be shown in crosstabs, exports and dashboard. Segments with less than 5 completes will appear blank.
+Example of Crosstabs:
+Example of Dashboard:
+Example of Excel Export:

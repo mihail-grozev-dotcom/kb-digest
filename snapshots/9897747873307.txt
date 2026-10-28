@@ -1,0 +1,12 @@
+Title: 147.3 Release Notes
+Release Date: March 30, 2021
+Release Version: 147.3
+Bug Fixes
+Portal
+Fixed an issue causing abnormally long processing times for some Portal actions when migrating servers.
+Responses
+View/Edit Responses
+Fixed an issue forcing all noanswer response options to be recorded as “0” for surveys with a compat level of 145+, regardless of whether those options were seen by participants.
+Reporting
+Dashboard
+Fixed an issue causing an error when attempting to export reports using the “All Data Formats” option in the dashboard editor.

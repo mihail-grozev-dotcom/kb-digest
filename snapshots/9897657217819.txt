@@ -1,0 +1,91 @@
+Title: Decipher (previously Decipher) M30 Release Notes
+Release Date: October 16, 2015
+Programming & Tools
+#21047: Added run number and send date to bulk status output.
+#21248 : Ability for DQ authors to define functions in code.py and call them from styles.xml
+#17234: Simple v2 CNAME and other redirects can be placed in /home/jaminb/www.v2/redirect.txt
+Crosstabs
+#20739: The global weighting at the time of pinning will be applied to pinned tables. This affects new pins only
+#21438: The multixt survey attribute allows Crosstabs to run on multiple CPUs at once but at a low priority. This results in a speedup in extremely large data files (100,000+ or more participants) but will decrease performance otherwise. This does not speed up e.g. virtual question generation but solely backend processing.
+Large survey example: 2.1 million participants; 14 GB data file. Normal report time: 142 second. With multixt="4": 54 seconds.
+Security
+#21424: When you change your password or when your account is locked due to too many invalid password attempts, you will now receive an email. The login screen will no longer tell you that your account is locked out.
+#20786: Users on e.g. mobile networks where the IP address changes frequently would be asked to re-authenticated too often.
+Dashboard
+#21016: Using chart.data, you can now specify the data point displayed on charts. available options are: pct (default), count, hpct, effbase, ubase. (compat 2+)
+#21213: Adding showbase 1 to a chart will display the “count” for each row/column below the title. (compat 2+)
+#21019: Added a hierarchical filter that allows specifying different levels of filters such as Country -> State -> City
+#21024: Added a tabledrilldown generator that is used to click a cell and view the participants of that cell in the view responses report.
+#21031: Added a row hierarchy for tables so rows can be placed in groups and be collapsed and expanded.
+#20936: Sigtest results now show up when stats are used on rows
+#20929: When saving the dashboard syntax the editor position will stay the same and not jump to the top of the file.
+#21269: The default compat for new dashboards is now 3 instead of 1
+#21171: Dashboards without data should no longer fatal
+#21405: Global split option removed from compat 3 dashboards
+#21380: Rows and local filters can shown conditionally based on what global filters are chosen
+#21402: Better handling of invalid dashboard urls
+#21372: pdf exports of pie charts with no data will no longer fatal
+#21334: Functions can now be specified for applicable chartopt options
+#20592: stddev for numeric rows is now displayed
+#20935: Dynamic splits now export correctly
+#20968: “NPS” widget added. To display the NPS score for a bar/column chart, add uses NPS no the chart. Rows must be in this exact order to get the correct calculations: “Detractor”, “Passive”, “Promoter”. (compat 2+)
+#21032: “Open End” widget added. You can now create a table of open end responses with uses OE. (compat 2+)
+#21033: “Word Cloud” You can turn any “Open End” widget into a word cloud with uses WordCloud. This widget uses the same setup and options as Open Ends. By default, the widget will display the top 50 words used amongst all the responses. (compat 2+)
+#21415: Options oe.random, oe.first, oe.last to specify the amount of responses included in open end and word cloud widgets.
+#21018: Saved views. Users can save what they are currently looking at so that it can be quickly viewed later.
+#21247: Local split dropdown. Using bannergroup.local charts and tables can have local splits applied. Local splits with always take priority over global splits.
+#20970: Local filter dropdown. Using filtergroup.local charts and tables can add dropdowns for selectable filters. These filters will be applied in addition to global filters.
+#20962: Allow global filters to work with local filters. In compat 3+ local filter will no longer be applied without global filters being applied. Now both will be used to filter data.
+#21028: Added ability to clear global filters quickly. “x” at end of filter bar in compat 2+, button next to filters in compat 1.
+#21227: Using data.layout <layout id> will use the specified layout when drilldowns send a user to participant view.
+#21017: Permissions per tab/chart/table. Tables, charts, and tables can be restricted to a list of users by adding acl=<acl name>,<acl name>,... to the tab/table/chart definition.
+#21020: Global Raw data export for dashboard. Banners and filters will be applied to the export.
+#20975: Download raw data for individual charts and tables. Global filters, local filters, and global or local banners will be applied. Only the variables associated with the chart/table will be shown in the raw data.
+#20971: Ability to export individual charts and tables (PDF, Excel, and PowerPoint).
+#20963: Increase the size of charts in PowerPoint exports to utilize the full size of the page.
+#21172: Dashboard exports updates to include NPS, chart.data, and showbase.
+#21084: Dashboard exports to include HTML elements.
+#21186: Dashboard exports to support single segment charts with multiple colors.
+#21126: Dashboards with many participants and many numeric elements had performance greatly improved
+Survey
+#21154: Allow e-mail addresses with longer top level domains (ie, joe@some.longdomain)
+#20746: New Dynamic Question: Video Testimonial. A participant responds to a question via a video recording captured from their webcam or mobile device. Now you can combine quantitative + qualitative research.
+#21446: Usage Stats: VT Responses, the number of video testimonial responses in live surveys is added to "All Clients", "Summary" and "Detail View". VT# the number of video testimonial elements in live surveys, is added to "Detail View".
+Survey Builder
+#20040: Fixes issue where options for HTML elements did not appear in Options panel.
+#21395: Removed Video Library link from help menu
+#21359: Added link to new Knowledge Base to help menu
+#21149: When previewing a question for a new survey, you can now choose the preview display mode: desktop (default), tablet or smartphone. This applies to new surveys only (compat level=129+).
+Portal
+#21189: Updates logo from new Decipher logo to FocusVision DE logo
+Bugfixes
+#21394: Tracebacks printed while in virtuals could sometimes take minutes to generate. Much irrelevant data is now excluded.
+#21136: trackVars works again with M29+
+#21184: CMS edits resulting in empty texts no longer create fatal errors
+#21412: Fixes issue where jQuery UI tooltips do not properly handle text
+#21148: Fixes the issue with NA option for RatingScale DQ style
+#21222: Fixes the issue with NA option for RankSort DQ style on mobile devices
+#21142: Fixed Crosstabs logic node delete button not working
+#20612: Fixed broken logic
+#21345: Fixed navigating back-and-forth in a survey sometimes produces broken tables
+#20731: Fixed large grids overflow the foreground in Safari
+#21141: Fixed paragraphs of text causing the survey to grow too wide
+#21156: Fixed redirects have extra characters at end of URL
+#21308: Fixed odd and even classes missing from lists
+#21340: Fixed hidden harmless input appearing in wrong compats
+#21169 & #21178: Fixed error message when saving theme based on Contemporary theme
+#21252: Fixed themes made from the M28 Theme Kit appearing in Theme Editor
+#21127: Fixed error when editing/saving XML from Builder when m28 theme used
+#21153: Fixed panel campaigns not accessible
+#21138: Fixed missing paper background on hidden/QA questions
+#21134: Fixed issue where certain segment grouping causes errors in crosstabs
+#21314: Survey path permission was not being verified during file upload
+#21071: Fixed issue with changing group labels in the spss importer
+#20840: Fixed keyerror for some spss imports
+#21253: Fixed Hotspot DQ style for M29+
+#20665: Fixed Grid Separator style issue when used with colLegendRows
+#20752: Changed the formatting of the brightcove report output
+#21214: QA codes lost styling in M29
+#16242: Bullets do not show in UL lists
+#21259: Ratingscale.4/5 doesn't adapt width of mobile devices
+#21238: Crosstabs: Quick Split Modal disappears from screen if long list of saved crosstabs

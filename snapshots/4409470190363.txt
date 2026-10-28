@@ -1,0 +1,47 @@
+Title: Using Tasks to Provide Feedback
+When testing a survey, it is important to review the settings and attributes for each survey question. These include row / column randomization, making questions optional or mandatory, setting a minimum or maximum number of required answers, etc. See About QA Codes to view a complete list of question attributes and settings. If you want to make a change to any of these settings for a question, you can use the "Tasks" feature in the survey testing toolbar or from the Tasks list.
+1: Viewing Survey Tasks in the Survey Testing Toolbar
+The Tasks feature in the survey testing toolbar allows you to provide feedback and track the status of all open tasks. An overview of this feature is provided below.
+1. Tasks button: When clicked, the Tasks button will expand or minimize the feature. The color of the icon indicates the status of the tasks for the question you are viewing, and the numbers indicate how many unresolved and open tasks there are in the survey.
+2. Question drop-down: This drop-down allows you to select and skip to a question to view or add tasks.
+3. Toggle arrows: The arrow on the left will take you to the previous question, and the arrow on the right will take you to the next question in the survey.
+4. Print: Click this icon to print all tasks, or print outstanding tasks.
+5. Add task: Click to add a new task for the question you are viewing.
+6. Status / task: The status of a task is identified by a red or green square. A red square indicates the task is unresolved, while green indicates the task is resolved and ready for testing. Task statuses also show who added each comment, the task / comment itself, and the date and time it was added.
+7. Add comment: Click the "+" icon to add a comment to an existing task. Click "comment" to minimize or expand the comments about the task.
+Tips:
+When the Tasks feature is open you can resize the sections by clicking the top of the toolbar and sliding it up or down.
+The Tasks feature shows the tasks for the question you are viewing. Turn the "One Page" feature "ON" to view all the questions and tasks in one window.
+1.1: Task Status
+Additionally, the Tasks button displays the status of any pending survey tasks.
+The count on the left indicates the number of new and / or unresolved tasks in the survey. The count on the right indicates the number of resolved / open tasks that have not been closed in the survey.
+The color indicates the status of the tasks in the question you are viewing if the task feature is closed.
+Icon
+Description
+A green icon with no count indicates that all tasks in the survey have been resolved and closed.
+A red icon indicates that the question you are viewing has an unresolved task.
+A green icon indicates that the question you are viewing has resolved task that has not been closed.
+A grey icon indicates that the question you are viewing does not have any open tasks.
+1.2: Adding a Task
+Click the Tasks button to expand the feature. Then confirm that the appropriate question is selected in the drop-down menu and click "+add task" to add a new task for a question.
+Enter your feedback in the window that appears, being as specific as possible. Then select "save task". Once saved, the task will appear with the question.
+The new task will appear with a red box next to it, indicating that it is a new / unresolved task. The task will note who opened it, provide the description and the time / date when the task was added.
+1.3: Processing Tasks
+When you address a task (e.g., correct an error or make the specified changes), click the red box next to the task for the question. Then enter a comment and click "resolve task".
+This will "check off" the task and the box becomes green, indicating that the task has been resolved and is ready for testing.
+1.4: Reviewing Completed Tasks
+After the task has been tested, click the green box next to the task and select "reactivate" if the task was not implemented correctly, or "close" if the task was completed as expected.
+2: Viewing Survey Tasks from the Tasks List
+To access the Tasks List, select Build, then More Tools, then Tasks. The Tasks feature in the survey testing toolbar allows you to provide feedback and track the status of all open tasks. An overview of this feature is provided below.
+Search: Use the search bar to find tasks based on comment field.
+Filter: Filters tasks by Incomplete, Completed, or Confirmed.
+Questions: A list of questions with tasks. Select a question to view all tasks associated with a question.
+Tasks: The tasks associated with a specific question. Select a task to view the full text of the tasks, comments on the task, to add comments to the task, or to update, reassign, or delete the task.
+Export All: Select Export All to export an xlsx file with question Label, author Email, task Description, task Comment, Date, task Status, and if Orphaned.
+Update Status: Select Update Status to change the status of the task. The status can be Incomplete, Completed, or Confirmed.
+Reassign Task: Open the Reassign Task drop-down to change which question the task is associated with.
+Delete Task: You can only delete tasks that you created.
+Comments: Comments on the task are displayed in the Comments section.
+Comments field: Add comments in this field.
+Comment and Update: Select Comment and Update to add a comment and update the Status of the task.
+Comment: Select Comment to add a comment.

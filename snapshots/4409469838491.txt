@@ -1,0 +1,27 @@
+Title: Aggregate Data with Numeric Nets
+1: Overview
+The <nets> element can be applied to <number> and <float> questions to automatically aggregate responses in the report. For example, we can net the age groups in the following question using the <nets> element:
+<number label="Q1" size="3" verify="range(1,125)">
+<title>Please enter your age below:</title>
+<nets>1-17,18-24,24-34,35-44,45-54,55+</nets>
+</number>
+The code above produces the following table in the report:
+As shown below, nets can be overlapped and named:
+<number label="Q1" size="3" verify="range(1889,2014)">
+<title>Please enter the year you were born:</title>
+<nets>1889 New Worlders, 1890-1908 Hard Timers, 1909-1928 Good Warriors, 1929-1945 Lucky Few, 1946-1964 Baby Boomers, 1965-1982 Gen X, 1980-2000 Gen Y, 1983-2001 New Boomers, 2001+ Silent Gen</nets>
+</number>
+The code above produces the following report table with a value of 1988 submitted:
+Lastly, the <nets> element can also aggregate decimal values:
+Note: This only works in Report 2010 and not in Crosstabs.
+<float label="Q1" range="0,100">
+<title>What was your score on the last test</title>
+<nets>0-59.94 F, 59.95-69.94 D, 69.95-79.94 C, 79.95-89.94 B, 89.95-100 A</nets>
+</float>
+<suspend/>
+<exec>
+# round to nearest hundredth place
+Q1.val = "{0:.2f}".format(Q1.ival)
+</exec>
+2: What's Next?
+See the Net Tag for a more generic way to aggregate answers.

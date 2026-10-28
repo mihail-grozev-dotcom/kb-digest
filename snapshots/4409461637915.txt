@@ -1,0 +1,23 @@
+Title: Exporting Data in Report (2010)
+Overview
+After running your standard or custom report, you will see an "Export" option where you can export your report in a variety of formats. Below is an overview and example of each export available.
+1: Excel (csv)
+Exports the report with Microsoft Excel, placing all the questions within one Excel page. The report separates each question and answer by rows and columns. Excel exports are great for organizing statistics, percentages and data in a cellular format.
+2: Word
+Exports the report in a standard Microsoft Word document, which gathers the data as an image and displays it in an identical format as the report area. Word exports are great for printing and viewing all the data in one, easy to read file.
+3: PPTX
+Exports the report in a Microsoft PowerPoint 2010 document. You will also be able to select which questions you'd like to include in the report. Each question will be placed on a separate page within one PowerPoint document. PPTX exports are great for group presentations.
+After running your report, locate the export button and click on the PPTX (Microsoft PowerPoint 2010) option.
+A new window will open allowing you to select the segments and questions you want included in the PowerPoint export. You can also "check all" or "uncheck all" at the top. To the right, you can select the chart properties. Select which properties you'd like to show in the PowerPoint. Click on "edit chart colors" to select different colors for the charts.
+Notes:
+Bar/line charts utilize the top left color in the color options.
+Pie charts start with the first color (top left), followed by each color in order. For example, if you have 10 segments the chart will utilize the first 10 colors in order to create the pie pieces.
+Any changes to the colors are not saved at this time, so if you refresh or close your browser you will have to select the colors again.
+A pop-up window will ask if you want to open or save your PowerPoint file. Make your selection and open the document. PowerPoint will open allowing you to review the report. Each question will be listed on a separate page with basic text formatting.
+You canedit the downloaded document yourself using PowerPoint. Because each slide is editable content, and not an image, you can edit the formatting and/or data directly in PowerPoint.
+The bottom of each PowerPoint page will list the question number, complete text, base survey title, logo and page number. You can edit the contents of each footer directly in PowerPoint.
+4: Email
+Allows you to email the report to one or more recipients. A new screen will open where you will enter the email address of the recipient as well as a message. To email to multiple addresses, simply place a comma and a space between each email address.
+The report will arrive within the body of the email, not as an attachment.
+5: Print
+Displays the report in a printer-friendly format. If your print dialogue box doesn't automatically open, simply open it from your toolbar (File, Print) and select your print options.

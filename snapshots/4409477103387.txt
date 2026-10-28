@@ -1,0 +1,9 @@
+Title: View Options
+When building a survey in the Survey Editor, there are a few helpful items you can choose to be shown during the process, including QA codes, response labels, and data values.
+Click "View Options" and click from the drop-down to show or hide the QA codes, response labels, and/or data values while you edit or build your survey. The example below shows a question that has all of these options hidden.
+1: Show or Hide QA Codes
+To view the QA codes for each element, choose "Show QA Codes".
+2: Show or Hide Labels
+To view the response labels for each element, choose "Show Labels".
+3: Show or Hide Data Values
+To view the data values for each element, choose "Show Data Values".

@@ -1,0 +1,28 @@
+Title: Connecting Decipher to Ascribe
+Users with Ascribe accounts can export their survey data from Decipher directly into Ascribe using Ascribe Connectors. As their name implies, Ascribe Connectors connect Decipher surveys with Ascribe via the Decipher API, and allow users to pull data from surveys over for review and coding within the Ascribe platform.
+Note: Only data accessible to the Decipher user who sets up the Connector configuration is importable into the Ascribe system.
+1: Setting Up the Ascribe Connector
+To access your Decipher survey data in Ascribe, you will first need to setup the Decipher Connector within Ascribe. From the Ascribe home page, click the menu button at the top right:
+1: Setting Up the Ascribe Connector
+On the connectors page, scroll down to find the Decipher configuration and click “Configure":
+You will be prompted with an Authentication window. Fill in the three mandatory fields, then click "OK":
+User ID: The email used to log into the Decipher Portal. This email will be tied to the API key you are using.
+API Token: The API key generated from the Decipher Portal. See Decipher REST API for instructions on how to generate an API key within Decipher.
+Service Url Base: The API URL for the server you’re pulling information from. It must be input as “https://<servername>/api/v1 ". For example, for the main US Decipher server, you would input “https://v2.decipherinc.com/api/v1”.
+When successfully setup, you will automatically be sent to a list of your Decipher studies. To return to this study list in the future, return to the Ascribe Connector page and click “View Studies” next to Decipher:
+Note: Decipher surveys in a DEV state will not show within the Ascribe studies list.
+2: Importing Decipher Data
+On the Ascribe studies page, you’ll see all studies you have access to in Decipher:
+Each study will have the following information displayed horizontally in separate columns:
+Decipher Study ID: The project path (source study ID).
+Decipher Study Name: The project name (source study name).
+Ascribe Study ID: A unique ID will appear here for each study that is connected to Ascribe. To connect a study to Ascribe, click "Connect to Ascribe".
+Decipher Questions: The number of importable questions in the Decipher survey (source questions).
+Ascribe Questions: The number of questions imported into Ascribe from the Decipher survey.
+Decipher Respondents: The number of participants from the Decipher survey (source participants).
+Ascribe Respondents: The number of participants imported into Ascribe from the Decipher survey.
+To import the data into Ascribe click the “connect to Ascribe” link for that project:
+Importing a project into Ascribe will prompt you on which questions you want to import into Ascribe. Select the checkbox for each question you want to import and click import:
+Note: Most system and virtual variables are not importable into Ascribe.
+Then click "OK" on the import complete modal to finalize the process:
+Once you have connected your Decipher survey, you should see its Ascribe Study ID in the Ascribe portal. You can click the Ascribe Study ID at any time to view your data management options for that survey:

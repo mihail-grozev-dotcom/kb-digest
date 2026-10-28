@@ -1,0 +1,24 @@
+Title: March 6th Technical Release Notes
+Release Date: March 6, 2018
+New Features
+Survey
+Dynamic Questions
+Allow adding autosum from the survey elements menu.
+Survey Editor Guardrails
+Alert when deleting questions or answers that are reference in element conditions.
+Portal
+Additional audit logging when user, user project, and group permissions change.
+Programming & Tools
+API: Archive Project
+Archives project and deletes the project directory. Data retention rules will be followed unless force parameter is used.
+API: Un-archive Project
+Unarchives a project to its {survey} directory.
+Bug Fixes
+Survey
+Participant View
+Fixed an issue where the Imperium Real Answer custom code element could result in an error in the survey when unable to connect to Imperium
+Architecture/DevTools
+Fixed a rare issue where a database failover would hang
+Reporting
+View/Edit Responses
+Fixed an issue that was causing an error after making live edits to survey elements with shuffle attributes

@@ -1,0 +1,28 @@
+Title: 143.11 Release Notes
+Release Date: October 15, 2019
+Release Version: 143.11
+New Features
+Survey
+Word Importer
+Added the Word Importer, which can be used to create an online survey using a Microsoft Word questionnaire. The following types of questionnaire content can be converted into survey elements:
+Single Select, Multi-Select, Text, Essay, and Number question types
+Question instructional text
+Researcher / programmer comments and questionnaire notes
+Response options (including raw text, bulleted lists, and Word tables)
+Page breaks
+The Word Importer must be enabled at the company level prior to use. Contact your Forsta representative to learn more about getting access to the Word Importer.
+HR Templates
+Added several new "HR" survey templates which can be used to distribute some common types of Human Resource surveys.
+Response Summary
+Optimized the way response data is handled when splitting the report by participant source or language values using the "Split by" menu.
+Bug Fixes
+Survey
+Participant View
+Fixed an issue causing marker elements and logic to be re-run in surveys with both delphi="1" and autosave="1".
+Fixed a state restoration error that sometimes occurred in surveys with delphi="1" when participants submitted the same survey multiple times.
+Campaign Manager
+Fixed an error preventing the upload of recipient list files after an invalid list file has been uploaded.
+Portal
+Fixed an issue with the "Guides and Walkthroughs" link not working when accessing the Help menu from the Participant Sources menu.
+Programming & Tools
+Fixed an issue causing the GeoIP API call to return raw Unicode data instead of encoding it as UTF-8.

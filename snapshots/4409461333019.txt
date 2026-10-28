@@ -1,0 +1,109 @@
+Title: Defining Python Variables
+Python variables in Decipher can have different scopes depending on the way they are declared when scripting. There are three different types of variables that can be declared - global variables, local variables, and persistent variables.
+1: Global Variables
+Global variables will remain static across all participants taking your survey, and should be used for either read-only purposes or reusable functions. Because their values are shared across participants, changing values on a global variable will affect all participants, not just the participant who triggered the change.
+Global variables need to be defined when the survey is first initialized and can be accessed from any point in the survey to use for logic, calculations, or piping.
+There are two ways to define a global variable:
+As an extra variable using either the extraVariables survey attribute, or a sample source URL variable.
+In an <exec> block (to be triggered while a participant is taking the survey or within virtual questions).
+1.1: Defined as an Extra Variable
+Extra variables are used to capture information from the survey URL. They can be defined using either the extraVariables attribute in the <survey> tag:
+extraVariables="source,record,ipAddress,decLang,list,userAgent,myVariable"
+Or as a sample source URL variable:
+http://v2.decipherinc.com/survey/selfserve/ABC/160600?myVariable=variable
+Declaring global variables within extraVariables or as a sample source variable attribute allows you to access them from any point in the survey for piping, calculations, or building logic. Global variables defined using these two methods are static and only take the value assigned in the participant’s URL.
+Note: To assign new a new value to the extra variable, you will need to use the setExtra() function (assigning directly to the variable will have no effect).
+1.2: Defined in an <exec> Block
+To define global variables within an <exec> block, you will need to use the when attribute and set it to "init", "virtualInit", or "virtual"; whichever value you choose here depends on the behavior you require.
+1.2.1: when="init"
+Variables inside of <exec> blocks with when="init" are created only when the survey initially loads and are not accessible within virtual questions. Since these constant variables are defined in an <exec> block with the when="init" attribute, they can be accessed later in the survey when performing calculations.
+For example, imagine you wanted to ask the participant what price they are willing to pay for a product and use that price for an adjusted amount at a later question. First, you would define your constant variables using when="init":
+<exec when="init">
+constantA = 0.1
+constantB = 0.2
+constantC = 0.3
+</exec>
+Then, after asking your question, you would multiply that price by one of your constant variables (constantA) to get your new price to use later in the survey:
+<number
+label="q3"
+optional="0"
+size="10">
+<title>How much are you willing to pay for this brand?</title>
+<comment>Enter a number</comment>
+</number>
+<suspend/>
+<exec>
+newPrice.val = (q3.val) * constantA
+</exec>
+<number
+label="newPrice"
+optional="0"
+size="10"
+where="execute">
+<title>New Price</title>
+</number>
+1.2.2: when="virtualInit"
+Variables inside of <exec> blocks with when="virtualInit" work exactly like those within when="init" blocks, but the variables are only accessible in virtual questions. Below is the previous example working in a virtual question:
+<exec when="virtualInit">
+constantA = 0.1
+constantB = 0.2
+constantC = 0.3
+</exec>
+<number
+label="newPrice"
+optional="0"
+size="10">
+<virtual>newPrice.val = (q3.val) * constantA
+</virtual>
+<title>New Price</title>
+</number>
+1.2.3: when="virtual"
+Variables inside of <exec> blocks with when="virtual" are generated per participant. This is helpful when a variable will be used in multiple virtual questions.
+For example:
+<exec>
+Q1rowsSelected = [eachRow for eachRow in Q1.rows if eachRow.any]
+</exec>
+<number label="Q1_Selected">
+<virtual>
+Q1_Selected.val = len(Q1rowsSelected)
+</virtual>
+<title>Number of rows selected in Q1.</title>
+</number>
+2: Local Variables
+Local variables are any variables defined in an <exec> block which does not have a when="init"/"virtualInit"/"virtual" attribute. These variables are only accessible within the tag in which they are declared.
+For example, if you wanted to declare a local variable "counter" that gets updated if a row in a question (Q1) is selected, you would enter this into the <exec> block directly:
+<exec>
+counter=0
+for eachRow in Q1.rows:
+if eachRow:
+counter = counter+1
+if counter gt 2:
+Q2.val = 1
+</exec>
+3: Persistent Variables
+Persistent variables are variables that are unique per participant, and once declared, exist in the survey until the participant completes the survey or is deleted.
+Persistent variables are stored in what is called a “persistent dictionary”, which makes them accessible from any point in a survey. This allows for the storing and piping of specific values that would otherwise need to be stored in a separate question. It also allows you to perform later calculations using the values stored here.
+Tip: Persistent variables are not accessible in virtual questions or in the data, so we recommend only using them to store data that you know will not be accessed later.
+3.1: Declaring a Persistent Variable
+A persistent variable is declared in the same way as a regular variable, but with the addition of "p." in front of the variable name:
+<exec>
+p.myVariable = 5
+</exec>
+Declaring the variable using the above example allows you to access it later from anywhere in your survey. For example, you can later grab the value that you stored in your persistent variable to punch a single select question:
+<exec>
+Q5.val = p.myVariable
+</exec>
+You can also use this for piping stored text into questions/comments:
+<exec>
+p.name = "John"
+</exec>
+<suspend/>
+<html label="cm4" where="survey"> Hello, [name] !!</html>
+Note: If you are using a persistent variable for text piping, that variable must be declared as a string type (e.g., p.myVariable = "0").
+3.2: Deleting a Persistent Variable
+As persistent variables take up more system resources than regular variables, having too many of these in a survey could result in the survey experiencing reduced performance. In order to avoid this, a good practice is to delete persistent variables after they have been used in the survey. If you know that you won’t be using a persistent variable past a certain point in a survey, you can delete it as shown below:
+<exec>
+del p.myVariable
+</exec>
+3.3: Using p.markers
+A persistent variable defined as "p.markers" is available by default in every survey without having to be defined. This variable stores markers assigned to participants either by quotas, or by manually setting markers. Using this variable returns a list of all the markers assigned to a participant, which can be used for logic conditions in the survey.

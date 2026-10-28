@@ -1,0 +1,74 @@
+Title: How to Enable the Sample Provider API
+Requires Decipher Cloud & Server administrator account.
+The Sample Provider API is enabled by creating a file named xsapi.py located in your Decipher server's root data/ directory.
+For example:
+data/xsapi.py
+1: Setup Sample Provider API in xsapi.py
+Use the following xsapi.py template to enable the Sample Provider API:
+# This will hold the data for each API server
+apis = {}
+# A single API entry looks like this
+apis['UNIQUE-SAMPLE-SOURCE-DATA-API-KEY'] = {
+# API endpoint without trailing slash
+'endpoint' : 'http://api.server.com/sampleapi',
+# List of methods that our API supports
+'methods' : [
+'questions',
+'list',
+'get',
+'survey-state',
+'disposition',
+'links',
+'reserve',
+'update',
+'refresh',
+],
+# API should be enabled for projects matching the following paths
+'surveys' : [
+'selfserve/abc/123',
+'selfserve/def/*',
+]
+}
+Below is a brief description for each of the components used above:
+# This will hold the data for each API server
+apis = {}
+apis is a dictionary that will contain API entries specific to each sample provider.
+...
+# A single API entry looks like this
+apis['UNIQUE-SAMPLE-SOURCE-DATA-API-KEY'] = {
+...
+A single API configuration is setup using the sample provider's unique API key. This is specified in the sampleproviders.py file used to create the provider participant source.
+...
+# API endpoint without trailing slash
+'endpoint' : 'http://api.server.com/sampleapi',
+...
+This endpoint should be set to the URL where the sample provider's API server is configured.
+...
+# List of methods that our API supports
+'methods' : [
+'questions',
+'list',
+'get',
+'survey-state',
+'disposition',
+'links',
+'reserve',
+'update',
+'refresh',
+],
+...
+The methods should be set to all of the functions that are setup and configured by the sample provider's API.
+Tip: The API provider does not need to support all of these methods. It can be setup, for example, to only be notified about the survey-state and not be involved in any sample pulling or validation.
+...
+# API should be enabled for projects matching the following paths
+'surveys' : [
+'selfserve/abc/123',
+'selfserve/def/*',
+]
+}
+The surveys should be set to all of the projects that should have the API enabled and allow for API function calls to be made.
+In the code above, the project selfserve/abc/123 is enabled and all projects located in the selfserve/def/ directory are enabled (using the asterisk * wild card).
+2: Setup the API-Enabled Sample Provider in sampleproviders.py
+Using the same unique API key, create a new participant source that will have the API functionality enabled.
+Tip: Set the xsapi attribute to the unique API key for each sample provider.
+Learn more: Managing Server-Specific Participant Sources

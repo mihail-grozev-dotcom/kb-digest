@@ -1,0 +1,20 @@
+Title: July 10th General Release Notes
+Release Date: July 10, 2018
+Highlights of July 10th Release
+New Features
+GDPR Compliance
+Ensure that all users consent to the Decipher cookie policy prior to login
+Survey Editor
+Automatically insert any required page breaks for structural elements
+Portal Updates
+Use the "/" character when searching across projects
+Start a new project with just a name
+New Features
+GDPR Compliance
+In compliance with GDPR best practices, Decipher users must consent to the Forsta cookie policy prior to logging into their account. To make this requirement more transparent, the login page has been updated to include a cookie consent option across all login methods.
+Cookie consent is required for both the standard and Google login methods and lasts for 30 days.
+Survey Editor
+Structural elements, such as quotas, autofills, skips, alerts, and terminates now automatically insert preceding page breaks when added from the Survey Editor.
+Portal Updates
+The project portal has been further optimized for an enhanced user experience. Improved search functionality now allows users to search across projects for phrases containing the "/" character.
+Additionally, the project creation menu has been streamlined to make the process easier than ever. Now, all surveys will be created using the latest compat and require only a name - all other settings have been made optional and moved to the expandable "Project Info" and "Advanced" sections.

@@ -1,0 +1,14 @@
+Title: Project Settings Summary
+The Project Settings Summary menu allows you to quickly review and adjust the general settings for your survey.
+1: Accessing the Project Settings
+There are two ways to access the Project Settings Summary menu in Decipher:
+1. Via the Survey or XML Editors: Click the "Settings" button at the top right of the Survey Editor or XML Editor.
+2. Via the Survey Testing Toolbar: Click “Project Settings” under “Build” in the project’s Quick Links.
+2: Project Settings Overview
+The Project Settings Summary menu displays the current settings for each project settings category. Click the title for a category to edit the settings, or select the category from the drop-down found at the top of the menu. The following categories are available:
+Project Settings: Modify the general settings, including the name used in the Portal, the location, the primary language, and the project path. See Project Settings to learn more about the Project Settings menu.
+Display Settings: Modify the look of your survey, including the logo, theme and support footer. See Configuring Survey Display Settings to learn more about the Display Settings menu.
+Device Settings: Define the mobile compatibility for your survey. We detect the participant's device type and based on that, the participant can be terminated or presented with an experience enhanced for their particular device type. See Device Settings to learn more about the Device Settings menu.
+Field Settings: Manage how your survey will function in the field. See Field Settings to learn more about the Field Settings menu.
+Question Settings: Apply global settings for each question type in your survey. See Question Settings to learn more about the Question Settings menu.
+Close: Click to save the applied changes and close the window.

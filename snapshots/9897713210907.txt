@@ -1,0 +1,23 @@
+Title: M41 Release Notes
+Release Date: October 16, 2018
+Release Version: 141
+New survey compat level is 141. Use compat="141" for all new surveys. This enables use of the Date Picker dynamic question.
+New Features
+Date Picker Dynamic Question
+The new Date Picker element allows participants to easily enter important dates directly from a survey. The element is available in the Survey Elements Menu and features a calendar type user interface with built-in date range and format validation.
+Survey
+The new daterange text verifier is available for text questions. The daterange verifier allows you to set the format and acceptable range for any dates entered by participants.
+Survey Editor
+You can now enforce a specific format for dates entered within text questions. The following date format verifiers are now available from the question Options menu in the Survey Editor:
+Date: MM/DD/YYYY
+Date: DD/MM/YYYY
+Date: YYYY/MM/DD
+Once a date format is selected, you can then also select an acceptable date range for your question using the new "Date Range" (range start) and "To" (range end) attributes.
+Bug Fixes
+Reporting
+Fixed an issue when using Crosstabs' text search for empty values.
+Portal
+Navigation Menu
+Fixed an issue which prevented users from using the navigation menu to return to Crosstabs from Saved Reports pages.
+Programming & Tools
+commaify: Fixed an issue which cause commas to not be added.

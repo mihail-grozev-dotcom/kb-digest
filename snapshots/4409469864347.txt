@@ -1,0 +1,27 @@
+Title: Marker Tag: Set a Survey Marker
+The <marker> element is used to set markers in a survey. Setting a marker using the <marker> element is equivalent to using the setMarker function in an <exec> element.
+In contrast to the <exec> approach, the <marker> element can be easily identified (but can not be edited) within the Survey Editor.
+Note: You can check if a marker exists by using the hasMarker(...) function. (e.g., hasMarker('my_marker')). See Python Functions to learn more.
+1: Attributes
+The <marker> element utilizes the following syntax:
+<marker name="my_marker" cond="Q1.r1" />
+It has access to the following attributes:
+Attribute
+Type
+Description
+name
+string
+The name of the marker being set.
+cond
+string
+The condition for marker being set.
+1.1: name - Setting the Name of the Marker
+The name attribute controls the name of the marker being set.
+<marker name="Wave_3" />
+<block label="Wave_3_Section" cond="hasMarker('Wave_3')>
+...
+...
+1.2: cond - Setting the Condition to Apply the Marker
+The cond attribute controls the logic in setting the marker. You can specify any Python expression here and if it evaluates to "True", the marker will be set.
+<marker name="Quarter_4" cond="datetime.datetime.now().month ge 10"/>
+Tip: Learn more about Adding Condition / Skip Logic and the Exec tag.

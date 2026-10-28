@@ -1,0 +1,11 @@
+Title: Report (2010) - Report View Options
+After running a standard or custom report, the report screen gives you various viewing options you can access towards the top left-hand corner of the screen.
+1: Show/Hide Open-Ended Data
+This is data collected in text form from an open-ended question. In the example below, participants are asked to list reasons why they might not use an energy drink. If "show inline open-ended data" is selected in View Options, the report will list all the text answers collected for each question.
+2: Show/Hide Tables with no Respondents
+In some instances, a report might have tables with no data in them. In the example below, the survey had two lists assigned to it; List A (participants who were shown question #8) and List B (participants who were not shown question #8). In the example below, we have only run simulated data for list B so the table for question #8 is empty.You can opt to hide these empty data tables by selecting "hide tables with no participants" within the View Options.If "show tables with no participants" is selected in View Options, these empty tables will be shown.
+3: Apply Weights
+Only available if weights have been added to the data
+If weights have been added to the data, choose this option to view the weighted data in the report.
+4: Show/Hide QA Codes
+These are QA codes, shown in red or orange, that signify a specific question type, question attribute or survey attribute. See About QA Codes for a complete list and description of each QA code. In the example below, the QA code "SEL" is shown signifying a single select question. If "show QA codes" is selected in View Options, QA codes will be visible in the report.

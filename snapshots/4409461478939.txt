@@ -1,0 +1,98 @@
+Title: Editing the Survey Theme
+1: Using the Theme Editor
+You can use the Theme Editor to access a variety of predefined survey templates that you can use to customize the look and feel of your survey. Default survey themes are optimized for all devices and are designed to maximize participant engagement and completion rates.
+Additionally, you can use the Theme Editor to customize a predefined template to support your own corporate branding with a new color scheme and typography changes. Customized templates can also be saved as new themes that you or anyone in your company can use again.
+2: Accessing the Theme Editor
+To access the Theme Editor, click Themes under Build in the navigation menu that appears at the top of any project page.
+3: Viewing Themes
+There are a variety of preset survey themes available within the Theme Editor. When browsing the theme gallery, you can scroll through the list of themes on the left for a preview of each theme's presets.
+The theme preview provides details on how colors and fonts are used within the theme:
+1: Name of the theme displaying the font of survey text.
+2: Display of the progress bar.
+3: Color of the survey background.
+4: Design of selected radio buttons and checkboxes for standard questions.
+5: Design of selected checkboxes for dynamic button multi-select questions.
+6: Display of the survey's navigation button.
+Click a theme in the gallery to customize it or apply it to your survey. When you select a theme, the box around the theme gets highlighted and two additional buttons are displayed: Customize and Apply to Survey:
+A preview of the selected theme also appears to the right of the theme gallery, where you can select different preview options to see the theme applied in different ways. Use the menu at the top to apply the following theme views:
+Example Survey: An example survey.
+My Survey: The currently open survey.
+Multiple devices: Desktop, Tablet, or Smartphone.
+Rotate device: This option allows you to toggle between portrait and landscape views. Only available formobile device views.
+In the theme preview mode, you can scroll through the entire survey to view how each question will appear with the theme applied.
+4: Customizing Themes
+After you have viewed or applied a theme and want to customize it, click Customize. A customized panel for the theme displays to the left. From here, you can customize the theme's color and typography.
+4.1: Setting Color Options
+Note: While there are six color tiles in the Other Colors... color bar, some of these tiles are only used in select themes, and they are often assigned to different elements within different themes. You can view the changes in the preview pane to the right of the theme editor to determine which tile applies to what specific element in a selected theme.
+Click any color tile to open the color picker and customize that color. After you have selected a color for customization or entered the appropriate HTML color code, click Choose. The changes are immediately applied to the survey color bar to the left. You can customize additional colors if desired.
+4.2: Setting Font Options
+Use the drop-down menus under Text to adjust the font style and size for your survey pages.
+You can also click Undo or Redo to update your changes. When all customizations are complete, click Save.
+The Save Theme dialog opens for you to save your customizations to create a new theme.
+Note: When customizing a theme using the Theme Editor, you can export the theme.less file with the new changes without having to save them first.
+Click Save to save the customizations or click Save and Apply to save the customizations and apply it to the survey.
+Note: You can delete any unused themes you have created through your customizations. To delete a theme, select the theme in the theme gallery, and click the x in the top right corner.
+5: Applying Themes
+To apply a theme to your survey, click Apply to Survey. In the confirmation box, click either Stay in Theme Editor to continue editing your survey theme, or Exit Theme Editor to return to your survey in the Survey Editor.
+Back in the Theme Editor, the applied theme moves to the top of the list of available themes and displays as the current theme.
+6: Using the XML Editor
+You can apply the theme XML attribute to the <survey> object in a project's XML to set the project's theme. The theme attribute accepts all the values listed below (examples use company path selfserve/abc and survey path selfserve/abc/10000).
+Important: If you are using a theme.less file make sure to add it via theme="survey" or rename it to something other than theme.less if you are using ss:includeLESS, otherwise your theme.less file will be overwritten and will be lost when setting your survey live.
+Attribute
+Type
+Desciption
+Example
+system/[theme-name]
+System Theme
+Applies a theme in the system's theme directory. Maps to: /static/nthemes/system/themes/[theme-name]/theme.less
+theme="system/education" maps to static/nthemes/system/themes/education/theme.less
+company/[theme-name]
+Company Theme
+Applies a theme in the project's company directory. Maps to: [project-company-path]/themes/[theme-name]/theme.less
+theme="company/official" maps to selfserve/abc/10000/themes/official/theme.less
+user/[user-id]/[theme-name]
+User Theme
+Uses a theme in the user's theme directory, located in the project's company directory. Applies a theme in the user's theme directory, located in the project's company directory. Maps to: [project-company-path]/themes/users/[user-id]/[theme-name]/theme.less
+theme="user/1/experiment" maps to selfserve/abc/10000/themes/user/1/experiment/theme.less
+survey
+Survey-Specific Theme
+Applies the theme.less file in the project's static folder. Maps to [project-path]/static/theme.less
+theme="survey" maps to selfserve/abc/10000/static/theme.less
+frozen:[old-theme-setting]
+Frozen Theme
+Applies a frozen theme, with the original theme value recorded after the colon. When a survey is live, its theme is "frozen" by copying the theme.less file into the project's static directory and using it instead of the original theme. This is to ensure that if a theme is revised, live surveys are not affected. It is essentially the same behavior as theme="survey", except it is set through an automated process and the original theme can be quickly determined just by looking at the attribute. Maps to: [project-path]/static/theme.less
+theme="frozen:company/official" maps to selfserve/abc/10000/static/theme.less
+7: Applying Multiple Themes
+Note: To apply multiple themes to a single survey, the survey must have a compat level of 137+.
+It is also possible to add multiple themes to a single survey, which can be useful in surveys with multiple participant bases or participant sources. Multiple themes are defined using both the <themes> and <theme> tags, and themes are applied when the <themes> tag is evaluated.
+To apply multiple themes to your survey, add the <themes> tag via the XML Editor, specifying the following attributes:
+cond (string) - The condition for displaying the theme.
+name (string) - The name generated by the Theme Editor.
+Additionally, ensure that the following conditions are met:
+The <theme> name references theme names listed within the Theme Editor.
+The project is in a selfserve directory if using a company or user theme.
+The theme is included in the <survey> tag if using a survey-specific theme.
+7.1: Example
+The following example shows themes implemented at each level (system-, company-, user-specific and survey-specific):
+<themes>
+<theme cond="list == '1'" name="system/education"/>
+<theme cond="list == '2'" name="company/company_theme"/>
+<theme cond="list == '3'" name="user/1/user_generated_theme"/>
+<theme cond="list == '4'" name="survey"/>
+</themes>
+Tip: You can apply a theme via the theme editor to get the correct name. Just copy the value of each “theme” from the survey tag to reference the correct system-, company-, user- or survey-specific theme, and add it to the appropriate row in your <themes> tag.
+Note: The name is NOT the path to the theme.less file.
+7.2: Customizing a Theme
+Customizing a theme programmatically gives you fine control over the look of a theme. You can export an existing theme and then use it as a template to customize the theme or even create a new theme.
+To customize a theme programmatically, download the theme.less file to your system according to your browser's settings. Then, make changes to the theme using the available less XML attributes (See The Less Styles System). Finally, import (upload) the file back to Decipher.
+First, click "Export Theme". By default, the text file of the current theme (theme.less) is exported. If you would like to export a different theme, click the theme's thumbnail to highlight it and then click export.
+By default, the current theme is exported. You can click the other theme's thumbnail to export that one instead.
+Open the theme.less file and make your changes with a text editor. Inside this file is a readme section that includes instructions for customization. You can also refer to The Less Styles System for additional information.
+Note: You can change the name of the theme inside the theme.less file to create a new theme, if desired. Name your new theme with alphanumeric characters. Any other character types are stripped out when you import. Additionally, you can rename the theme.less file to suit your local file system organization. This filename has no bearing on the import process.
+Once you have finished making your changes, click "Import Theme". You can browse to locate the theme.less file, or you can drag the file to the Import Theme Less File dialog. The name of the selected file is displayed for your verification. Click "Upload".
+The file is imported, compiled, and then applied to the survey. The customize panel opens to make further edits, if required. When customizations are complete, click "Save".
+If you made changes to the theme name (at the top of the file), when you click "Save" from the customize panel, the new theme dialog opens for you to specify the theme availability:
+This Survey Only - Only for this project
+My Themes - Only for your use
+Company Themes - To anyone in the company
+Note: If the .less file has syntax errors it would not be able to be compiled or applied to the survey. In this case, an error message displays the error that needs fixing. Afterward, you can upload the .less file again.

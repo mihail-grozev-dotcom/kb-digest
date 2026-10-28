@@ -1,0 +1,46 @@
+Title: Creating and Using Survey Templates
+In addition to using the default Decipher template surveys, users have the ability to create their own templates for use in the future.
+1: Creating a Template Survey
+To begin, program a survey to meet the specifications of your template. If you're new to survey creation, see Overview of the Building Workspace to learn more about programming surveys using the Survey Editor.
+1.1: Save All Elements to the Library
+Once your template survey is programmed, you can add it as a template by saving all questions and elements to the Element Library.
+First, select all of your survey elements by holding the crtl or shift keys and clicking each element in the Question Tree. With multiple elements selected, the “Save Template to Library” button becomes available.
+Clicking “Save Template to Library” will open a new window for you to provide a name for the template, as well as to add any tags to help keep the Element Library searchable and organized.
+Note: The "Global" sharing option Requires Decipher Cloud access.
+Learn More: Saving to the Element Library
+1.2: Set Sharing Settings
+When saving an element or an answer set to the library, you can specify how this element is shared. Users can add elements they can view to a survey. By default, sharing is set to "Off."
+To specify sharing select:
+Settings
+Shared With
+View/Edit
+Off
+No one
+View: Only you
+Edit: Only you
+Users
+Specific users specified by their email address
+View: You and specified users
+Edit: You and specified users
+Company
+All users in your company
+View: You and all users in your company
+Edit: Only you
+Global (staff only),
+if available
+All users on the server
+Note: This option will not be available for use on Decipher servers (e.g., v2, selfserve, etc.).
+View: You and all users on the server
+Edit: Only you
+Learn More: Saving to the Element Library: Sharing
+2: Starting a Project with a Template Survey
+When creating a new project, users have the option to start with one of the Decipher System templates or any custom survey templates saved to the Element Library.
+For more information on creating projects in Decipher, see Creating a New Survey.
+3: Adding a Template Survey to a Project
+Note: Default Decipher System templates can only be added when starting a new survey.
+You can also add one of your custom survey templates to an existing project to import the questions and elements from that template to the project. To add a template to an existing project, first navigate to the Element Library and select the "TEMPLATES" tab.
+Then select the template you'd like to use and click "Add to Survey". If needed, you can use the search bar to locate a specific template or browse all templates by tag(s).
+Note: The Library search bar accepts both text and regular expressions.
+Note: The content from the template will be inserted based on your current location in the question tree.
+4: Editing the Template
+Once the template is added to the survey, modifications can be made to the template as with any survey. Changes to the text, skip patterns, quotas and more can be adjusted to meet the needs of the current project.

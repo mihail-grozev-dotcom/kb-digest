@@ -1,0 +1,40 @@
+Title: Dedupe: Removing Duplicates from a Tab-Delimited File
+Requires Decipher Cloud
+Removing Duplicates Using Multiple Files
+If you have 2 files where you need to dedupe one against the other, you can use the dedupe command in the shell to accomplish this.
+An example command would be:
+dedupe infile.txt:email dupes.txt > outfile.txt
+This assumes both infile.txt and dupes.txt are tab-delimetered files, with the first line being a header line.
+infile.txt:email says that the unique key is the email field (if you don't specify it, it will use just the very first field in the file).
+dupes.txt is the file with existing emails to be removed. You can also say dupes.txt:otherfield here, if you don't it will assume that the same field name as in the infile.txt should be used, i.e. those files are in two different formats.
+When run as above, it will write the header and each line in infile.txt that didn't have a key inside dupes.txt, into outfile.txt.
+Here's an example session:
+$ cat infile.txt
+name email
+Bob bob@example.com
+Bob Jr bobjr@example.com
+Bob bob@example.com
+Bob 3 bob3@example.com
+Bob 4 bob4@example.com
+$ cat dupes.txt
+source email
+1 bob7@example.com
+2 bob8@EXAMPLE.com
+3 bob@example.org
+$ dedupe infile.txt:email dupes.txt > outfile.txt
+Input file lines: 5 (0 invalid)
+Dupe file lines: 3 (0 invalid)
+Deduped: 1
+Internal dupes: 1
+Final count: 3
+$ cat outfile.txt
+name emAIL
+Bob bob@example.com
+Bob Jr bobjr@example.com
+Bob 4 bob4@example.com
+In the input file, blank lines are skipped. You are warned about lines that do not have enough fields compared to how many there were in the headers, if the key field then does not exist -- such lines are not then output.
+In the dupes file such invalid lines are counted but you are not otherwise warned about them.
+The values, before comparisons, are turned to lowercase and have any surrounding whitespace removed (E.g. if you had "FOO@example.COM " it's the same as "foo@example.com"). Field names are also case insensitive.
+You can also use dedupe -s ... to skip the statistics, and put :fieldname after either the input filename or output filename.
+Removing Duplicates Using a Single File
+You can use dedupe with just the input file: in such a case, only the internal dupes are removed, not any found reading an external file. E.g. dedupe infile.txt:email > outfile.txt will omit any rows with duplicate field email.

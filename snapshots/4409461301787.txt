@@ -1,0 +1,23 @@
+Title: CDATA: Character Data Sections
+1: Overview
+In XML documents, there are certain characters that are not allowed such as "<" and "&". For example:
+<row label="r1">1 < 5</row>
+The code above is not allowed and will generate the following fatal error message:
+A CDATA (character data) section can be added to XML files that will enable you to write these kinds of illegal characters without generating an error. For example, we can rewrite the code above as shown below:
+<row label="r1"><![CDATA[1 < 5]]></row>
+Instead of an error message, our row is generated without issue and the row legend text displays "1 < 5" exactly like we wanted it to:
+2: CDATA Syntax
+A CDATA section starts with the following sequence:
+<![CDATA[
+and ends with the first occurrence of the sequence:
+]]>
+All characters enclosed between these two sequences are interpreted as characters, not markup or entity references. For example:
+<script>console.log("Hello!");</script>
+Without a CDATA section, the beginning and ending "script" tags above are interpreted as markup. However, if written like this:
+<![CDATA[ <script>console.log("Hello!");</script> ]]>
+the code will be interpreted as if it had been written like this:
+&lt;script&gt;console.log("Hello!");&lt;/script&gt;
+This means that the "script" tags will be interpreted the same way as "console.log(...)", as text.
+Anytime you need to write characters that are not compliant with the XML system, try using a CDATA section before escaping all of the characters (e.g. "<" to "&lt").
+3: What's Next?
+Take a look at the XML Style System which uses CDATA sections extensively.

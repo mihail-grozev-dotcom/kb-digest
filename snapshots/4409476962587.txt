@@ -1,0 +1,596 @@
+Title: Python Expressions
+1: Overview
+Be sure to read about Python syntax before diving into this document.
+All survey objects (i.e. elements with a label) have numerous variables and attributes that are accessible anywhere Python code can be written. Using the dot operator (e.g. question.attribute), you can get or set values for these objects within <exec> and <virtual> elements, or inside the cond attribute.
+For example:
+<radio label="Q1" optional="0">
+<title>Please select one:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</radio>
+<suspend/>
+<exec>
+print Q1
+print Q1.label
+print Q1.title
+print Q1.val
+print Q1.selected
+print Q1.selected.label
+print Q1.selected.index
+print Q1.selected.text
+print Q1.r2
+print Q1.r2.label
+print Q1.r2.index
+print Q1.r2.text
+</exec>
+<html label="Q1_REPORT" where="survey" cond="Q1.val != None">
+<p>You selected [pipe: Q1]</p>
+<p>You selected ${Q1.selected.text}</p>
+<p>You selected ${Q1.rows[Q1.val].text}</p>
+</html>
+The print command will only be seen by those who are logged in.
+The code above generates the following results when "r2" is selected:
+This document will cover the various methods available to you for two different kinds of survey objects: question objects and cell objects.
+A question object is the base class for any survey element that collects data (e.g. <radio>, <select>, <checkbox>, <number>, <float>, <text> and <textarea>). A cell object is a child of the question object (e.g. <row>, <col> and <choice>).
+2: Question Variables & Attributes
+The following variables and attributes can be accessed for any question object using the dot operator. For example:
+QUESTION_LABEL.ATTRIBUTE
+2.1: label
+The label attribute returns the question's label.
+Q10.label
+# returns "Q10"
+2.2: attr
+The attr attribute returns the specified attribute.
+Q10.attr('r1')
+# equivalent to Q10.r1
+Q10.attr('r1').label
+# returns "r1"
+Q10.attr('label')
+# returns "Q10"
+2.3: selected
+The selected attribute returns the selected <row> or <col> element in a 1D radio question, or None if no selection was made.
+Q10.selected
+# returns True if selection exists, else None
+Q10.selected.label
+# returns "r2" if Q10.r2 was selected
+Q10.selected.index
+# returns 0 if first row selected at Q10
+Q10.selected
+# equivalent to Q10.rows[Q10.val] if rows only exist
+# equivalent to Q10.cols[Q10.val] if cols only exist
+2.4: map
+The map attribute remaps question values.
+Q10.map(r1=5, r2=10, r3=15, r4=20)
+# returns 15 if "r3" selected at Q10
+Q11.val = Q10.map(c1=1, c2=3, c3=5, c4=7)
+# equivalent to:
+# Q11.val = 1 if Q10.c1 else 3 if Q10.c2 else 5 if Q10.c3 else 7 if Q10.c4
+2.5: row, col, choice label
+Access a question's child element (e.g. row, col, choice) using the child's label.
+<radio label="Q10" title="Select one for each:">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<col label="c1">Brand 1</col>
+<col label="c2">Brand 2</col>
+<col label="c3">Brand 3</col>
+</radio>
+<suspend/>
+<exec>
+print "Q10.r1:", Q10.r1
+print "Q10.r2:", Q10.r2
+print "Q10.r3:", Q10.r3
+print "Q10.c1:", Q10.c1
+print "Q10.c2:", Q10.c2
+print "Q10.c3:", Q10.c3
+print "Q10.r1.c1:", Q10.r1.c1
+print "Q10.r1.c2:", Q10.r1.c2
+print "Q10.c1.r1:", Q10.c1.r1
+print "Q10.c2.r1:", Q10.c2.r1
+</exec>
+Given the following selections to Q10:
+These results are printed on the following screen:
+The results would look different if the question's grouping was by "cols" instead of "rows".
+2.6: disabled
+The disabled attribute can be set to True to hide a question element.
+Questions are normally hidden using the cond attribute.
+Learn more: Adding Condition / Skip Logic
+<exec>
+Q10.disabled = True
+</exec>
+<text label="Q9" title="Please enter some text:" />
+<text label="Q10" title="Please enter some text:" />
+<text label="Q11" title="Please enter some text:" />
+The code above produces the following result:
+Note: In secure surveys, the disabled attribute will only work when set by row or column; it cannot be applied by question.
+2.7: rows
+The rows attribute returns a list containing the question's row objects. This is extremely useful for looping over a question's response items.
+<text label="Q10" title="Example Question">
+<exec>
+for eachRow in Q10.rows:
+eachRow.val = eachRow.text
+print [r.label for r in Q10.rows]
+</exec>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<row label="r3">Row 3</row>
+<row label="r4">Row 4</row>
+</text>
+The code above produces the following result:
+2.8: cols
+The cols attribute returns a list containing the question's col objects. This is extremely useful for looping over a question's response items.
+<text label="Q10" title="What time is it?" optional="0">
+<col label="c1">Hour</col>
+<col label="c2">Minute</col>
+<col label="c3">Second</col>
+</text>
+<suspend/>
+<text label="vQ10" title="HIDDEN: Time Entered" where="execute">
+<exec>vQ10.val = ":".join([col.val for col in Q10.cols])</exec>
+</text>
+The code above produces the following result:
+2.9: choices
+The choices attribute returns a list containing the question's choice objects. This is extremely useful for looping over a question's response items.
+<select label="Q10" title="Please rate these items:" type="rating" values="order">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<choice label="ch1">1 - Bad</choice>
+<choice label="ch2">2</choice>
+<choice label="ch3">3</choice>
+<choice label="ch4">4</choice>
+<choice label="ch5">5 - Good</choice>
+</select>
+<suspend/>
+<exec>
+for eachRow in vQ10.rows:
+for eachChoice in Q10.choices:
+if Q10[eachRow].val == eachChoice.index:
+eachRow.val = eachChoice.index
+break
+# ^ is equivalent to
+# for eachRow in vQ10.rows:
+# eachRow.val = Q10[eachRow].val
+</exec>
+<radio label="vQ10" onLoad="copy('Q10', rows=True)" where="execute">
+<title>HIDDEN: Answers provided at Q10</title>
+<col label="c1">1 - Bad</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5 - Good</col>
+</radio>
+The code above produces the following result:
+2.10: title
+The title attribute returns the question's title.
+<exec>
+print Q10.title
+Q10.title = "Please select many:"
+print Q10.title
+</exec>
+<checkbox label="Q10" atleast="1">
+<title>Please select at least 1:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</checkbox>
+The code above produces the following result:
+2.11: val
+The val attribute returns a question's value, or None if no value exists. Use the val attribute to set a question's value, too.
+This attribute can only be used on questions that have a single value.
+Use the ival attribute for number/float questions to return 0 instead of None.
+<radio label="Q1" title="Please select one:">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+<radio label="Q2" title="Please select one:">
+<col label="c1">Item 1</col>
+<col label="c2">Item 2</col>
+<col label="c3">Item 3</col>
+</radio>
+<number label="Q3" size="3" title="Enter a number:"/>
+<text label="Q4" title="Enter some text:"/>
+<suspend/>
+<exec>
+print Q1.val
+print Q2.val
+print Q3.val
+print Q4.val
+</exec>
+The code above produces the following result:
+2.12: unsafe_val
+The unsafe_val attribute is used to prevent alpha-numeric characters from being converted to html codes.
+<text
+label="Q1">
+<title>Enter some text:</title>
+</text>
+<exec>
+print Q1.val
+print Q1.unsafe_val
+</exec>
+The code above produces the following result:
+Important: Make sure you never output the original text into HTML through any means.
+Learn more: Secure Surveys Overview
+2.13: ival
+The ival attribute is similar to the val attribute except that it returns 0 instead of None when no answer was provided.
+Tip: The ival attribute is best applied to <number> and <float> questions.
+(e.g. Q1.ival + Q2.ival calculations work even if Q1 and Q2 were skipped)
+<number label="Q10" size="3" optional="1">
+<title>Skip "r1" and answer "r2":</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+</number>
+<suspend/>
+<exec>
+print Q10.r1.val
+print Q10.r1.ival
+print Q10.r2.val
+print Q10.r2.ival
+</exec>
+The code above produces the following result:
+2.14: atmost, atleast, exactly, points, amount
+The atmost, atleast and exactly attributes apply to <checkbox> question types. The points and amount attributes apply to <number> question types.
+You can set these attributes dynamically for each participant.
+<exec>Q10.exactly = 2</exec>
+<checkbox label="Q10" atleast="1" title="Please select all that apply:">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</checkbox>
+<suspend/>
+<exec>Q11.amount = Q10.count</exec>
+<number label="Q11" size="1" amount="4" onLoad="copy('Q10', rows=True)" rowCond="Q10[row]">
+<title>Please allocate ${Q10.count} points to the following items:</title>
+</number>
+The code above generates the following results:
+Errors shown for demonstration purposes.
+2.15: _q
+The _q attribute is very special. Use this attribute to access the question object directly for doing advanced tasks.
+NEVER EVER use _q to set or modify anything. This should only be used for read-only tasks.
+print Q10._q.optional
+HINT: print dir(Q10._q)
+This attribute is not supported in SECURE surveys. For SECURE surveys use the o attribute.
+2.16: o
+The o attribute is very special. Use this attribute to access the question object directly for doing advanced tasks.
+NEVER EVER use o to set or modify anything. This should only be used for read-only tasks.
+print Q10.o.optional
+2.17: displayed
+The displayed attribute returns True (the question will be displayed in the survey) if the question is not disabled (disabled="1") and its cond"..." is True. where="..." is not considered by the displayed attribute and could affect if the question is actually displayed.
+<exec>
+print Q10_1.displayed
+print Q10_2.displayed
+</exec>
+<text label="Q10_1" title="Enter some text:" cond="1" />
+<text label="Q10_2" title="Enter some text:" cond="0" />
+The code above produces the following result:
+3: Cell Variables & Attributes
+The following variables and attributes can be accessed for any cell object using the dot operator. For example:
+CELL_LABEL.ATTRIBUTE
+3.1: label
+The label attribute returns the cell's label.
+Q10.r1.label
+# returns "r1"
+Q10.rows[0].label
+# returns "r1"
+Q10.c1.label
+# returns "c1"
+Q10.cols[0].label
+# returns "c1"
+Q10.r1.c1.label
+# returns "c1"
+3.2: index
+The index attribute returns the cell's index.
+Q10.r1.index
+# returns 0
+Q10.rows[2].index
+# returns 2
+Q10.val = Q10.r1.index
+# sets Q10 val to r1's index
+3.3: text
+The text attribute returns the cell's text/title.
+<radio label="Q10" title="Please select one:">
+<row label="r1">Row 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Thing 3</row>
+</radio>
+<exec>
+print Q10.r1.text # prints "Row 1"
+print Q10.r2.text # prints "Item 2"
+print Q10.r3.text # prints "Thing 3"
+</exec>
+3.4: map
+The map attribute remaps cell values.
+Q10.r1.map(c1=5, c2=10, c3=15, c4=20)
+# returns 15 if "Q10.r1.c3" selected at Q10
+Q11.val = Q10.c1.map(r1=1, r2=3, r3=5, r4=7)
+# equivalent to:
+# Q11.val = 1 if Q10.c1.r1 else 3 if Q10.c1.r2 else 5 if Q10.c1.r3 else 7 if Q10.c1.r4
+3.5: row, col, choice label
+You can further refine the cell you're targeting by specifying an additional cell label. This only applies if you have a 2D question (e.g. rows and cols, rows and choices, or cols and choices).
+Q10.r1.c1.label # returns "c1"
+Q10.r3.c2.index # returns "1"
+Q10.r5.c3.val # returns a specific value
+Q10.r7.c4.val = 1 # sets the value to 1
+3.6: disabled
+The disabled attribute can be set to True to hide a cell element.
+Cells are normally hidden using the cond or rowCond/colCond/choiceCond attributes.
+Learn more: Adding Condition / Skip Logic
+<exec>
+Q10.r2.disabled = True
+Q10.c2.disabled = True
+</exec>
+<checkbox label="Q10" atleast="1">
+<title>Please select all that apply:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<col label="c1">Brand 1</col>
+<col label="c2">Brand 2</col>
+<col label="c3">Brand 3</col>
+</checkbox>
+The code above produces the following result:
+3.7: inrange
+The inrange attribute is a function that returns True if the cell's value is within the range provided (inclusively).
+<radio label="Q10_1" title="Please select one:">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<col label="c1">Brand 1</col>
+<col label="c2">Brand 2</col>
+<col label="c3">Brand 3</col>
+</radio>
+<number label="Q10_2" size="3" title="Please enter a number:"/>
+<suspend/>
+<exec>
+print Q10_1.r1.inrange(1,100)
+print Q10_1.r2.inrange(1,100)
+print Q10_2.inrange(1,100)
+</exec>
+The code above produces the following result:
+3.8: empty
+The empty attribute returns True if the cell's value is None or blank.
+<radio label="Q10_1" title="Please select one:">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+</radio>
+<number label="Q10_2" size="2" title="Please enter some numbers:" optional="1">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+</number>
+<suspend/>
+<exec>
+print Q10_1.r1.empty
+print Q10_1.r2.empty
+print Q10_2.r1.empty
+print Q10_2.r2.empty
+</exec>
+The code above produces the following result:
+3.9: open
+The open attribute can set or get the open-ended value for a cell with open="1" set.
+<checkbox label="Q10" atleast="1" title="Please select one:">
+<exec>
+Q10.r2.open = "Description"
+</exec>
+<row label="r1">Item 1</row>
+<row label="r2" open="1" openSize="25">Item 2</row>
+<row label="r3" open="1">Item 3</row>
+</checkbox>
+<suspend/>
+<exec>
+print Q10.r2.open
+print Q10.r3.open
+</exec>
+<html label="Q10_Selection" where="survey">
+You selected [pipe: Q10]!
+</html>
+The code above produces the following result:
+3.10: unsafe_open
+The unsafe_open attribute is used to prevent alpha-numeric characters from being converted to html codes.
+<checkbox label="Q10" atleast="1" title="Please select one:">
+<exec>
+Q10.r2.open = "Description"
+</exec>
+<row label="r1">Item 1</row>
+<row label="r2" open="1" openSize="25">Item 2</row>
+<row label="r3" open="1">Item 3</row>
+</checkbox>
+<exec>
+print Q10.r3.open
+print Q10.r3.unsafe_open
+</exec>
+<html label="Q10_Selection" where="survey">
+You selected [pipe: Q10]!
+</html>
+The code above produces the following result:
+Make sure you never output the original text into HTML through any means.
+Learn more: Secure Surveys Overview
+3.11: displayed
+The displayed attribute returns True if the cell is going to be displayed in the survey (e.g. it's not disabled and its cond="..." is True).
+<exec>
+print Q10.r1.displayed
+print Q10.r2.displayed
+print Q10.r3.displayed
+</exec>
+<radio label="Q10" title="Please select one:">
+<row label="r1">Item 1</row>
+<row label="r2" cond="0">Item 2</row>
+<row label="r3" cond="1">Item 3</row>
+</radio>
+The code above produces the following result:
+3.12: val
+The val attribute returns a cell's value, or None if no value exists. Use the val attribute to set a cell's value, too.
+Use the ival attribute for number/float questions to return 0 instead of None.
+<exec>Q10_1.r1.val = 1</exec>
+<checkbox label="Q10_1" atleast="1">
+<title>Please select all that apply:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</checkbox>
+<number label="Q10_2" size="3">
+<exec>
+# prefill question with value (if exists) or 0
+for eachRow in Q10_2.rows:
+eachRow.val = eachRow.ival
+</exec>
+<title>Please enter some numbers:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</number>
+<suspend/>
+<exec>
+print Q10_1.r1.val # prints True
+print Q10_1.r2.val # prints None
+print Q10_2.r1.val # prints 0
+print Q10_2.r2.val # prints 0
+</exec>
+The code above produces the following result:
+3.13: ival
+The ival attribute is similar to the val attribute except that it returns 0 instead of None when no answer was provided. Do not assign to the ival attribute.
+The ival attribute is best applied to <number> and <float> questions.
+(e.g. Q1.r1.ival + Q1.r2.ival calculations work even if no answer was provided)
+<number label="Q10" size="3" ss:postText="%" verify="range(0, 100)" amount="100">
+<title>What percentage of your time is spent...</title>
+<exec>
+# prefill with value or 0s
+# upon error, previous value will still remain
+for eachRow in Q10.rows:
+eachRow.val = eachRow.ival
+</exec>
+<comment>Total must add up to 100%.</comment>
+<row label="r1">Living</row>
+<row label="r2">Working</row>
+</number>
+The code above produces the following result:
+3.14: group
+The group attribute returns the cell's primary (first) group.
+<exec>
+print Q10.r1.group # prints group object
+print Q10.r1.group.label # prints "g1"
+print Q10.r2.group.label # prints "g2"
+print Q10.r2.group.text # prints "Group 2"
+</exec>
+<radio label="Q10" title="Please select one:">
+<group label="g1">Group 1</group>
+<group label="g2">Group 2</group>
+<group label="g3">Group 3</group>
+<row label="r1" groups="g1">Row 1</row>
+<row label="r2" groups="g2">Row 2</row>
+<row label="r3" groups="g3">Row 3</row>
+<row label="r4" groups="g3">Row 4</row>
+</radio>
+The code above produces the following result:
+3.15: value
+The value attribute returns the cell's data file value.
+<exec>
+print Q10.c5.value # prints 5
+print Q10.c4.value # prints 4
+print Q10.c3.value # prints 3
+print Q11.r1.value # prints 2
+print Q11.r2.value # prints 4
+print Q11.r3.value # prints 6
+print Q11.r4.value # prints 8
+print Q12.r1.value # prints 9001
+</exec>
+<radio label="Q10" type="rating" values="order" ratingDirection="reverse">
+<title>Please rate your experience:</title>
+<col label="c1">1 - Bad</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5 - Good</col>
+</radio>
+<radio label="Q11" title="Please select one:">
+<row label="r1" value="2">Row 1</row>
+<row label="r2" value="4">Row 2</row>
+<row label="r3" value="6">Row 3</row>
+<row label="r4" value="8">Row 4</row>
+</radio>
+<checkbox label="Q12" title="Yes?">
+<row label="r1" value="9001">Yes</row>
+</checkbox>
+The code above produces the following result:
+4: Logical Operators
+There are 3 boolean logic operators available: or, and and not.
+4.1: or
+The or operator is a short-circuit operator, so it only evaluates the second argument if the first one is False.
+Expression
+Result
+1 or 1
+True
+0 or 1
+True
+1 or 0
+True
+0 or 0
+False
+For example:
+<radio label="Q10" title="Please select one:">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+<suspend/>
+<exec cond="Q10.r1 or Q10.r2">
+setMarker('ITEM_1_or_2_SELECTED')
+</exec>
+4.2: and
+The and operator is a short-circuit operator, so it only evaluates the second argument if the first one is True.
+Expression
+Result
+1 and 1
+True
+0 and 1
+False
+1 and 0
+False
+0 and 0
+False
+For example:
+<checkbox label="Q10" atleast="1" title="Please select many:">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</checkbox>
+<suspend/>
+<exec cond="Q10.r1 and Q10.r2">
+setMarker('ITEM_1_and_2_SELECTED')
+</exec>
+4.3: not
+The not operator inverses a boolean value.
+Expression
+Result
+not True
+False
+not False
+True
+not 1 or 1
+False
+not 1 and 1
+False
+(not 1) or 1
+True
+(not 0) and 1
+True
+For example:
+<radio label="Q10" title="Please select one:">
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+<suspend/>
+<exec cond="not Q10.r3">
+setMarker('ITEM_1_or_2_SELECTED')
+</exec>
+5: What's Next?
+Learn more:
+Python Documentation: Built-in Types
+Streamline Conditions with Vector Logic
+Modify Survey Structure with Mutators
+Python Functions
+Overview of Question Types

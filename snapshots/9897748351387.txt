@@ -1,0 +1,35 @@
+Title: 147.8 Release Notes
+Release Date: June 8, 2021
+Release Version: 147.8
+New Features
+Survey
+Survey Editor
+Updated the file manager within the Autosuggest element:
+Added the ability to select an existing survey file for use as an answer file.
+Added the ability to upload .dat files as answer files.
+Learn More: Autosuggest Element
+Updated the Qualified Participants redirect link for the Lucid participant source within the legacy Participant Sources element.
+Programming & Tools
+API
+Added the jsonl datamap option to the Datamap endpoint, which returns the survey datamap in JSON format with labels.
+Supports data stacking using the json_stacked variant.
+Also includes information on any custom values and flags you have defined, as well as the names of any Dynamic Questions used within the survey.
+Added support for .dat file types within the File Upload endpoint's convertToTab parameter.
+Bug Fixes
+Portal
+Upload System Files
+Fixed an issue causing the column sorting arrows within the File Manager to display the incorrect sorting direction.
+Survey
+Survey Editor
+Fixed an issue which allowed users to map the same column for both the answer key and a filter within the Autosuggest element.
+Fixed an issue causing an error when attempting to pipe text into a nested loop when that text contained content from one of the survey’s secondary languages.
+Reporting
+Crosstabs
+Fixed an issue preventing the default report from loading for surveys with long translations in some languages.
+Data Downloads
+Fixed an issue which was causing a proxy error when attempting to access a very large data file.
+Fixed an issue causing some state URL variables to be overwritten when returning to a survey via a redirect (e.g., when using the reCaptcha logic node).
+Programming & Tools
+API
+Fixed an issue causing incorrect results to be returned when using the Datamap endpoint for a survey containing nested Block elements.
+Fixed an issue causing some value fields to return as double-escaped values when using the Settings endpoint.

@@ -1,0 +1,53 @@
+Title: Managing Two Factor Authentication
+Two Factor Authentication is a secure login option for Decipher users that requires a mobile authenticator application to verify identity / access. Two Factor Authentication (2FA) with Decipher also supports private brand / labeling.
+1: Overview
+Decipher' Two Factor Authentication (2FA) works with most major mobile authenticator applications. Two factor authentication can be turned on for a set of users, a company, or a server.
+Note: Shared users are not supported when two factor authentication is enabled for a server or company. If two factor authentication is turned on for a shared user, the shared user cannot log in.
+Once 2FA is turned on, users must configure a device (or have one already configured) with a mobile authenticator app to use when logging in.
+2FA with Decipher is recommended for:
+Customers who only use Decipher and no other Forsta products
+Customers with several clients accessing the platform who need to have more security while maintaining branding
+1.1: Whitelabeling 2FA
+Decipher 2FA supports private brand / labeling.
+Whitelabeling 2FA will change:
+the name of the company displayed in the mobile authenticator application
+the verbiage on the Configure 2FA Device page
+To whitelabel 2FA, see Whitelabeling Decipher Software.
+1.2: Enabling 2FA for Decipher
+1.2.1: Enabling 2FA for a Company
+To enable 2FA for your company:
+Go to the Company Settings page.
+Under the Security Settings header, open the drop-down menu 2FA Settings.
+Select Email, App (TOTP), or Both. Selecting Both defaults to Email; users can change their preference to use a 2FA app as desired.
+Click Save.
+2FA is now enabled for your company. All users will be required to set up 2FA on their next login; see Logging in to Your Account to learn how.
+1.2.2: Configuring 2FA for a Single User
+To configure 2FA for a single user when Off or Both is selected at the company level:
+Open the Company > User page.
+Click the user's name to open the Edit User modal.
+Open the 2FA Method drop-down menu.
+Select Email or App (TOTP). Click Save.
+2FA is now configured for that user. The user will be required to set up 2FA on their next login; see Logging in to Your Account to learn how.
+1.2.3: Configuring 2FA for Yourself
+To enable 2FA for yourself when Off or Both is selected at the company level:
+Open your User Profile page.
+Open the 2FA Method drop-down menu.
+Select Email or App (TOTP). Click Save Changes.
+2FA is now configured for your profile. You will be required to set up 2FA on your next login; see Logging in to Your Account to learn how.
+1.3: Resetting Your 2FA Device
+To change your 2FA app or device when App (TOTP) two factor authentication is enabled at the company level or the user level, the connection must be reset in Decipher.
+1.3.1: Resetting Your 2FA Device For Yourself
+To reset 2FA for yourself while logged in to Decipher:
+Open your User Profile page.
+Open the Reset 2FA drop-down.
+Select Reset Device.
+Click Save.
+You can now link a new authentication device on your next login. See Logging in to Your Account to learn how to link an authentication device.
+1.3.1: Resetting a 2FA Device For Someone Else
+To reset 2FA for someone else in your company, you must have supervisor access:
+Open the Company > User page.
+Click the user's name to open the Edit User modal.
+Open the Reset 2FA drop-down.
+Select Reset Device.
+Click Save.
+The user's current 2FA device is now unlinked and the user can link a new authentication device on their next login. See Logging in to Your Account to learn how to link an authentication device.

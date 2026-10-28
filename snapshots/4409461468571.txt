@@ -1,0 +1,28 @@
+Title: Block Element
+The Block element is used for element-based randomization and does not show to participants taking the survey.
+1: Adding a Block Element
+There are two ways to add a block element to a survey:
+Using the Survey Editor
+Using the Question Tree
+1.1: Using the Survey Editor
+To add a Block element, first click the "+ Element" button to add a new survey element. Then click "Structural Elements" under Question Types and select the "Block" element. Then click "Add".
+Note: The block element must be placed before any elements that will be assigned to the block.
+Add a title for the block in the area provided.
+1.2: Using the Question Tree
+To add a Block element using the question tree, select the questions you wish to include in the new block and click the "add to block" button displayed above the staging area. You can select multiple questions in the question tree by holding down the Ctrl key (or "command" for Mac) and clicking each question. The questions you select in the question tree are included in the new block element. Add a title for the block in the area provided.
+2: Adding Elements to the Block
+Once you have added the block element, you can add other elements to it by clicking the "add to block" button that appears next to those elements at the bottom of the block in the staging area. Elements will be added to the block in descending order based on their hierarchy within the question tree.
+After you have added an element to the block, the question label and text for the next element that can be added will appear next to the "+" symbol.
+If an element you wish to add is not located below the block element in the question tree, you can drag and drop that element into the block to include it in the list.
+3: Randomizing Elements in a Block
+To randomize the elements within a block, select the block and check the box under "shuffle" for each element you want to include in the randomization. Two or more elements must be selected to enable randomization.
+4: Nesting Block Elements
+You can also nest blocks within other blocks. To create a block within a block, follow the same steps above, inserting the new block after the first block. The new block of elements will be randomized as a group, and the new block will also shuffle in the first block (if selected under "shuffle").
+5: Configuring Block Options
+The options available for each block are displayed under "Block Options" to the right of the staging area. You can use these to set rules for all elements within the block element. The option section will show the title and label of the selected block element.
+Label: The label assigned to the element. You may edit the default label for the block here.
+Show if: Allows you to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+6: Removing Elements From a Block
+The question tree can also be used to remove an element from a block. Grab the element you wish to remove and slowly drag it out of the block section to a new location in the question tree. You can also remove the question from the block by clicking the "x" appearing to the left of the question.
+In order to remove a block, all elements within the block must be manually removed by slowly dragging the elements out of the block section within the question tree.
+Tip: If you want to delete a question from the survey, select the question in the question tree and it will then appear in staging area of the Survey Editor. Click the "..." on the top right corner of the question and select "Delete".

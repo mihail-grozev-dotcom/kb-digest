@@ -1,0 +1,12 @@
+Title: 155.5 Release Notes 
+Release Date: September 8, 2026
+Release Version: 155.5
+New Features
+Survey
+Dynamic Questions
+The following dynamic questions have new versions: Rating Scale (v7), Rank Sort (v10), and Card Sort (v11).
+Learn More: Dynamic Questions
+Bug Fixes
+Survey
+Participant View
+An issue that sometimes prevented the Page Timer element from beginning its countdown has been resolved.

@@ -1,0 +1,43 @@
+Title: Custom Data Downloads
+Requires Decipher Cloud
+This document describes how to add custom data set links to the report downloads menu in Hermes.
+1: Implementation
+Create/Edit the following nstyles template in a client or project directory
+*report.downloadables.custom:
+Example one
+*report.downloadables.custom:
+<li><a title="A description of the file type" rel=":excel?$(this)&layout=">the file type</a></li>
+Example two
+*report.downloadables.custom:
+<li><a title="A description of the download" rel="data.pipe,datamap.plain&layout=">a zip file with two data types </a></li>
+2: Custom Download Types
+Several formats are not in any styles file per default and some have options not set per default. To add one, use e.g. <li><a rel="images">Images</a> in the report.downloadables.custom file.
+images -- lets you download all images uploaded with Image Tag
+spss.tab,data.tab|latin1 -- generates a tab-delimetered SPSS download where all the utf-8 characters have been changed to latin-1 -- this should be obsolete with the *.sav SPSS file.
+:excel?$(this)&fields=uuid,vlist,q2 -- creates an Excel download with only these three fields (uuid, vlist, q2).
+:excel?$(this)&format=xlsx&textual=1&layout= -- Excel (not 2007) file with value names instead of value numbers
+:excel?$(this)&format=xlsx&textual=1&textualHeaders=1&layout= -- Excel file with question text in headers
+:excel?$(this)&format=xlsx&textual=1&textualHeaders=1&noYesNoRecode=1&layout= -- Excel file with "yes"/"no" values in place of all "1"/"0" values.
+:oe-excel?$(this)&fields=oefield1,oefield2 -- creates an OE Excel download with 2 sheets (oefield1, oefield2).
+:oe-excel?$(this)&zip=1&headerRow=0&datamap=0&uuid=0&titles=alt -- this custom download generates OE Excel data without headers (headerRow=1), without datamap, without UUID and using the alt report titles of the variables rather than labels for sheet names.
+:flat?$(this)&fields=var1,var2 -- flat OE data file, listing one variable per participant, &fields is optional and generates only those fields
+:linkedin-datamap?$(this)&layout= --a flat non-OE pipe delimited CSV file and an Excel datamap
+Invoke data format v2009.12
+:invoke/excel-datamap -- Invoke datamap in Excel
+:invoke/excel-data -- Invoke data (Excel), qualified only
+data.fw|dos,datamap.fw -- this changes the line ending to CR LF rather than LF, these are Windows or DOS line endings while we are using UNIX ones per default.
+BCG datamap
+:excel-bcg?$(this)&format=xlsx&layout= -- BSC datamap in Excel.
+Nielsen datamap
+:nielsen-datamap?format=xlsx&layout= -- Nielsen datamap in Excel.
+Net-mr datamap
+:net-mr?format=tab&layout= -- Net-mr datamap in tab delimited format.
+:net-mr?format=csv&layout= -- Net-mr datamap in csv format.
+:excel?$(this)&format=xlsx&textual=1&replacePipes=1&layout= -- Excel (not 2007) file where text question values are used instead of piping syntax.
+Note: The following pipe syntax is supported ${Q1.r1.val}. The syntax [pipe: Q1] is not supported. The following pipe formats are supported Q1.rX.cX.val, Q1.cX.rX.val, Q1.rX.val, and Q1.cX.val. The format Q1.val is not supported.
+The format names (also usable in the generate script are): spss.fw, spss.tab for Fixed-Width and Tab-delimetered SPSS scripts, data.fw, data.tab, data.pipe, data.cb, data.flat, data.csv for various data files, datamap.plain, datamap.fw, datamap.cb for datamaps, sas.fw, qax.fw for SAS and Quantum scripts, wincros.dat for a Wincross job file.
+Note: Setting blankValue as a string in the <survey> tag will cause an error when exporting an SPSS file. Use a numeric response for blankValue instead.
+Fixed width unicode data file (data.fwu) is transformed into the CP-1252 character set (the |cp1252 bit) and that file also includes datamap.sss (Triple-S datamap). This converts the data from the default UTF-8 to single-character CP-1252 (Windows Code Page #1252), replacing any other characters with "?".
+Example
+*report.downloadables.custom:
+<li><a title="Windows-1252 Fixed-width data + Triple-S map" rel="data.fwu|cp1252,datamap.sss&layout=">Windows-1252 FW+SSS</a>

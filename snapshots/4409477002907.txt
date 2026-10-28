@@ -1,0 +1,65 @@
+Title: Adding a Typing Tool or Segmentation Algorithm
+The following article describes how to implement a typing tool or segmentation algorithm in a Decipher survey. This method is commonly used with Fisher's linear discriminant analysis and ran against a Single Select Grid Element.
+1: Preparing the Design File
+First, you must prepare the typing tool’s design file. The design file for the typing tool must be a tab-delimited file containing the tool’s segments as columns and coefficients as rows, with the constant for the algorithm as the last row. Once you have created the file, save it as "algorithm.dat" and upload it to the project's “System File (root)” location using the File Manager.
+An example file can be downloaded here for reference.
+Note: The header row must be included and the last row must not contain an extra line.
+2: Adding Decipher Functions
+Next, add the following Decipher functions anywhere in your survey using an Exec Element.
+def algorithmSetup(fname, fDelimiter="\t"):
+try:
+f = open("%s/%s" % (gv.survey.path, fname))
+algObj = [ line.strip("\r\n").split(fDelimiter) for line in f.readlines() ]
+algorithmObj = {}
+#Number of Segments
+algorithmObj['segments'] = len(algObj[0])
+#Create segment:[coefficient + constant]
+for s in range(algorithmObj['segments']):
+algorithmObj[s+1] = [float(row[s]) for row in algObj[1:]]
+return algorithmObj
+except IOError:
+algorithmObj = {}
+return algorithmObj
+def algorithmCalculation(resp_answers, segment_coeff):
+return sum(i*j for i,j in zip(resp_answers, segment_coeff)) + segment_coeff[-1]
+def algorithmRaw(answers, algorithmObj):
+computation = [ algorithmCalculation(answers, algorithmObj[c]) for c in range(1, algorithmObj['segments'] + 1) ]
+return computation
+def algorithmCompute(answers, algorithmObj):
+computation = [ algorithmCalculation(answers, algorithmObj[c]) for c in range(1, algorithmObj['segments'] + 1) ]
+maxValue = max(computation)
+return computation.index(maxValue) + 1
+myalg = algorithmSetup("algorithm.dat")
+Then change the "When" setting for the Exec element to "init".
+This will force the above functions to automatically run upon survey initialization. See Exec Tag: Execute Python Code to learn more about using “When” (when).
+3: Adding a Single Select Grid Question
+Next, add a Single Select Grid Element with a page break after this question.
+4: Creating Score and Segment Questions
+Finally, you must add both a Raw Score question, to store the results of your calculation and a Segment Assigned question, to store the segment assigned to each survey participant. These additional hidden questions will allow you to verify your tool's results and use the assigned segments in survey logic / quotas.
+Note: These two questions should go after the Exec element containing the Decipher tool functions. There must also be a page break after that element.
+4.1: Raw Score Question
+To create the Raw Score question, add a Text element in the survey and specify “execute” as the "Where" setting. Then add the same number of rows as you have segments in your typing tool.
+Note: Setting “Where” to execute will hide the question so that it is only shown in survey reports. See Exec Tag: Execute Python Code to learn more about using “Where” (where).
+4.2: Segment Assigned Question
+To create the Segment Assigned question, add a Single Select element in the survey and specify “execute” as the "Where" setting. Then add the same number of rows as you have segments in your typing tool.
+Note: Setting “Where” to execute will hide the question so that it is only shown in survey reports. See Exec Tag: Execute Python Code to learn more about using “Where” (where).
+5: Computing Scores and Segments
+Typing tools are calculated using the Single Select Grid question you added earlier (see section 3 above). To add the calculation, insert a new Exec element before the Raw Score question you created earlier (see section 4 above). Then enter the following in the text box:
+#Participant Answers Mapped
+p.resp_answers = [ row.map(c1=1, c2=2, c3=3, c4=4, c5=5) for row in QALG.rows ]
+print "Participant Answers: %s" % p.resp_answers
+#Populate the Raw Calculations
+for i,x in enumerate(algorithmRaw(p.resp_answers, myalg)):
+QALG_RAW.rows[i].val = str(x)
+#Populate the Segment Assigned
+QALG_SEG.val = algorithmCompute(p.resp_answers, myalg) - 1
+When this code runs, the survey will automatically take each of the rows and their values from the Single Select Grid element and multiply them by your tool’s coefficients, then add its constant. The max value for each segment determines into which segment the survey then assigns each participant.
+If you have additional values or a different type of question mapping, you must modify the p.resp_answers line to match your tool’s setup.
+For example, if you had eight options instead of five, you would modify the code to this:
+p.resp_answers = [ row.map(c1=1, c2=2, c3=3, c4=4, c5=5, c6=6, c7=7, c8=8) for row in QALG.rows ]
+Likewise, if you had -4, -2, 0, 2, 4 as your mapped values, you would modify the code to this:
+p.resp_answers = [ row.map(c1=-4, c2=-2, c3=0, c4=2, c5=4) for row in QALG.rows ]
+6: Testing Your Survey
+Once you have added the calculation, you can verify that the tool is working correctly by testing through your survey with testing tools enabled (i.e., "Show Survey with Tools").
+During testing, you should see your Raw Score and Segment Assigned questions appear immediately after submitting the Single Select Grid question. Since these questions are hidden from participants, they will appear similarly to the below, with a crinkled yellow backdrop.
+Review the inputs for these questions to verify that the calculations were performed and that the correct segment was punched.

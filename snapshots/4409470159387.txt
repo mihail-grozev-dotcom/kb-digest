@@ -1,0 +1,87 @@
+Title: The Dashboard System
+The dashboard system enables you to provide an engaging and visually appealing presentation of key survey metrics through a programmable research hub. With instant, real-time access to your data, you can transform crucial findings into business solutions and ensure that your data is working for you every day.
+Key benefits of the programmable dashboard include:
+Customizable tables and charts that can pull data from multiple sources
+A variety of chart types (created with Highcharts)
+Flexible layouts
+The ability to add company branding
+Public or restricted dashboard access
+1: What is a Dashboard?
+Dashboards are programmable research hubs that you can use to analyze and share survey data as it comes through. Here is an example of a dashboard displaying participants' generational data from a survey:
+There are several elements within dashboards that allow you to better organize and illustrate your findings:
+Tabs: User-defined tabs allow you to organize your dashboard into meaningful categories.
+Charts / tables: Display the data in a variety of charts, tables or line graphs. Examples are shown below.
+Splits: Split the displayed data by any of the user-defined banners. This option is available per table / chart in Compat levels 3+; lower Compat levels will apply all splits globally.
+Filters: Filter the displayed data by any of the user-defined options.
+Exports: Export the dashboard into Excel, PowerPoint, or PDF format. Tables and charts are, by default, displayed in both the dashboard's web view and output reports. You can also click All Data Formats to export the data using a different layout.
+Note: The Excel workbook will have one sheet per dashboard page.
+2: Accessing Dashboards
+To access dashboards for your project, click REPORT in the project navigation menu, then click MORE TOOLS and select Dashboards.
+Alternatively, once you have created a dashboard, you can select Dashboards from the Reports menu of the project page in the Portal to open the dashboard menu for your project.
+3: The Dashboard Menu
+As you work with dashboards, management tasks can be performed from the dashboard menu. The system automatically organizes any created dashboards into a list, and this list view opens when you first access the dashboard menu.
+1. Project Name: Name and path of the project.
+2. New Dashboard: Opens the dashboard editor view for you to name and build a new dashboard.
+3. Dashboard Name: Links to existing dashboards.
+4. Author: Name of the user who created the dashboard.
+5. Changelog: Count of the number of available versions of the dashboard with a link to change management for version control. See Change Management and Version Control System for more information.
+6. Sharing: private or public. A private dashboard requires you to be logged-in to view or make edits. A public dashboard allows anyone to view with a link. See Dashboard Permissions for more information.
+7. Publish / Unpublish: Click to toggle the published state. When you publish a dashboard, you receive a link to share the dashboard with others. See Dashboard Permissions for more information.
+8 Duplicate: Makes a copy of the dashboard and prefixes the existing name with Copy. You can use the copy as the basis for a new dashboard. The dashboard copy is in an unpublished state.
+9. Edit: Opens the editor view for you to edit an existing dashboard. After clicking Save & Preview, the dashboard display view opens with your edits and with buttons to return to the dashboard editor or open the dashboard in a new window.
+10: Delete: Permanently deletes the dashboard.
+3.1: Creating a New Dashboard
+To create a new programmable dashboard, open the dashboards menu and click the + New Dashboard button at the top right of the screen.
+The dashboard editor will open for you to name and build your dashboard. See Creating a Dashboard to learn how to start building a dashboard.
+3.2: Viewing an Existing Dashboard
+Click the name of the dashboard that you want to view from the menu list and the dashboard display will open.
+3.3: Editing an Existing Dashboard
+If you need to edit an existing dashboard, you can access it in the dashboard editor by clicking "Edit" from the list in the dashboard menu.
+3.4: Publishing a Dashboard
+After you are satisfied with your dashboard and are ready to share the dashboard, click the "Publish" button from the dashboard list view.
+As an alternative, you can also publish a dashboard from the yellow banner in the dashboard display.
+See Dashboard Permissions for more details about publishing a dashboard.
+4: Dashboard Viewing Options
+There are a lot of different options for viewing and organizing your data within a dashboard. Whether you’re previewing a dashboard or you’ve already published it, you can use the following sections to guide you through making your dashboard work for you.
+4.1: Exporting
+Dashboards can be exported in the Excel XLSX, PDF and PowerPoint format. Export your dashboard by first viewing the dashboard you wish to export and then selecting "Export" in the top-right corner.
+Note: When exporting a dashboard into PowerPoint, you can use a custom template that you have designed for the presentation style. See Customizing a Powerpoint Template for detailed template configuration instructions.
+Tables and charts are, by default, displayed in both the dashboard's web view and exported files.
+See Creating a Dashboard to learn more about dashboard display options.
+4.2: Creating a Saved View
+You can save the view of a dashboard display and then quickly retrieve it. For example, you might have applied a set of filters to the dashboard and want to save the filter setup so you can view it at another time.
+To create a saved view, click the "save" icon at the end of the filter bar, before the "x":
+Next, enter an unique name for the view in the Saved Dashboard View window and click Save.
+Once saved, the new view is added to the FILTERS menu. If desired, you can click the "x" next to any saved view to delete it.
+4.3: Clearing Applied Filters
+You can quickly clear any filters you have applied to the dashboard.
+To clear an applied filter, click on the "x" at the end of the filter bar, after the "save" icon.
+4.4: Leaving Comments on Tables & Charts
+You can leave comments on all tables and charts in private dashboards. Comments do not display on public dashboards.
+When a comment is saved, the current dashboard configuration (splits, filters, etc.) is also taken into account. Comments will only display when the dashboard's configuration is the same as when the comment was left.
+Any comments not matching the dashboard's configuration will be displayed under a different section titled Other Data Views with a link to switch to that dashboard configuration. A comment may be deleted by anyone who has the ability to edit the dashboard.
+5: Additional Considerations
+5.1: Questions with Images
+Any images included within answer options are displayed as thumbnails for table rows, segments, chart legends, and within the filter menu.
+As with regular answer titles, the dashboard editor will pull the survey.xml answer content if no answer title is defined within the dashboard. Any alt attributes for the answer within the survey.xml file will still take precedence. The filter menu will display a thumbnail, or alt text if a thumbnail is not available. The filter bar will display the image's alt text or file name.
+5.1.1: Requirements
+In order to display image thumbnails in dashboards, the following requirements must be met:
+The project must be a selfserve project.
+The dashboard compat level must be set to 4 or greater for full support. Dashboards with a compat level of "3" or lower have only limited support, with thumbnails only appearing in tables.
+Images pulled from the survey.xml file must use the following syntax:
+<img src="path/to/image.ext">
+[image file.ext]
+[protected file.ext]
+Images in the dashboard must use the following syntax:
+<img src="path/to/image.ext">
+[image file.ext]
+Note: When customizing the display of thumbnail images, the following attributes will be respected if specified: width, height, size, alt, style.
+5.1.2: Limitations
+The following limitations apply:
+Images using the following syntax are not supported:
+<img src="[rel image.ext]">
+Images from the survey.xml file using protected syntax (e.g., [protected file.ext]) display in the same way as unprotected images.
+Segment titles do not display thumbnails when split in pie charts.
+Banner segments do not display thumbnails on hover for charts when using the [image file.ext] syntax.
+Thumbnails in chart legends are not customizable when using [image file.ext] syntax.
+Thumbnails will not appear in exports.

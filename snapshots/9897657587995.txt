@@ -1,0 +1,72 @@
+Title: Decipher (previously Decipher) M32 General Release Notes
+Release Date: March 8, 2016
+Highlights of Decipher M32 Release
+New Features
+Card Rating Question: a new rating specific dynamic question is now available
+View/Edit Responses: Original view responses report has been renamed and remodeled so you can easily edit participant's data
+Survey builder functionality
+Logic conditions can now be based on languages
+Quotas can now be based on languages
+New language support for Khmer
+Crosstabs enhancements:
+Total(Net) segment: when added to a group displays the count/percentages for that group
+Numeric questions: now include minimum and maximum stats
+Has a Value: a new logic option available for numeric questions
+Dashboard capabilities:
+Place an image inside a pie chart
+Center scatter plot and bubble charts
+Add a prefix or suffix to a tooltip
+Create an exclusive local filter
+Display a floating table above column charts
+Filter words in a word cloud
+Dataprefix and datapostfix support for tables and charts
+Format table formula values in currency
+New Features
+Card Rating Question
+Using a single select form, card rating allows participants to rate (or categorize) elements. With this question, a participant views cards one at a time and selects one button below to rate them. Once rated, the carousel of cards automatically advances to the next card.
+View/Edit Responses Report
+The View/Edit Responses report now allows you to easily edit the responses of every participant in a survey.
+Survey Builder Functionality
+Create Logic Conditions Based on Languages
+Note: The language option for defining a logic condition is available only when 1 or more language is added via the language manager.
+To create a logic condition based on languages, in the Logic Conditions pop up window select "languages" from the drop down menu, and then specify the "show if" conditions.
+Create Quotas Based on Languages
+Note: The language option for defining a quota is available only when 1 or more language is added via the language manager.
+To create a quota based on languages, select "Question Answers (Quick Quotas)" from the dropdown menu and click languages to create the quota cells. Then click "OK."
+New Language Support
+New language support for Khmer.
+Crosstabs Enhancements
+Total(Net) Segments
+When creating a segment you can select the logic option "Total (Net)" available under "Question Logic." When you add this segment to a group, it displays the count/percentages of the segments within the group only. When the Total (Net) is not in a group, the count/percentages is based on all segments in the crosstab (where each segment is joined by Boolean OR).
+Minimum & Maximum Statistics
+Numeric and radio/select questions can now include minimum and maximum statistics:
+Minimum: The minimum value given for an answer
+Maximum: The maximum value given for an answer
+Has a Value Logic Option
+When creating segments based on question logic, "Has a value" is a new option for numeric questions. When selected, this option excludes empty data fields from the logic (when applicable). Otherwise empty data fields are evaluated to "0" and included in the logic.
+Dashboard Capabilities
+Display a Pie Chart with Image
+You can display images in the center of a pie chart. Additionally, you can specify multiple images within a range and the image will display when the percentage range is met. This allows you to dynamically show/hide images based on a survey variable.
+Center Scatter Plots and Bubble Charts
+For scatter plots and bubble charts, you can specify 'scatter.center 1' (on its own line) to center the chart on the x/y axis point 0,0.
+Before
+After
+Add a Prefix or Suffix to a Tooltip
+Using chartopt, you can add a prefix or suffix to a tooltip.
+chartopt tooltip.valueSuffix " Suffix Test"
+Create an Exclusive Local Filter
+The keyword argument "Exclusive" is an user interface (UI) setting only. This setting displays the filters in a filtergroup as mutually exclusive (whether or not they actually are) and allow the user to select at most one. This changes the filter selection to a radio button.
+Display a Floating Table Above Column Charts
+You can display a floating table above an existing chart that shows the net rows. You specify this add-on with uses FloatTable.
+Excluding Words in a Word Cloud
+You can specify a string of words to exclude from a word cloud using the cloud.filter option. The word cloud will not include the list of words that follow this option (space-delimited). Any letter casing, commas, and single/double quotes in the word list are ignored. However, to filter a word that contains a single-quote, place the word in double-quotes ("that's").
+cloud.filter publishers peaking systolic found fall "Old"
+Add a Prefix or Suffix to Data Points
+You can now add a prefix and a postfix to data points on tables and charts that use stat="formula" with the following attributes:
+dataprefix - prepends the specified string to datapoints in charts and tables
+dataposfix - appends the specified string to datapoints in charts and tables
+Format Table Formula Values in Currency
+You can specify currency as the data format for tables that use stat=formula with the following attributes:
+dataformat currency
+dataprefix $
+When using the currency data format, numeric values are output with two decimal places (e.g. 0.00). Additionally, you can replace the dollar sign prefix ($) with any money character needed.

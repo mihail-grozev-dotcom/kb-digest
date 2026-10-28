@@ -1,0 +1,41 @@
+Title: DQ4 Release Notes
+Release date: December 27, 2013
+Dynamic Questions (Now Available)
+Quester Interactive Text Box (quester.1)
+Button Rating (atmrating.1)
+Video YouTube/Vimeo Player (videoembed.1)
+Slider Decimal (sliderdecimal.1)
+Version Updates
+Form Replacement (fir.2)
+#16411 Updated to use font-awesome icons. Should be simpler to modify color/size on this question type now. Still has support for images. Compatible with theme builder.
+#15198 works with fused questions now
+#16401 Feature phones will fall back to default styles
+Rating Scale (ratingscale.2)
+#16412 Updated to use font-awesome icons. Should be simpler to modify color/size on this question type now. Compatible with theme builder.
+#16401 Feature phones will fall back to default styles
+Fancy Boxes (fancyboxes.2)
+#16557 looked different on smartphone, now adjusted so they are consistent
+#16401 Feature phones will fall back to default styles
+Button Select Grid (atmtable.2)
+#16377 grouping=cols now supported
+#17061 Added transition effects on buttons so they are consistent with Button Select and Button Rating.
+#16401 Feature phones will fall back to default styles
+Card Sort (cardsort.3)
+#16635 Added 2 new style vars, auto advance cards (single select only) and drag/drop toggle. Both "on" by default.
+#17057 Added hasError class on cards that have errors so CSS overrides are possible
+#16401 Feature phones will fall back to default styles
+Star Rating (starrating.2)
+#15931 Fixed tooltips not showing up in some version of Opera
+#16401 Feature phones will fall back to default styles
+Button Select (atm1d.3)
+#17056 Errors are not obvious on cards. Add hasError class and highlight error cards similar to Button Select Grid and Button Rating.
+#16401 Feature phones will fall back to default styles
+Rank Sort (ranksort.2)
+#16401 Feature phones will fall back to default styles
+Slider Number (slidernumber.3)
+#16401 Feature phones will fall back to default styles
+One Row At A Time (onerowatatime.2)
+#16401 Feature phones will fall back to default styles
+Bugfixes
+#17116 - Fixed an issue where the Text Highlighter show/hide frequency table didn’t work for saved reports.
+#17138 - Fixed an issue where radio_css was not working when a CSS override was done on it.

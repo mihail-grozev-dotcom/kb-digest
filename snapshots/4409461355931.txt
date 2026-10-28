@@ -1,0 +1,61 @@
+Title: PII Levels
+This article outlines a solution to dynamically decide whether to display certain data (typically "PII", or Personally Identifiable Information) to certain users.
+1: User-Driven Fine-Grained Access Restrictions to Data
+Any survey variable will have a numeric PII level configured (explicitly through XML configuration or via custom dynamic hook code); each user starts with a static PII level (based on staff/supervisor status) which can be modified per-survey to determine an effective PII level. The user's PII level must meet or exceed that of variable's for the variable data to be visible.
+1.1: Scope
+This affects collected survey data (e.g., name, email as asked by survey questions) as well as certain metadata (extra variables capturing URL parameters) used in the Response Summary. It will not affect the content of any other log file (e.g., Apache web server logs).
+1.2: PII Classification
+Any time a variable is to be exported, an algorithm will be applied using the variable's PII level, the user's status and an optional piece of a custom algorithm (using the "hooks" file). The user's effective status must meet or exceed the PII level, otherwise, the data variable is generated as an empty value.
+The variable itself is not affected; layouts will be identical for all users.
+1.3: Extent of Protection
+The protection applies primarily to users using the web interface. From the command line, the generate command will also obey the protection mechanism.
+This does not encrypt the captured data. A malicious user with shell access, or any user with access to edit the survey can simply reset the PII level in the survey.xml, or copy the survey data and modify the survey.xml. While most of the data files are binary, some files (e.g. data/variables.dat) are plain text and any extra variable or IP addresses passed in there will be immediately visible for a shell user.
+The protection applies only to textual data. A PII level cannot be set on a radio or checkbox question. If the radio question has an "open, other" row, use a split question to store the data as a non-PII and PII question.
+1.4: Applications Affected
+Crosstabs and Reporting (2010) -- OE drill down only
+Any data downloads
+including the command-line "generate" tool
+Response Summary -- the per-list drill down
+Any API usage (data API)
+Research Dashboard OE data
+Participant in-progress report (part of M26)
+Data Edit
+Data Search
+1.5: Unaffected Applications
+Campaign Manager: any list data uploaded is not protected even if it might be passing data considered to be PII
+Layout Manager: PII level on variables does not affect variable visibility, just the visibility of the contents
+Datamaps: PII level is not displayed
+QA codes: PII level is not indicated
+Survey Editor: surveys with PII attributes can load in the survey editor, but adding of the PII attribute can only happen through "Edit XML" option. PII settings on questions or variables are not displayed.
+Portal / Research Hub: there will be no user interface to manage any settings directly. A user's inherent PII level is determined based on his status (see PII levels below) and cannot be raised except by changing his status or custom hooks
+Any other command-line tool meant for debugging
+1.6: Configuring PII in the Survey
+On a question level, set pii="XXX" as a question attribute. The XXX is an integer number, between 0 and 9999 inclusive. If not specified, the PII level is 0.
+To protect extraVariables (i.e. variables passed in the URL, but not corresponding to a question), set pii="XXX" on the <var> attribute on a sample source, or set pii="var:XXX, var2:YYY" in the <survey> tag. If a variable is defined in multiple sample sources, the highest supplied PII level is used.
+1.6.1: Survey Compat Considerations
+Surveys with compat 138 or lower will collect participant IP addresses by default. If you would like to remove this information from reports and downloads, you can use the pii attribute to hide IP addresses within lower compat surveys. We recommend using pii="999" for this purpose.
+1.7: Automated Configuration
+Through the hooks system, you can define a pii_levels hook that will run when variables are being prepared. This hook can be used to automatically apply PII level to specific questions or variables. For example:
+def pii_levels(survey, d):
+for hide in ("ipAddress", "XID"):
+try:
+d[hide].pii = 100
+except KeyError:
+pass
+The above hook code would, if ipAddress or XID exist as a name, set their PII level to 100. If variables do not exist, they are ignored. During the PII level setting, any aspect of the question (e.g., specific label names in the XML) can be examined before a decision is made to force a PII level.
+1.8: Virtual Questions
+Virtual questions that read PII data do not automatically become PII. For example, if a user's phone number is marked as PII but a virtual question creates a derived field without dashes, the new variable requires manual marking as PII.
+If ipAddress is being captured but geoip="all" is configured, the resulting vgeoip question is not considered PII.
+1.9: Comparing User and Variable PII Level
+Any PII level within the 0...9999 range can be applied to any question or variable. This level is then compared to an inherent PII level each user account has, which would be as follows:
+1 -- a shared user account (suggesting that auditing access to who really got the data is not possible)
+2 -- a non-shared user account (i.e., created with a specific email)
+4 -- supervisor users (Research Hub only)
+8 -- staff users
+The static level can be modified by a hook or possibly other future configuration. The hook can be implemented as follows:
+def user_pii_level(level, user, survey):
+if survey.path.startswith("abc/") and not user.isStaff:
+return min(level, 2)
+return level
+The above example hook will consider the survey's path: if the path starts with "abc/" the user's PII level is forced to be at most 2 suppressing normal higher classification.
+The action being performed cannot be used to determine effective PII level.

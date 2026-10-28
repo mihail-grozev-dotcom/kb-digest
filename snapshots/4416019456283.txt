@@ -1,0 +1,433 @@
+Title: Imperium QualityScore Integration
+This logic node allows for integration with the Imperium Quality Score API (v1.4.0). Together
+with speeder and straight-liner detection, the Imperium Quality Score outputs
+a 0-100 Quality Score for participants at the end of the survey.
+This API uses the participant’s browser to interact with Imperium services.
+Note: The Imperium QualityScore logic node only provides QualityScore
+and
+RelevantID
+services.
+Note: Imperium QualityScore logic node cannot be added to a survey that includes a Dynata QualityScore Integration logic node as the Dynata QualityScore logic node includes QualityScore services.
+1: Adding the QualityScore Logic Node using Survey Editor
+To use the QualityScore logic node, you must place two elements into the survey:
+The logic node,
+which should be the first element of the survey.
+The companion element,
+which must be on its own page after all questions pages.
+1.1: QualityScore element
+The QualityScore logic node is located under the “Advanced” category inside the
+Survey Editor.
+The QualityScore logic should be the first element in the survey, as it collects and sends data from all questions that come after it. The
+RelevantID call is performed where you place the logic node.
+The following options are available:
+Client ID: Your unique Client ID, assigned by Imperium.
+Survey ID: Enter a Survey ID of your choosing (Maximum Length: 40 characters).
+Panelist ID: Specify a unique Participant ID for each participant (you can pipe a unique ID
+such as ${source} or ${uuid}).
+Geographic Codes: A comma-separated list of regions. This field is required to enable RelevantID.
+Note: Language codes are automatically sent based on the survey language. If the survey language is not supported by Imperium, AcceptNotSupportedLanguages is set to 1.
+1.2: Companion element
+The companion element is required to analyze the collected data. It must be placed
+in a new page by itself after all pages containing questions to be evaluated
+by QualityScore. You can add the element through Survey Editor as a Comment Element.
+Note: The label and inside code must match exactly except for the logic
+node’s label ('ln1' in the above code). Change the companion
+element logic node’s label to match the QualityScore element’s
+logic label.
+The logic node will verify that this HTML companion element exists somewhere
+in the survey, but you must ensure that all relevant participants see it (e.g.
+to analyze data for terminates/noquotas, you need to create the special term/noqual
+labels).
+You can add a page break after the companion element to then take
+action based on the scores returned.
+The scores are captured
+inside a persistent variable.
+2: Adding the QualityScore Logic Node Via the XML Editor
+To use the QualityScore logic node, you must place two elements into the survey:
+The logic node,
+which should be the first element of the survey.
+The companion element,
+which must be on its own page after all questions pages.
+2.1: QualityScore element
+The QualityScore logic node should be the first element in the survey, as it collects and sends data from all questions that come after it. The
+RelevantID call is performed where you place the logic node. Add the following code to the survey’s XML:
+<logic label="ln1" qualityscore:ClientID="123" qualityscore:SurveyID="456" qualityscore:PanelistID="789" uses="qualityscore.2">
+Parameter
+Description
+Example
+ClientID
+Your unique Client ID, assigned by Imperium
+A1B2-X8Y9
+Required: Yes
+Default: Empty
+SurveyID
+Enter a Survey ID of your choosing (Maximum Length: 40 characters)
+322006
+Required: Yes
+Default: Empty
+PanelistID
+Specify a unique Participant ID for each participant. This field is pipeable.
+${uuid}
+Required: Yes
+Default: Empty
+GeoCodes
+Comma-separated list of regions. This field is required to enable RelevantID.
+1, US
+Required: No
+Default: Empty
+AcceptNotSupportedLanguages
+Used to accept requests with language codes not supported by RealAnswer. When set to “1”, the request will be processed for all checks excluding Lexicon based.
+1
+Default: 0
+LanguageCode
+Note: Language codes are automatically sent based on the survey language. If the survey language is not supported by Imperium, AcceptNotSupportedLanguages is set to 1.
+The LanguageCode attribute is a two-letter language code that specifies the language to use for RealAnswer open-ended question analysis. The default validation language is English (EN), but you can use any of the Imperium-supported language codes below:
+LanguageCode
+Language
+EN
+English
+ZH-CHS
+Chinese - Simplified
+ZH-CHT
+Chinese - Traditional
+PT
+Portuguese
+DE
+German
+ES
+Spanish
+FR
+French
+NL
+Dutch
+SV
+Swedish
+NN
+Norwegian
+RU
+Russian
+IT
+Italian
+JA
+Japanese
+PL
+Polish
+TR
+Turkish
+DA
+Danish
+FI
+Finnish
+MS
+Malay
+HU
+Hungarian
+RO
+Romanian
+SK
+Slovak
+ID
+Indonesian
+CS
+Czech
+BG
+Bulgarian
+VI
+Vietnamese
+2.2: Companion element
+The companion element is required to analyze the collected data. It must be placed
+in a new page by itself after all pages containing questions to be evaluated
+by QualityScore. Add the element using the following code:
+<suspend/>
+<html label="qscompanion1">${ln1.analyzeDataHTML}</html>
+Note: The label and inside code must match exactly except for the logic
+node’s label ('ln1' in the above code). Change the companion
+element logic node’s label to match the QualityScore element’s
+logic label.
+The logic node will verify that this HTML companion element exists somewhere
+in the survey, but you must ensure that all relevant participants see it. For example, to analyze data for terminates/noquotas, you need to create the special term/noqual
+labels.
+You can add a suspend element after the companion element and take
+action based on the scores returned.
+The scores are captured
+inside a persistent variable.
+3: Imperium Response
+Data received from Imperium’s service is saved to hidden questions and is available as persistent variables at
+certain points while the participant is taking the survey. They are as follows:
+Data Type
+When Available?
+How?
+RelevantID results
+One page after the page where the QualityScore element is placed.
+Through a persistent variable: a dictionary named
+client_XYZ_RVIDresults, where XYZ represents the
+logic node’s label. Keys are the field names in the RelevantID
+data table below.
+QualityScore results
+One page after the page where the companion call is placed.
+Through a persistent variable: in a dictionary named
+client_XYZ_QSresults, where XYZ represents the logic
+node label. Keys are the field names in the QuliatyScore analysis
+data table below.
+These variables can be used to perform actions based on the RelevantID and QualityScore
+results, such as terminating the survey if a dupe is detected or displaying information
+based on this data.
+Example:
+<!--- optional block --!>
+<suspend/>
+<text label="t2" title="QualityScore result" where="execute">
+<exec>
+t2.val = p.client_ln1_QSresults['Score']
+</exec>
+</text>
+See
+Defining Python Variables
+and
+Exec Tag: Execute Python Code
+for more information.
+3.1: RelevantID Data
+If the GeoCodes field is specified in the configuration parameters, RelevantID
+is enabled and all the standard fields are returned as per the following table.
+Data is automatically captured in a hidden question once the participant has
+finished the survey.
+Field
+Description
+RVid
+Unique RelevantID used to identify the machine. A "0" value indicates
+an error has occurred.
+Score
+A confidence score which is a number between 0 – 100; 100 indicates
+a 100% level of confidence that the machine is dupe. A score
+of 75 or higher is typically considered a dupe. -1: Error.
+IsNew
+True indicates that the user is new, False indicates that the
+user is a dupe.
+GeoIp
+GeoIP verification value. 1 = GeoIP valid, 0 = GeoIP invalid,
+2 = Ignore GeoIP.
+OldId
+Most recent panelist id found with the existing matching record,
+if any.
+OldIdDate
+The datetime stamp for the most recent local id found with the
+existing matching record, if one was found
+FirstId
+The first panelist id found with the existing matching record,
+if any
+FirstIdDate
+The datetime stamp for the first local id found with the existing
+matching record, if one was found
+IPStatus
+Datapoint indicating the level of suspicious activity originating
+from an IP Address:
+-2 – Country not supported due to legal restrictions
+-1 – Field disabled
+0 – IP Address not seen in last six months
+1 – Normal
+2 – Elevated
+3 – Medium
+4 – High
+FraudRiskProbability
+Percentage of probability of fraud using machine learning technology
+(0-100). A -1 indicates that the functionality is disabled or
+unavailable.
+FPF1
+Returns 1 if OS Language and Browser language mismatch.
+FPF2
+Returns 1 if OS Language and Geo Location mismatch.
+FPF3
+Returns 1 if Browser Language and Geo Location mismatch.
+FPF4
+Returns 1 if Machine Time and Time based on Geo Location mismatch.
+Allows a 3 hour variance.
+FPF5
+Returns 1 if Time based on Geo Location is during off hours (between
+1am and 4am).
+FPF6
+Participant seems to be coming in from an Open or Anonymous Proxy.
+FPF7
+Participant seems to be using a very old browser version, no
+longer commonly in use.
+FPF8
+Returns 1 if participant seems to be using an old OS, no longer
+commonly in use.
+FPF9
+Returns 1 if participant’s state code based on the IP address
+is not the same as or adjacent to the previously validated state
+code for that participant.
+FPF10
+TOR network use.
+FPF11
+This device’s characteristics have been tampered with. The device
+may be attempting to spoof its browser or platform.
+FPF12
+Browser Time Zone not valid for country based on geo information.
+Check only performed if connection seems to be from within US
+or CA.
+FPF13
+Browser in privacy mode.
+FPF14
+Masked user agent or known crawler, bot, robot or spider.
+FPF15
+Returns 1 if participant’s IP Address seems to be coming in from
+a known Data Center.
+FraudFlagCount
+Total number of Fraud Flags detected.
+Country
+ISO country code for the user.
+City
+Returns ISO city name for the user.
+Domain
+Returns the Domain for the participant’s IP Address.
+RVIDHash2
+Hash key of certain critical data points on the page.
+DeviceType
+Returns the type of device in use:
+-1: Unknown
+0: Desktop/Laptop
+1: Phone
+2: Tablet
+3: Gaming Console
+4: TV
+5: Other
+CustomFactorFlag
+Returns a 1 if the passed in CustomFactor has been seen before
+for the current survey, or 0 otherwise.
+CustomFactorPanelistId
+Returns the PanelistId tied to the last time the passed in CustomFactor
+was seen.
+CustomFactorDate
+Returns the date that the passed in CustomFactor was last seen.
+CompleteFlag
+Currently unsupported (CSO).
+CompleteDate
+Currently unsupported (CSO).
+ScreenoutFlag
+Currently unsupported (CSO).
+ScreenoutDate
+Currently unsupported (CSO).
+TotalCompletes
+Currently unsupported (CSO).
+CSOPanID
+Currently unsupported (CSO).
+CSOPanIDDate
+Currently unsupported (CSO).
+CSOPanIDStatus
+Currently unsupported (CSO).
+CustomFactorCompleteDate
+Currently unsupported (CSO).
+3.2: QualityScore Analysis Data
+The analysis of the collected data is obtained at the page where the companion
+call is located. Data is automatically captured in a hidden question once the
+participant has finished the survey.
+Field
+Description
+StatusCode
+HTTP status code (200 if no errors).
+Score
+The quality score of a participant for the survey, ranging from
+0 to 100.
+SpeedingRanking
+Average amount of time spent per page:
+4 – much higher than the norm for this survey
+3 – somewhat higher than the norm for this survey
+2 – around the norm for this survey
+1 – somewhat lower than the norm for this survey
+0 – much lower than the norm for this survey
+StraightlineRanking
+The participant straight-lined:
+4 – much less than the norm for this survey
+3 – somewhat less than the norm for this survey
+2 – around the norm for this survey
+1 – somewhat more than the norm for this survey
+0 – much more than the norm for this survey
+1 – The participant did not answer any grid questions
+RASRanking
+The participant had:
+4 – a very high RealAnswer score
+3 – a somewhat high RealAnswer score
+2 – an average RealAnswer score
+1 – a somewhat low RealAnswer score
+0 – a very low RealAnswer score
+-1 – The participant did not answer any open- end questions
+AccelerationRanking
+The participant’s acceleration:
+2 – was around the norm for this survey
+1 – somewhat deviated from the norm for this survey
+0 – deviated from the norm for this survey
+RedoRanking
+The number of times the participant re-submitted the same pages
+was:
+2 – around the norm for this survey
+1 – somewhat deviated from the norm for this survey
+0 – highly deviated from the norm for this survey
+InactivityRanking
+The number of pages where the participant was inactive was:
+2 – around the norm for this survey
+1 – somewhat deviated from the norm for this survey
+0 – highly deviated from the norm for this survey
+StraightlineCount
+The total number of matrix questions straightlined in the survey.
+MatrixQuestionCount
+Total total number of matrix questions answered in the survey.
+MatrixStraightlineStatuses
+Contains key-value mappings of all matrix questions straightline
+statuses.
+RASAverage
+The average RealAnswer score for all open-ends answered for this
+survey.
+OpenEndsAnswered
+The number of open-ends answered for this survey.
+OpenEndScores
+Contains key-value pairs of all RealAnswer scores for every open-end
+answered.
+RVid
+Unique RelevantID used to identify the machine. A "0" value indicates
+that RelevantID was not called or an error has occurred.
+Pages
+Number of pages where data was collected for the panelist on
+the current survey. Revisiting a page will count as an additional
+page.
+DistinctPages
+Number of distinct pages where data was collected for the panelist
+on the current survey.
+TransactionGuid
+Unique string identifying the analysis request made.
+OutlierGroups
+A list of behaviors in which the participant substantially deviated
+from the norm.
+0 – Page Count
+1 – Speed
+2 – Straightlining
+3 – RAS
+4 – RealAnswer Flags
+5 – Type Speed
+4: Technical details
+The QualityScore logic node is performed as a two step process:
+Collect Data
+Analyze Data
+4.1: Collect Data
+On every survey page that has a question, the participant’s browser sends the
+following data to Imperium when the participant presses the
+Submit button:
+ClientID, SurveyID, PanelistID
+PageID: Automatically generated by the logic node as
+logicNodeName_questionLabels; it should be unique for each page
+of the survey that contains questions
+Matrix Data: Values of all the matrix questions displayed on the page for
+the purpose of straight-liner analysis
+GeoCodes: Only on the page where the RelevantID call is made
+Survey Language: Indicates the language of open-ended inputs
+Additional data collected by the Imperium libraries to improve analysis as
+well as data from all open-ended input fields for RealAnswer analysis
+After the participant presses Submit, the participant’s browser
+will prevent the survey from continuing until the data has been sent and received
+from Imperium. The browser will wait for a response up to five (5) seconds.
+4.2: Analyze Data
+On the page where the companion call is placed, the participant’s
+browser sends the following data to Imperium when
+the page is displayed:
+ClientID, SurveyID, RespondentID (PanelistID).
+The Continue / Finish button is disabled until
+the data has been sent and received from Imperium. The participant’s browser
+will wait for a response up to five (5) seconds.

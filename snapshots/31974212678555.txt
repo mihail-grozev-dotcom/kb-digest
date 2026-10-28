@@ -1,0 +1,26 @@
+Title: December 17, 2024 Release Notes
+Release Date: The following items were released between December 3 and December 17, 2024.
+New Features
+Responses
+Campaign Manager
+Email addresses with domains ending in .solutions are now allowed in Campaign Manager's From and Reply-To addresses.
+Sample Marketplace
+A new vendor, Prime Insights, is available.
+Portal
+Newsflash
+A new announcement modal displays when a user hasn't seen a newsflash yet.
+Bug Fixes
+Portal
+Usage Statistics
+An issue preventing usage statistics for the new Media Testimonial dynamic question from being properly reported, has been resolved.
+Survey
+Survey Editor
+Using the mls attribute on pipe cases no longer causes an error.
+Responses
+Email Campaigns
+Performance in some areas of Email Campaigns has been improved to prevent timeout errors.
+Participant Sources
+Changing the name of a Purchased Sample source no longer moves it to the Survey Links category.
+Reporting
+Crosstabs
+An issue that prevented some Media Evaluator videos from being exported has been resolved.

@@ -1,0 +1,14 @@
+Title: Making a Hidden Variable Automatically Populate
+You can use the Autofill element to create a hidden variable. Overall, the Autofill element is used for creating segments, auto-punching and advanced piping. Participants will not see Autofill elements.
+1: Adding the Autofill
+To add an Autofill element, first click the "+ Element" button to add a new survey element. Then, click "Logic Elements" under Question Types and select the "Autofill" element. Then click "Add".
+Note: Be sure to include a page break between the control question and the Autofill element.
+Enter a title for the Autofill and update the Autofill's "label" using the options menu to the right of the staging area. Next, click "Edit Answers" to create the classifications that should be automatically punched from the previous question. Each classification should be on its own line in the Autofill.
+Note: Make sure that the title is easy to understand, as you will have to locate and use this element in the report after your project is launched.
+2: Configuring Piping Logic
+For each classification, click the corresponding "all" drop-down at the right to assign the auto-punch logic for the Autofill. You can use a pre-existing condition or create a new one. To create a new condition, click "+ condition".
+In the Logic Editor window, enter the logic for the selected category and click "Save". Be sure to repeat this process for each classification in the Autofill element.
+The hidden variable that auto-punches is now complete.
+Learn more:
+Adding Logic to a Question or Response Option
+Autofill Element

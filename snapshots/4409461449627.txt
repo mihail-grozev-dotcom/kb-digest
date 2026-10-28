@@ -1,0 +1,42 @@
+Title: The Sample Marketplace
+Important: To avoid additional charges from oversampling, we recommend adding quotas for all surveys with purchased sample. Learn more about using quotas to limit your survey completes.
+The Sample Marketplace allows you to shop for and purchase sample for any Decipher survey. This document provides an overview of the Sample Marketplace and its various tools and features.
+Note: The Sample Marketplace is enabled at the company level. Access to the Sample Marketplace requires that your account be up-to-date with all software releases and installs managed by Forsta. Additionally, your company supervisor must have completed a specialized marketplace training program in order to add the Sample Marketplace to your account. If you are interested in enabling the Sample Marketplace for your company, contact your Forsta representative for more information.
+1: Accessing the Marketplace
+If the Sample Marketplace is enabled for your company, you can access it from the Participant Sources page. To access the Sample Marketplace, select “PARTICIPANT SOURCES” under “RESPONSES” in the navigation menu at the top of any page. From the Participant Sources page, click “+ Participant Source” and select “Purchase Sample”.
+2: Viewing the Marketplace
+The Sample Marketplace consists of the Sample Criteria page, where you identify your sample needs and the Purchase Sample page, where you get pricing estimates from multiple vendors for fielding your project.
+2.1: The Sample Criteria Page
+The Sample Criteria page allows you to specify your survey sample needs by configuring the following participant profile information:
+Participants: The total number of participants needed for the survey.
+Days: The number of days needed to fully field the survey.
+Length of Survey: The number of minutes needed for an individual participant to complete the survey (also known as “Length of Interview” or LOI).
+Qualifying Rate: The estimated percentage of participants who will qualify for the survey within the general population (also known as “Incidence Rate” or IR).
+Locale: The region and primary language in which the survey will be fielded.
+Note: If the language selected for a bid does not already exist in your survey, the associated participant source will instead be assigned the survey’s primary language. In order to use a new language, you must first add the desired language to the survey and then return to the Participant Sources menu to update the participant source.
+You are also able to toggle whether your survey collects personally identifying information, as well as define additional targeting criteria (e.g., specific demographics, quotas, etc.).
+2.2: The Purchase Sample Page
+Clicking the “Get Prices” button takes you to the Purchase Sample page, where you can view pricing estimates from pre-approved sample providers with sample matching your participant profile.
+Each estimate includes the vendor’s cost per interview (CPI) and total price (their CPI multiplied by the number of participants you have specified), along with any additional sample-specific criteria.
+You can also review a summary of your participant profile and make changes if needed.
+Learn more about purchasing sample using the Sample Marketplace.
+3: Sample Reconciliation
+Forsta takes data quality seriously. If you find bad and/or cheating participants, we can reconcile the data for you.
+Buyers using Sample Marketplace (SMP) must reconcile any disqualified completes within 30 calendar days from the date each individual respondent (qualified complete) is collected. As the Sample Marketplace operates as a DIY sampling solution, buyers are fully responsible for monitoring and managing their completes within the Decipher survey platform. Completes not reconciled within the 30-day window aren considered billable and cannot be retroactively adjusted or removed.
+To complete your reconciliation request, email the following information to marketplacereconciliation@forsta.com:
+Survey URL: The URL of the survey where you identified bad data.
+A full dataset downloaded to Excel prior to disqualifying the IDs in your Decipher survey. Be sure to:
+Highlight the rows containing bad respondents or copy them to a separate tab in that file.
+Include the unique IDs for all vendors who provided sample to your survey.
+Add a Reason Code. Add a new column labeled “Reason” and specify the reason for the reconciliation request of each ID. Respondents can not be reconciled without a valid reason.
+Note: Only disqualify bad data from your survey prior to sharing it with us. Deleting data prevents us from completing the reconciliation request. See About the View / Edit Responses Report to learn how to disqualify records from your data.
+4: Data Quality Resources
+To reduce the amount of bad respondents qualifiying in your survey, review the below list of data quality measures that can be added directly to your survey:
+Tracking and Terminating Survey Speeders
+Monitor and Terminate Straightliners
+Validate Tag: Custom Data Quality Checks
+4.1: Available Integrations
+reCaptcha Integration: Google's human verification system, reCaptcha.
+Dynata QualityScore Integration: Together with speeder and straight-liner detection, the Dynata QualityScore outputs a score ranging from 0-100 for participants at the end of the survey. This API reads respondents in survey behavior and passes data to Dynata’s servers to analyze, which results in a score being passed back into your survey data.
+Research Defender REVIEW Integration: Measures and scores a participant’s engagement in real-time by analyzing open-end responses and checking for proper grammar, response length, profanity, copy/paste, and other attributes from Research Defender to simplify your analysis of open-end responses. You can then use these scores to disqualify participants to improve data quality of your survey.
+Research Defender SEARCH Integration: Provides digital fingerprinting and fraud identification of survey participants to identify if they are a bot, known fraudulent participant, or a duplicate by retrieving scores from Research Defender. You can then use these scores to disqualify participants to improve data quality of your survey.

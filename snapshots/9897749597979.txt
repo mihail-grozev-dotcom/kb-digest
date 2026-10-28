@@ -1,0 +1,36 @@
+Title: M48 Release Notes
+Release Date: August 31, 2021
+Release Version: 148
+Survey Versioning
+The new survey compatibility level is 148. The system automatically uses compat="148" for all new surveys. This changes the following:
+Execute (<exec>) elements are no longer allowed to assign values to reserved words which were previously only disallowed as question label names (for example, int and len).
+Learn more: Survey Compat Levels
+New Features
+Portal
+Company Settings
+Added a new field to the Company Settings page where users can specify an email address to receive a daily report containing all survey archives that will be deleted for the company in the next 90 days.
+Learn More: Create and Manage Companies
+Survey
+Survey Editor
+Improved contextual tracking for errors occurring within custom styles (for example, when using @if or ${code}). It is now easier to pinpoint where these types of errors originated using the sample code featured in system error messages.
+Reporting
+Added a new email format (send-archive-deletion-report.style), which supports sending email notifications to the address set to receive deletion reports in the Company Settings page.
+Data Downloads
+Enabled the OData download option for all Decipher users.
+Learn More: Exporting OData Reports
+Programming & Tools
+API
+Added the Archive Deletion Report endpoint, which returns a detailed report of all survey archives scheduled for deletion within a certain number of days for the specified company.
+Bug Fixes
+Survey
+XML Editor
+Fixed an issue preventing the addition of custom exit conditions.
+Fixed an issue causing some survey error messages to display as HTML code rather than rendered text.
+Participant View
+Fixed an issue where some language translations contained extraneous whitespace.
+Responses
+Campaign Manager
+Fixed an issue preventing an error message from appearing when attempting to save a new template using the name of an existing template.
+Reporting
+Crosstabs
+Fixed an issue preventing some Crosstabs reports from being exported correctly into PowerPoint format.

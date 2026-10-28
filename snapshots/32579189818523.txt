@@ -1,0 +1,9 @@
+Title: January 7, 2025 Release Notes
+Release Date: The following items were released between December 17, 2024 and January 7, 2025.
+New Features
+Survey
+Integration
+SmartHub performance for larger surveys has been improved.
+Bug Fixes
+Portal
+Newsflash notifications no longer continue displaying after being dismissed.

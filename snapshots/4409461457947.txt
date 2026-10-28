@@ -1,0 +1,76 @@
+Title: Portal API Calls
+Note: The below article uses examples of accessing the Decipher API from a Unix system that has the Beacon library package installed. See Decipher REST API to learn more about accessing the Decipher REST API.
+You can use the following API calls to perform a variety of tasks within your company's Portal pages. Click any call name to view more information.
+Call Name
+Description
+List Users
+Retrieves a list of all users for the specified company or server.
+Modify Users
+Enables or disables the specified user accounts.
+Create Password Reset
+Sends a password reset e-mail to the specified user.
+List Companies
+Retrieves a list of all companies that exist on the specified server, along with information on their subdirectories.
+Note: Available only to supervisors.
+Get Surveys
+Retrieves a list of all surveys for the specified company or companies.
+Create Survey
+Creates a new project for the specified company.
+Get Survey Information
+Retrieves information about the specified project. See 2.1: Get Survey Information for more details on the lastAccess field.
+List Preferences
+Retrieves preferences for the specified company.
+Update Preferences
+Updates preferences for the specified company.
+Get Preference History
+Retrieves a list of all preference changes made to the specified company.
+Calculate Usage
+Retrieves usage statistics for the specified server.
+Get Company’s Warnings
+Retrieves summaries of all project warnings for the specified company.
+List API Keys
+Retrieves a list of all API keys for the specified company or server.
+Create API Key
+Generates a new API key for the specified user.
+Retire
+Deactivates the specified API key.
+Update
+Regenerates the private part of the specified API key.
+Archive Project
+Archives the specified survey and deletes its project directory.
+Un-archive Project
+Unarchives the specified survey and restores its project directory.
+Note: By default, API calls in the shell output information directly to the console screen. If you want to reuse that output, you will want to save it to a file.
+Note: If you are using a web call method to access the API, you will need to have a way of providing your API key. See Decipher REST API for more information.
+Note: You will need to change v2.decipherinc.com to the domain that you use to log into the Decipher platform.
+1: Viewing Returned Data
+You can use the global select parameter to retrieve a subset of any GET call's returned data. You can pass in select as an argument set to a comma-separated list of properties to return.
+For example, select=id, login, active will only retrieve these three specific fields when calling in the User List API:
+beacon get rh/users select=id,login,active
+Note: The select parameter should only be used on GET method API calls to filter information retrieved via an API call, and not information that you send (e.g., via a PUT or POST method) to Decipher.
+2: Additional Information
+This section provides additional information on responses provided by some of the API calls.
+2.1: Get Survey Information
+The lastaccess field is updated when:
+Creating a new survey
+Copying an existing survey (the duplicated survey gets the new time as it is newly created)
+Moving a survey to another location
+Editing a survey in Survey Editor
+Viewing the survey with QA tools
+Starting the survey launch process
+Setting a survey to live
+Setting a survey to closed
+Changing the survey state to dev or testing (Staff only setting)
+Saving a new sample source (within Survey Editor or Participant Sources)
+Deleting a sample source (within Survey Editor or Participant Sources)
+Creating a new email campaign
+Copying an existing email campaign
+Sending an email campaign
+Viewing Response Summary
+Updating a quota in Response Summary
+Getting the project summary (Responses > Survey Summary)
+Visiting the Crosstabs overview page
+Displaying Crosstabs
+Creating and saving a dashboard
+Viewing a public dashboard
+Handling respondent data in View/Edit Responses

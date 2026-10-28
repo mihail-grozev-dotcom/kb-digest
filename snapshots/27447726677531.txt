@@ -1,0 +1,20 @@
+Title: 153.36 Release Notes
+Release Date: July 16, 2024
+Release Version: 153.36
+New Features
+Portal
+Upload System Files
+A "Learn More" link to the Forsta Surveys knowledge base has been added to the page.
+Responses
+Campaign Manager
+"Export Bounce-Backs and Opt-Outs" in the drop-down menu on the recipient list in Campaign Manager's list view, has been replaced with four separate exports for bounce-backs, blocks, optouts, and spam reports. In addition, the exported list has a new column named "extra" which provides additional details about some statuses; most significantly, the reasons for any additional suppressions.
+Each of these exports is also available via new or updated API endpoints: Get list, Get campaign blocks, Get campaign bounce-backs, Get campaign optouts, and Get campaign spam reports.
+Learn More: Email Campaign Manager Overview
+The link for the one-pixel .gif that tracks whether a recipient has opened an email from Campaign Manager now uses the same https domain as the survey, to improve deliverabilty and reliability of open tracking.
+Bug Fixes
+Survey
+Dynamic Questions
+A new version of Rank Sort (ranksort.7) is available. The "edit" button on open-end answers can now be modified in Survey Editor via the "Update Styling" menu (ranksort:btnOpenEdit attribute) , and translations for that text can now be set in Language Manager without any custom XML. Learn More: Rank Sort: Style Settings
+Reporting
+Crosstabs
+A memory usage performance regression that occurred when computing virtuals for reporting (Crosstabs, data APIs, etc) has been resolved.

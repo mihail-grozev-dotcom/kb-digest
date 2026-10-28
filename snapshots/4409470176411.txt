@@ -1,0 +1,46 @@
+Title: Recovering Missing Data
+Requires Decipher Cloud
+While it is a rare occurrence, sometimes user actions can lead to the corruption or loss of data from a survey. This generally happens as a result of removing questions from a survey, deleting data records, or making changes to a survey while it is in a live state. If you have corrupted or missing data in your survey, you can take the following actions to recover those lost records.
+1: Restoring Cleared Survey Data
+The following instructions applies to projects with delphi="1".
+If cleared survey data needs to be restored from a survey, it can be retrieved from the database.
+Survey data is cleared if you launch a survey during testing. To restore live data that was cleared when a survey link was sent out in error while testing, use the following steps:
+Login to the shell and access the correct selfserve/123/456 directory.
+Issue the command beacon get ./delphi/backups to view a list of old files.
+Example:
+[
+{
+"path": "demo/kitchensink/delphi/data.data.clear",
+"created_on": "2022-07-20T17:02:17Z",
+"bytes": 32768,
+"name": "demo_tkyjb09nhopseh3zs7hfta",
+"records": 42}]
+The above example shows that this backup was created on 2022-07-20 at 17:02:17 and contains 42 records.
+Verify everything is correct by running:
+beacon get ./delphi/backups/'demo_tkyjb09nhopseh3zs7hfta'
+Note: The name shown above displays the first few records.
+When you are ready to restore the data, run the following:
+beacon post ./delphi/backups/'demo_tkyjb09nhopseh3zs7hfta'/restore
+Note: You can only restore the entire data set to its parent directory. You will need to go through and manually delete any unwanted records.
+2: Recovering Data in Projects without delphi="1"
+The following instructions applies to projects without delphi="1".
+2.1: Recovering Data for a Deleted Question
+The following information applies to projects without delphi="1".
+To restore data for deleted questions, follow the steps outlined below:
+Find the version of the XML before the question was deleted.
+Create a temporary copy of the survey.
+Download the survey.xml file from the survey version history report, and upload it into your recovery copy.
+Copy the back-up folder over to your recovery directory.
+Replace the data folder from your recovery directory with the back-up data folder.
+Verify that your data and virtual questions were updated properly.
+Add your missing question to the report of the live survey.
+Use the generate script to create a file with your restored question data.
+Using the tabimport script, import your data file back into the live study.
+2.2: Recovering Manually Deleted Records
+The following information applies to projects without delphi="1".
+To restore data for manually deleted records, follow the steps outlined below:
+Create a temporary copy of your survey.
+Navigate to the old-results folder in your main project.
+Locate the XXX.results.bin and XXX.results.text files.
+Rename and copy the XXX.results.bin and XXX.results.text files to the data folder in your recovery copy.
+Use the hmerge command to transfer the restored records back into your main project.

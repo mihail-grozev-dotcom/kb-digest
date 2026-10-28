@@ -1,0 +1,25 @@
+Title: Video Management API Calls
+You can use the following API calls to upload and manage your survey videos. Click any call name to view more information.
+Note: The below article uses examples of accessing the Decipher API from a Unix system that has the Beacon library package installed. See Decipher REST API to learn more about accessing the Decipher REST API.
+Call Name
+Description
+Upload Videos
+Uploads videos to the specified survey.
+Increase Watermark
+Increases the number of unique watermarks created for a watermarked video.
+Note: Videos with unique watermarks are removed after three years.
+View Videos
+Retrieves information for all uploaded videos in the specified survey.
+View Video
+Retrieves information for a single video uploaded to the specified survey.
+Watermarked Videos
+Retrieves a list of all watermarked videos uploaded to the specified survey.
+Watermark Database
+Creates a file containing the video ID and watermark ID for all generated watermarks.
+Note: If you are using a web call method to access the API, you will need to have a way of providing your API key. See Decipher REST API for more information.
+Note: You will need to change v2.decipherinc.com to the domain that you use to log into the Decipher platform.
+1: Viewing Returned Data
+You can use the global select parameter to retrieve a subset of any GET call's returned data. You can pass in select as an argument set to a comma-separated list of properties to return.
+For example, select=id, login, active will only retrieve these three specific fields when calling in the User List API:
+beacon get rh/users select=id,login,active
+Note: The select parameter should only be used on GET method API calls to filter information retrieved via an API call, and not information that you send (via a PUT or POST method) to Decipher.

@@ -1,0 +1,59 @@
+Title: Rank Sort Element
+1: Rank Sort Overview
+The Rank Sort element utilizes a select form and must contain multiple labels and items. Survey participants rank response options by dragging an item to a rank position. This element does not utilize Flash.
+2: Adding a Rank Sort Element
+Note: You can set the "Show if" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Rank Sort element, first click the "+ Element" button to add a new survey element. Then click "Rate, Rank, and Sort" under Question Types and select the "Rank Sort" element. Then click "Add".
+Enter the question and instruction text in the areas provided.
+Rank Sort elements must contain rank labels and rankable items. Do not number the answer options unless you want that numeric text to appear for survey participants. The system automatically provides labels / numbers for the answer options, which you can edit later in "Options".
+2.1: Configuring Rank Label Actions
+All response options appear in the question box with labels (e.g., ch1, ch2, ch3, or r1, r2, r3). Labels with the "ch" prefix indicate choices (i.e., rank labels). Click "+ New Rank Label" to add a new choice. Labels with the "r" prefix indicate rows (i.e., rankable items). Click "+ New Rankable Item" to add a new row.
+To edit the answer options, click "Rank Label Actions" or "Rankable Item Actions". Click "Answer Piping" to show rows, columns, or choices based on the answers of a previous question; to learn more, see Answer Piping.
+Next, define how many items each participant must rank. To do this, locate the general options for the question and select "minRanks" from the "more options" drop-down. Then, enter a whole number in the "minRanks" field.
+Note: If "minRanks" is not defined, an error occurs in the survey.
+You can preview the element at any time by clicking the "Preview" button located at the top right corner of the element. To find out more about previewing an element, see Previewing a Question.
+Note: When you set minRanks to anything other than 0, the question will be optional, even if the "Mandatory" box is not selected.
+3: Style Settings
+To configure the style settings, click the "..." button at the top right of the element in the staging area and select Update Styling.
+Learn more: Editing Question Styles
+3.1: Rank Sort Display Settings:
+Show Rank Label Text: Allows you to show or hide the text entered as "rank labels" in the answer options. This can be useful if you only want to show the system-generated labels.
+Show Rank Label Number: Allows you to show or hide the system-generated labels for the "rank label" answer options. This can be useful if you only want to show the text entered for the "rank label" answer options.
+Always Submit Open-End: Allows for the open-end value to always be submitted even when the open-end item is not ranked. This option also will display in Language Manager for translation.
+4: Options for a Rank Sort Element
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it. Options vary based on the item selected.
+4.1: General Options
+When altered, each of the following options affects all attributes within the Rank Sort element.
+Label: The label assigned to the element. Click to edit the default label for the Rank Sort element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: This is required and the box is checked by default.
+Randomize: Check the boxes to randomize items by type. Items can be randomized by rows, columns, groups or groups only, or all.
+Rating/Scale: Enables nets in the report. To learn how to set up your rating scale preferences in the report, see Editing Tables in Crosstabs.
+minRanks: Added via the "more options" menu. This is required for the Rank Sort element.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.2: Choice (Rank Label) Options
+When altered, each of the following options only affects specific choice (i.e., rank label) attributes.
+Label: The label assigned to the choice. Click to edit the default label for the choice.
+Data Value: The value assigned to the choice in the data. Click to edit the default value for the choice if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the choice. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the choice will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the choice to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the choice optional and non-mandatory.
+Hidden: Click to hide the choice from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.3: Row (Rankable Item) Options
+When altered, each of the following options only affects specific row (i.e., rankable item) attributes.
+Label: The label assigned to the row. Click to edit the default label for the row.
+Show If: Click to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the row will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the row to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the row optional and non-mandatory.
+Open End: This option allows the participant to rename the option. To force an answered open-end question to be ranked, see Customizing the Rank Sort Element.
+No: The row cannot be renamed.
+Optional: The row must be renamed by the participant before it can be ranked.
+Mandatory: The row must be renamed by the participant before it can be ranked.
+Hidden: Click to hide the row from participants.
+No Answer: This option replaces the Rank Sort form with an exclusive checkbox form. It is primarily used if there is a "Don't know" or "None of these" response option in the question.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+Learn More: Customizing the Rank Sort Element

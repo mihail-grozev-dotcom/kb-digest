@@ -1,0 +1,18 @@
+Title: M39 General Release Notes
+Release Date: June 16, 2018
+Highlights of M39 Release
+New Features
+CAPI 3.0
+Capture participant geolocation data and device ID information
+Allow participants to view survey progress
+Use additional image source syntax
+GDPR Compliance
+Choose to track participant IP addresses when needed
+New Features
+CAPI 3.0
+Looking for more data on your mobile and offline users? Surveys with compat 139+ are able to collect participants' geolocation data and device ID. By default, enabling collection creates the following tables in reporting: latitude, longitude, and device_id.
+For data to be collected for these fields, users must have granted permission for them on first opening the app.
+GDPR Compliance
+With GDPR compliance now fully in effect, Decipher has disabled IP collection for all new surveys with compat 139 or higher. This means that new surveys will not collect IP address by default. This removes the ipAddress variable from the survey's extraVariables list and will affect click-throughs, raw data and reports.
+If desired, users can re-enable this functionality in surveys with compat 139+ using the "Collect IP Address" option in the Field Settings menu of the Survey Editor:
+You can use the PII restriction to hide participant IP addresses in surveys with older compats (recommended if a survey is already LIVE), or you can upgrade the survey compat to 139+ and then enable this functionality.

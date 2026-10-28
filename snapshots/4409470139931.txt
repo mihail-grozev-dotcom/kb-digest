@@ -1,0 +1,49 @@
+Title: Crosstabs
+Once you have opened Crosstabs for your project (REPORT>CROSSTABS), select and run a crosstab to view its crosstab report.
+Click any link below to jump to information about that section.
+1: Crosstabs Menu
+2: Quick Split
+3: Edit Crosstab
+4: Edit Settings
+5: Additional Filter
+6: Segment Summary
+7: Crosstabs
+1: Crosstabs Menu
+The Crosstabs menu provides actions specific to setting up crosstabs and interacting with report options. Clicking All Crosstabs takes you back to the Crosstabs Entry Page.
+1.1: Actions
+The Actions menu contains the following options:
+Create New Crosstab: Build a custom crosstab from scratch. Create multiple segments from one question, create nested logic, and preview the segments (or drag and drop to rearrange them) before running the crosstab.
+Create Saved Report: Create a custom collection of tables and charts using the tables you pinned to your whiteboard.
+Create Table from Banner: Add a new table based on segments in your report.
+Create Custom Table: Add a new table with custom configurations.
+View Whiteboard: Allows you to view your whiteboard, which contains tables that have been pinned.
+Pin All Favorites: Allows you to quickly pin all of your favorite tables to your whiteboard.
+Upload Weighting Scheme: Upload weight values per participant matched to any unique survey variable (e.g., source, UUID).
+New Weighting Scheme: Create and apply a new weighting scheme directly within Crosstabs using a RIM weighting variable.
+Chart Options: Allows you to view and edit the chart options, including the data values and color palette.
+Turn All Grid Tables On: Allows you to show or hide grid tables (from 2-dimensional, 3-dimensional radio/checkbox/select questions) that do not use hottext.
+Reset All Tables To Default: Revert all changes made to report tables and charts through the Crosstabs table editor.
+Note: Resetting tables to default requires report:edit permissions.
+1.2: View Options
+The View Options menu contains the following options:
+Show/Hide QA Codes: The Quality Assurance (QA) codes are shown in green and signify a specific question type, question attribute or survey attribute. For a complete list and description of each QA code, see About QA Codes.
+Show/Hide Tables with No Respondents: Allows you to show or hide any table that has zero completes.
+Show/Hide Download Data Values: Allows you to view or hide the data values.
+Show/Hide Unweighted Total Count: If you are applying weights, you may choose to show or hide the unweighted total row in your tables.
+1.3: Exports
+The Exports menu offers the export and download options for Crosstabs.
+Export Crosstabs: Export the applied crosstab run into a number of native formats like Excel, Powerpoint, PDF.
+Download Raw Data: Download the raw data in a popular format, including Excel, SPSS 16+, Fixed-Width, Tab-Delimited or OE Data in Excel.
+View All Data Formats: Open the data export options to download the raw data, or select/create a data layout.
+2: Quick Split
+Displays the chosen crosstab and allows you to quickly run a different crosstab. Select to run a total frequency report, a quick split, or a previously saved crosstab.
+3: Edit Crosstab
+Allows you to edit the crosstab configuration. See Building a Crosstab to learn more.
+4: Edit Settings
+The Edit Settings menu allows you to apply settings that affect which populations are included in the crosstab report. To learn more about the settings that affect the basing of the report tables, see Configuring Crosstab Settings.
+5: Additional Filter
+Allows you to quickly filter the crosstab by a date range or apply an additional filter based on segments from a previously saved report.
+6: Segment Summary
+Displays the total for each defined segment. To learn more about creating a crosstab with segments, see Running a Quick Split Crosstab.
+7: Crosstabs
+Allows you to scroll through the tables generated from your crosstab configuration. For more details, see Viewing Crosstab Reports

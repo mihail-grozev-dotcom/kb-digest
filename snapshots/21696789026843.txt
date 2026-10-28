@@ -1,0 +1,11 @@
+Title: 153.23 Release Notes
+Release Date: January 2, 2024
+Release Version: 153.23
+New Features
+Reporting
+Crosstabs
+Searching for a question in Crosstabs is now easier. Press CTRL+F (on Windows) or CMD+F (on a Mac) to open the Search dropdown in the upper right corner of the page. Type any part of the question label or text to quickly jump to that question. Question labels for built-in questions such as qtime, status, and vdropout are now shown in the list as well for easier searching.
+Bug Fixes
+Survey
+Survey Editor
+In the Survey Elements menu, for elements with custom icons and long title texts, the text no longer overlaps with the icon.

@@ -1,0 +1,56 @@
+Title: How to Change a Participant's Status
+Occasionally, you may need to change a participant’s status after collecting data in a survey. To perform this type of edit, you will need a full understanding of how to read the "markers" column in the data set and how to use the Edit Data option in the View/Edit Responses report.
+1: Survey Markers
+In Decipher, the status for a given participant is controlled by the "markers" column in the survey data file. The string values listed here for each participant record consist of either the default survey markers or those set explicitly by the survey programmer (through the marker element, the setMarker() function, or quota elements).
+See Marker Tag: Set a Survey Marker for more information on setting survey markers in Decipher.
+Survey markers are useful for flagging participants that meet certain conditions, or for tracking a participant’s path through the survey post-field. Additionally, the system checks the "marker" column when setting the status for each participant.
+Participants can be assigned one of four status markers: Qualified, Overquota, Terminated, and Partial.
+1.1: Qualified
+The "qualified" marker sets the participant to qualified status, which means they have completed the survey with qualified data.
+1.2: Overquota
+The "OQ" marker sets the participant to overquota status, which means they have completed the survey but have also qualified for a quota that is already full. If for any reason the "OQ" marker and the "qualified" marker are present in the same record, the "overquota" status takes priority.
+1.3: Partial
+If autoRecover is enabled, participants that drop out of the survey before completion will be assigned the "partial" marker.
+1.4: Terminated
+In the absence of any of the markers mentioned above (qualified, OQ, partial), the participant is set to terminated status. Terminated participants are flagged with the "term:" marker, followed by the condition that triggered the survey termination. This "term:" marker is used to populate and increment the correct row of the Terminates tab in the Response Summary report.
+2: Quota Markers
+The quota system in Decipher uses markers to increment the quota counts in the Quotas tab of the Response Summary report. When a participant is assigned to a quota cell, a marker is assigned to that participant using the structure ‘/sheetName/MarkerName/’.
+2.1: Terminated Participants
+If a participant is terminated from the survey after qualifying for a quota cell, the phrase "bad:" is prepended to the quota marker string. This is done to break the string matching used by the Response Summary report to increment quota counts. The phrase itself is arbitrary, but with the string no longer matching the expected quota marker, the record is removed from the quota cell and no longer counts toward its limit.
+2.2: Overquota Participants
+When a participant is flagged as overquota, Decipher prepends "OQ" to the marker string for any full quota to which the participant was assigned. This is done to break the string matching used by the Response Summary report to increment quota counts. Instead, the overquota count is incremented for the cell, displaying as a red and bold number in parenthesis next to it.
+If a participant had qualified for another quota cell earlier in the survey, Decipher will prepend "bad:" to that quota marker string to remove the participant from the cell and avoid counting the terminated record against that cell’s limit.
+3: Editing Markers in the View/Edit Responses Report
+Because the "markers" column controls the participant’s status and quota assignment, you can make edits to the values here to change both of these for a participant.
+In Decipher, data edits can be made using the View/Edit Responses report. The View/Edit Responses report can be accessed from the Report menu of the Navigation Bar.
+Note: data:edit permission is required to make changes to participant data.
+3.1: Adding the Markers Column
+To edit the markers from the View/Edit Responses report, first ensure that the "Markers" column is visible in the record table. If not, click "Choose Columns" to access the column selection menu and check the box next to "Markers". Then click "Apply".
+Note: The "Markers" column is included in the default column layout.
+Learn More: About the View / Edit Responses Report
+Markers in the View/Edit Responses report display as tags. For the sake of readability, quota markers are listed with the text that displays for them in the Responses Summary report (the altlabel in the quota.xls file) rather than the programmed (or generated) marker name.
+3.2: Enabling the Table Editor
+To make changes to participant markers, you must first enable the table editor. To enable the table editor, click "Edit Data".
+Once you have enabled the table editor, you can add, edit, or remove markers directly within the table.
+3.3: Making Individual Edits
+The following sections outline the steps required for adding and removing individual participant markers in the table.
+Note: If you would like to change a participant's status, you may have to add AND remove certain markers. See the examples below for additional details.
+3.3.1: Adding Markers
+To add a marker to a participant record, click inside the "Markers" box in the corresponding row. A drop-down menu will display all markers present in records for the current view. You can select from these markers or type one of your own and press Enter.
+In the example below, adding the "/Sample/Client Sample" and "qualified" makers will include the participant in the Client Sample quota cell (incrementing the count by one), but will NOT yet add the qualified status because the "OQ" marker is still present.
+3.3.2: Removing Markers
+Once editing is enabled, markers can be removed by clicking the "x" to the right of each marker tag.
+In the example below, removing the "OQ" marker and "OQ/Sample/Client Sample" markers will remove the overquota status (allowing the qualified status to take effect) and reduce the number of overquota participants for the Panel Sample quota cell by one.
+3.3.3: Updating Records
+Once all desired changes are queued, click "Update Records" and confirm the changes to apply them to your records.
+3.4: Making Bulk Edits
+If the same marker edits are required for multiple records, the Advanced Data Editor allows for bulk edits to multiple records. To make bulk edits, first click the "Advanced" tab and choose "Modify Record Data" from the drop-down menu.
+Then click the boxes next to the desired records to select them for editing.
+3.4.1: Adding Markers
+To add markers to multiple records, click inside the "Markers to Add..." box and select from these markers or type your own and press Enter.
+In the example below, the "/Sample/Panel Sample" and "qualified" markers will be added to the selected participants.
+3.4.2: Removing Markers
+Similarly, makers can be removed by clicking within the "Markers to Remove…" box and selecting the desired markers from the drop-down.
+In the example below, the "bad:/Sample/Panel Sample" marker and the "term:not(q2.check(‘18-75’))" marker will be removed for the selected participants. With this change in effect, records will no longer increment the "q2: Age Term" row in the Terminates tab of the Response Summary report.
+3.4.3: Updating Records
+Once all desired changes are queued, click "Update Records" and confirm the changes to apply them to your records.

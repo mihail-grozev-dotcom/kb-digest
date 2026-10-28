@@ -1,0 +1,97 @@
+Title: Creating Dashboard Banners
+Create dashboard banner segments and apply those segments to a table or chart. Add dynamic splits to tables and charts to allow users the ability to manually toggle between data views.
+1: Creating Banners and Segments
+By default, the full data set is shown within each element and only one column of data is presented. The keyword banner.local defines a set of banner segments and applies them to a table or chart. The values for banner.local follow a simple conditional syntax, where each segment is defined by its condition and title:
+banner.local
+segment <condition> [title]
+1.1: Segmenting a Table Example
+Use the following code example to segment a table:
+table Likelihood of another purchase in the next month
+row Q3.r1
+row Q3.r2
+row Q3.r3
+row Q3.r4
+row Q3.r5
+banner.local
+segment Q1.r1 Female
+segment Q1.r2 Male
+segment Q1.r3 Non-Binary
+segment Q1.r4 Self-Describe
+With the banner and segments applied, the table for liklihood of another purchase displays the data split between genders.
+1.2: Segmenting a Chart Example
+Similarly, with the following banner and segments applied, the likelihood of another purchase chart displays the data split between genders:
+chart Likelihood of another purchase in the next month
+type pie
+row Q3.r1
+row Q3.r2
+row Q3.r3
+row Q3.r4
+row Q3.r5
+banner.local
+segment Q1.r1 Female
+segment Q1.r2 Male
+segment Q1.r3 Non-Binary
+segment Q1.r4 Self-Describe
+2: Adding Dynamic Splits to Charts and Tables
+Note: When creating selectable splits make sure that the dashboard's compat is set to level 2+ or greater.
+By default, banners and segments are applied prior to loading a dashboard, so each element will appear with programmed splits already in place. If you want to allow users the ability to toggle between data views manually within your dashboard, you would need to add a dynamic split to each element. You can use bannergroup.local to add dynamic splits to charts and tables.
+Note: Local splits take priority over global splits.
+2.1: Adding a Dynamic Split to a Table Example
+The following code allows users to toggle between viewing the age and likelihood of purchase of participants within a gender table:
+table Gender of Participants
+rows Q10.r1-r4
+bannergroup.local
+banner.local Age
+segment 'Q11.check("18-24")' 18-24
+segment 'Q11.check("25-34")' 25-34
+segment 'Q11.check("35-44")' 35-44
+segment 'Q11.check("45-54")' 45-54
+segment 'Q11.check("55-64")' 55-64
+segment 'Q11.check("> 64")' 65+
+banner.local Likelihood of Purchase
+segment "Q3.r1"
+segment "Q3.r2"
+segment "Q3.r3"
+segment "Q3.r4"
+segment "Q3.r5"
+This code applies a gear icon to the gender table. Click the gear icon to open the Split By drop-down menu to toggle and apply different data views.
+Select a split, then click Apply to dynamically change the table to a segmented view.
+2.2: Adding a Dynamic Split to a Chart Example
+The following code allows users to toggle between viewing the age and likelihood of purchase of participants within a gender chart:
+chart Gender Bar Chart
+rows Q1.r1-r4
+bannergroup.local
+banner.local Age
+segment 'Q11.check("18-24")' 18-24
+segment 'Q11.check("25-34")' 25-34
+segment 'Q11.check("35-44")' 35-44
+segment 'Q11.check("45-54")' 45-54
+segment 'Q11.check("55-64")' 55-64
+segment 'Q11.check("> 64")' 65+
+banner.local Likelihood of Purchase
+segment "Q3.r1"
+segment "Q3.r2"
+segment "Q3.r3"
+segment "Q3.r4"
+segment "Q3.r5"
+This code applies a gear icon to the gender chart. Click the gear icon to open the Split By drop-down menu to toggle and apply different data views.
+Select a split, then click Apply to dynamically change the chart to a segmented view.
+2.3: Default to a Segmented View
+You can force a segmented view to show without a split by adding default=1 to a banner.local attribute. For example, if you want users to see the gender table split by age unless another banner is selected, use the following code:
+table Gender of Participants
+rows Q10.r1-r4
+bannergroup.local
+banner.local default=1 Age
+segment 'Q11.check("18-24")' 18-24
+segment 'Q11.check("25-34")' 25-34
+segment 'Q11.check("35-44")' 35-44
+segment 'Q11.check("45-54")' 45-54
+segment 'Q11.check("55-64")' 55-64
+segment 'Q11.check("> 64")' 65+
+banner.local Likelihood of Purchase
+segment "Q3.r1"
+segment "Q3.r2"
+segment "Q3.r3"
+segment "Q3.r4"
+segment "Q3.r5"
+When default=1 is added to a banner.local, "No Split" is not an option in the Split By drop-down menu.

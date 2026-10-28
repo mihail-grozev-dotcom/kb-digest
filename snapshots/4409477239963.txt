@@ -1,0 +1,13 @@
+Title: Uploading a Recipient List
+When creating an email campaign, you can upload a recipient list directly to the Campaign Manager or via the campaign setup page.
+Decipher accepts lists saved in both Excel and text file formats. Learn how to create a valid recipient list file.
+1: Uploading the List File
+To upload a list in the Campaign Manager, click "Add" next to the desired campaign under the "Recipient List" column.
+To upload a list from the campaign setup page, click "Add" next to "Recipient List" in the Checklist section.
+Drag and drop the file into the area provided or click “Browse” to search for the file on your device. Then select the file encoding format and check the box to confirm that recipients have opted in to receive these types of communications. Finally, click "Done".
+The list is uploaded and a summary appears. Verify that the summary details are correct and click "Continue" to close.
+Once a list has been uploaded, a pop-up box appears with a message indicating whether the upload was successful. Click “Finish” to return to the Campaign Manager, where you can now view, edit, replace, share, or export the list.
+Learn More: Recipient List Options
+Note: The maximum amount of sample that can be loaded to an individual study is five million participants.
+1.1: Troubleshooting Errors
+If you experience any difficulties when attempting to upload a recipient list, check that your file adheres to our recipient list file requirements before reattempting the upload.

@@ -1,0 +1,563 @@
+Title: The Less Styles System
+1: Overview
+Note: The Less Styles system requires a survey compat level of 125+.
+To best accommodate the diversity of today's internet users, your surveys should always meet the following requirements:
+Look consistent on all supported devices, big and small.
+React predictably to user interaction.
+Collect data without introducing unnecessary survey bias.
+Be flexible, allowing changes to be made quickly and easily.
+While there is no one-size-fits-all method or solution for accomplishing this, you can use the Less Styles system to help streamline your survey customization efforts.
+The Less Styles system allows you to declare variables and nest declarations to do some really neat things, like modifying large numbers of survey style attributes or changing the color of all your survey's dynamic question buttons by updating a single variable.
+2: What is Less?
+The Less (Leaner CSS) Style system is an open-source dynamic stylesheet language that allows you to create advanced CSS styles. Less works by providing a number of site layouts adapted to various screen widths and then serving those layouts by compiling your styles into CSS using CSS3 media queries.
+Less has built-in components that drastically improve the existing Decipher style system, including advanced style variables, nesting abilities, mix-ins, operators, and functions.
+For example, imagine you wanted to declare the color and other attributes for a global header style. You might input the following Less code:
+@color: #5dff00; /* declare variables */
+#header {
+color: @color;
+.label { /* nest declarations */
+color: @color;
+font-style: italic;
+}
+}
+The Less Style system would then take this code, compile it and output the following CSS for you:
+#header {
+color: #5dff00;
+}
+#header .label {
+color: #5dff00;
+font-style: italic;
+}
+Tip: Check out Getting Started with Less to learn more about Less syntax and usage.
+3: The Less Theme System
+Less themes are available to surveys with a compat level of 125+. These themes are designed with responsiveness in mind and they enable you to control how your survey looks and performs on supported devices.
+Note: Older "legacy" themes are still available with compat 128 and earlier.
+3.1: Accessing the Theme Editor
+Click "Themes" under "Build" in the navigation menu to access the Theme Editor.
+A survey using one of these Less themes will have a file named theme.less in its static directory. This file is compiled with the system's base Less files (and any additional Less files or variables that you may have declared) into a file named less-compiled.css. This file acts as the survey's main style file and is served to all participants.
+View the theme.less template that contains documentation for its usage.
+Note: One file to rule them all: Less themes use CSS3 media queries to alter the survey layout depending on the display size of the device being used. This means that there is no need for separate style files for mobile phones, tablets, etc.
+The responsive design introduced by Less themes means that the same survey content will be presented differently (but similarly) on devices of different sizes. This includes resizing content and folding large, horizontal tables into vertical, easy-to-scroll-through lists.
+You have access to various Less attributes that enable you to change the way in which the system reacts to devices dimensions. For example, you can update the @breakpoint variable which is used to decide whether the device being used is a desktop or mobile device from "768px" to any size that meets the requirements of your project.
+4: Less XML Attributes
+4.1: <themevars> - Override Theme Variables
+The <themevars> attribute is used to override any of the Less variables in the tables below with a new value. This attribute is referenced last in the Less system, which means that it has the highest precedence and will override all Less stylesheets.
+The syntax for the <themevars> attribute is below:
+<themevars>
+<themevar name="VARIABLE NAME">VALUE</themevar>
+</themevars>
+For example, you can use the following to produce a dark survey theme with Comic Sans as the primary font:
+<themevars>
+<themevar name="background-color">#000</themevar>
+<themevar name="foreground-color">#000</themevar>
+<themevar name="text-color">#fff</themevar>
+<themevar name="primary-font-stack">"Comic Sans MS", cursive, sans-serif</themevar>
+</themevars>
+With this theme applied, survey participants would see the following:
+Important: Do not include the "@" symbol when overriding any of the variables in the tables below.
+4.1.1: Basic Colors
+The following variables update the survey's main colors.
+Variable
+Description
+@background-color
+The survey background color
+@foreground-color
+The survey foreground color
+@text-color
+The survey text color
+@border-color
+The survey table border color
+@question-background
+The survey question background color
+4.1.2: Palette Colors
+The following variables update the survey's secondary colors and can be used anywhere in a theme. Most themes utilize only one or two, ignoring the rest.
+Tip: As when applying any survey style, the goal when adding palette colors is to ensure consistency. You should use only the colors picked here throughout the survey theme.
+Variable
+Description
+@color-1
+First secondary coordinated color
+@color-2
+Second secondary coordinated color
+@color-3
+Third secondary coordinated color
+@color-4
+Fourth secondary coordinated color
+@color-5
+Fifth secondary coordinated color
+@color-6
+Sixth secondary coordinated color
+4.1.3: Button Colors
+The following variables update the survey's button colors.
+Variable
+Description
+@button-color
+The survey's button default color
+@button-hover-color
+The survey's button hover color
+@button-selected-color
+The survey's button selected color
+@button-text-color
+The survey's button text default color
+@button-text-hover-color
+The survey's button text hover color
+@button-text-selected-color
+The survey's button text selected color
+4.1.4: Hyperlink Colors
+The following variables update the survey's hyperlink colors.
+Note: Footer links may have their own variables, though they typically inherit their color from these variables.
+Variable
+Description
+@link-color
+The hyperlink text color
+@link-color-hover
+The hyperlink text hover color
+4.1.5: Message Colors
+The following variables update the survey's message colors.
+Variable
+Description
+@error-color
+The error message color
+@warning-color
+The warning message color
+@info-color
+The info message color
+4.1.6: DQ Like/Dislike/Neutral Colors
+The following variables update the "Like"/"Dislike"/"Neutral" colors used in some dynamic questions.
+Variable
+Description
+@dq-like
+The DQ "Like" color
+@dq-neutral
+The DQ "Neutral" color
+@dq-dislike
+The DQ "Dislike" color
+4.1.7: Font Families
+The following variables update the survey's font family.
+Variable
+Description
+@webfont
+The survey's webfont URL (must be blank or start with "//")
+@primary-font-family
+The survey's primary font-family (for questions/comments)
+@secondary-font-family
+The survey's secondary font-family (for answers, footer, buttons, progress, etc.)
+4.1.8: Base Font Sizes
+The following variables update the survey's base font sizes.
+Tip: Use "em" or "rem" font sizes to help ensure that your survey is accessible to all users.
+Variable
+Description
+@desktop-font-size
+The survey font-size for desktop devices
+@mobile-font-size
+The survey font-size for mobile devices
+4.1.9: Reusable Font Sizes
+The following variables are meant to be reused throughout the theme for consistent font sizing.
+Tip: Use “em” or “rem” font sizes to help ensure that your survey is accessible to all users.
+Variable
+Description
+@large-text
+The “large” font-size that can be reused anywhere in the theme
+@normal-text
+The “normal” font-size that can be reused anywhere in the theme
+@small-text
+The “small” font-size that can be reused anywhere in the theme
+4.1.10: Background Image
+The following variable updates the survey's background image (implemented in select themes only, other themes will ignore this variable).
+Variable
+Description
+@page-background-image
+The survey's background image URL
+4.1.11: Border Radius
+The following variables update the survey's border radii.
+Variable
+Description
+@border-radius
+The default border radius for the foreground and all buttons
+@foreground-border-radius
+The border radius for the foreground only
+4.1.12: Media Queries
+The following variables update the survey's responsive threshold.
+Variable
+Description
+@breakpoint
+The width in which a device is considered a desktop (default is "768px")
+@desktop
+A boolean value used to declare desktop-only styles. For example:
+@media @desktop {
+.desktop-only-class { color: blue; }
+}
+@mobile
+A boolean value used to declare mobile-only styles. For example:
+@media @mobile {
+.mobile-only-class { color: blue; }
+}
+4.1.13: Foreground Width & Padding
+The following variables update the survey's foreground width and padding.
+Variable
+Description
+@foreground-width
+The maximum width for the survey (default is "960px")
+@foreground-padding-top-bottom
+The foreground top/bottom padding
+@foreground-padding-left-right-desktop
+The foreground left/right padding on desktop devices
+@foreground-padding-left-right-mobile
+The foreground left/right padding on mobile devices
+@foreground-inner-width
+The foreground maximum content width
+4.1.14: Question Width & Padding
+The following variables update the width and padding of the survey’s questions.
+Variable
+Description
+@question-padding-top-bottom
+The question top/bottom padding
+@question-padding-left-right-desktop
+The question left/right padding on desktop devices
+@question-padding-left-right-mobile
+The question left/right padding on mobile devices
+@question-inner-width
+The question maximum content width
+4.1.15: Progress Bar
+The following variables update the survey's progress bar formatting.
+Variable
+Description
+@progress-position
+The progress bar position (usually "left" or "right")
+@progress-border-color
+The progress bar border-color
+@progress-empty-color
+The progress bar "empty" color
+@progress-fill-color
+The progress bar "filled" color
+@progress-text-color
+The progress bar text color
+@progress-font-size
+The progress bar font size
+@progress-font-family
+The progress bar font family
+4.1.16: Comment Text
+The following variables update the text formatting for the survey’s comments. In the Survey Editor, you can add comment text with the "Descriptive Content" element. In the XML, the <html> tag is used to add comment text.
+Variable
+Description
+@comment-text-color
+The comment text color
+@comment-font-size
+The comment font size
+@comment-font-family
+The comment font family
+4.1.17: Question Text
+The following variables update the text formatting of the survey's questions.
+Variable
+Description
+@question-text-color
+The question text color
+@question-font-size
+The question font size
+@question-font-family
+The question font family
+4.1.18: Instruction Text
+The following variables update the text formatting of the survey’s instructions.
+Variable
+Description
+@instruction-text-color
+The instruction text color
+@instruction-font-size
+The instruction font size
+@instruction-font-family
+The instruction font family
+4.1.19: Answer Text
+The following variables update the text formatting of the survey’s response options.
+Variable
+Description
+@answer-text-color
+The answer text color
+@answer-font-size
+The answer font size
+@answer-font-family
+The answer font family
+4.1.20: Table Colors
+The following variables update the colors of any survey tables.
+Variable
+Description
+@table-border-color
+The border color of tables
+@table-legend-bg-color
+The default background color of legend cells
+@table-row-legend-bg-color
+The background color of row legend cells
+@table-col-legend-bg-color
+The background color of col legend cells
+@table-row-group-bg-color
+The background color of row group legend cells
+@table-col-group-bg-color
+The background color of col group legend cells
+@table-cell-hover-color
+The hover background color of form element cells
+4.1.21: Row Override Colors
+The following variables override the background colors of rows with form elements.
+Note: The variable @table-row-legend-bg-color is ignored when these variables are set, so alternating row colors can be easily applied.
+Variable
+Description
+@row-bg-color
+The default background color for odd and even-numbered rows
+@row-bg-color-alt
+The background color for odd-numbered rows only
+4.1.22: Text Inputs
+The following variables update the formatting of the survey’s open-ended text boxes.
+Variable
+Description
+@input-text-color
+The input text color
+@input-font-size
+The input font size
+@input-bg-color
+The input background-color
+@input-bg-color-active
+The input "active" background-color
+@input-border-color
+The input border-color
+@input-border-color-active
+The input "active" border-color
+4.1.23: Primary Button Colors
+The following variables update the survey's primary button colors ("Continue", "Finish", etc.).
+Variable
+Description
+@primary-button-text-color
+The primary button text color
+@primary-button-text-color-hover
+The primary button text hover color
+@primary-button-font-size
+The primary button font size
+@primary-button-font-family
+The primary button font family
+@primary-button-bg-color
+The primary button color background-color
+@primary-button-bg-color-hover
+The primary button color background hover color
+@primary-button-border-color
+The primary button border-color
+@primary-button-border-color-hover
+The primary button border hover color
+@primary-button-border-radius
+The primary button border-radius
+4.1.24: Secondary Button Colors
+The following variables update the survey's secondary button colors ("Go Back", "Randomize", etc).
+Variable
+Description
+@secondary-button-text-color
+The secondary button text color
+@secondary-button-text-color-hover
+The secondary button text hover color
+@secondary-button-font-size
+The secondary button font size
+@secondary-button-font-family
+The secondary button font family
+@secondary-button-bg-color
+The secondary button color background-color
+@secondary-button-bg-color-hover
+The secondary button color background hover color
+@secondary-button-border-color
+The secondary button border-color
+@secondary-button-border-color-hover
+The secondary button border hover color
+@secondary-button-border-radius
+The secondary button border-radius
+4.1.25: DQ Buttons
+The following variables update the button colors for any Dynamic Questions (Button Select, etc.) added to the survey.
+Variable
+Description
+@dq-button-font-size
+The DQ button font size
+@dq-button-font-family
+The DQ button font family
+@dq-button-text-color
+The DQ button text color
+@dq-button-text-color-hover
+The DQ button text hover color
+@dq-button-text-color-selected
+The DQ button selected text color
+@dq-button-bg-color
+The DG button background-color
+@dq-button-bg-color-hover
+The DQ button background hover color
+@dq-button-bg-selected
+The DQ button background selected color
+@dq-button-border-color
+The DQ button border-color
+@dq-button-border-color-hover
+The DQ button border hover color
+@dq-button-border-color-selected
+The DQ button border selected color
+@dq-button-border-radius
+The DQ button border-radius
+4.1.26: FIR (Form Image Replacement)
+The following variables update the survey's FIR colors (its stylized radio buttons and checkboxes).
+Variable
+Description
+@fir-border
+The FIR border-color
+@fir-border-hover
+The FIR border hover color
+@fir-border-selected
+The FIR border selected color
+@fir-base
+The FIR background-color
+@fir-base-hover
+The FIR background hover color
+@fir-base-selected
+The FIR background selected color
+@fir-inner
+The FIR foreground color
+@fir-inner-hover
+The FIR foreground hover color
+@fir-inner-selected
+The FIR foreground selected color
+@fir-size
+The FIR size
+4.1.27: Footer Text
+The following variables update the survey's footer text formatting.
+Variable
+Description
+@footer-text-color
+The footer text color
+@footer-font-size
+The footer font size
+@footer-font-family
+The footer font family
+@footer-link-color
+The footer link text color
+@footer-link-color-hover
+The footer link text hover color
+4.1.28: Exit Page Text
+The following variables update the survey's exit page text formatting.
+Variable
+Description
+@exit-header-text-color
+The exit page header's text color
+@exit-header-font-size
+The exit page header's font size
+@exit-header-font-family
+The exit page header's font family
+@exit-body-text-color
+The exit page body's text color
+@exit-body-font-size
+The exit page body's font size
+@exit-body-font-family
+The exit page body's font family
+4.1.29: Survey Error Colors
+The following variables update the survey's page-level error message colors.
+Variable
+Description
+@survey-error-text-color
+The page-level error text color
+@survey-error-font-size
+The page-level error font size
+@survey-error-font-family
+The page-level error font family
+@survey-error-bg-color
+The page-level error background-color
+4.1.30: Question Error Colors
+The following variables update the survey's question-level error message colors.
+Variable
+Description
+@question-error-text-color
+The question-level error text color
+@question-error-font-size
+The question-level error font size
+@question-error-font-family
+The question-level error font family
+@question-error-bg-color
+The question-level error background color
+4.1.31: Answer Error Highlight Color
+The following variable updates the survey's answer-level error color. This variable is used to "highlight" the individual form elements or their parent cells (if any) that are in error.
+Variable
+Description
+@answer-error-highlight-color
+The answer-level error background-color
+4.1.32: Info Colors
+The following variables update the survey's info message colors.
+Variable
+Description
+@survey-info-text-color
+The info message text color
+@survey-info-font-size
+The info message font size
+@survey-info-font-family
+The info message font family
+@survey-info-bg-color
+The info message background-color
+4.1.33: Warning Colors
+The following variables that update the survey's warning message colors.
+Variable
+Description
+@survey-warning-text-color
+The warning message text color
+@survey-warning-font-size
+The warning message font size
+@survey-warning-font-family
+The warning message font family
+@survey-warning-bg-color
+The warning message background-color
+4.1.34: Button Select
+The following variables update various settings in the Button Select Dynamic Question style.
+Variable
+Description
+@btn-select-default-max-width
+The Button Select maximum button width
+@btn-select-spacing
+The Button Select spacing around buttons (left/right values are stripped in list mode)
+@btn-select-border-radius
+The Button Select button border-radius
+4.2: Include Custom Less Stylesheets
+The ss:includeLESS attribute enables you to load additional Less files into your survey. These files will take precedence over the project's theme and must be located in the same directory as the survey or in its parent directory within a static/ directory.
+For example, if you wanted to load two different Less files from the survey located at selfserve/9d3/p1234, you would input the following:
+<survey
+name="Survey"
+compat="125"
+ss:includeLESS="p1234/style1.less,/survey/selfserve/9d3/p1234/style2.less"
+...>
+In the above example, two different path schemes are used to load two different Less files from the project. The following values for ss:includeLESS are also valid:
+ss:includeLESS="p1234/style1.less"
+ss:includeLESS="/survey/selfserve/9d3/p1234/style1.less"
+ss:includeLESS="p1234/style1.less,p1234/style2.less"
+ss:includeLESS="/survey/selfserve/9d3/p1234/style1.less,/survey/selfserve/9d3/p1234/style2.less"
+Note: The p1234/style1.less syntax is not compatible with the XML Editor. If working in the survey XML, use the /survey/selfserve/9d3/p1234/style1.less syntax instead.
+Learn more: Uploading System Files
+4.3: Include Custom Less Stylesheets
+If you need to load additional Less files to many projects, you can use the nstyles file to specify these additional files to the respview.client.less.files attribute.
+For example, you can load the same two Less files as above by specifying the following in your project's nstyles file:
+*respview.client.less.files:
+selfserve/9d3/p1234/static/style1.less
+selfserve/53a/p5678/static/style2.less
+Note: The nstyles file must be located in the project (e.g., selfserve/53a/p1234/) or company (e.g., selfserve/53a/) directory.
+5: XML Attributes for Display Settings
+5.1: Optimize Question Presentation
+The surveyDisplay attribute can be set to "auto", "mobile", "desktop", or "none" to control the main <survey> element to affect all survey questions and/or locally at the question level.
+The default value for surveyDisplay is "auto" at the global level and "none" at the local level.
+Otherwise, the following rules apply:
+If surveyDisplay="mobile" is specified, then the survey will display questions in a mobile-optimized format.
+If surveyDisplay="desktop" is specified, then the survey will not optimize the way in which questions are displayed for mobile devices.
+If surveyDisplay="none" is specified at the local level, then that particular question will display in the same way as specified by the surveyDisplay attribute in the main <survey> element.
+If surveyDisplay="auto" is specified, then questions will display in a responsive manner. When the display is relatively small, the questions will display in the mobile-optimized format. When the display has enough room, the questions will be displayed without any mobile optimizations.
+Note: For surveys with a compat level of 126 (compat="126"), all column headers are optimized to display with the same width (i.e., no column should be wider or thinner than another). If your survey contains very wide column headers due to very long words or if you wish to turn off this column width optimization, then add ss:questionClassNames="skipAutosize" to the question (e.g., <radio label="Q10" ss:questionClassNames="skipAutosize">).
+Note: The surveyDisplay attribute can also be controlled from the Device Settings or Question Display Options in the Survey Editor.
+5.2: Display One-Column Questions Differently
+The ss:listDisplay attribute is a boolean value that controls how one-column questions are displayed. This attribute can be applied globally to the main <survey> element to affect all questions and/or locally at the question level. If ss:listDisplay="1" is specified, then one-column questions will appear as a list instead of a table.
+For example:
+<survey
+name="Survey"
+compat="125"
+ss:listDisplay="1"
+...>
+<radio label="Q1" title="Please select one.">
+<row label="r1">R1</row>
+<row label="r2">R2</row>
+<row label="r3">R3</row>
+</radio>
+<radio label="Q2" title="Please select one." ss:listDisplay="0">
+<row label="r1">R1</row>
+<row label="r2">R2</row>
+<row label="r3">R3</row>
+</radio>
+The code above produces the following result:
+Note: The ss:listDisplay attribute can also be controlled from Configuring Survey Display Settings or Question Display Options in the Survey Editor.

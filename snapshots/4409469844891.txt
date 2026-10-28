@@ -1,0 +1,382 @@
+Title: Block Tag: Create Sections
+The <block> tag is a great way to create sections in your survey. If you have a large number of questions that should be seen by the same type of participants, instead of writing a condition on each question, you can wrap the questions in a <block> with the condition. For example:
+<radio label="Q1">
+<title>What is your gender?</title>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<block label="Male_Section" cond="Q1.r1">
+...
+...
+</block>
+<block label="Female_Section" cond="Q1.r2">
+...
+...
+</block>
+The <block> tag can also be used to randomize questions and groups of questions. This has many applications including maintaining consistency when asking questions related to selections that were already seen in a randomized order.
+You can randomize the gender question above and show the gender sections in the same order. The example below does not make sense considering you can only be a single gender, but the idea still applies.
+<radio label="Q1" shuffle="rows">
+<title>What is your gender?</title>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<exec>Gender_Section.order = Q1.rows.order</exec>
+<block label="Gender_Section" randomizeChildren="1">
+<block label="Male_Section" cond="Q1.r1" randomize="1">
+...
+...
+</block>
+<block label="Female_Section" cond="Q1.r2" randomize="1">
+...
+...
+</block>
+</block>
+The example below shows how you can randomize the item sections in the same order as they were initially randomized.
+<checkbox label="Q1" atleast="1" shuffle="rows">
+<title>Which items are you aware of?</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4" exclusive="1" randomize="0">None</row>
+</checkbox>
+<suspend/>
+<exec>Item_Section.order = Q1.rows.order</exec>
+<block label="Item_Section" randomizeChildren="1" cond="Q1.but(Q1.r4).any">
+<radio label="I1" type="rating" values="order" cond="Q1.r1">
+<title>How would you rate Item 1?</title>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+<suspend/>
+<radio label="I2" type="rating" values="order" cond="Q1.r2"
+onLoad="copy('I1', cols=True)">
+<title>How would you rate Item 2?</title>
+</radio>
+<suspend/>
+<radio label="I3" type="rating" values="order" cond="Q1.r3"
+onLoad="copy('I1', cols=True)">
+<title>How would you rate Item 3?</title>
+</radio>
+<suspend/>
+</block>
+Tip: The Block Element is available in the Survey Editor too.
+1: Attributes
+The <block> tag has several configurable attributes.
+1.1: label - Setting the Block Name
+The label attribute accepts string values representing your block's unique identifier.
+<block label="TV_Section">
+...
+</block>
+1.2: cond - Setting the Block Condition
+Use the cond attribute to conditionally show or skip your <block> element.
+<radio label="Q1">
+<title>Would you like to see the next section?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<block label="next_section" cond="Q1.r1">
+...
+...
+</block>
+See Adding Condition / Skip Logic to learn more about adding condition / skip logic.
+1.3: randomizeChildren - Setting the Block to Randomize All Elements
+The randomizeChildren attribute is a boolean value used to randomize the contents of the block.
+Specify <cond>randomizeChildren="1"</cond> on your <block> element to randomize all of its child elements.
+In the example below, the question elements are randomized. The <suspend/> elements will not be randomized. This means that two questions appear on the first page in random order and one on the second page.
+<block label="b1" randomizeChildren="1">
+<radio label="Q1">
+<title>
+radio
+</title>
+<comment>Please select one</comment>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+</radio>
+<checkbox label="Q2" atleast="1">
+<title>
+checkbox
+</title>
+<comment>Please select all that apply</comment>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+</checkbox>
+<suspend/>
+<select label="Q3" optional="0">
+<title>
+select
+</title>
+<comment>Please select one</comment>
+<choice label="ch1">1</choice>
+<choice label="ch2">2</choice>
+<choice label="ch3">3</choice>
+</select>
+<suspend/>
+</block>
+See Randomizing Questions below to learn more about randomizing questions.
+1.4: randomize - Setting the Block to Randomize With Others
+The randomize attribute is a boolean value used to randomize the <block> element by its parent <block> element.
+By default, a <block> element is not randomized. Specify randomize="1" if the <block> element needs to be randomized by a parent <block> element with randomizeChildren="1" set.
+In the example below, the first two sub-blocks will be randomized and the last sub-block ("sub_b3") will always be shown last.
+<block label="b1" randomizeChildren="1">
+<block label="sub_b1" randomize="1">
+...
+...
+</block>
+<block label="sub_b2" randomize="1">
+...
+...
+</block>
+<block label="sub_b3">
+...
+...
+</block>
+</block>
+1.5: count - Set the Number of Elements to Show
+The count attribute is an integer value corresponding to the number of children elements to show.
+If randomizeChildren="1" is specified, you can use the count attribute to control how many of its children elements to show.
+In the example below, the sub-blocks are randomized and only two out of the three will be shown.
+<block label="b1" randomizeChildren="1" count="2">
+<block label="sub_b1" randomize="1">
+...
+...
+</block>
+<block label="sub_b2" randomize="1">
+...
+...
+</block>
+<block label="sub_b3" randomize="1">
+...
+...
+</block>
+</block>
+2: Examples
+2.1: Adding Skip Logic
+The <block> tag is ideal for creating large sets of questions to be shown based on a single condition. The two examples below are exactly the same, but one does not use a <block> and the other does.
+In the examples below, "Q2" - "Q5" are only shown to TV owners from "Q1". Those who selected "Q1.r2" will skip over the entire section.
+2.1.1: Skip Logic Without a <block>
+Without a <block> tag, you need to add the cond="Q1.r1" attribute to each question related to TVs.
+<radio label="Q1">
+<title>
+Do you own a TV?
+</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<number label="Q2" optional="0" size="3" cond="Q1.r1">
+<title>
+How often do you watch your TV?
+</title>
+</number>
+<suspend/>
+<number label="Q3" optional="0" size="3" cond="Q1.r1">
+<title>
+How many TVs are in your household?
+</title>
+</number>
+<suspend/>
+<radio label="Q4" type="rating" values="order" cond="Q1.r1">
+<title>
+How would you rate your main TV?
+</title>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+<suspend/>
+<textarea label="Q5_1" optional="0" cond="Q4.c1 or Q4.c2">
+<title>
+What don't you like about your TV?
+</title>
+</textarea>
+<textarea label="Q5_2" optional="0" cond="Q4.c4 or Q4.c5">
+<title>
+What do you like about your TV?
+</title>
+</textarea>
+<suspend/>
+<radio label="Q6" onLoad="copy('Q1', rows=True)">
+<title>
+Do you own a toaster?
+</title>
+</radio>
+<suspend/>
+2.1.2: Skip Logic With a <block>
+With the <block> tag, you only need to specify the cond="Q1.r1" attribute once for the entire set of questions.
+<radio label="Q1">
+<title>
+Do you own a TV?
+</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<block label="TV_Section" cond="Q1.r1">
+<number label="Q2" optional="0" size="3">
+<title>
+How often do you watch your TV?
+</title>
+</number>
+<suspend/>
+<number label="Q3" optional="0" size="3">
+<title>
+How many TVs are in your household?
+</title>
+</number>
+<suspend/>
+<radio label="Q4" type="rating" values="order">
+<title>
+How would you rate your main TV?
+</title>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+<suspend/>
+<textarea label="Q5_1" optional="0" cond="Q4.c1 or Q4.c2">
+<title>
+What don't you like about your TV?
+</title>
+</textarea>
+<textarea label="Q5_2" optional="0" cond="Q4.c4 or Q4.c5">
+<title>
+What do you like about your TV?
+</title>
+</textarea>
+<suspend/>
+</block>
+<radio label="Q6" onLoad="copy('Q1', rows=True)">
+<title>
+Do you own a toaster?
+</title>
+</radio>
+<suspend/>
+Learn more: Adding Condition / Skip Logic to The <block> Tag.
+2.2: Randomizing Questions
+The <block> tag can also be used to randomize questions. In the example below, one <block> element is used to randomize many <block> elements that are randomizing the questions they contain, all in the same order as the initial question "Q1".
+Note: The example below is an ideal scenario for the <loop> element.
+<checkbox label="Q1" atleast="1" shuffle="rows,cols">
+<title>
+Which of the following brands have the following attributes?
+</title>
+<comment>Please select all that apply</comment>
+<col label="c1">Facebook</col>
+<col label="c2">Twitter</col>
+<col label="c3">Google+</col>
+<col label="c4">GitHub</col>
+<col label="c5" exclusive="1" randomize="0">None of these</col>
+<row label="r1">Awesome</row>
+<row label="r2">Nerdy</row>
+<row label="r3">Social</row>
+<row label="r4">Educational</row>
+</checkbox>
+<suspend/>
+<exec>
+# shuffle sections in same order as each brand was seen at Q1
+SOCIAL_BREAKDOWN.order = Q1.cols.order
+# shuffle each brand questions in same order as attributes seen at Q1
+FACEBOOK_SECTION.order = Q1.rows.order
+TWITTER_SECTION.order = Q1.rows.order
+GOOGLE_SECTION.order = Q1.rows.order
+GITHUB_SECTION.order = Q1.rows.order
+</exec>
+<block label="SOCIAL_BREAKDOWN" randomizeChildren="1">
+<block label="FACEBOOK_SECTION" randomize="1" randomizeChildren="1">
+<textarea label="Q2_1_1" cond="Q1.c1.r1" title="Why is Facebook 'awesome'?"/>
+<textarea label="Q2_1_2" cond="Q1.c1.r2" title="Why is Facebook 'nerdy'?"/>
+<textarea label="Q2_1_3" cond="Q1.c1.r3" title="Why is Facebook 'social'?"/>
+<textarea label="Q2_1_4" cond="Q1.c1.r4" title="Why is Facebook 'educational'?"/>
+<suspend/>
+</block>
+<block label="TWITTER_SECTION" randomize="1" randomizeChildren="1">
+<textarea label="Q2_2_1" cond="Q1.c2.r1" title="Why is Twitter 'awesome'?"/>
+<textarea label="Q2_2_2" cond="Q1.c2.r2" title="Why is Twitter 'nerdy'?"/>
+<textarea label="Q2_2_3" cond="Q1.c2.r3" title="Why is Twitter 'social'?"/>
+<textarea label="Q2_2_4" cond="Q1.c2.r4" title="Why is Twitter 'educational'?"/>
+<suspend/>
+</block>
+<block label="GOOGLE_SECTION" randomize="1" randomizeChildren="1">
+<textarea label="Q2_3_1" cond="Q1.c3.r1" title="Why is Google+ 'awesome'?"/>
+<textarea label="Q2_3_2" cond="Q1.c3.r2" title="Why is Google+ 'nerdy'?"/>
+<textarea label="Q2_3_3" cond="Q1.c3.r3" title="Why is Google+ 'social'?"/>
+<textarea label="Q2_3_4" cond="Q1.c3.r4" title="Why is Google+ 'educational'?"/>
+<suspend/>
+</block>
+<block label="GITHUB_SECTION" randomize="1" randomizeChildren="1">
+<textarea label="Q2_4_1" cond="Q1.c4.r1" title="Why is GitHub 'awesome'?"/>
+<textarea label="Q2_4_2" cond="Q1.c4.r2" title="Why is GitHub 'nerdy'?"/>
+<textarea label="Q2_4_3" cond="Q1.c4.r3" title="Why is GitHub 'social'?"/>
+<textarea label="Q2_4_4" cond="Q1.c4.r4" title="Why is GitHub 'educational'?"/>
+<suspend/>
+</block>
+</block>
+2.2.1: Using a <block> and <loop>
+Below is what the above example would have looked like if implemented with a <loop>.
+<checkbox label="Q1" atleast="1" shuffle="rows,cols">
+<title>
+Which of the following brands have the following attributes?
+</title>
+<comment>Please select all that apply</comment>
+<col label="c1">Facebook</col>
+<col label="c2">Twitter</col>
+<col label="c3">Google+</col>
+<col label="c4">GitHub</col>
+<col label="c5" exclusive="1" randomize="0">None of these</col>
+<row label="r1">Awesome</row>
+<row label="r2">Nerdy</row>
+<row label="r3">Social</row>
+<row label="r4">Educational</row>
+</checkbox>
+<suspend/>
+<exec>
+# shuffle sections in same order as each brand was seen at Q1
+SOCIAL_BREAKDOWN_expanded.order = Q1.cols.order
+# shuffle brand questions in same order as attributes seen at Q1
+SECTION_1.order = Q1.rows.order
+SECTION_2.order = Q1.rows.order
+SECTION_3.order = Q1.rows.order
+SECTION_4.order = Q1.rows.order
+</exec>
+<loop label="SOCIAL_BREAKDOWN" vars="brand" randomizeChildren="1">
+<block label="loop_block">
+<block label="SECTION_[loopvar: label]" randomizeChildren="1">
+<textarea label="Q2_[loopvar: label]_1" cond="Q1.c[loopvar: label].r1"
+title="Why is [loopvar: brand] 'awesome'?"/>
+<textarea label="Q2_[loopvar: label]_2" cond="Q1.c[loopvar: label].r2"
+title="Why is [loopvar: brand] 'nerdy'?"/>
+<textarea label="Q2_[loopvar: label]_3" cond="Q1.c[loopvar: label].r3"
+title="Why is [loopvar: brand] 'social'?"/>
+<textarea label="Q2_[loopvar: label]_4" cond="Q1.c[loopvar: label].r4"
+title="Why is [loopvar: brand] 'educational'?"/>
+</block>
+</block>
+<looprow label="1"><loopvar name="brand">Facebook</loopvar></looprow>
+<looprow label="2"><loopvar name="brand">Twitter</loopvar></looprow>
+<looprow label="3"><loopvar name="brand">Google+</loopvar></looprow>
+<looprow label="4"><loopvar name="brand">GitHub</loopvar></looprow>
+</loop>
+See Basic and Advanced Randomization to learn more about advanced randomization.
+2.3: Recording <block> Randomize Order
+To track the randomize order of a <block> element, you can use the assignRandomOrder function. Using the example above, here is a virtual question that tracks the order of the "SOCIAL_BREAKDOWN" <block>.
+<number label="SOCIAL_BREAKDOWN_SHUFFLE_ORDER" size="1">
+<title>Shuffle order of SOCIAL_BREAKDOWN</title>
+<virtual>assignRandomOrder('SOCIAL_BREAKDOWN', 'children')</virtual>
+<row label="FACEBOOK_SECTION">Facebook</row>
+<row label="TWITTER_SECTION">Twitter</row>
+<row label="GOOGLE_SECTION">Google+</row>
+<row label="GITHUB_SECTION">GitHub</row>
+</number>
+Since this creates a virtual question, you can add this question at any time. The <row> labels must match the label for each <block> element (e.g., "FACEBOOK_SECTION").
+See Recording the Randomization Order to learn more about recording the randomization order.

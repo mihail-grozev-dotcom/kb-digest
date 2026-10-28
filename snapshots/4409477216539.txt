@@ -1,0 +1,23 @@
+Title: About the Coverage Report
+The coverage report identifies questions that are asked of a specific segment in the report. You can use the coverage report to identify problem areas in the data during quality assurance testing.
+The coverage report only shows the totals for each question and simplifies it further by turning the percentages into icons. If an icon is not in the form you expect to see, hover over it to view the percentages.
+1: Accessing the Report
+To view the coverage report, navigate to the Data Downloads page. From the navigation menu, select REPORT, then Data Downloads. Select Other Data Formats from the drop-down menu. On the Data Downloads page, under the header Direct to Browser, select Coverage.
+The coverage report will open in your browser. The report will only show the question labels and the segments you defined; rows and columns within the question element will not show.
+2: Reading the Report (Crosstabs version)
+The coverage report displays the question labels, question titles, and the segments you defined.
+Each question and segment combination will show:
+the percentage of participants that were shown the question and answered it
+Green indicates that 100% of the participants shown the question answered the question
+Yellow indicates that not all of the participants that were shown the question answered the question
+Red indicates that no participants were shown the question and/or that none of the participants that were shown the question answered the question
+the number of participants who answered the question
+the number of participants who were shown the question
+3: Reading the Report (Report 2010 version)
+The coverage report displays the question labels and the segments you defined.
+The coverage report consists of the following icons:
+The check mark icon indicates that 100% of the participants shown the question answered the question. You may hover over the check mark icon to view the percentage, number of participants that were shown and the number of participants that answered the question.
+The dash icon indicates that not all of the participants that were shown the question answered the question. You may hover over the dash icon to view the percentage, number of participants that were shown the question and the number of participants that answered the question.
+The none icon indicates that none of the participants that were shown the question answered the question. You may hover over the none icon to view the percentage, number of participants that were shown the question and the number of participants that answered the question.
+Example:
+The example below shows a report that is split by males and females. The coverage download shows that no males viewed or answered Q3 and no females viewed or answered Q12. At Q13 and Q6, less than 100% of participants that viewed the question answered the question, specifically females. Every other question had 100% of the participants view and answer the question.

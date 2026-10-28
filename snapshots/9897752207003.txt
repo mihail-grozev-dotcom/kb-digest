@@ -1,0 +1,21 @@
+Title: 145.4 Release Notes
+Release Date: October 27, 2020
+Release Version: 145.4
+New Features
+Programming & Tools
+API
+Updated the Create Campaign endpoint to copy the following parameter values from invite emails when sending reminder emails to the same campaign:
+fromName
+fromAddress
+replyTo
+link
+subject
+Bug Fixes
+Portal
+Admin Pages
+Fixed an issue causing the dashboard “View by Company by Month” and “Views by Month” pages to display inaccurate percentages and value types.
+Automations
+Fixed an error caused by cronwrap automations running out of memory space.
+Survey
+Participant View
+Fixed an issue which allowed some survey participants to continue past questions with final="1" in surveys with both delphi="1" and autosave="1".

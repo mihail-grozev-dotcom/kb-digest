@@ -1,0 +1,144 @@
+Title: Keyword Coding Questions
+You can use keyword coding questions to group open-ended question responses and display the results in a virtual question. Grouping questions by keywords allows you to identify trends in your unstructured data. You need to save your responses from the open-ended questions in a coding file and use that file to fill your virtual questions.
+To create keyword coding questions in your survey, follow these steps:
+Set up the coding file.
+Copy the keyword coding questions template into the survey.
+Modify the template according to your design requirements.
+1: Creating Keyword Coding Categories
+To get started, first look at your open-end response data and determine what keyword categories you want to use based on trends you see in the data.
+In the example below, there are 85 different keyword categories to which the open-end responses can be classified. Each keyword code category is assigned a value (e.g., code101=101, code 203=203, etc.).
+Click here to see the example file.
+2: Setting Up the Coding File
+Next, assign those keyword code categories to each participant by setting up your coding file.
+Your coding file should contain a unique identifier for all participants in your survey. For example, the uuid variable from the survey is used in the “Participant” column for the below coding file.
+The coding file also includes a series of code columns, which represent the total number of keyword code categories that a participant may qualify for (e.g., code1, code2, code12)
+Note: You may want to include a "Verbatim" column to display all open-end responses per participant. However, the "Verbatim" column is completely optional and has no bearing on programming the keyword coding of a virtual question as covered in this tutorial.
+Finally, you need to assign the values from your keyword coding categories to each participant in your file as appropriate.
+As shown in the below, participant 6ghasjw02f2c1mxj qualifies for keyword categories 306 and 319.
+Once you have created the coding file or have received the file from your coders, save it as a tab-delimited text file with the .dat extension and upload it to your project’s system files. Here are the steps:
+1. Open the file using Excel.
+2. Save file as “Text(Tab Delimited)”.
+3. Open the file in Notepad.
+4. Select “Save As”, change “Save as Type” to “All Files” and add “.dat” to the file name.
+5. Upload the .dat file to your project in the location “System File (root)”.
+See Uploading System Files to learn more about uploading system files.
+3: Copying the Keyword Coding Template into the Survey
+You can use the following code block as a keyword coding template and copy it into the survey right after your open-ended text question that has been previously fielded. This code sets up the logic and question style necessary to achieve the keyword coding.
+With the following template placed in your survey, the next step is to update the template so that it matches your keyword coding. Instructions are in the following sections.
+<exec when="virtualInit">
+Q1_coded = File("Q1_coded.dat","Participant")
+</exec>
+<text
+label="vQ1_coded_data"
+optional="0">
+<title>vQ1 Coded Data</title>
+<virtual>
+respData = Q1_coded.get(uuid)
+if respData:
+for eachRow in vQ1_coded_data.rows:
+eachRow.val = respData["code" + eachRow.label.strip("r") ].strip("\r\n")
+</virtual>
+<row label="r1">code1</row>
+<row label="r2">code2</row>
+<row label="r3">code3</row>
+<row label="r4">code4</row>
+<row label="r5">code5</row>
+<row label="r6">code6</row>
+<row label="r7">code7</row>
+<row label="r8">code8</row>
+<row label="r9">code9</row>
+<row label="r10">code10</row>
+<row label="r11">code11</row>
+<row label="r12">code12</row>
+</text>
+<suspend/>
+<checkbox
+label="vQ1_Coded"
+atleast="1">
+<title>vQ1 Coded Data</title>
+<virtual>
+for eachRow in vQ1_coded_data.rows:
+if eachRow.val:
+data.attr("r" + eachRow.val).val = 1
+</virtual>
+<row label="r100">bucket 1</row>
+<row label="r101">bucket 2</row>
+<row label="r102">bucket 3</row>
+<row label="r103">bucket 4</row>
+<row label="r104">bucket 5</row>
+<row label="r105">bucket 6</row>
+<row label="r106">bucket 7</row>
+<row label="r107">bucket 8</row>
+<row label="r108">bucket 9</row>
+<row label="r109">bucket 10</row>
+<row label="r110">bucket 11</row>
+</checkbox>
+4: Updating the Template
+This section walks you through each segment of the code in the template above to get you a better understanding of what is going on and to identify where it needs updating so that it matches your keyword coding.
+First, though you should change all prefixes which reference "Q1" to prefixes of your actual question label. From within the template, do a global find and replace to replace all instances of "Q1" to match your question label.
+4.1: Updating the Coding File Name
+In the following section of the template, the coding file is initialized. The <exec> block takes in the name of the design file we uploaded to the project's directory.
+Update Q1_coded.dat to reflect the name of the design file you uploaded to your project directory.
+Additionally, you may need to update "Participant" to reflect the name of the column you are using to identify unique participants in your coding file.
+<exec when="virtualInit">
+Q1_coded = File("Q1_coded.dat","Participant")
+</exec>
+4.2: Update the First Keyword Coding Virtual Question
+In the next block of the template below, the virtual question loads the coded data by matching the participant’s uuid value from the survey with the “Participant” column value in the coding file. The uuid is a unique identifier created by Decipher to identify participants. The virtual question then populates each row with data from the code columns contained in the coding file. The unique identifier used in the template “Q1_coded.dat” is the participant’s uuid.
+If you are using a different unique identifier, you need to alter the line: “respData = Q1_coded.get(uuid)” to reference the appropriate value (e.g., source, myID, etc.).
+Also, update the number of rows, row labels, and row text to match the columns in your coding file. The number of rows should match the number of columns from your file.
+<text
+label="vQ1_coded_data"
+optional="0">
+<title>vQ1 Coded Data</title>
+<virtual>
+respData = Q1_coded.get(uuid)
+if respData:
+for eachRow in vQ1_coded_data.rows:
+eachRow.val = respData["code" + eachRow.label.strip("r") ].strip("\r\n")
+</virtual>
+<row label="r1">code1</row>
+<row label="r2">code2</row>
+<row label="r3">code3</row>
+<row label="r4">code4</row>
+<row label="r5">code5</row>
+<row label="r6">code6</row>
+<row label="r7">code7</row>
+<row label="r8">code8</row>
+<row label="r9">code9</row>
+<row label="r10">code10</row>
+<row label="r11">code11</row>
+<row label="r12">code12</row>
+</text>
+4.3: Updating the Second Keyword Coding Virtual Question
+The next section of the template creates a new virtual question which populates coded answers based on the data from the previous virtual question, "vQ1_coded_data".
+"vQ1_Bucketed" will go through each row of "vQ1_coded_data" and if the row data matches a row label in the "vQ1_Bucketed", then the row populates with a value of "1" (True). For example, if "vQ1_coded_data.r1" has the value “103”, then "vQ1_Bucketed.r103" is selected.
+According to the example code, anyone who fell into code "103" is classified with the keyword “Helpful”.
+For this step, you need to update the following:
+1. Rows: Update the rows so that it matches the total number of keyword code categories.
+2. Row labels: Update the row labels so that it matches the values from your keyword code categories (e.g., code101=r101).
+3. Row text: Update the row text so that it matches the corresponding keyword code categories (e.g., replace “bucket 2” with “Friendly”).
+<checkbox
+label="vQ1_Bucketed"
+atleast="1">
+<title>vQ1 Bucket Coded Data</title>
+<virtual>
+for eachRow in vQ1_coded_data.rows:
+if eachRow.val:
+data.attr("r" + eachRow.val).val = 1
+</virtual>
+<row label="r100">bucket 1</row>
+<row label="r101">bucket 2</row>
+<row label="r102">bucket 3</row>
+<row label="r103">bucket 4</row>
+<row label="r104">bucket 5</row>
+<row label="r105">bucket 6</row>
+<row label="r106">bucket 7</row>
+<row label="r107">bucket 8</row>
+<row label="r108">bucket 9</row>
+<row label="r109">bucket 10</row>
+<row label="r110">bucket 11</row>
+</checkbox>
+5: Testing Your Survey
+You have finished creating a virtual question to group responses from an open-end question into keyword categories. Now, test your survey and verify that the virtual questions match the pivot table in Excel.
+Note: You will need to repeat this process for each keyword in the code sheet.

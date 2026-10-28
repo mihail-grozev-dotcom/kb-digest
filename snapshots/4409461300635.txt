@@ -1,0 +1,176 @@
+Title: Bulk Details
+Requires Decipher Cloud
+Tip: For full training and a walkthrough on sending emails via the shell, see Email Sends with Bulk.
+1: General Operation
+Lists should be put under the survey directory, in a mail subdirectory (paypal/pap0666/mail/). For a multi-language survey, put each mailing under each language subdirectory (paypal/pap0666/fr/mail/).
+Lists should generally be called list.txt or similar, starting with "list" and ending with ".txt". The bulk command will create a list.txt.log file and a list.txt.report file during sends. bulk will also parse the old .log file and extract email addresses rather than just count the number of lines.
+Reminder sends are done using a special switch, not by copying files. A reminder send writes its .log file to something like list.txt.rem1.log if -R1 is given.
+There are no *.lock or *.status files present in the same directory. List sends are still locked, so you cannot send to the same list someone else is sending to.
+For example, to send to "My Messages" accounts for eBay surveys, the command bulk[options]ebay can be used in place of bulk-ebay utilizing the same options as "bulk send".
+1.1: Survey name, Client name
+If an email send is client/survey/mail, it is assumed that the name of the survey is "client/survey" and the name of the client is "client". If the survey has a project= attribute, that overrides the name of the client (survey gen/pap999 will have paypal/pap999 as project name; this changes the client to "paypal" rather than "gen"). You can also use the --survey switch to overide the survey name, and --client to override the client.
+The survey name is used to check the live status of the survey if doing real sends, and to validate any invited.txt files and other survey settings.
+The client name is used for conditional remove lists. For example, to get the Intuit remove list, you must either be running in an intuit/directory or have used the --client=intuit command-line argument or have certain keywords in your email.
+2: bulk-email.conf
+The bulk-email.conf file supports conditional remove lists. Add client=X,Y,Z for a list of clients that need to have this list applied, or keywords=X,Y,Z for a list of case-insensitive keywords that should appear in the email. If either of those is true, the remove list is applied to the send. For example, the code below specifies that this remove list will work only for intuit/* surveys (or those where you specified --client=intuit) or sends where the email contains any of "intuit", "quickbooks" or "simplestart" keywords.
+/somedir/intuit-remove.txt client=intuit keywords=intuit,quickbooks,simplestart
+When starting up, bulk send shows you the total amount of emails in remove lists as well as a count of how many conditional remove lists there are in the configuration and how many were actually loaded. Use the -v switch to show each list as it is loaded.
+/data/bulk-include.conf is used as normally -- these emails are sent to regardless of throttle settings and opt-outs. bulk-exclude-domains.conf selects domains to entirely exclude as before. Finally /hermes/bulk/system.conf contains system remove lists. It is not user-serviceable. Currently the only special item is the intuit remove list which is used only if client is intuit, or "intuit", "quicken" or "quickbooks" appear as keywords in the email.
+3: Selecting lists - Segmentation for Reports or Balancing
+Using the -l option, you can split bulk report or bulk send output by some variable, or you can use it to select sending quotas.
+If you use -lfield, you create a segment for each possible non-empty value of that field. This is useful purely for information purposes. For example, generate a report split on some list variables.
+If you use -lfield:value you create a new segment restricted to that value of the field. For example, -lfield:1 would send only to the entries where list=1, or would create a report only for those entries. You can use * as a wildcard there i.e., -llist:* is equivalent to -llist --. It creates a segment for each value of list.
+If you use -llist:value:count you can select a segment that is limited in size. For example, -llist:1:1000 -llist:2:1000 would send out up to 2000 emails: 1000 to list=1, 1000 to list=2. You can use the wildcard here too: -llist:*:1000 would send 1000 emails to list=1, 1000 to list=2, etc.
+Instead of a count, you can also use a percentage as the last argument, together with -n. For example, -n2000 -llist:1:60% -llist:2:40% would send select 60% of list=1 and 40% of list=2. These are hard quotas, so it is the same as typing -llist:1:1200 -llist:2:800
+Note: If there are only 400 of list=2, the list=1 will not go up to 1600.
+Also, you can use the * wildcard in the second and third place to evenly split the -n count among the lists. For example, -n10000 -llist:*:*, if there are 10 different values of a list, the argument would assign 1000 to the first one, 1000 to the second one, and so on.
+You can split on multiple variables by separating the names and values with a comma e.g., -la,b:1,2 would send to entries where a=1 and b=2. You can specify a ratio or count there as well e.g., -la,b:1,2:50 -la,b:1,3:50 would send 50 emails to a=1 & b=2, and another 50 to a=1 & b=3.
+4: Sending reminders
+You do not have to copy the list file to send reminders. Simply use -R1 in addition to normal options to send the first reminder, -R2 for the second, etc. If the list file is list.txt, using -R1 will create list.txt.rem1.log.
+The -R option applies to send and report both, you can get a report for the main send or some reminder if you specify -R1.
+The new bulk command automatically excludes people who have responded to the survey, provided you are in the right directory. Also, source or e-mail address should have been captured in the survey to identify the participants.
+Reminder sends are only sent to people who have been successfully sent the previous send, so if you start with a -n100 soft send and then send a reminder, only at most those 100 people will be eligible for a reminder. Later, if you do a full send, you can send more reminders. Using --reminder-for=X,Y,Z you can limit reminder send only to users in send number X, Y or Z in the previous send / reminder (see the list.txt.report file for the send numbers, they start at 1). At this time, any scheduled sends using reminder for must be 10-15 minutes apart or bulk will return an error because the list is already in use.
+5: Email Throttling
+In addition to the usual remove lists, there are now time-limited per-client and per-survey remove lists. Each time you send an email to a user for a client, that same client may not recontact the user for a 24 hour period. The client's name is simply the first path of the survey's name or the project name (if set for a survey). Note that, in the default configuration, this is disabled).
+There is also throttling for the same survey. Survey throttling considers the full survey path, for example, selfserve/123/1234 and selfserve/123/5678 are NOT the same survey. Once you have sent an email to a user, they cannot be sent another email for that same survey for 14 days, unless it has a different reminder level (that is, you can send the first invitation, then three days later a -R1 reminder, but another invitation or -R1 reminder would be blocked).
+You can override the defaults by using --throttle-client=XX and --throttle-survey=XX. Specify the number of hours different than the default (24 and 336) to filter out fewer users, or specify "no" to stop throttling of this type altogether (--throttle-client=no).
+bulk --throttle-client=360 send email.txt list.txt
+Finally, there is a --full-throttle or -F switch that turns off throttling entirely.
+5.1: Queueing Sends (Scheduling Sends)
+Do not use the "at" command to schedule a send. Instead, use the --at or -a option and specify the time (you must quote it if it has space in it). For example, bulk --at "tomorrow 2am" send email.txt lixt.txt will first go through the usual tests to validate email and list, and then schedule the send by calling "at". In addition, this also records the information about the future send in the email status page and will show any other jobs that were also inserted in that table, so you may reconsider your send if someone else is also sending 100,000 emails at 1AM in the morning.
+Note: You cannot schedule a send within 15 minutes of the current time, nor can you schedule a send in the past.
+Here are a few more examples:
+Regular scheduled send: bulk --at "7am jan 30" send email.txt list.txt
+Soft scheduled send: bulk --at "11pm 10/21/2024" -n500 send email.txt list.txt
+Reminder scheduled send: bulk --at "10am jun 15" -R1 send email.txt list.txt
+You can remove the job from the queue using atq and atrm as usual. bulk --at will also tell you the job ID it has just created. Please note that if you remove a job from the queue it will only be shown as removed from the queue in the shell and not from the mail queue page you currently have and use to monitor all email sends.
+5.1.1: Supported Formats
+Deprecation warning: Acceptable formats have been restricted.
+TIME can be in the formats: 1pm or 1:30pm.
+YEAR can be in the formats: 08 or 2008.
+DATE can be specified as a combination of abbreviated months day year (5pm aug 24) or slashes (5pm 08/24/2008).
+"today" or "tomorrow" can be used in combination with time (5pm tomorrow)
+"now+ #" minutes can also be used.
+Examples:
+5pm aug 24 2008
+5:30pm 08/24/08
+5:30pm tomorrow
+5pm today
+now+20minutes
+To view pending sends, run bulk pending.
+5.2: Common options
+Several options have two ways they can be written: either the short option -S or long --shuffle. They are equivalent, but the long option may be easier to recall.
+-n XXXX selects a soft-send of up to 5000 emails. Unlike previously this is 5000 sendable emails i.e., the "Total Sent" will be 5000 while "List Total" will be larger depending on remove lists. For example, bulk -n5000 send email.txt list.txt.
+-v selects verbose operation. All remove lists are displayed as they are loaded. Usually, only additional remove lists are displayed.
+-S or --shuffle tells bulk to randomize the list before examining it. The randomization order stays the same as long as the list file is not changed, so if you do a bulk test one day and bulk send the next day, the emails selected will stay the same.
+-R selects the reminder level. Use -R1 for the first reminder, -R2 for the second, etc. Use --reminder-for=send, send... to restrict reminders only to recipients of those sends in the previous send (whether the original send or a reminder). Check the numbers against your previous send report to ensure that bulk is sending to the right people. At this time, any scheduled sends using reminder for must be 10-15 minutes apart or bulk will return an error because the list is already in use.
+-a or --at is used to send an email at some point in the future and --throttle-survey controls resend time (in hours) for matching client or survey. Set to "no" to ignore. --full-throttle or -F disables any throttling whatsoever.
+--rate controls how many emails get released to the Decipher's mail queue per hour. Your send will complete at high speed as usual but the mail agent will only send that many emails out per hour (so --rate 3600 will wait 1s before sending each email). This sets the minimum delay an email can arrive at a participant's server.
+-I or --invited lets you control what invited.txt files bulk scans for source IDs.
+Options that do not take arguments can be combined. For example, -Svn10000 is the same as -S -v -n 10000
+Remember that options always go directly after bulk but before the command ( send, filter, freq).
+6: Remove Lists
+The bulk filter, send and test commands take any number of additional remove lists as parameters. Such a remove list can be:
+A survey name (every stand-alone entry that looks like an email address and all extra variables are used for removal). Specify the survey name.
+A flat text file: Each line will be removed. Specify the full or relative path to file.
+A flat text file with explicit column selection: The syntax for that is flat:filename:fieldname. For example, if you have a file with fields source , email and age, using flat:file.txt:email would use that specified field.
+A Panel Manager database: Specify panel:mdp to get all the email addresses for MDP panel members (active or inactive).
+bulk -R1 -llist:1:2000 -llist:2:2000 send email.UK.txt list.UK.txt flat:uk-remove.txt:email
+or
+bulk send email.txt list.txt +uk-remove.txt
+Only the source and email columns from your list are searched for in the remove lists unless you specify --check=column in which case that additional column is also checked against the remove list.
+Note: If you have a large flat text file, you may get a memory error if you try to load it. To solve this, you can run the following to create a md5 file.
+make-hash-database file.txt
+This will create a file.txt.md5 file that bulk will use to index. Note the send command is still the same. Rerun this if your file changes.
+6.1: Defaults
+bulk send, test and filter will scan for a file named bulk-options in the current directory and all above it. In that, you can put in (one per line) any default options. Typically that would be something like --throttle-client=48 or --throttle-client=no or /home/jaminb/extra/remove/list.txt. Lines that start with - will be put at the beginning of the command line as if you had typed them, any other at the end. Lines that begin with -- and any others will be put at the end.
+For example, for a bulk-options file containing -- -the/survey/path adds the -the/survey/path at the end of the options, emails are not suppressed, as the system reports removal of the list file.
+7: Suppression
+Suppression normally consists of the following categories:
+Those who opt out (unsubscribes) from receiving future email sends.
+"Extra source" variables associated with participants who completed the survey (qualified, terminated or over quota) for additional suppression.
+Suppression information is stored in a company's remove directory (e.g., selfserve/9d3/remove) and prevents a person from receiving future survey invitations or prevents participants from re-entering the survey.
+7.1: Categorization of Participants for Suppression
+The below explains how a participant is suppressed into a category by default.
+7.1.1: Opt-Outs
+Participants are categorized under "opt-outs" by default if:
+They request to be opted-out from any future mailings on the email invite. Participants get removed by checking the multiple remove databases of Decipher.
+There are two types of opt-outs: company (branded) and global (unbranded). See Opt-Out Process for more information.
+7.1.2: Additional Suppression
+Participants are categorized under "additional suppression" by default if:
+They are considered survey completes (qualifieds, terminates, over quotas) and checked against extra variables passed within the invite and declared in the survey (source).
+They are considered survey completes (qualifieds, terminates, over quotas) and checked against Open-ended questions within the survey that collect email information (if open end contains participant@domain.com).
+If a suppression list is used within the send (bulk send email.txt list.txt flat:dont-send.txt:removals).
+If the email address is included on the SendGrid Spam Reports or SendGrid Bounces list.
+Use the --exclude-clickthrough option to suppress emails to participants who have entered the survey but dropped out before completing it. See Email Sends with Bulk--3.2.15: Exclude Drop-Outs for more information.
+7.2: Modifying Suppression
+When running bulk, you can modify exclusion so that only "extra variables" (such as source) are suppressed with the following syntax:
+Note: Here, any open-ended questions that might contain email information will not be suppressed.
+bulk send email.txt list.txt -abc/abs1234 abc/abc1234:extra
+where:
+-abc/abc1234 removes all suppression (opt-outs and "extra source" variables).
+abc/abc1234:extra reads in a survey with this path and then applies additional suppression ("extra source" variables) to the survey.
+8: Web pages, Attachments & Encoding
+8.1: bulk build : Building an email from parts
+bulk [-e encoding] build output-email.txt directory
+This builds a MIME-complaint email file, output-email.txt, from the contents of the directory. The directory should contain:
+mail.txt: The text version of the email.
+mail.html: The HTML version of the email.
+headers.txt: From, Subject, To, and maybe Reply-To.
++ any inline attachments (e.g., GIF files you want to refer to in the email's HTML).
+If your mail.html references any images by using <img src="...">, they are included as "inline attachments" (i.e., they do not have to be downloaded from some site). Of course, that makes the email bigger. Those files should be in the email directory.
+The science behind this is that the src="file.gif" gets turned into src="cid: 2342342@decipherinc.com
+" and the file.gif file gets attached to the email and given the ID 2342342@decipherinc.com. This way, the email client can discover that the file is an inline attachment it should find among the MIME parts of the email.
+You can also attach any other files you want to the email by specifying their path name. For example, the code below will add the files to the email.txt file and mark them as "attachment".
+bulk build email.txt email email/somefile.pdf email/somefile.zip
+The default assumption is that the emails you have written are in utf-8 or ASCII (ASCII is a subset of utf-8). When they are encoded, they are encoded to ASCII or utf-8 depending on whether they contain any special characters.
+If you want to encode to something else, use the -e switch.
+bulk -e japan build ...
+bulk -e china build ..
+bulk -e english build ..
+Using "japan" selects iso-2022-jp, using "china" selects "gb18030" and using "english" uses iso-8859-1, although that probably should not be necessary. Most email clients understand utf-8 which would be selected as default.
+8.2: bulk freq : Checking Field Frequencies
+bulk [-n top] freq listfile.txt
+For each field in the listfile.txt file, freq shows you the top 10 most frequently appearing values.
+Tip: Use -n to select more values to be shown.
+8.3: bulk report : Generating a Report for Sends
+bulk [-Rx] [-l...] report listfile.txt
+This command parses the log file for this list (you can specify -R to parse the reminder log file) and displays the information for each send performed as well as a total for all sends (if multiple sends have been made). The default is not to split into any segments regardless of how things were done when bulk send was used. You can use the -I switch to select any segments you want. Running this command will not affect the existing reports on disk.
+8.4: bulk filter : Splitting Email List into Bad / Good Parts
+bulk [--dupes] filter list.txt good.txt bad.txt [additional remove lists]
+This filters the list.txt file into a good.txt file (records that would be normally sent mail) and a bad.txt file (records that would not be sent mail because they have opted out or similar). The --dupes option below can be used with bulk filter. And by default, the bad.txt file will be further be categorized into the additional files: bad.txt.bounce, bad.txt.dupe, bad.txt.malformed, and bad.txt.output.
+Important: Filter ignores throttling.
+8.5: bulk search : Searching Sends
+bulk search user@domain.com displays all the sends for that email address. bulk search *@domain.com displays all sends for that domain ( the * can be anywhere if desired). Roughly the last three months' sends are displayed.
+bulk search @file.txt searches a file of emails if you need to search for a lot of emails.
+8.6: bulk send, bulk test : Sending for Real / Test
+bulk [options] send email-file list-file [additional remove lists]
+Sends the given email to some or all people in the list-file. All the emails are read in first and you are presented with a report (split, if you used -l) about how many emails will actually go out. You then have the option to press "Y" to continue, "V" to view the emails that were selected. This is done using the less viewer. Press spacebar / arrow keys to scroll or "Q" to exit it). Any other key aborts the bulk mail sending.
+If you specify the ---at option, pressing "Y" does not send but simply schedule the send. You will be told about the actual time when the send will go out.
+The --via=charon is mostly obsolete. To send through an unbranded IP, use --type=unbranded. To send through a priority queue (only for small sends which should go out fast), use --type=priority. For developers only, --via=test will write the emails to a sendmail.out file rather than send them.
+--dupes allows dupes to get through rather than suppress them. Do not use this option with soft sends. In such a case, a dupe that appears in the first send will not be sent in the second send. In such a case, split the list manually.
+--ignore-blank will let you send to a list which has values missing, but will skip those participants.
+After the send has finished, you are presented with the report for that particular send. The corresponding *.report file for the list is updated with it as well, and a total report if there are multiple soft sends. The *.report file will have varying splits: the total is always unsplit and the specific soft sends are split by whatever options were originally requested.
+The bulk test command takes exactly the same options as bulk send but stops short of sending emails. It does not create any additional *.log/*.report file so it can be run without clean up afterward.
+9: Variables in bulk emails
+[var] references a variable from your list file. ${...} lets you run any Python code within the survey.
+Typically you would run ${date()} to insert that day's date (e.g., January 07, 2019) but you can insert any Python expression. There are some predefined ones in the file /data/bulk-code.py: currently the only one is foreignDate("spanish") which replaces the English month name with a corresponding Spanish one.
+9.1: Unsubscribe link
+Emails that contain what looks like an unsubscribe link (something that has /remove in it) have that link put into a special List-Unsubscribe header. That URL is then shown to users instead of the "Report Spam" link, provided Decipher's email address is on a safe list, forcing them to unsubscribe rather than report as spam. If you want a different link to be used, add a List-Unsubscribe: <http://....> link yourself.
+10: Blacklisting domains
+Create a blacklist.txt file with the domain names you want to suppress from sends (e.g., rr.com, aol.com). This is for typically unbranded sends that cause a high complaint amount and endanger your sends to a domain.
+11: Compatibility levels
+Like the survey, bulk too has compatibility levels. Any email modified after a certain date must meet certain checks:
+Mar 30, 2009: Escape &lang as &amp;lang in the HTML email, must not use entities in the text / plain part (e.g., >). The data must match character encoding (e.g., if you use US-ASCII, you cannot use ???). Invalid character sets are not allowed. Unknown attachment types are not allowed. The character sets must be consistent (i.e., no US-ASCII in one part and Latin-1 in another).
+May 18th, 2009: If the survey (Autodetected or specified with --survey) uses unique=source or loads up any DatabaseSystem files then all the sources in your list files must appear in there. Use --invited or -I to fine-tune this (e.g., -I somefile.txt tells bulk to verify the list sources against contents of that file to be found in the survey directory. -I fr tells bulk that you are really sending this for the fr subsurvey and that it should verify sources from there. Use -Inone to turn off this checking.
+12: Verifying lists
+By putting a verify.py file in any directory, you will force bulk to verify any lists before sends. This can be used to verify some fields are unique, or exactly so and so many characters long. If you put a single verify function inside that file, you will have access to all list fields as global variables and the function will get called once for each list record. You can use assert or some builtin check_xxx functions to verify list validity. For example:
+def verify():
+check_len(source, 3) # source must be exactly 3 characters long
+check_digit(list) # list must consist of digits only
+check_len(gid, 5, 7) # list must be between 5 and 7 characters long
+check_alnum(pid) # pid must be alphanumeric (i.e. a-z 0-9 A-Z)
+check_unique(src) # src must not be used twice (you can only use this function once)
+# You can also just call assert with a boolean value that must be true
+assert src.startswith("xx")
+The verification happens every time you run bulk test or bulk send.

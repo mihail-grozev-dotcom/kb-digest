@@ -1,0 +1,217 @@
+Title: Creating an Offline or Multi-Mode Survey
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+You can create an offline-enabled survey or convert an existing online survey into a multi-mode (online and offline-enabled) survey by adding the CAPI sample source.
+Note: For surveys with compat 139+, participants' latitude (latitude), longitude (longitude), and device ID (device_id) will automatically be tracked in the report. Users' geolocation data will only be captured if they have agreed to have this information tracked upon logging into the app for the first time.
+1: Creating an Offline or Multi-Mode Survey
+Offline surveys should not exceed 50 questions or 500 datapoints in total.
+To create an offline-enabled survey, first click "+ New Survey" within the Decipher portal. In the "New Survey" window, enter the project name and other necessary information. Then click "Build".
+Your new survey will automatically open within the Survey Editor. From here, select "Participant Sources" at the top of the question tree.
+Then click "+ Add New Participant Source".
+In the Participant Sources menu, select the "CAPI" participant source and click "Insert".
+When adding the CAPI sample source, you will be prompted to either lock the survey by removing the open survey source, or leave the survey open. Select the option that best fits your field design.
+No, leave the survey open: Selecting this option will allow the survey to be fielded both online and offline (via CAPI) as a multi-mode survey.
+Yes, remove open sample: Selecting this option will remove the open participant source and allow the survey to be fielded only offline until other participant sources are added. If you later decide to field online participants as well, you can add other participant sources as needed. To learn more about adding and customizing participant sources, see Adding Participant Sources Using the Survey Editor.
+Regardless of which option you select, the CAPI participant source will appear in both the question tree and staging area of the survey editor.
+Surveys with both online and offline participant sources will only support elements and logic supported by the offline participant source.
+1.1: Accessing the Survey From the Offline App
+By default, the CAPI sample source enables "App Only" access when added to a survey.
+App-only surveys allow for greater flexibility with project management and are allotted more Dynamic Question functionality than offline-enabled surveys accessible in the browser.
+For improved workflow across devices, offline and multi-mode surveys are also available to view and manage outside of the CAPI app.
+1.2: Accessing the Survey From a Web Browser
+To access your offline or multi-mode survey in a web browser, you will need to remove the app-only restriction that is set by default. To remove the restriction, select the "CAPI" sample source from the question tree and uncheck the "App-Only Access" box beneath the sample source name.
+1.3: Adding Survey Elements
+You can use the Survey Editor to create and edit elements within an offline or multi-mode survey. From the staging area, click "+ Add Survey Element" to start building out your survey.
+The "Survey Elements" menu contains a "Show" filter where you can control the elements displayed to ensure that you are adding only elements that are compatible with your offline project.
+Show All Elements: Displays all available elements regardless of their compatibility with your project settings. Elements that are incompatible are grayed and disabled from being added to your survey.
+Only Show Compatible Elements: Displays only compatible elements while hiding those that are incompatible based on your project settings.
+Only Show Optimized Elements: Displays only elements that have been optimized for the survey type.
+Some Multimedia and Structural elements are incompatible with offline-enabled surveys. Incompatible elements will be grayed out and not selectable.
+Note: To avoid adding incompatible elements to your survey, set the "Survey Elements" menu to display only compatible elements.
+For more information on adding survey questions and elements using the Survey Editor, see Adding and Removing a Question or Element.
+2: Adding Offline or Multi-Mode Functionality to an Existing Survey
+If you would prefer to use an online survey you have already created as an offline or multi-mode survey, you can switch it to allow access to it from the app. To convert an online survey to an offline or multi-mode survey, select "Edit Survey" from the "Build" menu.
+In the Survey Editor, select the "Participant Sources" element from the question tree. Then click "+ Add New Participant Source".
+Select the "CAPI" sample source from the list. Then click "Insert".
+2.1: Survey Elements and Offline Compatibility
+While online and offline-enabled participant sources can both exist in a project, only elements and logic that are supported by the offline participan tsource can be added to a multi-mode survey. For example, because the Video Testimonial question is supported by all participant sources, it can be added to any multi-mode project. However, because the Audio Testimonial question is only supported via the CAPI participant source, it will be greyed out in the element library.
+2.1.1: Supported Questions & Elements
+The following sections outline the questions, elements, logic functions, and browsers currently supported for offline surveys.
+Note: Offline projects do not support survey attribute settings such as display, device or field settings. Options can be applied but will not be used. For more information about project settings, see Project Settings Summary.
+Standard Questions
+All with default settings
+Dynamic Questions
+Button Single Select (1-dimension only)
+Button Multi-Select (1-dimension only)
+Image Upload
+Respondents can capture photos via their mobile phones and upload or pull them from their libraries. Non-mobile users can upload via saved files on their desktops.
+Video Testimonial
+Respondents can record video testimonials and upload them.
+Audio Testimonial (available only when using the CAPI app)
+Respondents can record audio testimonials and upload them.
+Structural Elements
+Terminate, <term>
+Skip, <goto>
+Section, <label>
+Autofill, <autofill>
+Block, <block>
+Loop, <loop>
+Note, <note>
+Finish, <finish>
+If, <if>
+Marker, <marker>
+Additionally, offline surveys with compat 139+ support "rel" and "image" image sources.
+Currently, survey themes are not supported in offline or multi-mode surveys. You can apply a theme using the Theme Editor, but the theme will not be used.
+2.1.2: Supported Logic
+Supported Logic
+Survey extraVariables:
+ipAddress (requires compat 139+)
+source
+record
+decLang
+list
+userAgent
+Other survey variables / datapoints:
+latitude(requires compat 139+)
+longitude(requires compat 139+)
+device_id(requires compat 139+)
+Note: latitude, longitude and device_id will only be captured if participants have previously agreed to have this information tracked when first opening the app.
+Attributes for all question types:
+where
+values
+grouping
+shuffleBy
+randomize (shuffle)
+optional
+cond
+rowCond / colCond / choiceCond
+uses (only supports values atm1d.8,imgupload.1,videocapture.1, andaudiotestimonial.1)
+sbase
+alt
+nets
+sst
+adim
+percentages
+ratingDirection(can be default, or reverse)
+blankIfZero
+fwidth
+horizontalPercentages
+translateable
+type (can be none, or rating)
+virtual
+averages
+Attributes for multi-select (<checkbox>) questions:
+atleast
+atmost
+exactly
+Attributes for number/float questions:
+verify (number)
+ignoreValues
+Attributes for the terminate element:
+markers
+Attributes for the skip element:
+target
+Attributes for the block element:
+randomizeChildren
+count
+randomize
+Attributes for loop/looprow/loopvar elements:
+randomizeChildren
+builderSource
+Attributes for cells:
+value
+size
+optional
+autofill (within checkbox elements)
+exclusive (within checkbox elements)
+randomize
+open
+openOptional
+aggregate
+chartText
+indices(net)
+labels (net)
+pos (net)
+values (net)
+averages
+Piping:
+Bracketed piping (e.g., [pipe: q1]), with all string transformations
+Python expressions:
+Python expressions (e.g., ${q1.r1.text})
+Python semantics:
+Description
+Example
+Cell access as an item
+q1[row]
+Cell access as attribute
+q1.r1
+Value access
+q1.r1.val
+Value setting
+q1.r1.val = None
+OE Value access
+q1.r1.open
+Answer selection confirmation
+cond="q1.r1"
+Question attributes
+label, title, rows, cols, choices
+Cell attributes
+label, text, index
+Question convenience methods and attributes
+selected, check(), values, count, any, all
+Exit page conditionals
+qualified, terminated
+Boolean operators
+==, >, <, >=, <=, !=, in, not in, or, and, not
+BitWise Operators
++, -, ~, *, /, %
+Built-ins
+any, all, True, False, None, list, dict, tuple, str, bool, float, int, print, if, else
+Hermes methods and objects
+hasMarker, setMarker, condition, res, p
+2.2: Incompatible Elements
+To ensure that your survey functions correctly during field, Decipher prevents you from adding incompatible survey elements in the survey editor. If your survey includes elements which are incompatible with an offline or multi-mode survey, the system will display a warning message in red.
+At this point, you can choose to either remove any incompatible elements from your survey, or check the "App Only Access" box to make the survey accessible only from the CAPI App.
+If you have any incompatible elements, an offline notification also displays in the tree and stage of the Survey Editor.
+Additionally, any incompatible settings will display a warning in the element tree, stage, and options panel. Any element displayed in red on the tree indicates an incompatible element or setting. You can click the element in the tree to open the stage and options panel where you can choose to remove the incompatible element.
+Offline notifications display to warn you at other times as well. You may see these warnings when:
+Switching project types in the project settings
+Editing your survey (element tree, options panel, and stage)
+Launching your survey (Shell users will view a list of labels for incompatible elements but can continue the launch process, if desired.)
+2.3: Launch Warning
+A warning message will also be displayed if you attempt to launch your survey with incompatible elements or settings. Click "Go edit survey content" to resolve any incompatibilities when attempting to launch a survey.
+2.4: Substitute Compatible Elements
+You can also substitute compatible elements for any incompatible elements to ensure that all questions and elements are compatible with offline mode, while still maintaining the functionality you require.
+To substitute compatible elements:
+In the Survey Editor, remove any elements highlighted in red in the element tree.
+Click "+Add Survey Element" at the bottom of the staging area.
+Filter the "Survey Element" menu to view only compatible or optimized elements and select a substitution.
+Repeat these steps to make substitutions for any additional incompatible elements.
+2.4.1: Remove the Incompatible Element(s) and Settings in the Survey
+To remove incompatible element(s) and settings in your survey:
+In the Survey Editor, select an element in the element tree with a notification (highlighted in red).
+To resolve an incompatible element, select "Remove Incompatible Element".
+To resolve an incompatible setting, select "Remove Incompatible Setting".
+Repeat these steps for any additional incompatible elements/setting until all notifications are cleared.
+5: Supported Browsers
+Offline surveys are not supported on all internet browsers. See below for a list of currently supported browsers for offline surveys:
+Desktop:
+Chrome*
+Firefox*
+Mobile:
+Android 6 Chrome*
+App:
+iOS (version 9+, recommended 10)
+Android (version 6+, recommended 6)
+The asterisk character (*) indicates testing is performed in the current version of the browser.
+6: FAQ's
+Here is a list of some frequently asked questions regarding our offline surveys and use of the CAPI app:
+Q: Is the data that is transmitted from device to server encrypted?
+A: Yes. Data is transmitted from the device to the server using normal TLS encryption.
+Q: Does your device have to be connected to the internet to login?
+A: Yes. Because we do not store user data on the device (e.g. username / password), the device must be connected to the internet in order for users to login to their Decipher account or to switch accounts on a single device. Similarly, surveys must also be downloaded to a device before going offline.
+Q: Is there a safe amount of data that can be stored on the device?
+A: Participant and survey data (survey questions, etc.) are stored together, and are limited to 2MB on iOS / 5MB on Android. Storage of images, video, and other media files is only limited by the space available on the device.
+Q: Does uploading data to the server remove it from the device?
+A: Yes. Uploading data to the server from a device will remove it from the device.
+Q: Is there a safe number of questions, elements, loops, etc., to add to a survey?
+A: There are many factors which can impact storage consumption and load times for an offline survey. For example, a survey with 10 open-ended questions could consume available storage at a faster rate than a survey with 100 single select questions. We recommend testing the survey with simulated data and checking its resource usage prior to going offline. A summary of the available storage space can be found at the bottom of the app user menu.

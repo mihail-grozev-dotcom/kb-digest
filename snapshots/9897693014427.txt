@@ -1,0 +1,18 @@
+Title: 143.7 Release Notes
+Release Date: August 20, 2019
+Release Version: 143.7
+New Features
+Portal
+Updated survey duplication so that the survey.log file for duplicate surveys will now indicate only the survey from which they were copied.
+Distribution
+Sample Marketplace
+Added three new selectable target qualifications to the Sample Criteria page: Division, Tablet, and Mobile.
+Architecture/Development Tools
+Added two new fields to administrator reports: memory_requests, and survey_mem.
+Bug Fixes
+Survey Editor
+Fixed an issue causing errors within the Survey Editor when switching between questions with dynamic question styles applied.
+Fixed an issue with the Survey Editor resetting child elements to shuffle within a block, even with randomizeChildren="0" applied.
+Fixed an issue with the Survey Editor automatically shuffling any child elements added to a block by default.
+Portal
+Fixed an issue where user groups were not listed when trying to edit user groups for an individual user.

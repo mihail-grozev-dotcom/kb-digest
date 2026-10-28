@@ -1,0 +1,38 @@
+Title: 147.7 Release Notes
+Release Date: May 25, 2021
+Release Version: 147.7
+New Features
+Portal
+Upload System Files
+Added the File Manager, which allows users to edit Autosuggest answer files.
+Learn More: Managing Autosuggest Answer Lists
+Company Settings
+Updated shared user functionality:
+Added the ability to rename a shared user account.
+Added a restriction to prevent users from entering email addresses as account names.
+Survey
+Survey Editor
+Updated the display of the drop-down menus located inside the Source File Settings menu within Autosuggest elements.
+Reporting
+Data Downloads
+Increased performance to improve loading times for survey layouts with large amounts of data.
+Bug Fixes
+Portal
+Upload System Files
+Fixed an issue preventing files from being sorted properly by size.
+Survey
+Survey Editor
+Fixed an issue preventing Autosuggest answer files from being uploaded after a failed upload attempt.
+Language Manager
+Fixed an issue causing some user profiles to revert back to English once set to another language.
+Dynamic Questions
+Fixed an issue causing videos to appear too small on some mobile devices when using the Video Player element.
+Fixed an issue preventing videos from the EU region from being exported from Crosstabs when uploaded via the Video Testimonial element.
+Fixed an issue within the Video Player element, which allowed participants to skip through videos even if replay was disabled for those videos.
+Reporting
+Crosstabs
+Fixed an issue preventing image tables from loading when the associated images contained long strings of text.
+Programming & Tools
+API
+Fixed an issue causing some API calls to fail when referencing company names that contained spaces between words (e.g., “Example Company”).
+Fixed an issue preventing some decryption tasks from working when called using the api.1 logic node.

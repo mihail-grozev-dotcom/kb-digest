@@ -1,0 +1,57 @@
+Title: Cint Secure Sample Integration
+Decipher is integrated with Cint to enable secure redirects, reducing the risk of link fraud and ghost completes while ensuring accurate quota tracking across platforms. This guide shows you how to set up a secure connection between the two platforms.
+Before adding this logic node, request a server-to-server (S2S) or SHA-1 key from Cint..
+Note: The Cint Secure Sample integration will only work with Cint S2S or SHA-1 participant sources. See 3: Participant Sources below for details.
+Tip: To add secure sample at a company level, see Configuring Secure Samples.
+​1: Adding Cint Secure Sample Using the Survey Editor
+To add Cint Secure Sample using the Survey Editor, click + Element in the staging area.
+In the Element Library, click Advanced and select the Cint Secure Sample element from the list. Then click Add.
+The new element will appear in the staging area, where you can specify the settings for your integration.
+The following options are configurable:
+Integration: This is the provider integration. There are three options:
+S2S (recommended): Secure redirects via server-to-server connection. Available for the Cint Exchange and Marketplace.
+SHA-1: Secure redirects using SHA-1 hashing. Available for the Cint Exchange and Marketplace.
+Legacy_S2S: Server-to-server security for legacy Cint sampling platforms (Access and AccessPro).
+Integration Key: The API key or SHA-1 key as provided by Cint. To encrypt your account token, click Encrypt Field.
+Respondent ID: The variable participants use to enter the survey (for example, ${RID})
+2: Adding Cint Secure Sample Using the XML Editor
+To add Cint Secure Sample, add the following <logic> tag to your survey XML.
+<logic label="ln5"
+lucint:integration="integration"
+lucint:integration_key="example43example993773c93bda0d6"
+lucint:respondent_id="${RID}"
+uses="lucint.2">
+<title>Cint Secure Sample</title>
+</logic>
+You will need to include the following variables:
+Attribute
+Description
+Example
+lucint:integration
+This is the provider integration. There are three options:
+S2S(recommended): Secure redirects via server-to-server connection. Available for the Cint Exchange and Marketplace.
+SHA-1: Secure redirects using SHA-1 hashing. Available for the Cint Exchange and Marketplace.
+Legacy_S2S: Server-to-server security for legacy Cint sampling platforms (Access and AccessPro).
+SHA-1 or S2S
+Default: Empty
+lucint:integration_key
+The API key or SHA-1 key as provided by Cint. Forsta recommends you encrypt your API key or SHA-1 key.
+example43example993773c93bda0d6
+Default: Empty
+lucint:respondent_id
+The variable participants use to enter the survey.
+${RID}
+Default: Empty
+3: Participant Sources
+You must use the following participant sources with the Cint Secure Sample integration.
+If you are using the S2S integration, select the Participant Source named Cint S2S.
+If you are using the SHA-1 integration, select the Participant Source named Cint SHA-1.
+If you are using the legacy Cint S2S integration, select the Participant Source named Legacy_S2S.
+Note: The Cint Secure Sample integration will not work with the legacy Cint participant sources in Decipher.
+Using the Survey Editor, open the Participant Sources modal. Follow the instructions in Adding Participant Sources Using the Survey Editor. Select Cint S2S, Cint SHA-1, or Cint Legacy S2S from the vendor options, then click Insert.
+Alternatively, in the navigation menu, open the RESPONSES drop-down menu and select Participant Sources. Follow the instructions in Participant Sources. Select Cint S2S or Lucid SHA-1 from the sample provider options, then click Insert.
+To learn more about adding participant sources, see Adding Participant Sources Using the Survey Editor or Participant Sources.
+4: Adding a Security Term via the XML Editor
+To add a security term, you need to add a marker to your Terminate Element (<term> tag) using the XML editor.
+Add the attribute markers="CINT_Exchange_Security" to the terminate element.
+<term label="te1" cond="(p1.r4)" markers="CINT_Exchange_Security">Termed from security term</term>

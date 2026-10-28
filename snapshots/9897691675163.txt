@@ -1,0 +1,20 @@
+Title: 141.5 Release Notes
+Release Date: February 7, 2019
+Release Version: 141.5
+New Features
+Image Support for Crosstabs and Dashboards
+Updated Crosstabs reports and dashboards to display thumbnails for images included in survey answer options.
+Bug Fixes
+Survey
+Survey Editor
+Fixed an issue which caused extraneous markup to be added when clicking away from an answer text input box.
+XML Editor
+Fixed an issue which caused the "Live" badge to display instead of the "Draft" badge when making live changes to a survey.
+Dynamic Questions
+Fixed an issue with the Slider Decimal dynamic question (sliderdecimal.3) not applying custom CSS to its input field.
+Portal
+Navigation Menu
+Fixed an issue with "Crosstabs" being highlighted in the navigation menu when the user was actually in "Saved Reports".
+Programming & Tools
+API
+Fixed an issue which caused Panel Management API calls to time out when run for surveys with large numbers of datapoints.

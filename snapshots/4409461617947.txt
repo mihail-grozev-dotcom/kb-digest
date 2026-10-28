@@ -1,0 +1,21 @@
+Title: Crosstabs Overview
+1: About Crosstabs
+The Crosstabs reporting system is designed to improve the speed and ease of crosstab creation. Pre-defined tables are generated for all question and answer combinations, allowing users to quickly select the tables they desire by the segments they wish to view. Crosstabs incorporates the navigation menu used throughout the Decipher platform, allowing for quick navigation from building and testing to reviewing the Response Summary and downloading your data.
+Additionally, users now have the power to define nets, create summary tables, update table text & add desired statistics.
+2: Accessing Crosstabs
+You can access Crosstabs from anywhere in the application using the navigation menu. To access Crosstabs, click REPORT in the navigation menu, then select CROSSTABS.
+Note: In the survey testing toolbar, you can access Crosstabs from the Quick Links > Report menu.
+3: Crosstabs Landing Page
+When you open Crosstabs for your project, you are taken to the entry page. From here, you can review the project stats, work with saved crosstabs, build new crosstab configurations, or run a quick report.
+Learn More: Crosstabs Entry Page
+4: Running Crosstabs
+Run the crosstab of your choosing to view it in the main body of the Crosstabs reporting tool, which contains the applied banners, tables, and charts.
+Learn More: Running a Total Crosstab
+4.1: Viewing Data
+Survey data is presented in a number of ways within Crosstabs depending on question type and there are various configurable report settings.
+4.1.1: Percent Base
+The percentage of total participants who fit into the segment's condition.
+4.1.2: Segment Totals
+The count of participants who fit into the segment's condition.
+4.1.3: Significance Testing
+Significance testing, often called "Sig testing," is a test that results the confidence level on the likelihood two tested measurements are different; in other words, "I am 95% confident that group A and group B are different on this feature". This can be referred to as either Confidence Level or Significance Level, and is indicated by uppercase letters (95% confidence) and lowercase letters (90% confidence) corresponding to the built-in Segment (column) indicators.

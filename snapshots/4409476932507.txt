@@ -1,0 +1,163 @@
+Title: Decipher Web Content Accessibility Guidelines
+Providing a great experience for our clients and their users is part of our mission at Decipher. This guide outlines common usability concerns and provides best practice approaches for addressing them. This satisfies requirements of Federal regulation, Section 508, and recommendations put in place by the World Wide Web Consortium (W3C) and Web Content Accessibility Guidelines (WCAG) 2.0.
+1: Objectives of Accessible Design
+Equivalent information should be conveyed to each user regardless of technology platform and despite physical, sensory and cognitive disabilities. The full sensory experience of a page (color, images, audio, video, etc.) should not define its information, but enhance it. The information must be accessible even independent of its presentation.
+1.1: Make Content Understandable & Navigable
+Clear and simple language helpfully communicates errors, interactions, navigation, and orientation. It provides contextual information to maximize usability and accessibility.
+1.2: Provide Text Equivalents
+The alt attribute enables images to be translated to text by assistive technologies. In the absence of the alt attribute, assistive technologies may read the filename, which could be meaningless or confusing.
+The alt attribute should be used to convey information. For example:
+<img src="kb_logo_decipher.png" alt="Decipher Knowledge Base" />
+Without the alt attribute, the logo filename would be read by a screen-reader as "k b underscore logo underscore decipher period p n g" or not at all.
+The alt attribute should describe function. For example:
+<img src="button_continue.png" alt="click to continue to the next page" />
+With this alt text, the continue button above will appropriately be read by a screen-reader as "click to continue to the next page".
+The alt attribute should be used to exclude structural & decorative images. For example:
+<img src="background.gif" alt="" />
+Use an empty alt attribute for a background image so assistive technologies skip the unimportant details of a page. A screen-reader or braille-display will not read the "background.gif" image above.
+For more information about adding the alt attribute to images in Decipher, see Adding Images to the Survey's XML.
+1.3: Separate Structure & Presentation
+It's considered best practice to use external stylesheets when controlling visual presentation. Doing so improves workflow and meets accessibility requirements.
+Tip: The "Accessible" theme in the Theme Editor has improved color and contrast to meet accessibility compliance standards. See Editing the Survey Theme to learn how to change your theme.
+Avoid using inline styles such as the following:
+<p style="color: red;">This is an example of an inline style.</p>
+Someone who is color-blind may not be able to perceive the color red and may miss the information because their stylesheets couldn't override the color set inline.
+Tip: Inline styles take priority over external stylesheets and could potentially override stylesheets used by assistive technologies. They're also more difficult to maintain in the code.
+Even without CSS styles, a page's information must be readable and organized logically. There are many browsers and devices that will not render specific CSS rules as intended or at all. To be accessible, it is necessary that a page renders in a meaningful way without any CSS styles.
+To learn more about adding CSS styles to a survey, see Including CSS in a Survey and Including Static Files (Images, JavaScript, CSS).
+1.4: Use Semantic Markup
+Semantic elements ( tags and attributes) describe the meaning of content, its structure, and relationships. To a screen-reader, they describe visual presentation and organization logically.
+For example, tables provide a way to show relationship between information:
+<h2>Which internet provider's plan do you prefer?</h2>
+<table>
+<tr><td></td><th scope="col">Price</th><th scope="col">Speed</th></tr>
+<tr><th scope="row">AT&T</th><td>$35</td><td>8Mb</td></tr>
+<tr><th scope="row">Comcast</th><td>$50</td><td>10Mb</td></tr>
+<tr><th scope="row">Verizon</th><td>$30</td><td>6Mb</td></tr>
+</table>
+Use header cells th and the scope attribute to associate data cells td with their associated headers (e.g. columns or rows).
+The markup above associates the data with the appropriate header, both by category and by provider. This indicates to a screen-reader where it is within the table and also how the information is related. For example, the first row would be read aloud as, "AT&T, AT&T Price $35, AT&T Speed 8Mb".
+Without the th headers and scope information, the first row would be read aloud as "AT&T, $35, 8Mb", which could be confusing as it lacks context..
+We can also use forms to show relationships between information:
+<form>
+<fieldset>
+<legend>Required:</legend>
+<label for="name">Name</label> <input type="text" id="name" />
+<label for="email">Email</label> <input type="text" id="email" />
+</fieldset>
+<fieldset>
+<legend>Optional:</legend>
+<label for="phone">Phone</label> <input type="text" id="phone" />
+<label for="birthday">Birthday</label> <input type="text" id="birthday" />
+</fieldset>
+</form>
+Using the fieldset and legend elements above, the data and information is organized in a way that can be easily identified and interacted with. The fieldset element illustrates the difference between the required and optional information. The label element clearly identifies and associates the input box with the information it represents. Not only does this add contextual information, it improves usability -- clicking on a label will select its associated input.
+Other semantic markup, such as em and strong elements, add emphasis to text. These elements will visibly alter the style of the text, but they also cause changes to the voice inflection of most speech-readers.
+The em element is intended to indicate a contextual difference, contrast, titles, English and foreign words, and some proper nouns.
+The strong element is used to highlight keywords and for improved visual scanning. It is used to emphasize words graphically without changing meaning or intent.
+By now, it should be clear that semantic markup should be used to describe the content and information it represents. For example:
+<p>A paragraph of text goes here ...</p>
+<ul>
+<li>Eggs</li>
+<li>Milk</li>
+<li>Butter</li>
+</ul>
+<ol>
+<li>Mix eggs and milk in a bowl</li>
+<li>Add salt, sugar, butter, and flour</li>
+<li>Blend for one minute</li>
+</ol>
+<dl>
+<dt>Blink</dt>
+<dd>Turn on and off multiple times per second.</dd>
+</dl>
+The code above turns into:
+A paragraph of text goes here ...
+Eggs
+Milk
+Butter
+Mix eggs and milk in a bowl
+Add salt, sugar, butter, and flour
+Blend for one minute
+Blink
+Turn on and off multiple times per second.
+Each element represents a different type of information. The p element should always be oriented with paragraph information. The ul element is used to create an unordered list, whereas the ol is used to create an ordered list. Definitions can be associated with their corresponding term using the dl (definition list) and dt/dd elements accordingly.
+1.5: Do Not Rely On Color Alone to Convey Information
+Color is an effective technique to convey information, but for people who are blind, use monochrome displays, or cannot perceive certain colors, its intent may be lost. By providing redundant methods to communicate information in color, the information will be received by all and enhanced for those who can perceive color.
+For example:
+Please fix the error
+Using only color to indicate there is an error may cause this information to be lost or weakened for people who have trouble perceiving that color.
+*** Please fix the error ***
+With the addition of the asterisk text characters, the information is now visually distinct for people who cannot perceive the color red and enhanced for those who can.
+*** Please fix the error ***
+Changing the emphasis on the text (by using the <strong> element) enhances the content for all people, especially those who use a screen-reading device as a change to voice inflection will incur.
+Using shapes along with words is another good way to convey information. However, different symbols have different meanings in different countries, so consider your target audience when using shapes.
+The continue button above uses a pair of right arrows to help describe its purpose. As shown below, combining shapes with color can be a great way to clearly describe the purpose of information.
+1.6: Make Content Findable
+Navigation should be distinct, informative and accessible. Links should be identified and content should be organized logically.
+Links can be made visually distinct from other text by adding a unique style (underline, font-weight, color, image, etc.).
+Content can be organized and separated logically by using heading tags (<h1> - <h6>).
+Tip: There should be only one <h1> tag, denoting the main title.
+For example:
+<h1>Title</h1>
+<h2>Section</h2>
+<p>Content goes here ...</p>
+<h3>Sub-Section</h3>
+<p>Content goes here ...</p>
+<h2>Section</h2>
+<p>Content goes here ...</p>
+Headings are especially useful for navigation as browsers and screen-readers support keyboard navigation between sections of content defined with heading elements.
+1.7: Increase Readability
+A consistent experience should be delivered to all people and they should receive the same information whether they access it visually, audibly or tactically.
+The language for all documents should be set so that browsers and screen-readers can properly detect the main language and update accordingly.
+An HTML page's language can be set directly in the <html> tag:
+<html lang="en">
+This is important for several reasons:
+It allows screen-readers to change pronunciation and syntax specific to the language
+It allows braille software to substitute character codes
+It allows some browsers to provide dictionary references
+Language can (and should) be set on a per-element basis as well. For example:
+<p>Who else needs a <span lang="es">cervesa</span>?</p>
+<p lang="french">Bonjour! Je m'appelle [pipe: name].</p>
+Provide definitions for words as context, to describe expressions, or for specialized vocabulary. The first instance of a work should be linked to a definition in a glossary or at the bottom of the page it appears in.
+Things like abbreviations (e.g. IBM) can be made more readable by including its meaning within a title attribute. For example:
+<p>Our first computer was an <abbr title="International Business Machines">IBM</abbr>.</p>
+If words are difficult to pronounce or ambiguous, provide the pronunciation for it inline or via a link to an external reference. For example:
+Anacoluthia (an-uh-kuh-LOO-thee-uh)
+1.8: Make Interactions Predictable
+By indicating focus, providing errors with suggestions to correct the error, and when an interaction will navigate away from the page or reveal new content, you provide assistance to the people interacting with the page.
+For example, when an input or control receives focus, indicate that it has received focus by, for example, changing the border-color or background-color.
+When an error occurs, indicate that it has and describe the error in detail. As shown below, input field errors can be identified with a character (exclamation point, asterisk, etc.) or with a style change (border-color change, etc.) and paired with a suggestion of how to correct the error.
+When it comes to links, indicate the purpose of the link with informative text and provide helpful indications to what it does. For example:
+<a href="#" title="continue to next page">Next Question</a>
+<a href="/signup" title="this link will open a new page">Sign up!</a>
+In the examples above, the main text and title attribute is used to convey the link's purpose. This makes their purpose easy to identify and gives screen-reader users a chance to understand what's going on (as some screen-readers do not announce when new window has opened).
+Tip: Use the title and alt attributes to supplement the information.
+Avoid taking action when a user performs hover actions as not all devices are accessed the same way and could potentially create confusion. For instance, mobile devices such as smartphones do not have a hover action and cannot perform this action. Instead, make things happen with a click. This practice promotes device independence and the click event can be initiated by voice, keyboard, braille-devices, mouse, touch, etc...
+1.9: Promote Device Independence
+Events initiated only by mouse interactions inhibit accessibility. They prohibit interactions from keyboards, braille-, voice-, and touch-devices. Use equivalent events in conjunction to support interactions from multiple interfaces.
+For example, if you create functions corresponding to onmouseover or onmouseout, also create the same functions for onFocus and onBlur. This will promote device independence by creating more ways to interact with the page besides with only a mouse.
+1.10: Time Sensitivity
+Allow people to interact at their own pace. Some people, because of disability and the device they use, are unable to interact quickly with moving text and objects. To account for this, users should have control of timed events such as speed and duration.
+It is advisable to remove time limits, as they present a potential barrier for interaction and can be confusing. With redirects, one way to avoid this is to make them immediate, so that the redirect is transparent to the person. If there is a need to delay a redirect, indicate this with informative text and provide an opportunity to delay the redirect or prevent it from happening.
+<p>You will be redirected from this page in 5 seconds. (<a href="http://somewhere.com">Click here to proceed there now.</a>)</p>
+<script>
+var t = setTimeout(function() { location.href = "http://somewhere.com"; }, 5000);
+</script>
+1.11: Common Pitfalls
+Only acronyms should appear in all upper-case letters. For example, the word "DECIPHER" may be interpreted as an acronym by screen-readers and could be read aloud as one (e.g. "D E C I P H E R"). It is best practice to only write acronyms in upper-case letters and to wrap them in the <abbr> element when doing so. For example:
+<abbr title="Computer Assisted Telephone Interview">CATI</abbr>
+Only rarely should content be made available only to screen-reader devices and hidden from all others. However, you must consider that if content is important to screen-readers, then it is probably important to all others. Cases where additional cues or instructions are provided only to screen-readers are likely a reflection of poor design and accessibility.
+However, if you need to move elements off-screen, do so with absolute positioning.
+<style>
+.hidden {
+position: absolute;
+left: -10000px;
+overflow: hidden;
+}
+</style>
+<div class="hidden">This text is meant only for screen-readers.</div>
+The code above will move the element outside of the viewable area, but the content will be available to a screen-reader when it reaches the point where it appears in the page.
+2: What's Next?
+Learn more about Survey Accessibility and ADA Compliance
+Learn more about best practices and good survey design: Mobile Survey Design

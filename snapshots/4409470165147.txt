@@ -1,0 +1,5 @@
+Title: Adding Quota Alerts in the Response Summary
+The quota alert system allows you to turn on an alert for any quota cell so that a notification is sent to you once the cell is full. This is a simplified version of the Alert Element in the Survey Editor. Response Summary alerts are only sent to the person who enabled the alert.
+To add an alert for a quota cell, open the Response Summary for the survey and select the "Quotas" tab. Then click "Manage Alerts."
+A hollow bell icon will appear next to each configurable quota cell. Click the bell to enable the alert for the quota cell. The bell icon will become solid. Then click "Save Alert Changes" to save the changes.
+Saved cell alerts are identified by a solid bell icon in the "Limit” column.

@@ -1,0 +1,62 @@
+Title: Adding Gift Code Incentives to Your Survey
+The following article describes how to implement a prepaid gift code file in your survey to distribute one gift code per qualified participant. This method can be used for Amazon gift codes as well as those from many other providers. The Decipher Database function is used to assign a random code to participants.
+1: Preparing the Gift Code File
+The file must be a single flat file with one code per line. An example file can be downloaded here for reference. Name the file "giftcodes.dat" and upload it as a “System File (root)” file using the project’s File Manager. To access the File Manager, click "More Tools" under "Build" in the navigation menu and select "Upload System Files" from the drop-down.
+Example:
+nRDV-5gxN-UhIK
+eNQc-1uMV-0fV8
+xrg8-zrlI-mTxO
+5HBQ-VxKs-qI9b
+dptt-qWLY-TAQo
+oNVe-yCQD-fZNv
+4Pci-IMsS-318K
+ZXYt-fwct-JboR
+hgKb-OMT0-Q4bs
+cEmp-Ajt8-63kn
+2: Adding an Email Question (Optional)
+If desired, you can add an email address question so you can contact each user in case they have an issue with the supplied code.
+To set this up, add a Text element and apply the appropriate email verifier using the "Verify" drop-down in the question options menu.
+3: Storing the Participant's Gift Code in the Data
+At the end of your survey, add a Text element to store the assigned gift code. Select “where” from the “More Options” drop-down and enter “report” in the open-ended box.
+Note: This question will be hidden to participants.
+4: Adding the Gift Code Assignment Code
+Add an "Exec" survey element at the end of your survey. Enter the code below in the text box and change the “When” setting to “init”.
+giftcodes = Database("giftcodes.dat", lower=False)
+Then add another "Exec" element at the end of your survey (after the element you just made). Enter the code below in the text box and change the “When” setting to “finished”.
+if hasMarker("qualified"):
+try:
+Gift_Code.val = giftcodes.assignRandom()
+except RuntimeError:
+pass
+5: Providing the Gift Code to the Participant
+After a participant has completed the survey, you can send them their code(s) via Campaign Manager. For example, one week after you have launched your survey, you can pull a qualified data set and use that for your recipient list.
+If you wish to provide the code instantly (not recommended), you can modify the “Qualified Participants” message in the survey's Participant Sources. Some sample text is supplied below. This message, along with the assigned gift code, will display for the participant when they complete the survey.
+Thanks for completing the survey! As promised, below is a $XX Gift Code you can redeem on millions of items sold by (STORE).
+Gift Code: [pipe: Gift_Code]
+Please print out this page prior to closing your browser.
+Now when participants complete the survey and are considered "qualified", they will get a code displayed to them on the last page of the survey.
+Important: By instantly displaying gift codes, there is a chance participants will try to automate your survey to obtain all gift codes. Please see the survey recommendations below for more tips on how to prevent this.
+6: Survey Recommendations
+Lock the survey down by a URL variable and a designated ID list.
+Turn on Verify Unique Participants. This will prevent duplicates to a certain extent.
+Consider using a ReCaptcha element to ensure there are no bots taking your survey.
+Consider not instantly displaying the gift code. Use the Campaign Manager to distribute codes instead.
+Always have a reliable way of verifying the participant's identity as you will likely get some support request stating they did not print their code out or they lost the code. In the above example, an email address is collected along with each gift code so each user's gift code can be easily identified.
+Buy extra codes (5%-10%) for your study in case issues appear. It will cost a little more but will save you from having to re-order more codes should any issues arise during distribution.
+Set a quota to collect exactly the amount of participants for which you have gift codes. This will prevent overages from occurring. See the note above about buying extra codes.
+Set up an Alert Element to be notified when you run out of gift codes. To do this, add an "Alert" element as you would normally and set a raw condition to "not Gift_Code.val".
+7: Gift Code Q&A
+Q: What happens if codes run out and participants are still going through the survey?
+A: There is code built-in to show no code to the participant and allow completion still. It is recommended you prevent this from occurring by following the "Gift Code Survey Recommendations" above. Worse case, you will have their email and you will have to correct the issue via email.
+Q: How are codes assigned and will this protect against duplicated codes being assigned?
+A: Codes from the file are assigned randomly and only one code can be assigned per qualified participant. Once the code is assigned, it is removed from the available pool to prevent duplicate codes from being assigned.
+Note: If the participant refreshes the end page, another code will not be randomly assigned for that participant. Our system will actually log this as a duplicate and show the "Terminated" message.
+Note: If participants somehow are able to re-enter the survey legitimately and complete the survey again, they are eligible for another code.
+Q: How many gift code files are supported?
+A: In this example, just one file. More can be added fairly easily. For tips/code suggestions, contact Technical Support.
+Q: How many codes can I load?
+A: You can load up to 100,000 codes with no problems.
+Q: Will codes assigned while testing be reset when I launch my project?
+A: Yes, all codes assigned will be reset and available for use again by live participants.
+Q: Can I load more codes during field?
+A: Yes. To add more codes during field, replace your current "giftcodes.dat" file with a file of the same name which includes the new codes.

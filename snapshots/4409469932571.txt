@@ -1,0 +1,46 @@
+Title: Adding a Date Marker
+You can use the Logic Library to set a survey date marker based on the current server date (typically in Pacific Standard Time). This can be done using either the "Add a Date Marker" element in the Survey Editor or the "dmarker" logic node in the survey XML.
+1: Using the Survey Editor
+To add a Date Marker using the Survey Editor, click "+ Add Survey Element" under the staging area:
+In the Element Library, select "Custom" and select the "Add a Date Marker" element from the list. Then click "Insert":
+The new element will appear in the staging area, where you can configure your date marker:
+To create the date marker, select one of the following from the "Format" drop-down menu:
+day: Shows the date in the ISO standard day format (YYYY-MM-DD).
+week: Shows the date in the ISO standard week format (week_xx).
+custom: Allows you to specify custom formatting for the marker in the "Custom Format" text-box. Custom formatting can include any Python time or date directives. For example, if you specify dmarker:code, the date may contain text and one of many formatting characters. The most useful characters are:
+%Y: 4-digit year (e.g., 2015)
+%m: month number (1-12)
+%b: abbreviated month name (e.g., “jul”)
+%H: hour (24 hour format, 00-23)
+%M: minute (00-59)
+See Python.org for a full list of available custom characters.
+2: Using the XML
+To create a date marker using the date marker logic node, you will need to add a <logic> tag to your survey XML, specifying both a label and "uses=dmarker.1":
+<logic uses="dmarker.1" label="dmarker"/>
+By default, this tag sets a marker based on the current week number using the ISO 8601 standard. According to this schedule, weeks start on a Monday, and “week 1” of a year is the first week that has a Thursday. When encountered by a user, the logic node sets a marker named “week_xx” for the current week number.
+Note: The marker name is remembered only after being checked. This means that if a participant starts their survey on the Sunday of week 5, the marker week_05 is returned, even if the participant does not finish the survey until Monday.
+If you prefer, you can request other marker formats by adding the attribute dmarker:format and setting it to one of the following:
+day - This results in the marker providing an ISO date format: day_YYYY-MM-DD
+custom - This allows you to use fully customized formatting for a marker. For example, if you specify dmarker:code, the date may contain text and one of many formatting characters. The most useful characters are:
+%Y: 4-digit year (e.g., 2015)
+%m: month number (1-12)
+%b: abbreviated month name (e.g., “jul”)
+%H: hour (24 hour format, 00-23)
+%M: minute (00-59)
+See Python.org for a full list of available custom characters.
+2.1: Examples
+Day marker:
+<logic uses="dmarker.1" label="dmarker" dmarker:format="day"/>
+Year marker:
+<logic uses="dmarker.1" label="dmarker"
+dmarker:format="custom" dmarker:code="year_%Y"/>
+2.2: Setting a Marker Name
+If you need to add multiple date makers, you may want to label these differently to avoid confusion during reporting. You can get your logic node to set a name for your marker using Python code. To do this, you would just need to reference dmarker.markerName for each date marker.
+For example, if your logic node has the label dmarker, you would use the following code to set a new marker name:
+<html label="cm3">The marker ${dmarker.markerName} was assigned to you</html>
+If needed, you can call dmarker.nextMarkerName to find out what the marker name would be at the current time.
+Note: In this case, the set marker name for this participant is not remembered.
+2.3: Reviewing the Debug Information
+The project logic debugging page displays what date marker will be set next. This process is the same as using the dmarker.nextMarkerName attribute described above.
+When you click the logic node on this page, the marker set for each participant is displayed.
+See Logic Debug for more information.

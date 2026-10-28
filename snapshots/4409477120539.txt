@@ -1,0 +1,77 @@
+Title: Create and Manage Companies
+Users with shell access have the ability to create new companies and edit the options for existing companies directly from the Portal. This document outlines the process for creating and editing companies via the Portal.
+1: Creating Companies
+Requires Decipher Cloud
+To create a new company in the Portal, first click your company name or logo to open the Companies menu. Then click + Create New Company.
+In the Company Settings page, you can enter the following information for the new company:
+1.1: Basic Info
+1.2: Security Settings
+1.3: Application Access
+1.4: Archive and Delete Settings
+1.5: Notification Settings
+1.1: Basic Info
+Company Name: Enter the company name that is globally unique and no more than 100 characters.
+Logo: Allows you to upload the company logo. This will show for all members of the company. Any size and format is accepted, the system will convert it to the proper size in JPG format.
+Description: Include a description for the company.
+CNAME: Add a CNAME, if applicable.
+Directories: The main company directory is automatically created by the system. Add any subdirectories for the company here. Directories allow for a higher level of organization, for example, sharing project assets like a survey theme.
+1.2: Security Settings
+Password Length: Select the length required for passwords (between 7 and 55 characters).
+Password Strength: Select the required strength:
+Minimum: Must contain 2 different character classes (i.e., lowercase letters, uppercase letters, digits or symbols)
+Medium: Must contain 3 different character classes (i.e., lowercase letters, uppercase letters, digits or symbols)
+Maximum: Must contain 4 different character classes (i.e., lowercase letters, uppercase letters, digits and symbols)
+Password Expires: Select when passwords expire:
+Monthly: Expires at the end of every month
+Every other month: Expires at the end of every 2 months
+Quarterly: Expires at the end of every 3 months
+Custom: Specify the number of days for the expiration
+Enable 2FA: Select Yes if you want to enable 2FA for all users in the company. See Managing Two Factor Authentication to learn more.
+Allowed Shared Accounts: Security best practices require each user account to be accessible only by one user. Check if the security practices for the company permit shared users.
+No: Do not allow shared user accounts
+Yes: Allow shared user accounts for the company
+Inactivity Timeout: Select the amount of time that may pass before an account is logged out due to inactivity.
+15 minutes
+30 minutes
+1 hour
+8 hours
+24 hours
+Custom: Specify the time in minutes
+Login Attempts: Limit the number of login attempts before the user's account is locked (between 1 and 6 attempts).
+If a user has been locked out, they may contact a Supervisor for their company or their Account Manager.
+Account Expires: Select if and when the company account expires (used for trial periods or billing).
+Never: Account does not expire
+Select Date: Specify when the account expires using the calendar
+1.3: Application Access
+Set each of the following to "No", "Yes" or "Until" to specify whether company users have access to that tool and if so, for how long.
+Builder
+Campaigns
+Dashboard
+CAPI
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+Project Warnings
+Report (2010)
+Participant Sources (Legacy)
+Word Importer
+Marketplace
+1.4: Archive and Delete Settings
+Configure the archival and deletion settings for all surveys created within the company.
+Auto-Archiving: Enable to archive all surveys that are both closed and inactive after the specified number of days.
+A survey is considered closed only if it has been closed using the “Close survey” action in the Portal, the Close Survey API call, or the “closed” script.
+A survey is considered inactive only if it has not been accessed by anyone in 90 days.
+Purge Data: Enable to automatically clear all participant data from archived surveys after the specified number of days.
+1.5: Notification Settings
+Email: Enter the email address of the user who will receive the daily archival deletion report and monthly compat retirement report.
+The archival deletion report is automatically sent out daily and contains a list of all survey archives that will be deleted for the company in the next 90 days.
+See Survey Compat Levels--2: Deprecated Survey Compat Levels for more information on the compat retirment report.
+2: Organizing Companies
+Requires Decipher Cloud
+2.1: Creating Company Groups
+To create a company group, first click your company name or logo in the Portal to access the "Companies" menu. Next, clear out any companies in the "Select Companies" field and add back only those you want in the group. Then enter a name for the group and click "Save Group".
+Tip: You can also locate a company by entering the company directory (e.g., 9d3).
+2.2: Accessing Saved Groups
+Saved company groups will appear in the "Companies" menu. To access a saved company group, click your company name or logo in the Portal and select from the list under "Company Groups".
+3: Editing Companies
+To edit the settings for an existing company, first click the company name or logo in the Portal to open the company page. Then click "Company Settings".
+The Company Settings page appears, where you can edit all the settings and access permissions for your company.
+Once you are satisfied with your settings, click "Save" to apply them.

@@ -1,0 +1,30 @@
+Title: Beacon M21 Release Notes
+Release Date: May 12, 2014
+New Features
+Crosstabs Refactor: An ongoing project is to improve the underlying system structure of Crosstabs. This will increase extensibility and stability, as well as speeding new feature development and maintenance.
+Sample API: First open API for community panel and sample providers integration. Beacon users would be able to request data and share data with integrated sample sources. e.g. setup virtuals for reporting, request extraVariables for survey lockdown, send data requested by community panel to add to panelist DB.
+CATI Pro-TS dialer integration: To supplement the CATI sampling system in Beacon, we have integrated with Marketing Systems Group’s PRO-T-S dialer. The professional dialing system supports progressive and predictive dialing modes, easily manages multi-seat CATI environments and has a long history in survey research. This integration streamlines the CATI process for users that have the PRO-T-S dialer, and sets up the potential for integration with other dialer platforms.
+Research Hub / Portal
+#17369 Field report and RH fielding statistics different when data deleted m21
+#17966 Fancy tooltips for macro groups m21
+#18030 Split users/groups/macro groups using optgroups in dropdowns m21
+#18080 Search: hash tags can now be used to search for project tags. Examples - single tag: #tag, multiple tags: #tag1 #tag2, tag with spaces: ‘#tag with spaces’.
+Builder
+#18042: Sample sources that appear in the builder pan menu can be added per-server via 'data/sampleproviders.py'
+Dashboard
+#18047: New dashboard generator Open End Drill down
+Introduction of compat level checking for dashboard generators
+Dashboard will now check proper compat levels for all generators. Using a compat 2 generator on a compat 1 dashboard will yield a js error with more info about how to fix it.
+Field report & Campaign Manager
+#18028 Command line bulk will validate list files against invites using a match.txt file in the same directory.
+Programming & Tools
+#18066 xlate will now skip over text resources that add [pipe] and ${code} that does not match either the original nor current main language text.
+The Database() function can take a columnName attribute. This allow you to use a tab-delimited data file as a source for unique IDs. Setting columnName to a name of a column within the file will implicitly set skip=1 (i.e. do not use the first line) and column to the location of the column.
+Important Bugfixes
+#18158 In some cases, users not intended to be affected by the restriction on invalid logins from a single IP were affected. This would show up as the message “There have been too many login attempts from your location. Please wait before trying again.” even when correct credentials were entered (resolved via Fast Track)
+Crosstabs:
+#17986 Clicking on the OE link to view participant answers no longer causing links to appear tables where there shouldn’t be a link.
+#18147, #17483 Split by/banner logic editors correctly display row/column selections
+#17031 After saving edits to a table, users are returned to that table after the report loads.
+Misc
+#17800 Media file upload to brightcove available on all cloud servers

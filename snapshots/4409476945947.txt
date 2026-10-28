@@ -1,0 +1,115 @@
+Title: Including Static Files (Images, JavaScript, CSS)
+You can add static files to a survey by placing them, along with any other project assets, in the /static directory of your project.
+Static files may include:
+Images
+Custom JavaScript or CSS files
+HTML pages (e.g., disclaimers, rules, etc.)
+Any external file that a participant may view or access
+Unlike your project's root directory, the /static directory is visible to the public and a great place to store these files and include them in your project. Any files placed in this directory can be referenced with the following link:
+https://SURVEY.CNAME.com/survey/self...Y/PROJECT/FILE
+Tip: Alternatively, you can upload files using the File Manager in the Portal. See Uploading System Files to learn more.
+1: Including Static Files
+To include a file from your project's /static directory in a survey, use the following syntax:
+[rel FILENAME]
+This returns the relative path to the file (e.g., /survey/selfserver/9d3/proj1234/logo.jpg).
+1.1: Including Images
+To add an image to your project, first upload the image to your project's /static directory and reference the image in your survey with the following syntax:
+<img src="[rel IMAGE.PNG]" />
+Your end result may look something like this:
+<radio label="Q1" optional="0" shuffle="rows">
+<title>Which of these toothbrush designs do you prefer?</title>
+<row label="r1"><img src="[rel toothbrush-1.jpg]" /></row>
+<row label="r2"><img src="[rel toothbrush-2.jpg]" /></row>
+<row label="r3"><img src="[rel our-toothbrush.png]" class="tbrush-img" /></row>
+</radio>
+1.2: Including JavaScript
+To include an external JavaScript file, you can use the XML Style System to override the respview.client.js style.
+<style name='respview.client.js' mode="after"><![CDATA[
+<script type="text/javascript" src="[rel JAVASCRIPT_FILENAME]"></script>
+]]></style>
+Note: Replace JAVASCRIPT_FILENAME with the name of your JavaScript file (e.g., "custom.js").
+You can also include JavaScript directly in your survey using the same <style> element.
+<style name='respview.client.js' mode="after"><![CDATA[
+<script type="text/javascript" src="[rel JAVASCRIPT_FILENAME]"></script>
+<script>
+$ (function() {
+// your code goes here
+alert("JavaScript is running!");
+});
+</script>
+]]></style>
+Given below is a similar approach, but without the external JavaScript file and using wrap="ready":
+<style name='respview.client.js' mode="after" wrap="ready"><![CDATA[
+// your code goes here
+alert("JavaScript is running!");
+]]></style>
+JavaScript files can also be loaded via the <survey> element's ss:customJS or ss:includeJS attributes.
+1.3: Including CSS
+To include an external CSS file, you can use the XML Style System and override the respview.client.css style:
+<style name='respview.client.css' mode="after"><![CDATA[
+<link rel="stylesheet" type="text/css" href="[rel CSS_FILENAME]" />
+]]></style>
+Note: Replace CSS_FILENAME with the name of your CSS file (e.g., "customStyle.css").
+You can also include CSS directly in your survey using the same <style> element.
+<style name='respview.client.css' mode="after"><![CDATA[
+<link rel="stylesheet" type="text/css" href="[rel CSS_FILENAME]" />
+<style>
+/* your code goes here */
+.row-legend {
+font-weight: bold;
+color: blue;
+}
+</style>
+]]></style>
+Given below is a similar approach, but without the external CSS file:
+<style name='respview.client.css' mode="after"><![CDATA[
+<style>
+/* your code goes here */
+.row-legend {
+font-weight: bold;
+color: blue;
+}
+</style>
+]]></style>
+CSS files can also be loaded via the <survey> element's ss:customCSS or ss:includeCSS attributes.
+2: Example
+You can combine all three techniques above and create a question that includes external images, a JavaScript file, and a CSS file.
+In the example below, an image is included in all three rows of the question "Q1". You can use JavaScript / CSS to modify their look and feel. If you click an image, an alert will be shown with the image's relative path.
+<style name='respview.client.js' mode="after" wrap="ready" with="Q1"><![CDATA[
+var question = $ ("#question_Q1"),
+answers = question.find(".answers");
+answers.find("img").each(function() {
+// when you click an image
+// pop up an alert saying so with the relative path
+$ (this).click(function() {
+var this_images_classname = $ (this).prop('src'),
+message = "You clicked ";
+alert(message + this_images_classname);
+});
+});
+]]></style>
+<style name='respview.client.css' mode="after" with="Q1"><![CDATA[
+<style>
+.img {
+width: 250px;
+border: 3px solid black;
+}
+.i1 { border-color: red; }
+.i2 { border-color: blue; }
+.i3 { border-color: green; }
+</style>
+]]></style>
+<radio label="Q1">
+<title>
+Which image do you prefer?
+</title>
+<comment>Please select one</comment>
+<row label="r1"><img src="[rel placeholder.jpg]" class="img i1" /></row>
+<row label="r2"><img src="[rel placeholder.jpg]" class="img i2" /></row>
+<row label="r3"><img src="[rel placeholder.jpg]" class="img i3" /></row>
+</radio>
+<suspend/>
+The code above produces the following result:
+3: Learn more
+XML Style System
+Inserting XML Styles with a Command

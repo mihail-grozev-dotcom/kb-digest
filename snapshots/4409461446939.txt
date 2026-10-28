@@ -1,0 +1,18 @@
+Title: Launching Purchased Sample
+Important: To avoid additional charges from oversampling, we recommend adding quotas for all surveys with purchased sample. Learn more about using quotas to limit your survey completes.
+Once you have added a participant source to your survey, it will automatically be added to your Participant Sources menu, where you can review and manage all of your survey’s sample. While most participant sources go live along with the survey, those containing sample purchased via the Sample Marketplace must be launched individually. This document provides a step-by-step guide for managing purchased sample via the Participant Sources menu.
+1: Setting the Survey Live
+Before you can launch any of the purchased sample you have added to a survey, you must set the survey live.
+2: Launching a Participant Source
+Note: Some vendors may not support launching sample for non-secure surveys. For best results, enable the Force Secure Links option in your survey's Project Settings Summary menu prior to launching any purchased sample.
+After a survey has been set live, you can begin fielding purchased sample by launching its associated participant source. To launch a participant source containing purchased sample, click the “…” button and select “Launch”.
+You will then see a prompt asking whether you agree to the sample vendor’s terms and conditions and wish to purchase the sample. Click “Launch” to purchase the sample, open the participant source, and begin collecting completes.
+Note: If you do not wish to purchase sample, click “Cancel” to cancel the order. Unused sample bids will remain available in the Participant Sources menu until removed.
+Once you have confirmed purchase, the vendor will receive a notification to begin sending traffic to your survey and the status for the participant source will update to “Live”.
+3: Managing Live Sample
+Once a participant source containing purchased sample has been set live, it will continue collecting completes until it has fulfilled either its preconfigured quotas/limits or the survey total, if one has been set for the survey (whichever comes first). If desired, however, you can pause or close fielding for any purchased sample at any time.
+Note: If the sum of all quotas/limits set for an individual participant source equals an amount greater than the survey total, some of those limits will remain unfulfilled once fielding ends. Alternatively, if the sum of these equals less than the survey total, the total will remain unfulfilled once fielding ends.
+To manage live purchased sample, click the “…” button and select from the following actions:
+Pause: Pausing field for a participant source closes the source to participants but keeps it available for later use. Paused sample can be resumed at any time.
+Resume: Available only for paused sources. Resuming field for a participant source reopens the source for participants.
+Close: Closing field for a participant source closes the source to participants and disables it for future use. Closed sample cannot be reopened.

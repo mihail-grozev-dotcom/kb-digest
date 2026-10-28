@@ -1,0 +1,394 @@
+Title: Exec Tag: Execute Python Code
+The <exec> tag executes Python code. It is commonly used to set question values, modify the contents of question elements, print debugging information, create persistent functions, variables, and data structures to be used within the survey, and perform various tasks related to quotas and multi-language surveys.
+Tip: This document details the XML <exec> tag. If you are using the Survey Editor, you can instead add the Exec element to execute Python in your survey.
+Note: Non-ASCII characters are not allowed in strings within an exec block. The following characters <, >, [, ], ", &, and ' must be escaped in strings within an exec block.
+In the example code below, an <exec> tag is used to create the function is_18_or_older(), set the values for the hidden question vAge and vOver18, and set a marker called "Adult" which only applies to those who specified they were 18 or older.
+<exec when="init">
+# function to check if age is 18 or older
+def is_18_or_older(age_question):
+return 1 if age_question.ival ge 18 else 0
+</exec>
+<number label="Q1" size="3" verify="range(1, 120)">
+<title>
+Please enter your age below.
+</title>
+</number>
+<suspend/>
+<radio label="vAge" where="execute">
+<exec>
+for eachRow in vAge.rows:
+age_range = eachRow.o.alt # never set value using .o
+if Q1.check(age_range):
+vAge.val = eachRow.index
+break
+</exec>
+<title>
+Age Group (Hidden Question)
+</title>
+<row label="r1" alt="1-17">1-17</row>
+<row label="r2" alt="18-24">18-24</row>
+<row label="r3" alt="25-34">25-34</row>
+<row label="r4" alt="35-44">35-44</row>
+<row label="r5" alt="45-54">45-54</row>
+<row label="r6" alt="55-64">55-64</row>
+<row label="r7" alt="65-120">65-120</row>
+</radio>
+<exec>vOver18.yes.val = is_18_or_older(Q1)</exec>
+<checkbox label="vOver18" atleast="0" where="execute">
+<title>
+Participant is Over 18? (Hidden Question)
+</title>
+<row label="yes">Yes</row>
+</checkbox>
+<suspend/>
+<exec cond="vOver18.yes">
+setMarker('Adult')
+</exec>
+1: Available <exec> Attributes
+The <exec> tag has two optional attributes: when and cond.
+1.1: when - Control When the Exec Should Run
+The when attribute is used to control when the <exec> tag should be executed. This can be to set to one of the following:
+survey
+started
+init
+virtualInit
+finished
+returning
+verified
+virtual
+flow
+sqlTransfer
+sqlTransferInit
+submit
+autosaveRestored
+Note: If an <exec> block has when set to started, finished, returning, submit, or verified, the cond attribute will be ignored.
+Scroll or click an attribute name above to view a detailed explanation of each setting.
+1.1.1: when="survey"
+This is the default setting for the when attribute, so you do not need to include it. By default, the <exec> tag will execute just like any other question, when the participant reaches its location within the survey. Consider the example below:
+<checkbox label="Q1" atleast="1">
+<title>
+Hello
+</title>
+<row label="r1">World</row>
+</checkbox>
+<suspend/>
+<exec>
+Q1.title = "Goodbye"
+Q2.title = "Goodbye"
+</exec>
+<checkbox label="Q2" atleast="1">
+<title>
+Hello again
+</title>
+<row label="r1">World</row>
+</checkbox>
+Here, the <exec> block appears just after the first <suspend/> tag. The executed code updates the title text for both questions Q1 and Q2.
+Note: When testing this code, you will notice that the Q1 title text is not visibly altered, but Q2's title text is updated to "Goodbye". This is because when="survey" is set and the <exec> tag is not executed until the second page of the survey (i.e., after Q1).
+1.1.2: when="started"
+If when="started" is specified, the <exec> tag will execute as soon as the participant enters the survey for the first time.
+Note: When specified, when="started" only runs the first time a participant enters a survey. If they are re-entering the survey, the code will not run.
+It does not matter where the <exec> is located within the survey XML.
+In the example below, the when="started" attribute is applied to the same questions.
+<checkbox label="Q1" atleast="1">
+<title>
+Hello
+</title>
+<row label="r1">World</row>
+</checkbox>
+<suspend/>
+<exec when="started">
+Q1.title = "Goodbye"
+Q2.title = "Goodbye"
+</exec>
+<checkbox label="Q2" atleast="1">
+<title>
+Hello again
+</title>
+<row label="r1">World</row>
+</checkbox>
+Since when="started" is specified, both Q1 and Q2's title text will be updated and you will see the title text for both questions visibly altered. This is because the <exec when="started"> block is executed as soon as the survey is loaded by the participant.
+Important: Strings declared inside an <exec> tag will not be detected by the language system and will not get translated (e.g., "Goodbye" will always be seen in English). The best practice is to use a <res> tag for any text you will be reusing.
+1.1.3: when="init"
+If when="init" is specified, the <exec> tag is executed once and only once when the survey is loaded. There is no participant information at this point, so you cannot access extra variables nor can you modify or access question content. The previous example (updating question title text) would not work when when="init" is specified. However, this attribute setting is commonly used to initialize databases, define global variables, and create functions that you wish to use across your entire survey for all participants. Consider the following example:
+<exec when="init">
+myDatabase = File("dbfile.dat", "source")
+badZipCodes = ["93611", "93720", "90210"]
+</exec>
+<text label="Q1" optional="0" verify="zipcode">
+<title>What is your ZIP code?</title>
+</text>
+<term cond="Q1.val in badZipCodes">Q1: Bad Zip Code</term>
+<pipe label="respName">
+<case label="c1" cond="myDatabase.get(source)">${myDatabase.get(source)["name"]}</case>
+<case label="c2" cond="1">friend</case>
+</pipe>
+<html label="Introduction" where="survey">
+Welcome to the survey, [pipe: respName]!
+</html>
+Here, the <exec when="init"> block runs when the survey is loaded into the system. Declared variables will apply to all participants and be accessible throughout the entire survey.
+In the <exec when="init"> block above, two variables are created: one to refer a static database file using the File() function, and the other to contain a list of invalid zip codes. These static variables are now ready to be used for the entire survey.
+Note: A persistent variable is stored inside a Python dictionary and can be set or read using a normal Python dictionary syntax. Persistent variables will be retained in memory and accessible throughout the duration of the survey.
+1.1.4: when="virtualInit"
+If when="virtualInit" is specified, the <exec> tag is executed when running reports and is used to populate virtual questions. Similar to when="init", the when="virtualInit" code is used for virtual questions across your entire survey. This is commonly used to merge additional files into the survey, populate virtual questions based on post-field data, clean up data by repopulating virtual questions, and create custom reports. Consider the following example:
+<exec when="virtualInit">
+# Custom Report TERMINATE Specifications
+TERM_MARKERS = ('term:(SA.r1)','term:(not SD1.r2)')
+def is_valid_term():
+marker_string = ''.join(markers)
+if 'term:' in marker_string:
+for tm in TERM_MARKERS:
+if tm in marker_string:
+return True # valid term
+return False # invalid term
+return True # no term
+</exec>
+<radio label="vGenderAge">
+<virtual>
+if 'OQ' not in markers and is_valid_term():
+#male participant:
+if SB.r2:
+if SC.check('13-17'):
+vGenderAge.val = vGenderAge.r1.index
+elif SC.check('18-24'):
+vGenderAge.val = vGenderAge.r2.index
+elif SC.check('25-34'):
+vGenderAge.val = vGenderAge.r3.index
+elif SC.check('35-44'):
+vGenderAge.val = vGenderAge.r4.index
+elif SC.check('45-54'):
+vGenderAge.val = vGenderAge.r5.index
+#female participant:
+elif SB.r1:
+if SC.check('13-17'):
+vGenderAge.val = vGenderAge.r6.index
+elif SC.check('18-24'):
+vGenderAge.val = vGenderAge.r7.index
+elif SC.check('25-34'):
+vGenderAge.val = vGenderAge.r8.index
+elif SC.check('35-44'):
+vGenderAge.val = vGenderAge.r9.index
+elif SC.check('45-54'):
+vGenderAge.val = vGenderAge.r10.index
+</virtual>
+<title>
+Gender / Age
+</title>
+<row label="r1">Male 18-24</row>
+<row label="r2">Male 25-34</row>
+<row label="r3">Male 35-44</row>
+<row label="r4">Male 45-54</row>
+<row label="r5">Male 55-65</row>
+<row label="r6">Female 18-24</row>
+<row label="r7">Female 25-34</row>
+<row label="r8">Female 35-44</row>
+<row label="r9">Female 45-54</row>
+<row label="r10">Female 55-65</row>
+</radio>
+If you have ever had to create a custom report for the "Custom" tab found in the Response Summary, then the code above may look familiar. The <exec when="virtualInit"> block at the beginning creates a function, is_valid_term(), that is used at the "vGenderAge" virtual question.
+The function, is_valid_term() checks the markers string against the strings provided in TERM_MARKERS and returns "True" if the participant was terminated based on the criteria provided or did not terminate at all. If the participant was terminated at a point other than what is shown in TERM_MARKERS, then "False" is returned.
+The question "vGenderAge" is an accumulation of all participants split into their gender and age groups. Question "SB" is a gender question and "SC" is an age question. The virtual question references these questions to populate the radio question according to the data they provided.
+1.1.5: when="finished"
+If when="finished" is specified, the <exec> block will execute once just after the participant has submitted the survey and before the results are written to the disk. This is often used to add final data to a database and record any remaining data you may want to store (e.g., the total time the participant spent taking the survey, IP address, etc.). Consider the example below:
+<html label="Introduction" where="survey">
+<p>Welcome to the survey! Please continue.</p>
+</html>
+<suspend/>
+<text label="User_ID" size="10" optional="0" verify="len(3,3)">
+<title>You should have received an ID number in the email sent to you. Please enter it below.</title>
+</text>
+<suspend/>
+<exec when="init">
+dbUserIDs = Database("user_ids.txt")
+</exec>
+<html final="1" cond="not dbUserIDs.valid(User_ID.val)" label="invalid_id_provided" where="survey">
+<p>${hlang.get("invited.not")}</p>
+</html>
+<html final="1" cond="dbUserIDs.has(User_ID.val)" label="id_already_completed" where="survey">
+<p>${hlang.get("invited.used")}</p>
+</html>
+<suspend/>
+<html label="Screener_Introduction" where="survey">
+<p>Thank you! We have a few questions for you...</p>
+</html>
+<suspend/>
+<exec when="finished">
+dbUserIDS.add(User_ID.val)
+</exec>
+Here, you use a database to validate the participant's ID entered at question "User_ID". Using <exec when="init">, you initialize a database called dbUserIDs that references a text file named "users_ids.txt". In this file are the numbers 100 - 199 on separate lines. In the end, the <exec
+when="finished"> block adds the ID number the participant provided at the "User_ID" question.
+Note: The <exec when="finished"> can be placed anywhere in the XML. It is called only when the participant submits the survey.
+This means that as soon as the participant clicks the "Finish" button, the provided ID number will be stored in the database and no other participants will be allowed to enter the survey using this value.
+The <html> elements in between check whether the participant provided an acceptable value (present in the "user_ids.txt" file) or whether someone has already completed using that ID. If "True" to either check, the participant will be blocked from taking the survey (e.g., final="1").
+1.1.6: when="returning"
+If when="returning" is specified, the <exec> block will execute when the participant is returning after being redirected using a suspended redirect. This is especially useful when a participant leaves the survey to take a separate Sawtooth survey and returns to complete the original survey. Consider the following example:
+<html label="Intro_Redirect" where="survey">
+<p>
+Please hit "Continue" to be redirected.
+</p>
+</html>
+<suspend/>
+<suspend url="./proj1234?variable=foo" />
+<html label="Welcome_Back" where="survey">
+<p>
+Welcome back!
+</p>
+</html>
+<radio label="Q1">
+<title>
+Test Question (Auto Punched when="returning")
+</title>
+<comment>Please select one</comment>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+</radio>
+<textarea label="Q2" optional="0">
+<title>
+Variable's Value (Auto Populated when="returning")
+</title>
+</textarea>
+<suspend/>
+<exec when="returning">
+Q1.val = Q1.r2.index
+Q2.val = str([(x, urllib.quote(y[0])) for (x, y) in gv.request.rawVariables.items()])
+</exec>
+Here, the <exec when="returning"> block is executed after the participant returns from being redirected out of the survey. For demonstration purposes, the redirect leads back to the same survey. When the participant enters the survey (again), the <exec> block executes, auto-populating Q1.r2 and Q2 with values for all variables passed back through the URL.
+More often than not, variables from the external survey are passed back through the URL and you can use this information to create additional logic for the current survey.
+1.1.7: when="verified"
+If when="verified" is specified, the <exec> block will execute each time the participant has successfully submitted verified data. This is helpful if you are making calls to an external API each time a question has been answered properly. Consider the following example:
+<exec>
+p.questionsAnswered = 0
+</exec>
+<exec when="verified">
+p.questionsAnswered += 1
+</exec>
+<text label="Q1" optional="0">
+<title>
+Test (Questions answered = ${p.questionsAnswered})
+</title>
+</text>
+<suspend/>
+<text label="Q2" optional="0">
+<title>
+Test (Questions answered = ${p.questionsAnswered})
+</title>
+</text>
+<suspend/>
+<text label="Q3" optional="0">
+<title>
+Test (Questions answered = ${p.questionsAnswered})
+</title>
+</text>
+<suspend/>
+In the example above, questionsAnswered is set to 0 when the survey is loaded. After each successful submission, the number increments, and displays in the question title. It works as expected, displaying the title "Test (Questions answered = 2)" at Q3.
+1.1.8: when="virtual"
+If when="virtual" is specified, the <exec> block will run once for each participant when calculating <virtual> questions. This is often used to set up common code and variables to be shared between multiple virtual questions. Consider the following example:
+<radio label="Q1">
+<title>
+Yes or No?
+</title>
+<comment>Please select one</comment>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<exec when="virtual">
+attitude = "Positive" if Q1.r1 else "Negative"
+</exec>
+<text label="vQ1" optional="0">
+<title>
+Participant appears to be very...
+</title>
+<virtual>vQ1.val = attitude</virtual>
+</text>
+<radio label="vQ1_Counts">
+<title>
+Attitude Counts
+</title>
+<row label="r1">Positive</row>
+<row label="r2">Negative</row>
+<virtual>
+for eachrow in vQ1_Counts.rows:
+if eachrow.text == attitude:
+vQ1_Counts.val = eachrow.index
+</virtual>
+</radio>
+In this example, both "vQ1" and "vQ1_Counts" use the same variable declared in the when="virtual"<exec> block. The where="virtual" <exec> block has access to survey questions and variables, making it useful for adding additional logic to your <virtual> questions. The where="virtualInit" <exec> block, on the other hand, does not have access to question variables or data, and can only be used to setup variables and structures to be used directly in <virtual> questions.
+1.1.9: when="flow"
+If when="flow" is specified, the <exec> block will execute when the "One Page" test mode is toggled. This is often used to set default values for persistent variables declared in other <exec> blocks that would cause errors in the survey when viewed in "flow" mode. Consider the example below:
+<exec>
+logStuff = False
+</exec>
+<exec when="flow">
+logStuff = True
+</exec>
+<style name='respview.client.js' mode="after" wrap="ready"> <![CDATA[
+\@if logStuff
+console.log("Stuff");
+\@endif
+]]></style>
+<html label="Introduction" where="survey">
+<p>
+Hello!
+</p>
+</html>
+Here, "Stuff" is logged to the console only when the "One Page" mode has been toggled on. Since not all browsers support logging to the console, this is one way you can view helpful debugging information about the survey.
+Tip: If your QA team gets an error in "flow" mode, it is likely that you will need to declare default values for persistent variables using when="flow".
+1.1.10: when="sqlTransfer"
+Note: This is only used for very specific panel surveys.
+If when="sqlTransfer" is specified, the <exec> block will execute when copying the data from the survey's SQL database into results.bin. Consider the following example:
+<exec when="sqlTransfer">
+# Only active members are qualified
+markers = [x for x in markers.split(',') if x != 'qualified']
+if status == 'active':
+markers += ['qualified']
+markers = ','.join(markers)
+</exec>
+In this example, the markers are modified to only qualify those who are active members of the panel.
+1.1.11: when="sqlTransferInit"
+Note: This is only used for very specific panel surveys.
+If when="sqlTransferInit" is specified, the <exec> block will be executed to initialize data for the "sqlTransfer" <exec> block mentioned above. For example, to fetch all subpanel membership status; consider the following example:
+<exec when="sqlTransferInit">
+from hermes import database
+panelid = database.fetchonecol("SELECT id FROM pm.panel WHERE name='panelName'")
+</exec>
+In this example, you created a list of IDs from the panel database to be used later on in a "sqlTransfer" <exec> block.
+1.1.12: when="submit"
+If when="submit" is specified, the <exec> block will execute each time the "Continue" / "Finish" button is clicked and after a <validate> tag runs within a question element.
+For example, if you want to correct a response that was over the acceptable limit to the maximum amount, use the when="submit" attribute.
+<number label="Q1" size="3">
+<title>How many hours in a week do you read?</title>
+<validate>
+if Q1.val gt 168:
+error("Value must be no greater than 168 (you entered %d)" % Q1.val)
+</validate>
+</number>
+<exec when="submit">
+if Q1.val gt 168:
+Q1.val = 168
+</exec>
+Here, the <validate> attribute ensures that the number supplied is not greater than 168. If the value is greater than 168, the <exec when="submit"> block will reset the value to the maximum amount available.
+1.1.13: when="autosaveRestored"
+Note: The autosaveRestored attribute works only for surveys with delphi="1".
+If when="autosaveRestored" is specified, the <exec> block will execute when a participant re-enters a survey after exiting it by closing the survey window or browser tab.
+For example:
+<exec when="autosaveRestored">
+</exec>
+Because this block runs before showing the first question, you can use goto(target) within it to go somewhere other than the intended question. The question that is supposed to be shown is saved as p.autosaveStartedAt (this can be "None" if the respondent has not started the survey). You can temporarily jump to another block, display some HTML code (e.g. "welcome back") and then jump back to the question that was intended to be displayed.
+1.2: cond - Set the Condition to Run the Code
+The cond attribute controls when the <exec> block should be run. If the condition evaluates to "True", the <exec> block will be executed. For example:
+<exec cond="1">
+Q1.title = "Overridden by block #1"
+</exec>
+<exec cond="0">
+Q1.title = "Overridden by block #2"
+</exec>
+<text label="Q1" optional="0" size="10" title="Default title" />
+<exec cond="Q1.val == 'Something'">
+setMarker("saidSomething")
+</exec>
+As you may have guessed, Q1's title will display as "Overridden by block #1" since the second block did not run due to the false ("0") condition. The third <exec> block will only set the marker "saidSomething" if Q1's value is "Something".
+Tip: You can use the cond attribute to run <exec> blocks based on external conditions.
+Note: If an <exec> block has when set to started, finished, returning, submit, or verified, the cond attribute will be ignored.
+2: Learn More
+Take a look at the various Python Functions that are available to use within <exec> blocks.

@@ -1,0 +1,74 @@
+Title: How to Match the Order of Questions to Response Options
+Frequently in survey design, there is a need to route participants to specific questions based on their answers to a prior question. Occasionally, the answer choices for this control question may be randomized. In such situations, it would be beneficial to display the second question's response options in the same order they were shown in the control question.
+1: Creating the Control Question
+To match the order of response options across multiple survey questions, program the control question first.
+Make sure that the order of response options in the control question is randomized. You can accomplish this by checking the box next to the response option type under “Randomize” in the "Options" panel of the Survey Editor.
+Alternatively, you can randomize your control question’s response options by adding the shuffle attribute to the question tag in the survey XML, specifying the type of response option (e.g., setting shuffle="rows" would randomize a question’s rows).
+For example, rows are randomized in the following checkbox question:
+<checkbox
+label="q1"
+atleast="1"
+shuffle="rows">
+<title>Which of the following brands are you aware of?</title>
+<comment>Select all that apply</comment>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+</checkbox>
+2: Creating Question Blocks
+After the control question, add a block and nest within it the follow-up questions for which you would like to share response options. Blocks help you create structure for surveys and assign logic to a series of questions.
+To add a Block, first click the "+ Element" button to add a new survey element. Then click "Structural Elements" under Question Types and select the "Block" element. Then click "Add".
+In the staging area, you can include any questions located after the block using the “add to block” button. Click this button to add each follow-up question to the block.
+2.1: Adding Logic to Blocks
+Note: This step is optional and only necessary if your survey's follow-up questions are shown conditionally.
+If desired, you can add logic to your block to conditionally show its contents. See Adding Logic to a Question or Response Option to learn more about adding logic to survey elements.
+2.2: Adding Blocks to a Parent Block
+If you are using more than one block element to organize your survey questions but would like to keep the question order the same throughout each block, you must add all your question blocks into a larger block. This larger "parent" block will control the order of all its smaller “child” blocks.
+Blocks can be nested within one another in the same way that you would nest individual questions. To nest a block, add it above the series of brand blocks and click the “add to block” button:
+In the above example, the follow-up questions are nested within four individual child blocks, all within a parent block. This is unnecessary if you are only asking one question per block, but will make the process easier.
+Note: It is important to nest page breaks within their corresponding blocks; otherwise, they will be considered separate elements.
+2.3: Randomizing the Order of Questions
+Finally, set your block to randomize its question order.
+If you are using nested blocks, you can randomize the order of child blocks by clicking the “shuffle” checkbox next to each block within the parent block.
+Alternatively, you can randomize child blocks in the survey XML by adding randomizeChildren="1" to the parent block and randomize="1" to each of its child blocks.
+In the following example, block “PB” is a parent block whose child block, “b2”, is randomized:
+<block label="PB" builder:title="Parent Block" randomizeChildren="1">
+<block label="b2" cond="(Q1.r1)" builder:title="A Block" randomize="1">
+<radio
+label="Q79"
+randomize="0">
+<title>What is your favorite attribute of Brand 1?</title>
+<comment>Select one</comment>
+<row label="r1">Attribute 1</row>
+<row label="r2">Attribute 2</row>
+<row label="r3">Attribute 3</row>
+</radio>
+</block>
+3: Matching the Order of Questions to Response Options
+Once all blocks are set to randomize, both their response options and follow-up questions will display in an independent, random order. To correct this, you can add an Exec block to add some code to reassign the order of the questions.
+3.1: Adding an Exec Block
+Exec elements allow users to implement raw Python code in Decipher surveys.
+To add an Exec element, first click the "+ Element" button to add a new survey element. Then click "Structural Elements" under Question Types and select the "Exec" element. Then click "Add".
+Learn More: Exec Element
+Tip: Exec blocks can also be added using the <exec> tag in the survey XML.
+3.2: Overwriting the Order
+The order attribute can be used within the exec block to review or modify the order in which survey elements display to participants. The order attribute stores the randomly assigned order of the element as a Python list.
+For example:
+q1.rows.order = [[q1.r1], [q1.r2], [q1.r3], [q1.r4]]
+Block1.order = [0,1,2,3]
+The order attribute can only be used within an element once randomization has been enabled (hence the need to randomize both the answer choices and the corresponding questions).
+Note: When using the order attribute, page breaks, or <suspend> tags in the survey XML, are counted as elements.
+3.2.1: Modifying the Order
+You can overwrite the element order by either referencing the element objects or their associated indices.
+For example, to reassign the order of the parent block to match the order assigned to the rows in the control question:
+#Sets the order of Block1 to match the rows of Q1.
+PB.order = Q1.rows.order
+The order of randomized elements is determined as soon as participants enter the survey. For that reason, the exec block and above code can be placed anywhere in the survey before the block of follow-up questions.
+Learn More: Basic and Advanced Randomization
+3.3: Testing the Participant View
+You can see the participant view for the changes by testing the survey manually. To test the survey, click "Test Survey" under "Preview" in the navigation menu. Then, select "Show Participant View" from the Survey Test Environment window.
+3.3.1: Control Question
+When you have reached the control question while testing the survey, you should see that the order of the response options is randomized.
+3.3.2: Question Blocks
+When you reach the blocks of questions for each of the response options you selected in the control question, the order of the questions should match the order of response options in the control question.

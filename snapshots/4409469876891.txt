@@ -1,0 +1,195 @@
+Title: Splitting a Grid Question Across Multiple Pages
+When a grid question contains a large amount of rows, it may be better to split the question across multiple pages in order to avoid scrolling. Below, you will see how to efficiently split a question across multiple pages using the Reusable Answer List Element.
+1: Setting up the Reusable Answer List
+In order to keep answer options consistent across the split versions of your question, you can create a reusable answer list, which will contain the needed rows for your question. This way, instead of redefining the same set of rows across multiple questions, you can reduce this to a single <insert> tag:
+<define label="p1" builder:title="Brands List">
+<row label="p1r1">Brand 1</row>
+<row label="p1r2">Brand 2</row>
+<row label="p1r3">Brand 3</row>
+<row label="p1r4">Brand 4</row>
+<row label="p1r5">Brand 5</row>
+<row label="p1r6">Brand 6</row>
+<row label="p1r7">Brand 7</row>
+<row label="p1r8">Brand 8</row>
+<row label="p1r9">Brand 9</row>
+<row label="p1r10">Brand 10</row>
+</define>
+If you wanted to include a reusable answer list for question columns, you could also include a second reuseable answer list:
+<define label="p2" builder:title="Brand Ratings">
+<row label="p2r1">1</row>
+<row label="p2r2">2</row>
+<row label="p2r3">3</row>
+<row label="p2r4">4</row>
+<row label="p2r5">5</row>
+</define>
+2: Setting up the Master Question
+In order to split a question over multiple pages, you need a master question to use as a template for your split questions. This question will not be seen by the participant, but will later be used to store the data for their answer, rather than having multiple different questions as datapoints. This question can have no explicit rows or columns, but use your reusable answer lists instead.
+When inserting a second dimension of answer options to a question, use the “as” attribute in order to specify what dimension you are adding the answer options to. The “as” attribute accepts rows, cols and choices as values.
+<radio label="Q1" shuffle="rows" where="report">
+<title>Please rate your experience with each of the following brands.</title>
+<comment>Select one in each row</comment>
+<insert source="p1"/>
+<insert source="p2" as="cols"/>
+</radio>
+The master question should contain all the rows you are planning on splitting, as well as the following two attributes:
+shuffle="rows" - this attribute assigns a random order to the question rows. This is useful if you want each of your split questions to show a random selection of rows, versus following the order in which they were programmed.
+where="report" - this attribute keeps the question hidden from the participant, and only available in the report and data downloads.
+See Control where an Element Appears with the Where Attribute to find out more about controlling where a survey element can appear.
+3: Setting up the Split Questions
+To split your question rows over three separate pages, you need to create three follow-up questions after the “master” question -Q1_1, Q1_2 and Q1_3 with no explicit rows or columns defined. For example:
+<radio label="Q1_1">
+<title>Please rate your experience with each of the following brands.</title>
+<comment>Select one in each row</comment>
+</radio>
+Using this “raw” question template, you can start adding the necessary attributes so that the splitting happens correctly.
+3.1: Copying the the Rows/Columns
+Copy your template rows by copying over the <insert> syntax for your reuseable answer list:
+<insert source="p1"/>
+As with your master question, if you want to include a second dimension of answer options to the question, you can copy your second answer list:
+<insert source="p2" as="cols"/>
+3.2: Shuffling the Rows
+Randomizing these rows is controlled by two attributes - shuffle="rows" and shuffleBy="Q1". The shuffle="rows" attribute enables the randomization, while shuffleBy="Q1" makes their shuffle order match the order of the rows in your master question (Q1). Add these attributes to ensure that once you split the question, the rows are always displayed in the same order across the three new versions:
+<radio label="Q1_1"
+shuffle="rows"
+shuffleBy="Q1">
+<title>Please rate your experience with each of the following brands.</title>
+<comment>Select one in each row</comment>
+<insert source="p1"/>
+<insert source="p2" as="cols"/>
+</radio>
+3.3: Splitting the Rows
+Splitting the rows is achieved by using a row condition on the copied rows, which will only display a certain part of them:
+rowCond="row.label in [r.label for r in Q1.rows.order[0:3]]"
+The row condition above uses Python list comprehension, as well as obtaining the randomization order of a question to only display a row in Q1_1 if it is contained in the first three shuffled rows of your master question (Q1). For your second split question (Q1_2 ), the row condition would need to be changed to capture the second set of three rows:
+rowCond="row.label in [r.label for r in Q1.rows.order[3:6]]"
+There are two things that might need to change here depending on your setup. The first one is the master question label. If you are splitting a question other than Q1, you need to update Q1.rows.order to Q22.rows.order (for example).
+The second thing you need to keep in mind is how many rows from the master question you need to show in each of your split questions. The current example assumes you want to show the first three rows. If you wanted to show the first five rows, you would update the code from:
+rowCond="row.label in [r.label for r in Q1.rows.order[0:3]]"
+To:
+rowCond="row.label in [r.label for r in Q1.rows.order[0:5]]"
+Note: The above code uses attributes of the Question Object. See Question Attributes to learn more about Question Objects in Decipher.
+3.4: Hiding the Split Questions from the Data
+Finally, since you will be using your master question for data downloads and reporting, you'll need to hide your split questions in the data. This is set up using the where attribute:
+where="survey,notdp"
+The survey keyword keeps the question visible in the survey, while the notdp keyword keeps it hidden in the project data.
+3.5: Final Question Setup
+After adding all of the attributes together, your split questions template should contain the following code:
+<radio label="Q1_1"
+shuffle="rows"
+shuffleBy="Q1"
+rowCond="row.label in [r.label for r in Q1.rows.order[0:3]]"
+where="survey,notdp">
+<title>Please rate your experience with each of the following brands.</title>
+<comment>Select one in each row</comment>
+<insert source="p1"/>
+<insert source="p2" as="cols"/>
+</radio>
+<suspend/>
+<radio label="Q1_2"
+shuffle="rows"
+shuffleBy="Q1"
+rowCond="row.label in [r.label for r in Q1.rows.order[3:6]]"
+where="survey,notdp">
+<title>Please rate your experience with each of the following brands.</title>
+<comment>Select one in each row</comment>
+<insert source="p1"/>
+<insert source="p2" as="cols"/>
+</radio>
+<suspend/>
+<radio label="Q1_3"
+shuffle="rows"
+shuffleBy="Q1"
+rowCond="row.label in [r.label for r in Q1.rows.order[6:]]"
+where="survey,notdp">
+<title>Please rate your experience with each of the following brands.</title>
+<comment>Select one in each row</comment>
+<insert source="p1"/>
+<insert source="p2" as="cols"/>
+</radio>
+4: Populating the Master Question
+The next step once you have the split the question, is to set up an <exec> block to populate the data back into the master question from the split questions:
+<exec>
+splitQuestions = [Q1_1,Q1_2,Q1_3]
+for question in splitQuestions:
+for eachRow in question.rows:
+if eachRow.val is not None:
+Q1[eachRow].val = eachRow.val
+</exec>
+4.1: Updating the Master Question Population Template
+The two things that you need to update when using the code to populate your master question, are the following:
+splitQuestions = [Q1_1,Q1_2,Q1_3]
+This line contains all the split questions that you will have in your survey. Depending on the number of split questions, you need to add all of their labels to the Python list you are creating. For example:
+splitQuestions = [Q1_1,Q1_2,Q1_3,Q1_4,Q1_5]
+The second thing you need to update, is the following:
+Q1.attr(r.label).val = r.val
+If you are splitting questions other than Q1, you need to update the question label to the appropriate one you are using.
+Any references to Q1 should be updated to reflect the label of the question you are looking to split. For example, if you were splitting Q25 into multiple questions, you would use:
+Q25.attr(r.label).val = r.val
+5: Putting it All Together
+Once you have finished programming your split questions, the setup should look similar to the below:
+<define label="p1" builder:title="Brands List">
+<row label="p1r1">Brand 1</row>
+<row label="p1r2">Brand 2</row>
+<row label="p1r3">Brand 3</row>
+<row label="p1r4">Brand 4</row>
+<row label="p1r5">Brand 5</row>
+<row label="p1r6">Brand 6</row>
+<row label="p1r7">Brand 7</row>
+<row label="p1r8">Brand 8</row>
+<row label="p1r9">Brand 9</row>
+<row label="p1r10">Brand 10</row>
+</define>
+<define label="p2" builder:title="Brand Ratings" >
+<row label="p2r1">1</row>
+<row label="p2r2">2</row>
+<row label="p2r3">3</row>
+<row label="p2r4">4</row>
+<row label="p2r5">5</row>
+</define>
+<radio label="Q1" shuffle="rows" where="report">
+<title>Please rate your experience with each of the following brands.</title>
+<comment>Select one in each row</comment>
+<insert source="p1"/>
+<insert source="p2" as="cols"/>
+</radio>
+<suspend/>
+<radio label="Q1_1"
+shuffle="rows"
+shuffleBy="Q1"
+rowCond="row.label in [r.label for r in Q1.rows.order[0:3]]"
+where="survey,notdp">
+<title>Please rate your experience with each of the following brands.</title>
+<comment>Select one in each row</comment>
+<insert source="p1"/>
+<insert source="p2" as="cols"/>
+</radio>
+<suspend/>
+<radio label="Q1_2"
+shuffle="rows"
+shuffleBy="Q1"
+rowCond="row.label in [r.label for r in Q1.rows.order[3:6]]"
+where="survey,notdp">
+<title>Please rate your experience with each of the following brands.</title>
+<comment>Select one in each row</comment>
+<insert source="p1"/>
+<insert source="p2" as="cols"/>
+</radio>
+<suspend/>
+<radio label="Q1_3"
+shuffle="rows"
+shuffleBy="Q1"
+rowCond="row.label in [r.label for r in Q1.rows.order[6:]]"
+where="survey,notdp">
+<title>Please rate your experience with each of the following brands.</title>
+<comment>Select one in each row</comment>
+<insert source="p1"/>
+<insert source="p2" as="cols"/>
+</radio>
+<suspend/>
+<exec>
+splitQuestions = [Q1_1,Q1_2,Q1_3]
+for question in splitQuestions:
+for eachRow in question.rows:
+if eachRow.val is not None:
+Q1[eachRow].val = eachRow.val
+</exec>

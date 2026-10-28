@@ -1,0 +1,37 @@
+Title: 154.13 Release Notes 
+Release Date: January 27, 2026
+Release Version: 154.13
+New Features
+Portal
+In Company Settings, if a user attempts to specify a date for the Account Expires setting by choosing Select Date but never fills in the date, saving Company Settings now displays a helpful error message.
+In Company Settings, attempting to assign a company directory that's already in use now displays a clearer error message.
+Survey
+Closed surveys can now be edited in Survey Editor and XML Editor.
+Learn More: Editing a Live or Closed Survey
+Dynamic Questions
+The version of some dynamic questions have been updated: atmrating.7, atmtable.7, autosum.6, cardsort.9, hottext.4, imagemap.6, onerowatatime.4, pageturner.5, ranksort.8, ratingscale.6, sliderdecimal.4, slidernumber.7, sliderpoints.4, timertest.4, and videoplayer.4.
+Survey Editor
+Surveys with retired compats now show a more user-friendly warning.
+Responses
+Participant Sources
+The Toluna sample provider now supports S2S configuration.
+Learn More: Configuring Secure Samples
+Reporting
+Crosstabs
+Improved handling of square data in Python-driven aggregate crosstab tables.
+The Crosstabs Date Range dropdown now includes a “Last 24 Hours” option.
+Programming and Tools
+The decipher python package now supports python 3.14.
+Learn More: Decipher Python
+Bug Fixes
+Survey
+Participant View
+Resolved an issue that affected the placement of open-end text fields in grouped columns.
+Survey Editor
+The .vals assignment now correctly updates the target question by ensuring it is added to the modified questions list. Blank .val entries will no longer appear.
+Resolved an issue where changes to text in the Autofill element—such as adding or removing content—were not being saved.
+Responses
+Response Summary
+Resolved an issue that prevented View/Edit Responses from loading.
+View/Edit Responses
+View/Edit Responses now loads more quickly in cases where markers are being shown.

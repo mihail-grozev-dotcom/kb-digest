@@ -1,0 +1,8 @@
+Title: January 16, 2024 Release Notes
+Release Date: The following items were released between January 2 and January 16, 2024.
+New Features
+Portal
+Improved Portal performance when changing passwords.
+Architecture and DevTools
+Data Retention
+To improve Portal performance, certain temp directories (temp-view and temp-edit-live-####) are now always archived when they expire, regardless of keep settings.

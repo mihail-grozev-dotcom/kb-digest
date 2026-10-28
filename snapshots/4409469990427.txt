@@ -1,0 +1,8 @@
+Title: Excluding Answer Options From Statistics
+When creating a rating / scale question in the Survey Editor, answer options can be excluded from the survey's report statistics without losing any data. Typically, this is used for "Don't know" type answers that deviate from the other measurable attributes in the question.
+1: Configuring the Answer Option
+To exclude an answer option from a rating / scale question in the report, first select the rating / scale question, then click the answer option you want to exclude so that its row options appear to the right of the staging area.
+In the "Мore Оptions" drop-down, select "aggregate" and leave the check box unchecked to enable it.
+When "aggregate" is enabled, the selected row or choice will only be excluded from the rating statistics in the report; the data will still appear for the answer option.
+2: Viewing the Report
+In the report, you can see that the statistics are calculated for the measurable attributes, but the excluded row is not included in the calculation. Although it is excluded from the statistics, the responses are still collected for the answer option and appear in the report.

@@ -1,0 +1,106 @@
+Title: Data Management Updates
+Surveys with delphi="1" use a new format to store participant data. This format is not tied to survey display and never changes, even when edits are made to live surveys.
+1: What's New?
+Adding delphi="1" to any survey automatically enables the following:
+All reports include partial survey data by default.
+Crosstabs records and displays checkbox question view status by default.
+Edits to complete and partial data are immediately reflected within reports.
+More precise page event data is available from the Drop-outs tab of the Response Summary report.
+Drop-out data tied to question labels is not reset when changes are made to the survey layout.
+Improved performance for resuming survey sessions.
+Improves formatting for stored data.
+The state.db file never requires reset.
+Updates the autosave attribute to display survey contents on return, rather than a snapshot of the HTML page.
+Autosaving is applied retroactively if enabled during field.
+A "welcome back" block can be displayed prior to returning to survey contents.
+Updates participant sources to run their checks retroactively.
+1.1: Included Variables
+The variables and functionality listed below are enabled by default in surveys with delphi="1":
+autoRecover
+autosave
+database
+capturePreciseTime
+indexed
+persistentExit
+trackVars
+trackCheckbox
+update-markers
+1.2: Unsupported Variables
+The variables and functionality listed below are not supported in surveys with delphi="1":
+allowDupe
+dashboard
+dashboardInclude
+dbimport -u
+dupeCheck
+encryptData (only supported on AWS databases with encryption)
+hmerge
+mergeQuestions
+sql
+<weights>
+2: How Data is Stored
+Data for surveys with delphi="1" is stored in a PostgreSQL relational database (RDBMS). The database includes data on survey questions, answers, and participant states, as well as copies of several backend files that can be used for debugging purposes.
+2.1: Response Data
+Questions and answers are saved with their labels and are formatted based on question type. Each question type uses the following values to identify its selected answer options:
+Multi-Select questions: yes / no / null
+Text questions: The text input
+Single Select questions: The selected label
+Number questions: The numeric input; for “float” questions, the floating point will be precise by up to 14 digits
+Note: Any images included within an answer option are stored outside of the survey database.
+2.2: Participant Record Data
+Participant data is recorded and stored using unique system identifiers and individual records are automatically updated when each survey page is submitted.
+Participant record data includes the participant’s unique uuid, URL, and session cookie. It also includes the participant’s last recorded state, which is assigned based on any survey markers for which they have qualified.
+The following participant states are available:
+State
+Marker
+Description
+Q
+qualified
+Qualified. The participant has completed and submitted the survey.
+T
+terminated
+Terminated. The participant was blocked from completing the survey due to not meeting certain qualifying criteria.
+O
+OQ
+Overquota. The participant was blocked from entering the survey due to full quotas/sample limits.
+P
+autorecover
+Partial. The participant has not fully completed or submitted the survey.
+D
+deleted
+Deleted. The participant’s record was removed from the survey.
+Note: Deleted records are retained for 30 days and can be reverted using the revert command.
+N
+_NO_SUBMIT
+Nosubmit. The participant accessed the survey while logged into Decipher OR used a testing link to complete the survey.
+Note: Participant records with states D and N will not be included in any reports or data exports.
+2.3: Backend Files
+The project database also includes each of the following survey backend files:
+results.bin
+results.strings
+last-record
+state.db
+state.db.index
+autosave.db
+virtual.bin
+virtual.strings
+virtual.fingerprint
+data.db
+See Decipher Cloud Server Structure for more information on these files, as well as Decipher’s server and database structure.
+3: How Changes are Handled
+In surveys with delphi="1", users with data:edit access have the ability to edit individual participant records and apply changes whether a survey is live or closed. Changes are automatically applied across all tools and reports, including any tabs available in the Response Summary report and quota markers.
+Note: Once the report has been updated, previous data will be overwritten and no longer available.
+The following changes can be made:
+Adding, removing, and reordering questions.
+Changing the question type.
+Adding columns or rows to a question which previously had only implicit answer options.
+Reordering rows and columns.
+Removing rows and columns.
+3.1: Limitations
+Once a survey is set live, there are some limitations on what types of changes can be safely made without affecting the survey’s datamap. The following changes should not be made when editing a live survey:
+Removing a variable or row and then restoring it with the same label but a different meaning.
+Changing a Multi-Select question to or from any other question type.
+Removing an explicit row or column while keeping its data.
+3.2: Viewing and Reverting Changes
+Every time a change is made to participant data, it is automatically saved to a change set in the survey backup log. Each change set is identifiable by a unique number and can be called in the survey.log file at any time using that number.
+Additionally, a short summary of the change is automatically sent via email to any users currently subscribed to the survey. This notification email contains the uuid for each record that was changed, as well as a record of what fields were changed, along with both their old and new values.
+Note: You can use the revert command line script to rollback to a previous change set.

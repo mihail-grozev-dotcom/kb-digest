@@ -1,0 +1,12 @@
+Title: Modifying Data Using the Decipher API
+Note: The below article uses examples of accessing the Decipher API from a Unix system that has the Beacon library package installed. See Decipher REST API to learn more about accessing the Decipher REST API.
+The Decipher API allows for the modification of data on the same principle as the View/Edit Responses report. Depending on the verb selected, you can either delete or disqualify participants, modify the data for an existing participant, or create completely new participant records.
+You can use the following API calls to modify your survey data. Click any call name to view more information.
+Call Name
+Description
+Edit Data
+Modify the data of existing participant records.
+New Data
+Create new participant records.
+Delete Data
+Disqualify or delete participant records.

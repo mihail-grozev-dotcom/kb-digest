@@ -1,0 +1,138 @@
+Title: More Options - Advanced Features
+The attributes found in the "More Options" drop-down in the Survey Editor can be used to set up more advanced survey elements. The available attributes vary based on the type and configuration of the element and its answer options.
+The table below outlines each attribute and its supported functionality.
+Attribute
+Description/Function
+Valid Entries
+adim
+Allows you to choose the primary report dimension for two or three-dimensional questions. If a report has both rows and columns or choices, then one table is created for each item in the shortest dimension, showing all the items in the secondary dimension. Setting adim allows you to override this primary dimension. See Grouping Answer Options in the Report for more information.
+Select one of the following from the drop-down: auto, rows, cols, choices.
+aggregate
+This allows certain cells to be excluded from the average/standard deviation calculation. It is typically used for "Don't know" types of answers. In addition, survey participants are excluded from the "answered" total and base for this question. See Excluding Answer Options From Statistics for more information.
+Leave the box unchecked to enable.
+alt
+Allows you to enter alternative text that will only appear in the report.
+Enter text in the area provided.
+altLabel
+Allows you to enter an alternative label for the element that will be shown everywhere but in the survey. This is used for "recoding" or "relabeling" data. See Relabeling Data for more information.
+Enter a label in the area provided.
+averages
+Allows you to control which averages are calculated for the question.
+Multiple numbers can be entered in the area provided, separated by commas. You may enter zero or more of the following options: rows, cols, or choices. Additionally, you may set this to none,summary, or nosummary.
+chartText
+Allows you to enter text for the charts displayed with the row in the report.
+Enter text in the area provided.
+choiceGroups
+Allows you to create a group header in the drop-down menu for select elements.
+Enter the location(s) where you want the choice groups to appear, separated by a comma: report, survey, restrict.
+choiceShuffle
+Allows you to specify the possible permutations for choices.
+Enter one of the following: flip, rflip, rotate, reverse-rotate, rrotate.
+See rowShuffle for more details.
+Note: This feature requires shuffle="choices" and is not compatible with shuffleBy.
+colGroups
+Allows you to create a header that appears over the columns.
+Enter the location(s) where you want the column groups to appear, separated by a comma: report, survey, restrict
+colShuffle
+Allows you to specify the possible permutations for columns.
+Enter one of the following: flip, rflip, rotate, reverse-rotate, rrotate.
+See rowShuffle for more details.
+Note: This feature requires shuffle="cols" and is not compatible with shuffleBy.
+exactly
+Allows you to specify exactly how many values must be selected as a valid response. See Setting an Exact Number of Values for a Valid Response for more information.
+Enter any of the natural numbers (integers, positive or negative) or zero.
+favorite
+Allows you to change a column in multi-select form to single select form in a two-dimensional Multi-Select question. This is primarily used when there are two columns, the first is an "aware" column (multiple answers), and the second is a "favorite" column (one response). See Adding a Single Select Column in a Multi-Select Question for more information.
+Check the box to enable.
+final
+If set, the survey will end (without saving the user's data) and display no further Continue/Finish buttons. See End a Survey without Termination for more information.
+Check the box to enable.
+grouping
+Determines how the participant must submit an answer, per row or per column. For example, a two-dimensional Single Select question grouped by rows must have an answer per row, whereas a two-dimensional Single Select question grouped by columns must have an answer per column.
+Select one of the following from the drop-down: auto, rows, cols.
+ignoreValues
+Allows you to specify a list of values that will be ignored. These values will not be counted in the averages in the report, and they will be allowed to be entered in the survey even if they fall outside of any range or verifier.
+Enter a comma-separated list of values to be ignored in the survey's avg/stddev calculations.
+looprows
+Allows you to specify the label suffixes of the pipe variables where this element should only be included in a Loop Element. By default, the element is included for all pipe variables. This can be applied to questions, autofills, rows, columns, and choices Loop elements.
+Enter a comma-separated list of the label suffixes you would like to use for pipe variables.
+minRanks
+Allows you to specify the minimum number of items you want ranked in a Select element. See Ranking Questions to learn more.
+Enter a whole number.
+nets
+Allows you to specify the attributes in the report for Number questions. You can specify a single digit or ranges.
+Enter a comma-separated list of names.
+okUnique
+Allows the item to be selected twice when uniqueness is required.
+Check the box to enable.
+open
+Forces the row/column to require an entry in the open-ended text box.
+Check the box to enable.
+percentages
+Displays percentages.
+Check the box to enable.
+pii
+Allows you to set the personally identifiable information (PII) protection level (0-9999, inclusive) to restrict data access. This protection level applies only to textual data. For example, a PII level cannot be set on a Single Select or a Multi-Select question. Afterwards, in order for the question data to be visible to a user, the user's PII level must meet or exceed that specified for the question. See PII Levels for more details on setting PII access restrictions.
+Specify an integer between 0 and 9999, inclusive, to set the personally identifiable information protection level.
+points
+Allows you to create answer options in the drop-down menu (choice form) in Number elements. For example, if you enter "3" you will get a drop-down with 1, 2 and 3 as the choices.
+Enter any of the natural numbers (integers, positive or negative) or zero.
+radio
+Will change the answer option to a radio button. This attribute only works with the checkbox form.
+Check the box to enable.
+randomize
+Will randomize the element within a group of questions that is set to randomize. If "randomize" is not checked, the element will not randomize.
+Check the box to enable.
+range
+Allows you to specify the range of numbers that can be displayed.
+Enter a sequence of characters that define the range.
+rowGroups
+Allows you to create a header that will appear over the rows.
+Enter the location(s) where you want the row groups to appear, separated by a comma: report, survey, restrict.
+rowShuffle
+Allows you to specify the possible permutations of rows.
+Enter one of the following:
+flip: Equivalent to specifying the items in forward then reverse order. 50% of survey participants see the rows in order and 50% in reverse order.
+rflip: Reversed flip. If you have two questions using flip the order on both will be forward/reverse. With rflip it will be reverse/forward.
+rotate: Start with each randomizable item and continue wrapping around.
+For example, with rows r1,r2,r3 rotate will generate the orders r1,r2,r3; r2,r3,r1; r3,r1,r2
+reverse-rotate or rrorate: As rotate, but after the first time where items are shown in order, rotation happens in the other direction.
+For example: r1,r2,r3; r3,r1,r2; r2,r3,r1.
+Note: This feature requires shuffle="rows" and is not compatible with shuffleBy.
+shuffleBy
+Allows you to randomize the answer options in the same order as a previous question with matching answer options. See Randomizing Response Options Based on a Previous Question for more information.
+Enter the label of the question by which you want this question to randomize (e.g., Q2).
+sortChoices
+Allows you to specify how the choices will be sorted.
+Enter a comma-separated list of the following: asc (to sort in ascending order), desc (to sort in descending order), survey (sort in survey), report (sort in report), none.
+sortCols
+Allows you to specify how the columns will be sorted.
+Enter a comma-separated list of the following: asc (to sort in ascending order), desc (to sort in descending order), survey (sort in survey), report (sort in report), none.
+sortRows
+Allows you to specify how the rows will be sorted.
+Enter a comma-separated list of the following: asc (to sort in ascending order), desc (to sort in descending order), survey (sort in survey), report (sort in report), none.
+source
+Allows you to specify an HTML file from which the data is read.
+Within an <html> tag, enter a source in .html form.
+sst
+Allows you to exclude or include an element when running simulated testing data. Elements are included by default.
+Note: This option should be used for elements whenever the simulated data would not be able to complete correctly. For example, questions with custom validation or logic that relies on variables passed back from a redirection mid survey.
+Leave the box unchecked to exclude the element.
+unique
+Allows you to enter one answer option per row or column.
+Enter one of these options: rows, cols.
+validateCell
+Allows you to define a validation for a cell and display a custom error message.
+Enter one or more Python expressions.
+validateCol
+Allows you to define a validation for a column and display a custom error message.
+Enter one or more Python expressions.
+validateRow
+Allows you to define a validation for a row and display a custom error message.
+Enter one more Python expressions.
+verify
+Allows you to verify functions that will be applied. See Options for Verifying Response Formats for options.
+Enter a string of characters.
+where
+Allows you to specify exactly where the element should appear. By default it appears in both the survey and report.
+Enter a comma-separated list of survey, report, summary, none, execute, data or notdp. If where="survey" is used, the item will not appear in the report.

@@ -1,0 +1,28 @@
+Title: DQ2 Release Notes
+Release date: April 2, 2013
+New Dynamic Questions
+Button Select
+Multiple Column Layout
+One Row at a Time
+Autosum
+Grid Separator
+Slider
+Rank Sort
+Bug Fixes & Features
+#13490 - cardsort, fixed invalid CSS class name
+#13492 - cardsort, optimized for more words/sentences
+#13869 - starrating, updated to support compat 114+ as well
+#13520 - fancyboxes, removed unused/non-working attribute rowDividers
+#14083 - Upgraded DQ’s to use font-awesome 3.0
+#14154 - Added Theme Builder Support for the following DQ’s.
+Button Select supported in Theme Builder
+Button Select Table supported in Theme Builder
+Star Rating supported in Theme Builder
+#14568, Fancy Boxes supported in Theme Builder
+#14312 - type=enum addition to DQ toolkit. Allow for drop down values instead of raw text inputs.
+#14437 - “Learn More” link added to some DQ questions for more information
+Removed CSS options from Styles Manager. Check KB for details on how to add this via XML-editor
+#14173 - Rating Scale - fixed jquery collision with rating scale question and atm1d
+#14567 - Rating Scale - fixed issue with Safari not snapping to grid
+#14729 - Rating Scale - Fixed an issue with zooming in Safari/Chrome
+#14747 - Rating Scale - Fixed an issue with noanswer on draggables

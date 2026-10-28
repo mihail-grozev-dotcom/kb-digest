@@ -1,0 +1,22 @@
+Title: Table Settings in the Question Library
+Custom table settings can be attached to elements saved in the element library. Any non-virtual survey element can be saved with table report settings and attached settings are automatically applied to reports when saved elements are added to new surveys.
+The following report table settings are saved if applied:
+Question text
+Answer text
+Nets
+Charts
+Table Transposing
+Table percent base
+Note: Table filters will not be saved.
+1: Editing Table Settings
+To attach report table settings to a library element, first navigate to the element's table in Crosstabs, and select Edit Table under Menu:
+The Table Editor opens. Make any desired changes, following the instructions in Editing Tables in Crosstabs.
+Once you have saved your changes, and the Table Editor has closed, save the element to the library. You can do this from the report table.
+Open the element's table Menu.Then click Save to Library.
+Alternatively, see Saving to the Element Library to learn how to save an element to the library using Survey Editor. Elements saved using the Survey Editor must have sharing set to “Company” to be overwritable.
+2: Updating Saved Settings
+The element's table menu in Crosstabs displays additional information fields when you are working with saved library elements. If no changes have been made to an element since you added it from the library, it will display as "Already in Library":
+If the element's table settings have been changed since it was added from the library, you will see the following options instead:
+Update Library Item: Click to attach the current report table settings to the existing element in the element library.
+Save as New Library Item: Click to attach the current report table settings to a new element in the element library.
+Note: Elements in Crosstabs are always saved with sharing set to “Company”. Existing library elements must have sharing set to “Company” to be overwritable.

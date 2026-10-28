@@ -1,0 +1,100 @@
+Title: Button Multi-Select Element
+The Button Multi-Select element utilizes a multi-select function and contains buttons. It is a one-dimensional version of the Button Select Grid element. This element is mobile compatible and does not utilize Flash.
+Note: Selecting a response option in a Button Multi Select element requires very little effort on mobile devices because of the large hit area. This significantly reduces both cognitive and kinematic load (i.e., click fatigue).
+1: Adding a Button Multi-Select Element
+Note: You can set the "Show if" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to how to verify your project settings.
+To add a Button Multi-Select element, first click the "+ Element" button to add a new survey element. Then click "Single and Multi Select" under Question Types and select the "Button Multi-Select" element. Then click "Add".
+Enter the question and instruction text in the areas provided.
+1.1: Adding Buttons
+Click "+ New Button" to add each new button, then enter the text for the response option in the text field.
+1.2: Configuring Button Actions
+To customize the button settings for a Button Multi-Select survey element, click "Row / Button Actions" and select from the following options (you can click each option for more information):
+Import Answers
+Save Answers to Library
+Copy All Answer Text
+Insert Reusable Answer List (only available if you have previously saved
+an answer list)
+Create Reusable Answer List
+Add Answer Group
+Answer Piping
+Reverse Values
+Reset Values
+Reset Labels
+Delete All Answers
+Edit All Answers
+2: Style Settings
+To edit the display settings for a Button Multi-Select survey element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Style Editor" window, use the options on the left to specify how the question displays. When you mouse-over an option, information about the feature displays on the right. After you have selected the required styles, click "Save".
+The following style options are configurable:
+Style Option
+Description
+Layout
+Choose a layout for the buttons.
+Vertical: Aligns buttons vertically.
+Tiled: Tiles the buttons in a grid format.
+Horizontal: Aligns the buttons horizontally.
+Show Form in Button
+For this question type, participants click a button to select a response. This option determines whether or not a response form (e.g., checkbox) shows within the button.
+Yes: Additionally shows a response form within each button.
+No: Hides the response form and only shows the buttons.
+Large Screens
+Button size
+Width
+If the layout is vertical: Min Width - You can define the minimum width allowed for larger screens in pixels, em, or a percentage. If the unit is not specified, it defaults to a percentage.
+Note: For tiled or horizontal layouts, this setting does not apply.
+For all layouts: Max Width - You can define the maximum width allowed for larger screens in pixels, em or a percentage.
+Height
+If the layout is horizontal: Min Height - You can define the minimum height allowed for larger screens in pixels, em or a percentage. If the unit is not specified, it defaults to a percentage.
+Note: For vertical or tiled layouts, this setting does not apply.
+For all layouts: Max Height - You can define the maximum height allowed for larger screens in pixels, em, or a percentage.
+Alignment
+Choose an alignment for the buttons:
+Left: Left-aligns buttons.
+Center: Center-aligns button.
+Right: Right-aligns buttons.
+AND / OR choose an alignment for the content inside each button:
+Left: Left-aligns the content.
+Center: Center-aligns the content.
+Right: Right-aligns the content.
+Small Screens
+Button size
+Width
+If the layout is vertical: Min Width - You can define the minimum width allowed for smaller screens in pixels, em, or a percentage. If the unit is not specified, it defaults to a percentage.
+Note: For tiled or horizontal layouts, this setting does not apply.
+For all layouts: Max Width - You can define the maximum width allowed for larger screens in pixels, em or a percentage.
+Height
+If the layout is horizontal, Min Height - You can define the minimum height allowed for smaller screens in pixels, em, or a percentage.
+Note: For vertical or tiled layouts, this setting does not apply.
+For all layouts: Max Height - You can define the maximum height allowed for smaller screens in pixels, em, or a percentage.
+Alignment
+Choose an alignment for the buttons:
+Left: Left-aligns buttons
+Center: Center-aligns button.
+Right: Right-aligns buttons.
+AND / OR choose an alignment for the content inside each button:
+Left: Left-aligns content.
+Center: Centers the content.
+Right: Right-aligns content.
+3: Question Options
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it.
+3.1: General Options
+When altered, each of the following options affects all attributes within the Button Multi-Select element.
+Label: The label assigned to the element. Click to edit the default label for the Button Multi-Select element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Min Answers: Enter a number to define the minimum number of answers the participant must select in order to complete the question.
+Max Answers: Enter a number to define the maximum number of answers the participant may select.
+Randomize: Check the boxes to randomize items by type. Items can be randomized by rows, columns, groups, or all.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+3.2: Button Options
+When altered, each of the following options only affects specific button attributes.
+Label: The label assigned to the button. Click to edit the default label for the button.
+Data Value: The value assigned to the button in the data. Click to edit the default value for the button if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the button. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the button will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the line to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the slider optional and non-mandatory.
+Exclusive: When checked, this option will make the row exclusive. The participant will not be able to select the "exclusive" row with any other options in the row.
+Open End: Click to add an open-end response box to the slider by selecting "Mandatory" or "Optional" from the drop-down menu. "Mandatory" means the participant must enter feedback in the response box to continue if the slider is selected, "optional" means that feedback is not required.
+Hidden: Click to hide the slider from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.

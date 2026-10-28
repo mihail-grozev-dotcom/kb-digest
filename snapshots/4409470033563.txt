@@ -1,0 +1,27 @@
+Title: Redacting Data
+Sometimes it may be necessary for researchers to hide sensitive participant data from users who need access to other survey data for reporting. For example, while you may want your client to be able to view the open-ended responses they've collected, you may not want vendors to have access.
+Data redaction allows you to redact participant information and open-end response data from your survey reports and downloads.
+1: Enabling Data Redaction
+While data redaction is set at the record level, it must be enabled within the survey XML prior to use. To enable data redaction in your survey, add redactData="1" to the <survey> tag via the XML Editor.
+Once you have enabled data redaction, you can choose to redact only participants' open-end responses or their entire records.
+1.1: Redacting Open-End Responses
+To redact only the open-end response data from a record, add the "REDACT_OE" marker to that record using either the <marker> tag or the View/Edit Responses report.
+Adding REDACT_OE keeps the participant's record visible, but hides their open-end responses. Users without data:edit permission will see "PENDING REVIEW" in place of the open-end text values.
+REDACT_OE does not affect meta or virtual open-end responses.
+1.2: Redacting Records
+To redact a participant's entire record, add the "REDACT" marker to that record using either the <marker> tag or the the View/Edit Responses report.
+Adding REDACT completely removes the record from all counts and charts so that it is not visible to users without data:edit permission.
+1.3: Viewing Redacted Data
+Data redaction only applies to users without data:edit permission. Users with data:edit or higher permission will see all participant data, regardless of marker values. Additionally, all public reports (saved reports and dashboards) will show with redaction if viewed while logged out.
+The following areas are affected by redaction:
+Data Downloads
+View/Edit Responses
+Crosstabs tables and charts
+Saved Reports tables and charts
+Dashboards tables and charts
+The following areas are not affected by redaction:
+Portal project counts
+Crosstabs landing page project counts
+Report 2010
+Response Summary counts
+To allow users without data:edit permission to view redacted data, remove any applied REDACT_OE or REDACT markers.

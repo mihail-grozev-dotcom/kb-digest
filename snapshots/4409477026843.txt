@@ -1,0 +1,35 @@
+Title: Terming Based on Language and URL
+Often in multi-language surveys, you will want to verify that participants are actually from the locations that their URL states. In this example, we can terminate a participant if their answer to a location question does not match their URL. This tutorial is organized in a series of steps to create a terminate based on language and URL.
+1: Create a Location Question
+To get started, create a single select location question in your project. In the example below, the location question is s1 and includes country answer options for all languages that we plan to include in the project.
+Learn more: Single Select Element
+2: Adding Multiple Languages to Your Project
+After programming your survey, you will need to add in the appropriate languages, so they can be referenced from within the logic GUI. Add the languages using the Language Manager.
+To access the Language Manager, select Language Manager under Build in the navigation menu.
+From here, click +Language to add a new language to your project.
+Use the drop down menu to select the appropriate language and then click Add Language to finalize the change.
+Learn more: Programming Multi-Language Surveys
+3: Create Custom Sample Sources
+Once the languages are in place, you will need to create custom sample sources for each language. Return to the Survey Editor.
+Click Participant Sources in the Survey Elements question tree, and then select +Add New Participant Source.
+Select Custom Participant Source from the Sample Source Manager and select Insert to add it to your project.
+Create one sample source per language as shown below. Update the Participant Source Name to reflect the language that corresponds with that sample source.
+Learn more: Setup Custom Participant Sources
+4: Configure Survey URL's
+The next step is to assign sample sources to particular languages in the Survey Summary. In the navigation menu, select Responses, then select Survey Summary from the drop-down menu.
+Directly after the survey URLs, select the link to open the grid drop-down and configure the survey URLs for the project. Assign each sample sources that you set up to the appropriate language, using the grid as shown below.
+Select Update to save your changes and then exit the Survey Summary.
+Learn more: Survey Summary
+5: Create the Terminate
+Now that the sources are assigned to the appropriate language, they can then be accessed in the logic editor for use in the Terminate Element.
+Add a terminate element from the structural tab in the Survey Element manger by selecting + Element near the bottom of the staging area.
+Note: The terminate element will need to be placed after the location question created at Step 1 and a page break.
+Next, update the terminate element title to something that will make sense to you. Then, open the Show If drop-down from the options on the right side and select + New Condition.
+In the logic editor, use the if drop-down to create the condition for the term.
+In the example below, participants are terminated if they enter our survey from sample source France and they do not select France in s1 (the location question).
+Note: Repeat this process accordingly for each sample source and language pair in your survey.
+Click Save to finalize the condition for termination.
+Learn more: Terminate Element
+6: Test the Terminate
+Manually test your survey to make sure it's working as expected.
+Learn more: Testing an Online Survey

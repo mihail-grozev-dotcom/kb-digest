@@ -1,0 +1,3 @@
+Title: How do I create a new project?
+You can create a new project by clicking on the “+ New Project” in the upper right of the Research Hub. A pop-up box will appear for you to select what type of project you would like to create. Once you have selected they type of project you would like to create, you will be taken to the appropriate page to begin your project.
+See Creating a New Survey to learn more about creating new projects.

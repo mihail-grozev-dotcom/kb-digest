@@ -1,0 +1,62 @@
+Title: Including CSS in a Survey
+Additional CSS can be included in Decipher surveys to customize their overall look and feel. Custom CSS can implemented using either survey style attributes or the XML style system. This document outlines the different ways that you can add CSS to a survey.
+If you are new to CSS or would like to learn more, you can find a variety of free coding tutorials at Codecademy.com.
+1: Survey Style Attributes
+There are two survey style attributes that allow you to include CSS in a survey: ss:customCSS and ss:includeCSS.
+1.1: Using ss:customCSS
+To apply CSS contained in a single .css file, upload that file to the survey's static directory and then load it by adding the ss:customCSS attribute to the main <survey> tag.
+For example, if the stylesheet uploaded to the static directory is named "customStyle.css", you can specify ss:customCSS="customStyle" in the <survey> tag to load the file in the survey:
+<survey
+alt="Employee Satisfaction 2019"
+autosave="0"
+compat="144"
+fir="on"
+name="Survey"
+setup="term,decLang,quota,time"
+ss:customCSS="customStyle"
+state="dev">
+1.2: Using ss:includeCSS
+You can use the ss:includeCSS attribute to load multiple .css files. These files can be located in your local static directory or a client-level directory, or can be loaded externally. When using the ss:includeCSS attribute, include each .css file in a comma-delimited list.
+For example, to load two CSS files named "style1" and "style2" into a survey, add the following to the survey's <survey> tag:
+<survey
+alt="Employee Satisfaction 2019"
+autosave="0"
+compat="144"
+fir="on"
+name="Survey"
+setup="term,decLang,quota,time"
+ss:includeCSS="/survey/selfserve/749/proj1234/style1.css, proj1235/style2.css"
+state="dev">
+Note: Each .css file you add should be housed in the “static” directory at the company or project level.
+2: XML Style System
+Using the XML Style System, you can add CSS to one or more pages of a survey using either the respview.client.css style, or the question.after style.
+2.1: Using the respview.client.css Style
+Inside the respview.client.css style, specify the CSS code as follows:
+<style name="respview.client.css">
+<![CDATA[
+<style type="text/css">
+#btn_continue {
+color: blue;
+}
+</style>
+]]>
+</style>
+To apply this to only specific pages, you can use the with argument to specify the questions the code would run within a comma-delimited list. You can use this style to link external CSS files as well, similar to how they would be linked within HTML:
+<style name="respview.client.css">
+<![CDATA[
+<link rel="stylesheet" href="[rel customStyle.css]" type="text/css" charset="utf-8"/>
+]]>
+</style>
+2.2: Using the question.after Style
+Similar to respview.client.css, CSS code can also be defined using the question.after style nested within a question. Styles applied within a question.after style tag will only apply to that question.
+The following is an example of a question.after style:
+<style name="question.after">
+<![CDATA[
+<style type="text/css">
+.question-text {
+color: blue;
+font-size: 24px;
+}
+</style>
+]]>
+</style>

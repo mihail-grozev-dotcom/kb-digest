@@ -1,0 +1,50 @@
+Title: Beacon M22 Release Notes
+Release Date: June 9, 2014
+Crosstabs & Classic Reporting
+#13960 When modifying a data layout, “set to survey order” link will reset to survey order regardless of presence of variables.xls file .
+Research Hub / Portal
+#18290 Users can enable detailed search results in the advanced search options menu. When detailed search results are enabled the search results include highlighting of the search term in project name, descriptions, tags, survey contents and/or files. When detailed search results are not enabled the result is similar to list view.
+Builder
+#18272 Custom Sample Sources can be saved for re-use. Users have the option to make them visible at the company, sub-company level or only for that user.
+#18445 Unify Image File System: Image Manager loads all images from the static directory making any images uploaded via File Manager page available. Reversely, images uploaded from the Image Manager are listed on the File Manager page. (note: Ability to remove images from the Image Manager has been removed for this release)
+#18396 RTE Cruft handling on paste. Most formatting now stripped, but will leave certain tags (strong, em, ul, li, etc…). Also converts styles like <div style=”font-weight: bold;”>foo</div> to <strong>foo</strong>.
+Dashboard
+#18473 PDF and PowerPoint Export Options added.
+#18161 Dynamic HTML Widgets are now available for HTML blocks.
+#18418 PDF exports added
+#18419 PowerPoint Exports added
+#18460 Stacked chart support added for PPTX and XLSX
+Field report & Campaign Manager
+#18200 Fetching an external sample source list creates a new shared list for use in campaign manager.
+#18475 Updated tinymce to version 4.0.26 and angular to 1.2.9
+#18102 The base count for terminates can be tracked in the field report. Set trackVars=”term” before launching the survey, and a marker will be set for each participant encountering a terminate, allowing the Terminates tab to show a percentage.
+CATI
+CATI Management UI added for managing CATI Manual and ProTS studies
+Manage all configurable parameters available in Builder’s sample source
+Filter Sample sent to dialer in the case of ProTS or manually fetched in the case of CATI Manual
+In addition to the restrictions placed on contact hours (which are timezone aware), you can further select specific timezones to call
+Any additional columns uploaded with your sample excel file are also available for filtering what sample to call
+View sample and dispositions
+Ability to see status (disposition) of sample, interviewer who last fielded sample and other sample related meta data
+Ability to show available sample (sample that qualifies for the configured time and optional filter restrictions)
+View Callback information
+See callback time in server time and participant time as well as last interviewer
+Interviewers and Stations
+View and update configured Interviewers and Stations
+Monitor last activity and Hook Status (whether they’re on call and with whom)
+When selecting call back later participant timezone is automatically selected as inferred by their phone number
+Programming & Tools
+#18341 The <exec when=”submit”> runs on every page submission (not just those without errors, like <exec when=”verified”>). This can be used to communicate and capture data in interesting ways.
+#18424 Create reset links for Portal user accounts when the below is run within a v2 directory: here reset-links.py bugs@wb.com daffy@wb.com yako@wb.com
+#18067 Rearranged CSS+JS loading priorities so DQ CSS+JS loads much earlier and is more easily overridden by all other custom CSS+JS resources.
+#18373 Protected images can be added to the survey xml by doing:
+[protected myimage.jpg] - where ‘myimage.jpg’ is any image that has been uploaded to the static directory. Protections consists of: Simple Copy Protection, Link Obfuscation, and Watermarking.
+Bugfixes
+#17965 Crosstabs: viewing or editing a saved report will display the correct segment filter if one is applied to a table.
+#18012: SPSS Importer: Various import errors fixed.
+#16505 Builder: Proper counts in blocks when items are removed. Remove count attribute if only one thing in the block has randomize=1 (but only if we just removed something from a block, otherwise it will stay)
+#17873 Windows Phones are now correctly categorized as smartphones
+Misc
+#18383 The global “browser stats” page contains a breakdown of current/last 30 days mobile device type and mobile operating system.
+#18388 Running generate to create a SPSS *.sav file will create a SPSS 16+ Unicode-enabled file by default
+#18376 The syslang page is accessible to non-staff -- e.g. http://v2.decipherinc.com/admin/syslang shows all languages & translations, while https://v2.decipherinc.com/admin/syslang/selfserve/12324/5678 shows them for that particular survey

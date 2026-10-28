@@ -1,0 +1,20 @@
+Title: Logic Debug
+The logic debug page allows you to debug logic nodes and encrypt passwords. You must have Survey:Edit permissions to access the logic debug page.
+To access the Logic Debug page, use the following link: http://[server]/apps/logic/[path/to/project]:debug.
+Alternatively, in the navigation menu, click REPORT > More Tools > Logic.
+Note: The menu link is only available if the survey has at least one logic node and is in a valid state.
+1: Logic Debug
+Note: Logic Debugging is only available if the survey has at least one logic node and is in a valid state.
+Logic Debug lists all logic node elements present in the survey, and allows you to review debug information for each logic element.
+Clicking on the label of the logic element opens the Debug Entries page. The Debug Entries page shows a list of all debug output for that logic node. If the logic node has more than 100 debug entries, only the most recent 100 entries will be shown. Some logic nodes may not have any debug entries.
+2: Password Encryption
+Note: Password Encryption is available if the survey has at least one logic node.
+Password Encryption allows you to encrypt a value (a secret), such as an API key or password, within a survey. Logic node fields that should be encrypted have an "Encrypt Field" link by them in the Survey Editor.
+There are two options for encryption:
+Encrypt a value so that it can be used in every survey in a given company (i.e. you want to reuse the same encrypted password in multiple surveys)
+Encrypt a value so that it can only be used in a single survey and its subdirectories (i.e. you only want to use the encryption in a single survey)
+Note: While the value can only be decrypted by the Decipher server system, any user that can view the survey.xml can copy and paste the encrypted value into their own survey.
+Select the desired link for encryption.
+Enter the unencrypted value into the dialogue box. Click OK.
+Copy the encrypted value from the new dialogue box. Click OK.
+Return to the Survey Editor. Paste the encrypted value into the appropriate field.

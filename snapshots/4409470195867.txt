@@ -1,0 +1,72 @@
+Title: Preventing Survey Link Alteration
+Unencrypted survey variables allow users to view and change the values within their survey links as they test through. For example, the following survey link would allow you to safely change your gender to "f" for female, or alter your list or source values:
+https://v2.decipherinc.com/survey/selfserve/123?list=101&gender=m&source=1234
+While this can be quite useful for testing survey logic and paths, in a live survey, that same functionality would be available to participants.
+To prevent link alteration, you can sign the inbound and outbound links for any survey using encrypted keys. These keys will allow the system to verify that the variable content was created by an authorized user, and reject any links without valid values.
+1: Configuration
+Signing requires the setup of a keyring and must be enabled on a samplesource level within the survey's survey.xml configuration file.
+1.1: Creating a Keyring
+A "keyring" will contain one or more shared keys that are generated and shared with the provider on the other end of the inbound or outbound links. Keys are matched by numeric ID and the first key listed in a keyring will be used to sign outbound links. All listed keys can be used to verify inbound links.
+A keyring can be defined using one of the following scopes:
+System: These are keyrings built into our software distribution and used for globally available sample sources. They are prepended with sys/ and are limited to our pre-configured keys (sys/dynata and sys/ps).
+Server: These are key rings added to a server for their keys to be available for all clients on that server. They are prepended with server/ and are located in the data/sample-keys.yaml file on the server.
+Local: These keys are specific to one client (e.g., all surveys under selfserve/1234/). They are located in the selfserve/1234/sample-keys.yaml file within the client directory.
+Add each new key as the first key in the relevant keyring. This will enable signing using the new key, yet not remove the old key.
+Later, remove the now obsolete key from the keyring. The period through which the old key is active may be dependent on how links using that key were generated -- if emails are sent out with the signed links and a survey is expected to be open for quite a while, that period could be weeks.
+1.1.1: Generating Links
+Signed links are generated using the keys contained within YAML files. Each file should include the following:
+Object with key that the key name is pointing to:
+A list of objects with:
+id (numeric id)
+key (string)
+Tip: For convenience, we recommend using ASCII-only keys that are a single string with no spaces.
+Note: The numeric id must be unique but only within each key name.
+For example, the following would be the YAML contents for the "test" keyring, which accepts "a test key" and "another test key" as keys:
+test:
+- id: 1
+key: "a test key"
+- id: 2
+key: "another test key"
+In this scenario, the key with id 1 is the current key for the "test" keyring; however, key with id 2 also exists and will be accepted for incoming links.
+1.2: Enabling Signatures
+Once you have created a keyring, you will need to add them to your survey using its survey.xml file.
+To enable signed links for a survey, add "keyring='sys/<name>|server/<name>|<name>'" and "sign='<in|out|in,out>'" to the "samplesource" tag, where name matches the name from the keyring (uses a prefix as applicable) and sign matches which type of link will be signed. The sign attribute can be set to "in" for inbound links or "out" for outbound links. Additionally, it can be set to "in,out" to add signing to both inbound and outbound links.
+For example, to sign inbound and outbound links with a system keyring, you would use the following script:
+<samplesource list='xxx'
+keyring='sys/some-client' sign="in,out"
+Likewise, to sign only inbound links with a user-supplied server key, you would use the following script:
+<samplesource list='132'
+keyring='server/some-client'
+sign='in'
+When incoming link signing is enabled, all links hitting that sample source must be signed; unsigned links will be rejected.
+To enable signatures via the API, see Create signed links and Verify signed links.
+2: Participant Experience
+Signing links attaches a signature to each survey link using a series of unique keys. If a participant attempts to access a survey where the sample source (defined by explicit or implicit list variable) requires signing, the system will attempt to verify their signature before allowing the survey to start.
+2.1: What Respondents See
+If their survey link does not have a valid signature, a sample source error is raised (technical ID SE-09, technical text will be "invalid secure link"), preventing them from doing anything more, and asking them to double check their link. The user is not redirected anywhere.
+Within the survey, the standard "Project Warnings" entry is generated as sign_fail.
+2.2: What the System Does
+Signing will verify the path and query part of a survey's URL (i.e., not the protocol/host), including the leading slash. For example, only the bolded part of the URL below would be verified during signing:
+http://v2.decipherinc.com/survey/selfserve/123/456?list=1&gender=male&source=12345678
+2.2.1: Initializing Signatures
+First, a key selector (_k) is appended to the signed path and query:
+http://v2.decipherinc.com/survey/sel...urce=12345678&_k=123
+Once the key selector is added, the path and query portion of the URL (including the key selector) is hashed with the shared key using HMAC-SHA1, and then saved in a new variable (_s), which is appended directly after the key selector. The hashed value is encoded as base 16.
+For example, given the URL above with key selector 123, the output would be:
+http://v2.decipherinc.com/survey/sel...2345678&_k=123&_s=c133dd7805f142fd69bca86eac16928807051270
+2.2.2: Verifying Signatures
+The path and query of the URL must validate to the same value as the content of the _s variable, by the signing key identified by the _k variable.
+Inbound Links
+The incoming URL must have exactly this format to be valid:
+/survey/something?any=var&_k=<numeric id>&_s=<exactly chars in 0-9 a-f>
+Thus the _k and _s parameters must be the very last parameters in the URL exactly in that order. No additional parameters must appear after them.
+Note: If the survey is not live, or if you are logged in for testing, no signature validation is required; you will see a warning if the signature is missing or does not match.
+If there is no existing ?query=string in the URL, a ? is added before appending &_k=.
+Outbound links
+If a sample source requests outgoing signed links then all outgoing exit links are parsed and signed. This includes links using timeout but excludes suspendExternal and <suspend ur=...> functionality.
+For outgoing links, the first key in the keyring is always used.
+4: Additional Considerations and Limitations
+The Survey Summary and Campaign Manager tools will not reflect signed inbound links, nor will any other tools that automatically generate survey URLs.
+No special behaviour will occur in surveys that do not have at least one samplesource with link signing.
+Link signing will not be added automatically to any existing surveys. Any such links with extra _s and _k variables will have those variables ignored.
+Sample providers that opt into the signing may have their default Survey Editor sample sources modified to automatically enforce incoming and outgoing signing. This will then affect only new projects that insert that sample source.

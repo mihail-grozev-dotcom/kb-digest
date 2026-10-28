@@ -1,0 +1,44 @@
+Title: 144.13 Release Notes
+Release Date: May 19, 2020
+Release Version: 144.13
+Features
+Survey
+Survey Editor
+Updated the Word Importer with the following features and functionality:
+Custom labels will now be preserved within the importer.
+The visual contrast between question, instruction, and answer option text has been improved.
+The importer will now detect labels when they appear on their own line in the import file.
+Added a “Start Over” button, which allows users to restart their import at any time.
+Participant Sources
+Sample Marketplace
+Added Branded Surveys as a trusted partner and sample provider.
+Reporting
+Updated system reports to remove obsolete commands (e.g., /admin/qualified and /admin/disk).
+Dashboards
+Added new compatibility level (compat 5) to support Highcharts version 8.
+Programming & Tools
+API
+Added support for Python versions 2 and 3 to Decipher (previously Decipher)/ Beacon packages.
+Added an endpoint to schedule email sends for a campaign.
+Added an endpoint to retrieve information from the “Campaigns” tab of the Response Summary.
+Added API versioning to the Word Importer, making it easier to complete a synchronous deployment.
+Bug Fixes
+Survey
+Survey Editor
+Fixed an issue causing surveys to error out when UTF-8 content was passed through the survey title.
+Fixed an issue caused by the RelevantID demo survey using uses="relevantid.1" instead of uses="relevantid.2".
+Participant View
+Fixed an issue causing number values within Text and Text Area questions to appear as strings when testing a survey with QA tools enabled, and as integers when testing it in participant view.
+Reporting
+View/Edit Responses
+Fixed an issue causing “mismatched” data errors when attempting to disqualify participant responses for surveys with delphi="1".
+Crosstabs
+Fixed an issue preventing the export of reports to Excel if Japanese was selected as the application language.
+Data Downloads
+Fixed an error causing unseen response options to be sometimes recorded as zeroes instead of blanks within raw survey data.
+Fixed an issue causing errors when using bucketize scripts to download data containing values with dashes or non-integers.
+Programming & Tools
+API
+Improved UTF-8 encoding when uploading a survey.xml file and error handling when requesting validation while uploading survey files.
+Architecture/DevTools
+Fixed an issue causing some temp-edit-live survey copies to become inaccessible because they contained only survey.log system files.

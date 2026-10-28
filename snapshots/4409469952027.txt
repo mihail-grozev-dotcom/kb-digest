@@ -1,0 +1,75 @@
+Title: Randomly Assigning Concepts
+The Survey Editor allows you to assign and track concepts that appear randomly to participants. You also have the ability to save and use the logic conditions later in the survey. For instance, if a participant views concept B, you can show a group of questions that only apply to participants that were shown concept B. This method involves setting a quota for each group, so you also have the ability to control how many participants are shown each concept overall.
+Using this method along with the Loop element, you can also assign multiple randomly selected concepts, so that a participant sees, for example, three out of five concepts.
+Additionally, you have the option to randomly assign concepts using an advanced quota scheme.
+Click below to view a step-by-step guide for each assignment method:
+Randomly Assign a Single Concept
+Randomly Assign Multiple Concepts
+Randomly Assign Concepts Using Advanced Quotas
+Randomly Assign a Single Concept
+To assign a single concept to each participant, follow the steps below:
+Step 1: Add "randomly assign" quota
+Step 2: Add concepts and follow up questions
+Step 3: Add block element to each concept
+Step 4: Add logic condition for each block element
+Step 1: Add a "Randomly Assign" quota
+The quota element will allow you to randomly show a concept to participants, track which concept the participant viewed in the report, and create logic conditions based on which concept the participant viewed.
+First, select the "Quota" element under the "Logic Elements" section in the Element Library. Then click "Add".
+Add the quota title in the area provided. To add cells to the quota, click "Edit Quota".
+The quota editor window will appear. In the "Maximum Number of Respondents" field, enter a numeric value that will designate the maximum number of participants. Then click the "+row" button to add cells to the quota.
+Note: The asterisk (*) sets the limit to infinite, or "open quota".
+The "Quick Quotas" pop-up window will appear. Select "randomly assign quotas (+quotas)" from the drop-down menu, then add the quota groups that will be used to randomly assign the concepts as rows in the area provided. Enter each quota group on its own line. Click "OK" when you're done.
+The new quota groups will appear in the quota editor. If you wish to place a limit on the number of participants in each group, replace the asterisk (*) with a number for each quota group. The asterisk means the quota is infinite. Once the limits are set, click "Save."
+Once you are done setting up the quota groups, insert a page break by clicking the "Page Break" button below the element in the Survey Editor, then select "Add Survey Element" to begin setting up the concepts.
+Note: there should be a page break before and after the quota element you are adding.
+Step 2: Add Concepts and Follow-up Questions
+The number of concepts and follow-up questions will vary in a survey. The the following example, three concepts are shown, and each will have one follow-up question. Each concept will be added to the survey via a comment element. Note that the comment element does not have answer options so it does not appear in the report. The quota element will track which concept was viewed because there are logic conditions attached to the concepts based on the quota in step 4.
+Select the "Descriptive Content" element under the "Structural Elements" section in the Element Library. Then click "Add".
+A new comment element will appear in the staging area of the Survey Editor. Enter the concept text and / or image in the area provided. You may also add a page break, if desired. In the example, the concept and the first follow-up question should be shown on the same page, so there will not be a page break.
+The follow-up question will use a single select element. Select the element type in the Element Library and the element will appear in the staging area of the editor. Enter the question text and answer choices. At this point, you may add additional questions on the same page or a new page. In the example survey, users will move on to the next concept and select.
+Repeat the steps above for each concept. Once all of the concepts and their follow-up questions are in place, you are ready to add block elements to each.
+Step 3: Add a Block Element for Each Concept
+Block elements are a nice way to organize sections in a survey that appear together and use the same logic. You can use a block element to group the corresponding concept and follow-up question together. This will enable you to add a condition to each block in step 4 so the group shows to participants based on the quota. For additional information on adding block elements, see Block Element.
+Note: The block element must be placed before any questions that will be added to the block.
+To add a block element, select the "Block" element under the "Structural" elements section in the Element Library. Then click "Add".
+A new block element will appear in the staging area of the Survey Editor. Enter an appropriate title in the area provided. Then select the questions with the "add to block" option by clicking them. This will add them to the concept block. The block will add elements in descending order based on the question tree hierarchy. The next element that can be added will show the question label and text next to the "+" icon.
+Repeat the steps above for each concept group.
+Step 4: Conditionally Display Each Concept Block
+Now that the three concept blocks are set up, you will need to make sure that only the appropriate concept block is shown. To do that, select each block element and use the "Show If" menu to create an appropriate condition based on your quota assignment.
+Note: Because you are using Randomly Assigned Quotas, the conditions for each of your possible concept assignments are automatically created.
+Repeat the steps above for each concept group, and your setup is complete.
+Randomly Assign Multiple Concepts
+To assign multiple concepts to each participant, follow the steps below:
+Step 1: Add a "randomly assign" quota
+Step 1a: Adjust the maximum number of cells to assign for your quota
+Step 2: Add a single set of follow-up questions
+Step 3: Add a loop element to loop through possible concepts
+Step 4: Add logic to each piped variable in your loop
+Step 1: Add a “Randomly Assign” Quota
+The Quota element will allow you to randomly show a concept to participants, track which concept the participant viewed in the report, and create logic conditions based on which concept the participant viewed.
+First, select the "Quota" element under the "Logic Elements" section of the Element Library, then click "Add".
+Add the quota title in the area provided. To add cells to the quota, click "Edit Quota".
+The quota editor window will appear. In the "Maximum Number of Respondents" field, enter a numeric value that will designate the maximum number of participants.
+Note: The asterisk (*) sets the limit to infinite, or "open quota".
+Before adding your quota rows, adjust the “Maximum Number of Cells to Assign” field to the number of concepts you wish your participants to see. For this example, three out of a maximum of 5 concepts will be shown. Click the "+ Add Row" button to add cells to the quota.
+The "Quick Quotas" pop-up window will appear. Select "randomly assign quotas (+quotas)" from the drop-down menu, then add the quota groups that will be used to randomly assign the concepts as rows in the area provided. Enter each quota group on its own line. Click "OK" when you're done.
+The new quota groups will appear in the quota editor. If you wish to place a limit on the number of participants in each group, replace the asterisk (*) with a number for each quota group. The asterisk means the quota is infinite. Once the limits are set, click "Save".
+Step 2: Add Concepts and Follow-up Questions
+The number of concepts and follow-up questions will vary in a survey. In the following example, there will be five concepts, but only three of them will be shown to participants, as already specified in the quota element. In this example, there is just a single follow-up question, but it will be asked for each concept for which the participant qualified.
+The follow-up question will use a single-select element. Select the element type in the Element Library and the element will appear in the staging area of the editor.
+Enter the question text and answer choices. At this point, you may also add additional questions on the same page or a new page. In this example, the question text will dynamically change based on which part of the loop is displayed, so you will want to leave room for this in the question text. Rather than asking “Have you seen this concept ?” , you can ask “Have you seen ?” and add your dynamically assigned concept later.
+Step 3: Add the Concept Loop
+Note: See Loop Element to learn more about the Loop element.
+To ensure that your follow-up question will be asked as many times as necessary, you will need to add it in a Loop element. First, select the "Loop" element under the "Logic Elements" section of the Element Library, then click "Add".
+Next, you will want to modify your Loop element’s title to something more appropriate, and edit the piped variables section to include each of the five concepts you've created. This will create the five loops your follow-up question will go through when being asked to the participant.
+Opening the piped variables will bring up a new editor screen. For the “Loop Source” option, keep it as “Manual Input”. Next, give your piped variable a name. Rather than using “var1”, you may want to call the piped variable something like “concept”.
+Once these changes are made, use the "Add Row/Value" button to add a piped value for each concept you have. If done correctly, you should have five variables in total. After adding the variables, you must also specify the text that will be shown for each of your concepts.
+After setting up the piped concepts, you'll need to make sure that each of them is only shown if the quota assigned a participant to that concept. You can do this by modifying the "Condition" column for each piped variable.
+This will open the condition builder, which allows you to create a condition on when to show the follow-up question for each concept. Because you are using a randomly assigned quota, these conditions are automatically created for you in the conditions drop-down menu. Under the “named conditions” section, you will have a condition created based on the name of each of the concepts you created. Select the appropriate named condition for the concept you are editing, and click "Save".
+The below screenshot shows all conditions properly set-up:
+Step 4: Add the Follow-up Question to the Concept Loop
+Once the concept loop has been setup, you must add your follow-up question to it. To do this, use the “Add to loop” button in the “Loop elements” section of the staging area:
+The above process can be repeated to add as many follow-up elements as needed. Finally, go back to your question text and make sure that you are piping in the “concept” variable that you created earlier. When editing the question text, you can use the piping tool to select the newly created variable.
+Once the above steps are complete, your multiple concept assignment is ready to go!
+Randomly Assign Concepts Using Advanced Quotas
+See Adding Quotas Using the XML Editor to learn how to randomly assign concepts using advanced quotas.

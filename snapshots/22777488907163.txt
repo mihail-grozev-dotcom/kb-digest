@@ -1,0 +1,14 @@
+Title: Email Deliverability Changes FAQ
+Forsta will be adding one-click unsubscribe capabilities to the Email Campaign Manager due to changes announced by Google and Yahoo. Below are answers to some of our most frequently asked questions.
+What is changing?
+At the end of 2023, Google and Yahoo announced changes designed to keep their users safe and provide a better email experience. These changes enforce some common industry best practices as new requirements. None of Google and Yahoo’s requirements are new and have often been best practice recommendations for years. Details are available here: Google and Yahoo.
+What are the timelines?
+For Google, the timeline is summarized on Google's Email sender guidelines FAQ. One-click unsubscribe is required by June 1, 2024.
+For Yahoo, the timeline is summarized on Yahoo's An Update on Enforcing Email Standards. One-click unsubscribe is required starting June 2024.
+What is Decipher doing to accommodate these changes announced by Google and Yahoo?
+Forsta is in the process of implementing new one-click unsubscribe support. We will notify you of this capability as soon as it is available. This will be used with the existing Decipher unsubscribe capabilities. Once we have implemented the changes, we will provide instructions on how to conform to the new standards.
+What changes do I need to make to adhere to Google and Yahoo’s policy?
+Once the one-click unsubscribe capability is implemented, Forsta will provide the information on our Decipher knowledge base to guide you on making the changes needed to adhere to Google and Yahoo's policies.
+How do I set-up one click unsubscribe?
+If you use Email Campaigns to deploy email invites for your Decipher surveys, one-click unsubscribe will be automatically applied. You do not need to take any action.
+If you send emails with bulk, you will need to add some fields to the header of the invite. See Email Sends with Bulk.

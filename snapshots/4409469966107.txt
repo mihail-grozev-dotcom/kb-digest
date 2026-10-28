@@ -1,0 +1,26 @@
+Title: After Building and Testing Your Survey
+This article reviews the final steps before setting your survey live: exit text/links, launching your survey, and monitoring your process.
+So, you finished creating your survey and have tested it extensively. You are 100% sure the logic is working correctly… what now?
+Well, did that testing include exit links or exit text? If not, you need to make sure you set up the participant experience when they finish the survey.
+1: Modifying the Default Survey Completion Text
+By default, there is a set text for qualified, over-quota and terminated participants. If you do nothing and launch, you will get the default text (which says something like "Thank you for completing survey.")
+To modify the default text, navigate to the Participant Sources menu, click the Actions button for your survey link and click Edit. From the Survey Link page that appears, you can update the text shown to the participant when they complete the survey, or choose to send the user to an URL.
+Learn More: Participant Sources
+2: Customizing Your Exit Screens
+If you have more custom needs for your exit screens (for example, you want to include multiple options, pipe variables, or lock down by unique IDs), then you will want to setup these features using the Custom URL Variables section at the bottom of the Survey Link page. To find out more about adding pre-defined or custom entrance links or exit options, see Participant Sources.
+In all cases, you will want to be sure that your users are:
+Getting to the survey
+Collecting the proper info from the URL
+Leaving to the correct URL or text
+You should always test this flow through the survey before clicking the Launch Survey button.
+3: Launching a Survey
+Once you determine you are ready to collect sample, you can launch your survey via the Launch Survey button in the Response Summary or Survey Editor, or directly from the Portal using the survey Actions menu. Once you initiate survey launch, the system performs the following tasks:
+Re-checks your survey
+Looks for open or unresolved tasks in the test survey tool
+Verifies the participant source(s) are set up
+Checks the mobile settings
+Clears the test data
+Sets the survey live
+You will then have the option to review the report, Response Summary, or go back to the portal. These steps are covered in Launching a Survey.
+4: Monitoring Your Progress
+Once the survey is live and sample has been sent, you will want monitor your progress via the Response Summary and standard reports.

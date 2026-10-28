@@ -1,0 +1,24 @@
+Title: Testing Survey Translations
+Note: If you've never created a multi-language project, be sure to read the Guide to Programming Multi-Language Studies.
+1: Manually Test Translations
+Manually test your survey to ensure that all translations are uploaded properly, no English text is showing, and MLS logic is working properly.
+You can manually test your survey by selecting “Test Survey” under "Preview" in the navigation menu. This opens up the survey test environment, where you can select a language for the survey from the Language drop-down menu.
+You can also use the survey test environment to format the link for testing purposes.
+Learn More: Testing an Online Survey
+After configuring the test environment, you can select either “Show Participant View” or “Show Survey with Tools” to test your project. During testing, be sure to go through every page of the survey, looking for the following:
+Broken characters
+MLS Logic (is the proper question / answer option showing per language)
+Missing translations
+Custom Error messages
+Currency symbols (vary by country)
+Missing pipe text translations
+Repeat this process for each language in your survey.
+2: Running Simulated Data
+An important step in completing your project is running simulated data through your survey. The test data feature runs through a bug checking process developed to find potential errors in survey logic or survey flow. The test data process also allows thorough testing of the report to help verify that skips and question logic has been defined properly.
+You can access the test data feature by selecting “Run Simulated Data” under "Preview" in the navigation menu.
+From here, you can use the "Configure Test Simulation" option to set unique testing parameters for the survey, or click "Run Test Data" to run test data through the survey using default testing parameters. Next, troubleshoot and correct any presenting issues in order to launch the survey. Once all issues are resolved, you may continue to launch.
+Learn More: Making Changes to Translations for Multi-Language Studies
+2.1: Simulated Testing Tips for Multi-Language Surveys
+At least 31 qualified completes per each version of the survey are required (a green symbol will display once there are enough qualified completes).
+Once the final version of the survey has sufficient overall qualified completes and sufficient qualified completes per language, SST data can be cleared and the survey will still be considered ready for launch.
+Changing the data layout of the survey (such as adding a new element) requires new SST testing with the required number of overall and per-language completes, unless using Launch Options to skip SST checks.

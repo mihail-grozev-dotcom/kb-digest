@@ -1,0 +1,15 @@
+Title: Configuring Crosstab View Options
+After running a total frequency report in Crosstabs, you can access various report viewing options using the View Options menu. This document details the options available in the Crosstabs View Options menu.
+The View Options menu is located at the upper-left of the Crosstabs screen.
+1: Hiding Quality Assurance (QA) Codes
+Click to hide or display Quality Assurance (QA) codes in the Crosstabs report. QA codes are shown in green and signify a specific question type, question attribute, or survey attribute. See About QA Codes for a complete list and description of each QA code.
+In the example below, the QA code "RAD" is shown signifying a single select question. If Hide QA Codes is selected, this QA code will not be visible in the report.
+2: Hiding Tables with No Participants
+In some instances, a report might have tables with no data in them. Click to hide or display these empty data tables.
+In the example below, "Hide Tables with No Participants" is not selected so empty tables appear in the report.
+3: Hiding Download Data Values
+Click to hide or display the data values for response options in the crosstabs report.
+See Assigning Numerical Values to Answer Options for more information on viewing and changing response option data values.
+4: Hiding the Unweighted Total Count
+Note: Only available if weights have been added to the data.
+If weights have been added to the data, click to hide or display the unweighted total for each segment in the report.

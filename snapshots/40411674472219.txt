@@ -1,0 +1,17 @@
+Title: 154.3 Release Notes
+Release Date: August 26, 2025
+Release Version: 154.03
+New Features
+Survey
+Participant View
+An issue affecting open-end selections in accordion-style single-select questions has been resolved.
+Bug Fixes
+Portal
+An issue causing the survey duplication modal to show some underlying programming code, instead of the proper survey title, has been resolved.
+Programming and Tools
+API
+An error preventing deletion of library elements that are part of a template set has been resolved. Deletion of template sets of elements now includes deletion of child elements in that set, as expected.
+Custom Code Elements (Logic Nodes)
+An issue preventing the "Cint Secure Sample" element from working with encrypted keys has been resolved.
+Custom Code Elements (Research Defender Search and Review logic Nodes)
+This update adds additional debug logging for the Research Defender logic nodes. Also introduces optional verbose debug logging by setting the researchdefender_search:debug_level="1" or researchdefender_review:debug_level="1" attributes.

@@ -1,0 +1,91 @@
+Title: Dropdown Menu Question XML
+The Dropdown Menu element is a single select question type that enables participants to choose one response from a drop-down list of choices.
+The examples below demonstrate the different layouts available when working with Dropdown Menu questions.
+1: One-Dimensional
+A one-dimensional Dropdown Menu element requires only a single item to be selected.
+1.1: With Choices Only
+When only choice elements are provided, the drop-down menu appears directly beneath the question title.
+In this example, there are two choice elements and no row elements.
+Note: If you do not need a row legend, then you do not need to explicitly define a row element.
+XML:
+<select label="Q1">
+<title>Are you...</title>
+<comment>Please select one</comment>
+<choice label="ch1">Male</choice>
+<choice label="ch2">Female</choice>
+</select>
+1.2: With Choices and a Row Legend
+This example demonstrates the difference when a row element is provided. You now have the ability to specify text for a row legend.
+In this example, there are six choice elements and one row element. Only one selection can be selected for the "TV Size" row.
+XML:
+<select label="Q2">
+<title>
+In your household, how large is your primary TV?
+</title>
+<comment>Please select one</comment>
+<row label="r1">TV Size</row>
+<choice label="ch1">15" - 24"</choice>
+<choice label="ch2">25" - 34"</choice>
+<choice label="ch3">35" - 44"</choice>
+<choice label="ch4">45" - 54"</choice>
+<choice label="ch5">55" - 64"</choice>
+<choice label="ch6">Larger than 65"</choice>
+</select>
+2: Two-Dimensional
+A two-dimensional Dropdown Menu element has multiple rows or columns, requiring a single selection to be made per row or per column.
+2.1: With Choices and Columns
+When multiple choices and columns are specified, a selection must be made for each column.
+In this example, there are three choices and columns. The participant is asked to rate each item on a scale from 1 - 3. The attribute minRanks="3" means that the participant should rank at least three of the items. When minRanks is accommodated with the unique attribute, the Dropdown Menu element becomes an ideal candidate for ranking items. Because the attribute unique is set to "cols", the Dropdown Menu element must have a unique value for each column.
+XML:
+<select label="Q3" minRanks="3" unique="cols">
+<title>
+Please rate the following items, where 1 means it's your most favorite
+and 3 means it's your least favorite.
+</title>
+<comment>Please select one for each selection</comment>
+<col label="c1">Desktop Computers</col>
+<col label="c2">Tablet Computers</col>
+<col label="c3">Smartphones</col>
+<choice label="ch1">1</choice>
+<choice label="ch2">2</choice>
+<choice label="ch3">3</choice>
+</select>
+2.2: With Choices and Rows
+When multiple choices and rows are specified, a selection must be made for each row.
+This example is similar to the one above, but it does not include the attributes minRank or unique. A participant can select any of the options for any of the rows and provide duplicate responses.
+XML:
+<select label="Q4">
+<title>
+Please rate the following items, 1 means it's your most favorite and
+3 means it's your least favorite.
+</title>
+<comment>Please select one for each selection</comment>
+<row label="r1">Desktop Computers</row>
+<row label="r2">Tablet Computers</row>
+<row label="r3">Smartphones</row>
+<choice label="ch1">1</choice>
+<choice label="ch2">2</choice>
+<choice label="ch3">3</choice>
+</select>
+3: Three-Dimensional
+A three-dimensional Dropdown Menu element has multiple rows and columns, requiring multiple selections to be made for each row and column.
+3.1: With Choices, Columns, and Rows
+When multiple choices, rows, and columns are present, a selection must be made for each item available.
+In this example, there are three row and column elements with only two choices to select from. The participant needs to make nine selections in total.
+<select label="Q5">
+<title>
+Please tell us whether or not you have the following tasks in the given timeframe.
+</title>
+<comment>Please select one for each selection</comment>
+<row label="r1">Eaten Breakfast</row>
+<row label="r2">Eaten Lunch</row>
+<row label="r3">Eaten Dinner</row>
+<col label="c1">In the past 24 hours</col>
+<col label="c2">In the past week</col>
+<col label="c3">In the past month</col>
+<choice label="ch1">Yes</choice>
+<choice label="ch2">No</choice>
+</select>
+4: Learn More:
+Dropdown Menu Question Attributes
+Dropdown Menu Element

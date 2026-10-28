@@ -1,0 +1,23 @@
+Title: Mobile Email Optimization
+There are several considerations when designing emails for mobile. Probably the most important of these is that you cannot predict where a reader will open the email. Based on numbers released by Litmus in December 2012, 41% of email opens happened via mobile. This is nearly double the numbers shown a year prior, however, this still indicates that 59% are opened on a non-mobile device.
+1: Optimizing the Mobile Email Experience
+To account for this uncertainty, there are a few guidelines we can follow to help optimize the experience for our recipients.
+The first two are sticking to the basics:
+Know your readers
+Focus your subject
+Planning for mobile doesn’t change the fact that content needs to be engaging and the subject needs to be clear and concise and catch the reader’s interest. In fact, maintaining the readers interest is likely more difficult on mobile for the mere fact that they may be anywhere when reading their email; in a meeting, a cab, a lunch, in the bathroom, in bed, at the gym. The subject line may be the first defense from immediately going to the trash. When planning for mobile, the key subject hook should be within the first 35 characters to compensate for mobile email programs that truncate the subject line.
+Beyond the basics, there are additional ways to plan for mobile.
+1.1: Call to action
+A clear, concise message atop your email making it clear your intent will give the reader a chance to decide if they will invest any time with your content. It is easy to hit delete, archive or spam from a mobile device, so make sure your intent is clear from the start to engage them.
+1.2: Plan for no images
+Email programs have image filters and blocks allowing the reader to determine when/if they want to see images. It is increasingly likely images will be blocked on mobile device due to the bandwidth of downloading and showing the included images. Limit the effects on your message by using images sparingly and don’t solely depend on the image impact to convey your message.
+1.3: Fonts and layout
+Smaller screen means harder to read. Using larger fonts and a single column design will improve the user experience. The single column will reduce horizontal scrolling. Targeting larger fonts will further improve readability. Plan for a minimum 14px for standard content and 22px for headlines; also avoid difficult to read fonts.
+1.4: Scalable design
+When possible, use scalable containers, fonts and images in your invite. The underlying code will allow the dimensions of your email to appropriately resize and shape based on the available space of your device. Check the specs of your program or with your programmer and see if they use scalable CSS when creating the content of your email. If this is not possible, fall back on thinner widths within your invite. The goal is to reduce the amount of horizontal scrolling required.
+1.5: Buttons, links and landing pages
+Mobile devices opened us up to the realm of touch devices. Remember this when building your reader experience. Any buttons or links in your email should be easy to touch. Make sure clickable items are not too close together else the reader will become frustrated as they attempt to follow to the link of interest and do not forget to optimize the landing pages. You are spending the time to optimize their mobile email experience; expect they may follow the links you provide to browse further. Sending them to a site that is not mobile friendly does not help your cause.
+1. 6: Test and testing services
+The only way to ensure your reader’s experience is to actually experience it. Once you have created your invite, be sure to send to multiple devices. See how it looks on your laptop and smart phone. Most of us are limited on the number of devices that we have access to. If you want to expand this reach, look for a service that will take your code and do its best to provide screenshots of how the invite would render on various platforms.
+1.7: Template
+You have now spent a significant amount of time making sure you can reach as many readers as possible. Don’t waste it. Save your format to a template so you can now reuse with minimal effort in future sends.

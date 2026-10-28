@@ -1,0 +1,15 @@
+Title: 147.4 Release Notes
+Release Date: April 13, 2021
+Release Version: 147.4
+New Features
+Survey
+Upload System Files
+Added File Manager support for .svg, .eot, .ttf, .woff, and .woff2 file formats.
+Programming & Tools
+API
+Added the optional convertToTab parameter to the Upload/Replace File endpoint, allowing users to convert non-Excel files into tab-delimited .dat format on upload.
+Bug Fixes
+Survey
+Survey Editor
+Fixed an issue preventing data from being transferred to a duplicate survey when the original survey contained a very large data source.
+Fixed an issue causing some optional Number questions to force a response if a participant used the survey “Back” button to return to those questions later in the survey.

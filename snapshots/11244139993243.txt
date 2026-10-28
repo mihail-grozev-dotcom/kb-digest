@@ -1,0 +1,80 @@
+Title: Evaluating Recent Survey Performance
+The light server scoreboard page displays a table of the top 10 most intensive surveys in the last 4 hours and a table for the overall module performance. The top 10 surveys are identified by the total time it took for the survey to execute across all participants.
+Note: To review total survey performance instead, see Evaluating Survey Performance Over Time.
+1: Accessing the Light Scoreboard Page
+You can access the scoreboard for your server using the following URL, where your-server is your cloud server sub-domain:
+https://your-server.decipherinc.com/scoreboard/light
+For example, if your portal login page is located at: https://client.decipherinc.com/apps/portal, you would use this link to access the scoreboard:
+https://client.decipherinc.com/scoreboard/light
+If you need assistance locating your server scoreboard page, please contact Technical Support or your main Forsta contact.
+Note: To view this page, shell or staff user permissions are required.
+2: Viewing the Light Scoreboard
+The light scoreboard can be viewed as a "summary for all 4 hours" table or "broken down by hour" table.
+The Summary for all 4 Hours table shows the 10 most intensive surveys in the last four hours. These are the ten surveys that took the most amount of time across all participants during the four hours before the current time (i.e. if the time is 16:00, you will see data from 12:00 to 16:00).
+The Broken down by Hour table shows the four most intensive surveys during each of the last four hours. The same surveys may be shown in more than one of the four hour periods.
+The following fields are available for your review:
+Note: All times provided below are measured in milliseconds.
+period starting: When displaying the Broken down by Hour table, this field identifies which hour segment is being displayed.
+survey: Identifies the survey path.
+scaling: The maximum process scaling for the survey. If this value is not set explicitly in the survey, the default value of 4 is listed. Learn More: Viewing a Survey's Performance, Decipher Limits and Capacity
+CPUs: The average amount of computing cores used to display that survey. Different survey configurations have a different maximum number of CPU cores for all surveys.
+page views: The total number of pages viewed in the survey by all participants during the time period.
+avg page (ms): The average time to display a single survey page to a participant. Normally, this number is below 100ms. If the average render time is more than 500ms, this number is highlighted in red.
+avg queue (ms): The average time participants spend waiting for an available survey CPU. This number should be low. High numbers on a single survey indicate that survey is overloaded. High numbers on multiple surveys indicates the system is overloaded.
+Slowest 5% queue (ms): 5% of participants waited at least this many milliseconds. If the slowest 5% queue time is much greater than the average queue time, there may have been short-lived traffic issues.
+3: Overall Module Performance Scoreboard
+The second table is the Overall Module Performance scoreboard. This scoreboard shows the data for various reporting modules within Decipher. It can be viewed as a "summary for all 4 hours" table or "broken down by hour" table by using the same toggle link at the top of the page.
+The following fields are available for your review:
+module: Identifies module performance during the past 4 hours. Modules available for review are:
+API: performance of API calls
+Builder: performance of Survey Editor and XML Editor
+Other: performance of other modules
+Portal: performance of the Portal (viewing the list of projects)
+Report: performance of Crosstabs, Report, and Downloads
+Response: performance of the Response Summary page
+Script: performance of SST and similar
+Survey: performance of Data Collection
+View/Edit Response: performance of the View/Edit Responses page
+period starting: When displaying the Broken down by Hour table, this field identifies which hour segment is being displayed.
+CPUs: The average amount of computing cores used for this task.
+page views: The total number of pages viewed during the time period.
+avg display (ms): The average time to generate a response.
+avg queue (ms): The average time users spend waiting for a response.
+slowest 5% queue (ms): 5% of users waited at least this many milliseconds. If the slowest 5% queue time is much greater than the average queue time, there may have been short-lived traffic issues.
+unique surveys: Number of surveys where the module was used at least once during the last four hours.
+unique users: Number of logged-in users within this module during the last four hours.
+4: API Output
+Calling the misc/scoreboard resource endpoint will fetch the same date as above. Optional parameters are hours (default is 4) and end (end time; default is now). You can look at the past data, but the default scoreboard data retention is 7 days. Fetching non-current data will take additional time depending on system traffic.
+Two main keys are returned: surveys shows the survey data, and categories shows the per-module data.
+"surveys": [
+{
+"views": 979,
+"period": "2022-10-04T16:05:36Z",
+"routing95": 3720,
+"avg_cpu": 1107,
+"routing": 1466,
+"path": "selfserve/548/200523",
+"cpu": 0.3011286111111111
+},
+Note: The routing95 is the slowest 5% queue.
+"categories": [
+{
+"category": "api",
+"surveys": 99,
+"users": 23,
+"views": 1802,
+"period": "2022-10-04T16:05:36Z",
+"routing95": 6386,
+"avg_cpu": 4187,
+"routing": 2542,
+"cpu": 2.0956075
+},
+For the API, the category IDs shown will be:
+survey
+response (Response Summary)
+v/e (view/edit respondents)
+portal
+builder
+report (includes Crosstabs and Reporting 2010)
+api
+script (SST, copy-survey and other things run from the command line)

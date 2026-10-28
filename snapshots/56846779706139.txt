@@ -1,0 +1,21 @@
+Title: 155.7 Release Notes
+Release Date: October 6, 2026
+Release Version: 155.7
+New Features
+Portal
+Scripting Agent added. The Scripting Agent supports more question types and logic conditions than Word Importer. Contact Technical Support to enable the Scripting Agent.
+Learn more: Creating a Survey from a Word Document (Scripting Agent), Scripting Agent FAQ
+Responses
+Email Campaigns
+Open tracking can now be toggled via the Actions menu in the Email Campaign editor.
+Response Sumary
+A note has been added to the Campaigns tab, that the statistics can be affected by open tracking status. The new text includes a link to the relevant Knowledge Base article.
+Bug Fixes
+Survey
+Participant View
+An issue preventing participants from submitting valid answers to Rank Sort questions, including open-end rows, has been resolved.
+Reporting
+Crosstabs
+An issue affecting the zoom function in the Video Analyzer chart for Media Evaluator when the video exceeded 20 minutes has been resolved.
+Data Downloads
+The SAS Script download in Data Downloads no longer displays a page-not-found error.

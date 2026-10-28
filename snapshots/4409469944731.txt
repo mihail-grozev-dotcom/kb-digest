@@ -1,0 +1,73 @@
+Title: Forsta Plus CAPI Platform Overview
+As of April 22, 2022, the Forsta Plus CAPI mobile apps and platform are replacing the legacy Forsta Surveys CAPI mobile apps. Forsta Plus CAPI is a robust mobile interviewing platform, with apps on the Windows, Apple, and Google Play app stores.
+Forsta Plus CAPI enables the same advanced and sophisticated capabilities of online surveys for offline face-to-face fieldwork. Multimedia elements, complex survey logic, quota controls and multilingual interviewing are among the many capabilities.
+Other capabilities include:
+Responsive layouts
+Interviewer Productivity Reports with statistics
+Barcode/QR capture
+Offline Video and Image playing capabilities
+GPS capture
+Image, Video, and Audio captures
+App localization in 40+ languages
+Device Battery Level capture
+Support for long surveys (up to 1000 questions)
+No data storage limits (provided your device has storage space)
+Support for all question types (except database lookup)
+Encrypted surveys when uploading to Fortsa Plus (data is sent via https)
+(frequent) updates to the mobile apps
+App Whitelabeling
+Device Support
+Windows (10+)
+Android (6+)
+iOS (13+)
+With Forsta Plus CAPI, you can also:
+Pass variables between surveys
+Import sample data and assign records to specific interviewers
+Reassign interviews/records between interviewers
+Assign quotas to individual interviewers
+Test a survey without saving data
+Postpone a survey and restart it later
+Encrypt surveys at the device level (Android & Windows; iOS does this automatically)
+For more information about the Forsta Plus CAPI platform, please contact your Forsta account representative.
+Note: The Forsta Plus CAPI platform has replaced the legacy Surveys CAPI mobile apps. For more information, or to get started with Forsta Plus CAPI, contact your Forsta account representative.
+1: How Forsta Plus CAPI Works
+The Forsta Plus platform provides centralized control of face-to-face field work by allowing centralized distribution via the Internet of new and updated surveys to CAPI-enabled devices, and centralized sample management and communication with interviewers.
+Interviewers connect to the Internet before beginning field work to synchronize new or updated surveys and to receive instructions from their supervisor.
+During field work or on completion, interviewers can reconnect to synchronize response data with the Forsta Plus platform. Surveys and reports are designed and managed on the Forsta Plus platform using a web-based application, enabling organizations to choose the preferred method of mixed-mode data collection that best supports their particular business and/or methodology objectives.
+2: FAQ
+I have an app-only project on the legacy Forsta Surveys CAPI app. How will I be able to save my work?
+Any in-progress projects will still be accessible, and data can still be collected.
+Will I still be able to use the legacy Forsta Surveys CAPI app on/after April 22, 2022?
+Any in-progress surveys will not be affected. You will be unable to add the legacy Forsta Surveys CAPI mobile app to any new devices/accounts. Please contact your Forsta account representative if you need assistance beyond this.
+Will I still be able to bring my data from the legacy Forsta Surveys CAPI app back into my project?
+Yes, any in-progress projects will still be accessible, and data can still be collected.
+Will I still be able to use the Forsta Surveys CAPI browser offline mode after April 22, 2022?
+We recommend you use the Forsta Plus CAPI platform as we no longer offer support for the legacy Forsta Surveys CAPI browser offline mode.
+Can I move my current surveys directly into the improved Forsta Plus CAPI app?
+Please contact your Forsta account representative for information on moving in-progress surveys from the legacy Forsta Surveys CAPI app to the Forsta Plus CAPI app.
+Can I still use the legacy Forsta Surveys CAPI app after April 22, 2022?
+We recommend you use the Forsta Plus CAPI app starting April 22, 2022 as we will not offer support for the legacy Forsta Surveys CAPI app after April 22, 2022.
+Why are you making this change?
+The legacy Forsta Surveys CAPI app has limited functionality, and we want to offer a robust CAPI platform to customers who wish to use our CAPI mobile apps.
+What are the benefits of changing to the Forsta Plus CAPI app?
+The Forsta Plus CAPI app allows for longer surveys, no arbitrary storage limits, app support, device diagnostics, interviewer-based quotas, and interviewer productivity reports, among many other great features!
+What is the difference between the legacy Forsta Surveys CAPI app and the Forsta Plus CAPI app?
+A few key differences include:
+Forsta Plus CAPI app
+Legacy Forsta Surveys CAPI app
+User Interface in 42 languages
+User interface in 7 languages
+No data storage limits
+Limited to 2MB on iOS / 5MB on Android
+Apps for Windows, Apple, and Android devices
+Apps for only Apple and Android devices
+Ability to define interviewer-based quotas
+Cannot define quotas based on interviewer
+Interviewer Productivity Reports
+Does not have
+Barcode / QR capture
+Does not have
+Can I have multilingual surveys in Forsta Plus CAPI?
+Yes. While the CAPI app is only localized into 42 languages, the survey itself can be translated into any language you desire. The Forsta Plus Survey platform currently supports over 250 languages, including languages that read right-to-left.
+I would like to have my interviewers show respondents a video advertisement during the interview. Is that possible?
+Yes! Forsta Plus CAPI supports multimedia elements, such as videos and images, in offline mode. Multimedia will be downloaded to the CAPI-enabled device when the survey is downloaded.

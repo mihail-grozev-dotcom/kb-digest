@@ -1,0 +1,43 @@
+Title: Cell Grouping
+Question elements can be grouped by rows or columns. The grouping controls the dimensions of the question and how the selections are processed. If grouped by columns, the selections made are based on each column. If grouped by rows, the selections made are based per row.
+1: The grouping Attribute
+The attribute, grouping, controls the grouping for all question types. Whether it's a <radio>, <checkbox>, <select>, <number> or <text> question, you may control the grouping by specifying grouping="rows" or grouping="cols" in the question tag.
+Grouping is updated automatically depending on the dimensions of the question. If only <row> elements exist, then the question is grouped by columns. If only <col> elements exist, then the question is grouped by rows. If both <col> and <row> elements exist, the question is grouped by rows.
+Use the grouping attribute to override the default grouping depending on the data you're collecting.
+2: Examples
+Consider the following <radio> question with a few <row> items to select from:
+<radio label="Q1">
+<title>Please select one.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+Since only <row> items exist, the question above is grouped by columns. This means that a selection must be made for each column. In this example, there is just one implicit column.
+If we update the grouping to grouping="rows", the question will force a selection on a per-row basis, meaning we must make a selection for each row.
+<radio label="Q1" grouping="rows">
+<title>Please select one.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</radio>
+The system was correct to assume that we wanted the question grouped by columns. As shown below, it would not make sense to group this question by rows.
+Now, consider the following <checkbox> question with a few <row> and <col> elements.
+<checkbox label="Q1" atleast="1">
+<title>
+For each type, which brands do you think of?
+</title>
+<col label="c1">Brand 1</col>
+<col label="c2">Brand 2</col>
+<col label="c3">Brand 3</col>
+<row label="r1">Type 1</row>
+<row label="r2">Type 2</row>
+<row label="r3">Type 3</row>
+</checkbox>
+This question has both <col> and <row> elements, so by default, it is grouped by rows. Here's what the error would look like if we failed to select atleast="1" selections in each row:
+Updating the group to grouping="cols" produces the following error instead:
+<checkbox label="Q1" atleast="1" grouping="cols">
+Since we updated the grouping, the question, "For each type, which brands do you think of?", isn't logical considering that we do not need to provide an answer for each row. Since it's grouped by columns, the question we're collecting data on is more like: "For each brand, which types do you think of?".
+Sometimes it's necessary to override the default grouping depending on the data you're collecting.
+When adding an exclusive "None of the above" selection, the exclusive option belongs as a <row> element if grouped by columns and as a <col> element if grouped by rows.
+4: Learn More
+Question Attributes

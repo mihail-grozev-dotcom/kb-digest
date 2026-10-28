@@ -1,0 +1,83 @@
+Title: Element Attributes
+1: Element Attributes
+All question and control elements inherit the following attributes from the element class:
+Attribute
+Type
+Default
+Description
+disabled
+bool
+0
+Disable and hide the element in the survey
+randomize
+bool
+0
+Shuffle the element within a <block> tag
+style
+string
+--
+Alternative search path for styles
+where
+set
+survey,report
+Determines where the element should appear (execute,notdp,none,summary,survey,report,data)
+alt
+string
+--
+Alternative <title> text is displayed in the report
+label
+string
+--
+Symbolic name that can be used as a target and in Python expressions (must be a valid Python identifier)
+altlabel
+string
+--
+Alternative label to be used everywhere except from within the survey XML
+translateable
+bool
+1
+Exclude text from translation file
+id
+string
+--
+Unique ID of the element (used by the survey editor)
+sst
+bool
+1
+Determines whether simulated data should try to understand and/or populate the element
+disabled
+The disabled attribute toggles whether or not an element should be displayed in the participant view of the survey. When set to 1, the element will not appear in the survey.
+randomize
+The <block> element has an attribute named randomizeChildren. When this attribute is set to 1, its child elements will be randomized. If randomize="0" is set on any of these child elements, they will not be randomized. Also note that if you have inception <block> elements (a block within a block), you may set the randomize attribute on any of the inner <block> elements.
+style
+The style attribute is used to display or reconfigure additional components for the element it is associated with. Using the styles and nstyles files, the system will look for additional components prefixed with the value of the style attribute. For example, style="tinyTable" will inform the system that it needs to load styles from the styles/nstyles files prefixed with "*tinyTable/".
+where
+The where attribute is used to control where the element should appear. By default, this attribute is set to where="survey,report". This means that the element will appear survey-side, in the report, and in the data downloads. The where attribute can be set to a comma-separated list of survey, report, summary, data, execute, none or notdp. The table below describes what each of these values do:
+Value
+Description
+survey
+The element will appear in the participant view of the survey
+report
+The element will appear in the report and in the data downloads
+summary
+This can only be used in association with a <group> or <net> element. If set, it produces an additional summary table for these elements.
+data
+The element will appear in the data and will appear in all data downloads
+execute
+The element will appear in the survey, but not within the participant view
+none
+The element will not appear in the survey, report, nor the data downloads
+notdp
+The element will not appear in the data downloads
+alt
+The alt attribute allows you to specify an alternative short text for the element. If the element contains a title attribute, the alt attribute will override this text in the report and data downloads.
+label
+The label attribute is the symbolic name for the element. The system uses the label as the target when performing various Python-related functions. A label must be a valid Python identifier.
+altlabel
+The altlabel attribute is an alternative label that will be displayed in all other areas except from within the survey. This can be used for recoding or relabeling data.
+translateable
+The translateable attribute enables you to exclude elements from the translation file. When translateable="0" is set, the element will not appear within the translation file and will not get translated by the system.
+id
+The id attribute is used by the Decipher survey variable to uniquely identify each element.
+sst
+The sst attribute enables you to prevent the survey stress tester from testing the element. When sst="0" is set, the simulated data system will ignore the element.

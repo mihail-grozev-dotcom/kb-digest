@@ -1,0 +1,15 @@
+Title: 153.43 Release Notes
+Release Date: October 22, 2024
+Release Version: 153.43
+New Feature
+Survey
+Language Manager
+Six additional English (Generic) language options are now available.
+Bug Fixes
+Responses
+Project Warnings
+Users with edit permission for a survey in a different company can now view Project Warnings for that survey.
+Participant Sources
+An issue affecting the use of custom exit links for Sample Providers utilizing an S2S configuration has been resolved.
+Campaign Manager
+Sends from Campaign Manager and bulk no longer fail when a Reply-To address is not supplied.

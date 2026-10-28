@@ -1,0 +1,72 @@
+Title: Importing Data Using the View / Edit Responses Report
+The Import Data function in the View / Edit Responses report allows you to perform advanced data alteration within Decipher, including appending data, adding participants, and / or modifying record data.
+Note: To be imported, external data must be provided in .xls or .xlsx format and be structured similarly to a raw Crosstabs export.
+1: Preparing the Source File
+Before you can import data from an external source, you must ensure that your data file meets the following requirements:
+Contains at least the survey's unique identifier variable (key variable), and one participant record.
+Includes any changing participant data, survey variables, and new variables.
+Uses data values. When importing data, text responses are interpreted as open-end responses.
+Contains data in every row (no empty rows).
+All data must be uploaded using an Excel file with the following format, where participant data is listed vertically and survey variables are listed horizontally:
+Note: The uploader is case-sensitive and does not accept spaces in the header labels.
+While the names of any variables with changed user data in your source file should match the names of corresponding variables in your target survey, you do not need to include the entire data set in your source file. Conversely, if you import a variable with all its data deleted in the Excel file, you will overwrite any existing data for that variable with blanks.
+Note: Virtual questions and quota tables will not be available for import via the Data Importer.
+Tip: To save file upload time, we recommend importing only the variables that will be changed, along with participants' unique identifier (key) variables.
+If you would like to import data from another Decipher project, use a raw data export from Crosstabs. See Download Data in Crosstabs to learn more about downloading raw survey data.
+2: Uploading the Source File
+Once you have prepared your data file, navigate to the View / Edit Responses report for your target survey. From the navigation bar, click Responses, then select View / Edit Responses.
+In the View / Edit Responses report, click Import Data at the top right.
+Note: Users must have at least Edit: Data and Edit: Survey permissions to import data.
+Then click "Choose a File" and locate the desired file. Once selected, both the filename and size will be displayed in the upload menu for confirmation. If everything looks good, click Load Data File to start the upload.
+You can also click the "x" next to the file name or Cancel to abort the process and select another file.
+3: Modifying the Source Data
+Once you have successfully uploaded your data file, you will automatically be redirected to the Data Importer page, where a table containing your imported variables is visible. There are a variety of data modification options available within the Data Importer. See below for a quick description of each of its tools and features.
+1. File Name: The name of the file selected for import.
+2. Key Variable: The unique identification variable used for matching records between data sets. Click to select a variable from the drop-down menu.
+Tip: Do not use record as your "Key" variable, as this variable is unique to each survey completion attempt rather than to each participant.
+3. View Project Datamap: The current datamap for the project.
+4. Import Data: Click to import the data into the survey. This button is disabled by default, and will only be enabled once a key variable is selected and all import warnings are resolved.
+5. Selected: The total number of the variables you have selected for import.
+6. Selection options: Select Include or Exclude to include or exclude the selected variables for import.
+Note: You do not need to select variables to include them for import. Any variables that are not excluded will be automatically included for import. The Include selection option is primarily used to include a variable that was previously excluded.
+7. Select All: Check this box to select all variables for import.
+8. Imported Variable: The name of each variable present in the source file.
+9. Project Variable: The name of each variable present in the survey. By default, this is set to any matching variables that exist in the target survey. Click the drop-down box for any variable to select a different variable.
+Note: The Project Variable column respects alt labels.
+10. Question Text: The text matching the survey if the imported variable matches a project variable or if there is no match for the variable text.
+Note: Question text is editable for any variables created using the Create New function in the Question Type column.
+11. Question Type The variable's question type, as identified in the source file. To select a different question type, click the drop-down box and select from the list. If none of the listed question types are applicable, select Create New to create a custom question type.
+12. Data Values: Displays the data values available for each variable. Hover over any data value to see its pre-mapped definition.
+3.1: Resolving Warning Messages
+Warnings for mismatched data types, duplicate names, and missing variable names are visible in red and prevent data file import. The Import Data button is only enabled once a key variable is set and all errors have been resolved.
+To resolve errors displayed for your data file, you may change variable names, adjust how imported and project variables are paired, and / or choose to exclude specific variables from being imported.
+Tip: If you cannot sufficiently correct all errors using the options above, cancel your import and re-upload your file with any edits already applied in Excel.
+3.2: Identifying a Key Variable
+To successfully import data using the Data Importer, ensure that you have an identification variable to match your imported data to your survey data. This variable is known as a "Key" variable and its value should be unique for each participant and match their records within both the imported data file and survey data.
+Tip: Do not use record as your "Key" variable, as this variable is unique to each survey completion attempt rather than to each participant.
+To select a "Key" variable, click the Key Variable box and choose from the drop-down menu.
+In order for the import to be successful, the "Key" variable you choose must be present in both the imported data file and the survey.
+Note: If you are using a custom file, add a "Key" variable to your source file by inserting a new column with your "Key" variable’s name as the header. Then list each participant's unique code in that column.
+A key symbol appears to the right of the variable chosen as the "Key" variable.
+3.3: Applying Selection Options
+The selection options at the top of the Data Importer allow you to choose whether to include or exclude the selected variables from your import. To apply a selection option, click either Include or Exclude at the top.
+Note: You do not need to select variables to include them for import. Any variables that are not excluded will be automatically included for import. The Include selection option is primarily used to include a variable that was previously excluded.
+To select a variable to be included or excluded, check the box next to its name.
+Additionally, you can check the box at the top of the table to select all variables for import or exclusion.
+3.4: Editing Variable Data
+The Data Importer handles variables according to the following conditions:
+Variables matching existing survey variables are paired.
+Variables not matching existing survey variables create new variables in the survey.
+3.4.1: Remapping Variables
+To map a variable from the source file to a different variable within the target survey, click the box for that variable under Project Variable and select another variable name from the drop-down menu.
+3.4.2: Creating New Variables
+You can only change variable names for newly created variables. To change a variable name, click the box for that variable under Project Variable and select Create New from the drop-down menu.
+Then click the text in blue under Question Text.
+In the Edit Variable Info window, enter a new label and question text for your variable and click Save.
+3.4.3: Setting the Question Type for a New Variable
+Once you have created a new variable, you can then also change its question type. To change a variable's question type, click the box for that variable under Question Type and select a new type from the drop-down menu.
+4: Importing the Modified Data
+Once you are satisfied with any changes and all error messages have been resolved, you can import your data to the survey by clicking Import Data.
+It is important to ensure that all of your data changes are correct and complete before importing any data, as there is no option to undo or redo imports once they are applied. Additionally, the following conditions apply to all data imports:
+Any imported participant with a "Key" variable matching a survey participant's will have their new variables appended and existing variables overwritten.
+Any imported participant without a matching "Key" variable will be created as a new survey participant.

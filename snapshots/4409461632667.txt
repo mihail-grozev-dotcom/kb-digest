@@ -1,0 +1,499 @@
+Title: Enhancing a Dashboard with Add-ons and Extensions
+You can add functionality and components to your dashboard using add-ons and dynamic extensions with JavaScript and HTML.
+1: Dashboard Add-ons
+Additional components/functionality can be included in your dashboard by adding the uses attribute in your dashboard script. These customizations enable you to create and include additional JavaScript functionality to produce some stunning dashboard add-ons.
+1.1: Including OE Data in Charts
+Open-ended data can be made visible for any chart type using the OEDrilldown add-on.
+For example, given the following two survey questions that include OE data:
+<radio label="Q1" optional="0">
+<title>Which item do you prefer?</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4" open="1" openSize="25">Other (Please specify:)</row>
+</radio>
+<suspend/>
+<text label="Q2" optional="0">
+<title>How do you feel about each item below?</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4" cond="Q1.r4">${Q1.r4.open or "Other"}</row>
+</text>
+As shown below, you can include the OE data for Q1 and Q2 by specifying uses="OEDrilldown" in your chart and including the appropriate data.
+chart
+uses OEDrilldown
+type column
+row Q1.r1
+row Q1.r2
+row Q1.r3
+row oe=Q1.r4.open Q1.r4
+chart
+uses OEDrilldown
+row oe=Q2.r1.val Q2.r1
+row oe=Q2.r2.val Q2.r2
+row oe=Q2.r3.val Q2.r3
+row oe=Q2.r4.val Q2.r4 "Other"
+The code above makes each chart element clickable to reveal the associated open-ended data. Clicking the "Other (Please specify:)" column element in the first chart produces the following Open End Responses table.
+1.2: Drilling Down on a Table
+The Responses Report opens for a cell on any table using TableDrilldown. When you click a cell to view the responses report, it displays the participants that were a part of the cell. For example, if you click a cell that shows 12, the view responses report opens to shows the 12 participants from that cell.
+Note: When implementing the TableDrilldown add-on, be sure that the dashboard's compat is set to level 2+.
+Example
+Table TableDrillDown Example
+uses TableDrilldown
+row q1.r1 USA
+row q1.r6 Oklahoma
+row q1.r2 Cleveland area
+row q1.r3 McClain area
+row q1.r4 Haskell area
+row q1.r9 Texas
+Using TableDrilldown, in this example, creates a table with links to the view responses report.
+Note: To access these links, the viewer must have reporting permissions.
+1.3: Viewing the NPS
+There are two methods for viewing the Net Promoter Score (NPS) for your dashboard, each with its own unique chart display and setup procedures.
+NPS Slider Chart: Adds a separate slider chart for each data segment. Use of this chart requires a dashboard compat level of 4+.
+Legacy NPS Chart: Adds a single bar chart containing all segments displayed side-by-side.
+The following sections outline the steps for creating each type of NPS chart.
+1.3.1: Adding an NPS Slider Chart
+Note: When specifying to view the NPS statistic add-on, make sure that the dashboard's compat level is set to 4+.
+To display the NPS Slider chart, specify uses NPSSlider. You must identify the rows that represent Detractor, Passive, and Promoter and in that exact order. Additionally, you must also use transpose and chart stacking as shown in the example below.
+Note: To display the base for the NPS statistic, set chart.data to "count" or set showbase 1.
+Example
+page Overall NPS Score
+chart id=db-1 NPS Score
+uses NPSSlider
+filter.local id=db-2 "Q1.all"
+row "Q1.r1.val < 7" "Detractor"
+row "Q1.r1.val >= 7 and Q1.r1.val < 9" "Passive"
+row "Q1.r1.val >= 9" "Promoter" transposepage Segmented by Customer Experience
+chart id=db-3 NPS Score by Segment
+uses NPSSlider
+filter.local id=db-4 "Q1.all and Q2.all"
+row "Q1.r1.val < 7" "Detractor"
+row "Q1.r1.val >= 7 and Q1.r1.val < 9" "Passive"
+row "Q1.r1.val >= 9" "Promoter" transpose
+banner.local
+segment "Q2.r1"
+segment "Q2.r3"
+segment "Q2.r4"page Overall and Segmented
+chart id=db-5 NPS Score by Segment
+uses NPSSlider
+filter.local id=db-6 "Q1.all and Q2.all"
+row "Q1.r1.val < 7" "Detractor"
+row "Q1.r1.val >= 7 and Q1.r1.val < 9" "Passive"
+row "Q1.r1.val >= 9" "Promoter" transpose
+banner.local
+segment "Q2.all" Total
+segment "Q2.r1"
+segment "Q2.r3"
+segment "Q2.r4"
+The above example creates the following chart displaying the NPS statistic.
+1.3.2: Adding a Legacy NPS Chart
+Note: When specifying to view the NPS statistic add-on, make sure that the dashboard's compat is set to level 2 or higher.
+To display the Legacy NPS chart, specify uses NPS. You can specify uses NPS to create a column or bar chart that displays the Net Promoter Score (NPS) statistic.
+To display the NPS you must identify the rows that represent Detractor, Passive, and Promoter and in that exact order. Additionally, you must also use transpose and chart stacking as shown in the example below.
+Note: To display the base for the NPS statistic, set chart.data to "count" or set
+"showbase 1".
+Example
+chart "NPS Statistic Sortable"
+uses NPS #identifies this chart as NPS
+type column #can be bar or column
+sortable 1
+chartopt yAxis.stackLabels.y -20 #adjusts the height of the NPS label
+chartopt plotOptions.series.stacking normal #required: enables chart stacking.
+# The (Detractor/Passive/Promoter) rows must follow this exact order:
+row "q3_1.r1 or q3_1.r2 or q3_1.r3 or q3_1.r4 or q3_1.r5 or q3_1.r6 or q3_1.r7" "Detractor"
+row "q3_1.r8 or q3_1.r9" "Passive"
+row "q3_1.r10 or q3_1.r11" "Promoter"
+transpose #required
+banner.local
+segment "q1.r6" "First Direct"
+segment "q1.r9" "Nationwide"
+segment "q1.r11" "Post Office"
+segment "q1.r12" "Royal Bank of Scotland"
+The above example creates the following chart displaying the NPS statistic.
+1.4: Creating a Table of Open End Responses
+You can now create a table of open end responses with uses OE. If you optionally add
+respview 1, each response links to that participant's full response page. You can specify either open end questions or rows by the following:
+rows q4 # for open end question without rows
+rows q3.r1-r3 # for open end questions with rows
+rows q3.r98.open # for question rows with open="1" attributes on them
+Note: To access these links, the viewer must have reporting permissions.
+Additionally, this table includes a search bar so you can enter text and search through the responses.
+Note: Any empty, single character, or ‘nan’ responses are not included in this table.
+Example
+table "Open End Example"
+uses OE
+respview 1
+rows q4
+The above example code creates the following table.
+Note: When using a filter, a maximum of 100 open end responses will load in a dashboard.
+1.4.1: Open End Responses Options
+You can use the following attributes to specify the responses to display in the Open End Responses table:
+oe.random X - random open end responses
+oe.first X - first open end responses received
+oe.last X - last open end responses received
+Where X indicates the number of responses to include.
+Examples
+table "Show random 100 responses"
+uses OE
+oe.random 100
+oq4
+table "Show first 50 responses"
+uses OE
+oe.first 50
+oq4
+table "Show last 50 responses"
+uses OE
+oe.last 50
+oq4
+Notes:
+Changing filters and splits will re-fetch and re-shuffle responses when using oe.random.
+With oe.first and oe.last, the responses are ordered by the questions and or rows shown. For example, if you include open ends q1 and q2.r1, the responses returned are in the following order:
+participant 1 q1 answer
+participant 1 q2.r1 answer
+participant 2 q1 answer
+participant 2 q2.r1 answer
+participant 3 q1 answer
+...
+1.5: Creating a WordCloud
+You can turn any “Open End” add-on into a word cloud with uses WordCloud. This add-on uses the same setup and options as the Open Ends add-on.
+Note: Word clouds cannot be exported.
+By default, the add-on displays the top 50 frequently used words among all the responses. However, you can set this number using cloud.show X where X is the number of words to display in the cloud.
+You can specify either open end questions or rows for the WordCloud by the following:
+rows q4 # for open end question without rows
+rows q3.r1-r3 # for open end questions with rows
+Note: Depending on the size of the WordCloud and the number of words shown, some words can be cut off or hidden. It is recommended to size the WordCloud to accommodate the number of words displayed.
+These frequently used words below are not included in the WordCloud but you can still search for these responses if you type them into the search box.
+a
+about
+all
+also
+an
+and
+any
+are
+as
+at
+be
+because
+been
+but
+by
+can
+come
+could
+day
+do
+even
+for
+from
+get
+give
+go
+have
+he
+her
+him
+his
+how
+i
+if
+in
+into
+is
+it
+its
+just
+like
+make
+me
+most
+no
+of
+on
+or
+other
+our
+out
+over
+say
+see
+she
+so
+some
+than
+that
+the
+their
+them
+then
+there
+these
+they
+think
+this
+to
+us
+use
+want
+was
+we
+well
+were
+what
+when
+which
+who
+will
+with
+would
+you
+your
+Note: Any empty, single character, or ‘nan’ responses are not included in the WordCloud. This should be considered when including an open end question that has single word or character response (such as a number question) in a WordCloud.
+Example
+The following example creates a WordCloud of the top 25 words participants used for their answers for q4 (an open end question without rows).
+table "WordCloud (w/response links)"
+uses WordCloud
+cloud.show 25
+respview 1
+rows q4
+The code above creates a WordCloud shown below. The font size of a word indicates the usage frequency of the word in the responses. You can click one or more words to add them to the search box to search through the responses. Words added to the search box display in black font in the WordCloud.
+This action opens the table of responses with the search results displayed. The count of search matches the display below the table. If respview=1, you can drill down to the individual response report from the table of responses.
+Note: To access these links, the viewer must have reporting permissions.
+Note: When multiple words are added to the search box, a boolean "AND" search is performed.
+1.5.1: Open End Responses Options
+You can use the following attributes to specify the open end responses used to create the WordCloud.
+oe.random X - based on random open end responses
+oe.first X - based on first received responses
+oe.last X - based last received responses
+Where X indicates the number of open end responses .
+Examples
+table "WordCloud based on random 100 responses"
+uses WordCloud
+cloud.show 25
+oe.random 100
+oq4
+table "WordCloud based on first 50 responses"
+uses WordCloud
+cloud.show 25
+oe.first 50
+oq4
+table "WordCloud based on last 50 responses"
+uses WordCloud
+cloud.show 25
+oe.last 50
+oq4
+Notes:
+Word weighting in a WordCloud reflects only the X responses
+Word filtering operates as usual
+1.5.2: Specifying Filtered Words
+You can specify a string of words to exclude from a word cloud using the cloud.filter option. The word cloud will not include the list of words that follow this option (space-delimited) . Any letter casing, commas, and single/double quotes in the word list are ignored. However, to filter a word that contains a single-quote, place the word in double-quotes ("that's").
+Example
+Table width=6 "Filtered Cloud"
+Uses WordCloud
+respview 1
+cloud.filter publishers peaking systolic found fall "Old"
+rows q6
+1.5.3: Applying a Color Scheme
+You can apply a color scheme to a word cloud using the cloud.palette option. You can specify up to 10 colors (in six hexadecimal character format). The colors are applied to the most frequent used words to the least. For example, first color given is applied to the center word (most frequently used). Currently, there is no option to change the hover color or the selected word color.
+Unlike the standard palette where a new color is usually started for a separate segment (i.e., row or split) and then the colors are repeated from the beginning when another color is needed, a word cloud does not repeat colors from the beginning and continues to use the same color when an additional color is not specified. As a result, you may want to specify the maximum number of colors (10).
+Example
+table width=6 "Word Cloud with Color Scheme"
+uses WordCloud
+cloud.show 50
+rows q1
+cloud.palette ff0000 00ff00
+1.5.4: Showing Phrases
+The word cloud add-on now has the ability to show phrases in the cloud by using the cloud.phrases option.
+Words specified using a comma-separated list are grouped together and counted as a single instance in the word cloud.
+Example
+Chart id=db-1 "Word Phrases"
+uses WordCloud
+cloud.phrases Coca Cola, Pepsi Cola
+rows q1
+In the usage case above, the specified words are counted as a single phrase in the word cloud. "Cola" still appears as its own word if it exists on its own (without "Pepsi" or "Coca" preceding it).
+1.6: Custom Data Layout for Responses Report
+When drilling down to view the Responses report, you can apply a predefined custom data layout for the report. This applies for the following add-ons:
+uses TableDrillDown
+uses OE
+uses WordCloud
+To apply a predefined layout, add data.layout <layout id> to the dashboard where <layout id> is the predefined layout number.
+To identify the number for a predefined layout, use the API call /surveys/{survey}/layouts?select=description,id to return a list of the layout names and id numbers associated with that survey.
+Note: The Data Downloads page only displays the name of the data layout.
+1.7: Displaying a Floating Table Above a Chart
+While there is no restriction on the type of chart you use with FloatTable, it displays best on column and line charts.
+You can display a floating table above an existing chart that shows the net rows. You specify this add-on with uses FloatTable. The following guidelines apply when using FloatTable:
+The net keyword accepts a number, stats, and formula
+When specifying a count with the net keyword, the calculation is performed only on the number of rows specified.
+When no number (or stat/formula) is supplied for the net keyword, ALL rows are used in the calculation, by default.
+To specify which datapoint to display, use stats=
+To specify a formula to display use stats=formula and formula=<formula definition> See Customizing Dashboard Data for more information about customizing data calculations.
+To specify a postfix string use datapostfix=. See Customizing Dashboard Data for more information about using postfix strings.
+Example: Net with Count
+chart width=6 "Default NET, No styling"
+type column
+uses FloatTable
+chartopt plotOptions.series.stacking normal
+net 2 "Top 2 NET"
+rows q3.c1-c5
+transpose
+banner.local
+segments q1.r1-r5
+Note: As seen in the example above, use the keyword transpose when adding local groups.
+Example: Top 2 with additional stats
+chart "Top 2 w/other stats"
+type column
+uses FloatTable
+chartopt plotOptions.series.stacking normal
+palette 03AA0E 04EA10 FF8C8C FF0000
+chartopt yAxis.margin 25
+chartopt yAxis.labels.enabled false
+chartopt yAxis.lineWidth 0
+chartopt chart.marginTop 100
+chartopt chart.marginLeft 50
+stats.prec 0
+net 2 "Top 2 NET"
+net stats.prec=4 datapostfix='' stats=formula formula=mean/5 "Avg Mean"
+net pct=4 datapostfix='' stats=formula formula=mean "Total Mean"
+rows q3.c1-c5
+transpose
+banner.local
+segments q1.r1-r5
+Note: As seen in the above example, the top and left margins were adjusted due to the extra number of table rows added using chart.marginTop and chartopt chart.marginLeft.
+2: Dynamic Dashboard HTML Extensions
+The dynamic dashboard extension system allows you to add more data, value and information to your dashboard. You can use dynamic extensions to add the following information to a dashboard's html block:
+an element's title
+the survey start time
+the survey title
+the total number of participants
+open-ended data
+various data metrics (mean, median, stddev, pct, etc.)
+The syntax for including dynamic dashboard extension is below:
+{{condition}}
+{{condition:attribute}}
+{{condition:attribute="arguments"}}
+For example:
+html width=6
+<h1>{{survey.title}}</h1>
+<h2>This survey began on {{survey.start_date}}.</h2>
+<h2>
+It was a {{survey.start_date:format="%A"}}
+in {{survey.start_date:format="%B"}}
+on the {{survey.start_date:format="%I"}}th hour.
+</h2>
+end
+html width=6
+<h2>When asked: "{{q3:title}}"</h2>
+<h3>{{survey.total}} people responded with the following words:</h3>
+<span class="q3-table">
+{{q3:oe="list"}}
+</span>
+<style>
+span.q3-table td:first-child {
+font-weight: bold;
+color: red;
+}
+</style>
+end
+The example dashboard above generates the following result.
+The {{survey.start_date}} , {{survey.total}}, and {{survey.title}} are examples of the built-in reserved keywords that you can use to present additional information in your dashboard. The following reserved keywords are available:
+Keyword
+Description
+survey.start_date
+A date/time object that will output the date when the Survey was created
+survey.total
+The total number of participants for the entire survey
+survey.title
+The survey's alternative report name
+filter.total
+The total number of participants for the entire survey based on the current filter
+In addition to the reserved keywords above, the following attributes are accessible:
+Attribute
+Description
+format
+Only applicable to {{survey.start_time}}
+Formats the date/time object. Accepts all Python strftime arguments.
+Supply "%s" as an argument to display the day prefix (e.g. "nth", "rd", "st")
+abscount
+The absolute count of participants for the given condition (ignores filters)
+abspct
+The absolute percentage of participants for the given condition (ignores filters)
+percentage
+The percentage of participants for the given condition (respects filters)
+title
+The title of the condition (e.g. question's title, cell's text)
+oe
+Displays open-ended data. Can be set to:
+list : outputs a table of all OE responses with associated ID #
+random : returns a single random OE response
+# (number) : returns the OE response matching the given ID #
+wrap
+Wraps the output in a <span> element. Output format:
+<span data-tag="condition" data-attributes="attributes" class="magic condition">value</span>
+datasum
+The total sum of all responses
+mean
+The standard mean
+median
+The median
+stddev
+The sample standard deviation (i.e. sigma-1)
+stderr
+The standard error
+count
+The number of non-empty responses
+uwcount
+The unweighted count
+effbase
+The base count used for calculations
+pct
+The count divided by base (e.g. 40% of all participants answered this question) (respects filters)
+alt
+The alternative (default) text to display in case value is 0 or doesn't exist
+For example:
+table width=6
+row stats="mean" q1.r1.val MEAN
+row stats="median" q1.r1.val MEDIAN
+row stats="stddev" q1.r1.val STDDEV
+row stats="stderr" q1.r1.val STDERR
+row stats="count" q1.r1.val COUNT
+row stats="pct" q1.r1.val PCT
+html width=6
+<h4>{{q1:title}}</h4>
+<p>MEAN: {{q1.r1.val:mean}}</p>
+<p>MEDIAN: {{q1.r1.val:median}}</p>
+<p>STDDEV: {{q1.r1.val:stddev}}</p>
+<p>STDERR: {{q1.r1.val:stderr}}</p>
+<p>COUNT: {{q1.r1.val:count}}</p>
+<p>PCT: {{q1.r1.val:pct}}</p>
+end
+The example dashboard above generates the following result.
+Using the wrap attribute, you can add CSS styles to the generated results.
+For example:
+html
+<h4>When the following question was asked:</h4>
+<h2>{{q3:title}}</h2>
+<h4>One person said:</h4>
+<h2>{{q3:oe="random" wrap}}</h2>
+<style>
+span.q3 {
+color: darkgreen;
+font-style: italic;
+}
+h1, h2, h3, h4 {
+text-align: center;
+}
+</style>
+end
+The example dashboard above generates the following result.
+2.1: Current Limitations
+Tip: Dynamic dashboard extensions only work on surveys with a survey compat level of 2 or higher.
+The following functionalities are not supported:
+Dynamic HTML content does not react to splits or filters
+Only works within HTML blocks
+Invalid codes do not generate an error
+3: What's Next for Creating a Dashboard
+The following topics describe the features that you can apply to your dashboard:
+Creating a Dashboard
+Customizing Dashboard Data

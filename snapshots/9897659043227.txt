@@ -1,0 +1,256 @@
+Title: Decipher M38 Technical Release Notes
+This document contains the technical release notes for the Decipher (previously Decipher) M38 (2017) milestone.
+Release Date: October 26, 2017
+Mission Statement
+New survey compat level is 138. Use compat="138" for all new surveys.
+New Features
+Crosstabs: Custom Tables
+Allows users to create report tables with predefined rows without altering the survey.
+Custom tables are defined using standard survey conditional logic.
+The Create Table option appears within the Actions menu in Crosstabs.
+Crosstabs: Subnets
+Allows users to nest table rows within other rows for more advanced data filtering.
+Subnets are defined using the Table Editor within Crosstabs.
+Media Evaluator
+A new version of the media evaluator element is available (bcme.6).
+New requirements and style settings added.
+The .flv file format is no longer supported.
+Data Importer
+Allows users to view outside data within Crosstabs, as well as Decipher survey dashboards and report exports.
+Allows users to append data from outside sources and to edit existing data.
+The Data Importer is located in the View/Edit Responses report.
+Multi-Mode Surveys
+Allows users to collect data using simultaneously fielded sources.
+Allows users to collect offline/CAPI data alongside online data.
+Offline and online sources can be added via the Sample Sources element in the Survey Editor.
+CAPI 2.0
+Allows users to manage all aspects of offline projects within the Decipher CAPI App.
+Adds multi-language support and account permission levels.
+Adds three new question types to the Decipher CAPI App: Image Upload, Video Testimonial, and Audio Testimonial (only available in the App).
+Audio Testimonial
+Allows users to record audio using a mobile device for surveys fielded via the Decipher CAPI App.
+The Audio Testimonial element is available only within the Decipher CAPI App.
+RIM Weighting - Basic Weight Editor
+Allows users to add and configure multiple weighting variables without any custom scripting.
+Users can still add complex weights using RIM Weighting Advanced Mode.
+The RIM Weight Editor is available within the Crosstabs settings menu.
+RIM Weighting Advanced Mode is available within the RIM Weight Editor.
+View/Edit Responses - Custom/Saved Filters
+Allows users to export and write filter rules to better analyze participant answers directly within Decipher.
+Users can save custom filters for use before, during and after fielding a survey.
+Video Player
+A new version of the video player is available.
+The new video player allows users to capture the number of times the participant has watched the video in full, as well as the most amount of time (in seconds) spent watching the video across each time it was viewed.
+Reporting
+Crosstabs
+Improvements to Crosstabs loading performance. For example, a survey with a 100-row number question taking over 2 minutes to load now loads in around 30 seconds.
+Added the ability to clear table settings/charts. This reverts all changes made through the Crosstabs table editor. This option can be found in the Actions menu. Requires reporting:edit permission.
+Data Downloads
+Added the noYesNoRecode option to export values as yes/no instead of 1/0.
+Example:
+:excel?$(this)&format=xlsx&textual=1&textualHeaders=1&noYesNoRecode=1&layout=
+Usage Statistics
+Improved performance of calculations.
+Added Project Parameters to detail view. Companies that have a value saved with a project parameter will see “Show Project Parameters Fields” to enable viewing all project parameters for the companies selected. Project parameters will also be included in exported table.
+Notes:
+Parameters using the same label with be shown in the same column.
+Hidden parameter questions or answer will not be shown in usages stats.
+Dashboards
+Added the ability to set the right chart axis min and max when using a combined chart
+Example:
+chart id=db-1 hide=1 "q1"
+rows q1.r1-r2
+type line
+chartopt yAxis.min 0
+chartopt yAxis.max 100
+chart id=db-2 combinewith=db-1 "q1/q2 Combined Data"
+rows q2.r1-r2
+type line
+chartopt yAxis.min 0
+chartopt yAxis.max 50
+Survey
+Added new languages: French (Switzerland), German (Switzerland), and Urdu.
+Added new attribute noTranslate.
+Usage: Question
+Type: set
+Values: title, comment
+Description: Disables translations for the values specified
+Added support for mls attribute for <res> which restricts the languages the resource will be used in.
+Example:<res label="sys_noAnswerSelected" mls="french">select only one</res>
+The example above would restrict the translation of sys_noAnswerSelected to custom text for French and use the default sys_noAnswerSelected text for other languages.
+The resource will still be displayed in Language Manager (not counted as “missing”) but will be excluded from the language translation files
+Added the ability to use a negative data value.
+Panel Management (previously Kinesis) Integration
+Added the ability to access/updated panelist system fields datapoints.
+Added the ability to give incentives when referring a friend to a panel. New registration surveys will automatically include this functionality. Existing surveys should use the update the "New Panelists" (list 0) sample source to include an optional variable "referrer_hash".
+Survey Builder
+New uses of Research Now sample source will enable outbound signed links.
+Research Now sample source variable “study” is now required. This affects surveys that add the sample source via the Survey Editor after this update only.
+Fixed issue where changing adding the rating scale option would override the reverse values option.
+Dynamic Questions
+#25537: Video Testimonial default messages support the following languages:
+Danish
+French
+German
+Italian
+Norwegian
+Portuguese
+Spanish
+Swedish
+Upload System Files
+Removed support for uploading .flv files.
+Added support for encrypted video playback for newly uploaded videos.
+Portal
+New login options for US/EMEA/APAC/Custom servers for main Forsta servers.
+New menu redirection for Forsta products.
+Cloud server users who are not using @include unbranded and do not want to include the new menu should add the following to their nstyles:
+*ultron.common.unifiedlogin.markup:
+Updates to the new user notification email and add a new email to introduce the user to project area documentation.
+The application interface is now available in Italian and Simplified Chinese.
+Programming & Tools
+SECURE surveys
+Allow use of hashlib.
+API
+surveys/{survey}/quota/edit allows users to change quota table limits, cell limits and cell priority.
+surveys/{survey}/data now supports the following formats:
+SPSS 16+ (.sav) *.sav Files for SPSS 16+ with Unicode Support (zipped)
+SPSS 15 (.sav): SPSS 15 *.sav Files (zipped)
+SPSS 16+ (.sav) with OE: SPSS 16+ *.sav Files including All Open End Data (zipped)
+SPSS (Fixed-Width): Fixed-Width Data Files and SPSS Script File (zipped)
+Added the survey close date to survey list attributes.
+Added option skipRemerge to Datasource Data.
+Logic Node
+Imperium Real Answer Integration version 2 - changes question storing RAS response flags to use a radio question which is compatible with trackvars=checkbox.
+umanage
+Added the ability to link a shell account to a portal account that is not already linked.
+Example: umanage link <email> <shell>
+Unlinked shell accounts with display a "-" for email when using umanage list.
+Hooks
+Added def fileupload_allowed(path, user, filename), which allows limiting access to upload/delete files in image manager (Survey Editor / Campaign Manager), logo manager, file manager, and video API.
+Variable
+Description
+path
+The survey's relative path (e.g. selfserve/9d3/proj1234)
+user
+The user object representing the user accessing the data
+filename
+Filename currently being uploaded/deleted
+Allows the sss_final hook to continue to just modify the XML document (as it does currently) or return a string. If a string, then it's written as given.
+Project Parameters
+Added the ability to disable/enable project parameter at a directory level. This can be used to disabled project parameters for a specific subdirectory.
+Command Line:here project-parameters -p [sub directory path] -d # disables
+here project-parameters -p [sub directory path] -e # enables
+API:beacon PUT parameters/disable company="[company name]" subdirectory="[subdirectory name]" disabled=1
+Email (Cloud)
+Added the ability to optionally disable plus (e.g. invite+XXXX@domain.com) addresses for bouncebacks and force a specific email for bouncebacks. In the data.py and config.py files, two new variables are available:
+forceSenderAddress - when set emails are sent from this address.
+disableSubaddress - when set to True, emails are sent from the default sender (invited@decipherinc.com).
+Bug Fixes
+Survey Builder
+Fixed an issue wherein you were unable to load an Offline survey in the Survey Editor if the survey had errors
+Fixed an issue editing answers in checkboxes and autofill elements which would prevent further editing without reloading
+Fixed calculation of maximum looprows for multiple nested loops
+XML Editor
+Changes converting of escaped HTML to view in the XML Editor up to length 2**15 to prevent extremely long loading times
+Language Manager
+Improved performance for larger surveys and many languages
+Fixed issue exporting XML language file with translation contained HTML entity number
+Fixed an issue where RTL languages were not displayed right to left
+Panel Management (previously Kinesis) Integration
+Fixed an issue where overquota/terminated participant data would be cleared after performing LIVE edits
+Fixed issue where blank values for date type questions would show an error in project warnings
+Fixed issue where special characters in password were escaped. Existing surveys will require the following update:
+kineislogin:email="register.r1.unsafe_val"
+kineislogin:password="register.r2.unsafe_val"
+Stripped HTML from question and answer text
+Fixed issue where duplicate participants were being registered as panelist
+CATI
+Removed limit for call history export
+Fulcrum
+Updated API URL
+Survey/Participant View
+Fixed an issue where the RealAnswer Logic node answered with specific characters would cause a fatal error
+Fixed issue with navigating backward in survey and trying to access p.LANG
+Fixed issue where attribute xmlTagName was not accessible for <pipe>
+Fixed issue where survey with over 100K using alwaysSaveData could fatal
+Quotas
+Fixed issue where quota reassignment could show a fatal error when a quota referenced a persistent variable. If a project has any quota referencing a persistent variable quota reassignment is not performed
+Theme Editor
+Fixed an issue that prevented surveys from being relaunched
+Dynamic Questions
+Image Upload: Adding loading indicator
+Media Evaluator: Fixed issue with video analyzer snapshots aspect ratio
+Language Selector: Change Thai translation to ภาษาไทย
+Video Player: Fixed issue with time_lapsed having incorrect values for multiple views or in IE 11
+Fixed issue with less files not being applied when `uses` was applied to survey level
+SPSS Importer
+Fixed issue where file could not be imported containing defined variable labels and multiple missing values
+Campaign Manager
+Fixed an issue where bounce back report would produce an error if email did not exist
+Fixes issues with scheduled sends being sent immediately
+Fixed issue with non-scheduled send having an error with delay times customized to 0
+Fixed issue where reminder sends did not populate the last reminder send date and amount of reminders sent fields
+Fixed issue with unicode characters not displaying correctly when using field merge in email subject
+Dashboard
+Updated banner documentation in quick reference
+Updated stats precision to include one decimal point for whole numbers
+Fixed sections referencing a negative value not having custom color palette applied
+FIxed issue where comments couldn’t be added to compat 4 dashboards
+Fixed issue where weighting did not display count as a whole number
+View/Edit Respondents
+Fixed issues with data importer where fatal errors were seen if project contained and <image/> question type or a missing header in an .xlsx file type.
+Crosstabs
+Fixed an issue with rim weighting dimensions not allowing us of multiple variables or logic for groups
+Fixed issue with reports not reloading when sorting by a segment
+Fixed an issue with date logic created in FF or IE 11 using the start time instead of day ending time
+Fixed issue where apostrophes were exported as HTML entities
+Project Parameters
+Fixed an issue where project parameter launch checks were being applied to main directory projects that were not set up with project parameters but a subdirectory was set up with project parameters
+Fixed an issue with project parameters dependencies updated to different versions on new servers
+Field Reports
+Fixed an issue where using vector logic in a quota.xls file would cause fatal in quota reassignment
+Changed quota reassignment default select to “Remind Me Later”
+Downloads
+SPSS: Fixed issue where error message were not displayed
+SPSS: Fixed issue where labels longer than 64 chars were duplicates and would not be exported.
+Fixed issue with exporting SPSS with number questions containing nets
+Fixed issue where oe answer were incorrectly labeled in stacked data files
+Portal
+Fixed issue where some subdirectory names weren’t displayed correctly
+Fixed issue with advance search adding incorrect quotes
+Fixed issue with export survey modal would not scroll with many languages
+Updates to re-enable viewing getting started videos
+Programming Tools
+Fixed an issue with the live script
+Updated quota reassignment checks to only run for survey builder/UI projects. Projects relaunched in shell ( Requires Decipher Cloud) can use the --check-quotas for remerge call if quota reassignment checking is needed
+Updated the transform script to warn if the results.strings file would be larger than 2GB
+Added ability to access gv variables in themes for non SECURE surveys
+Fixed long-standing issue where data import (e.g., in tabimport) memory use was proportionate to the size of the file, which could cause OOM errors
+Fixed an issue where a virtual question with vector logic using .but referencing a value that wasn’t shown in the survey would displayed an error
+Simulated data now terminates after ~one minute if unable to execute
+API
+Fixed issue where rh/companies/{company}/surveys lastEdit did not include LIVE survey editing
+Fixed issue where file format was not respected when using the distribution email API
+Fixed error shown when updating quantity for watermarked videos
+CAPI APP
+Released version 2.0.1
+Updated translations
+Fixed an issue where users were not able to log in when the Europe region was selected
+Secured user accounts so that a previous user’s project list can no longer be briefly viewed
+Updated the name of the app on a page that appears when the app is required
+Resolved an issue where images did not display on error pages
+Added links to the Google Play Store and App Store
+Fixed an issue where an exclusive question would not display properly
+Removed a feature that was not applicable to ad-hoc interviewers
+Updated the region names to more accurately reflect their purpose
+Fixed an issue that prevented the app from starting on iOS 9.3.5
+Updated to the right version number for Android
+Replaced a temporary image for the right one at an incompatible browser page
+Resolved an issue where access codes would not work in the browser
+Released version 2.1:
+Fixed issue uploading data with quotes
+Added error logging
+Added ability to manually export data
+Misc / Custom Projects
+Added support for participation reporting in the panel system that reads from a specific Kinesis survey rather than the legacy DE panel system
+Fixed quoting for panel login

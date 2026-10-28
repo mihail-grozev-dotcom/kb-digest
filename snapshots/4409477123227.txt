@@ -1,0 +1,81 @@
+Title: Setting Company Crosstabs Preferences
+Company supervisors can use the "Crosstabs Preferences" link on the company page to set Crosstabs reporting preferences for all projects created within their company.
+The Crosstabs Preferences menu controls the default question table and percent base (% base) settings for all reports displayed for projects created in that company. These settings are based on question type and can be configured individually for single and multidimensional setups.
+Note: Changed preferences will only be applied to newly created projects and those with reports that have not yet been run.
+1: How it Works
+Once you have saved the changes to your question settings within the Crosstabs Preferences menu, these changes will be applied to all new projects and when running the report for past projects for the first time.
+Note: Changed preferences will only be applied to newly created projects and those with reports that have not yet been run.
+2: Preferences
+The following tables detail the configurable preferences for Crosstabs reports. Each table uses the question type and dimension definitions outlined below:
+Question Type
+Single Dimension
+Multi Dimension
+Single Select (radio/select)
+One answer type
+Two or more answer types
+Multi Select (checkbox)
+One answer type
+Two or more answer types
+Rating (type="rating")
+One answer type
+Two or more answer types
+Number (number/float)
+Zero or more answer types
+Two or more answer types
+Note: Some preference settings apply to question tables, while others apply to the selections made for that question within the Crosstabs table editor. These are marked as appropriate.
+2.1: Main Tables
+Option
+Effect in Crosstabs
+Transpose
+Transposes the single table.
+Add Chart
+Adds a table frequency chart.
+Note: Pie charts are not available for multi-select questions.
+Individual Frequency Table
+Toggles the "Show" checkbox in the table editor for multi-dimensional questions.
+Individual Frequency Table - Transpose
+Transposes the individual tables within a multi-dimensional table.
+Note: Requires enabling "Individual Frequency Table".
+Individual Frequency Table - Add Chart
+Adds a frequency chart for the individual tables within a multi-dimensional table.
+Note: Requires enabling "Individual Frequency Table".
+Grid Tables
+Enables the inclusion of a grid table for two-dimensional questions.
+Grid Tables - Transpose
+Transposes the grid tables for two-dimensional questions.
+Note: Requires enabling "Grid Tables".
+Grid Tables - Add Chart
+Adds a frequency chart for the grid of a two-dimensional table.
+Note: Requires enabling "Grid Tables".
+2.2: Stat Rows
+Option
+Effect in Crosstabs
+One of the following:
+Mean
+Median
+Standard Deviation
+Standard Error
+Sum
+Minimum
+Maximum
+Count
+Enables the corresponding stat row for the question.
+Note: Sum, Minimum, and Maximum not available for single select and rating one-dimensional questions. Count only available for multi-select questions.
+Summary Table
+Enables a summary table for the corresponding stat option.
+Transpose Summary Table
+Transposes the summary table for the corresponding stat option.
+Add Chart
+Adds a stat row chart to the grid table (if enabled).
+2.3: Table Nets
+Option
+Effect in Crosstabs
+Nest Rows under Nets
+Toggles the "Nest Rows under Nets" checkbox in the table editor.
+Add Summary Table for Nets
+Toggles the "Add Summary Table for Nets" checkbox in the "+table row" (net) editor.
+2.4: Override % Base
+Option
+Effect in Crosstabs
+OVERRIDE % BASE
+Sets the custom base in the table editor to one of the following: "Total Answer", "Total Shown", "Total in Segment", or "Count of Responses".

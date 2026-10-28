@@ -1,0 +1,18 @@
+Title: Monitoring Offline Surveys in Field
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+The "Offline" tab of the Response Summary allows you to manage the interviewers administering your offline survey.
+1: Viewing the Offline Tab
+Below is a numbered overview of the "Offline" tab, along with descriptions of each feature.
+1. Interviewer Totals: Current number of active and inactive interviewers.
+2. Interviewer: Name or email of each interviewer administering offline surveys. See Assigning Interviewers to an Offline Survey to learn more about adding interviewers to an offline survey.
+3. Status: Can be set to Active or Inactive. Click the "-" icon to the right to delete an active interviewer or make an interviewer inactive.
+Note: Interviewers cannot be deleted after the survey goes live, only made inactive. Once inactive, the application will not allow further interviews for that user, and any collected data is uploaded the next time they are online.
+4. Access Code: The unique access code automatically generated for any Temp users. See Assigning Interviewers to an Offline Survey to learn more about adding Temp users as interviewers.
+5. Link: The link to the offline application. When clicked, the offline application opens in a separate tab for the interviewer to begin testing or administering the survey.
+6. Project Version: The current survey version.
+7. Total Completes: A total count of the participants who have completed the survey and had their data uploaded.
+8. Valid Completes: A total count of the completed participants whose uploaded data matches the current dataset format.
+9. Uploaded Partials: A total count of the participants with partial data that have been uploaded.
+10. Latest Upload: The last date and time that the interviewer has been online to upload collected data.
+11. Download Interviewer List: Click the link to download a file containing all active interviewers and their application URLs (inactive interviewers are excluded). For Temp users, the file will also include their unique "access codes".
+12. Add Interviewer: When clicked, the area expands to allow you to add an interviewer. To add multiple interviewers at once, you can paste a tab or comma-delimited list into the entry box. Click the green checkmark to confirm your entry, or click the gray "x" to cancel.

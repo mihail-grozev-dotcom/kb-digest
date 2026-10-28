@@ -1,0 +1,44 @@
+Title: Spam Reduction
+The article below will review how to to reduce the ‘Bayesian’ scores your emails receive allowing an increase in the number of invites that reach participant’s inbox. Bayesian spam filters are smart email filters that assign values to each element in your invite; once you hit a specific threshold, your invite is deemed spam…often never to be seen by the intended recipient.
+One way you can help reduce the spam scores that your emails receive is to analyze your invite content, which is the written copy in the email that is designed to interest and inform the intended audience. While it seems unimportant what the content of an email contains, in actuality, it is very important what types and styles of content you include in an invite for participants to read, see, or hear. Due to the bombardment of advertisements, from mail order drugs, to sexual content, to web retailers and more, there is a high level of abuse to this highly direct form of advertising. To this end, spam filters have identified patterns used by abusers, restricting their use, thus restricting the available options for valid emailers.
+Below is a selection of best practices, including the most common words and phrases to avoid when creating content for your invite. Keep in mind that breaking 1 or 2 of these rules won’t necessarily send you to the spam box…but each offense increases your potential.
+Best practice content to avoid when drafting an invite:
+Using spam-like phrases such as ‘Click Here!’ or ‘Once in a lifetime opportunity!’
+Using excessive exclamation points!!!!!
+Using the word ‘test’ in the subject line
+Using the following words in the subject:
+Help
+Percent Off
+Reminder
+As seen
+Life Insurance
+Your Family
+Your Bills
+Your Own
+Talks about 'losing pounds'
+Guaranteed
+For Only
+Starting your subject with Hello, Free, Buy, Buying, or $
+Using drug names, such as Cialis, Valium, Viagra, etc., even if pharmaceutical study
+Including an exclamation or question mark in the subject
+Additional ways to avoid spam filters:
+Don’t use a large image in place of your content text
+Don’t use all CAPS in your subject
+Don’t use G a p p y text
+Include both text and html versions
+Make sure the same content is used for both html and text versions
+Include a reply-to address
+Don’t start your message with ‘Dear (something)’
+Don’t leave white space in your subject
+Include a date that is accurate, eg., close to the delivery time (not advanced)
+Surprisingly, there are also some legal bulk mail requirements that might also increase your spam score. These include:
+Claiming participant can be removed from the list
+Claiming participant provided permission
+Claiming participant wanted the email/ad
+Claiming the participant registered with a partner
+The best way to combat these issues is to carefully watch the way you word these phrases. A subtle example that will shave points from your score would be:
+Rather than, “If you wish to be removed from future email marketing campaigns, please click here: …”>
+You could state, “If you do not wish to receive mailings from us in the future, you can update your user options at …“
+Lastly, there are standard features that must be included in your invite, according to the 2003 CAN-SPAM Act, enacted by Congress. Below you can view a properly formatted invite that adheres to the anti-spam regulations.
+You can read more about the CAN-SPAM Act and requirements at the Federal Trade Commission website.
+By adhering to these simple rules, you should find your way into more inboxes, and will have a resulting increase in your open rate.

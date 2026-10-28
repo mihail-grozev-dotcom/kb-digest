@@ -1,0 +1,16 @@
+Title: 143.4 Release Notes
+Release Date: July 9, 2019
+Release Version: 143.4
+New Features
+Survey
+Survey Editor
+Added the fit class to the image manager. All images added via the image manager will now automatically be resized to fit the survey body container width (compats 125+).
+Bug Fixes
+Reporting
+View/Edit Responses
+Fixed an issue with parentheses in answer options causing errors within the report.
+Survey
+Survey Editor
+Fixed an issue with Hebrew characters within elements saved in the library not being translated when added to a survey.
+Participant View
+Adjusted the loadRecord attribute to prioritize picking a completed record over a partial record when used in a Delphi-enabled survey.

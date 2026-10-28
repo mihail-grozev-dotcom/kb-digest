@@ -1,0 +1,13 @@
+Title: 153.38 Release Notes
+Release Date: August 13, 2024
+Release Version: 153.38
+New Features
+Survey
+Dynamic Questions
+A new version (3) of Video Player is available, and it supports captions. Learn More: Video Player Element
+Bug Fixes
+Responses
+Campaign Manager
+An issue that prevented users from sharing a recipients list via the Campaigns list page has been resolved.
+Architecture and DevTools
+An issue that prevented users without a name from being automatically deactivated due to inactivity has been resolved.

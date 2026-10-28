@@ -1,0 +1,21 @@
+Title: March 20th Technical Release Notes
+Release Date: March 20, 2018
+New Features
+Dashboard
+ACLs can now be added to filters and filtergroups
+Survey
+Limited warnings are displayed when reordering elements in the tree where there are logic references in element conditions such as cond, rowCond, colCond, choiceCond
+The launching process has been simplified with a cleaner menu
+Added the loads() function from the JSON library. This can now be used in SECURE surveys under the alias json_loads()
+Datasources can now use uuid as ourKey
+Bug Fixes
+Reporting
+Fixed an issue with exported PPTX not opening correctly
+Survey
+Dynamic Questions
+Media Evaluator: Fixed an issue that was causing the ‘answer for me’ button to be hidden when the survey contained a Media Evaluator element
+Portal
+Usage Statistics
+Fixed an issue where usage statistics were not sorting chronologically when split by month
+Misc / Custom Projects
+Updated uses of flash to "copy to clipboard" to a non-flash solution

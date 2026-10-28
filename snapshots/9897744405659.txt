@@ -1,0 +1,14 @@
+Title: 144.11 Release Notes
+Release Date: April 21, 2020
+Release Version: 144.11
+Features
+Portal
+Survey Templates
+Added a preconfigured survey dashboard to each COVID-19 template.
+Survey dashboards are available from the “Dashboards” menu under “Reports” in the navigation menu.
+Bug Fixes
+Programming & Tools
+API
+Fixed an issue preventing virtual data from updating in reports after being loaded into a survey’s append.xml file.
+Fixed an issue causing an error when attempting to export a Fixed-Width (Unicode) report for a survey containing a Multi-Select question within a loop with values="order" in the question body or value="xxx" in a response option.
+Fixed an issue enabling users to make an ajax call to the console and copy a survey template to their company.

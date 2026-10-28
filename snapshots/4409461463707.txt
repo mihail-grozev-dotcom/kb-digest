@@ -1,0 +1,32 @@
+Title: Adding Data Weighting in Report (2010)
+This document details the process for weighting data in Report (2010). See Applying RIM Weighting to learn how to add weights in Crosstabs.
+Overview
+The Survey Editor allows you to add data weighting in a survey, using the XML Editor. This method allows you to apply a weighting scheme in Report (2010). To learn about the XML Editor, see Editing XML.
+Tip: If weights have already been added to your survey, see Report (2010) - Report View Options to learn how to view the weighted data in the report.
+Note: Weighting functionality is not available in surveys with delphi="1".
+1: Planning Your Weighting Scheme
+To begin, open the survey in the Survey Editor. Make note of the labels of the question and answer options you want to use for weighting. All answer options for a question must be accounted for, otherwise the outcome may not match the weighting percentages. In our example, we will weight the unwanted rows at 0% to get our desired outcome.
+As an example, we will show how to add the following weights to our data:
+Age:
+0% Under age 18
+0% 18 - 24 yrs.
+30% 25 - 34 yrs.
+30% 35 - 44 yrs.
+20% 45 - 54 yrs.
+10% 55 - 64 yrs.
+10% 65+ yrs.
+Tip: If the question or answer option labels are not showing, click the "View Options" menu and select "Show Labels".
+For the age question, the question label is q8, and the answer options we want to weight are: r1 Under 18, r2 18-24 r3 25-34, r4 35-44, r5 45-54, r6 55-64, r7 65+.
+2: Adding Weights
+Click the "Build" menu, select "XML", and the survey XML will open in a new window.
+In the XML Editor, locate the very first question in the survey and enter the data weighting code just above the first question. Be careful not to enter the code within another set of code tags (not including <survey>).
+Add the code as shown in our example below, taking special care with the spacing. The actual question label, answer option labels and weighting amounts must be adapted for your survey.
+<weights>
+q8: r1=0 r2=0 r3=30 r4=30 r5=20 r6=10 r7=10
+</weights>
+Where:
+q8: r1=0 r2=0 r3=30 r4=30 r5=20 r6=10 r7=10: is our age question (q8), weighting the answer options: (r3) 25-34 = 30%, (r4) 35-44 = 30%, (r5) 45-54 = 20%, (r6) 55-64 = 20%, (r7) 65+ = 10%; the rows (r1) Under 18 = 0% and (r2) 18-24 = 0%
+Once the code is in place, "Save" the changes.
+3: Viewing the Weighting Data
+To view the weighted data in the report, open and run a report. In the "View Options" menu, click "apply weights". The report will update with the weighted data.
+Tip: Be sure to run a good amount of test data through the survey to verify the data is being weighted as expected.

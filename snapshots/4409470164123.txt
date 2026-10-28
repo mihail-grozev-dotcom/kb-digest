@@ -1,0 +1,28 @@
+Title: About the Response Summary
+The Response Summary allows you to monitor the progress of your survey using a variety of field reports, split by tab. Field reports can be filtered to display survey data by date or split by survey sample variables. Additionally, you can choose to email, print, or download each report to share it with others.
+1: Viewing Reports
+The Response Summary consists of the following tools and features:
+1. Field Reports: There is a separate tab for each of the field reports available for your survey. Every survey will have at least a COMPLETIONS tab and a DROP-OUTS tab. Depending on how your survey is set up, you may also see a CAMPAIGNS tab, a TERMINATES tab and a QUOTAS tab.
+COMPLETIONS: The default view of the Response Summary. Displays various statistics along with a visual representation of the field activity. To learn more about reviewing completions, see Monitoring Campaigns in Field.
+CAMPAIGNS: Only available if your survey is using Decipher for email sends. Displays a list of summary statistics for your email sends, as well as a list of soft sends and reminders. To learn more about the “Campaigns” tab, see Monitoring Campaigns in Field.
+TERMINATES: Only available if you have terminates set in your survey. Displays a list of terminate segments and the total number of participants terminated for each. To learn more about the “Terminates” tab, see Monitoring Terminates in Field.
+QUOTAS: Only available if you have quotas set in your survey. Displays the quota statistics for your survey. To learn more about the “Quotas” tab, see Monitoring Quotas in Field. To learn how to edit your quotas, see Editing Quota Limits in Field.
+DROP-OUTS: Lists the page number, question, and drop-out statistics for each participant who dropped out of the survey. To learn more about the “Drop-outs" tab, see Monitoring Drop-outs in Field.
+2. Report Options: The following options are available for each report:
+Preferences: Click to configure your report viewing preferences.
+Email: Click to send one or more reports to other users.
+Print: Click to print one or more reports.
+Download: Click to download the data for one or more reports to Excel.
+3. Field Timeline: By default, the field timeline consists of the time between the survey’s field start and end dates. To view a different timeline, choose a new interval from the “Date” drop-down or click into the “From” and “To” boxes to select specific dates from each calendar, then click “Apply”.
+Note: Campaign send statistics cannot be filtered by Date in the Campaigns tab.
+4. Share: Click to view your report link and manage its sharing options.
+5. Split by: This drop-down list allows you to split the Response Summary by one or more survey or participant variables. See Splitting the Response Summary for information about splitting the Response Summary.
+6. Report Details: The details for the selected field report; click into a report tab to view its contents.
+2: Sharing Field Statistics
+2.1: Sharing the Response Summary
+There are multiple ways to share your survey’s field statistics. If you would like to share the full Response Summary with another user, you must first publish the report as a publicly accessible dashboard. To publish your report, click “Share” to access your report sharing options. Then click the “Publish” button.
+The report will automatically be converted into a public report which you can copy and share anywhere. If you need to make changes to a published report, you may unpublish the report from the “Share” menu and then republish.
+2.2: Sharing Field Reports
+If you would like to share just one or more field reports with another user, first click the envelope icon to open the report email form.
+Then select one or more tabs to include in the email. To send to more than one recipient, include multiple email addresses separated by a single space. You can also enter a note for your recipient(s) into the optional message window.
+Once you are satisfied with your email, click “send dashboard” to share the report(s) and return to the Response Summary.

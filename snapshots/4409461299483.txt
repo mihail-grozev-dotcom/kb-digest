@@ -1,0 +1,339 @@
+Title: Basic and Advanced Randomization
+When asking participants to evaluate multiple brands or attributes, it is good practice to randomize your response set to avoid introducing order bias. To ensure that a participant's survey experience is consistent across multiple questions with the same response set, you might also want to force those responses to appear in the same order as they were first shown to that participant.
+You can use the shuffle and randomize attributes to automatically randomize survey questions and responses. Additionally, you can use the order attribute to track the order in which those items appear within your survey and specify a new ordering scheme, if desired.
+1: Randomizing Response Options
+To randomize a question's response options, add the shuffle attribute to the question tag, specifying rows, cols, choices, or groups.
+<checkbox label="Q1" atleast="1" shuffle="rows">
+<title>Please select items you're familiar with.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</checkbox>
+1.1: Keeping the Same Order
+To randomize a question's response options in the same order as they were shown in a previous question, use the shuffleBy attribute, specifying the label of the previous question.
+<radio label="Q2" shuffle="rows" shuffleBy="Q1" rowCond="Q1[row]">
+<title>Which one is your favorite?</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</radio>
+To use the shuffleBy attribute, the question's randomized elements must be exactly the same as the original question. More often than not, the question's elements are not the same and you need to manually set the randomization order.
+Tip: You can randomize rows and columns in the same question (e.g.,shuffle="rows,cols"), but shuffleBy will not stack this way (e.g.,shuffleBy="Q1,Q2" is invalid). To use shuffleBy, the target question must contain the same elements as the question by which to randomize.
+1.2: Changing the Order
+It is also possible to dictate how question rows are randomized. Use the rowShuffle attribute to specify the permutations for any randomization you have applied to question rows (i.e., flip, rflip, rotate, reverse-rotate, rrotate).
+2: Randomizing Questions
+When it is necessary to randomize survey questions, you can use the randomized element's order attribute to return a list containing the randomize order.
+In the example below, "Q2" is randomized in the same order as "Q1".
+<checkbox label="Q1" atleast="1" shuffle="rows">
+<title>Please select items you're familiar with.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</checkbox>
+<suspend/>
+<exec>Q2.rows.order = Q1.rows.order</exec>
+<radio label="Q2" shuffle="rows" rowCond="Q1[row]">
+<title>Which one is your favorite?</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</radio>
+Using <exec> blocks and Python code, you can then modify the randomization order for any randomized element.
+2.1: Obtaining the Randomization Order
+The order attribute provides you with access to the randomization order for any group of randomized elements.
+In the example below, the rows and columns in the question "Q1", are being randomized.
+The following is a table showing the various ways to access the randomization order.
+Python Code
+Value
+Q1.rows.order
+[[Q1.r1], [Q1.r3], [Q1.r2], [Q1.r4]]
+Q1.cols.order
+[[Q1.c3], [Q1.c1], [Q1.c4], [Q1.c2]]
+[x.index for x in Q1.rows.order]
+[0, 2, 1, 3]
+[x.label for x in Q1.cols.order]
+['c3', 'c1', 'c4', 'c2']
+[x.text for x in Q1.rows.order]
+['1', '3', '2', '4']
+Q1.cols.order[1].text == "1"
+True
+The order attribute returns a list of objects relative to the randomized items. Using this list, you can easily create logic to set the randomize order to fit the needs of your project.
+2.2: Specifying the Randomization Order
+Setting the randomization order for elements can be done by setting the value of the order attribute. Keep in mind that the system uses the index value for each randomized item when setting randomization order.
+For example, given a randomized question with four rows ("r1" - "r4"), you can set the randomization order in the following ways. The table below illustrates that there are many ways to approach setting the randomization order.
+Python Code
+Resulting Order
+Q1.rows.order = Q0.rows.order
+Q0's row order
+Q1.rows.order = Q0.cols.order
+Q0's col order
+Q1.rows.order = Q0.choices.order
+Q0's choice order
+Q1.rows.order = [0, 1, 2, 3]
+Ascending
+Q1.rows.order = [0, 1, 2, 3, 4, 5, 6]
+Ascending
+Q1.rows.order = [0]
+Ascending
+Q1.rows.order = [Q1.r1, Q1.r2, Q1.r3, Q1.r4]
+Ascending
+Q1.rows.order = [3, 2, 1, 0]
+Descending
+Q1.rows.order = [6, 5, 4, 3, 2, 1, 0]
+Descending
+Q1.rows.order = [Q1.r4, Q1.r3, Q1.r2, Q1.r1]
+Descending
+Q1.rows.order = Q1.rows[::-1]
+Descending
+Q1.rows.order = [3]
+"r4", "r1", "r2", "r3"
+Q1.rows.order = [1, 2]
+"r2", "r3", "r1", "r4"
+Q1.rows.order = Q1.rows.order
+Random (unnecessary)
+Q1.rows.order = random.sample(xrange(4), 4)
+Random (unnecessary)
+random.shuffle(Q1.rows.order)
+Random (unnecessary)
+Note: Do not forget that you can set randomize="0" to any element in order to keep it in the same position and prevent it from being randomized.
+For example, if there is an exclusive option that should always remain on the bottom of the list, set randomize="0" to the element and it will remain in its anchored position.
+<exec>Q1.rows.order = Q0.rows.order</exec>
+<checkbox label="Q1" atleast="1" shuffle="rows">
+<title>Which items are you aware of?</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+<row label="r5" exclusive="1" randomize="0">None of the above</row>
+</checkbox>
+2.3: Recording the Randomization Order
+You can download a report with the order for all randomized elements from the Data Downloads page. From the navigation menu, select REPORT, then Data Downloads. Select Other Data Formats from the drop-down menu. On the Data Downloads page, select Random Order under the header Tracking Files.
+You can also create a virtual number question to track the randomization order for questions individually.
+In the example below, the function assignRandomOrder("Q1", "rows") creates an additional table in the report that tracks the order of each row item. Notice that the onLoad="copy(...)" mutator is used to load the same rows from "Q1" into "Q1_ROW_ORDER". For example, if the rows were randomized in descending order, then the values for ("r1", "r2", "r3", "r4") would be "(4, 3, 2, 1)".
+<radio label="Q1" shuffle="rows">
+<title>Please select one item.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<row label="r4">Item 4</row>
+</radio>
+<number label="Q1_ROW_ORDER" size="1" onLoad="copy('Q1', rows=True)">
+<title>Q1 Row Order</title>
+<virtual>
+assignRandomOrder('Q1', 'rows')
+</virtual>
+</number>
+Note: Since this is a virtual question, it can be added to your project at any time.
+Here is what the "Q1_ROW_ORDER" table may look like for a single participant:
+The table above indicates that this participant's randomization order was ("r2", "r3", "r1", "r4").
+In addition to the function, assignRandomOrder, the function getRandomOrder is available too. This will return a list of labels representing the randomization order for the question.
+Calling getRandomOrder("Q1", "rows") for the participant above will return the list, ["r1", "r2", "r4", "r3"].
+Tip: As demonstrated in the examples below, you can also use the assignRandomOrder function to track the way in which questions were randomized within a <block> tag.
+3: Examples
+Here are a few examples to demonstrate some of the advanced randomization techniques discussed above. Read along and view the XML source code for each example.
+3.1: Randomizing Response Options
+In the following example, the order of the brands shown at "Q1" is maintained across the entire survey using several different randomization methods.
+<checkbox label="Q1" atleast="1" shuffle="rows">
+<title>
+Which brands are you aware of?
+</title>
+<comment>Please select all that apply</comment>
+<row label="r1">Brand 1</row>
+<row label="r2">Brand 2</row>
+<row label="r3">Brand 3</row>
+<row label="r4">Brand 4</row>
+</checkbox>
+<suspend/>
+<checkbox label="Q2" onLoad="copy('Q1', rows=True)" shuffle="rows" shuffleBy="Q1" rowCond="Q1[row]">
+<title>
+Which brands have you purchased in the past 6 months?
+</title>
+<comment>Please select all that apply</comment>
+</checkbox>
+<suspend/>
+<exec>Q3.rows.order = Q1.rows.order</exec>
+<radio label="Q3" onLoad="copy('Q1', rows=True)" shuffle="rows" rowCond="Q1[row]">
+<title>
+Which brand is your favorite?
+</title>
+<comment>Please select one</comment>
+</radio>
+<suspend/>
+<exec>Q4.cols.order = Q1.rows.order</exec>
+<checkbox label="Q4" atleast="1" shuffle="rows,cols" colCond="col.label == 'c5' or Q1.rows[col.index]">
+<title>
+Please check which brand has these characteristics?
+</title>
+<comment>
+Please select all that apply</comment>
+<col label="c1">Brand 1</col>
+<col label="c2">Brand 2</col>
+<col label="c3">Brand 3</col>
+<col label="c4">Brand 4</col>
+<col label="c5" exclusive="1" randomize="0">None of these</col>
+<row label="r1">Awesome</row>
+<row label="r2">Cool</row>
+<row label="r3">Fast</row>
+</checkbox>
+<suspend/>
+<exec>
+Characteristics_Loop_expanded.order = Q4.rows.order
+</exec>
+<loop label="Characteristics_Loop" vars="characteristic" randomizeChildren="1">
+<block label="bCharacteristics">
+<radio label="Q5_[loopvar: label]" colCond="Q4[col].[loopvar: label]" shuffle="cols" exec="Q5_[loopvar: label].cols.order = Q4.cols.order">
+<title>
+Which brand is the most [loopvar: characteristic]?
+</title>
+<comment>Please select one</comment>
+<col label="c1">Brand 1</col>
+<col label="c2">Brand 2</col>
+<col label="c3">Brand 3</col>
+<col label="c4">Brand 4</col>
+</radio>
+<suspend/>
+</block>
+<looprow label="r1"><loopvar name="characteristic">awesome</loopvar></looprow>
+<looprow label="r2"><loopvar name="characteristic">cool</loopvar></looprow>
+<looprow label="r3"><loopvar name="characteristic">fast</loopvar></looprow>
+</loop>
+In the example above, several techniques are used to create a consistent survey. Below is a list of those techniques.
+shuffle="rows,cols" to randomize the question's responses.
+rowCond="..."/colCond="..." to conditionally show each row / col.
+<exec>...</exec> to manually set the randomization order.
+onLoad="copy(...)" to copy question responses from one to another.
+randomize="0" to prevent an element from being randomized.
+Loop_expanded.order to randomize the loop's children elements consistently with the original randomization at "Q4".
+3.2: Randomizing Questions
+Using the <block> element and the randomizeChildren="1" attribute, you can randomize entire questions. In the example below, the sections pertaining to each brand are randomized by the original question, "Q1". Each section is contained in another <block> element which should have randomize="1" specified. A virtual question is also included to track the order in which each section was shown.
+Note: Loop elements would not randomize within a block due to system limitations. For that reason the method of using child blocks randomized within a parent block demonstrated should be used when randomizing loop elements.
+<checkbox label="Q1" atleast="1" shuffle="rows">
+<title>
+Which brands have you heard of?
+</title>
+<comment>Please select all that apply</comment>
+<row label="r1">Brand 1</row>
+<row label="r2">Brand 2</row>
+<row label="r3">Brand 3</row>
+<row label="r4">Brand 4</row>
+</checkbox>
+<suspend/>
+<exec>Brands_Section.order = Q1.rows.order</exec>
+<block label="Brands_Section" randomizeChildren="1">
+<block label="Brand_1" randomize="1" cond="Q1.r1">
+<radio label="B1_1" type="rating" values="order">
+<title>
+On a scale from 1 - 5, how do you feel about Brand 1?
+</title>
+<comment>Please select one</comment>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+<suspend/>
+</block>
+<block label="Brand_2" randomize="1" cond="Q1.r2">
+<radio label="B2_1" type="rating" values="order" onLoad="copy('B1_1', cols=True)">
+<title>
+On a scale from 1 - 5, how do you feel about Brand 2?
+</title>
+<comment>Please select one</comment>
+</radio>
+<suspend/>
+</block>
+<block label="Brand_3" randomize="1" cond="Q1.r3">
+<radio label="B3_1" type="rating" values="order" onLoad="copy('B1_1', cols=True)">
+<title>
+On a scale from 1 - 5, how do you feel about Brand 3?
+</title>
+<comment>Please select one</comment>
+</radio>
+<suspend/>
+</block>
+<block label="Brand_4" randomize="1" cond="Q1.r4">
+<radio label="B4_1" type="rating" values="order" onLoad="copy('B1_1', cols=True)">
+<title>
+On a scale from 1 - 5, how do you feel about Brand 4?
+</title>
+<comment>Please select one</comment>
+</radio>
+<suspend/>
+</block>
+</block>
+<number label="vBrand_Order" size="1">
+<virtual>assignRandomOrder('Brands_Section', 'children')</virtual>
+<title>
+Order of Brands Shown
+</title>
+<row label="Brand_1">Brand 1</row>
+<row label="Brand_2">Brand 2</row>
+<row label="Brand_3">Brand 3</row>
+<row label="Brand_4">Brand 4</row>
+</number>
+Extracted from the "Tracking Files" data download, the data shows that each brand section was, indeed, randomized by "Q1".
+Q1_rows Brands_Section_children
+r4,r3,r2,r1 Brand_4,Brand_3,Brand_2,Brand_1
+r1,r3,r4,r2 Brand_1,Brand_3,Brand_4,Brand_2
+r2,r4,r1,r3 Brand_2,Brand_4,Brand_1,Brand_3
+r2,r1,r4,r3 Brand_2,Brand_1,Brand_4,Brand_3
+r1,r2,r4,r3 Brand_1,Brand_2,Brand_4,Brand_3
+r2,r3,r1,r4 Brand_2,Brand_3,Brand_1,Brand_4
+r3,r1,r2,r4 Brand_3,Brand_1,Brand_2,Brand_4
+r3,r1,r4,r2 Brand_3,Brand_1,Brand_4,Brand_2
+r2,r1,r3,r4 Brand_2,Brand_1,Brand_3,Brand_4
+...
+...
+You can also see this information replicated in the vBrand_Order virtual question that was created.
+vBrand_OrderBrand_1 vBrand_OrderBrand_2 vBrand_OrderBrand_3 vBrand_OrderBrand_4
+4 3 2 1
+1 4 2 3
+3 1 4 2
+2 1 4 3
+1 2 4 3
+3 1 2 4
+2 3 1 4
+2 4 1 3
+2 1 3 4
+...
+3.3: Recording the Randomization Order for Loops
+Below is example of how to use assignRandomOrder() to obtain the order of looprows in a loop. The loop is labeled l1 and the looprows are labeled r1, r2, and r3. In the assignRandomOrder() function, you will refer to the loop label, followed by _expanded. The labels for the rows will be in the following format: [loop label]_[looprow label]_expanded.
+<loop label="l1" randomizeChildren="1" vars="q1">
+<title>L1 Loop</title>
+<block label="b1" builder:title="default loop block">
+<text
+label="q2_[loopvar: label]"
+optional="0"
+randomize="0"
+size="25">
+<title>What do you like about [loopvar: q1]?</title>
+<comment>be specific</comment>
+</text>
+</block>
+<looprow label="r1" cond="(q1.r1)">
+<loopvar name="q1">Brand 1</loopvar>
+</looprow>
+<looprow label="r2" cond="(q1.r2)">
+<loopvar name="q1">Brand 2</loopvar>
+</looprow>
+<looprow label="r3" cond="(q1.r3)">
+<loopvar name="q1">Brand 3</loopvar>
+</looprow>
+</loop>
+<number
+label="l1_LOOP_ORDER"
+size="1">
+<title>l1 Loop Order</title>
+<virtual>
+assignRandomOrder('l1_expanded', 'children')
+</virtual>
+<row label="l1_r1_expanded">Loop 1</row>
+<row label="l1_r2_expanded">Loop 2</row>
+<row label="l1_r3_expanded">Loop 3</row>
+</number>
+Note: In the example above, each brand-specific question is wrapped in a <block> tag with randomize="1" set. This is because, in a typical survey, there would be many brand-specific questions to ask. Since each block contains only one question, you can remove them and the randomization would still be consistent. You would, however, need to update your rows at vBrand_Order to reflect the question labels instead of the block labels (e.g., "B4_1" instead of "Brand_4").

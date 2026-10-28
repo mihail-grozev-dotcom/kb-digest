@@ -1,0 +1,76 @@
+Title: Text Question Attributes
+The <text> element is an open-ended question type that gathers text input from participants such as descriptions, name, email, zip code, etc...
+<text label="Q1" optional="0">
+<title>What is your name?</title>
+<row label="r1">First</row>
+<row label="r2">Last</row>
+</text>
+<text label="Q2" optional="0" verify="zipcode">
+<title>What is your 5-digit ZIP postal code?</title>
+</text>
+The code above produces the following result:
+1: Attributes
+In addition to the Question Attributes available, the <text> element has access to the following attributes:
+2.1: size - Set the Input Field's Width
+The size attribute is an integer value that controls how wide the input field should be.
+By default, the size is set to 20. The input fields can be shortened or lengthened for the entire question or on each individual element. For example:
+<text label="Q1" size="25">
+<title>Please fill in the information below:</title>
+<row label="r1" size="5" verify="zipcode">ZIP Code</row>
+<row label="r2">Name</row>
+<row label="r3" verify="email">Email</row>
+<row label="r4" size="50">Occupation</row>
+</text>
+The code above produces the following result:
+The default size for the question is set to 25 and rows r1 and r4 are set differently.
+2.2: optional - Set the Question Mandatory or Optional
+The optional attribute is a boolean value that controls whether or not the participant should be forced to answer the question.
+By default, text questions are not mandatory. Specify optional="0" to force a response.
+<text label="Q1" optional="0" title="What is your email?" verify="email"/>
+2.3: verify - Set Which Data Verifiers to Use
+The verify attribute controls which of the Data Verifiers to use. verify can apply the validation functions on the entire question or on each individual element, but not both.
+For example:
+<text label="Q1" optional="0">
+<title>Please provide the following information:</title>
+<row label="r1" verify="zipcode">ZIP Code</row>
+<row label="r2" verify="range(1,125)">Age</row>
+<row label="r3" verify="len(2,3)">Weight</row>
+<noanswer label="r99">Prefer not to say</noanswer>
+</text>
+The code above produces the following result (errors shown to demonstrate the verify attribute):
+2.4: disablecopypaste - Disable Participant Ability to Copy / Paste Text
+To prevent participants from copying text from and pasting text into the text field in surveys with compat level 154+, add uses="disablecopypaste.1" to the element.
+For example:
+<text
+label="q1"
+optional="0"
+size="25"
+uses="disablecopypaste.1">
+<title>New Text Question/title>
+<comment>Be specific/comment>
+</text>
+3: Example
+In this example, participants are asked to rate three sets of items based on two criteria using the words "one", "two" and "three". Using a <validate> element, ensures the answers provided make sense.
+<text label="Q1" optional="0" grouping="cols">
+<title>Please rate each item using the words "one", "two" or "three" based on the criteria provided:</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+<col label="c1">Best value</col>
+<col label="c2">Best customer service</col>
+<validate>
+# each column should have the following answers
+expected_answers = set(["one", "two", "three"])
+for eachCol in this.cols:
+# here are the answers that were supplied
+actual_answers = set([answer.lower() for answer in eachCol.values])
+# if the difference between the set of expected and actual answers
+# is not an empty set, then show an error
+if (expected_answers.difference(actual_answers) != set()):
+error("Please rate each item using the words 'one', 'two' and 'three' where 'one' is the best.", col=eachCol)
+</validate>
+</text>
+The code above produces the following result:
+4: Learn More
+Text Element
+Text Question XML

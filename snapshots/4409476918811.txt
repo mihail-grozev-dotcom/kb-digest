@@ -1,0 +1,183 @@
+Title: Creating and Managing an Auxiliary Database
+The Auxiliary Database system is an alternative way to read and write data in the system. Using an Auxiliary Database limits multiple read/write operations to an external file, which is resource intensive. The database system can be used to lock a survey down by a list of predefined valid IDs, to store data for a participant across multiple visits of the same survey (e.g., a diary study), or when assigning gift codes for participants. There can be any number of databases created for aproject, as long as they have different names. Any database within a survey is not accessed by the system until explicitly told to do so, via Python code in the project.
+1: Creating the Database
+When creating a database, place the python code that does so within a exec block with the when="init" attribute added to it. This will make sure that the code that creates the database is only executed once, when the survey is first loaded.
+Note: To find out more about the different values of the when attribute, see Exec Tag: Execute Python Code.
+There are different methods available to create a database, which are covered below:
+1.1: Creating the Database From a File
+To create the database from a file, upload a tab-delimited text file into the system. The file should be uploaded as a System (Root) File.
+Note: If you cannot upload your file as a text file, you can upload it as a .dat file. To do that, open your file in a plain text editor, and use the Save As option. You can then manually type out the file extension and the filename when saving.
+Note: You can replace and modify your uploaded data file at anytime after creating your database. The system will automatically notice the changes in the file and update accordingly.
+Once the file is uploaded, create the database using the following exec block:
+<exec when="init">
+db=Database("ids.dat", columnName="myColumn")
+</exec>
+This exec blocks assumes that a file containing some participant IDs is uploaded to the survey and that those IDs are located within a column labeled "myColumn". You can change the value for columnName to pull from the column containing your participant IDs.
+Additionally, the Database function accepts the following parameters: self, file='', name='', survey='', lower='', columnName=''.
+If no column is specified, the database will automatically assume that the first column in the file is the one that contains the IDs.
+Note: Using the columnName parameter automatically sets skip=1 as well.
+This will create a database within the project called db. This database will hold all of the information from the tab-delimited file.
+Alternatively, you can use column numbers to specify the column containing our participant IDs. For example, if you upload a file with multiple data columns, you could use the following exec block instead:
+<exec when="init">
+db=Database("ids.dat", column=2)
+</exec>
+Note: This specification method will not work for secure surveys (surveys enforcing https links).
+The above example specifies that the third column in the file will contain the IDs (column indexing starts with 0 as the first column index).
+Tip: Column indexing starts with 0 as the first column index. Therefore, column=2 specifies the third column.
+Additionally, if headers are specified for the columns, you can tell the system to ignore headers when creating the database with the below example:
+<exec when="init">
+db=Database("ids.dat", column=2, skip=1)
+</exec>
+The skip parameter will tell the system to skip the first row of the file (the one containing the headers when creating the database).
+1.2: Creating an Empty Database
+In some cases, a database is used to check for duplicate entries on questions across all participants without having a pre-defined file. In those cases, you can create an empty database, and store each participant’s answer so you can check for duplicate entries. To create an empty database, you can use the below syntax:
+<exec when="init">
+db=Database(name="passwords")
+</exec>
+In this case, instead of specifying a file to reference within the project, you are creating a database by giving it a name. This is needed to discern between multiple databases if there are more than one in the survey.
+2: Checking for the Source ID
+There are three types of checks you can execute on a database. You can check if:
+a participant’s ID is part of the list of allowed IDs
+an ID is currently being used by another participant
+a specific ID has already completed the survey
+These three checks can be used separately to display different error messages to participants, or in conjunction to create conditions within the survey.
+2.1: Checking if a Value is in our File
+If creating a database from a file, you can check whether specific IDs that your participants use are part of your file. Use the db.valid()command to check if a participant’s ID is part of the database:
+<exec>
+isValid = db.valid(source)
+</exec>
+Note: The above example assumes that participants come in with source as their ID variable. To use a different variable as the ID, you need to set-up a URL Variable in your Sample Sources.
+The above code will return either True, if the value for source is present within our file, or False, if it isn’t.
+Note: The ID values are checked case insensitively. This means that "ABC" is the same as "abc" when checked for existing values.
+2.2: Checking if an ID Value is Currently in Use
+To check if a participant has already started a survey with a specific ID, but not yet completed it, you can use the db.inuse() command. Use the command as shown below:
+<exec>
+isInUse= db.inuse(source)
+</exec>
+Using this command can prevent multiple participants from starting the survey at the same time with the same ID. If the ID in question is not in use, the db.inuse command will also assign that ID to the current participant’s survey session. If a participant drops out of the survey, the ID that they are using will be stay assigned to them for 15 minutes of inactivity. If they do not resume the survey in that time period, the ID is free to be assigned to a different participant. To resume the survey with the same ID, a participant needs to use the same browser as when they started the survey.
+Note: The db.inuse command sets two survey markers per call - one to signify that the specified ID is being used, and one to identify the session used by the specified ID. Additionally, it will set a marker for the specified ID if one is not already in use.
+2.3: Checking if an ID has Completed the Survey
+Using the db.has(source) command, you can check if an ID has completed your survey:
+<exec>
+completed= db.has(source)
+</exec>
+Note: This requires that each completed record is added to the completion database by usingdb.add().
+3: Adding to the Database
+3.1: Adding the Completion ID
+In order to mark an ID as having completed the survey, you must add it back to your database using the db.add() command:
+<exec when="finished">
+db.add(source)
+</exec>
+The when="finished" attribute added to the exec block ensures that the source ID will be added to the completed ids only when a participant finishes the survey, e.g. qualifies, is terminated, or is overquota. To allow partial IDs to be added to the database, remove the when="finished" attribute.
+3.2: Appending Custom Values to the Database
+In addition to storing and checking IDs of participants, the Auxiliary Database System can store custom values for each ID. This can be done by adding a value to the db.add() command:
+<exec when="finished">
+db.add(source,value)
+</exec>
+Where value can be a question value, a timestamp, or any number/text. Below is an example of adding a single select question’s value to the database:
+<radio
+label="Q1">
+<title>Which brand is your favorite?</title>
+<comment>Please select one</comment>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+</radio>
+<suspend/>
+<exec when="finished">
+db.add(ID,Q1.val)
+</exec>
+The above example will produce the following record within our Database, if we test with an ID of 123:
+uuid date key value
+48w879cp5a4s577v 11/04/2016 16:49 123 0
+3.3: Overriding Existing Records in our Database
+In some cases, you may want to allow participants to take your survey multiple times, but only store their latest responses, or update already stored information in your database, either from a later point in our current study, or from a different study altogether. In these cases, use the replace=True syntax when adding the updated record back into your database, like so:
+db.add(ID,Q1.val,replace=True)
+The above syntax will replace any existing records in your database with the same ID value, with the latest one you want to add. This will avoid creating multiple database entries for the same participant, which can create conflicts when looking those entries up.
+3.4: Appending Multiple Values to the Database
+The database system allows only one value to be saved for each record. If you need to append multiple values to your database, you need to store all of the values you want in a python dictionary or another comparable data structure. Take the following two questions as an example:
+<radio
+label="Q1">
+<title>Which brand is your favorite?</title>
+<comment>Please select one</comment>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+</radio>
+<suspend/>
+<text
+label="Q2">
+<title>Why is this brand your favorite?</title>
+<comment>Please select one</comment>
+</text>
+In this case if you want to store the values of both questions within your database, you can create a dictionary within your exec blocks, and add both of your items in it, like so:
+<exec when="finished">
+values={} #initialize our empty dictionary
+values["Q1"]=Q1.val #add Q1.val to our dictionary
+values["Q2"]=Q2.val #add Q2.val to our dictionary
+db.add(source,values)
+</exec>
+The above code will produce the following values in our database for a source value of 123:
+uuid date key value
+hkyknpvkjskpskna 01/03/2017 13:51 123 {'Q1': 2, 'Q2': 'It is awesome !'}
+The value column now has a dictionary stored in it, which was the values dictionary created in the exec.
+4: Retrieving from the Database
+To retrieve data saved in a database, use the db.get() command to pull any saved information.
+<exec>
+dataValue = db.get(source)
+</exec>
+The above will return either the value the key was saved with, or a Key Error (which will result in a fatal) if it cannot find that key in the database.
+5: Cross-Survey Communication
+The Auxiliary Database System also allows for cross-survey communication between databases. This allows you to use and/or update data stored in a database in survey A, by accessing it from survey B. In order to enable cross survey communication between databases, the survey which contains the actual database (survey A) must have an acl.txt file created, which allows other surveys to access the information in survey A.
+As an example, let’s say that Survey A has the path selfserve/abc/surveyA and Survey B has the path selfserve/abc/surveyB. To allow Survey B to access a database created in Survey A, we need to upload an acl.txt file to Survey A with the following contents:
+selfserve/abc/surveyB
+Note: To allow all directories to access a database, add * to our acl.txt file, which is a wildcard symbol. Additionally, you can allow all projects in a certain directory to have access, by specifying sefserve/abc/* in our acl.txt file.
+Once the acl.txt file is created, use the following syntax to access the database db1 in Survey B from Survey A.
+Note: The below example assumes Survey A already has a database created by using db=Database(name="db1").
+<exec when="init">
+externalDB = Database(survey="selfserve/abc/surveyA", name="db1")
+</exec>
+The above syntax allows you to directly access Survey A’s database in Survey B. This also allows you to now add or pull data to/from that database, as well as update already existing records in it.
+Note: When accessing a database from a different study, you can only use the has()/get()/add() commands. Commands such as inuse() will not work.
+6: Viewing a Database List
+Requires Decipher Cloud
+The dbshow command can be used to see a list of all the databases you have created for a project, or a specific database’s contents. The command has the following syntax:
+dbshow survey name
+survey is the path to the project to be checked, and name is the name of the database, if you want to view a specific one. If you navigate to a project in the shell, you can run dbshow . dbshow will produce a result similar to the below:
+[pagov] /home/hermes/v2/selfserve/214e/161102$ dbshow .
+Assuming . refers to selfserve/214e/161102
+db
+The above result means that this project has one database created, called db. To view its contents, you can run:
+dbshow . db
+Running dbshow . db will show something similar to the below:
+uuid date key value
+hkyknpvkjskpskna 01/03/2017 14:13 123 {'Q1': 2, 'Q2': 'It is awesome !'}
+7: Editing a Database
+Requires Decipher Cloud
+Accessing a database via the shell also allows you to make edits for it, by using the dbimport script. The dbimport script can import or delete data from a tab delimited text file, and uses the following syntax:
+dbimport survey name filename.txt
+survey - the path to the survey in which the database is created
+name - the name of the database
+filename - the name of the file used for the import. (the file must be uploaded to the server)
+The tab delimited text file can have up to 3 columns in it - key, uuid, and data. The created file should have at least key as an existing column in order for the command to work properly. When importing data into already existing records, you also need to specify the uuid and data columns. An example of the contents of this file can be found below:
+uuid key data
+hkyknpvkjskpskna 123 {'Q1': 2, 'Q2': 'It is awesome !'}
+zxcdcpvkjsasduta 234 2
+yricmynvieciytnc 345 4
+vmgnciekcunvedkf 456 11
+If you name the above file import.txt, you can run the following command to import data into an already existing database named db. In this study (assuming you are in your project directory):
+dbimport . db import.txt
+Which will update all entries with the corresponding keys in the existing database.
+7.1: Advanced Modifiers
+In some cases, you may want to import data paired with a key, but not associate it to a specific participant uuid . Use the -u switch when running your command to randomly generate unique user IDs to your records:
+dbimport -u . db import.txt
+Note: dbimport -u is not usable in surveys with delphi="1".
+If your datafile contains python syntax, the system will import it as a string by default. To make sure your python code is read properly, use the -e switch:
+dbimport -e . db import.txt
+To delete matching entries in your file from your database, use the -d switch:
+dbimport -d . db import.txt
+Here you can match on any one or all of the key, data and uuid fields. For example, if you have a file with just a uuid column then all database entries for this database for the specified uuids are deleted. If you have both uuid and key then only those entries where both uuid and key match each line are deleted.
+7.2: Re-indexing a Database
+Usage:
+dbreindex <survey name> <database name>
+Occasionally it can be useful to reindex the text file. If you have an invited.txt file with 10 million entries that is frequently updated, v2 will build an invited.txt.index file with which it can tell whether a particular ID is likely within invited.txt or not without having to read all 10 million lines. However building that index file can take a while, which can be frustrating to participants entering the survey and dealing with 2-3 minute timeouts. In that case use e.g., dbreindex abc/surveyA invited, to rebuild that index from the command line.

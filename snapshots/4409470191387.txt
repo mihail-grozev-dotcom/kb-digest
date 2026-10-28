@@ -1,0 +1,57 @@
+Title: Checking Crosstabs Condition Logic
+Condition logic is often called "skip logic" and is used to show or hide certain elements in your survey. These elements can be questions, rows/columns, concepts, and much more.
+Verifying condition logic is a vital step in ensuring that the survey setup is correct before proceeding to launch. This can save time and re-fielding costs by helping catch errors during the testing phase. This document covers how to use Crosstabs to verify that condition logic is programmed correctly by comparing the base of the total segment to the base of a segment with condition logic.
+1: Checking Question Logic
+1.1: Create a Quick Split to Check Simple Question Logic
+Simple question logic is logic that is used to only show certain questions or elements to specific participants, based on a single logic statement. Take a look at the following example of simple question logic in a questionnaire.
+[SHOW IF MALE]
+[s4] Do you drink energy drinks?
+Yes
+No
+In this example, only participants who indicated they were male earlier in the survey should see the question. This can be verified by running gender quick split with qualified data.
+To begin testing the logic condition, click Run Quick Split Crosstab from the Crosstab entry page.
+Learn more: Running a Quick Split Crosstab
+In the Run Quick Split Crosstab menu, create a segment for participants who should see the question. In the example below, that would be a segment for participants who answered male at s1.
+A segment segment can also be created to verify those participants who should skip s4, in this case that would be female participants.
+Once the segments are built, click Run X Segments to run the quick split crosstab.
+After running the new quick split crosstab, jump to the table for the question with the logic to test. Then compare the segments to the base. Only participants in the segments that meet the conditions for the question should be shown the question.
+Learn More: Crosstabs
+In the above example, all of the participants who answered question s4 were male. Additionally, no females were shown the question. This indicates that the question is only being displayed to males and the logic conditions were set up correctly.
+1.2: Build a Crosstab to Check Compound Question Logic
+Compound question logic is logic that is used to only show certain questions or elements to specific participants, based on a compound logic statement. Take a look at the following example of complex question logic in a questionnaire.
+[CONCEPT SECTION: SHOW IF Brand B IN q2] [SHOW IF Brand B ONCE A WEEK OR MORE FREQUENTLY IN q1]
+The above example assigns logic based on a participant's answer to two previous questions.
+To check complex logic, create a new crosstab using the "Build Crosstab" button on the Crosstab entry page.
+Tip: Creating a new crosstab works for Simple Question Logic as well.
+The total segment is used as a comparison when verifying condition logic in crosstabs. Begin building segments for the logic condition by clicking "+Segment". The logic for the new segment should match the logic for the condition to verify from the questionnaire.
+In the above example, a logic condition that includes both statements in the questionnaire. Respondents should only be shown q3 if they selected Brand B in q2 AND indicated that they drink Brand B once a week or more in q1.
+A segment segment can also be created to verify those participants who should skip s4, in this case that would be female participants. To do so, duplicate the first segment and adjust the conditions so that they are not true, as shown in the example below.
+The segment created in the above example includes all participants who should not be shown q3. In this case, the inverse of the logic created above was used. Respondents who did NOT select Brand B in q2 OR did NOT indicate that they drink Brand B once a week or more in q1 should skip q3.
+Note: Creating a condition with the inverse logic may not be appropriate for all situations.
+Once the necessary segments are built and the appropriate conditions are set, save (optional) and run the crosstab. Then jump to the table for the question with logic to verify.
+The segment that represents participants who see the question should match the base of the total segment. The segment that represents participants who do NOT see the question should have 0 for all the counts.
+In the above example, the base for the Total and “Show q3” segments match, and the counts for the “Skip q3” segment show 0, indicating that the logic for this question is correct.
+2: Checking Hidden Question Logic
+Hidden questions use logic to assign participants to categories. The logic conditions can be tested in crosstabs to ensure that participants are being assigned correctly. The example below shows a hidden question in a questionnaire.
+[vAGE] Capture Ages from s2
+18-24
+25-34
+35-44
+55+
+In the above example, participants are sorted into one one of the four age categories depending on the age they indicated in s2. To begin testing the logic, click “Build Crosstab” from the Crosstab entry page.
+Learn more:
+Building a Crosstab
+Next, build a crosstab with segments for each of the categories listed in the questionnaire. Then assign the appropriate logic to each of the segments.
+Once the segments are created and logic is assigned, Run the Crosstab. Then, jump to the table for the hidden question to ensure that it is assigning participants correctly.
+On the table for the hidden question, compare the number of participants in each segment to the base for each category for the hidden question. These values should match if logic conditions are assigned correctly.
+In the above example, the number of participants in each of the age segments matches the base of each of the age categories in the hidden question, so logic conditions were assigned correctly.
+3: Checking Row Condition Logic
+Row condition logic is used to show rows only to to specific participants. Below is an example of row condition logic in a questionnaire.
+[q2] Of those soft drinks that you consume on a weekly basis, which is your favorite?
+[SHOW SOFT DRINKS SELECTED IN q1 AS ONCE A WEEK OR MORE FREQUENTLY]
+In the above example, rows are only shown to participants who indicated they drink the soft drink once a week or more in q1.
+To begin testing the logic, click “Build Crosstab” from the Crosstab entry page.
+Next, build a crosstab with segments for each of the rows in the previous question with the appropriate condition logic and Run the Crosstab.
+In the above example, a segment was created for each brand of soft drinks in q1, and the condition of once a week or more was applied to each brand.
+After running the crosstab, jump to the table for the question and check each condition to the base for each row.
+In the above example, each condition matches the base of the corresponding row, ensuring that only participants who indicated they drank a soft drink brand once a week or more were shown the row that corresponds with that brand.

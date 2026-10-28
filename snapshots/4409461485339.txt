@@ -1,0 +1,6 @@
+Title: One Row at a Time Question Style
+"One Row at a Time" is a unique question style that can be applied to two-dimensional Single Select elements. With this style applied, the question initially displays only the first row. When the participant selects an answer for that row, the next row appears, and so on until each row is answered.
+Applying One Row at a Time to a Question
+To apply the "One Row at a Time" style to a question, first select the question. Then click the "..." button at the top right of the question in the staging area and select "Update Styling".
+In the "Question Display Options" window, select "One Row at a Time" from the drop-down. Then select "Save and Close" to apply the style to the question.
+You can preview the question at any time by clicking the "Preview" button located at the top right corner of the element. To learn more about previewing a question, see Previewing a Question.

@@ -1,0 +1,50 @@
+Title: Customizing the Video Player (YouTube/Vimeo) Element
+The Video Player (YouTube/Vimeo) element allows you to quickly add videos to your survey from popular hosting services, such as YouTube or Vimeo. Then when taking the survey, participants can watch the embedded Vimeo/YouTube videos on their desktop PC, tablet or smartphone device.
+1: Video Player Element
+The video player (YouTube/Vimeo) requires:
+a survey with compat 129+
+no rows
+no columns
+the attribute ss:questionClassNames set to sq-videoembed
+the attribute where set to notdp
+2: Underlying Question Architecture
+The dynamic style sits on top of a <number> question. See bellow for an example of the base XML code inserted when using the survey builder.
+Example XML
+<number
+label="q10"
+optional="0"
+size="10">
+<title>New Number Question</title>
+<comment>Enter a number</comment>
+</number>
+3: Converting to the Video Player Element
+To add the video player style to this question, simply update the <number> tag as shown below:
+uses="videoembed.5" is added to the question tag
+ss:questionClassNames="sq-videoembed" attribute is specified
+videoembed:embed is specified to provide the video's embed link
+Note: For instructions on finding the embed link, see Video Player (YouTube / Vimeo) Element.
+<number
+label="q10"
+size="10"
+ss:questionClassNames="sq-videoembed"
+uses="videoembed.5"
+videoembed:embed="&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/eRj8C7PuSBU&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
+where="notdp">
+<title>Lifeproof vs Otterbox Defender for iPhone 4s comparison Pt. 1</title>
+<comment>Click the "Play" button to start the video.</comment>
+</number>
+The example above produces the following result:
+4: Customization
+Listed below are all of the attributes available for this element.
+videoembed:embed
+Defines the iframe embed link retrieved from YouTube, Vimeo or similar hosting service
+Type: string
+Available in survey builder: yes
+Example: videoembed:embed="&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/eRj8C7PuSBU&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
+Note: Review the width/height attribute to make sure the video will fit on the survey page. A width of 900 pixels or less is preferable.
+videoembed:mustWatch
+Video required to play to the end if set to 1. Leave this disabled for YouTube Videos because this option does not work with YouTube Videos.
+Type: bool
+Available in survey builder: no
+Example: videoembed:mustWatch="1", the video must play through the end in order for the participant to continue to the next question. The button will not be clickable until the video is over. The default is "0".
+Note: The mustWatch attribute is only available through the XML and only works with http links. If you want to use this attribute, please do not use https.

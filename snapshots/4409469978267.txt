@@ -1,0 +1,20 @@
+Title: Changing Question Types and Styles
+The Survey Editor allows you to change the question type or style for an existing survey element while maintaining any of its saved content and customizations.
+1: Changing Question Types
+To change the question type of an element in the Survey Editor, first select the element in the question tree. Then click the "..." button at the top right of the element in the staging area and select "Change Question Type".
+Then select the new question type and click "Select".
+Once selected, the new question type is applied and will overwrite the element's existing question type.
+The following rules apply when changing question types:
+Questions with no customization (text / answers / attributes) are replaced with the selected question type.
+Customized title or instruction text is preserved.
+Customized attributes are preserved, if valid. There are a few exceptions for attributes which convert answer options (e.g., rowShuffle or average="cols").
+Customized style variables are preserved for Dynamic Questions (DQs) which switch between different base question types.
+Customized answer attributes are preserved, if valid.
+Additionally, some response options may be added, removed, or converted depending on the question's default type.
+1.1: Examples
+If you change a Single Select question to a Single Select Grid question type, the rows are preserved and default columns are added.
+If you convert a regular question to a Dynamic Question (DQ) type which does not allow rows, any existing rows are removed.
+If you convert a Single Select question to a Select question type, any existing rows or columns are converted to choices.
+2: Changing Question Styles
+To update the styling of an existing element in the Survey Editor, first select the element. Then click the "..." button at the top right of the element in the staging area and select "Update Styling".
+Then update your question style settings as desired. Once you are satisfied with the new styling, click "Save and Preview" or "Save and Close" to apply the changes.

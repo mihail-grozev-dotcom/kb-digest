@@ -1,0 +1,32 @@
+Title: M47 Release Notes
+Release Date: February 16, 2021
+Release Version: 147
+Survey Versioning
+The new survey compatibility level is 147. The system automatically uses compat="147" for all new surveys. This enables the following:
+Enforces secure links for all surveys with a compat level of 147+ (prevents use of secure="0"). Secure surveys require participants to use an HTTPS connection at all times when taking the survey.
+Learn more: Survey Compat Levels
+New Features
+Portal
+Company Settings
+Added the Archive and Delete Settings feature, which provides staff users with the ability to customize company survey archival and deletion settings.
+Learn More: Survey Archival and Deletion
+Survey
+Survey Editor
+Updated the display of the Field Settings menu to include a drop-down of all CNAMEs authorized for use within the company containing the survey.
+Architecture/DevTools
+Improved system processing when adding new languages after a survey has been created.
+Added the hostname of the company server to the default list of valid CNAMEs for each of the company's surveys.
+In-App Text Changes
+Survey
+Survey Editor
+Updated the text in the warning window that appears when you click “Save to Live Survey” after making edits to a temp version of a survey.
+Learn More: Editing a Live or Closed Survey
+Bug Fixes
+Portal
+Fixed an issue causing errors when attempting to migrate an empty survey from one company to another.
+Responses
+Sample Marketplace
+Fixed an issue preventing the “Get Prices” button from being disabled on click.
+Fixed an issue causing an error when attempting to launch a non-secure survey (secure="0") with purchased sample.
+Response Summary
+Fixed an issue preventing manually disqualified records from being counted in the Terminates tab of the Response Summary.

@@ -1,0 +1,41 @@
+Title: Multi-User Editing
+Note: Multi-User Editing must be enabled at the company level prior to use. If you’re interested in utilizing this feature, please contact your Forsta representative to get set up.
+You can use the Multi-User Editing tool to collaborate with multiple users to create and edit your surveys. The Multi-User Editing tool functions as a sort of survey library, which allows each member of your team to check out a “block”, or predesignated part of the survey, to work on individually. Once changes have been made, team members can then check the blocks back into the survey to update it with their changes.
+This article details how to edit blocks assigned for Multi-User Editing.
+1: Preparing for Editing
+To prepare your survey for Multi-User Editing, you must first split it into sections of editable content using Block elements. Then, you will need to assign Multi-User Editing to the blocks you have created.
+Learn more about preparing a survey for Multi-User Editing.
+2: Editing Blocks
+Once you have assigned your survey blocks for editing, any user with edit access to the main survey can use the Multi-User Editing control panel to edit those blocks.
+To make edits to a survey block, you must first check it out for editing. To check out a block, click the ellipsis button (“...”) under Actions and select “Check-out”.
+A confirmation message will appear with some information about the block you are attempting to check out. Click “Continue” to check out the block.
+If the check-out process is successful, you will see a “Success!” message. Click “Edit Block” to go directly to the block in the Survey Editor.
+If you are not ready to edit your block just yet, click the “x” to dismiss the message and stay in the control panel.
+3: Syncing Blocks with the Main Survey
+If the main survey has been changed since you checked out a block, you can apply those changes to your block by syncing it with the main survey. To sync a block with the main survey, click the ellipsis button (“...”) under Actions and select “Sync with Main Survey”.
+A confirmation message will appear with some information about the syncing process. Click “Continue” to sync your block with the main survey.
+4: Abandoning Changes
+If you have made a mistake, you can check a block back in for editing without applying your changes at any time. To abandon your changes and check a block back in, click the ellipsis button (“...”) under Actions and select “Abandon changes”.
+A confirmation message will appear with some information about abandoning changes. Click “Continue” to abandon your changes and check the block back in for editing.
+5: Applying Changes
+Once you have finished editing a block and you are ready to apply your changes to the main survey, you will need to check your block back in. To check a block in, click the ellipsis button (“...”) under Actions and select “Check Back In”.
+A confirmation message will appear with some information about checking blocks back in. Click “Continue” to apply your changes and check the block back in for editing.
+6: Unassigning Blocks
+To unassign a block from editing, first check the block back in. Then return to the Survey Editor to edit the block element. Select the desired block and click the ellipsis icon (“...”) at the top right of the element to access the question options menu. Finally, click “Unassign for Multi-User editing”.
+Note: You may only unassign blocks that are currently checked in and displayed as “Available”.
+7: Troubleshooting Errors
+See below for additional information on the error messages you might encounter while editing blocks using Multi-User Editing.
+There are no sections associated with this survey.
+No blocks have been assigned for Multi-User Editing or the subsection="1" XML attribute was not set for any blocks.
+You may not edit this project in multi-user mode.
+Multi-User Editing has not been enabled at either the company or server level.
+ERROR: 400: This survey is currently locked for Multi-User Editing.
+Multi-User Editing has not been enabled at either the company or server level and a Multi-User API call is made.
+Another user is currently checking in a block. Please try again later.OR The lock could not be applied.
+Multiple users are trying to check in a block at the same time.
+ERROR: 409: Cannot check out section b1: the requested section has already been checked out.
+The block you have selected has already been checked out (b1 in this example).
+ERROR: 404: Section does not exist: it has not been checked out or is not available for Multi-User Editing.
+You are trying to check in, revert, sync, validate, or edit a block that has not yet been checked out. The same error will be displayed if you attempt to check out a block that has not been assigned for Multi-User Editing.
+ERROR: 404: cannot load survey 'selfserve/53b/210509' specified as survey does not exist.
+You are attempting to call a Multi-User API endpoint using the wrong survey ID (selfserve/53b/210509 in this example).

@@ -1,0 +1,140 @@
+Title: Tremendous Integration
+This logic node allows for integration with the Tremendous API (v2). Tremendous provides a way to order a variety of rewards that can be given to participants as incentives for participation in a survey. An account with Tremendous is required.
+Important: Disable the back button in surveys that use this logic node.
+Note: Open surveys should not be used with the Tremendous Logic Node. Lock down the survey by using participant sources.
+Learn More: Adding Participant Sources Using the Survey Editor
+1: Using the Survey Editor
+To add the Tremendous Incentives logic node using the Survey Editor, click + Element in the staging area.
+In the Element Library, click Advanced and select the Tremendous Integration element from the list. Then click Add.
+The new element will appear in the staging area, where you can specify the settings for your integration.
+1.1: Configuration
+The following options are configurable. Tremendous specific values can be found in your Tremendous dashboard, and/or pulled from the Tremendous API.
+API Token: Your Tremendous API token. Forsta recommends that you encrypt your Tremendous API token. This field is not pipeable.
+Funding Source ID: Your Tremendous funding source ID. Can be identified using Tremendous’s List Funding Sources API.
+Unique Participant ID: A unique ID for each participant to prevent duplicate rewards. This attribute should be based on the variable you use to lock down the survey (e.g. $(source)).
+Reward Amount: The amount to be rewarded in whole numbers only. For example, “50” is equivalent to $50.00 USD if the currency code is USD.
+Currency Code: The currency code of the amount to be rewarded. The default currency on Tremendous is USD.
+Delivery Method: There are three delivery methods.
+LINK: The logic node saves the reward link in a hidden text question. You can pipe the reward_link field into a Descriptive Content Element that the participant can access or into an Exit Page.
+Note: A page break should be placed between the logic node and the Descriptive Content Element with the piped reward_link field.
+EMAIL: The logic node will tell Tremendous to send an email with the reward using the email listed in the Participant Email field. You can customize this email in Tremendous.
+PHONE: The logic node will tell Tremendous to send a text with the reward using the phone number listed in the Participant Phone field.
+Error Message: The message to show in the survey if there is an error ordering the reward.
+Email Errors To: The email address that is notified if there is an error ordering the reward.
+Campaign ID: Your Tremendous Campaign ID. Use either this field or the Product IDs field.
+Product IDs: A comma-separated list of Tremendous Product IDs. Use either this field or the Campaign ID field.
+Participant Name: The name of the participant.
+Participant Email: The email of the participant. Required if the Delivery Method is EMAIL.
+Participant Phone: The phone number of the participant. Prefix with + and the country code if the number is not a US number. Required if the Delivery Method is PHONE.
+You can use logic conditions to include more than one Tremendous logic node in a single survey.
+2: Using the XML Editor
+To add the Tremendous Incentives logic node using the XML Editor, add the following <logic> tag to your survey XML:
+<logic uses="tremendous.1" label="ln1">
+<title>Tremendous Integration</title>
+</logic>
+2.1: Required Attributes
+All attributes should be prefixed with tremendous: (e.g. tremendous:currency_code="USD").
+Attribute
+Description
+Example
+auth_token
+Your Tremendous API token. Forsta recommends that you encrypt your Tremendous API token. This field is not pipeable.
+TEST_dhae28s3b--t-zflbeknmwozjrhoojpwnplkzvzrpfp
+Default: Empty
+funding_source_id
+Your Tremendous funding source ID. Can be identified using Tremendous’s List Funding Sources API.
+QG3FB6FVQEBP
+Default: Empty
+unique_participant_id
+A unique ID for each participant to prevent duplicate rewards. This attribute should be based on the variable you use to lock down the survey.
+$(source)
+Default: Empty
+reward_amount
+The amount to be rewarded in whole numbers only. For example, “50” is equivalent to $50.00 USD if the currency code is USD.
+50
+Default: Empty
+currency_code
+The currency code of the amount to be rewarded. The default currency on Tremendous is USD.
+USD
+Default: Empty
+delivery_method
+The delivery method. Must be one of the following three methods:
+LINK: The logic node saves the reward link in a hidden text question. You can pipe the reward_link field into a comment element that the participant can access or into an Exit Page.
+Note: A suspend tag should be placed between the logic node and the comment element with the piped reward_link field.
+EMAIL: The logic node will tell Tremendous to send an email with the reward using the email listed in the participant_email field. You can customize this email in Tremendous.
+PHONE: The logic node will tell Tremendous to send a text with the reward using the phone number listed in the participant_phone field.
+This field is not pipeable.
+EMAIL
+Default: LINK
+error_message
+The message to show in the survey if there is an error ordering the reward.
+Something went wrong. Please contact support for assistance.
+Default: Empty
+error_support
+The email address that is notified if there is an error ordering the reward.
+support@example.com
+Default: Empty
+campaign_id
+Your Tremendous Campaign ID. Use either this field or the products field.
+5F39VR5XHX78
+Default: Empty
+products
+A comma-separated list of Tremendous Product IDs. Use either this field or the campaign_id field.
+CDMMRJLWKW94,8NCJL17RGBPV
+Default: Empty
+participant_name
+The name of the participant.
+Damian Lillard
+Default: Empty
+participant_email
+The email of the participant. Required if the delivery_method is EMAIL.
+dalillard@example.com
+Default: Empty
+participant_phone
+The phone number of the participant. Prefix with + and the country code if the number is not a US number. Required if the delivery_method is PHONE.
+8005551212
+Default: Empty
+2.2: Optional Attributes
+All attributes should be prefixed with tremendous: (e.g. tremendous:currency_code="USD").
+Attribute
+Description
+Example
+po_number
+XML only field for internal use.
+123456
+survey_id
+XML only field for internal use.
+tes-53a-200101
+debug_level
+Set to “1” to log the create order request body to the debug log.
+1
+3: Tremendous Response
+When the logic node is executed, a “create order” request is sent to the Tremendous API. The following values from the response are saved as rows in a hidden text question:
+The label of the question that holds the response is based on the label of the logic node (ex. If the logic node label is ln1, the hidden question is called ln1_results).
+Additionally, if the request is successful, the status code and body of the response can be accessed with ln1.status and ln1.r respectively. A status code of 200 or 201 indicates a successful request. The 201 status code is only displayed when a duplicate request is submitted.
+Row Label
+Description
+Example
+order_id
+The ID of the Tremendous order.
+RX05OL2V2M2P
+created_at
+The date and time when the order was created.
+2023-01-09T22:49:16.537Z
+reward_amount
+The reward amount.
+50
+reward_currency
+The currency code of the reward.
+USD
+reward_link
+The link that can be provided to the respondent to redeem their reward. This will be empty if the delivery_method is EMAIL or PHONE.
+https://testflight.tremendous.com/rewards/payout/4e55af5f6--c1hucrzclw9cccy7pkjolhjldsnudxkp
+Note: A suspend tag should be placed between the logic node and the comment element with the piped reward_link field.
+4: Errors
+If an error occurs, either in the runtime validation of the reward amount or the order was unsuccessful, the following actions occur:
+The error is logged in the logic debug log. See Logic Debug for more information.
+An email with information about the error is sent to the address listed in the Email Errors To (error_support) field.
+The contents of the Error Message (error_message) field are displayed to the participant in a Descriptive Content element named ln1_error. (The prefix is based on the logic node label.)
+The rows of the hidden question ln1_results will be empty.
+The status code (ln1.status) will be 500 and the response body (ln1.r) will be empty.

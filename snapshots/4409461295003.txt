@@ -1,0 +1,169 @@
+Title: Attributes for Field Settings
+There are a variety of <survey> attributes that can be used to configure the behavior of both surveys and their questions across Decipher's various tools and features.
+You can use the following attributes to control the various field settings for any Decipher survey:
+Attribute
+Purpose
+Description
+allowDupe
+To Enable Multiple Submissions
+Note: This attribute cannot be used in surveys with delphi="1".
+The allowDupe attribute allows you to control whether a participant can resubmit their results using the same UUID. Once the participant has submitted their responses, if allowDupe="1" is specified, they can use the "Back" button to change their responses and resubmit any number of times.
+Upon submitting the data again, a new entry in the dataset is created with their new responses using the same record and UUID. Their previous responses will not be overwritten.
+This attribute is very rarely used and is more common in phone-based surveys.
+Note: There is a 60-second period in which duplicate responses are discarded. After 60 seconds, a participant may submit their responses again.
+allowedCountries
+List of Allowed Countries
+The allowedCountries attribute controls exactly which countries should be allowed to take the survey. Specify the allowed countries using their lower-case ISO 3166-1 alpha-2 country code (e.g., allowedCountries="us,fr,de").
+All countries not specified and IP addresses that cannot be resolved will be excluded from the survey.
+As shown below, you may override the system error message that is shown to excluded participants.
+<res label="sys_invited.geoip">You are not permitted to take this survey from your
+location.</res>
+alwaysSaveData
+To Allow Data Load at Page Submission
+Note: Surveys with delphi="1" and loadData have this attribute "on" by default.
+The alwaysSaveData attribute allows you to refine the functionality of the loadData attribute so that participant data is loaded upon page submission, rather than survey completion. If alwaysSaveData="1" is specified, participant data is continuously saved and new data is applied to each record after each survey page.
+Note: Requires use of loadData and that browserDupes="".
+autosave
+To Auto Save Participant Progress
+Note: Surveys with delphi="1" have this attribute "off" by default. Specifying autosave="1" or removing autosave="0" turns onautosave.
+The autosave attribute controls the ability to save a participant's state into a database file after every page. If autosave="1" is specified, a participant may leave the survey and come back later to the same page where they left off. They will have the option to continue from that point or restart the survey. Information about how a survey is restored from an autosave is recorded in the survey.log file.
+This only works if the participant has cookies enabled and enters the survey using the same browser. To customize this behavior, see autosaveKey.
+Note: In surveys with delphi="1", setting autosave="1" mid-field will work retroactively to check participants against partial participant data.
+autosaveKey
+Set the Auto Save Key Variable
+The autosaveKey attribute allows you to create a variable to save a participant's progress by.
+By default, the autosave attribute uses a cookie to store the necessary information and the participant must enter the survey using the same browser to continue from the last known position. You can, however, use one or more extraVariables to store this progress information by (e.g., autosaveKey="source,GID").
+A participant will be able to enter the survey and continue where they left off using this variable (e.g., /proj1234?source=asdf1234). If more than one variable is provided, the first one (e.g., source) is checked before the second one (e.g., GID).
+Tip: Use the autosave script to clear saved progress for participants. For example:
+autosave SURVEY_PATH list (view autosaved keys)
+autosave SURVEY_PATH delete list.txt (delete keys in list.txt)
+[user@server proj1234]$ autosave . list
+Assuming . refers to selfserve/9d3/proj1234
+source:asdf1234
+1 keys total
+[user@server proj1234]$ echo "source:asdf1234" > delete_keys.txt
+[user@server proj1234]$ autosave . delete delete_keys.txt
+Assuming . refers to selfserve/9d3/proj1234
+1 keys deleted, 0 missing
+browserDupes
+To Disable Browser Duplication
+The browserDupes attribute can be set to "cookie", "safe", "strict", or "" (blank) and allows you to control how duplicates are checked. When set, participants can only complete the survey once and the system stores a cookie to remember. Cookies expire between 30 days and never, depending on the option chosen.
+If browserDupes="" is specified, the browser is not checked for duplication.
+Setting
+Description
+cookie (default)
+Uses a cookie to store and check duplication data.
+"" (blank)
+No browser duplication checks are made.
+safe
+Enables duplication checking by cookies, HTML5, ETag and Flash methods.
+strict
+Enables duplication checking by experiment fingerprinting technology.
+Learn more: Implementing a Digital Fingerprinting System
+closed
+Set the State of Survey to Closed
+The closed attribute controls the status of the survey. If closed="1" is set, then no further participants will be allowed into the survey.
+Tip: Instead of using this attribute, you may want to set the state attribute to "closed".
+builder:cname
+Add a CNAME to the Survey
+The builder:cname attribute allows you to add a pre-configured CNAME to your survey.
+For example:
+builder:cname="desiredcname.com"
+Note: CNAME's must be configured within a company directory prior to use in a survey. See Setting Up a Domain Alias (CNAME) to learn more about CNAME configuration and setup.
+fingerprint
+Specify What Fingerprinting Information to Capture
+The fingerprint attribute can be set to "none", "all", "etag", "browser", "flash", or "html5" and controls which variables are captured for fingerprinting participants.
+If fingerprint="all" is specified, four new variables are captured in the dataset: fp_html, fp_etag, fp_flash and fp_browser. These variables will be readily available for processing during the survey or in a virtual question (requires a compat level of 109 +).
+Learn more: Implementing a Digital Fingerprinting System
+forbiddenCountries
+List of Countries Not Allowed
+The forbiddenCountries attribute controls which countries should be forbidden from taking the survey. Specify the forbidden countries using their lower-case ISO 3166-1 alpha-2 country code (e.g., forbiddenCountries="us,fr,de").
+All participants from the specified countries or with an IP address that cannot be resolved will be excluded from the survey.
+Learn more: allowedCountries
+loadData
+Specify Variable Key to Load Existing Data
+The loadData attribute allows you to load a participant's data based on a variable so that they can modify their existing answers.
+For example, if loadData="source" is specified and a participant enters the survey with a source that has previously completed the survey, all of the responses from that previous session are loaded.
+Requires that browserDupes="" and that the variable being used is not set to be unique.
+loggedInCanSubmit
+Set to Allow Logged-In User Submission
+The loggedInCanSubmit attribute enables staff members and logged-in users to submit data. If loggedInCanSubmit="1" is specified, staff and logged-in users will be able to record their data into the survey.
+markerTimeout
+Specifying the Time until Markers Are Released
+The markerTimeout attribute is an integer value that controls the number of seconds before a partial participant's markers stop counting in the quota system.
+The default, 900 (fifteen minutes), means that a participant who enters the survey and qualifies for some markers (e.g., /Gender/Male) and walks away from the computer for some time, the quota will become available for another participant after the timeout period.
+The markerTimeout timeout also affects the "in progress" marker that is set on the participant once they enter the survey. For example, if a participant enters the survey on a computer using source=1234, then the participant will have to wait markerTimeout number of seconds before being allowed back in on another computer.
+Surveys with delphi="1"
+In surveys with delphi="1", you can use the surveyRestartTimeout attribute to specify when participants can re-enter a survey. The surveyRestartTimeout attribute functions in much the same way as the markerTimeout attribute detailed above, except that it does not affect survey markers. To specify a survey timeout, set surveyRestartTimeout to the time (in seconds) that you would like participants to wait.
+Note: If surveyRestartTimeout is not set, participants do not have to wait before re-entering a survey after their first entry.
+For example, setting surveyRestartTimeout="300" will disallow participants from re-entering the survey for five minutes.
+Note: The surveyRestartTimeout attribute can only be used in surveys with delphi="1".
+Additionally, the following considerations apply:
+Survey markers are unaffected.
+If already added to the survey, autosave must be turned off.
+persistentExit
+Prevent the Wrong Exit URL from Being Displayed
+Note: Surveys with delphi="1" have this attribute "on" by default.
+The persistentExit attribute is a boolean value that affects only duplicate UUIDs and prevents a participant from being redirected to the wrong exit page if a survey is resubmitted (e.g., by refreshing the page or clicking the "Finish" button multiple times). If this attribute is set to:
+persistentExit="0", the status that matches a participant's current completion status is used for the redirect. This is the default.
+persistentExit="1", a participant is redirected using their most recently used exit status (assuming the <exit> tag has not been removed).
+Note: persistentExit="1" is not compatible with the browserDupesattribute.
+requires
+To Require JavaScript Enabled
+The requires attribute applies to surveys with a compat level of less than 111. If requires="javascript" is specified, then all participants entering the survey must have JavaScript enabled.
+For compat="111 +" surveys, JavaScript is always required.
+secure
+Set to Force HTTPS Connection
+The secure attribute is a boolean value that allows you to force participants to use HTTPS at all times when taking the survey. If secure="1" is specified, then all participants will be forced to use a secure connection.
+setup
+Setup the Survey Boilerplate
+The setup attribute is a comma-separated list of options to configure your project. This attribute accepts any of the following: quota, time, decLang and term.
+If setup="term, quota, time, decLang" is specified, the survey, just like mutators, will create virtual questions to capture information related to terminates, quotas, interview time and language, respectively. You can view this information from the virtual question tables displayed on reports.
+Note: compat level "133 +" is required for the default vterm table.
+ss:disableBackButton
+To Disable Browser "Back" Button
+The ss:disableBackButton attribute is a boolean value that controls whether the browser's "Back" button should be enabled for participants.
+If ss:disableBackButton="1" is specified, then participants will not be allowed to use their browser's "Back" button.
+Note: It is recommended that you use the survey "Back" button rather than your browser's "Back" button to move backward through a survey.
+state
+Set the Survey's State
+The state attribute sets the survey status.
+A survey's state can be any one of the following: dev, testing, live or closed. Each state has unique capabilities:
+State
+Description
+dev
+This is the initial state of a project for Decipher cloud users when starting a new project. This state is only visible to cloud users. Running simulated data is OK. Fatal errors are suppressed.
+testing
+This is for client testing. Simulated data is OK. Fatal errors are suppressed.
+live
+This is for actively collecting participant data. Simulated data is not OK. Fatal errors generate notifications to team members.
+closed
+This is when the survey is not actively collecting data. Simulated data is not OK. Once set, participants will have one hour to finish.
+unique
+Specify a Required Unique Variable
+The unique attribute is used to limit access to the survey.
+Supply an extraVariable (e.g., source) as an argument and when a participant enters the survey, the system will check this variable passed in the URL (e.g., /proj1234?source=0zYxtl4) against the invited.txt file located in the survey directory. If the variable's value is present in this file and a participant using that value has not already completed the survey, the participant will be allowed to take the survey. The unique attribute ensures that there are no duplicate participants to the survey and that only authorized users take the survey.
+This is similar to specifying a sample source <var> element with unique="1" and filename="invited.txt" specified.
+<var name="source" unique="1" filename="invited.txt"/>
+Note: Adding unique="1" to a survey creates an additional database that stores participants' unique variables.
+Learn more: Locking Down a Survey by Unique Variables
+uniqueOnly
+Set to Prevent Validating With invited.txt
+The uniqueOnly attribute is a boolean value that enables you to use the unique attribute mentioned above without the use of the invited.txt file.
+If uniqueOnly="1" is specified, the variable provided in the unique attribute must still be unique but will not reference the invited.txt file.
+This is similar to specifying a sample source <var> element without specifying a file name.
+<var name="source" unique="1"/>
+Learn more: Locking Down a Survey by Unique Variables
+ss:enableNavigation
+Add a "Back" Button to the Survey
+The ss:enableNavigation attribute is a boolean value that enables you to add a "Back" button to the survey.
+If ss:enableNavigation="1" is specified, then a "Back" button will be displayed next to the "Continue" / "Finish" buttons. This button will only be shown if there is previous data to go back to.
+When the "Back" button is clicked, the previous survey page will be loaded with the data that was submitted and the participant will have an opportunity to modify their responses and proceed forward (or backward, again).
+Learn More:
+More information about all of the <survey> element's attributes is provided in the documents below:
+Overview of the Survey Tag and Quick Links
+Attributes for Project Settings
+Attributes for Display Settings
+Attributes for Question Settings
+Attributes for Device Settings
+Attributes for Report Settings

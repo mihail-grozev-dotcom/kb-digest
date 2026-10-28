@@ -1,0 +1,120 @@
+Title: The Project Overview Page
+The Project Overview page is the primary workspace for your Decipher project. It provides access to all of your project's tools & resources and offers a detailed view of the project itself.
+Note: If you open a project from the Portal and it states "This survey has been hibernated...", you can follow the steps in Hibernated Surveys to restore the project.
+1: Accessing the Page
+You can click the name of any project in the Portal to access its Project Overview page.
+2: Viewing the Page
+The following sections detail each of the options available on the Project Overview page.
+2.1: Navigation Menu
+The navigation menu at the top of the project page allows you to navigate between each of your project's resource pages as you work. The navigation menu displays the selected project's name, as well as the following tools and features.
+Portal: Return to your company's Portal.
+OVERVIEW: Access the Project Overview page for your project.
+BUILD: Access your project creation options. Click each option below to learn more about it.
+Survey Editor: Edit the survey
+Themes: Change or customize the survey theme.
+More Tools
+Language Manager: Manage survey languages.
+Edit XML: Edit the survey XML.
+View Survey Setup: View the survey setup.
+View XML: View the survey XML.
+Upload System Files: Upload system files to the survey.
+Version Control: Manage survey versions.
+PREVIEW: Access your project testing options. Click each option below to learn more about it.
+Test Survey: View and manually test the survey.
+Run Simulated Data: Run simulated data to test the survey. (This will not appear when the survey is set to live.)
+Simulated Data History: Access the SST data run details for the survey. (Only available to users with Survey:Edit permissions or higher.)
+RESPONSES: Access your project fielding options. Click each option below to learn more about it.
+Participant Sources: Add or customize the participant source.
+Response Summary: View survey field statistics.
+Survey Summary: View survey links and participant sources.
+Email Campaigns: Manage survey email campaigns.
+View/Edit Responses: View and edit survey responses.
+More Tools
+Project Warnings: View project warnings. (This will appear only when the survey is live.)
+REPORT: Access your project reporting options. Click each option below to learn more about it.
+Crosstabs: View and run customizable survey crosstabs reports.
+Data Downloads
+Excel: Download raw survey data in Excel.
+SPSS: Download raw survey data in SPSS.
+Other Data Formats: View and download total qualified survey data in a variety of formats using Crosstabs.
+More Tools
+Dashboards: Create new and view existing survey dashboards.
+Report (2010): Run and/or download the survey data report and various other customizable reports.
+View Saved Reports: View any previously saved survey reports.
+Survey Audit Log: View the Survey Audit log. (Only available to users with admin permissions.)
+Logic: View the Logic Debug page. (Only available to users with Survey:Edit permissions or higher when there is a valid logic node in the survey.)
+Help: Access your survey support resources.
+Knowledge Base: View all help resources and product documentation.
+Help Desk: Contact the Decipher help desk for hands-on support.
+Guides and Walkthroughs: Guides through and provides support on questions.
+2.2: Project Actions
+The project actions banner sits just below the navigation menu. From here, you can add the survey to or remove it from your favorites list, as well as perform a variety of other administrative actions.
+Add to Favorites: Click the star to add or remove the survey from your favorites list.
+Actions: Access the administrative actions for your survey. Click each option below to learn more about it.
+Launch / Relaunch / Close Survey: Launch or relaunch the survey to begin fielding or close the survey to stop fielding.
+Rename Survey: Change the survey name as it appears in both the portal and the project page.
+Duplicate Survey: Create a copy of the survey. When creating a duplicate survey, you can choose to copy the data as well as whether to share the project with the same users and groups.
+Export Survey: Download the survey in PDF, Word, HTML, or ODT format.
+Hide / Unhide Survey: Hide or unhide the survey. You can hide a survey to remove it from your project list in the Portal.
+Archive Survey: Archive the survey. You can unarchive a survey from the Archived Surveys Report. (Only available to users with Supervisor or Staff permissions.)
+Archive and Delete Settings: View the archival and deletion settings for the survey.
+Note: This option is only available if the Archive and Delete Settings feature is enabled at the company level.
+Subscribe / Unsubscribe: Subscribe to or unsubscribe from the survey. You can subscribe to a survey to receive email notifications about future errors or changes made to it.
+Run Simulated Data: Configure and run survey test simulations.
+Change Survey State: Change the state of the survey. You can change the state of the survey from "dev" to "draft" or vice versa. (This will not appear when the survey is set to live.)
+End Background Processes: Cancel all background processes, such as stalled reports, data edits, or stuck test data tasks. (Only available to users with Supervisor or Staff permissions.)
+Delete Survey: Delete the survey.
+Note: Once a project has been launched, it cannot be deleted from the project overview page.
+2.3: Performance Metrics
+Your project's performance metrics display on the left side of the project page. Metrics listed here include field performance statistics, languages, and participant sources.
+Performance Stats: Displays key data from the Response Summary. Switch between all participants or view by individual language or participant source.
+Chart: Displays the data collected over time.
+Total: The total number of participants, including terminates, completes and over-quota.
+Qualified: The number of qualified completes.
+Today: The number of participants who completed the survey today.
+Questions: The number of questions in the survey.
+Completion Time: The median completion time.
+Field Data: These pie charts display the qualification, incidence and drop-out rates. Mouse-over a chart to view exact numbers or percentage.
+LANGUAGES: Allows you to view the languages applied to the survey. Click any language to view the corresponding metrics.
+PARTICIPANT SOURCES: Allows you to view the participant sources used in the survey. Click any participant source to view the corresponding metrics.
+2.4: Shared Documents
+Any documents, images, videos, email lists or files you've shared. You can upload your questionnaire documents or even the finished report.
+To upload a new file, either drag it into the box or click "Add Shared Documents" and locate the file on your device. Then click "Upload". "Show" filter allows you to sort the documents by type and Search bar allows you to search a document from the uploaded ones.
+Note: You can delete files at any time by clicking the 'x' next to them in the Shared Documents tab.
+2.5: Users / User Groups
+Users and groups who have access to the project are listed here, along with their permission level.
+You can do any of the following in the Users tab:
+Search for a user/group given access to the project
+Add an existing user or group and set their permission level for the project
+Set the user's expiration date for the project
+Delete users/groups from the project
+Sort the list by user name
+2.6: Subscribers
+Users and groups who are subscribed to the project are listed here, along with the date they subscribed.
+You can do any of the following in the Subscribers tab:
+Search for a subscribed user/group
+Subscribe an existing user/group who has at least view permissions for the project
+Unsubscribe a user/group from the project
+Sort the list by user name
+2.7: Campaigns
+Quickly access your project's email campaigns.
+Click "Add Campaign" to create a new campaign in the campaign manager, or click "Campaign Manager" to open the campaign manager. You can also use the search bar to search for campaigns within the project.
+2.8: Reports
+Lists any saved crosstabs, saved reports, and saved dashboards.
+You can click "Crosstabs" to open the Crosstabs reporting application or click the name of any report to open it. You can also use the search bar to search for saved reports within the project.
+2.9: Description
+The description helps you remember what the project was all about and also aids in identifying a project in a search.
+Edit the project description by clicking on the edit icon at the top right. Once edits are complete, select the save icon or the 'x' to close without saving.
+2.10: Tags
+Tags are used for organization and for improved search within the portal.
+Add or remove tags for the project by typing them into the box.
+Learn more: Tagging Projects
+2.11: Survey Category
+The survey category indicates the main purpose of a project and can help you organize similar surveys into groups.
+Edit the survey category by clicking the pencil icon and selecting a new category from the drop-down. Once edits are complete, select the save icon or the 'x' to close without saving.
+3: Project Type Considerations
+Depending on the project type, a survey's project page can include all or just some of the above information. The following sections outline what is included for each available project type.
+3.1: Campaigns Only Project
+Campaigns Only projects use only the Campaign Manager and do not display any fielding statistics. The project page for Campaigns Only projects includes only the 'Shared Documents', 'Users', and 'Campaigns' tabs, along with the project description and tags boxes.
+3.2: SPSS Import Project
+The project page for projects imported via SPSS files displays the same fielding statistics as for regular projects, if available. It also includes the 'Shared Documents', 'Users', and 'Reports' tabs, along with the project description and tags boxes.

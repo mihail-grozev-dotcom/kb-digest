@@ -1,0 +1,30 @@
+Title: Evaluating Survey Performance Over Time
+Requires Decipher Cloud
+The server scoreboard page shows you what surveys are currently being executed and their performance over time. It includes all surveys on your server that are live, as well as those that have been recently closed.
+Note: To review recent (past 4 hours) performance instead, see Evaluating Recent Survey Performance.
+1: Accessing the Scoreboard Page
+You can access the scoreboard for your server using the following URL, where your-server is your cloud server sub-domain:
+https://your-server.decipherinc.com/scoreboard
+For example, if your portal login page is located at: https://client.decipherinc.com/apps/portal, you would use this link to access the scoreboard:
+https://client.decipherinc.com/scoreboard
+If you need assistance locating your server scoreboard page, please contact Technical Support or your main Forsta contact.
+Note: To view this page, shell / server-level permissions are required.
+2: Viewing the Scoreboard
+The scoreboard displays a link to the standard report for each survey on the server, along with the following information for your review:
+Note: All times provided below are measured in milliseconds.
+Participants: The number of unique IDs that have loaded at least 1 page of the survey in the last 60 minutes.
+Completes: The number of unique IDs that have completed the survey in the last 60 minutes. Includes qualified, terminated, and overquota participants.
+Dropouts (%): The percentage of participants that have had a survey page loaded for more than 5 minutes but less than 60 minutes, and have not completed the survey. The dropouts percentage is displayed in bold for surveys that have a dropouts percentage above 30 percent. This is shown only for surveys with non-trivial activity.
+Note: Based on historical data, 99% of participants take 256 seconds or less between each page, so the "Dropouts (%)" column reports at most only 1% of false dropouts.
+Pages: The number of total survey pages viewed. Links to a detailed performance report.
+Survey: The average amount of time (in miliseconds) spent to render the survey.
+SQL: The average amount of time spent on data management.
+Eval: The average amount of time spent evaluating Python code (e.g., execs, conditions).
+Persist: The average amount of time spent on loading and saving persistent variables.
+Routing: The average amount of time spent on additional delays before the survey could execute.
+Resp*: The amount of time needed to load a survey page as experienced by participants.
+DOM*: The amount of time spent before a basic page is rendered (delayed by scripts, etc.).
+Loaded*: The amount of time spent before a full page is loaded, including images.
+Apdex*: The standard load satisfaction measurement using 500ms as a target time (scale of 0 to 100).
+Note: Browser information marked by an asterisk (*) is only available for surveys with compat 140 or higher.
+Additionally, this information is summarized and displayed in an area chart at the top of the scoreboard page:

@@ -1,0 +1,58 @@
+Title: Text Style and Formatting Options
+You can use the Rich Text Editor (RTE) within the Survey Editor to change the style and formatting options for text contained within any survey question or element. To edit question or element text, first select the text or place the cursor where you want the changes to occur. Then, select the desired option(s) in the RTE.
+Tip: You can mouse-over any option in the RTE toolbar to view its description.
+The following style and formatting options are available:
+Option
+Description
+Clear Formatting
+Clears any formatting already applied to the text.
+E.g., You can use this to remove the formatting of content copied from a Word document or other external text editor.
+Bold
+Makes the text bold (e.g., bold).
+Tip: You can also use ctrl+b to bold the text.
+Italic
+Makes the text italic (e.g., italic).
+Tip: You can also use ctrl+i to italicize the text.
+Underline
+Underline the selected text (e.g., underline).
+Tip: You can also use ctrl+u to underline the text.
+Font Sizes
+Specify the font size (e.g., 8pt, 10pt, 12pt, 14pt, 18pt, 24pt, 36pt).
+Text Color
+Change the color of the selected text.
+Image Manager
+Add an image in the selected location.
+Learn more: Adding and Managing Images.
+Insert/Edit Link
+Insert a link in the selected location.
+Learn more: Inserting a Link in Survey Text.
+Tip: You can also use ctrl+k to insert a link.
+Piping Tool
+Pipe text from other survey elements into the selected location.
+Learn more: Using the Piping Tool.
+Align Left
+Align the text to the left side of the screen.
+Align Center
+Align the text to the center of the screen.
+Align Right
+Align the text to the right side of the screen.
+Numbered List
+Create a numbered list, where each line is numbered.
+Bullet List
+Create a bullet list, where each line is given a bullet point.
+Increase Indent
+Increase the indent for the selected text.
+Decrease Indent
+Decrease the indent for the selected text.
+Special Character
+Insert a special character.
+Superscript
+Insert superscript text.
+Subscript
+Insert subscript text.
+Source Code
+Open the source code for the question.
+Undo
+Undo the last change.
+Redo
+Redo the last change.

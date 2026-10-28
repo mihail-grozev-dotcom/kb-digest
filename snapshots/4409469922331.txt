@@ -1,0 +1,219 @@
+Title: Survey Importer
+1: Overview
+The Survey Importer allows users to upload an external survey file directly into Decipher for use in the project portal. The importer recognizes both Decipher and Forsta Plus XML files, as well as bConvert and Excel XLS files. Importing a Forsta Plus XML file will convert all supported elements and logic into Decipher’s structure, and any unsupported content will be flagged for conversion.
+Important: Forsta Plus XML importing requires v18 and later files. Older versions will not be converted and will prompt a system error.
+2: Importing a Survey File
+Survey importing requires using a clean slate, so start by building a new survey. To do this, click "New Survey" in the Portal.
+In the New Survey window, click "More Options" and select "Import File".
+Then drag and drop your survey file into the box or click "or Browse" to locate and upload the file from your device.
+Next, scroll down to enter a project name and click "Create Survey".
+Note: Forsta Plus XML files will include language translations.
+The upload process may take a few minutes depending on the size of your file. If the upload is successful, you will be redirected to the Survey Editor, where you can edit your Forsta Plus survey just as you would any Decipher survey.
+3: Reviewing an Imported Survey
+When a survey file is imported to the Survey Editor, the system automatically scans the file for language variables and incompatible elements. If there were any errors during the upload, a survey load error will appear above the staging area. Click the “Fix XML” button to view and edit the errors using the XML Editor.
+When selected, a summary of the error(s) appears. Review the details and note any important information. When you are ready to edit the XML, click “Close”.
+Use the system “warning” tags to guide you through making any necessary updates.
+Once you have addressed all content warnings, your new survey should be ready to go.
+4: Forsta Plus Import Considerations
+While the Survey Importer will recognize a wide range of element tags and logic, due to the use of different programming practices in Forsta Plus surveys, some of your survey's features may be incompatible with the Decipher system.
+The following sections outline all Decipher-compatible Forsta Plus elements. All incompatible elements will be imported as-is and flagged for your review.
+Important: Forsta Plus XML importing requires v18 and later files. Older versions will not be converted and will prompt a system error.
+4.1: Compatible Tags and Attributes
+The table below defines how different Forsta Plus tags and their attributes are converted into valid Decipher tags:
+Forsta Plus Tag
+Attributes
+Decipher Tag
+<Info>
+<note>
+<Single>
+<radio>
+<Single>
+Dropdown
+<select> + <choice>
+<Grid>
+<radio> + <row> + <col>
+<Grid3D>
+Hybrid question support for:
+<select>, <number>, <checkbox>
+<Multi>
+<checkbox> + <row>
+<Multi>
+Numeric
+<number> + <row>
+<Multi>
+RankByClick
+<select> + <choice> + <row>
+<Multi>
+OpenText
+<text> + <row>
+<Open>
+Rows="1"
+<text>
+<Open>
+Rows="1" + Numeric
+<number>
+<Open>
+Rows > 1
+<textarea>
+<Folder>
+<block>
+<Loop>
+<loop> + <looprow> + <loopvar>
+<Directive>
+DirectiveType="single"
+Turn on automatic page breaks
+<Directive>
+DirectiveType="multi"
+Turn off automatic page breaks
+<OneQuestionPerPage>
+Turn on automatic page breaks
+<Condition>
+<term>
+Note: Anything not included in the list above will be imported wrapped in a <note builder:title="warning1" builder:warning="unsupported"> tag.
+4.2: Compatible Logic Expressions
+The table below defines how different Forsta Plus logic expressions are converted into valid Decipher expressions:
+Forsta Plus Expression
+Decipher Equivalent
+f("QID") == precode
+(QID.rprecode)
+f("QID").inc(precode)
+(QID.rprecode)
+f("QID").any(precode1,precode2,precode3)
+(QID.rprecode1 or QID.rprecode2 or QID.rprecode3)
+f("QID").all(precode1,precode2,precode3)
+(QID.rprecode1 and QID.rprecode2 and QID.rprecode3)
+f("QID").none(precode1,precode2,precode3)
+(!QID.rprecode1 and !QID.rprecode2 and !QID.rprecode3)
+f("QID").toBoolean()
+(QID.val != None)
+f("QID")[precode].toBoolean()
+QID.rprecode
+f("QID_precode").toBoolean()
+QID.rprecode
+f("QID").toNumber()
+QID.val
+f("QID").value()
+QID.val
+f("QID").get() == precode
+(QID.rprecode)
+f("QID")[precode].toNumber()
+QID.rprecode.val
+f("QID").size()
+QID.count
+Note: Any logic expression not included in the list above will be imported as a <condition builder:warning="unsupported"> tag.
+4.3: Compatible Piping Expressions
+The table below defines how different Forsta Pluspiping expressions are converted into valid Decipher expressions:
+Forsta Plus Expression
+Decipher Equivalent
+^f("QID").get()^
+[pipe: QID]
+^f("QID_precode").get()^
+${QID.rprecode}
+^f("QID")[precode].get()^
+${QID.rprecode.val}
+^f("QID").get() != "1" ? "Foo":"Bar"^
+${"Foo" if (not(QID.r1)) else "Bar"}
+^f("QID")[precode].label()^
+${QID.rprecode.text}
+Note: Any piping expression not included in the list above will be imported as-is.
+4.4: Compatible Language Mapping
+The table below defines how different Forsta Plus language codes are converted into valid Decipher languages:
+Forsta Plus Language Code
+Decipher Language
+1
+Arabic
+4
+Chinese Simplified
+5
+Czech
+6
+Danish
+7
+German
+8
+Greek
+9
+English (USA)
+10
+Spanish
+11
+Finnish
+12
+French
+13
+Hebrew
+14
+Hungarian
+16
+Italian
+17
+Japanese
+18
+Korean
+19
+Dutch
+20
+Norwegian
+21
+Polish
+22
+Portuguese
+24
+Romanian
+25
+Russian
+27
+Slovak
+29
+Swedish
+30
+Thai
+31
+Turkish
+33
+Indonesian
+34
+Ukrainian
+37
+Estonian
+38
+Latvian
+39
+Lithunian
+42
+Vietnamese
+54
+Afrikaans
+57
+Hindi
+62
+Malay
+75
+Kannada
+513
+Tagalog
+1025
+Arabic (Saudi Arabia)
+1028
+Traditional Chinese (Taiwan)
+2058
+Spanish (Mexico)
+2060
+French (Belgium)
+2067
+Dutch (Belgium)
+3079
+German (Austria)
+4105
+English (Canada)
+14337
+Arabic (UAE)
+34825
+English (India)
+35849
+English (Singapore)
+38921
+English (Hong Kong)
+5: Additional Considerations
+Importing Decipher XML files will import survey elements only; survey tag attributes and sample sources are not imported.
+All elements must be wrapped in <survey> tags for an import to be successful.

@@ -1,0 +1,182 @@
+Title: Create and Manage Users
+Users are managed from the Company page in the Portal. A list of existing users appear under the Users menu. From here, you can make changes to user accounts, review their login activity, and view the user groups and projects in which they are involved.
+Note: Only company Supervisors have the ability to create new users.
+1: Viewing the User Menu
+To view the User menu, first click your company name or logo in the Portal to access your company page. From here, select Users from the left-side menu.
+The Users menu contains the following tools and features:
+1. Add User: Click to open the Add User menu, where you create a new user.
+2. Add to User Group: Inactive by default. Select one or more users from the User List to activate. Once activated, click to add the selected users to a user group.
+3. Deactivate Account: Inactive by default. Select one or more users from the User List to activate. Once activated, click to deactivate accounts for the selected users.
+4. Show Deactivated Users: Click to display all of the company's deactivated user accounts.
+To reactivate an account, first click Show Deactivated Users. Then select the user and click Reactivate Account.
+In the window, review the user name and if it is correct, select Yes, Activate.
+The user may log in with their previous password once their account has been reactivated.
+Note: To maintain active account status, users must log into their accounts at least once on the day that they have been reactivated. If a user has not logged into their account by 10:25pm on the day it has been reactivated, the account will again be deactivated.
+5. Search: Enter a user name or email to search for that user. The User List automatically updates as you type.
+6. User List: List of all company users, which displays their usernames, login information, assigned directories, count of any affiliated user groups and count of projects accessed by the user within the last three days. Click a username, group count, or project count for more details.
+Note: Supervisors are identified by an asterisk next to their image.
+2: Creating a New User
+To create a new user, click + Add User. The Add User window appears, where you can define the user type, email, company, account settings, and default project permissions.
+2.1: Choosing a User Type
+There are two different user types in Decipher, and each has its own unique tool set and permission levels.
+2.1.1: New User
+To add a regular user, click New User and enter the following information:
+Email Address: Enter a valid email address for the user. This address will also be used as their username.
+Company: The name of your company will auto-fill.
+Supervisor: Gives the user the highest level of permissions.
+Project Creator: Gives user the ability to create new projects.
+Word Importer: Gives user the ability to create new projects using Word Importer. Must have Supervisor or Project Creator permissions checked to display this option.
+Enable 2FA: Enables 2FA for the user. See Managing Two Factor Authentication to learn more about 2FA.
+Account Expires:
+Never: Account does not expire
+Expiration Date: Specify a date to restrict access to a certain amount of time
+User Groups: Optional. Attach the user to existing user groups.
+Application Language: Select the language for the Decipher application. You can change the application language to French, Spanish, Portuguese or Japanese.
+Welcome Message: Optional. Enter a message to include in the invite.
+Default Project Permissions: Set the default permission level for the user. See below for full details about each level.
+"Custom" permissions allow you to select the access level for each area, if none of the presets match your needs. See below for a definition of each option.
+Once you are satisfied with your settings, click Create User to add the user. Added users will automatically be sent an email with instructions for setting up a password for their account.
+2.1.2: Shared User
+Note: Shared users are restricted to read-only permission. Additionally, shared user accounts cannot be converted into staff accounts on cloud servers.
+Security best practices require each user account to be accessible only by one user. Shared users, where the username and password is distributed to multiple users may be against security practices at your company, as you will not be able to identify who is using the account.
+To add a shared user, click the Shared User tab. This tab is only available if your company allows shared users. See Create and Manage Companies.Enter the following information:
+User Name: Enter a user name, such as "Board Members".
+Company: The name of your company will auto-fill.
+Account Expires: Specify a date to restrict access to a certain amount of time.
+Password: A password is automatically generated for the account.
+Note: You must record and distribute the password to the shared users.
+Default Project Permissions: Set the default permission level for the user. See below for full details about each level.
+"Custom" permissions allow you to select the access level for each area, if none of the presets match your needs. See below for a definition of each option.
+Once you are satisfied with your settings, click Create User to add the user.
+After a user is created, they must be added to projects before they can access them. You can add a user to a project by adding them to a user group, or assigning them individually to projects. See Connecting Users to Projects to learn more about adding users to projects.
+3: Editing an Existing User
+To edit a user, click their username and the Edit User window opens, where you have access to the following options:
+Audit Log: Click to view an audit of the user's account activity. The audit log window opens displaying activity on the user's account. You can click any of the column headings to sort them in ascending / descending order.
+Reset Password: Click to send an email to the user to reset a forgotten password. A confirmation message displays and a password reset email is sent to the user.
+Email Address: Click to update the user's email address, which is also their username.
+Company: Click to select a company for the user.
+Enable 2FA: Enables 2FA for the user. See Managing Two Factor Authentication to learn more about 2FA.
+Note: If 2FA is enabled for the company, this box is automatically checked. Supervisors and higher can disable 2FA for select users if necessary.
+Reset 2FA: Resets 2FA for the user. See Managing Two Factor Authentication to learn more about 2FA.
+No Device: 2FA is not enabled for the user.
+Linked Device: 2FA is enabled for the user, and an authentication device is linked. This line may display as a short set of random characters.
+Reset Device: Select this option, then click Save to unlink the associated authentication device. See Logging in to Your Account for instructions on linking an authentication device.
+Account Expires: Set to "Never" by default. Click to select an expiration date for the user's account.
+User Groups: Click to assign the user to a pre-configured user group.
+Application Language: Click to select the user's default language for all Decipher tools.
+Default Project Permissions: Click to select the user's default project permissions level. If you need further customization, select "Custom" to set default project permissions individually for each tool set. See below for more information on project permission presets and customization options.
+Deactivate / Reactivate Account: Click to deactivate or reactivate the user's account. Alternatively, check the checkbox for one or more users and select Deactivate Account. In the confirmation window, verify the user name and click Yes, Deactivate.
+Note: User accounts are deactivated after 6 months of inactivity. See Data Archival and Deletion to learn more.
+Once you are satisfied with your changes, click Save to apply them to the user's account.
+4: Default Project Permissions
+4.1: Project Permissions Presets
+The following table provides a brief overview of each project permission access level setting.
+Full Access
+Edit Access
+View Only w/Data
+View Only
+Vendor
+Interviewer Only
+Survey
+Build
+Edit
+View
+View
+View
+None
+Reporting / Crosstabs
+Edit
+Edit
+View
+View
+None
+None
+Data
+Edit
+Download
+Download
+None
+None
+None
+Response Summary
+Edit
+Edit
+View
+View
+View
+None
+Campaign Manager
+Build
+None
+None
+None
+None
+None
+Research Dashboard
+Build
+View
+View
+View
+None
+None
+Theme Editor
+Full
+Use All
+Use All
+Use All
+None
+None
+Admin
+Full
+Full
+None
+None
+None
+None
+Offline
+Full
+Full
+Full
+Full
+Full
+Full
+Note: Users are given a default project permission level but this does not give them access to any projects. You must add them to projects (as an individual or part of a user group) and you then have the opportunity to edit their permission level for each project they're added to and specify the permissions expire date.
+4.2: Permissions Options
+These options explain the presets outlined above, and may also be used to define custom permission settings.
+Note: The survey state must be in testing before your colleagues can access a specific project.
+Survey
+Build: Create and edit surveys in the Survey Editor
+Edit: Edit surveys in the survey testing application
+View: Test surveys (without testing tools), view Language Manager with restrictions
+None: No survey access
+Reporting / Crosstabs
+Edit: Create and edit reports in Crosstabs
+View: Run crosstabs reports
+None: No crosstabs access
+Data
+Edit: Modify data using the "Edit Data" tool
+Download: Download data
+None: No data access
+Response Summary
+Edit: Edit quotas
+View: View all tabs in the Response Summary
+None: No Response Summary access
+Campaign Manager
+Build: Create and manage email campaigns
+None: No campaign manager access
+Research Dashboard
+Build: Create and edit research dashboards
+View: View private research dashboards
+None: No dashboard access
+Theme Editor
+Full: View, apply, customize, export and import all survey themes
+Use All: View and apply all survey themes (no export, import or theme customization)
+None: No theme editor access
+Use Company: View and apply only company survey themes (no export, import, or theme customization)
+Use System: View and apply only system survey themes (no export, import, or theme customization)
+Admin
+Full: Add / remove existing users to projects. Only supervisors can create new users. The permissions granted to others cannot exceed your existing permissions for the project
+None: No adding / removing user permissions
+Offline
+Full: Access, create, and edit offline surveys in the Survey Editor
+None: No offline survey access

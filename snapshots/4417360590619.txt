@@ -1,0 +1,15 @@
+Title: Setting Up a Domain Alias for Email Sends
+When creating a from address that will be used to send emails via the Decipher platform, use the following process to setup a new domain alias.
+1: Choose a “from address” Domain
+The From domain chosen must be on a domain or sub-domain you own that is currently not being used for email or other conflicting setups.
+2: Request setup from Forsta Support
+Once you have the domain you want to use for sending email, contact Decipher Support to request setup of the domain. If working with our professional services team, contact your account representative with this information.
+Provide the following information:
+From Domain: subdomain.customerdomain.com (what was chosen in the first step)
+Server Host: host.decipherinc.com
+Company Name: Your company name as shown in the portal or a link to the company page. If you are on a dedicated private server and want to apply to all companies of the server, specify all companies.
+3: Setup DNS Records
+After receiving the required information, Forsta will set up the required backend.
+Upon completion, Forsta will provide the various DNS records to be put in place by the domain owner (your internal (IT) team that purchased the domain). This process can take up to 1-3 days.
+4: Confirm DNS Records are Implemented
+Once the DNS records have been implemented on the domain, contact Forsta via the previously used method that the DNS records have been put in place. Forsta will then test the domain to ensure all records have been implemented correctly, and then authorize the domain for sending. Once verified, the domain can be used for various From addresses within campaign manager.

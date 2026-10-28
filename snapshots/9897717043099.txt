@@ -1,0 +1,44 @@
+Title: 144.15 Release Notes
+Release Date: June 16, 2020
+Release Version: 144.15
+New Features
+Survey
+Dynamic Questions
+Added the “Net Promoter Score (NPS)” survey element.
+Portal
+Start From Template
+Added the following survey templates and associated dashboards:
+“Product Concept”
+“Price Laddering”
+Added dashboards to the following survey templates:
+“Demographic”
+“Customer Satisfaction”
+Updated the “Net Promoter Score (NPS)” survey template to include the new NPS survey element and associated report features.
+Reporting
+Crosstabs
+Added the option to use the T-test method when applying statistical analysis to reports.
+Programming & Tools
+API
+Added the ability to disable email throttling when creating an email send using the Create a Send endpoint.
+Added the Status List endpoint, which allows users to retrieve a list of the recipients for a successful email send.
+Bug Fixes
+Portal
+Start from Template
+Fixed an issue causing autoRecover="1" to automatically be added to surveys with delphi="1" enabled.
+Exports
+Fixed an issue causing Korean, Chinese, and Japanese language symbols to appear as solid black blocks in survey PDF exports.
+Survey
+Survey Editor
+Fixed an issue which sometimes caused a jQuery console error to appear when navigating the Survey Editor.
+Fixed an issue which prevented question styles from resetting when changing question types.
+Responses
+View/Edit Responses
+Fixed an issue causing an error when attempting to export records to PDF format.
+Reporting
+Crosstabs
+Fixed an issue causing Korean, Chinese, and Japanese language symbols to appear as solid black blocks in crosstab PDF exports.
+Programming & Tools
+API
+Fixed an issue causing the Create a Send endpoint to schedule email campaign sends for the wrong time.
+Architecture/DevTools
+Fixed an issue preventing CATI from initializing in certain server environments.

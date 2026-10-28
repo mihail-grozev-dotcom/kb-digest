@@ -1,0 +1,84 @@
+Title: Data Encryption
+1: About Data Encryption
+When server encryption is enabled, certain data is automatically encrypted when being stored. A decryption key resides only in the server's memory and not together with the data. This system can protect your data against:
+media loss: if the disks of the server fall into wrong hands after decommissioning or hardware exchange
+file extraction: a hacker logs into the system and copies the raw binary data or email list files
+backup loss: if the backup of the system falls into the wrong hands
+insiders: an insider with access to the data will leave a trace when decrypting the files
+However, the system does not protect against:
+an employee whose account is misused because of a guessable, reused or compromised password
+a determined hacker who understands how the encryption system works
+The system does trade some convenience for security to allow for automated or timed email sends. Depending on your encryption needs, an even more strict system maybe implemented that requires an additional password every time there is an action using the encrypted data files.
+See Managing Data Encryption to learn how to enable server encryption.
+Note: For surveys with delphi="1", data encryption is only supported in AWS databases where encryption has been enabled.
+2: Getting Started with Decipher's Data Encryption
+The process of encryption turns sensitive data ("plaintext") into encrypted data ("ciphertext"). The process typically uses symmetric key, meaning the same key that encrypts the data can also decrypt it.
+This makes key management important. Consider the following analogy: While you may have locked your valuables into a safe, who has the safe combination? If someone breaks in and steal the safe, will they automatically get the combination because it's right next to the safe?
+In the Decipher case, the combination is stored in a separate location and a "guard" takes a note every time it's asked for (with the exception of survey access via ADB or simulated data, as that would result in 1000s of entries). This prevents attackers that get access to just the encrypted files from being able to decrypt them. The guard does not have the encryption key written down: he has to be told it every time the system starts up.
+2.1: What Data Gets Encrypted
+The following provides an overview of what data gets encrypted:
+When a new list file is uploaded through the Campaign Manager, the email list is automatically encrypted.
+Files uploaded in the project details page of the Research Hub are automatically encrypted.
+A project may request all Open End (OE) fields to be encrypted. Set the encryptData="1" attribute on the survey. Note that extra variable content is not encrypted. This encrypts all the persistent and partial data (saved in state.db). Enabling encrypted OE data has approximately a 4% overhead to the time it takes to write the data (including state data).
+any other file can be encrypted from the command line using the "encrypt" command.
+2.2: Who Can Decrypt the Data
+The decryption is transparent and automatic. If our system has determined that you, logged into the web interface, are allowed to edit a CM list, download a shared file in the Research Hub or download/view OE data for a project, the relevant data is automatically decrypted as needed without any need for intervention from you. However every access to encrypted data is logged.
+Lists using "ADB" will also transparently decrypt the files. Note that if you are retrieving ADB data you must ensure that you are storing it in encrypted text fields (setting encryptData="1") if the data was sensitive.
+2.3: Cloud / Private Servers
+If you have your own server, you are responsible for selecting and applying a passphrase to protect the encryption keys. You may also choose to outsource this work to Decipher. If you do not, be aware that scheduled or unscheduled reboots will require you to re-enter the passphrase to start the encryption system.
+For guidelines in setting the initial passphras, see Managing Data Encryption.
+If you forget the passphrase, contact support who can escalate the situation to a few select users that are able to "escrow" the key.
+2.4 How Data is Encryped
+Encryption is done using AES-256. The key to encrypt/decrypt the data is stored encrypted on the server - to be able to use it an administrator needs to login and "unseal" the key vault.
+2.5: Encrypting & Decrypting from the Command Line
+Requires Decipher Cloud
+You can encrypt and decrypt files from the command line. An encrypted list file will start with a line that looks like this:
+⁈selfserve/abc/1234 63457
+followed by unreadable binary data.
+The ⁈ symbol consists of bytes 0xE2 0x81 0x88. What follows on the rest of the line identifies the encryption key in our database. This allows the original source of the data to be traced even if the file is copied. Then follows an "object ID". Multiple list files uploaded to selfserve/abc/1234 will have each their own object ID.
+Data files should remain encrypted. Acceptable cases for decrypting might be if you want to search for an entry or examine an entry further. You should not decrypt the file and put it into another file unless all sensitive information has been stripped away. Temporary files may be acceptable but you must be careful to erase all trace of unencrypted data.
+To decrypt a file and e.g. grep through it, run:
+decrypt list.txt | grep something
+The decrypt command can be run on unencrypted lists as well, and will just be equivalent to running "cat".
+To decrypt a file and edit in vim, run:
+decrypt -e list.txt
+This runs your preferred editor (the $EDITOR environment variable). When you exit the editor, you will be prompted to confirm that you want to save your changes. Answer Y to re-encrypt the file.
+To encrypt a number of files (e.g. some that you've downloaded from a client) run:
+encrypt list.txt list2.txt list3.txt
+This encrypts the file on top of the existing list file. No backup is created and the previous file is securely wiped. You may optionally want to add "provenance" to the encrypted list:
+encrypt -p "user@client.com ftp.clientserver.com/file1234.txt" list.txt
+This provenance entry will be added to the audit log for this list file.
+If you have an encrypted file that you want to modify through some shell commands, you can use this pipeline:
+decrypt list.txt | grep -v @somedomain.com | encrypt -R list.txt
+This pipeline will decrypt the file, remove the @somedomain.com emails from the list and re-encrypt it over the original file.
+2.6: Examining Provenance Logs
+Running decrypt -p somefile.txt displays what happened with this file over time based on the embedded encrypted object ID. Run decrypt -P some/path/file.txt to see everything that happened in this survey whose encryption key was used to encrypt file.txt.
+2.7: Migration and Limitations
+A survey with encryptData="1" has partial data and all OE data encrypted. Migration between un-encrypted and encrypted survey can happen only under these circumstances:
+the survey has no partial data (e.g. you are still testing it)
+the survey has no completes
+A survey with encrypted data cannot be moved to another survey path.
+Any encrypted survey or any data file cannot be moved to another server without a complex key migration process.
+2.8: Performance Details
+Performance tests:
+For a survey that has 100 questions with 500 variables, of those 50 are OE variables:
+These changes introduce an 18% overhead to the overall wall clock time when running simulated data with encryptData=”1”, and a 26% overhead when running simulated data with encryptData=”0”.
+Generating a data file from an encrypted survey or tabimporting a single OE column into an encrypted survey takes 6% longer - for an unencrypted survey, there is no measurable overhead.
+Data storage for the encrypted survey and partial data is 16% larger for surveys with encrypted OE data, and 12% larger for unencrypted surveys.
+A bulk send done on an encrypted list with 100K unique emails takes roughly 100% longer to load the list and compare against all remove lists. For an unencrypted list, this is about 155%.
+2.9: Technical Details
+Upon seeding a server instance, a AES 256 bit KEK (Key Encryption Key) is derived from the pass phrase using SHA-256. This key is only stored in memory, and never in the database.
+To enable key escrow, the KEK is encrypted with a RSA 2048 bit key. The public key is on every server while the private key is held by Decipher only.
+When a survey requires encryption, an encryption key is generated that will encrypt all the data and email lists under that survey path. The AES 256 key is generated using a randomness source suitable for cryptographic purposes, and not a PRNG (pseudo-random number generator).
+When a piece of data requires encryption, a 128-bit IV (Initialization Vector) is generated using strong randomness source. This IV is used with the survey key to encrypt the data. For shared files uploaded to the portal, the file is broken up in 32 kB size chunks. For list files for usage within ADB, each line is encrypted individually -- this is to allow a seek operation for indexed access.
+An encrypted chunk of data is stored as a header ('\xFF\xFE\xFD') followed by the length of the un-encrypted (4 bytes in native format), the IV then the AES-256 encrypted data. The data is padded to 16-bytes size with NUL bytes before being encrypted. When storing data in the results file, this is base-64 encoded and then prefixed with the characters ^^. Thus any text up to 16 characters like "yes" will after encryption take up 16+4+8+3= 31 binary bytes with 33% base-64 overhead = 44 bytes plus 2 header bytes = 46 bytes.
+2.10: Format of Encrypted Data
+The list.txt.log file, that is written when email invitations are sent, does not contain the email addresses of the invitees. An email address like someone@decipherinc.com is turned into as hashed variant that will look like this: o04Pb28TGYJJkUBHDyDh7g@com.
+If you know an address, you can compare it to the hashed variant. However, you cannot take the hashed variant and turn back into the email address.
+The global database with email sends also contains this hash. Consequently, the "bulk search" command does not support wildcard matching (e.g. bulk search *@domain.com).
+You can combine the list file and the log file using a new bulk status command:
+bulk status list.txt
+bulk -R1 status list.txt
+bulk -s bounceback -R1 status list.txt
+This outputs the email, source columns from the original list file, the date the user was sent an email (if any) and the send status (e.g. bounceback, ok, unsent). The -s bounceback extracts only emails with that status, and the -R1 option uses the first reminder log instead of the initial send log.
+Learn more: Managing Data Encryption

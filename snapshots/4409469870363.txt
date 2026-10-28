@@ -1,0 +1,362 @@
+Title: Overview of the Survey Tag and Quick Links
+The <survey> element is the root of all survey elements and its attributes affect settings across the entire project. All survey elements (e.g., questions, comments, participant sources, logic, etc.) will exist between the first <survey> tag and its ending </survey> tag.
+For example, the following XML is automatically generated when starting a new project from the survey editor:
+<?xml version="1.0" encoding="UTF-8"?>
+<survey
+alt=""
+autosave="0"
+builder:wizardCompleted="1"
+builderCompatible="1"
+compat="120"
+extraVariables="source,record,ipAddress,decLang,list,userAgent"
+html:showNumber="0"
+mobile="compat"
+mobileDevices="mobile,smartphone,tablet,featurephone"
+name="Survey"
+setup="term,decLang,quota,time"
+ss:disableBackButton="1"
+ss:hideProgressBar="0"
+state="dev">
+<samplesources default="0">
+<samplesource list="0">
+<title>Open Survey</title>
+<completed>It seems you have already entered this survey.</completed>
+<invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+<exit cond="terminated">Thank you for taking our survey.</exit>
+<exit cond="qualified">Thank you for taking our survey. Your efforts are greatly appreciated!</exit>
+<exit cond="overquota">Thank you for taking our survey.</exit>
+</samplesource>
+</samplesources>
+<suspend/>
+</survey>
+Listed below is every attribute available for the <survey> element along with its type and a brief description of what it modifies. Click any attribute for a more detailed description.
+1: Attributes for Project Settings
+Click on an attribute for more information:
+Attribute
+Type
+Description
+alt
+string
+Sets the survey's alternative report name.
+builderCompatible
+bool
+Allows the survey to be edited using the Survey Editor (does not affect the XML editor).
+compat
+int
+The survey compatibility level.
+delphi
+bool
+Enables advanced report functionality and improved data storage processes.
+encryptData
+bool
+Encrypts all open-end fields and partial data.
+Note: For surveys with delphi="1", data encryption is only supported in AWS databases where encryption has been enabled.
+extraVariables
+slist
+Variables passed in the URL of the initial survey request.
+Note: These variables are typically declared under the <samplesource> tag with the <var> tag, which allows for additional validation.
+fullService
+bool
+Only staff-only access to the survey in the Survey Editor.
+Tip: This attribute can be useful for restricting editor permissions when working within a server to which both clients and vendors have full access.
+lang
+string
+The survey's default language.
+name
+string
+The survey's name (displayed to participants in the browser tab / window).
+otherLanguages
+slist
+Additional survey languages.
+unusedLanguages
+slist
+Survey languages that are available but never set or used and will be ignored by simulated data.
+refcheck
+enum
+If set to yes, performs a code reference check (can be set to yes or no).
+Default: yes
+unmacro
+bool
+Allows survey to be saved & edited in the Survey Editor, even if it contains @macro references (can be set to yes or no).
+If set to yes, the macros are expanded to allow Survey Editor access.
+version
+int
+Read-only. The number of times this survey has had live edits or has been remerged.
+remerged
+string
+Read-only. The timestamp of the most recent live edit and / or remerge.
+2: Attributes for Display Settings
+Click on an attribute for more information.
+Attribute
+Type
+Description
+newStyle
+bool
+Loads the nstyles files.
+oldProgress
+bool
+Uses the old progress bar calculations.
+progressOnTop
+bool
+Displays the progress bar on top of the survey rather than in the survey footer.
+ss:customCSS
+string
+Loads a custom CSS file from the /static directory.
+ss:customJS
+string
+Loads a custom JavaScript file from the /static directory.
+ss:hideProgressBar
+bool
+Hides the progress bar.
+ss:includeCSS
+string
+Loads multiple CSS files from the /static directory.
+ss:includeJS
+string
+Loads multiple JavaScript files from the /static directory.
+ss:logoFile
+string
+Path to the survey logo image. For example: selfserve/9d3/proj1234/logo.png
+ss:logoPosition
+string
+Position of the survey logo (can be set to middle, left, or right).
+fir
+string
+Replaces the standard browser form inputs with something better (can be set to on or off).
+ss:listDisplay
+bool
+Displays dingle-column questions as lists instead of tables (can be set to 1 or 0).
+3: Attributes for Question Settings
+Click on an attribute for more information.
+Attribute
+Type
+Description
+displayOnError
+enum
+Sets which questions should display upon a validation error (can be set to bad or all).
+html:showNumber
+bool
+Displays question numbers in the survey.
+newVirtual
+bool
+Enables Python expressions in <virtual> elements. Automatically enabled by default.
+pipeAltLabels
+bool
+Uses altlabels for pipes.
+pipeErrors
+bool
+Generates a fatal error for invalid piping.
+Note: Can be applied only to persistent variable piping.
+uses
+slist
+Specifies which DQ question styles to use.
+4: Attributes for Field Settings
+Click on an attribute for more information.
+Attribute
+Type
+Description
+allowDupe
+bool
+Allows for multiple submissions from the same user.
+Note: This attribute is not usable in surveys with delphi="1".
+allowedCountries
+slist
+Specifies which countries should be allowed to take survey.
+alwaysSaveData
+bool
+Allows the survey data to load at page submission rather than survey completion.
+autosave
+bool
+Automatically saves survey progress for participants.
+autosaveKey
+string
+Sets an alternate key for loading with autosave.
+browserDupes
+set
+Sets how browser dupes should be handled (can be set to default, cookie, safe, strict, or blank).
+closed
+bool
+Sets the survey to closed.
+builder:cname
+string
+Specifies a CNAME to add to the current project.
+fingerprint
+set
+Sets what fingerprinting information should be captured (can be set to none, all, etag, browser, flash, or html5).
+forbiddenCountries
+slist
+Specifies which countries should be forbidden from the survey.
+loadData
+string
+Specifies a variable from which to load previous data.
+loggedInCanSubmit
+bool
+Allows logged-in users to submit data.
+markerTimeout
+int
+Enforces a survey timeout before markers are released.
+persistentExit
+bool
+Prevents the wrong exit URL from displaying (i.e., on exit pages) if the survey is resubmitted.
+Note: Surveys with delphi="1" have this attribute on by default.
+requires
+set
+Requires JavaScript to be enabled for surveys with compat 110 or earlier (can be set to default or javascript).
+secure
+bool
+Forces the survey to run using HTTPS.
+setup
+string
+Sets up survey boilerplates (can be set to time, quota, term, or decLang).
+ss:disableBackButton
+bool
+Disables the browser's back button.
+state
+enum
+Sets the survey's current lifecycle (can be set to none, dev, testing, live, or closed).
+unique
+string
+Requires that an extraVariable must exist AND be unique. Typically, this is already configured within the <samplesource> tag.
+uniqueOnly
+bool
+Requires the extraVariable specified in unique to be unique without the use of invited.txt.
+ss:enableNavigation
+bool
+Adds a "Back" button to the survey.
+5: Attributes for Device Settings
+Click on an attribute for more information.
+Attribute
+Type
+Description
+desktopNotAllowedMessage
+string
+Specifies the message to display when blocking desktops.
+deviceNotAllowedMessage
+string
+Specifies the message to display when a device is blocked.
+featurephoneNotAllowedMessage
+string
+Specifies the message to display when blocking feature phones.
+mobile
+enum
+Sets the level of mobile device compatibility (can be set to none, compat, mobileOnly, or noMobile).
+mobileDevices
+set
+Specifies which devices should be allowed (can be set to desktop, smartphone, featurephone, tablet, or mobile).
+mobileOnlyMessage
+string
+Specifies the message to display to non-mobile devices when only mobile devices are allowed.
+noMobileMessage
+string
+Specifies the message to display to mobile devices when only non-mobile devices are allowed.
+smartphoneNotAllowedMessage
+string
+Specifies the message to display when blocking smartphones.
+ss:disableOfflineDetection
+bool
+Disables the connectivity warning shown on smartphone devices.
+tabletNotAllowedMessage
+string
+Specifies the message to display when blocking tablets.
+surveyDisplay
+string
+Specifies how the survey layout should be optimized based on device display size (can be set to auto, mobile, or desktop).
+6: Attributes for Report Settings
+Click on an attribute for more information.
+Attribute
+Type
+Description
+agents
+enum
+Sets the expansion level of vos / vbrowser tables (can be set to normal, full, or none).
+autoAddVariable
+bool
+Automatically adds new variables to data layouts.
+autoRecover
+bool
+Automatically recovers partial participants.
+Note: Surveys with delphi="1" have this attribute on by default.
+blankValue
+string
+Sets the blank value output for tab-delimited files.
+capturePreciseTime
+bool
+Captures precise timing for each survey page.
+Note: Surveys with delphi="1" have this attribute on by default.
+cbUseFwidth
+bool
+Uses the fixed-width specified in the variables.xls file for column binary files.
+checkboxBlankIfZero
+bool
+Replaces "0" responses with a blank value for <checkbox> questions.
+dashboard
+string
+Specifies a space-separated list of variables to include in the Response Summary.
+Note: This attribute is not usable in surveys with delphi="1".
+dashboardInclude
+string
+Specifies an external data filename to include in the Response Summary.
+Note: This attribute is not usable in surveys with delphi="1".
+dashboardIncludeKey
+string
+Sets the key variable to reference when including data in the Response Summary.
+fixedWidth
+enum
+Specifies the size of fixed-width data fields (can be set to lax or tight).
+flatKey
+slist
+Sets the key variable for the Flat Form OE data export.
+flatShowEmpty
+bool
+Shows empty lines in the Flat Form OE data export.
+forceDataCharset
+string
+Changes downloaded data character encoding.
+fwoe
+set
+Specifies the OE data to show in fixed-width files (can be set to text, other, or textarea).
+geoip
+set
+Auto-generates a geoIP question.
+imagePrefix
+string
+Sets the filename prefix for data files uploaded using the system file manager.
+indexed
+slist
+Specifies the variable(s) with which to index the survey.
+minimumSegment
+int
+Hides segments with response totals below the specified population size.
+namingScheme
+string
+Sets the variable naming format for the survey.
+precision
+int
+Sets the number of digits to display after decimal points for fixed-width data files.
+saveRandomOrder
+bool
+Saves the order of randomized elements when a participant exits the survey.
+spssSimpleCheckbox
+bool
+Displays simpler value labels in SPSS.
+sql
+bool
+Stores survey data in SQL for legacy panel surveys.
+Note: This attribute is not usable in surveys with delphi="1".
+sqlRefreshTime
+int
+Sets the SQL database refresh time for legacy panel surveys.
+sqlTarget
+string
+Sets the path to save SQL data for legacy panel surveys.
+trackCheckbox
+bool
+Shows blanks instead of "0" responses for <checkbox> cells that weren't seen.
+Note: Surveys with delphi="1" have this attribute on by default.
+trackVars
+set
+Can be set to none, checkbox, or term. If set to checkbox, shows blanks instead of "0" responses for <checkbox> cells that weren't seen. If set to term, sets a marker for each terminate.
+Note: Surveys with delphi="1" have this attribute on by default, though you can use trackVars=term to track terminate visibility in those surveys as well.
+zeroPad
+bool
+Enables leading zeroes for fixed-width data files.

@@ -1,0 +1,8 @@
+Title: Enabling Shell Access
+Requires Decipher Cloud
+This document explains how to whitelist your IP address for access to the shell. Once whitelisted, any user on that IP address will be able to connect to the shell for 14 days before having to whitelist again.
+1: Accessing Shell Permissions
+From the main portal screen, click the user icon and select "Enable Shell Access".
+2: Inputting Your Access Code
+When the "Shell Access" window comes up, it will inform you which access code to type into the box to whitelist the captured IP. Type the access code in the provided input box and select "Enable".
+Once submitted, you will be provided with a confirmation screen and will be able to use a terminal and FTP client to access the shell environment.

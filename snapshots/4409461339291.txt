@@ -1,0 +1,35 @@
+Title: Float Question Attributes
+1: Overview
+The <float> element is an open-ended question type that accepts negative and positive floating point values.
+<float label="Q1" optional="0" ss:postText='"'>
+<title>What are the dimensions (in inches) of your laptop?</title>
+<row label="r1">Width</row>
+<row label="r2">Height</row>
+<row label="r3">Depth</row>
+</float>
+<suspend/>
+<float label="vQ1" optional="0" where="execute" ss:postText="cubic inches">
+<exec>vQ1.val = reduce(lambda x, y: x * y, Q1.values, 1)</exec>
+<title>HIDDEN: VOLUME of LAPTOP</title>
+</float>
+The code above produces the following result:
+2: Attributes
+In addition to the Question Attributes available, the <float> element has access to the following attributes:
+2.1: size - Set the Input Field's Width
+The size attribute is an integer value that controls the width of the input field shown to participants. By default, size="6" is specified.
+For example, specifying a size of 1 produces the following result:
+<float label="Q1" optional="0" size="1" ss:postText='"'>
+<title>Please enter your height (in inches):</title>
+</float>
+And specifying size="30" gives us a larger box to work with:
+2.2: range - Set the Minimum/Maximum Values
+The range attribute controls the minimum and maximum values that can be provided.
+For example, if range="20" is specified, then only numbers from 0 to 20 will be accepted like 0, 10.25, 20, etc... If range="1,5" is specified, then only numbers from 1 to 5 will be accepted like 1, 4.99, 5, etc...
+The <float> element also supports negative numbers, so specifying range="-10,10" is valid and will accept all numbers from -10 to 10 like -10, -9.75, 0, 1.25, 10, etc...
+2.3: optional - Set the Question Mandatory or Optional
+The optional attribute is a boolean value that controls whether or not the <float> question should be mandatory.
+By default, optional="1" is specified and <float> questions are not mandatory. Specify optional="0" to force a response to the question.
+3: What's Next?
+Number Element (Survey Editor)
+Tip: There's an option available in the survey editor for <number> questions to Allow decimals. This transforms the <number> question into a <float> question.
+Number Element XML.

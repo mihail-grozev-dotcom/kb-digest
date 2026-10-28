@@ -1,0 +1,212 @@
+Title: Customizing the Rank Sort Element
+The Rank Sort question allows survey participants to visually rank response option items in order of preference. On desktop, the item at the top of the rank labels is ranked highest and the item at the bottom is ranked lowest. On mobile, rank labels are shown next to their ranked items.
+In a Rank Sort question, each rankable item can be assigned to only one rank and each rank label can have a maximum of one ranked item. The question can be customized for both desktop and mobile devices.
+1: Underlying Question Architecture
+The Rank Sort element uses a Select (drop-down) question, where ranks are the choices and rankable items are the rows. This question style allows for the randomization of both rows and noAnswer options. To use an open-end answer field in the Rank Sort element, Forsta recommends also including the alwaysSubmitOE attribute.
+2: Converting to Rank Sort
+Converting an existing question to a Rank Sort requires that the survey uses compat level 129+ and that the question itself contains the following:
+At least 2 choices
+At least 2 rows
+The minRanks attribute
+To apply the Rank Sort question style to a Select question, add uses="ranksort.10" to the question tag.
+Tip: It is recommended to add the question via the Survey Editor so that the most current version number is applied. You can then customize the question as desired via the survey XML.
+If your survey has a lower number than the current version, the question was created before a new version was released. If the survey is in testing, the version number can be changed to the current version. If the survey is LIVE, it is not recommended to change the version as this could break the question style.
+Tip: To reference the latest ranksort version, see Dynamic Question Versioning.
+Example XML
+<select label="Q1" minRanks="6" optional="1" shuffle="rows" unique="none,cols" uses="ranksort.10">
+<title>Please rank the top 6 most important backpack contents order of 1="most important" to "least important."</title>
+<choice label="ch1">Rank 1st</choice>
+<choice label="ch2">Rank 2nd</choice>
+<choice label="ch3">Rank 3rd</choice>
+<choice label="ch4">Rank 4th</choice>
+<choice label="ch5">Rank 5th</choice>
+<choice label="ch6">Rank 6th</choice>
+<row label="r1">Body Wash, Liquid Soap, Facial Cleanser</row>
+<row label="r2">Hair Gel (for female troops to pull hair back)</row>
+<row label="r3">Combs / Brushes / Bobby Pins (in original packaging, please)</row>
+<row label="r4">Deodorant (travel size)</row>
+<row label="r5">Shaving Cream in Tubes / Shaving Soap (No CANS of Shaving Cream!)</row>
+<row label="r6">Lip Balm / Chap Stick / Carmex / Blistex</row>
+<row label="r7">Hand &amp; Body Lotion / Moisturizer (travel size)</row>
+<row label="r8">Sunblock, SPF 45, Zinc, Vitamin E, Aloe Vera Gel</row>
+<row label="r9">Bug Spray / DEET / Skin-So-Soft</row>
+<row label="r10">Mouthwash (travel size)</row>
+<noanswer label="n1">Don't know</noanswer>
+<noanswer label="n2">Prefer not to say</noanswer>
+</select>
+3: Survey Theme
+Colors selected in the dynamic section of the survey theme will apply in a survey with compat 115+ and are applied to the Rank Sort question as shown below.
+Font - Default
+The rankable item text.
+The noanswer option text.
+The mobile rankable item text.
+The mobile noanswer option text.
+Font - Selected
+The rankable item hovered/ranked text.
+The noanswer option hovered/selected text.
+The rankable item text when dragged from the original list.
+The placeholder text when a rankable item is dragged into the rank label.
+The add/remove/rank icon background/border.
+The mobile ranked item text.
+The mobile noanswer option selected text.
+The mobile rank icon.
+Background - Default
+The rankable item background/border.
+The container boxshadow.
+The mobile rankable item background/border.
+The mobile noanswer option background/border.
+Background - Selected
+The rankable item background/border when hovered/ranked.
+The noanswer option background/border when hovered/selected.
+The rankable item background/border when dragged from the original list.
+The placeholder background/border when a rankable item is sorted into the rank label.
+The rankable items container box shadow when hovered.
+The add/remove/rank icon.
+The mobile ranked item background/border.
+The mobile noanswer option background/border when ranked.
+The mobile rank icon background/border.
+4: Desktop
+The desktop version of the Rank Sort question provides two types of user interaction and various options for customizing the question's style. Options include customization of the rankable items, rank label, containers, hover and selected states, as well as when dragging rankable items to the rank labels and dragging ranked items back to their original locations.
+4.1: Click Interaction
+When hovering the cursor over a rankable item, an add icon and the next available rank number is shown to indicate the rank number that would be assigned to the rankable item when clicked. When hovering the cursor over a rankable item that has been ranked, a remove icon will be shown and clicking the ranked item will remove it from the rank.
+4.2: Drag and Drop Interaction
+Rankable items can also be dragged and dropped onto the rank labels. Once ranked, rankable items can be sorted by dragging them up and down over the rank labels. To remove a ranked item, drag and drop the item to its original location.
+4.3: Options
+There are several options allowed for configuration of the rank label numbers (auto-generated) and rank label text (generated by the ranks or choice text). The options will determine if participants see a rank number next to the container, text in the container, both, or none. You can also force an open-ended row to be ranked if content was added.
+Attribute
+Description
+Type
+Example
+ranksort:showBucketText
+Toggles showing rank label text
+Boolean
+0 = HIDE, 1 = SHOW
+default=1
+ranksort:showBucketText="0" hides rank (choice) label text
+ranksort:showBucketNumber?
+Toggles showing rank label number
+Boolean
+0 = HIDE, 1 = SHOW
+default=1
+ranksort:showBucketNumber="0" hides the rank (choice) label number
+ranksort:alwaysSubmitOE
+Forces an answered open-end textbox to be ranked.
+Boolean
+1 = forces answered open-end question to be ranked, 0 = allows answered open-end question to not be ranked
+default=0
+ranksort:alwaysSubmitOE="1" forces an answered open-end question to be ranked
+ranksort:btnOpenEdit
+Change the text of the edit button that appears on options that have an "other specify" open end box.
+string
+ranksort:btnOpenEdit="change" modifies the "edit" button to say "change" instead
+4.4: Advanced Customization (CSS)
+The desktop version of the Rank Sort question can be customized by modifying the CSS in the survey XML. Each style variable is prepended with ranksort:. For example, ranksortContainerCSS becomes ranksort:ranksortContainerCSS to customize the desktop styling.
+In the examples below, areas that can be customized are bordered with a red line.
+Note: Click any icon to view a larger image.
+XML Style Variable
+Description
+Example
+ranksortContainerCSS
+The container for all elements.
+answersContainerCSS
+The container for the answer items.
+ranksort:answersContainerCSS="width: 722px;" will change the width of the answers container.
+cardsContainerCSS
+The container for the rankable items.
+ranksort:cardsContainerCSS= "-webkit-border-radius: 10px; border-radius: 10px;" will add rounded corners.
+cardCSS
+The rankable item.
+ranksort:cardCSS=" background:#00c3bd; border-color:#aaa; width:120px; height: 220px; -webkit-border-radius: 10px; border-radius: 10px;" will change the rankable item width and height; change the background to a turquoise with a grey border and rounded corners.
+cardHoverCSS
+The rankable items when hovered.
+ranksort:cardHoverCSS= "margin-top:-10px; margin-bottom: 30px; color: #fe7f03; font-weight: bold; background: #007F7A; border-color: #007F7A; -webkit-box-shadow: 1px 1px 5px 5px rgba(254,127,3,.5); box-shadow: 1px 1px 5px 5px rgba(254,127,3,.5);" will move the rankable item up, change the font color to an orange, the background color to a teal with a teal border and a orange transparent drop shadow.
+cardDroppedCSS
+The rankable items shown inside the rank.
+ranksort:cardDroppedCSS=" background:#007F7A; border-color:#aaa;" will change the background color to a teal with a grey border.
+cardStateDisabledCSS
+The disabled rankable item.
+cardDroppedStateDisabledCSS
+The ranked items after being ranked.
+ranksort:cardDroppedStateDisabledCSS= "background: #aaa; opacity: .4; margin: 10px; font-weight: normal;" changes the background color to grey with added transparency.
+bucketsCSS
+The container for the ranking.
+ranksort:bucketCSS= "border-color:#007F7A; width:120px; height: 220px;" will change the bucket width, height and the dashed line outline of the rank buckets to a teal color.
+bucketsContainerCSS
+The container for rank labels.
+numbersContainerCSS
+The container for rank numbers.
+bucketCSS
+The rank label container where the rankable items can be dropped.
+bucketTextCSS
+The rank label text where the rankable items can be dropped.
+bucketNumberCSS
+The rank label number container.
+bucketNumberTextCSS
+The rank label number.
+ranksort:bucketNumberTextCSS= "color:#007F7A; font-weight: bold;" will change the rank numbers to a bold teal.
+noanswersContainerCSS
+The container for noanswer option(s).
+noanswerCSS
+The exclusive noanswer option(s).
+ranksort:noanswerCSS= "-webkit-border-radius: 5px; border-radius: 5px;" will add rounded corners.
+noanswerHoverCSS
+The exclusive noanswer option when hovered.
+ranksort:noanswerHoverCSS= "color: #fe7f03; font-weight: bold; background: #007F7A;" will change the text color to an bold orange and background color to a teal.
+noanswerSelectedCSS
+The noanswer option when selected.
+ranksort:noanswerSelectedCSS= "background:#aaa; border-color:#007F7A;" will change the background to a grey and add a teal border.
+uiDraggableHelperCSS
+The rankable item when dragged from the rankable item container.
+ranksort:uiDraggableHelperCSS= "color: #fe7f03; font-weight: bold; background: #007F7A; border-color: #aaa; width: 120px; height: 220px; -webkit-border-radius: 10px; border-radius: 10px;" will change the helper to a bold orange text, a custom width and height, a teal background with round corners and grey border.
+uiSortablePlaceholderCSS
+The placeholder when a rankable item is dragged into the rank label.
+ranksort:uiSortablePlaceholderCSS= "background: #007F7A; border-color: #007F7A;" will add teal background and border.
+uiSortableHelperCSS
+The ranked item when dragged out of the rank label to be sorted or removed.
+uiDroppableActiveCSS
+The rankable items container when ranked items are sorted.
+ranksort:uiDroppableActiveCSS= "-webkit-box-shadow: 1px 1px 5px 3px rgba(0,195,189,.3); box-shadow: 1px 1px 5px 3px rgba(0,195,189,.3);" will add a transparent turquoise box shadow.
+uiDroppableHoverCSS
+The rankable items container when ranked items are dragged to rankable items container.
+ranksort:uiDroppableHoverCSS= "-webkit-box-shadow: 1px 1px 5px 5px rgba(0,195,189,.5); box-shadow: 1px 1px 5px 5px rgba(0,195,189,.5);" will add a turquoise box shadow.
+iconAddCSS
+The add icon shown when a rankable item is hovered.
+iconRemoveCSS
+The remove icon shown when a ranked item is hovered.
+iconRankCSS
+The next rank icon when a rankable item is hovered.
+5: Mobile
+The mobile version of the Rank Sort element is optimized for smaller screens by displaying the rank label next to each rankable item when selected.
+5.1: Tap/Click Interaction
+Taping on a rankable item will assign the next available rank label. The ranked item will animate and slide to the right. The rank is then shown to the left of the ranked item. Rankable items can be tapped to choose a specific rank. If there are multiple items with the same ranking, an error is generated when trying to proceed to the next page. The duplicated ranked items will be highlighted with a red border.
+5.2: Advanced Customization (CSS)
+The mobile version of Rank Sort question can be customized by modifying the CSS in the survey XML. Each style variable is prepended with ranksort:mobile_. For example, ranksortContainerCSS becomes ranksort:mobile_ranksortContainerCSS to customize the mobile styling.
+In the examples below, areas that can be customized are bordered with a red line.
+Note: Click any icon to view a larger image.
+XML Style Variable
+Customize the appearance of the:
+ranksortContainerCSS
+The container for all elements.
+cardsContainerCSS
+The container for rankable items.
+cardCSS
+The rankable items.
+cardDroppedCSS
+The rankable item dropped CSS.
+cardDupeCSS
+The duplicate ranked items.
+noanswersContainerCSS
+The container for noAnswer option(s).
+noanswerCSS
+The exclusive noAnswer option(s).
+noanswerSelectedCSS
+The exclusive noAnswer option when selected.
+iconRankCSS
+The icon rank
+6: References
+CSS Help:
+CSS Cheat Sheet
+CSS3 Generator
+CSS Gradients
+Color Scheme Generator
+Note: The Rank Sort question style overrides the page.head, question.after and survey.question.instructions attributes in XML styles.

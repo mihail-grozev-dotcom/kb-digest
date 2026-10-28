@@ -1,0 +1,21 @@
+Title: 144.2 Release Notes
+Release Date: December 3, 2019
+Release Version: 144.2
+New Features
+Portal
+Added the option to select a survey category during project creation.
+Added the ability to change a survey’s selected category from the Project Overview page.
+Responses
+Campaign Manager
+Improved the way email list encryption works to decrease lists’ disk space usage.
+Sample Marketplace
+Updated the sample purchase process so that a survey test link is automatically sent to any sample vendor once a survey is launched with their sample.
+Programming & Tools
+API
+Added an endpoint that allows users to create test URL links for surveys.
+Added an endpoint that allows users to update a survey’s category and / or description.
+Bug Fixes
+Portal
+Fixed an issue which sometimes caused survey languages to not appear on the Project Overview page.
+Survey Editor
+Fixed an issue causing some valid vector logic expressions to be removed when saving conditions in the “Show If” condition editor.

@@ -1,0 +1,28 @@
+Title: M54 Release Notes
+Release Date: July 15, 2025
+Release Version: M54
+Survey Versioning
+The new survey compatibility level is 154. The system automatically uses compat="154" for all new surveys. The new level adds the following features:
+Accordion style is now available on desktop mode.
+Users can now zoom in and out while in Respondent View, which improves accessibility.
+New Features
+Survey
+Language Manager
+The system language manager now include entries for more respondent error messages.
+Programming and Tools
+The Skip element can now target elements within blocks.
+Bug Fixes
+Portal
+The custom value for password expiration cannot exceed 999.
+Survey
+Participant View
+An issue preventing single-select grid questions from properly displaying in accordion-style has been resolved.
+An issue where input fields on multiple columns would only show a single input field has been resolved.
+Responses
+Response Summary
+An issue that prevented splitting the completions tab by multiple variables has been resolved.
+View/Edit Responses
+The View/Edit Response variables filter now displays rows in the same order as the survey XML.
+Reporting
+Crosstabs
+Bulk media downloads in Crosstabs from Video Testimonial or Media Testimonial questions now correctly sorts media into specific segment directories instead of just the directory for the Total segment.

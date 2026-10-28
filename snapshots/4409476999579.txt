@@ -1,0 +1,130 @@
+Title: Shopping Cart Element
+In the Shopping Cart element, participants simulate purchasing items from an online store.
+Tip: The Shopping Cart element should be set to optional unless all products must be purchased.
+Note: The Shopping Cart element does not support edits made in the Survey Editor using Internet Explorer 11.
+1: Adding a Shopping Cart Element
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Shopping Cart element, first click the "+ Element" button to add a new survey element. Then click "Stimulus" under Question Types and select the "Shopping Cart" element. Then click "Add".
+Enter the question and instruction text in the areas provided. Then use the “Options” menu to the right of the staging area to customize the Shopping Cart element.
+1.1: Adding Products
+Tip: Click "Product Actions" and select "Delete all Products" to remove the demo products.
+Click "Add Products" to add your product images. Then click into the product field and click the image icon in the Rich Text Editor (RTE) to add images.
+See Adding and Managing Images to learn about adding images.
+Note: The Shopping Cart element is not compatible with protected or watermarked images.
+Tips for adding images to the Shopping Cart element:
+The full-sized image, used for the detailed view, should be around 200x250px.
+Upload the largest version of the image, the element automatically resizes the smaller versions of the image, unless specific sizes are specified in the element's style settings.
+Select the image(s) you want to insert in the image manager. Then click "Insert Image(s)".
+Click each product row to access its options to the right of the staging area. Enter the product name and cost in the fields provided.
+1.2: Viewing Product Actions
+Click "Product Actions" to access the following edit options:
+Import Answers
+Save Answers to Library
+Copy All Answer Text
+Insert Reusable Answer List (only available if you have previously saved
+an answer list)
+Create Reusable Answer List
+Add Answer Group
+Answer Piping
+Reverse Values
+Reset Values
+Reset Labels
+Delete All Answers
+Edit All Answers
+2: Configuring Style Settings
+To configure the style settings for the Shopping Cart element, click the "..." button at the top right of the element in the staging area and select "Update Styling".
+In the "Question Display Options" window, configure the settings for the element using the options on the left. Additional information about each feature will appear when you mouse-over the text. Click "Save and Preview" to preview the settings. Once you are satisfied with your settings, click "Save and Close".
+The following display settings are available:
+Style Option
+Description
+Currency Before
+Shown in the question, a detailed view and checkout summary.
+Enter the currency symbol displayed before a product’s monetary amount. If both "Currency Before" AND "Currency After" are left blank, the “$” symbol is used by default.
+Example: $10.00
+Currency After
+Shown in the question, a detailed view and checkout summary.
+Enter the currency symbol after a product’s monetary amount.
+Example: 5¢
+Item Caption
+Shown in the shopping cart checkout summary.
+Enter a title for the products in a shopping cart. This name is displayed in the first column of the shopping cart checkout summary. If left blank, this column defaults to “Item”.
+Quantity Caption
+Shown in the shopping cart checkout summary.
+Enter a title for the sum of products in a shopping cart. This name is displayed in the second column of the shopping cart checkout summary. If let blank, this column defaults to “Quantity”.
+Price Caption
+Shown in the shopping cart checkout summary.
+Enter a title for the price of products in a shopping cart. This name is displayed in the third column of the shopping cart checkout summary. If left blank, this column defaults to “Price”.
+Subtotal Caption
+Shown in the shopping cart checkout summary.
+Enter a title for the subtotal of the items in the shopping cart. This name is displayed in the summary row of the shopping cart checkout summary. If left blank, this row defaults to “Subtotal".
+Empty Cart Caption
+Shown in the shopping cart checkout summary.
+Allows you to specify the text on the shopping cart checkout summary when the cart is empty. If left blank, the message defaults to “You have no items in your shopping cart”.
+Checkout Tooltip Caption
+Shown in the shopping cart checkout summary.
+Allows you to set the tooltip text, shown when the participant mouse-overs the checkout button. If left blank, the message defaults to “Click "Checkout" to continue to the next question”.
+View Cart Button (Singular)
+Shown in the question when there is a single item in the cart.
+Allows you to specify the text for the button that allows the participant to view their cart and then checkout. If left blank, the message defaults to “[Number of] item”.
+View Cart Button (Plural)
+Shown in the question when there are multiple items in the cart, and when the cart is empty.
+Allows you to specify the text for the button that allows the participant to view their cart and then checkout. If left blank, the message defaults to “[Number of] items”.
+View Detail Button
+Shown in the question when the participant mouse-overs a product.
+Allows you to change the text of the “View Details” button displayed when you click or mouse-over an item on the question. If left blank, the message defaults to “View Details”.
+Add to Cart Button
+Shown in the question when the participant mouse-overs a product and in the detailed view.
+Allows you to change the text of the “Add to Cart” button displayed when you click or mouse-over an item. If left blank, the message defaults to “Add to Cart”.
+Remove Button
+Shown in the shopping cart checkout summary.
+Allows you to add text to the right of the “Remove” icon. By default, only the remove icon is displayed.
+Example: [X] Remove from Cart.
+Continue Shopping Button
+Shown in the shopping cart checkout summary.
+Allows you to replace the text for the "Continue Shopping" button.
+Checkout Button
+Shown in the shopping cart checkout summary.
+Allows you to replace the text for the "Checkout" button.
+Item Size in Question
+Specifies the size of the product image displayed in the question.
+Valid formats include (measured in pixels): 25x35 , 25w, 35h, 45%.
+Default size is 25% of the original image size.
+Example: If the uploaded image is 200x250px, the image shown in the question is sized to 50x63px.
+Item Size in Detailed View
+Specifies the size of the product image displayed in the detailed view. This should be the largest, full-sized version of the product image.
+Valid formats include (measured in pixels): 250x350, 250w, 350h, and 90%.
+Default size is 100% of the original image size.
+Example: If the uploaded image is 200x250px, the image shown in detailed view is sized to 200x250px.
+Item Size in Checkout Summary
+Specifies the size of the product image displayed in the checkout summary.
+Valid formats include (measured in pixels): 15x20, 15w, 20h, and 25%.
+Default size is 15% of the original image size.
+Example: If the uploaded image is 200x250px, the image shown in the question is sized to 30x38px.
+3: Configuring Question Options
+The general options available for the Shopping Cart element are located to the right of the staging area. You can set rules for the entire question by clicking near the question text or set rules for individual rows by clicking the row you wish to edit. The "Options" menu will show the question or row label and type for the option you have selected to edit.
+3.1: General Options
+When altered, each of the following options affects all attributes within the Shopping Cart element.
+Label: The label assigned to the element. Click to edit the default label for the Shopping Cart element.
+Show if: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: Check the box to force participants to provide a response. When checked, participants will be unable to continue the survey without completing the question. The Shopping Cart element should be optional unless all products must be purchased.
+Randomize: Check the boxes to randomize items by type. Items can be randomized only by rows.
+Response Length: Click into each box to assign a value range to validate the participant's response.
+Verify: The Verify attribute allows you to restrict a response to a certain format (e.g., an email address or phone number). See Options for Verifying Response Formats to learn more.
+More options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+3.2: Product Options
+When altered, each of the following options only affects specific product options.
+Label:The label assigned to the product. Click to edit the default label for the product.
+Show if:Click to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages:Click to select what languages the response option will be shown in if the survey has multiple languages. The default is "all".
+Product Name: Enter a name for the product, displayed above the product image.
+Product Price: Enter the price of the product, shown when a participant mouse-overs the image.
+Do not randomize:This option is only available if the "Randomize" general option is selected. Check the box to force the product to remain stationary.
+Optional: This option is only available if the "Randomize" general option is selected. Check the box to force the product to remain stationary.
+Open End:Allows you to add an open-end response box to the row by selecting "mandatory" or "optional" from the drop-down menu. "Mandatory" means the participant must enter feedback in the response box to continue if the row is selected, "optional" means that feedback is not required.
+Hidden:Click to hide the response options from participants.
+Response Length:Click into each box to assign a value range to validate the participant's response.
+Verify: The Verify attribute allows you to restrict a response to a certain format (e.g., an email address or phone number). See Options for Verifying Response Formats to learn more.
+Row Pre-Text: Enter a value to appear before the response field.
+Row Post-Text: Enter a value to appear after the response field.
+More options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.

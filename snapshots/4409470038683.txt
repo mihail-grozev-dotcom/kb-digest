@@ -1,0 +1,90 @@
+Title: Viewing the Permission Report
+The read-only permission report displays the access rights to projects for each explicit user and a list of assigned projects for each user group. This document provides an overview of the permission report and its features.
+Note: Only company Supervisors can access the permission report from the company page.
+1: Accessing the Permission Report
+In the Portal, open your company page by select Company Page under your company name or logo near the top left. Then select Permissions Report in the left panel.
+2: Viewing the Permission Report
+The permission report shows a list of all groups and a list of all users.
+2.1: Groups Summary
+The Groups summary includes:
+ID: The numeric ID associated with each user group.
+Group name: The name of the group, as supplied by the group creator.
+#surveys: The total number of surveys each group has been assigned to.
+#users: The total number of users assigned within each group.
+2.2: Users summary
+The Users summary includes:
+User id: The numeric ID associated with each user account.
+Email: The user's email address, as supplied by the account supervisor. To see information on a user's groups, surveys and permissions, click on the user's Email address.
+Name: The user's name.
+Company: The company name.
+Creator?: Confirms whether the user is able to create projects within the portal. Can be "yes" or "no".
+Status: The user's current account status. Can be "ok" or "disabled". Additionally, displays whether the user is a supervisor (for example, "ok supervisor") or Forsta staff member (for example, "ok staff").
+Last login: Displays the location (ip address) and date of the last time the user logged into the portal. To view a user's audit logs, select the user's Last login.
+Note: The summary row for deactivated users is grayed out.
+3: User Information
+Selecting a User's Email address on the Permissions Report page will open a new page with information on the user's groups, surveys and permissions.
+3.1: Surveys in groups
+1. path: Lists links for projects which each group has been added to. You can click a project link to run the standard report for that survey.
+2. title: The title of the survey, as supplied by the survey creator.
+3. Explicit Survey Permissions: Shows a breakdown of the permission levels each group has for each feature in a survey. The features and permission levels are described in sections 4 and 5 below.
+Note: If you need to drill down on specific users in a group, use the user groups tab available on the company page.
+3.2: User Summary
+The user summary includes the same information as on the Permission Report page. It displays the account details for the user.
+User id: The numeric ID associated with each user account.
+Email: The user's email address, as supplied by the account supervisor.
+Name: The user's name.
+Company: The company name.
+Creator?: Confirms whether the user is able to create projects within the portal. Can be "yes" or "no".
+Status: The user's current account status. Can be "ok" or "disabled". Additionally, displays whether the user is a supervisor (for example, "ok supervisor") or Forsta staff member (for example, "ok staff").
+Last login: Displays the location (ip address) and date of the last time the user logged into the portal. To view the user's audit logs, select the user's Last login.
+Note: The summary table for deactivated users is grayed out.
+Note: Users without access to projects will have only their user summary table displayed.
+3.3: Group Membership
+The group membership displays all groups that a user is part of.
+id: The numeric ID associated with each user group.
+name: The name of the group, as supplied by the group creator.
+#srv: The total number of surveys each group has been assigned to.
+Explicit Survey Permissions: See the permission levels each group has for each feature in a survey by looking at the group's surveys listed at the top of the page. The features and permission levels are described in sections 4 and 5 below.
+3.4: Explicit Survey Permissions
+path: Lists links for projects which the user has been added to. You can click a project link to run the standard report for that survey.
+title: The title of the survey, as supplied by the survey creator.
+Explicit Survey Permissions: Shows a breakdown of the permission levels the user has for each feature in a survey, along with the survey title, permission granter, issue date, and group (if relevant). The features and permission levels are described in sections 4 and 5 below.
+granted by: The email of the user who granted the user, whom you are viewing, access to the survey. This may be the same user.
+on: The date the user, whom you are viewing, was granted access to the survey.
+group?: Identifies if the user, whom you are viewing, was also granted access to the survey by being added to a group.
+4: Features
+The table below lists all of the features available to users and user groups within the portal and provides a short description of each:
+Feature
+Description
+survey
+Authoring or testing
+crosstabs
+Crosstab reporting
+data
+Data editor or layout manager
+field
+Field tracking, such as quota management
+admin
+Company features and user management
+campaign
+Email campaign setup and deployment
+dashboard
+Visual reporting dashboard
+themeEditor
+Survey theme editor
+offline
+Offline survey application (web browser or mobile app)
+other
+Bespoke features on "as developed" basis
+5: Permission Levels
+The table below lists all of the permission levels available to users and user groups within the portal and provides a short description of each:
+Permission Level
+Description
+0
+No access
+1
+View access
+2
+Edit access. This allows survey editing tools but no survey authoring access
+3
+Access to the survey authoring tool on the survey only.

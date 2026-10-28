@@ -1,0 +1,19 @@
+Title: 153.13 Release Notes
+Release Date: August 1, 2023
+Release Version: 153.13
+New Features
+Portal
+Added a new filter to the Portal that allows you to filter surveys by "Deprecated Surveys". Learn More: Search Capabilities
+Survey
+Survey Editor
+The "Send An Email" logic node element now allows customization of the "Sender Email" field. Learn More: Sending an Email
+Responses
+Participant Sources
+The Pure Spectrum sample provider source now signs both inbound and outbound links, instead of only outbound.
+Programming and Tools
+API
+Added the coverage API endpoint /surveys/<survey path>/coverage which accomplishes feature parity from Reports 2010.
+Bug Fixes
+Survey
+Participant View
+The Card Sort Single-Select element no longer displays extraneous whitespace or symbols on mobile devices when the accordion style is applied.

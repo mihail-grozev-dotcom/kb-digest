@@ -1,0 +1,29 @@
+Title: M45 Release Notes
+Release Date: August 25, 2020
+Release Version: 145
+Survey Versioning
+The new survey compatibility level is 145. The system automatically uses compat="145" for all new surveys. This enables the following:
+The trackHiddenCheckbox attribute, which allows users to control the display of unanswered responses in multi-select questions.
+All <pipe> elements with capture="" specified are now required to have unique row label values.
+New Features
+Survey
+Survey Editor
+Added a sanity check to prevent live surveys from being reverted to a draft state when making changes during field.
+Responses
+Participant Sources
+Updated the Sample Marketplace to automatically assign a language to each participant source based on the survey’s primary language.
+Added the ability to change the title and language for any participant source purchased via the Sample Marketplace.
+Campaign Manager
+Updated the design and text displayed for the Add Recipients modal.
+Bug Fixes
+Survey
+Participant View
+Fixed an error preventing participants from returning to a survey with both delphi="1" and autosave="1" when their last-seen question was removed from the survey.
+Responses
+Campaign Manager
+Fixed an issue preventing the counts for email campaign opt-outs from displaying properly in the Response Summary.
+Improved recipient list sharing.
+Reporting
+Crosstabs
+Fixed an issue preventing reports from loading when data weighting was applied to a large number of rows in multiple questions.
+Fixed an issue preventing reports with multiple segments from being exported to SPSS.

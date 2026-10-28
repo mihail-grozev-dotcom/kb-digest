@@ -1,0 +1,84 @@
+Title: Attributes for Project Settings
+There are a variety of <survey> attributes that can be used to configure the behavior of both surveys and their questions across Decipher's various tools and features.
+You can use the following attributes to control the various project settings for any Decipher survey:
+Attribute
+Purpose
+Description
+alt
+Setting Project's Alternative name
+Controls your project's alternative report name. This is where you can set your project's main name that appears in the Portal and Survey Editor. In contrast to the name attribute, which is visible to participants in the survey's tab (e.g., "Shoe Survey"), the alt can be used to assign a full name (e.g., "2014 Adidas Shoe Survey").
+builderCompatible
+Enabling the Survey Editor Access
+The builderCompatible attribute enables the use of the Survey Editor to edit the survey. If builderCompatible="0" is specified, the survey can only be edited from the command-line or using the XML Editor.
+compat
+Setting the Survey Compatibility Level
+The compat attribute controls what level of compatibility the survey is set to. When starting a new project from the Portal, surveys are set to the highest compat level. With each new compat level, new features are added and some old features may be removed.
+Note: If the compat attribute is not specified, surveys are assumed to be compat="0".
+encryptData
+Encrypting All Open Fields and Partial Data
+Note: This attribute is not usable in surveys with delphi="1".
+The encryptData attribute controls whether open-end fields and partial data is encrypted. Set encryptData="1" to encrypt all the persistent and partial data (saved in state.db) prior to launching. The default is: encryptData="0".
+Note: This setting cannot be enabled or disabled once a survey is live. Additionally, this setting requires that server encryption be enabled.
+Note: A survey with encrypted data cannot be moved to another survey path.
+extraVariables
+Setting Additional Variables to Capture
+The extraVariables attribute is a comma-separated list of strings that should be made acceptable variables in the survey. These variables and their values will be stored in the data and can be used across the entire survey.
+Use this attribute to declare new variables relative to your project and / or participant sources. For example, you may add ID or respid to capture these values from the URL (e.g., /selfserve/9d3/proj1234?respid=RESP144).
+When creating a new project from the Portal, the variables source, record, decLang, list, and userAgent are automatically added to the extraVariables attribute.
+Here is a list of built-in variables that you can specify and are automatically populated with additional information:
+ipAddress - The participant's starting IP address is captured.
+Note: ipAddress is automatically added to all surveys with compat level of 138 or lower and can only be removed from surveys with compat level of 139+. If you remove this variable from older surveys, the information is still collected. If you would like to hide IP addresses in the report for older surveys, you can use PII flagging to adjust your data permissions.
+record - Assigns each participant an ascending index (record) number.
+url - The full URL of the initial request is saved.
+session - The participant's session cookie is saved.
+userAgent - the participant's last "User-Agent" header is captured and two virtual questions, vos and vbrowser, are created (automatically added to compat="120+" surveys).
+flashDetected - Auto-detects if Flash 9+ is present on the machine (flashDetected's value will be 1 if detected after the first page of the survey).
+fullService
+Disabling Edit Access
+The fullService attribute controls edit access to the survey. If fullService="1" is specified, then the survey is no longer editable.
+This is different than the builderCompatible attribute, which still allows edit access using the XML Editor.
+lang
+Setting the Project's Main Language
+The lang attribute sets the survey's default language. Specifying lang="french" updates the language from English to French, updating the error messages, button texts, and other applicable system language resources.
+Note: If you need to add additional languages, see the otherLanguages attribute.
+name
+Setting the Project's Name
+The name attribute controls the name of your project that is visible in both the report and participant view. The name provided here appears in the participant's browser window as the page's title. For example, specifying name="Shoe Survey" has the following effect:
+Unique project names are usually assigned using the alt attribute.
+otherLanguages
+Setting Other Available Languages
+The otherLanguages attribute is a comma-separated list of other languages to present your survey in.
+For example, if otherLanguages="german,french" is specified, then you can use the <languages> element or setLanguage() function to dynamically alter the language for each participant (e.g., setLanguage('german')).
+refcheck
+Enabling Code Checking
+The refcheck attribute applies to surveys with a compat level less than 15. This attribute can be set to "yes" or "no ". By default, refcheck="yes" is specified and Python code is checked to verify that references to other questions make sense. This includes code within a cond attribute and if statements inside <exec> and <validate> elements.
+For example, the following error will be shown if conditions reference a question that exists on the same page:
+Error: Data reference to QUESTION which does not have data yet.
+unmacro
+Enabling Survey to be Saved / Edited in the Survey Editor
+The unmacro attribute applies to surveys with macros present. When unmacro="0" is specified, the survey cannot be opened using the Survey Editor or XML Editor. If unmacro="1" is specified and macros exist within the survey, opening the survey in the Survey Editor will unravel these macros.
+unusedLanguages
+Setting an Available Language as Unused
+The unusedLangauges attribute is used to set an available language as unused so that the simulated data requirement for completes in all languages can be ignored.
+For example, if your survey was originally fielded in Spanish as the main language but will no longer set or use any Spanish references, then you can specify unusedLanguages="spanish" so that you can successfully bypass the requirement for a specific number of simulated data completes in all languages when trying to set the survey live.
+<survey
+name="Survey"
+lang="spanish"
+otherLanguages="english, chinese"
+unusedLanguages="spanish"
+...>
+Just like otherLanguages, the unusedLanguages attribute can accept a comma-separated list of valid languages to ignore. All unused languages remain visible in the data and reports, but are not available for testing or updating translations via the Survey Editor.
+version
+The Number of Live Edits / Remerges
+Important: Do not modify this attribute's value.
+The version attribute is a read-only attribute that starts at one and increments each time a live survey is edited through the Survey Editor or remerged from the command-line.
+This attribute is used to help flag participants who view an updated survey (i.e., changed since it was initially set live) by appending a special marker to their existing set of markers.
+When the survey's version is greater than one, meaning it has received a live edit or has been remerged, then all participants that view the updated survey receives a marker in the form of YYYYMMDD_HH:MM_v# (e.g., 20140912_14:22_v3). This marker is a combination of two values: the remerged attribute and the version attribute.
+Note: A file named previous.datamap.txt is written to the project directory containing the survey's previous datamap, before the most recent changes were put in place.
+remerged
+The Timestamp of the Most Recent Live Edit / Remerge
+Important: Do not modify this attribute's value.
+The remerged attribute is a read-only attribute that reflects the date of the most recent live edit and / or remerge. When a survey receives a live edit through the Survey Editor or is remerged from the Command-line, this attribute is set to the timestamp of this moment in the form of YYYYMMDD_HH:MM (e.g., 20140912_14:22).
+This attribute is used to help flag participants who view an updated survey (i.e., changed since it was initially set live) by appending a special marker to their existing set of markers.
+When the survey's version is greater than one, meaning it has received a live edit or has been remerged, then all participants that view the updated survey receives a marker in the form of YYYYMMDD_HH:MM_v# (e.g., 20140912_14:22_v3). This marker is a combination of two values: the remerged attribute and the version attribute.
+Note: A file named previous.datamap.txt is written to the project directory containing the survey's previous datamap, before the most recent changes were put in place.

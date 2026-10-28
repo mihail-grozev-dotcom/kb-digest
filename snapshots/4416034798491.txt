@@ -1,0 +1,60 @@
+Title: Campaign Manager API Calls
+You can use the following API calls to upload and review recipient lists for email campaigns. Click any call name to view more information.
+The Decipher API allows you to manage your survey's email campaigns using the same principles as the Campaign Manager.
+Note: The below article uses examples of accessing the Decipher API from a Unix system that has the Beacon library package installed. See Decipher REST API to learn more about accessing the Decipher REST API.
+Call Name
+Description
+Campaign Manager
+Retrieves information for any e-mail campaigns created in the specified survey.
+Create Campaign
+Creates an individual email campaign. Creating a campaign using this endpoint allows for new email sends to be scheduled while other sends are still pending.
+Get Campaign
+Retrieves an individual email campaign. Returns the following properties for the campaign:
+Campaign Name
+Reply To
+From Name
+List Size
+Date
+From Address
+Campaign ID
+Subject
+Edit Campaign
+Changes the following properties for an individual email campaign:
+name
+fromName
+fromAddress
+replyTo
+subject
+link
+Get Invite
+Retrieves the body content for the email invite that was created for an email campaign.
+Edit Invite
+Edits the body content of an email invite that was created for an email campaign.
+Campaign List
+Uploads a recipient list for an individual email campaign.
+Get Lists
+Downloads the recipient list that was uploaded for an individual email campaign.
+Replace Lists
+Uploads a recipient list for use in email campaigns.
+Note: Recipient lists are not automatically shareable with other email campaigns for the same project. You must specify whether to share a list with other campaigns.
+Get a Send
+Retrieves information about a single email send for an individual email campaign.
+Get Sends
+Retrieves information about all email sends for an individual email campaign.
+Status List
+Retrieves a list of all the recipients for a successful email send. Will also return a list that includes throttled and suppressed recipients, (those who would have received the email but did not because either the sender or the system excluded them).
+Create Suppression List
+Creates a list of email addresses to be suppressed for one or more email sends.
+Get Suppression List
+Retrieves an individual email suppression list.
+Get Suppression Lists
+Retrieves all the email suppression lists for the specified project.
+Create a Send
+Schedules an email send for a campaign to go out at the specified time / date.
+Cancel a Send
+Cancels a previously scheduled email send.
+1: Viewing Returned Data
+You can use the global select parameter to retrieve a subset of any GET call's returned data. You can pass in select as an argument set to a comma-separated list of properties to return.
+For example, select=id, login, active will only retrieve these three specific fields when calling in the User List API:
+beacon get rh/users select=id,login,active
+Note: The select parameter should only be used on GET method API calls to filter information retrieved via an API call, and not information that you send (via a PUT or POST method) to Decipher.

@@ -1,0 +1,88 @@
+Title: How to Auto-Submit a Survey Page after a Specified Time
+In some surveys, there is a need to display stimuli or questions for a specific amount of time before advancing participants to the following page. To ease this process for participants, as well as to ensure the participant views the page for exactly the desired amount of time, it is beneficial to automatically move participants to the next page after the time has expired.
+This article outlines the process for automatically submitting a survey page after a pre-specified amount of time.
+1: Configuring the Style
+Auto-submitting a survey page in Decipher requires the use of JavaScript. JavaScript can be inserted within the survey.xml file using the <style> XML tag. The <style> tag can be applied to the <survey> tag for use throughout the survey, or nested within a question tag to be used for that individual survey question.
+2: Inserting Javascript
+To insert Javascript using the <style> tag, first add a reference to the respview.client.js file. This is a blank JavaScript file that allows programmers to inject JavaScript into their Decipher surveys.
+In this example, the default respview.client.js style block is included within the survey XML.
+<style name="respview.client.js"> <![CDATA[
+]]></style>
+3: Specifying the Override
+Next, add the with attribute. This attribute controls the timing of when the style override loads. Passing a comma-separated list of element labels through the with attribute will only load the style on pages that contain the specified elements.
+Here, adding with="cm1" will load the style, and eventually the code to auto-submit the page, only on the survey page with the cm1 descriptive content element.
+<style with="cm1" name="respview.client.js"> <![CDATA[
+]]></style>
+4: Naming Style Variables
+Then add the arg attribute. This attribute adds a style variable that can be referenced as $(X) within the style. This makes certain parameters of the style code repeatable and more easily modified when editing the code or using the copy attribute.
+In the example below, arg:timeout="15" is included in the style tag. The "15" value will be referenced multiple times in the forthcoming JavaScript, but can be easily managed from a single location in the <style> tag.
+<style with="cm1" arg:timeout="15" mode="after" name="respview.client.js"><![CDATA[
+]]></style>
+5: Inserting the Code
+Finally, add the wrap attribute. This attribute only accepts a value of "ready". Adding wrap="ready" to the style tag inserts the specified code in the document.ready function, which runs the code after the page has fully loaded, allowing programmers to insert JavaScript into their surveys more concisely.
+In this example, adding wrap="ready" to the style tag ensures that the full page and all its elements have been loaded before the timer begins counting down and the code to auto-submit the page is executed.
+<style label="autosubmit" with="cm1" arg:timeout="15" mode="after" wrap="ready" name="respview.client.js"> <![CDATA[
+]]></style>
+6: Running the Style
+Once you have finished configuring the style, add the setTimeout function to designate the amount of time before auto-submitting the page. The code below creates the setTimeout function that automatically submits the page after the amount of time specified in the timeout style variable has elapsed.
+setTimeout( function() {
+postIt();
+}, $(timeout) * 1000);
+7: Additional Options
+7.1: Disabling the Continue Button
+Before auto-submitting the page, it may be necessary to disable the "Continue" button to prevent participants from manually submitting the page before the time has elapsed. If the auto-submit feature is being used to set a maximum time on a page, this step is not necessary.
+The code below disables the "Continue" or "Finish" button, depending on which page of the survey the participant is on.
+var $submitButton = $ ("#btn_continue, #btn_finish"); $submitButton.prop("disabled", true);
+7.2: Displaying Countdown Text
+If desired, you can also display countdown text for when the page will be automatically submitted for participants.
+Including the function below will insert the countdown text for the survey page element flagged with the countdowntimer ID. Once again, the code below references the timeout style variable to determine the starting time for the countdown.
+var timeleft = $(timeout);
+var textTimer = setInterval(function(){
+timeleft--;
+$ ('#countdowntimer').text(timeleft);
+if(timeleft <= 0)
+clearInterval(textTimer);
+},1000);
+For this code to execute, you need to wrap the countdown text in the survey element within a span tag with the id="countdowntimer". In the example below, the text within the question instructions will dynamically update with the length of time remaining before the page is automatically submitted.
+After <span id="countdowntimer">15 </span> seconds, the participant will automatically be advanced to the next page.
+8: Putting it All Together
+The code below is an example of the style override to auto-submit a page with a countdown timer and disabled "Continue" and "Finish" buttons.
+<style arg:timeout="15" mode="after" name="respview.client.js" with="cm1" wrap="ready"><![CDATA[
+var $submitButton = $ ("#btn_continue, #btn_finish");
+$submitButton.prop("disabled", true);
+setTimeout( function() {
+postIt();
+}, $(timeout) * 1000);
+$submitButton.click();
+var timeleft = $(timeout);
+var textTimer = setInterval(function(){
+timeleft--;
+$ ('#countdowntimer').text(timeleft);
+if(timeleft <= 0)
+clearInterval(textTimer);
+},1000);
+]]></style>
+<html label="cm1" where="survey">You will automatically be advanced to the next page after <span id="countdowntimer">15 </span> seconds.</html>
+9: Repeating the Function on Other Elements
+Like all style overrides, the auto-submit code can be reused on other elements using the label and copy attributes.
+9.1: label
+Adding the label attribute to any style override makes it easy to replicate elsewhere in the survey.
+Adding label="autosubmit" to the style tag of the auto-submit code makes it reusable on other survey pages with minimal changes.
+<style label="autosubmit" arg:timeout="15" mode="after" name="respview.client.js" with="cm1" wrap="ready">
+9.2: copy
+The copy attribute can be used to reference the label of a previously created style override. In doing so, only the attributes that change between the styles need to be modified.
+In the example below:
+copy="autosubmit" duplicates the style override created earlier.
+arg:timeout="30" changes the timeout variable from 15 to 30 seconds.
+with="q1" loads the copied style override on the page with question q1.
+<style arg:timeout="30" copy="autosubmit" with="q1"/>
+<textarea
+label="q1"
+height="10"
+optional="0"
+width="50">
+<title>Please share your opinion about the image you just viewed.</title>
+<comment>Please answer quickly! After <span id="countdowntimer">30 </span> seconds, you will automatically be advanced to the next page.</comment>
+</textarea>
+</survey>
+The resulting question (q1) has the "Continue" button disabled and the page will be auto-submitted after 30 seconds while the timer counts down in the instruction text.

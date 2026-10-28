@@ -1,0 +1,19 @@
+Title: Managing SSL Certificates
+Requires Decipher Cloud
+An SSL (Secure Sockets Layer) certificate is a standard link encryption protocol that establishes a secure connection between a web server and browser. This certificate is needed to enable HTTPS (Hypertext Transfer Protocol Secure) links for a domain or website.
+While all Decipher servers use HTTPS links by default, you can enable these on private cloud servers as well by setting up SSL certificates for those servers.
+1: How It Works
+Note: SSL certificates must be purchased prior to setup. Please contact your Forsta representative for information on costs.
+Forsta manages the purchase of and set up for the SSL certificate using a 3rd party Certificate Authority. SSL's purchased through Forsta are quick to configure and can be set to automatically renew at the point of expiration.
+2: What You Will Need
+Certification configuration requires that you already own a domain with a valid DNS entry (CNAME or A record) that is pointing to to the server you would like certified.
+Additionally, your DNS entry must match the certificate being requested.
+Please check with your Forsta representative if you are unsure about whether you have a valid and matching DNS. If you need to create a DNS for your server, see Setting Up a Domain Alias (CNAME) for more information on setting up a domain alias.
+Once you have confirmed that you have a valid and matching DNS entry, contact your Forsta representative to get started.
+3: Limitations
+The following limitations apply:
+You can have up to a maximum of 100 domains per certificate
+EV (Extended Validation) certificates are not available for purchase / setup
+You can request up to a maximum of 20 new or changed certificates per 7 days
+Certificates cannot be added to v2 or gmi servers (selfserve and v2 servers are OK)
+Note: Renewals do not count toward any limit as long as there are no changes to the name or domains attached to them.

@@ -1,0 +1,24 @@
+Title: Salesforce Integration FAQ
+See below for answers to some of our most frequently asked questions regarding the Salesforce Integration.
+What is the Salesforce Integration?
+The Salesforce Integration allows you to connect a Salesforce Account to a Decipher account to create an email campaign. The email campaign uses a Salesforce report or campaign to identify email recipients.
+How do I import my list of recipients from Salesforce into Decipher?
+You can import your list of recipients into Decipher from Salesforce by using the Salesforce Integration, and then importing a Salesforce report or campaign into an email campaign.
+What information do I need in my Salesforce report?
+At the very minimum, you need the email addresses of the recipients in tabular form. Any other information (such as name, etc.) that you will find helpful for creating your email campaign should also be included.
+I don’t want to use a Salesforce report, just a campaign. What Report Folder should I select?
+Salesforce campaigns are not stored in Report Folders, so you can select the default “Public Reports". Salesforce campaigns available to the connected Salesforce user will automatically display as options in DecipherEmail Campaign Manager.
+What happens if the Salesforce login credentials are deactivated?
+If the Salesforce login credentials are deactivated, you will no longer be able to see reports and/or campaigns using that Salesforce user. You will need to reauthorize the login credentials (if the user is reactivated) or add a new connection that has access to the same reports folder and/or campaigns.
+Do I have to create a Decipher email campaign to use my Salesforce recipient list?
+Yes, you need to create an email campaign to pull your Salesforce recipient list into Decipher.
+Why can’t I see my Salesforce reports?
+You may need to check if your connection needs to be reauthorized.
+Or the Salesforce login credentials used do not have the proper permission set to view the folder and/or reports. If this is the case, connect a Salesforce login credential with the correct permission set or ask your Salesforce admin to assist you with access.
+Why can’t I see my Salesforce campaigns?
+You may need to check if your connection needs to be reauthorized.
+Or the Salesforce login credentials used do not have the proper permission set to view the Salesforce campaigns. If this is the case, connect connect a Salesforce login credential with the correct permission set or ask your Salesforce admin to assist you with access.
+I want to use a different Salesforce recipient list in my email campaign. How do I change it?
+Click the list file name to open the list and select Replace List near the bottom right.
+Can I push responses from Decipher into Salesforce?
+No. At this time, you cannot push / map responses from Decipher surveys into Salesforce.

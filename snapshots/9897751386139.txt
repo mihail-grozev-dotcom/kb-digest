@@ -1,0 +1,35 @@
+Title: 150.8 Release Notes
+150.8 Release Notes
+Release Date: July 19, 2022
+Release Version: 150.8
+New Features
+Portal
+Added logging to the user audit log for when a user views or exports a recipient list in campaign manager.
+Survey
+Added the ability to manage user subscriptions to a project using a new tab titled "Subscribers" on the Project Overview page. This new addition allows the following:
+Any user or user group with View permission on the project can be added or removed as a subscriber.
+Any user with Admin permission on the project can view, add, and remove subscribers.
+Survey Editor
+XML Editor
+Added a new way to customize the appearance of checkbox questions in Participant View.
+Learn More: Modifying Form Buttons
+Responses
+Participant Sources
+Sample Marketplace
+Added individual sample source loading and error handling for Sample Marketplace bids.
+Programming and Tools
+API
+Added a new endpoint for managing user subscriptions to surveys: surveys/<path:survey>/subscribers
+Bug Fixes
+Portal
+Fixed an error that caused a progress icon to spin indefinitely, when the Users tab of Company Settings had zero users to display.
+Responses
+Participant Sources
+Fixed an issue with Participant Sources allowing the saving of an invalid samplesource.
+Reporting
+Crosstabs
+Fixed the row order to remain in position when a table is exported as static rows.
+Dashboard
+Data Downloads
+Report (2010)
+Removed support for exporting PowerPoint 97 files within Report 2010.

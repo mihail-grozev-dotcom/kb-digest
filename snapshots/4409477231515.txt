@@ -1,0 +1,16 @@
+Title: Monitoring Terminates in Field
+The "Terminates" tab shows each area where a termination occurred and the total number for each termination point. Terminates are participants who do not qualify for a survey due to failing to meet its screening criteria.
+1: Viewing Terminates
+The “Terminates” tab includes running totals of all the terminates programmed for the survey.
+In the example above, an "Age" terminate occurs if the participant is under the age of 18 or over 65. The left column shows the area where terminations occurred and the right column shows the total number for each location. You can mouse-over each termination point to view the specific location in your survey (question, row number, option, etc.). Optionally, as displayed in the graphic above, you can use the trackVars="term" report settings attribute to display terminates in percentages instead of counts. See Attributes for Report Settings for more information.
+The "Terminates" tab may additionally include the following:
+Note: The "Disqualified: <with reason>" and "Non-qualified: <quota label>" rows are only displayed if a participant terminates for being disqualified with a reason or are non-qualified for the specified quota.
+Non-qualified: quota element label: The number of participants that did not qualify for the given quota (quota element label).
+Disqualified: Out of the country IP: The number of participants that were disqualified for the reason, "out of country IP."
+Disqualified: Bad open ends: The number of participants that were disqualified for the reason, "bad open ends."
+Disqualified: Straight liner: The number of participants that were disqualified for the reason, "straight liner."
+Disqualified: Speeder: The number of participants that were disqualified for the reason, "speeder."
+Unspecified terminates: The number of participants that were disqualified with no reason given. This number includes participants that do not match current terminates and are not qualified, such as partials or manual disqualifications.
+Overquota: The number of participants terminated for attempting to take the survey after the quota is full.
+Dupe (cookie/ID): The number of participants terminated after trying to take the survey twice with the same cookie. This is only possible if they started the survey twice and then completed it twice.
+Total Terminates: The sum of all terminated participants.

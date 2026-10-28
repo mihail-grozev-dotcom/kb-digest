@@ -1,0 +1,11 @@
+Title: Displaying a Character Next to a Response Field
+The Survey Editor allows you to display a character (e.g., $, %) to the left or right side of an open-ended response field in Text or Number elements. If the question has multiple response options, the character will appear next to each one.
+1: Setting the Form Pre-Text
+Example:
+To show a character on the left side of an open-ended response field, first select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right corner of the question and select "Update Styling".
+The "Question Display Options" window will appear. Locate the "Form Pre-Text" field and enter the desired character. Then select "Save and Close" and the form pre-text will be set for the question.
+2: Setting the Form Post-Text
+Example:
+To show a character on the right side of an open-ended response field, first select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right corner of the question and select "Update Styling".
+The "Question Display Options" window will appear. Locate the "Form Post-Text" field and enter the desired character. Then select "Save and Close" and the form post-text will be set for the question.
+Tip: You may preview the set text by clicking "Preview" at the top right of the question in the staging area.

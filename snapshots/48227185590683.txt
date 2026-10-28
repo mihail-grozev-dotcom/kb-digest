@@ -1,0 +1,11 @@
+Title: 154.17 Release Notes
+Release Date: March 24, 2026
+Release Version: 154.17
+New Features
+Survey
+Survey Editor
+Terminate elements now include a check-box that controls whether they are counted in survey incidence.
+Bug Fixes
+Survey
+Dynamic Questions
+Fixed an issue affecting the use of special characters with the excludeRowSelections attribute in Autosuggest.

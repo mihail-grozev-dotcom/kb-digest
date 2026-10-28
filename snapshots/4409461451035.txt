@@ -1,0 +1,56 @@
+Title: Assigning Balanced Concepts in Quotas with Multiple Variables
+Quotas are often used within Ad Concept surveys to achieve a fair and representative balance when testing concept performance within a sample.
+For example, illustrated below is a quota system that assigns a random concept to each survey participant based on the lowest-filled quota bucket. This means that the next participant to take this survey will see the concept that has the least number of completes so far - in this case, that would be "Concept 1".
+See Adding Quotas Using the XML Editor to learn more about quotas.
+1: The Problem
+While the Survey Editor contains a default option to balance quotas, balancing concepts across multiple survey variables can become quite complicated. For example, imagine that you wanted to employ the quota scheme illustrated below, balancing your survey concepts based on gender, age, and ethnicity, while still maintaining a good balance overall.
+This setup can be achieved using the Survey Editor, but requires that you build the quota scheme manually using a spreadsheet and cross-table markers, which can be counted across multiple tables in a single sheet.
+2: The Solution
+To assign balanced concepts in quotas with multiple variables, create a new quota.xls file and follow the steps outlined below.
+2.1: Defining Your Survey Markers
+Create a sheet called "defines" and define your survey markers. The concept markers should be defined on this sheet as "plus".
+2.2: Defining Your Concept Markers
+Create another sheet called "concept_picker" and add four tables with the following names and specifications:
+Concepts: List the concepts and set the limits for each concept to 300.
+Concepts x Gender: List the genders and concepts, creating a marker for each potential gender and concept pair.
+Concepts x Age: List the ages and concepts, creating a marker for each potential age and concept pair.
+Concepts x Ethnicity: List the ethnicities and concepts, creating a marker for each potential ethnicityand concept pair.
+2.3: Uploading the New Quota Scheme
+Upload the new quota.xls file to your project and then make the following quota call within your survey.xml file:
+<radio label="Q1" title="What is your gender?">
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<number label="Q2" size="3" title="What is your age?" />
+<radio label="Q3" title="What is your ethnicity?">
+<row label="r1">African American</row>
+<row label="r2">Hispanic/Latino</row>
+<row label="r3">Caucasian</row>
+<row label="r4">Asian/Pacific Islander</row>
+<row label="r5">Other</row>
+</radio>
+<suspend/>
+<term cond="not Q2.check('18-64')">Q2: Age less than 18 or greater than 64</term>
+<quota label="concept" sheet="concept_picker" doit="1"/>
+<radio label="vConcept" where="execute" title="HIDDEN: What concept was chosen?">
+<exec>
+for marker in xrange(3):
+if hasMarker("Concept_{}".format(marker+1)):
+vConcept.val = marker
+</exec>
+<row label="r1">Concept 1</row>
+<row label="r2">Concept 2</row>
+<row label="r3">Concept 3</row>
+</radio>
+By default, executing cross-table markers will generate the following system error.
+To get around this, add doit="1" as an attribute to all quota tags in the survey. This is the "SPECIAL OVERRIDE" mentioned in the error message. For example:
+<quota label="concept" sheet="concept_pick" doit="1" />
+Important: If using cross-table markers, the cells: attribute will not function.
+Tip: You can click here to download the sample quota.xls file used in this example.
+3: Reviewing the Results
+Once you have successfully implemented your new quota scheme, you can test its functionality by running fresh simulated data through the survey. With data populated, you should see that each concept is balanced by the appropriate categories and that no particular concept has been seen more than others.
+4: Additional Considerations
+This may not be the exact solution you need for your own balancing act. Be sure to adjust the quota.xls file to match your project’s specific quota requirements before uploading. For example, you can combine (nest) the gender, age and ethnicity concept tables together into a single table to achieve a different result.
+Quotas can be built from the command line using text-to-spreadsheet conversion scripts like Xcell or XLShell.
+Plus markers will not sync across tables when cells: is used.
+This setup is only supported when the concept marker is set to "plus"

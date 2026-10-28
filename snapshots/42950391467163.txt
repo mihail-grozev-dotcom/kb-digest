@@ -1,0 +1,21 @@
+Title: 154.8 Release Notes
+Release Date: November 4, 2025
+Release Version: 154.8
+New Features
+Portal
+Access to any part of the /apps/ URLs in the app will always require HTTPS.
+Note: For surveys, insecure access is still permitted for legacy (without secure="1" flag or compat below 146) surveys.
+Survey
+Dynamic Questions
+A new style is available for text and essay questions: "Disable Copy/Paste".
+Learn More: Text Element & Essay Element
+Bug Fixes
+Portal
+Configuring the Import Data element to import data from another survey no longer negatively affects Portal performance.
+An issue preventing creation of the Example Survey has been resolved.
+Survey
+Survey Editor
+An issue preventing use of the "Update Styling" modal for "One Row At A Time" questions has been resolved.
+Responses
+Participant Sources
+An uncommon issue preventing the default survey link from displaying for some sources in multi-language surveys has been resolved.

@@ -1,0 +1,25 @@
+Title: Advanced Scripting
+Now that we have a good understanding of implementing logic in Decipher, it’s time for some more advanced tasks. This section will focus on generating structure for our survey, including adding flow control, complex quotas, and random assignment of concepts.
+Adding Images
+Images can be added easily within a survey. In this lesson, we'll learn about different methods for including images uploaded through the project’s Static Directory, as well as some best practices for image management. Additionally, we'll learn how to discourage unpermitted use of the images we include in our surveys.
+Reference Materials:
+Including Static Files (Images, JavaScript, CSS)
+Adding Images to the Survey's XML
+Control Elements
+The <block> and <loop> tags allow users to control flow within a survey. In this lesson, we'll learn how the <block> tag organizes similar questions, allowing us to show a set of questions conditionally or in random order. We'll also learn how to allow users to repeat a series of questions across a set of variables using loops.
+Reference Materials:
+Block Tag: Create Sections
+Loop Tag: Cycle Through Questions
+Conditions and Markers
+The <condition> and <marker> tags both offer the opportunity to reuse logic conditions across multiple sections of a survey. In this lesson, we'll review the benefits of using these tags to make scripting logic in Decipher more efficient.
+Reference Materials:
+Condition Tag: Create Simpler References to Condition Logic
+Marker Tag: Set a Survey Marker
+Advanced Shuffling II
+Continuing on from the Advanced Shuffling lesson from earlier, in this lesson, we'll learn how to shuffle questions within blocks and how to change the order of variables in loops. The order attribute from the earlier video is handled very similarly within control elements, so it may help to review that lesson before starting this one.
+Reference Materials:
+Basic and Advanced Randomization
+Advanced Quotas and Random Assignments
+To close out this section, we are going to look into more complex quotas in Decipher. Within the quota.xls file, we can build quotas beyond two dimensions. In this lesson, we'll learn how limits can be established and, when the need arises, how to randomize quotas using the least-fill method of assignment.
+Reference Materials:
+Adding Quotas Using the XML Editor

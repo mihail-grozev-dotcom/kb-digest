@@ -1,0 +1,23 @@
+Title: 149.10 Release Notes 
+Release Date: March 1, 2022
+Release Version: 149.10
+New Features
+Portal
+Updated the login page colors to reflect the recent rebranding from FocusVision to Forsta.
+Survey
+Logic Nodes
+Updated the Imperium Real Answer integration to support the latest version (3.3), which includes the following configurable options.
+AutocorrectText
+TextClassQuestID
+DetectPII
+SuppressRespondentDuplication
+UseDetectedLanguage
+Learn More: Imperium Real Answer Integration
+Programming & Tools
+The umerge script’s internal timeout has been updated.
+The JSONL data format is no longer “pretty printed” to make data generation with the JSONL format more efficient.
+Note: This only affects the JSONL data format, not plain JSON.
+Bug Fixes
+Programming & Tools
+API
+A new version of the Python package “decipher” has been released, which is usable with the Windows operating system.

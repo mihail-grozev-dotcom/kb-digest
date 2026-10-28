@@ -1,0 +1,29 @@
+Title: 153.41 Release Notes
+Release Date: September 24, 2024
+Release Version: 153.41
+New Features
+Portal
+When configuring a two-factor authentication device, a user will now see the server with which that account is associated (e.g. selfserve.decipherinc.com) rather than the product name.
+Survey
+The text shown to incoming survey participants who have already completed the survey has been updated to accurately reflect their survey completion status.
+Survey Editor
+When changes are saved to a live survey that contains a datasource, the temporary copy of the datasource file will now be archived (and scheduled for deletion) rather than retained indefinitely.
+Responses
+Campaign Manager
+The seed list editor now requires that all email addresses be properly formatted, before the list can be saved.
+Reporting
+Data Collection
+Our integration of 51Degrees™ Device Detection service has been reconfigured to more efficiently collect useful data about participant device types. Learn More: Device Detection
+Bug Fixes
+Portal
+The user audit log will no longer show duplicate entries for 2FA setting changes.
+Survey
+Integration
+An issue preventing some legacy Panel Management panelists from logging into integrated surveys has been resolved.
+Panel Management registration surveys will now display an "Invalid Credentials" message, in Participant View, to panelists who attempt to re-register with a password that differs from their current password.
+Responses
+Campaign Manager
+If an unexpected error occurs during a send to a particular entry in a list, we now log it with a new "error" status and continue processing the rest of the entries in the send. The error count is now visible in the Campaigns Tab of Response Summary, and entries in the file that can be downloaded via "Export List" or the associated API endpoint may now have an "error" status. If an entry has an error status, it will include an error code which can be used by support to troubleshoot.
+Participant Sources
+An issue preventing custom exit links from being saved to survey.xml in the correct order has been resolved.
+When assigning list values to newly-added Sample Marketplace bids, Participant Sources will now avoid values that were auto-assigned to bids that have been deleted, as well as values reserved for Sample Providers (e.g. 101).

@@ -1,0 +1,27 @@
+Title: Question Library API Calls
+Note: The below article uses examples of accessing the Decipher API from a Unix system that has the Beacon library package installed. See Decipher REST API to learn more about accessing the Decipher REST API.
+The Elements Library allows you to save and reuse survey elements using the question library. Survey authors can add new elements to the library using this API or through the Survey Editor interface. Elements may be saved individually or grouped together to create a “set” or “template” of elements.
+You can use the following API calls to perform a variety of tasks within your company's Portal pages. Click any call name to view more information.
+Call Name
+Description
+Library Element
+Retrieves the XML definition and additional properties of the specified library element.
+Add Library Element
+Adds the specified element to the Elements Library.
+Update Library Element
+Updates the settings for the specified library element.
+Delete Library Element
+Deletes the specified library element.
+Library Elements
+Add Library Elements
+Adds the specified elements to the Element Library.
+Update Library Elements
+Updates multiple library elements with the specified report settings.
+Note: By default, API calls in the shell output information directly to the console screen. If you want to reuse that output, you will want to save it to a file.
+Note: If you are using a web call method to access the API, you will need to have a way of providing your API key. See Decipher REST API for more information.
+Note: You will need to change v2.decipherinc.com to the domain that you use to log into the Decipher platform.
+1: Viewing Returned Data
+You can use the global select parameter to retrieve a subset of any GET call's returned data. You can pass in select as an argument set to a comma-separated list of properties to return.
+For example, select=id, login, active will only retrieve these three specific fields when calling in the User List API:
+beacon get rh/users select=id,login,active
+Note: The select parameter should only be used on GET method API calls to filter information retrieved via an API call, and not information that you send (e.g., via a PUT or POST method) to Decipher.

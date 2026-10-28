@@ -1,0 +1,20 @@
+Title: 139.2 General Release Notes
+Release Date: July 24, 2018
+Release Version: 139.2
+Highlights of July 24th Release
+New Features
+Crosstabs
+Occasionally, you may need to view individual tables split by rows rather than columns. While this functionality has long been possible with one-dimensional questions, multidimensional questions were all or nothing, requiring you to flip all report tables to view just one. With transpose, you now have the ability to flip individual tables for multidimensional questions as well!
+Transpose one, two, or all, it's your choice - you control how you view your report tables.
+Survey Editor
+The survey building experience has been greatly enhanced with improvements to the editing process and load times within the Survey Editor.
+Now, all edits are automatically saved shortly after being applied. There's no longer any need to click into or out of boxes, and persistent messaging notifies you whenever changes are saving and once they have been saved. Question and answer editing is also faster, with performance improvements affecting both questions with larger response sets and those surrounding them.
+Other updates include a change to the question label interface, surfacing Undo / Redo actions, and consolidating project settings access into one place within the Editor's navigation options.
+Dynamic Questions
+The Button Select element has been upgraded to allow for even deeper customization. The latest version (v9) allows you to use protected images in place of the default buttons.
+Panel Management (previously Kinesis) Integration
+The Decipher-Panel Management integration has been updated to further improve and streamline the process for running a registration survey.
+If you're looking to add a question to your survey but don't want it appearing as a Panel Management datapoint, you can use the new nokdp attribute to do just that - add kinesis:nokdp="1" to any question to keep it in your survey and out of Panel Management.
+On the flip side, you no longer have to worry about updating your panelists' language in both Decipher and Panel Management. When stored within the DecipherdecLang variable, panelists' survey language is automatically set as their default language within Panel Management.
+Programming & Tools
+Two of the most commonly used Decipher shell commands have been updated to allow for a much smoother programming experience. Improved load performance makes copying surveys with large files faster than ever, and the process for calling survey state details is now optimized for radio questions.

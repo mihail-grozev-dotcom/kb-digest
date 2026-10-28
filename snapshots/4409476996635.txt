@@ -1,0 +1,38 @@
+Title: Managing Autosuggest Answer Lists
+Once you have uploaded an answer file for an Autosuggest element, users with survey:Edit access can use the File Manager to make changes to that file directly from the survey.
+The File Manager allows you to add or replace answer files, as well as add, edit, and remove rows from answer files.
+Note: Any tab-delimited .dat file is editable from the File Manager, as long as it has at least one row and does not contain any duplicate headers (case-sensitive).
+1: Accessing the File Manager
+The File Manager can be accessed from the Survey Editor and via the navigation menu located at the top of every page.
+1.1: Via the Survey Editor
+To access the File Manager from the Survey Editor, first select an Autosuggest element from the element tree. Then click “Edit file”.
+1.2: Via the Navigation Menu
+To access the File Manager from the navigation menu, first click “Build”, then click “More Tools” and select “Upload System Files”. Then locate the file you would like to edit, click the Actions button (“...”) for that file, and select “Edit”.
+2: Viewing Your File
+All the data from your answer file will be visible within the File Manager. The File Manager consists of the following features and file options:
+1. Filename: The name of the answer file, as it appears within the Autosuggest element and System Files Index.
+2. Row counter: Indicates which rows are displayed within the current page. You may view up to fifty rows per page.
+3. Columns: All columns are listed as they appear within the answer file. Click a column header to sort rows by that column.
+4. Rows: All rows are listed as they appear within the answer file.
+5. Last updated: Indicates when the file was last updated.
+6. Add Row: Allows you to add a new row to the file directly from the File Manager.
+7. Row actions: Click to view the row actions menu. The following actions are available for each row:
+Edit Row: Allows you to edit all contents for the selected row.
+Delete: Allows you to delete the selected row.
+8. Page counter: Indicates what page you are currently viewing out of the total number of pages in the file. You may click the left / right arrows to navigate through file pages.
+9. Go to page: Allows you to jump to a specific page within the file. You may enter a number using your keyboard or by clicking the up / down arrows within the number field. Once you have entered a number, click the “Go” button to go to that page.
+3: Editing Your File
+You can use the options available within the File Manager to make different types of changes to your answer file.
+Warning: Concurrent edits made by multiple users or in multiple browser windows can cause errors within the answer file. Only one person should be editing a file at any time, using a single browser window.
+3.1: Adding Rows
+Rows must be added one at a time. To add a new row, click the “Add Row” button at the top of the File Manager. In the row editor, enter the values you would like to use for each of the file columns and click “Save”.
+Your new row will automatically be added to the end of the list.
+Note: The “Save” button will be disabled until you have entered at least one value.
+3.2: Editing Rows
+To edit a row, click the Actions button for that row and select “Edit Row”. In the row editor, make your desired changes, and then click “Save” to apply them.
+Note: The “Save” button will be disabled until you have changed at least one value.
+3.3: Deleting Rows
+To delete a row, click the Actions button for that row and select “Delete Row”. You will see a confirmation message. Click “Yes, delete it” to delete the row.
+4: Limitations and Additional Considerations
+Bulk changes are not supported within the File Manager; only one row can be added, edited, or deleted at a time. To perform bulk edits, you may export the file, make changes, and then re-import it to the element or via the System Files Index.
+If you need to make changes to the answer file after your survey has launched, you must make those changes using a temporary copy of the survey. Learn more about editing a live survey.

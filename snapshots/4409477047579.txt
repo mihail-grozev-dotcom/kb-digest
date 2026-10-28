@@ -1,0 +1,39 @@
+Title: Creating a Survey Link
+You can create a custom link for any Decipher survey. This document provides a step-by-step guide for creating a survey link and configuring the necessary field settings.
+1: Adding a New Participant Source
+To create a survey link, you must first add a new participant source. Navigate to the Participant Sources menu by selecting “Participant Sources” under “RESPONSES”. Then click the “+ Participant Source” button.
+Next, select the “Survey Link” tile from the list of source types.
+2: Creating the Link
+From here, you can create the link by giving it a name, configuring its exit page behavior, and customizing any URL variables.
+2.1: Configuring Link Settings
+First, enter a unique name for the survey link. The link name is used for organizational and reporting purposes only. This name will appear in both the Response Summary and Crosstabs reporting tools.
+If your survey has multiple languages, you can also choose to create a separate link per language. To create language-specific survey links, check the box next to each desired language. Language-specific links will use the same base URL with Decipher’s language variable appended (decLang).
+2.2: Customizing Exit Pages
+Decide if you want to use the same exit page for all survey participants and check / uncheck the box as appropriate. Whether you are using the same exit page for all participants or separate pages for terminated, over-quota, and qualified participants, you’ll also need to set the page behavior.
+For each exit page, choose to show a message or to redirect to a website:
+Show a message: Forces the specified text to display on an otherwise blank page after all survey data has been submitted.
+Redirect to a website: Forces participants to be redirected to the specified web page after all survey data has been submitted.
+URL variables can be passed through the redirect link using the following syntax: ?variableName=${variableName} or ?variableName=[urlvariableName]
+Additional variables passed through the Redirect should be separated by an ampersand (&).
+Note: Custom condition logic cannot be added to exit pages via the Participant Sources menu and must instead be added via the Survey Editor. To learn more about editing Participant Sources using the Survey Editor, see Survey Redirects.
+2.3: Adding URL Variables
+If you would like to include custom URL variables, add these one at a time by clicking “+ Add Variable”. You can specify the following for each custom variable:
+Variable Name: The variable that's appended to the URL for this sample provider.
+Note: Avoid starting your variable name with "r" followed by a number or numbers.
+Validation: Allows you to specify if the variable is optional, required or unique.
+Optional: The variable does not have to be included in the URL for the participant to take the survey.
+Required: The variable must be included in the URL for the participant to be able to take the survey.
+Unique: The variable must be included in the URL for the participant to be able to take the survey, and it must contain a unique value as tracked by the survey system.
+Authentication: Allows you to specify how you would like to validate the variable.
+Optional: No authentication can be specified.
+Required: No authentication or value list can be specified.
+None: The variable is required in the URL but can be anything.
+Value List: The variable is required and must be one of the specified values. Values should be entered as a comma-separated list.
+Unique: No authentication or file can be specified.
+No Authentication: The variable is required in the URL but can be anything value that was not previously used by another participant.
+File: The variable is required and must be one of the unique values specified in a plain text (.txt) file. The file must contain one column with each valid value on its own line. Values cannot be reused.
+Note: You must save the participant source before appending a file to a unique variable.
+Once you are satisfied with your link settings, click “Save” to add it to your survey as a participant source
+3: Saving the Link as a Participant Source
+If you’d like to use your new survey link in other surveys, you can save it as a custom participant source using the additional options menu in the Participant Sources page.
+To learn more about the Participant Sources page, see Participant Sources.

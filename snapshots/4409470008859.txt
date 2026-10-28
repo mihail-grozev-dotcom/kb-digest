@@ -1,0 +1,26 @@
+Title: The Multi-User Editing Control Panel
+Note: Multi-User Editing must be enabled at the company level prior to use. If you’re interested in utilizing this feature, please contact your Forsta representative to get set up.
+When Multi-User Editing is enabled for a survey, anyone with edit access for that survey will be able to view its Multi-User Editing control panel. From here, users can view the current status of all the content blocks assigned for Multi-User Editing within the survey and manage the changes they have made to their own blocks.
+1: Accessing the Control Panel
+You can access the Multi-User Editing control panel directly from the navigation menu at the top of any survey page. Click “More Tools” under “Build” and select “Multi-User Editing”.
+2: Viewing Block Options
+The Multi-User Editing control panel contains the following tools and information for every survey block that has been assigned for Multi-User Editing:
+1. Block info: Hover over the exclamation point to view the current lock status for the main survey.
+Unlocked: If all survey blocks are listed as “AVAILABLE”, the main survey is unlocked and open for editing.
+Locked: If one or more survey blocks are “CHECKED OUT”, the main survey is locked for editing until all survey blocks have been checked back in and have a status of “AVAILABLE”.
+2. Label: The label for the survey block, as it appears in the Survey Editor and XML.
+3. Title: The title of the survey block, as it appears in the Survey Editor and XML.
+4. Status: The current Multi-User Editing status for the survey block. Can be one of the following:
+AVAILABLE: The survey block has either not yet been checked out, or it has been checked back in, or it has had all of its changes abandoned.
+CHECKED OUT: The survey block has been checked out.
+5. Editor: The name or email address of the user who has checked out the survey block.
+6. Last Modified Date: A timestamp of when the survey block was last edited.
+7. Updates: The current status of any changes made to the survey block. Can be one of the following:
+Yes: There are pending updates that have not yet been synced with the main survey.
+No: The are no pending updates. The block is currently in sync with the main survey.
+8. Actions: All options available for managing the survey block.
+Check-out: Check out the block for editing.
+Edit Block: Edit the block or ask to take over editing for the block from the user who has checked it out.
+Sync with Main Survey: Sync the block with the main survey to update it with any changes made to the main survey since you checked it out.
+Abandon changes: Undo any changes you have made to the block and check it back into the main survey.
+Check Back In: Check the block back into the main survey.

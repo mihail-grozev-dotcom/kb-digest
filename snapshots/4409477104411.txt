@@ -1,0 +1,139 @@
+Title: Working with Form Image Replacement
+Tip: Does your survey have a compat level of 125+? Click here to learn about Global FIR, the updated style for replacing form images.
+Everyone recognizes HTML checkbox and radio forms – they’re everywhere. That’s good and bad. Good because people instantly recognize them and know how to use them. Bad because they can be boring and don’t always work into a highly stylized form.
+To combat that, we’ve built a new Form Image Replacement (FIR) system that uses JavaScript to replace radio and checkbox forms with images. The images can be just about anything, but there are a lot of factors to consider when replacing an obvious and immediately recognizable element with something that looks different.
+1: Graphics
+You can add custom graphics for both single- and multi-select question types.
+1.1: Using Image Sprites
+An "image sprite" consists of two images sitting side-by-side, with the default (unselected) state on the left and the selected state on the right. Using CSS and the "background-image" property, we can easily flip between the two images to represent the default and selected states.
+The width of both states should be equal. You can specify the width and height of the graphic as one of the customizable attributes of using FIR (as you’ll see later on). When specifying the width, use the width of a single state (in other words, ½ of the width of the graphic, since it has both states). For example, here’s a simple checkbox graphic. It’s 80px wide and 40px tall. When adding it, both the width and height should be 40px.
+2: Underlying Question Architecture
+Form Image Replacement works on single- and multi-select questions. It can be applied at the survey level by calling it in the <survey> tag or at the individual question level by calling from a <radio> or <checkbox> question tag.
+Example:
+XML:
+<checkbox label="Q1" atleast="1" rowLegend="right">
+<title>Which of the following movies have you seen?</title>
+<row label="r1">Ender's Game</row>
+<row label="r2">Thor</row>
+<row label="r3">Gravity</row>
+<row label="r4">The Hunger Games</row>
+</checkbox>
+<radio label="Q2" rowLegend="right">
+<title>Which of the following movies was your favorite?</title>
+<row label="r1">Ender's Game</row>
+<row label="r2">Thor</row>
+<row label="r3">Gravity</row>
+<row label="r4">The Hunger Games</row>
+</radio>
+<radio rowlegend="right" label="Q2"><row label="r4"/> </radio> <suspend/>
+Note: The examples shown here appear side-by-side for the sake of space. In an actual survey these would appear one above the other.
+3: Converting to FIR
+To convert this question to use FIR, simply add the uses="fir.2" attribute to the question tag.
+Note: This style requires at most compat level 132.
+Example:
+XML:
+<checkbox label="Q1" atleast="1" rowLegend="right" uses="fir.2">>
+<title>Which of the following movies have you seen?</title>
+<row label="r1">Ender's Game</row>
+<row label="r2">Thor</row>
+<row label="r3">Gravity</row>
+<row label="r4">The Hunger Games</row>
+</checkbox>
+<radio label="Q2" rowLegend="right" uses="fir.2">
+<title>Which of the following movies was your favorite?</title>
+<row label="r1">Ender's Game</row>
+<row label="r2">Thor</row>
+<row label="r3">Gravity</row>
+<row label="r4">The Hunger Games</row>
+</radio>
+4: Customization
+The following Form Image Replacement attributes can be applied to your project at the global (<survey>) or question-specific level (<radio> or <checkbox>).
+fir:off
+Specify whether the question should use the form image replacement style or not.
+Type="Bool"
+Example: fir:off="1" will not replace the form images. Instead, it displays the default radio and checkbox inputs. fir:off="0" (default) is the same as not including the fir:off attribute at all.
+fir:icon_radio
+Classname of the icon to replace the default radio button when it's not selected. By default, Font Awesome is used and requires the prefix fa- to be used for all icons.
+Type="String - Font Awesome icon name"
+Requirements: Must be used with fir:icon_radio_checked
+Example: fir:icon_radio="fa-rocket" displays the Font Awesome image for a rocket as the default radio input.
+fir:icon_radio_checked
+Classname of the icon to replace the default radio button when it's selected. By default, Font Awesome is used and requires the prefix fa- to be used for all icons.
+Type="String - Font Awesome icon name"
+Requirements: Must be used with fir:icon_radio
+Example: fir:icon_radio_checked="fa-globe" displays the Font Awesome image for a globe as the default selected radio input.
+fir:icon_checkbox
+Classname of the icon to replace the default checkbox button when it's not selected. By default, Font Awesome is used and requires the prefix fa- to be used for all icons.
+Type="String - Font Awesome icon name"
+Requirements: Must be used with fir:icon_checkbox_checked
+Example: fir:icon_checkbox="fa-heart-o" displays the Font Awesome image for an open heart as the default checkbox input.
+fir:icon_checkbox_checked
+Classname of the icon to replace the default checkbox button when it's selected. By default, Font Awesome is used and requires the prefix fa- to be used for all icons.
+Type="String - Font Awesome icon name"
+Requirements: Must be used with fir:icon_checkbox
+Example: fir:icon_checkbox_checked="fa-heart" displays the Font Awesome image for a heart as the default selected checkbox input.
+fir:icon_css
+CSS that applies to the form image element. Use this to customize the size and color of the image.
+Type="CSS"
+Example: fir:icon_css="color: green; font-size: 75px;" changes the form image's color to green and size to extremely visible.
+fir:icon_checked_css
+CSS that applies to the form image element in the selected state. Use this to customize the size and color of the image.
+Type="CSS"
+Example: fir:icon_checked_css="color: red;" changes the form image's color to red when selected.
+fir:wrap_css
+CSS that applies to the container holding the default input image.
+Type="CSS"
+Example: fir:wrap_css="background-color: green; border: 1px solid black;" changes the background color and add a 1px border around the container holding the form image.
+fir:wrap_checked_css
+CSS that applies to the container holding the default selected input image.
+Type="CSS"
+Example: fir:wrap_checked_css="background-color: red;" changes the background color for the container holding the form image.
+fir:wrap_disabled_css
+CSS that applies to the container holding the disabled input image.
+Type="CSS"
+Example: fir:wrap_disabled_css="background-color: gray;" changes the background color for the container holding the form image in the disabled state. For example, when a noanswer is selected.
+fir:image_css
+Use this to specify the width and height of the graphic.
+The “sprite” is twice as wide as the width specified here. For example, each of the graphic states shown above are 30px wide, but the sprite itself is 60px. The value to specify would be 30px, the width of a single state.
+Type="CSS"
+Example: fir:image_css=”width: 40px; height: 40px;” would set the width and height to match the size of a custom image file whose dimensions would be 80px by 40px.
+fir:image_radio_css
+Specify the system file location of a custom radio form image using the “background” CSS property
+Type="CSS"
+Example:fir:image_radio_css=”background-image: url('[rel rad-1.png]')” This would set the radio form’s replacement image to the cb-1.png file located in this project’s static directory. You can also use absolute or relative URLs to specify the location of the image sprite file.
+fir:image_checkbox_css
+Specify the system file location of a custom checkbox form image using the “background” CSS property
+Type="CSS"
+Example:fir:image_checkbox_css=”background-image: url('[rel cb-1.png]')” As above, this would set the checkbox form’s replacement image.
+4.1: Customization with Image Sprites
+The following method will enable you to swap the input element with an image sprite. We can save any of the image sprites shown above and use them in our survey. If you need something more custom, you may use any of the sprites above as a template for creating something new. Or create one from scratch!
+Example:
+To use these two gray graphics, we'll need to upload them to our project's static directory. Once uploaded, simply add the following XML attribute to your question:
+XML:
+<checkbox label="Q1" atleast="1" rowLegend="right" uses="fir.2" fir:image_checkbox_css="background-image:url('[rel fir-checkbox_gray.png]');">
+<title>Which of the following movies have you seen?</title>
+<row label="r1">Ender's Game</row>
+<row label="r2">Thor</row>
+<row label="r3">Gravity</row>
+<row label="r4">The Hunger Games</row>
+</checkbox>
+<radio label="Q2" rowLegend="right" uses="fir.2" fir:image_radio_css="background-image:url('[rel fir-radio_gray.png]')">
+<title>Which of the following movies was your favorite?</title>
+<row label="r1">Ender's Game</row>
+<row label="r2">Thor</row>
+<row label="r3">Gravity</row>
+<row label="r4">The Hunger Games</row>
+</radio>
+That's it! If you'd like to use a color that is not pictured above, you'll need to use image-editing software like Gimp or Adobe Photoshop to create your own graphic.
+5: Some Considerations
+5.1: Instant Recognition
+The instant recognition people have for radio and checkbox forms means they won’t need to figure out how to use them. Radio buttons are usually round and have clear selected/unselected states. When someone sees a radio button, they know that it will allow a single selection and that clicking a different item will change their answer. Checkboxes are generally square or more squared off and also have very distinct checked/unchecked states. A checkbox indicates that it can be toggled on/off and if there are multiple, it usually means that you can select more than one.
+When we start messing around with something that people are so familiar with, we run the risk of confusing them. By removing the visual cues of square vs. round, for example, they might not realize the distinction of single select vs. multi-select. Or it may become unclear which is selected vs. not. For example, can you tell which are selected?
+Didn’t think so.
+5.2: Avoid Interference Effects
+Most populations have learned that green means go and red means stop. A red checkmark graphic could result in what's called the "Stroop Effect", where the mind can automatically determine a semantic meaning based on the color. In this case users might incorrectly associate red, and think they are un-selecting an option. A green "X" could produce similar negative interference effects. Prevent interference by avoiding designs that create conflicting mental processes.
+5.3: Size
+Another important thing to consider when choosing graphics is the size. On mobile, it’s best not to go below about 40px square. Our stubby fingers just can’t click on teeny tiny little things with much accuracy. And even on the desktop, it’s better to have something that’s large and easy to click than something that requires great acuity to select.
+5.4: Graphical Quality
+We’ve all seen graphics online that look pretty bad. Please don’t do that. Don’t make an ugly survey. Consider the context in which the images will be placed and make sure that they don’t conflict with the background. They should stand out enough to look like “clickable” elements. A bad graphic may also suffer from halos or just ugly borders around it so be careful to use transparent edges and test your images once you’ve put them in place.
+See Modifying Form Buttons to learn about Global FIR which uses SVG graphics instead of images.

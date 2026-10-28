@@ -1,0 +1,36 @@
+Title: 149.11 Release Notes
+Release Date: March 15, 2022
+Release Version: 149.11
+New Features
+Portal
+Added Forsta Single Sign-On support for new Forsta Surveys users who have never set their password.
+Learn More: Logging in to Your Account
+Updated Portal gradient bar and survey button colors to match Forsta branding.
+Salesforce Integration
+Updated the name of the Salesforce Integration app to Forsta from FocusVision.
+Survey
+XML Editor
+The Database() function for creating a database in secure surveys now allows the column argument to select a column by its index. Previously, the column argument only allowed selecting a column by its name.
+Programming & Tools
+API
+Added access to the following three style attributes for the email invite API endpoint:
+emailBackgroundColor
+emailForegroundColor
+linkTextColor
+Bug Fixes
+Survey
+Survey Editor
+Fixed an issue where survey elements added while a legacy participant source was selected would prevent subsequent survey changes from being saved.
+Language Manager
+Fixed an issue where modifying translations discarded unused resources. Modifying translations will now retain unused resources (e.g. questions that have where="report" applied or questions/resources that have been removed from the survey).
+Kinesis Integration
+Closed registration surveys will now prevent in-progress participants from completing the survey.
+Responses
+Response Summary
+Fixed an issue where multiple terminates with the same conditions caused negative values to show up under Unspecified Terminate. The Terminates tab in the Response Summary now hides Terminate points with duplicate conditions.
+Campaign Manger
+Fixed a typo in the default “remove” survey.
+Programming & Tools
+API
+Fixed an issue where the survey creation and Research Hub survey retrieval APIs would fail when a staff user attempted to create or retrieve project data outside of the currently selected company.
+Fixed an issue where umerge would quit when a status error was returned. umerge is now more resistant to server installations that are low on memory and will spontaneously restart instead of quitting.

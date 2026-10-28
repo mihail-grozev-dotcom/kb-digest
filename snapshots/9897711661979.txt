@@ -1,0 +1,37 @@
+Title: February 20th Technical Release Notes
+Release Date: February 20, 2018
+New Features
+Crosstabs: Response Base
+Clients can now change your base to use the count of responses as your base for multi-select question types. To use, open the table editor in Crosstabs and change your base type to “Count of Responses.” Your table will change the base to the number of responses, as opposed to the number of participants who answered the question. This only applies to checkbox style questions.
+Programming & Tools
+API: Launch Surveys
+Viewing warnings for open tasks, outdated translations, incompatible elements, missing project parameters, Panel Management sync errors, fulcrum sync errors, insufficient simulated data.
+Launching/Re-launching a project
+API: Simulated Data
+Running simulated data on a project
+Viewing status of simulated data for a project
+Project Archival
+Project Archival: Staff users can now specify how many days must pass before a project is automatically archived.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue where image map charts wouldn't load when a project contained image map and image upload charts
+Saved Reports
+Fixed an error when viewing public saved reports while logged out
+Responses Report
+Updated status bar to match the survey progress bar. One exception is the last page of the survey where the survey progress bar and users' statuses in the View/Edit Responses report will be different
+Survey
+Fixed an issue accessing loopvar text with testing tools enabled
+Fixed an issue where only the first iteration of a nested loop could have a custom order set
+Fixed an issue where questions using `notranslate` for looped elements would be included in translations
+Participant View
+Panel Management (previously Kinesis) Integration
+Fixed an issue with datapoint manager not populating
+CATI
+Fixed an issue with practice survey records shown in View/Edit Responses report
+Portal
+Fixed an issue where SSO login wasn't using company inactivity timeout settings
+Fixed a rare issue where portal would not load if directories created via shell access include newlines
+Misc / Custom Projects
+Fixed an error when running the generate-dashboard command
+Fixed a rare issue where none sand-boxed exec code could affect shuffling in another project

@@ -1,0 +1,35 @@
+Title: 153.33 Release Notes
+Release Date: June 4, 2024
+Release Version: 153.33
+New Features
+Survey
+Dynamic Questions
+The Video Player element has been upgraded to version 2.
+Learn More: Dynamic Question Versioning
+Responses
+Participant Sources
+Supervisors and staff can now configure secure sample providers via the Company Settings page, and S2S can be configured for those providers per project.
+Learn More: Managing Your Company Page, Configuring Secure Samples
+Campaign Manager
+A new option for email sends, "Exclude Clickthroughs", allows sending only to recipients who have never entered the survey.
+Learn More: Sending Reminders
+Sample Marketplace
+A new status change log is available for Sample Marketplace sources. Each log entry shows the user who made the change, the new status, the date and time of the change, and the cause of the change.
+Learn More: Participant Sources
+Reporting
+Crosstabs
+Project errors shown on the Crosstabs report page no longer show raw error text, but instead show helpful messaging to lead users to the relevant Project Warnings error page.
+Programming and Tools
+API
+A new endpoint, GET user status, is available to API users who have permission to manage the specified user. It returns information about whether the user is active or not, and the reason for deactivation, if applicable.
+Bug Fixes
+Survey
+Participant View
+The slider decimal question now supports non-integer values when determining its middle point.
+Survey Editor
+The when options displayed for the <exec> element now include autosaveRestored, as expected.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+With this update, Research Defender auth token failures are handled more efficiently.
+Architecture and DevTools
+An issue that prevented Survey Editor and Reports 2010 from loading has been resolved.

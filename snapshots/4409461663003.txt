@@ -1,0 +1,20 @@
+Title: Editing Text in the Test Environment
+The "Edit" feature in the survey testing toolbar allows you to edit and modify survey text directly from the test environment.
+Note: Attempting to edit a live survey in Participant View will redirect to a temporary version in Survey Editor. See Editing a Live or Closed Survey to learn more.
+1: Accessing the Text Editor
+When you locate text that you want to change in a question, click the "Edit" button to expand the text editor and the question text will appear, allowing you to make direct edits.
+Tip: When the editor is open, you can resize the sections by clicking the top of the toolbar and sliding it up or down.
+2: Changing the Question Text
+You can use the text editor to change the text font, size, content, and color. You may also edit the text using the HTML Source Editor. Click the arrows to undo / redo changes.
+Once you are satisfied with your changes, click "save" to save all of the edits from the current text box, or "save all" to save changes from all text boxes in the editor.
+Once saved, your edited text will automatically be updated in the survey. If you attempt to close the editor with unsaved changes, the following warning message will appear:
+Click "Cancel" to return to the editor where you can save your changes, or click "OK" to close the editor without saving the changes.
+2.1: Changing the Text for Multiple Questions
+If you want to edit the text for multiple questions in the survey, turn the "One Page" feature "ON" and all the survey questions will appear in the editor.
+Then use the drop-down menu to jump to and edit a specific question.
+Changes made to a question can be saved by selecting the corresponding "save" button. Note that saving changes for one question does not save changes made to any other question. Clicking "cancel" will also only cancel changes made for the one question. To save the changes made to all questions that are open in the editor, click the "save all" button.
+2.2: Changing Text for Multiple Languages
+You also have the ability to change the text for multiple languages in the testing environment. Start by selecting the language you would like to edit from the "Actions" menu.
+The page will automatically refresh, displaying the current survey page in the selected language. Use the text editor to make any desired changes, then click "save" or "save all".
+If you want to make changes directly to the survey translation file, select "Manage Translations" from the "Actions" menu to access the Language Manager.
+See Language Manager to learn more about editing translations using the Language Manager.

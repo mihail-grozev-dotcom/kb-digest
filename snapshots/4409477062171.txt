@@ -1,0 +1,46 @@
+Title: Adding and Managing Images
+You can add one or more images to a survey using the Image Manager available within the Survey Editor.
+1: Adding Images
+To insert an image, click the position where you want to place the image (i.e., within a question field, or row or column field) and then click the image icon.
+Note: Images cannot be used as response options in Dropdown Menu / <select> type questions.
+Note: Spaces in the filename are replaced changed with to underscores when uploaded. For example, "image 1.png" is changed to "image_1.png".
+Characters that are not letters, numbers, or dashes are removed.
+2: Using the Image Manager
+The Image Manager contains any images that have been added for the project and allows you to upload new images and manage your image settings.
+2.1: Uploading Images
+To upload a new image, click "Open Image Manager" or the "+" icon.
+Then click "Upload Images" and locate the image on your computer. Alternatively, you can drag the image into the designated field.
+Tip: You can upload multiple images at once by holding "ctrl" and clicking the desired images during upload.
+Note: All images should be in .jpeg, .png or .gif format and no larger than 2MB.
+For ease of use, uploading an image changes its original file size and creates multiple copies of different sizes. It will also convert that image to .png format.
+Note: Spaces in the filename are replaced changed with to underscores when uploaded. For example, "image 1.png" is changed to "image_1.png".
+Characters that are not letters, numbers, or dashes are removed.
+2.2: Configuring Image Settings
+Once an image has been uploaded, a preview is shown in the Image Manager with the file name below it. From here, you can configure the following image settings:
+Image Title: Click to add image title, which is displayed when a participant hovers-over the image or can be read if a participant uses a screen reader. This title is also used in the report. If none is entered, the original filename is used.
+Protect: When checked, the shield icon indicates that the image is protected. Images marked as protected receive the following (see Adding Image Protection):
+Simple Copy Protection: It places a blank image on top of the protected image so the participant cannot right-click the image and select "Save Image as".
+Link Obfuscation: It replaces the link in the page source with an obfuscated version, making it difficult to steal the direct link to the image via "View Page Source".
+Watermarking: This option does not make the image harder to copy, rather, it makes the source of the image more obvious if the image is copied. It can also be set up to trace the copied image to a particular person. See Adding Images to the Survey's XML to learn how to edit the watermark (requires XML).
+Watermark Settings: Watermark settings are available for protected images. Click the gear icon next to a protected image to access its watermark settings. The watermark contains the participant's unique ID.
+Color: Select a color or enter the color code.
+Placement: Select the location of the watermark (i.e., bottom, top, center or repeat).
+Transparency: Edit the transparency of the watermark.
+Size: Set the size of the watermark (i.e., scale, small, medium or large).
+Update default settings on new and existing images in this project: When checked, this saves the settings as the default for future protected images, as well as existing protected images that have been set to default settings in the project.
+Apply: Click to apply the settings.
+Note: The Shopping Cart Element is not compatible with protected or watermarked images.
+Once images have been uploaded and settings applied, click "Done".
+2.3: Inserting Images
+Select one or more images by clicking them. Then, choose a size restriction from the drop-down menu.
+Small: 150 pixels maximum size on any side
+Medium: 300 pixels maximum size on any side
+Large: 600 pixels maximum size on any side
+Extra Large: 900 pixels maximum size on any side
+Original Size
+Custom: Specify a custom maximum width and height in pixels
+Note: A shield icon indicates that an image is protected.
+Once you are satisfied with your image size settings, click the "Insert Image / Insert Images" button.
+If multiple images are added at once, they retain their order from the Image Manager. The order may then be changed within the response option editor.
+3: Deleting Images
+Once you have added an image to the survey, you can delete it using the Image Manager. To delete an image, click the image and select "Open Image Manager". In the Image Manager, click the "x" on the image icon, then click "Done".

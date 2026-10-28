@@ -1,0 +1,113 @@
+Title: Beacon 18 Release Notes
+Release date: November 22, 2013
+New survey compat level is 118. Use compat=”118” for all new surveys.
+Rollout Schedule
+All times Pacific.
+v2: Sunday 01:00 am
+Shakti: Complete
+Beacon UK: Complete
+YouGov, Perspective, RR, McMillion & iModerate (Morrigan): Sunday around 1-4am after Ares
+Gemini: NOTHING YET
+ARES timing:
+Monday: performance/stats data available for query
+Gemini: NO PLAN
+New Features
+Portaloclypse
+Portal
+The new portal does not support Internet Explorer 8. We’ll no longer support this browser in any other part of our application, but will retain participant support.
+Survey & CMS
+#13786 There’s a shortcut for starting a selfserve survey: instead of /survey/selfserve/123/456?list=1 you send the users to /b/123/456?list=1. This immediately redirects to /survey/selfserve. Support this this in tools (CM, etc.) coming soon. This redirect does retain the “Referer” header.
+#16632 Blanks at the start or end of text input are ignored, thus you cannot get past a text input field by pressing space a few times.
+#16237 Images uploaded via <image> tag (which can really be any file) are virus-scanned on the non-cloud servers.
+#16357 Compat=118+ surveys will “minify” key JS files.
+Survey Styles
+#16519 Using an unnamed version of a DQ style (e.g. uses=”fir”) is exactly equivalent to doing uses=”fir.1”
+#15824 For any compat=118+ survey, you are required to explicitly mention what style version you want to use. For your convenience, an error message will display available version numbers and their state.
+Only DQs that are in state=live will appear in Builder
+#16592 There’s an extra (default blank) style emitted in the <head> of surveys compat=113+: “respview.client.header”. You can use it to load additional styles: it will be placed right after reset.css.
+Dynamic Questions Update
+#16345 DQs can add a launch warning: override the warn function in code.py
+#16345 DQs can add survey load verification and prevent surveys from load. Add the verify function.
+#16408 If your DQ overrides a resource, you can override that override by putting in a <res> tag within your question
+#16520 If a type=”url” stylevar is left blank, it resolves to an empty value (“”) rather than “/survey/your/survey/”. The latter could cause inflated clickthroughs.
+Crosstabs & Classic Reporting
+#16280 compat=118 surveys will contain a Windows 8 / MSIE 11 entry in the vos/vbrowser tables
+Compat=118+ surveys must use setup=”time” to generate a qtime question which measures interview time in seconds (if you need to display the time in minutes, you must call it something else than qtime)
+#16565 The Triple-S XML download for a number question which has ignoreValues set will list the ignored values in addition to the main range
+Dashboard
+Add by ET - Order of load on files has been updated to allow JS injection to control dashboard. A dashboard, for example, can be set using an associated .js file to rotate automatically from tab to tab and then refresh to account for new completes.
+New chartopt “legendBase” will disable N=XXX in chart legend
+chartopt legendBase 0
+Field report & Campaign Manager
+Auto-replies which are likely vacation messages or mailbox full will be ignored as bouncebacks. So far this reduces bouncebacks by 5%.
+#16397 A new “need” column appears in the Quota tab of the field report. This is simply Limit-Total.
+#16398 Rows in the quota tables can be colorized via custom styles.
+Programming & Tools
+You can enable extra survey debugging for tracing complex logic. First visit v2.decipherinc.com/admin/debug/1 to set debug flag 1 (survey). Then, modify your survey to call tesdebug(“some info here”, q3.val). Take your survey, and reload the debug page. All the debug lines your survey sent while you were taking it are now visible. This also works in virtuals or even styles (you could add ${tesdebug(“Showing this style to”, uuid, p.somevar, some_listvar)} to log this whenever style is shown.
+The copy-survey command will now copy permissions on non-temp subdirectories created. This is because the new portal does not give you automatic permissions too xyz/xyz1234/merged if you had them on xyz/xyz1234.
+The ad-hoc survey database allows you to store data independent of participants. If you do SurveyDB[“something”] = 42, any other code running in that survey will be able to access that value.
+The survey transformation system lets script modification of quota cells via crontab or when users complete. E.g. adjust quotas dynamically based on phase of the moon or how many participants chose certain answers.
+The setfolder script doesn’t really do much anymore: calling is the same as visiting the survey so the portal knows of it.
+File Uploader
+#16237 Uploaded file in file manager are virus-scanned using Cisco’s ClamAV anti virus tool (this is enabled on Gemini, Ares & Beacon.UK only)
+#16445 File manager uploads can be up to 2 GB for videos
+Bugfixes
+#16490 Having a Groups with no items in a checkbox question while using trackVars=”checkbox” would error out
+#15893 When running simulated data, the user agent would be randomized per page. Now it stays the same throughout the request.
+#16320 Surveys with a lot of xmlns:... at the beginning could not always be launched correctly
+#15679 The Data Editor handles relabelled variables correctly
+Misc
+The question limit has been raised to 8192.
+#15594 4 generic English variants are avilable: english_g1 through english_g4. You can use them for a regional variant of any language (just copy the right “lang” file into lang/english_g2) either permanently or temporarily if you are about to request a new language.
+Security
+#8974 The login screens “remember me for 7 days” checkbox is now “this is a trusted computer” checkbox. If you do NOT check it then your login session will expire after 15 minutes of inactivity.
+If you DO check it, your login session will expire after 60 minutes. The inactivity threshold can be configured by company in the new portal (ranging from 15 minutes to 24 hours). Logging in via Google works as if you had checked the checkbox.
+As long as you are active, you can remain logged in for a month
+5 minutes before your session expires, you will receive a popup dialogue asking you to either extend the session (OK) or log out (Cancel)
+Users can view their own current and recently expired sessions. Staff can view all users’ session information
+Logging out closes your session (this fixes a long-standing security complain generated by third-party audits)
+#15846 Staff (Decipher or GMI Enterprise level) can search through shell histories, FTP log files, version control, audit logs and survey logs.
+You now have 1 hour to follow the “forgot password” link you get via email, and 48 hours to follow the account creation link.
+All accounts are locked out after no more than 6 invalid login attempts. You may still request higher security by editing the company settings. Minimum password length for non-staff is now 7 characters (this is in accordance with PCI-DSS recommendations)
+All compat 118+ surveys require configuration of the domain used in the company’s page in the portal -- unless usage of survey.client.com has been authorized through there, you cannot open that survey with the domain.
+#16439 You cannot use the “Sign in with Google Account” feature unless you have clicked on that link form the main login page (security requirement from a third-party security scan).
+Shared users are limited to read-only access as per PCI-DSS standards
+The /misc/int/ password have been cleared and are stored more securely. You must either change your password or login at last once using your username/password (and not Google) to save them.
+#16358 The login page no longer allows your browser to save the username or password. It is recommended to use a secure password manager. The login page can be customized for clients with a custom secure domain or on the cloud and this security feature removed, however this removal follows a common security audit requirement.
+Newly created Beacon surveys are marked SECURE by default. If you absolutely need insecure access (and have taken appropriate steps to secure your survey, including a security peer review), you can remove the SECURE file.
+The “audit” page, when showing an IP address, will attempt to match it to a country
+Developers
+#16482 The jgrep command can be used to search through logged Ajax requests. This is mostly of use to Developers.
+SQL query performance logging: visit v2.decipherninc.com/admin/debug/2 to enable, then visit a page doing any SQL query (ajax calls included). Reload your debug page to view queries done: these are shown with number of times, total time (milliseconds) and request.
+Extended Documentation
+Javacript/CSS blocks
+The new portal loads 130+ Javascript files which contain functionality split between many developers. To minify them and get a minimal amount of loaded data in. Those are spread all over the HTML. To support uglification there, a block move mechanism has been added:
+In the header of your page add:
+${gv.request.getBlock("js")}
+In the body of your page, wherever you have some JS you’d want moved to this spot, add:
+@block js
+<script src="[rel file.js]"></script>
+@endblock
+This will remove the script lines from their original location, allowing a minification block around them.
+jgrep -- ajax search
+All ajax requests are logged into a database now, rather than being appended to nohup.out.
+Example usage:
+here jgrep -etfudr -n10 -iall -fportal
+This prints the last 10 requests to portal/something Ajax requests, including the timestamp, function, username, duration (in miliseconds) and result. All of the input given is also shown.
+Options:
+-n -- number of entries to print (default 10)
+-d -- select a given date (format YYYY-MM-DD)
+-f -- search for this function or prefix (use % for wildcard). E.g. -fhatsful
+-u -- show only specific user (e.g. -uerwin@decipherinc.com)
+-i -- show this data form input: -iall shows all data; -isome_var shows only this argument
+-o -- as -i for output. Note that at most 100,000 chars of response are logged
+-p -- only this path prefix, e.g. -pselfserve/1234
+-e -- what data should be output? e.g. -etfudr. Default is tfdpr:
+t -- timestamp
+f -- ajax function name
+d -- duration (in miliseconds)
+p -- survey path (NOTE: some Hatsful stuff may store abc/1234 rather than selfserve/abc/1234)
+r -- result: ok or e.g. arg.error
+u -- username
+Deployment instructions
+scripts/maint/survey-content-index.py -a (to index all survey content)

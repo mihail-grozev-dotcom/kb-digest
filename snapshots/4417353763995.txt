@@ -1,0 +1,73 @@
+Title: Splitting a Question Over Multiple Screens
+Note: This method only applies when all rows need to be seen at some point during the survey.
+This document details the process for splitting a question over multiple screens. This process is typically used to help reduce participant fatigue when answering two-dimensional grid questions with a high number of attributes.
+Step 1: Create Your Question
+Click "+ Element" to add a new survey element. Then click "Single and Multi Select" under Question Types and select the "Single Select" element. Then click "Add".
+In the staging area, enter the question text and instructions. Be sure to include all attributes (rows) that you wish to split across various screens.
+Step 2: Duplicate Your Question
+Right-click the question you created in the question tree and select "Duplicate Element" OR click "..." on the top right of the question in the staging area and select "Duplicate" from the drop-down.
+Repeat this process until you have all of the copies you need. The number of times you duplicate your question should equal the number of screens desired for the split.
+Learn more: Duplicating Survey Elements
+Step 3: Create a Randomly Assigned Quota
+Create a Randomly Assigned Quota to determine which attributes randomly show on the first screen of your question.
+To create a Randomly Assigned Quota, first click "+ Element" to add a new survey element. Then click "Logic Elements" under Question Types and select the "Quota" element. Then click "Add".
+Click "Edit Quota" to edit the quota and click the "Add Row" button to add cells to the quota.
+In the "quick quotas" pop-up window, select "randomly assign quotas(+quotas)" from the drop-down menu. Next, enter the concepts, with each concept name on its own line to create a cell for each attribute in the quota. Then click "OK".
+Update the “Maximum Number of Cells to Assign:” field to the total number of attributes/rows that you want to appear on each screen.
+In the example below, the Maximum Number of Cells: 2, so only two rows will show on each screen.
+Learn more: Create Quotas from Randomly Assigned Quotas
+Step 4: Create an Autofill Element
+Create an Autofill element to pipe the appropriate rows as the answer options for the first screen of your question.
+To create an Autofill element, first click the "+ Element" button to add a new survey element. Then click "Logic Elements" under Question Types and select the "Autofill" element. Then click "Add".
+Select "Edit Answers" to create the answer options for the Autofill element.
+Include all of the attributes from your original question as to their own answer options in this Autofill element.
+Add the Autofill element after your quota created in Step 3, but before your first question created in Step 1.
+Assign logic to each attribute in your Autofill element by clicking "+condition" in the drop-down for the row. Each row's logic should correspond with its quota assignment in Step 3. For example, if Brand A was assigned in the Quota element, then the participant should qualify for Brand A in the Autofill element, as shown below.
+Repeat this process for all attributes in the Autofill element.
+Learn more: Autofill Element
+Step 5: Assign Row Conditions for Your First Question
+Assign row conditions to show only the randomly assigned rows on the first question screen.
+Select the question you created in Step 1 from the question tree.
+Click "Row Actions" and select "Answer Piping".
+Use the "Show rows/cols if" editor on the right options panel to set the conditions for all rows in the question.
+Set the condition in the drop-down to show rows if they were selected in the Autofill element created in Step 4. In the example below, QA is the label of the first Autofill question.
+Learn more: Answer Piping
+Step 6: Create an Attribute Quota
+Create a quota using logical conditions to determine which attributes are to be shown on the second screen of your question. This quota assigns a maximum number of cells based on the number of attributes that were not selected in the Randomly Assigned Quota created earlier.
+To create an Attribute Quota, first click "+ Element" to add a new survey element. Then click "Logic Elements" under Question Types and select the "Quota" element. Then click "Add".
+Click "Edit Quota" and then click the "Add Row" button to add cells to the quota.
+In the "quick quotas" pop-up window, select "randomly assign quotas(+quotas)" from the drop-down menu. Next, enter all of the concepts, with each concept name on its own line to create a cell for each attribute in the quota. Then, click "OK".
+Add the quota after the first question created in Step 1, and before your first duplicate question created in Step 2. Each cell in this quota should show if it was not selected in your first quota.
+Set the maximum number of cells to assign to the total number of attributes that
+you want to display on each screen.
+Tip: Create new quota cells with unique names to help minimize confusion as you program the rest of your survey.
+Step 7: Create a New Autofill Element
+Create an Autofill element to pipe the appropriate rows as the answer options for the second screen of your question.
+To create an Autofill element, first click "+ Element" to add a new survey element. Then click "Logic Elements" under Question Types and select the "Autofill" element. Then click "Add".
+Select "Edit Answers" to create the answer options for the Autofill element.
+Include all of the attributes from your original question as their own answer options in this Autofill element.
+Add the Autofill element after the quota created in Step 6, but before your first duplicate question created in Step 2.
+Assign logic to each attribute in your Autofill element by clicking the "+condition" in the drop-down for the row. Each row's logic should correspond with its quota assignment in Step 6. For example, if A1 was assigned in Quota 2, then the participant should qualify for Brand A in the Autofill element (as shown below).
+Repeat this process for all attributes in the Autofill element.
+Step 8: Assign Row Conditions for Your First Duplicate Question
+Assign row conditions to show only the desired rows on the second question screen.
+Select the first duplicate question that you created in Step 2 from the question tree.
+Click the "Row Actions" button and select "Answer Piping".
+Use the "Show rows/cols if" editor on the right options panel to set the conditions for all rows in the question.
+Set the condition to show rows if they were selected in the Autofill element created in Step 7. In the example below, QA2 is the label of the Autofill question created at Step 7.
+Step 9: Repeat Steps 6-8 (Optional)
+Repeat Steps 6-8 as many times as you need based on the number of screens over which you intend to split your question. For example, if you wanted to split your question across ten screens, then you'd need to repeat Steps 6-8 eight times.
+Move onto Step 10 if you have come to the last screen on which you intend to show your question.
+Step 10: Add Row Conditions for Your Last Duplicate Question
+Assign row conditions to show only the remaining rows on the last question screen.
+Select the last duplicate question that you created in Step 2 from the question tree.
+Click each individual row and use the "Show if" logic editor on the right options panel to create a new condition per row. These rows should show if they were not assigned at the first AND second Autofill questions (see Step 4 and Step 7).
+Repeat this process for all rows in the question.
+Step 11: Test your Survey
+Manually test the survey to make sure that the concept assignment is functioning as expected.
+Click "Test Survey" under "Preview" in the navigation menu at the top of any project page.
+Configure the survey test environment and test your survey by selecting "Show Survey with Tools".
+As you are testing, verify that:
+The number of rows displayed on each screen is as desired.
+The attributes shown on each screen are unique.
+The total number of screens shown is as desired.

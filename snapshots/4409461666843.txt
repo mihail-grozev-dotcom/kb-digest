@@ -1,0 +1,39 @@
+Title: Verifying the Datamap
+A datamap defines the relationship between raw data and the survey questions asked. The datamap tracks the position of each piece of data in a survey, including:
+Question labels
+Row labels
+Data values for each row (most common in ranking questions, new rows added in between)
+When surveys go “live” for the first time, the static data set is generated. Some Data Processing (DP) Teams will request the data set for a survey so that they can pre-generate reports. The datamap usually should not change after this is generated. Keeping the datamap relatively similar gives the client/DP team the ability to combine data sets for analysis.
+In this document, you will learn how to verify the consistency of the data set at the launch of the survey against the data set that is generated after live changes have been made to the survey by using the datamap.
+1: Accessing the Datamap
+To access the datamap for your survey, click REPORT in the navigation menu. Then click Data Downloads and select Other Data Formats from the drop-down menu.
+From the Data Downloads page, select the format in which you want to view your datamap.
+Once selected, the datamap will display in the format you chose in a new browser tab. See below for a short description of each of the available datamap formats.
+Download type
+Description
+Datamap (All)
+Shows the position for both the Fixed + OE data in the survey.
+Datamap (Fixed-Width)
+Shows all of the positions for all fixed data in the survey (for example: Single Select Questions, Multi-Select Questions).
+Datamap (JSON)
+Datamap for all variables in JSON format.
+Datamap (OE)
+Shows the position for all Open End data in the survey.
+Tip: To see the column values in the Datamap (All) and Datamap (OE) downloads, you can remove "type=plain" in the report URL.
+2: Viewing the Datamap
+Regardless of the format you choose, each datamap will contain at least the basic data information for your survey. Below is an example of a fixed-width datamap, along with descriptions of each of its features:
+Survey Element Label: Indicates the label used for the survey element when programming the survey (in red).
+Survey Element Text & QA Codes: Indicates the text displayed (in black) and QA codes (in orange) associated with the survey element.
+Answer Labels & Text: Indicates the labels and text used for answer options in the survey.
+Data Values: Indicates the data values and data position in the survey (in blue); each value is unique.
+3: Verifying the Datamap
+To verify that a datamap has not been affected by live survey changes, you must compare the data set from the survey launch against the data set that is generated after live changes. To do this, you’ll need to access the datamap output twice:
+From the main directory where the live survey is housed (after the survey has been launched)
+From the Temp-directory (after making live changes, but before saving them to the live survey) (the url of the Temp-directory datamap will include the termtemp-edit-live)
+Open each datamap (old and new) using the Datamap (Fixed-Width) version. Next, compare the data values between both datamaps.
+All new questions added to the survey should appear at the bottom of the Temp-directory datamap.
+New answer options added to the survey will appear in the corresponding element with new data value positions (which continue their numbering from the highest data value position in the datamap).
+Note: The order of the survey elements and answer options shown in the datamap may vary from the actual survey setup.
+To verify that the datamap hasn’t shifted between the live survey and the live changes, use the last element’s data position in the Main directory datamap.
+Compare the data value positions (in blue) of the live survey to those of the corresponding element in the Temp-Directory datamap.
+If the numbers of the data values (positions) do not match, then the datamap has shifted. Contact your programming team to resolve the issue.

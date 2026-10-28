@@ -1,0 +1,36 @@
+Title: Adding Answer Groups
+The Survey Editor allows you to add single-dimensional answer grouping in question elements. Adding answer groups allows you to randomize the attributes within a group or randomize multiple groups together (with or without group headers).
+For example, the question below contains two different sets of response options, separated by two distinct answer groups: "Backpacking / Hiking Gear" and "Kayaking Group".
+1: Adding Answer Groups
+To add an answer group, click "Row / Column Actions" and select "+ Row / Column Group".
+Enter a name for the group.
+Then drag the group into the position you want it to appear in the question. Repeat these steps for each new group.
+1.1: Add Answers to a Group
+Answers can be added to each group via drag & drop or by adding new response options within the group.
+Tip: Use Keyboard Shortcuts to quickly add response options to answers groups.
+1.1.1: Drag & Drop
+If the question already has response options, you can drag & drop these into an answer group. Click the dots for each response option and hold to move it into the desired position.
+1.1.2: Add Answer in Group
+Alternatively, you can create new response options within an answer group. Click "+ Row / Column In Group" and enter the text.
+1.2: Add Subgroups to a Group
+Subgroups can be added to each group by adding subgroups within the group. Once you have created your subgroups, you can add answers to each subgroup as described in Section 1.1: Add Answers to a Group.
+Tip: Use Keyboard Shortcuts to quickly add response options to answers groups.
+Click Add Sub-Group and enter the text.
+You can add now answers to each subgroup as described in section 1.1: Add Answers to a Group.
+To show all group headers when the question is displayed to a participant, set Group Depth to the maximum number of nested groups. To show only the subgroup that a question is nested in, do not set the Group Depth.
+!Note: When Group Depth is set, each row in a question must be located within the deepest nested subgroup.
+When Group Depth is set to 2, the participant will be shown both the parent group and subgroup headers:
+If the Group Depth is set to 1, only the subgroup headers will be shown:
+Note: To add a Group Depth of 3 or more, use the XML Editor. To learn more, see Group Tag: Group Response Options.
+2: Options for Groups
+When altered, each of the following options affects all attributes within an answer group.
+Label: The label assigned to the group. Click to edit the default label for the group.
+Show If: Allows you to create new logic conditions or select an existing logic condition for the group. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the group to remain stationary.
+Show header: When checked, the group name will show in the participant view as a header.
+More options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+3: Deleting Groups
+To delete an answer group, click the "x" icon next to the group name. Then, choose from the following:
+Keep Answers: Only delete the group header, not the answers within it.
+Delete All: Delete the group header and the answers within the group.

@@ -1,0 +1,3 @@
+Title: How do I create a new user?
+You can create a new user by clicking on the company name/logo to access your company page. Under the User’s tab, click “+ Add Users”. A popup will appear for you for to enter the new user’s email address and grant them with access to certain parts of the application.
+See Create and Manage Users to learn more about creating new users.

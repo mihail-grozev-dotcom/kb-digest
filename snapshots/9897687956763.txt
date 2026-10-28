@@ -1,0 +1,42 @@
+Title: 139.3 Technical Release Notes
+Release Date: August 7, 2018
+Release Version: 139.3
+New Features
+Crosstabs
+Updated the process for creating and editing tables from banners:
+Creating tables now uses the Data Sources API instead of adding a virtual question to the survey's append.xml file.
+Editing banner tables is possible using the new "Edit Logic" function.
+Requires report:edit permission.
+Fulcrum
+Updated syncing to allow quota limit changes made in the Field Report or via the Quota Limit API to be automatically synced with the project in Fulcrum.
+Syncing errors will be added as entries to the survey's survey.log file.
+Limitations:
+Does not apply to edits made within a LIVE survey (temp-edit-live).
+Does not update if edits are made directly within the quota.xls file in the shell.
+Does not support the quota locking feature in the Field Report.
+Bug Fixes
+Reporting
+Crosstabs
+Fixed an issue where tables were being saved to the Library with filters applied
+Fixed an issue where users with report:edit permission could not create custom tables
+Survey
+Fixed an issue with the Rich Text Editor missing buttons for adding numbered and bulleted lists
+Fixed an issue where text entered in comment fields was being cut off
+Fixed an issue with pasting text inside answer fields
+Panel Management (previously Kinesis) Integration
+Fixed an issue where unicode characters in Panel Management error messages (language files) caused a fatal error when displayed in registration surveys
+CAPI
+Fixed an issue where images uploaded via the Image Upload element were given an incorrectly formatted file extension
+Programming & Tools
+API
+Fixed an issue with the Data Feed API not applying the "start" parameter when set
+Logic Nodes
+Fixed an issue where "integer" type variables were converted to "string" type variables when their default values were changed
+Misc / Custom Projects
+The Sample Source Analysis tool is now available from the system reports page (the /admin folder on every server) for staff users under “sample_sources”
+This tool can be used to estimate sample provider efficiency across the server, and provides the following information:
+Data for all launched surveys (excluding those launched by Forstastaff)
+Individual survey data split by complete (defined here as qualified + overquota) and click-through participants
+The domain of the qualified exit link for each survey
+Note: Load time will be 1-2 minutes on systems with many past participants (e.g., v2).
+Staff Reports: Added the ability to track usage of survey attributes, Dynamic Questions, Dynamic Question attributes, logic nodes, and XML styles

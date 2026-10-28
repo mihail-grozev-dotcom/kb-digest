@@ -1,0 +1,35 @@
+Title: M55 Release Notes
+Release Date: May 19, 2026
+Release Version: M55
+New Features
+Survey
+The new survey compatibility level is 155. The system automatically uses compat="155" for all new surveys.
+Learn more: Survey Compat Levels
+Included with this survey compat update are the following dynamic question version updates:
+Media Evaluator (bcme.8)
+Star Rating (starrating.6)
+Card Sort (cardsort.10)
+Date Picker (fvdatepicker.3)
+Rank Sort (ranksort.9)
+Also included are version updates `jQuery 3.71`, and jQueryUI `1.14.1`, available in Participant View.
+Bug Fixes
+Portal
+A cosmetic issue affecting the appearance of the mouse cursor in some data & reporting areas of Decipher has been resolved.
+Fixed an issue when a user un-hibernated a survey, its accessed date wasn't getting updated and then getting re-hibernated.
+An issue preventing users from accessing Theme Editor in closed surveys has been resolved.
+Fixed issues affecting sorting and pagination on the Company Changes page.
+Company Settings
+Expired application access is now indicated by strikethrough styling, as expected.
+Survey
+Participant View
+In desktop browsers, Card Sort (version 9) now highlights the previously selected bucket for each card.
+Survey Editor
+Data values for rows, columns, and choices can now be input via keyboard numpads.
+Themes
+Fixed an issue that allowed users to edit the theme of a live survey without using a temporary copy.
+Reporting
+Data Downloads
+Handled the PII attribute or hook system in Data Downloads when converting a project to Delphi.
+Programming and Tools
+API
+The GET /rh/companies/{company}/surveys API documentation no longer lists the keep attribute, which this endpoint does not return.

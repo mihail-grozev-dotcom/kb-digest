@@ -1,0 +1,25 @@
+Title: 154.9 Release Notes
+Release Date: November 18, 2025
+Release Version: 154.09
+New Features
+Portal
+Navigation Menu
+Update "Forsta Visualizations" to display as "Visualizations".
+Programming and Tools
+API
+The call GET rh/companies now returns a list even when that list has only one item.
+Custom Code Elements (Logic Nodes)
+Upgraded the QualityScore v3 qslib1.0.js to the latest version.
+A get_tokens service timeout no longer prevents participants from completing a survey that contains Research Defender SEARCH v2 and/or REVIEW v1 logic nodes.
+Research Defender REVIEW v1 now includes additional debug logging.
+Upgraded the Research Defender JavaScript utility library to the latest version.
+Bug Fixes
+Portal
+An issue preventing added user groups from immediately appearing in Project Overview's Users tab has been resolved.
+Responses
+Response Summary
+The values for New Company Opt-Outs and New Global Opt-Outs, on the Campaigns Tab of the Response Summary, are no longer inflated when a shared list is used in multiple campaigns.
+Programming and Tools
+API
+An issue preventing the rh/companies endpoint from returning a successful response has been resolved.
+An issue where some datetime fields returned from API endpoints were off by one hour has been resolved.

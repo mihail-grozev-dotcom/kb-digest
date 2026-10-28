@@ -1,0 +1,87 @@
+Title: Creating an Email Campaign
+You can use the Campaign Manager to create and send your own survey email campaigns. This document outlines the process for creating and managing an email campaign via the Campaign Manager.
+1: Adding an Email Campaign
+To add an email campaign to a survey, first navigate to the Participant Sources menu by selecting “Participant Sources” under “RESPONSES”. Then click the “+ Participant Source” button.
+Next, click the “Email Campaign” tile in the list of source types. In the Campaign Manager, add a new email campaign, click the "New Campaign" button.
+Enter a name for the new email campaign and select whether you would like to start a new campaign, or use a template from a previous campaign. Then, click "OK" to begin setting up the new campaign.
+2: Writing the Email Content
+Enter the body of the email in the field provided.
+An overview of the toolbar and options for the email content is shown below (in order from left to right, top row first). You can also mouse-over each of the items in the toolbar of the email editor for a brief description.
+1. Font Family: Select to change the font style for the selected text. The default style is Ariel.
+2. Font Sizes: Click to change the font size for the selected text. The default size is 15 pixels.
+3. Color Picker: Click to change the selected text and background colors. The default coloring is black text on a white background.
+4. Bold / Italic / Underline: Click to bold, italicize or underline the selected text.
+5. Paragraph alignment: Click to align the selected text to the left, center, right, or full.
+6. Bullet points, Numbering, and Indentation: Add bullet points to the selected text, add auto-numbering to the selected text, and increase or decrease the indentation for the selected text.
+7. Horizontal line: Click to insert a horizontal line in the body of the email.
+8. Insert image: Click to insert an image from the image library.
+9. Symbol: Click to insert a symbol.
+10. Undo / Redo: Click to undo or redo the last change.
+11. Code: Click to edit the email content using HTML or CSS.
+12. Insert hyperlink / Remove hyperlink: Click to insert a hyperlink or remove a hyperlink within the selected text.
+13. Field Merge: Allows you to insert any variable contained in the recipient list into the email (e.g., name).
+14. Survey Link: Click to add the survey link to the email. The survey link can appear in link form, or as text that is a hyperlink to the survey (e.g., "to take the survey, click here").
+To add the survey link as a link, place the cursor where you want to insert the survey link and select "survey link". The link will appear as "[surveyLink]" in the body of the email, but you can preview the email to view the link. Do not edit or remove the text or brackets, doing so will cause the pipe for the link to break.
+To add the survey link as a hyperlink, highlight the text that you want to turn into the link and select "survey link". The text will become a hyperlink to the survey.
+15. Opt-out Link: Add the opt-out link to the email. This link allows participants to opt-out of receiving future emails. The opt-out link can appear in link form, or as text that is a hyperlink to the opt-out form (e.g., "If you no longer wish to receive these emails, click here").
+To add the opt-out link as a link, place your cursor where you want to insert the link and select "opt-out link". The link will appear as "[optOutLink]" in the body of the email, but you can preview the email to view the link. and displays the code order of the area being edited.
+Tip: Do not edit or remove the text or brackets, doing so will cause the pipe for the link to break
+To add the opt-out link as a hyperlink, highlight the text that you want to turn into the link and click "opt-out link". The text will become a hyperlink to the opt-out form.
+The opt-out link will automatically be adjusted based on whether the email invite is branded or unbranded. To check if the opt-out link is branded or unbranded, see 4.4: Opt-Out. Branded email invites will utilize the company remove list and unbranded email invites will utilize Forsta’s remove list. The following fields must not contain any mention of Forsta to be considered Branded or else it will be considered un-branded:
+Sender
+From Address
+Reply to Address
+Subject
+Email Body Content
+Survey Link
+16. Valid Address: All emails must include your valid physical address or post office box registered with the U.S. Postal Service. If you have a private mailbox, it must be registered with a commercial mail receiving agency established under postal service regulations.
+17. Path: The path is found at the bottom of the email editor and displays the code order of the area being edited.
+Note: All bulk emails sent out must contain a two-click unsubscribe process to be compliant with email provider guidelines.
+2.1: Survey URL
+To edit the survey URL used for the campaign, click the edit icon.
+Tip: If the edit icon is disabled, first upload your recipient list.
+As you select the variables for the URL, the URL will automatically update accordingly, so you can view a preview of the updates.
+Participant Source: Select from the participant sources built into your survey.
+Languages: Include the language variable for the campaign if your survey contains multiple languages.
+Extra Variables: Include the required variables for your participant source. Extra variables must be uploaded within the recipient list.
+Once your URL is configured, click "Save".
+2.2: Subject Line
+Enter the subject line for the email campaign. Spam filters are highly sensitive to email subject lines, so review the guidelines provided in the Spam Reduction document.
+The email setup page allows you to insert any variable contained in the recipient list into the subject line of the email (e.g., name). To do this, place the cursor in the desired position and select the "field merge" button (also referred to as the pipe tool) located to the right of the subject field.
+From the "Insert List Variable" window, select the variable you want to pipe into the subject line from the drop-down menu. Then, click "Insert".
+The pipe will be inserted into the subject line in brackets. Do not edit or remove the text or brackets; doing so will cause the pipe to break.
+Tip: To remove a pipe, delete the brackets and text within them.
+2.3: Preview
+Click the "Preview" button located to the right of the Survey URL to view the email in a new window.
+You have the option to view the mobile or desktop version of the email.
+3: Campaign Launch Checklist
+The campaign launch checklist keeps track of the campaign's pre-launch requirements. As each item is completed, it will automatically be checked off.
+3.1: Recipient List
+Add, export, replace, or share the recipient list. The recipient list can be uploaded in .xls, .xlsx, .csv or tab-delimited format, following the guidelines provided on the page Creating a Recipient List. To learn how to upload a recipient list, see Uploading a Recipient List.
+3.2: Add/Edit the Seed List
+The seed list is used for testing the email campaign and should contain contact information for the people who will review the email before the send.
+To add the seed list, click the "Add" link. In the Seed List window, fields appear for the variables contained in the survey URL. As recipients are added, space for additional recipients appears. The fields reflect the variables contained in the recipient list. Enter the email address and other variables for those people who will receive the test emails. You have the option to enter the seed list in grid form (as shown below) or in .csv format by selecting that entry method. Once the seed list is complete, click "Save".
+3.3: Sending Test Emails
+Send test emails to the recipients in your seed list to verify that the content appears as you expect. To do this, click "Send Test Email" in the Campaign Launch Checklist section.
+Note: Test emails must be sent before a campaign can be launched.
+Check the boxes to select which recipients from the seed list will receive the test email. Then click "Send".
+Note: For surveys using the ADB feature (ADB=1), survey links in Campaign Manager seed email sends will only open the survey if those recipients can test the survey (that is, the recipient is logged in, or the survey is in testing mode).
+4: Sender Settings
+In order to keep your spam rating low, email campaigns should contain a valid sender name, "from" email address, and "reply to" email address. Click the "Settings" tab to configure your sender settings.
+4.1: Sender Name
+Enter a valid sender name in the "Sender" field.
+4.2: From Address
+Enter the email address of the sender in the "From address" field. You may use the default value ofinvite@decipherinc.com (recommended) or an address from the domain of your Portal login. Any reply sent to invite@decipherinc.com will be considered a bounce and will be removed from further sends. If you prefer to override this functionality and manage all responses, enter your own email address in this field.
+Note: If you have a CNAME configured, the email address' domain must match your CNAME.
+See Setting Up a Domain Alias (CNAME) for details on how to setup a domain alias (CNAME) so you can send emails from another domain.
+4.3: Reply to Address
+Enter the email address that recipients can reply to in the "Reply to address" field.
+4.4: Opt-Out
+The Opt-Out section will show if the campaign is considered unbranded or branded.
+Unbranded: The url domain will be decipherinc.com and the opt-out link will direct to the global opt-out
+Branded: The url domain will be the CNAME domain and the opt-out link will direct to the company opt-out (the remove survey)
+5: Theme Settings
+Click the color square next to the option you want to update to open the color picker, then select the desired color and select "OK". The preview window (i.e., the email content) will display the updates, and you may also click the "Preview" button to view the email as the recipients will see it.
+Background Color: Click the square box to change the color that appears behind the framed body of the email, in the background.
+Foreground Color: Click the square box to changes the color that appears behind the text, in the foreground.
+Link Text Color: Click the square box to select and update the color of the survey and opt-out links in the email.

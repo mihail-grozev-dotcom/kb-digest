@@ -1,0 +1,6 @@
+Title: Running a Total Crosstab
+A "Total Qualified" crosstab is added to all new projects by default. This crosstab allows you to view the aggregate totals of each question, as well as to duplicate or export your full survey data before running any other reports. Its default settings include all qualified participants, with percentages based off the total number of participants who viewed each question.
+To run a total crosstab, open Crosstabs for your project and click the "Total Qualified" crosstab.
+The "Total Qualified" crosstab is used when you select Other Data Formats from the Data Downloads drop-down menu under REPORT in the navigation menu.
+From the Crosstabs report, you can apply additional filters, edit the crosstab, edit settings, create charts and tables, and much more.
+See Building a Crosstab to learn more about building and running advanced crosstabs.

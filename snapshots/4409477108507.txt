@@ -1,0 +1,43 @@
+Title: Single Sign-On with SAML
+Important: A setup fee applies to enable Single Sign-On authentication. Please contact your Account Manager for pricing specifics.
+Keeping track of usernames and passwords can be a hassle, especially when you need to use multiple software systems every day. Single Sign-On (SSO) with SAML 2.0 makes it possible to connect your company with the Decipher application so that your users can log in to both systems with one set of credentials. SSO allows your server to tell the Decipher server the identity of a user, thus bypassing the need for a separate username and password.
+1: How it Works
+SSO allows users to log into your Identity Provider (IdP) and be authenticated by the Decipher application. An IdP could be an internal portal site managed by your company's IT team or a service like Okta, OneLogin, or Auth0.
+Note: While IdP's are often integrated with Microsoft Active Directory, our SAML does not directly use Active Directory.
+1.1: Authentication
+When SSO is enabled between your company and Decipher, your Decipher server provides the survey reporting service and will ask your IdP to identify each user based on their email address. For this reason, you must ensure that all users who will be using the SSO setup have active Decipher accounts with the same email address they use for logging into your IdP.
+Note: See Create and Manage Users to learn how to add user accounts in Decipher.
+Any user with an existing Decipher account that matches the email provided by your IdP will be allowed through. This is known as authentication, or the secure transfer of the identity of the user.
+1.2: Authorization
+The Decipher configuration will authorize users based on their access permissions. If a user has access to a project, they will be permitted to view it within the Decipher application. If a user does not have access, they will not be allowed to view it in the application.
+2: Configuration
+To enable SSO between your company and the Decipher application, you must first decide which type of authentication to implement. Decipher supports both "IdP-initiated" authentication and "SP-initiated" authentication:
+IdP-initiated authentication: This method requires that you click a “Decipher” icon or logo within your portal and that logs you into your Decipher account.
+SP-initiated authentication: This method requires that you go to the Decipher login page or a Decipher report URL to be taken to your portal page.
+Once you have decided on an authentication method, you will need to relay this information, along with a special metadata file to your main Forsta contact or support team for implementation.
+2.1: The Metadata File
+The metadata file should be an XML file that is generated from your IdP containing the following information:
+Audience Restriction: This will always be "Decipher".
+Name ID Format: This will always be "EmailAddress" (your Identity Provider (IdP) must send the email address to identify your users -- we cannot accept any numeric ID or internal employee ID of any other kind).
+Request Compression: This will always be "Compressed" (this field is required by the IdP).
+Email domain: The email domain (e.g., "@client.com") for which users will be redirected to your portal when using a setup initiated by Decipher. If you always want to login only from your portal, you can omit this information.
+Staging URL: This will always be "https://demo.decipherinc.com/apps/saml/consumer".
+Entity ID: This will be the same as the staging URL (required by some systems).
+Test email: The email address of the person who will test staging the SSO. They will be given an account with restricted permissions to verify the SSO works (this account will not have access to any company / production data).
+IdP logout URL: This should be the URL of the page you want users to see when they log out of the Decipher application (e.g., you can provide your portal URL to have users return to your portal on logout). This setting is optional -- if not set, users will see the standard Decipher logout screen on logout.
+SHA-2 (Secure Hash Algorithm 2) Certificate: This should be your security certificate.
+Production URL: This can be either "https://host.domain.com/apps/saml/consumer" (for US multi-tenant clients, this would be https://selfserve.decipherinc.com/apps/saml/consumer)
+Entity ID: This should be the same as the production URL.
+Note: If your system asks you for "Encryption", "Signature", or "Checksum" values, leave these as default.
+Tip: We recommend an initial setup in a staging environment to verify the setup, then moving on to the real production environment. If the setup is for a brand-new dedicated server, staging can optionally be skipped.
+2: Testing
+Using the metadata file you provide, Forsta will enable the SSO functionality on a staging instance and ask you to provide an email address for testing. To test the functionality, log in to your company system using the email address you provided and verify that you can get to the Decipher portal from there.
+Once you have successfully accessed the Decipher portal in the staging area, the Forsta team will work with you on a plan to bring the same certificate and configuration to the production system.
+3: Deployment
+Once SAML SSO is enabled in production, users from your company should be able to access the Decipher application by logging into your IdP. Additionally, the following will be true:
+Existing users will retain their passwords until you request those passwords be removed.
+After enabling SSO, new users created in your company will not be given an option to select a password. They will instead be sent an email with a link that takes them to your IdP and then directly to Decipher.
+The "Change Password" and "Forgot Password" functionality will not be available on the login page for regular users.
+Shared users will continue to login with the same username and password.
+Note: We do not recommend using shared user accounts when SSO is enabled. You should verify that shared user accounts are in accordance with your security standards before asking for that option to be enabled.
+If you deprovision a user from your IdP, you should still disable them in the Decipher portal unless your IdP can disable Decipher accounts automatically. If disabled at the IdP level, only the deprovisioned user account cannot login, but it may still have an active API key.

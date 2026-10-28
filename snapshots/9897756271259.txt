@@ -1,0 +1,12 @@
+Title: 150.3 Release Notes
+Release Date: May 10, 2022
+Release Version: 150.3
+Bug Fixes
+Portal
+Supervisors of regional companies can now add users to projects in sub-companies.
+Survey
+XML Editor
+When a merged question is hidden due to all row/column conditions being false on the primary question, the secondary questions no longer count as displayed. This resolves an issue sometimes causing an impassable blank page.
+Architecture/DevTools
+The db edits command no longer causes an ambiguous error when a new field had been added.
+Removed confusing session/cookie information in the user audit log.

@@ -1,0 +1,231 @@
+Title: Managing Data with the umerge Command
+The umerge command allows for flexible copy, transformation and
+review of data from the shell environment when one or both surveys have
+delphi="1".
+Data is converted based on matching answer labels. You can correctly merge data
+from q1 with r1, r2, r3 as answers into a survey where
+q1 answers are r3, r2,
+r1.
+1: Merging Data
+You can use umerge to transfer data. When invoking
+umerge, you must provide the path to the source and target surveys
+in your command. For example, if you want to copy all records from
+selfserve/9d3/200800 that do not already exist in
+selfserve/9d3/210700, enter the following code:
+$ umerge append selfserve/9d3/200800 selfserve/9d3/210700
+When you run the umerge command, you will be presented with a basic
+plan that tells you what data will be transferred. You will be asked to press
+Y to begin the data import. If you do not want to begin the
+data import, press Control+C to cancel the
+request.
+To view the data that will be imported in the target survey, press
+V. The data preview is limited to 1 megabyte and the differences
+preview is truncated to the first 10,000 differences.
+Note: Only projects in the selfserve directory can use the
+umerge command.
+2: umerge Commands
+You can specify the full name (e.g. umerge join) or just the first
+character (e.g. umerge j of the command.
+Command
+Effect
+append A B
+Copy every record from A that does not already exist in B. Use
+--key to determine how records are matched; by default
+records are matched by uuid.
+merge A B
+Update records in B that also exist in A. This is similar to
+tabimport without
+the -c (create) option. You do not create new records.
+The --key option determines how records are matched
+between the surveys (defaulting to uuid).
+join A B
+Update or create records. join combines
+append and merge/ (similar to
+tabimport -c
+).
+view A [B]
+Create a data file to be used for importing the data into the
+other survey. This can be used to extract a subset of data, perhaps
+transforming it via --code or relabeling some variables.
+You can specify an optional target survey to transform the data
+to fit the other survey just as if you were about to join data
+to it.
+transform A
+Update records in A with data from A, after transforming it.
+Use the --code option to specify some Python code
+that will be applied to each record. For more information, see
+Transformation
+below.
+check A B
+Compare data in A to that in B, for records that exist in both.
+Only non-virtuals are compared. At most 10,000 lines of changes
+are returned. Use the --tab option to output tab-delimited.
+3: umerge Options
+Options (e.g. --yes) can appear before or after the command.
+Modifier
+Effect
+-v
+or
+--variables
+Include only these specific variables or question labels in the
+data processed.
+E.g. -v q3,q4,uuid,source will include the uuid,
+source and any variable that belongs to q3 or
+q4.
+-x
+or
+--exclude
+Exclude specific variables or questions from the output. These
+are removed after the inclusion is processed.
+E.g. -v q3 -x q3r1 would only include all of the
+q3 variables but exclude q3r1.
+-x q3r1 would include all variables except
+q3r1.
+Use -x record to omit the record variable and renumber.
+--quiet
+Do not output the “plan” that describes what data will be transferred
+and what questions might be missing. Do not output the summary
+afterwards. Do not show progress bars.
+--yes
+Do not ask for confirmation. This is the default if run from
+cron and not from a terminal.
+--cond
+By default, all completes from the source (ALL). Specify
+everything to include partials or any other Crosstabs-compatible
+condition.
+--code
+Run custom code for each row after generating the data. Give
+a filename as an argument to this function. In the file you can
+reference d.variable or d[“variable name”]
+(for variable names with spaces or names that do not match Python)
+and modify it. For more information, see
+Transformation
+below.
+--rename
+Change the name of the question while transferring data over.
+E.g. if a question with the same structure is named q2
+in the target, but q1 in the source, then
+--rename q1=q2,q3=q4 will change the variable names
+to correctly import it, also renaming q3. This also
+affects noanswer variables attached to q1.
+--no-field
+Do not try to copy over field data. Field data is normally copied
+only when records are created and using UUID key; see
+Additional Considerations
+below for details.
+--delete
+Usable only with umerge merge or
+umerge transform. Rather than updating data, mark
+the matching records as deleted.
+--tab
+When displaying a list of changed variables, show them in tab
+delimited format without truncation.
+Normal output:
+zcggkga0ma99ghmu q5 5255643.6 -> 5255643.60001
+wgytea1fumkussw8 q5 1607982.9 -> 1607982.90001
+With --tab:
+uuid var old new
+zcggkga0ma99ghmu q5 5255643.6 5255643.60001
+wgytea1fumkussw8 q5 1607982.9 1607982.90001
+3.1: Transformation
+The code you specify with --code can reference the d
+variable which will contain all the data (using symbolic values only: for radio/select
+questions, it is the row labels (e.g. “r1” and not “1”).
+d is a dictionary so you can use d[“varname”] to read/write
+that variable, which will always be a string. You can reference the survey environment,
+but can only access question data through the d variable. Alternatively,
+use d.varname if this is a valid Python varname.
+Convenience methods allow you to easily modify markers:
+d.setMarker(“name”), d.deleteMarker(“name”) and
+d.hasMarker(“name”) for checking whether a marker is set.
+Calling d.delete() will mark the record as deleted.
+Note: You can only look at the values of the variables in transformation
+code. You cannot use survey-style conditions such as if q3.r1.
+4: Example Commands with Options
+You can specify the full name (e.g. umerge join) or just the first
+character (e.g. umerge j) of the command.
+Options
+(e.g. --yes ) can appear before or after the command.
+Example Task
+Effect
+$ umerge append A B
+Copy every record in survey A to survey B. Records whose UUID
+(or variable specified with --key) exist in B are
+skipped.
+$ umerge append --yes --quiet --cond=qualified -x record A B
+Copy only qualified participants from A to B. Do not ask for confirmation
+and do not describe what is about to happen. Exclude the “record”
+variable so it is reset in B.
+$ umerge view -v uuid,q1 A
+Output uuid and any q1 variable (similar
+to generate).
+$ umerge view -v uuid,q1 A B
+Output uuid and any q1 variable (similar
+to generate). This
+task specifies a target survey so the output will be data in
+a format ready to import into B.
+$ umerge view -v uuid,q1 --code “d.q1 = dq1.upper()” A
+Output uuid and any q1 variable (similar
+to generate). This
+task runs a single piece of code that will turn q1
+output to upper-case. More complex scripts should be put in a
+.py file you pass in.
+$ umerge m --key=source --delete A B
+For every participant in A, delete the matching source in B.
+m is used as a shortcut for merge.
+The --delete option is equivalent to the
+tabimport action
+column set to DEL.
+$ umerge join --rename q1=q2 A B
+For participants that exist between A and B, update existing data
+and create other records. When transferring data over, rename
+q1 (in A) to q2 (in B); this affects
+all variables related to that question.
+$ umerge transform --cond “not q5.any” --rename q1=q5 A
+Modify data for this survey, copying what is in q1
+into q5. Records that already have data (q5.any)
+are not transformed.
+5: Additional Considerations
+Layouts are not applied to ensure all data will be transferred even if hidden
+or relabeled from survey.xml.
+Field data is only copied for new records if you are merging based on UUID.
+If one survey has delphi="1" enabled and the other does
+not, page data and auxiliary DB data are not copied.
+If both surveys have delphi="1" enabled, field data
+includes page-level data (i.e. 50 seconds were spent on q1
+page). Field data question labels are not renamed.
+If both surveys do not have delphi="1" enabled,
+data/variables.dat and data/completions.dat
+are updated in the target, based on the new UUIDs that have been
+created and have data in the source.
+Virtual data is not copied, even if there is a matching non-virtual target
+variable.
+Text and
+textarea elements can be copied
+to/from number and
+float. Invalid data will not
+be imported.
+Image questions will not have their uploaded data copied.
+Video Testimonials that store data outside will not have their data copied.
+6: Error Codes
+When an error occurs, the following codes may display:
+Error Code
+Explanation
+UM01: key %r does not exist in %s
+You have asked for data to be merged based on a key other than
+UUID. However, it does not exist in this survey you have specified.
+UM02: no variables were selected
+You used the -v or -x option to
+include or exclude variables, but that
+left your source survey with no variables.
+UM03: Target variable %s has duplicated values and cannot be used to import data
+Because umerge depends on
+tabimport
+to import data, it is unable to process data into the target
+if the same value (value="X" attribute in XML) is
+assigned to multiple rows/columns in the target. Ensure values
+are unique, if you are overriding the system ones.
+7: Similar Data Modification Tools
+tabimport
+hmerge
+transform

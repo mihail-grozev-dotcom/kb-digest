@@ -1,0 +1,32 @@
+Title: Decipher (previously Decipher) M37 General Release Notes
+This document contains the general release notes for the Decipher M37 (2017) milestone.
+Release Date: April 11, 2017
+Highlights of Decipher M37 Release
+New Features
+Reusable Answer Lists
+Establish a master answer list for use in multiple survey questions.
+Control answer options and apply updates to several questions at once.
+Add multiple answer lists for use in different survey sections.
+Survey XML Importing: Forsta Plus Conversion and Decipher
+Import Decipher and Forsta Plus (previously Confirmit) survey XML files directly to the Decipher portal.
+The system flags any unsupported elements or logic for easy review.
+Quota Reassignment
+Make live updates without worrying about overlooking quota changes.
+Review all affected quotas at a glance and choose whether to apply changes.
+Project Parameters
+Design your own structured project tags in the Decipher portal.
+New Features
+Reusable Answer Lists
+Reusable Answer Lists make creating product and satisfaction surveys a breeze! The Reusable Answer List will help you simplify your change process and consolidate tasks in surveys with long, repetitive response lists. To take advantage of this powerful new tool in your own surveys, simply select the Reusable Answer List structural element from the Element Library:
+By linking multiple questions to one element, Reusable Answer Lists can be used to control responses and make edits across multiple questions all from one place.
+Additionally, multiple Reusable Answer Lists can be added to a survey to control the response options for multiple groups of questions:
+Survey XML Importing: Forsta Plus Conversion & Decipher
+With the ability to import survey XML files, migrating your Forsta Plus surveys to Decipher is easier than ever! Along with starting a survey from scratch or a template, you will now have the option to import an XML file to give yourself a headstart. The file uploader appears on the survey creation screen for all new surveys:
+You won't have to worry about overlooking any unsupported content, either. While most survey tags and logic will automatically converted upon import, any incompatible elements will be flagged for easy identification and review:
+Quota Reassignment
+No more worrying when making live updates! Now, any time a live change is made to your survey, the system will automatically check for quotas affected by the change. Affected quota cells will be flagged and you will receive a notification in the Field Report to review the changes:
+Flagged quota cells will appear together in a new editor menu and you can choose to reassign completes to new quota buckets based on the changes, or to let participants remain in their original states:
+Project Parameters
+With the new Project Parameters setting, project organization just got real! Define your own custom structured tags in the Decipher Portal, and your project creators can provide you with what you need to know right at the start of the survey process.
+Adding parameters also allows you to more easily search for your projects in the Portal and to download your data with all the metadata you desire:
+Note: Setup for Project Parameters requires supervisor permissions in Decipher; contact your representative for more information.

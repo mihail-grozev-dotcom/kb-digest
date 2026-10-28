@@ -1,0 +1,60 @@
+Title: Field Statistics Report
+The Field Statistics report offers a summary of the data of live and closed surveys across all of your projects. This document provides an overview of the report and its features.
+Note: Only company Supervisors can access and manage the company page.
+1: Accessing Field Statistics
+In the Portal, open your company page by clicking your company name or logo. Then click the "Field Statistics" link in the left-hand panel of the page.
+2: Viewing the Report
+1. Filters: Displays the currently applied filters. Click the "Filters" button to access the Filters menu, where you can apply the following filters:
+Date: Filter by date. A 3 month date range is included by default.
+Companies: Select a company from the dropdown menu.
+Tags: Enter a tag or select an option from the dropdown menu.
+User Groups: Enter a user group name or select an option from the dropdown menu.
+Paths: Enter a survey path/directory (e.g., 1a2, selfserve/abc/123456 or abc/123456) and press Enter. Multiple entries permitted.
+Exclude Selected Paths: Check to exclude the selected path from the statistics.
+Split Columns By:
+Survey Info: Survey Path, Owning Company, Tags or User Groups
+Participant Data: Country, Extra Variable, Mobile Device Type, Mobile Operating System or Browser
+Time Period: Day, Week, Month or Quarter
+Split Rows By:
+Survey Info: Survey Path, Owning Company, Tags or User Groups
+Participant Data: Country, Extra Variable, Mobile Device Type, Mobile Operating System or Browser
+Time Period: Day, Week, Month or Quarter
+Once you have selected and configured your desired filters, click "Apply" to apply them to the data table.
+2. Export Table: Click to export the field statistics table in an Excel file.
+3. Search: Enter a condition to search for a statistic with the stat name from the table and compare it against some value. For example, search for "Clickthrough" > 100 or "Clickthrough" == 5. Use any of the following:
+> (greater than)
+>= (greater than or equal to)
+< (less than)
+<= (less than or equal to
+== (equal to)
+!= (not equal to)
+4. Transpose: Click to transpose the position of the rows and columns in the table.
+5. Table Settings: Click to edit the options included in the table. Once configured, click "Apply".
+6. Data Table: The data table offers a summary of the data of live and closed surveys across all of your projects, according to the filters you've applied.
+Tip: Show or hide any of the options by editing the table settings.
+Clickthrough: The number of participants that entered the survey.
+(Partial Completes + Terminates+ Over Quotas + Qualified Completes)
+Total Completes: The total number of completes.
+(Terminates + Over Quotas + Qualified Completes)
+Qualified Completes: The total number of qualified completes.
+Dropouts: The number of participants started the survey but did not finish it. Also referred to as "Partials".
+Over Quotas: The number of participants who were terminated due to quota limits.
+Terminates: The number of participants who were terminated.
+Device Block: The number of participants who were rejected access to surveys due to device requirements. E.g., The survey device settings were limited to smartphones and a participant accessed it on a feature phone.
+Open Count: The number of email invitations that were opened.
+Email Count: The number of email invitations sent out (initial emails only, excluding reminders and bounce backs known at the time of email send).
+Clickthrough Rate: The percentage of people that entered the survey in relation to how many email invitations were sent out.
+Table should be filtered to projects that used Decipher email campaigns. This can be done by restricting by the value of an extra variable.
+Participation Rate: The percentage of completes in relation to clickthrough.
+((Terminates + Overquota + Qualified) / Click-Through)
+Qualification Rate: The percentage of qualified completes in relation to total completes.
+(Qualified / (Terminates + Over Quotas + Qualified Completes))
+Dropout Rate: The inverse of the participation rate.
+(100 - ((Terminates + Over Quotas + Qualified Completes) / Clickthroughs))
+Incidence With OQ: The percentage of completes that were qualified or over quota.
+((Qualified + Overquota) / (Click-Through - Partial))
+Incidence Without OQ: The percentage of completes that were qualified.
+((Qualified) / (Click-Through - Partial))
+Open Rate: The percentage of opened email invitations in relation to total email invitations.
+Survey Time (Average): The average time taken to complete a survey.
+Survey Time (Median): The median time taken to complete a survey.

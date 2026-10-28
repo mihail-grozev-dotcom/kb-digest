@@ -1,0 +1,17 @@
+Title: Piping Answers from a Multi-Select Question
+You can use the Autofill element to create a pipe from a multi-select question and then pipe those answers into a new question. Overall, the Autofill element can be used for creating segments, auto-punching and advanced piping. Participants will not see Autofill elements.
+1: Adding the Autofill
+To add an Autofill element, first click the "+ Element" button to add a new survey element. Then, click "Logic Elements" under Question Types and select the "Autofill" element. Then click "Add".
+Enter a title for the Autofill and update the Autofill's "label" using the options menu to the right of the staging area. Make sure that the title is easy to understand, as you will have to locate and use this element in the report after your project is launched.
+Click "Edit Answers" to create the text that you want to pipe from the multi-select question. Each bit of piped text should be on its own line.
+2: Configuring Piping Logic
+Next, add logic conditions for each pipe option. This logic specifies what text should be piped into the question. To do this, click the corresponding "all" drop-down at the right to assign the auto-punch logic for the Autofill. You can use a pre-existing condition or create a new one. To create a new condition, click "+ condition".
+In the Logic Editor window, enter the logic for the selected category and click "Save". Be sure to repeat this process for each classification in the Autofill element.
+Note: For more information about adding logic, see Adding Logic to a Question or Response Option.
+Then click "Page Break" to add a page break below the Autofill element.
+3: Adding the Pipe
+In the question tree to the left of the staging area, select the question in which you want to apply the new pipe. Using the piping tool, insert the pipe into the question text. For detailed instructions on how to do this, see Using the Piping Tool.
+Finally, manually test your survey to make sure that the pipe is working as expected.
+Learn more:
+Using the Piping Tool
+Testing an Online Survey

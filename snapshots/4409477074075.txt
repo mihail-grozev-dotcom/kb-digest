@@ -1,0 +1,22 @@
+Title: Exec Element
+The Exec element is best used by advanced users with programming experience. It allows you to run Python code directly from your survey. Participants do not see Exec elements.
+1: Adding an Exec Element
+To add an Exec element, first click the "+ Element" button to add a new survey element. Then click "Structural Elements" under Question Types and select the "Exec" element. Then click "Add".
+Add the desired Python code in the space provided. For more information on Python, see Exec Tag: Execute Python Code.
+2: General Options for an Exec Element
+The options available for configuring question and response settings are displayed to the right of the staging area. Click any question or response option to set rules for it.
+Note: Non-ASCII characters are not allowed in strings within an exec block. The following characters <, >, [, ], ", &, and ' must be escaped in strings within an exec block.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+When: Click to select the options to controls when the exec element should be executed. See Exec Tag: Execute Python Code for more information and examples of the following options.
+finished: The Exec element will execute once just after the participant has submitted the survey and before the results are written on the disk. This is often used to add final data to a database and record any remaining data you may want to store (e.g., total time the participant spent taking the survey, IP address, etc.).
+finishedPost: The Exec element will execute after the participant has submitted the survey and all data has been saved (including state-data, timestamp, and extraVariables). This code will be run by the survey process, so heavy processes should be avoided.
+flow: The Exec element will execute when "One Page" mode has been toggled.
+init: The Exec element is executed once and only once when the survey is loaded. There is no participant information at this point, so you cannot access extra variables nor can you modify or access question content.
+returning: The Exec element will execute when a participant is returning after being redirected using a suspended redirect.
+started: The Exec element is executed as soon as a participant enters the survey.
+submit: The Exec element will execute each time the "Continue" / "Finish" button is pressed and after a <validate> tag runs within a question element.
+survey: This is the default setting for the when attribute. By default, the Exec element will execute just like any other question, when a participant reaches its location within the survey.
+verified: The Exec element will execute each time a participant has successfully submitted verified data. This is helpful if you are making calls to an external API each time a question has been answered properly.
+virtual: The Exec element will run once for each participant when calculating virtual questions.
+virtuallnit: The Exec element is executed when running reports and is used to populate virtual questions. Similar to using when="init", when="virtualInit" will be usable for virtual questions across your entire survey.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.

@@ -1,0 +1,11 @@
+Title: Skip Element
+You can use the Skip element to move participants from one survey element to another element or target defined later in your project.
+Note: In order to function correctly, Skip elements must be placed immediately after a page break. Additionally, the question that the participants are being skipped from must be placed before the Skip element, and the question the participants are skipping to must be placed after the Skip element.
+Adding a Skip Element
+To add a Skip element, first click the "+ Element" button in the Survey Editor to add a new survey element. Then click "Logic Elements" under Question Types and select the "Skip" element. Then click "Add".
+Configuring Skip Logic
+Add an appropriate title for the element in the area provided. To define the starting point of the skip, click "Show If" in the "options" section to the right of the staging area, and select "+ New Condition".
+In the "Logic Conditions Setup" window, select the question you want participants to skip from in the drop-down menu, and select the response options that initiate the skip. Then select "Save", or "Save As" if you wish to name the condition for later use.
+For more information on adding logic, see Adding Logic to a Question or Response Option.
+Once saved, the "Show If" logic gets updated with the new condition and the logic also appears in the element window. Next, using the “select a target” drop-down located within the Skip element itself, select the question to which participants should be skipped.
+Note: The Skip element is not visible to any participants taking the survey. They immediately jump to the question defined by the Skip element.

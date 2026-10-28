@@ -1,0 +1,19 @@
+Title: 143.10 Release Notes
+Release Date: October 1, 2019
+Release Version: 143.10
+New Features
+Survey
+Survey Editor
+Added support for the surveyStartTime virtual function in surveys with delphi="1".
+Participant Sources
+Enabled the Sample Marketplace on all servers.
+Programming & Tools
+Adjusted the tabimport script to better handle invalid values for Multi-Select questions.
+Bug Fixes
+Portal
+Fixed an error occurring when creating Panel Management Registration surveys using the “Start with a Template” option.
+Reporting
+Crosstabs
+Corrected “Count” row calculations for Multi-Select Grid questions.
+Response Summary
+Fixed an issue with restricting user access to specified Response Summary data.

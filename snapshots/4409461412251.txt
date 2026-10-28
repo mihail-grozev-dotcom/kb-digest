@@ -1,0 +1,61 @@
+Title: How to Retrieve a Survey Datamap Using the Decipher API
+The datamap API allows users to programmatically discover meta data about variables contained within a survey. Datamaps normally available within the reporting tool are also available, but the default output for the datamap API is a JSON document.
+See Decipher REST API for more information on the Decipher API.
+1: Using the Decipher API
+To retrieve a datamap using the Decipher API, send a GET request to: /api/v1/surveys/survey/path/datamapwhere survey/path is your full path to the survey.
+The following URL parameters can be specified within your GET request:
+survey: String (required). Path to the survey, e.g. “selfserve/xxxx/yyyy” (where xxxx is your directory name and yyyy is your project name)
+format: String (required). One of the following supported formats:
+json: A machine-readable format describing all questions and variables and their relations. See Data Export: JSON Formatting for more information on JSON formatting
+html: HTML
+text: Plain text
+tab: Similar to plain text but with tabs
+xlsx: Similar to plain text but in Excel xlsx format
+fw-html, fw-tab, or fw-text: Similar to the html, tab, and text outputs, but with fixed-width start/end annotations
+cb-html, cb-tab, or cb-text: Similar to the html, tab, and text outputs, but containing column binary card offsets
+uncle
+wincross: Note that wincross does not support “layout” parameter
+sss: Triple-S 1.5 XML
+sas
+quantum
+spss_fw: An SPSS script where data is described by fixed-width data file start-, and end- ranges
+spss_tab: An SPSS script using tab column names
+netmr-tab, netmr-csv: Net MR datamap in tab-delimited or CSV versions
+layout: Integer (optional). Default: null. Layout ID, either hard-coded or retrieved using the Layouts API
+qa: Bool (optional). Default: false. Include QA codes (applies only to the html variants)
+stacking: String (optional). Can be one of the following:
+top: outputs all non-looped variables
+label: outputs data for the specified loop
+For example, if we wanted to retrieve the html datamap with QA codes applied for survey path "1f43/mysurvey123", our GET request would appear as follows:
+GET /api/v1/surveys/1f43/mysurvey123/datamap?format=html&qa=1
+Likewise, if we wanted to retrieve the fw-html datamap from the same survey without QA codes applied and we wanted to use our custom “NewQuestion” data layout, our GET request would appear as follows:
+GET /api/v1/surveys/1f43/mysurvey123/datamap?format=fw-html&qa=0&layout=NewQuestion
+See Modifying the Survey Data Layout to learn more about data layouts.
+2: Using the Command Line
+To retrieve a datamap using the Command Line, first install the Decipher package on a Python 2.7 / 3.x capable system and enter your provisioned API key.
+Once installed, you can run the following command to get a JSON datamap:
+beacon get surveys/selfserve/xxxx/yyyy/datamap format=json > out.json
+This command will generate the datamap and save it on the out.json file.
+Similar to using the API method above, we can define the format for this command using the format variable. For example, if we wanted to retrieve the datamap for survey path "1f43/mysurvey123" in HTML format, we would use the following command:
+beacon get surveys/selfserve/xxxx/yyyy/datamap format=json > out.html
+3: Using Python
+The same process can be performed using Python (after provisioning an API key and saving it using the beacon login script). To retrieve a datamap using Python, first import your API key from Decipher using the following command:
+from decipher.beacon import api
+Then, perform a GET request, passing along the survey path, the datamap resource, and the output format you need:
+res = api.get('surveys/%s/datamap' % PATH, format='json')
+For example, if our survey path was "selfserve/123/4567", then we would use the following request to retrieve the datamap:
+res = api.get('selfserve/123/4567/%s/datamap' % PATH, format='json')
+The following example prints all question labels and variables under each question:
+print "There are %d questions" % len(res['questions'])
+for q in res['questions']:
+print "Question label", q['qlabel']
+print " .. has %d variables" % len(q['variables'])
+for v in q['variables']:
+print " %s" % v['label']
+4: Using Manual Retrieval
+The Decipher API uses simple HTTP requests. To retrieve a survey datamap this way, you would just need to include the server and API information along with the survey path, datamap resource, and preferred format in your GET request.
+Using the same example, if we wanted to retrieve the datamap for "selfserve/123/4567" in JSON, we would use the following GET request:
+https://v2.decipherinc.com/api/v1/su...ap?format=json
+And then provide the following HTTP header:
+x-apikey: 1234567890123456789012
+The response will be status 200, with the body being a JSON output of the datamap.

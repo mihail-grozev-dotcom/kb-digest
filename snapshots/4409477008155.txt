@@ -1,0 +1,246 @@
+Title: How to Create a Keyword Coder Using the Decipher REST API
+This document shows the API calls used to create a "keyword coder" application using the Decipher REST API.
+A "keyword coder" is a mock application used to classify open-ended answers into one of several buckets. The application flow is as follows:
+Enter the provisioned API key
+API call: Retrieve a list of available surveys and find the target survey
+API call: Retrieve a list of open-ended variables in that survey
+Decide which variables are needed for the Coder
+API call: Retrieve a list of current open-ended data for the selected variables
+Code each value into a named bucket
+API call: Create adatasource for the results
+API call: Upload the assignments matching the coded data
+To use the Decipher REST API, it is important to understand how the API functions. The API allows creation and modification of the <datasource> XML element. This allows you to match any key (typically a unique participant ID) to a database. The matched values can then be manipulated by Python code or assigned to a question.
+See Decipher REST API for additional information on the Decipher REST API.
+1: Creating the Base Question
+Thus, to build our keyword coder, we will first need to create a new radio question to which assign our values. For this example, we’ll call this question “q1” and assign 4 possible values: Negative, Positive, Neutral and Undetermined. The idea is that an open-ended question is being coded by a manual process in an external application, and each answer will be assigned to one of those 4 categories -- an output which we want to see in Crosstabs.
+To create the new question, we must:
+Use the datasource API to create a question with the label vkc_q1 for the coded value matching "q1". We recommend using a distinct prefix for all created questions so as not to conflict with any of the other existing questions in the API.
+Use the reporting option when creating the datasource. Adding data with the reporting option is faster as it becomes part of the virtual and not real data. It will also only be available in reporting and not when taking the survey.
+Match the uploaded data by the record variable, which is a sequential numeric ID assigned to each participant. Thus we will be uploading a dataset with two variables: record and vkc_q1. In this example, our question is simple and has only one variable attached.
+Note: In this example, we are assuming the following:
+You are using v2.decipherinc.com as your server. If using a Decipher cloud server, this would be replaced with the domain of that server.
+The example target survey is demo/ddemo. In a real scenario, you would just replace this with the full path of your actual survey, which will typically be written in the following format: selfserve/xxxx/yyyy, where “xxxx” is your survey’s directory/path name, and “yyyy” is your project number.
+2: Assigning an API key
+To create our own keyword coder, we will also need to obtain an API key. On an account that has Edit access to the survey, we’ll visit the API manager to issue an API key. Remember to treat the full API key as you would treat a password -- the possession of the API key gives the owner the same access as having access to the account.
+Let’s assume that we were assigned the following API key: a305cf3d049a61e80d4e0ed230d16ccb
+Note: For additional security, use the "restricted network" option when creating the account.
+3: Retrieving a List of Surveys
+Once we have our API key, we can use an API GET call to retrieve a list of surveys to build out data for our keyword coder. In this example, we are restricting the list of fields returned to just the survey ID (i.e survey path) and the title:
+GET https://v2.decipherinc.com/api/v1/rh/companies/self/surveys?select=path,title
+x-apikey: xxxx
+Note that we are using the following as the first line:
+The HTTP METHOD (one of GET, PUT, POST or DELETE)
+The full URL of the resource to retrieve
+The x-apikey header
+Let’s assume that the question we created (“q1”) is in our survey titled “Demo” with the following survey path: demo/ddemo. In this case, our GET call would look like this:
+GET https://v2.decipherinc.com/api/v1/rh/companies/self/surveys?select=demo/ddemo,Demo
+x-apikey: a305cf3d049a61e80d4e0ed230d16ccb
+We will get an array of objects returned with this data:
+The resource we are retrieving is rh/companies/self/surveys -- this is is the "Research Hub" API subset. It searches all companies, then selects the company that is our own (self) and retrieves the list of surveys for it.
+The survey path is what is used to identify our survey on any API calls. The ?select=path,title query argument lets us project a subset of the data in the API, which makes for a smaller response and faster server-side computation.
+The response starts with << and the response code (200, unless occurred), then the body which is always a JSON object. On success, an empty {} will be returned.
+Here is what our call response might look like:
+<< 200 OK
+[
+{
+"path": "demo/ddemo",
+"title": "test"
+},
+{
+"path": "demo/err",
+"title": "test"
+},
+{
+"path": "selfserve/9d3/150700",
+"title": "Logic"
+}
+]
+For an additional list of fields that can be returned, see our reference documentation.
+4: Retrieving a Survey's Datamap
+Once we have found the survey we need, we’ll want to pull that survey’s datamap. Any survey you encounter can have a different subset of question types and labels. Since we want to find out what those are so that we can identify what needs to get coded, we will also want to retrieve our survey’s datamap, and we can do this through another GET call.
+A datamap for the survey can be returned in a variety of formats, but the following JSON format is the easiest to process automatically:
+GET https://v2.decipherinc.com/api/v1/surveys/demo/ddemo/datamap?select=questions&format=json
+x-apikey: a305cf3d049a61e80d4e0ed230d16ccb
+See How to Retrieve a Survey Datamap Using the Decipher API for more information on retrieving a datamap using JSON.
+In the Decipher data model, one question may have multiple variables (e.g., a single-selection letting a participant choose their age or a multi-selection asking them to identify with which products they are familiar). The API shows both views: the questions and the variables to which they map, and the variables with the question they reference.
+Here we are asking for the questions subset. In the response, we will see that “q1”has a type of "text" and contains just one variable (also with label "q1"). The variable label is what we want to use to retrieve the data in the next call:
+<< 200 OK
+{
+"questions": [
+{
+"qlabel": "q1",
+"variables": [
+{
+"vgroup": "q1",
+"title": "What do you think of our website?",
+"type": "text",
+"qtitle": "What do you think of our website?",
+"rowTitle": null,
+"label": "q1",
+"qlabel": "q1",
+"colTitle": null,
+"col": null,
+"row": null
+}
+],
+"qtitle": "What do you think of our website?",
+"type": "text",
+"grouping": "rows"
+}
+]
+In another scenario, a question might have multiple variables -- e.g., “q1” could have asked "Name which 3 products you know..." with 3 row options. In that case, we would see 3 variables, labeled perhaps q1r1, q1r2, and q1r3 under the single question “q1”, and we would select q1r1, q1r2 and q1r3 as our variables on which to act.
+5: Retrieving the Survey's Data
+After retrieving the datamap and reviewing the list of eligible open-ended questions, let us assume that we have selected “q1”. We now want to retrieve the data for just that variable, as well as the record ID for each survey participant so that we can later upload their coded data.
+To retrieve the survey data, we will use the JSON format for output, which is a little more verbose than other outputs (e.g. tab, csv), but easier to process:
+GET https://v2.decipherinc.com/api/v1/surveys/demo/ddemo/data?fields=record,q1&format=json
+x-apikey: a305cf3d049a61e80d4e0ed230d16ccb
+We might get the following response:
+<< 200 OK
+[
+{
+"q1": "love it",
+"record": "1"
+},
+{
+"q1": "send in the clowns",
+"record": "2"
+},
+{
+"q1": "it loads too slow",
+"record": "4"
+},
+{
+"q1": "hate it",
+"record": "3"
+},
+{
+"q1": "need help with my order",
+"record": "5"
+}
+]
+6: Creating a Datasource
+Now that we have the survey data and the variables we need, we are ready to modify the survey given the coding buckets we created earlier. To do this, we will start with the following PUT request:
+PUT https://v2.decipherinc.com/api/v1/surveys/demo/ddemo/datasources/ds1
+x-apikey: 0a5a1b7ee328b8bdd6567968eb5a62c9
+{
+"ourKey": "record",
+"reporting": "true",
+"questions": [
+{
+"type": "single",
+"label": "vkc_q1",
+"values": [
+{
+"value": 1,
+"title": "Positive"
+},
+{
+"value": 2,
+"title": "Neutral"
+},
+{
+"value": 3,
+"title": "Negative"
+},
+{
+"value": 4,
+"title": "Undetermined"
+}
+],
+"title": "Keyword Coded output for q1"
+}
+],
+"key": "record"
+}
+Notice that the titles we are adding here correspond to the coding buckets we defined earlier and are being matched to our “q1” by values corresponding to its records.This PUT request creates or updates an existing datasource with the ID vkc_q1. In this example, our datasource includes only a single question (also labelled vkc_q1); however, a real datasource could have any number of questions, also adding new questions after its initial creation.
+The following outlines the makeup of the PUT request:
+The survey path (demo/ddemo) is embedded in the resource URL as per the REST concept. The entire URL identifies the resource being read or written.
+The datasource ID (ds1) is also embedded in the URL. The value of that is an arbitrary alphanumeric string which must not overlap with other datasources or questions.
+The reporting parameter determines whether this is data that should expand data in the main data file, or just be used for reporting. Unless you need the data in the data collection module, set this to “true”.
+The ourKey is the key in the participant data that is used to identify the participant. For example, this can be record (the system-assigned numeric ID) or source (an extraVariable that is passed in the URL, which you should know in advance).
+The key is the name of the column you will upload. It must match the value of ourKey in order for the datasource merge to succeed.
+The questions is the array of questions to be created that are associated with this datasource. Each question is an object:
+The alphanumeric label must be unique among the questions in the survey, including all those created by this and any other datasource. We recommend prefixing labels. The label will be used to identify the variable in all data downloads.
+The type here is set to single to indicate that this variable is a "single select", or "radio" question: it allows selection of only one of a number of predefined values.
+The title will appear to reporting users when running Crosstabs.
+The values array maps the values in the data you will upload to English text. In this case, we plan to assign each answer one of the four Positive, Neutral, Negative, and Undetermined values, thus the array contains four objects with a value of “1” and a title of "Positive", etc. The order of this array will affect how the table is displayed in Crosstabs.
+Once the call has completed, we can use the GET method on the same URL to confirm the structure. After this step, the questions for the datasource are now in the survey; however, there is as yet no data populated.
+Note: This example touches on the basic capability of datasources. The following advanced functions are also possible:
+Multiple questions can be created in a single datasource.
+A question can be of a multiple type, which has multiple yes/no answers, text which allows open-ended data to be uploaded, and number or float,allowing integers or floating-point numbers.
+A question can have multiple variables (i.e., multiple data points). Such questions are presented in grid form in the Crosstabs report, which may be preferable to having a separate table per question.
+Each value may have a statValue -- this can be used for average calculation when values represent a range (e.g., salary or age).
+By default, the datasource will pull data from its question label. If the data you upload has a different column name, the column element can be used to override it.
+7: Creating and Updating Datasource Data
+Each datasource has a separate database containing any amount of records, each with any amount of columns. When a report runs data from this file, it is looked up by matching the ourKey variable in the survey to the key variable in the data file. Then, each matching column for that record is transferred to the question.
+If we need to make changes to the data in our datasource, we can accomplish this by appending additional data. To append data for a datasource, we can use the following POST method:
+POST https://v2.decipherinc.com/api/v1/surveys/demo/datasource/datasources/ds1/data
+x-apikey: 0a5a1b7ee328b8bdd6567968eb5a62c9
+{
+"data": [
+{
+"record": "1",
+"vkc_q1": "1"
+},
+{
+"record": "2",
+"vkc_q1": "4"
+},
+{
+"record": "3",
+"vkc_q1": "3"
+},
+{
+"record": "4",
+"vkc_q1": "3"
+},
+{
+"record": "5",
+"vkc_q1": "4"
+}
+]
+}
+Using POST on the datasource will merge and create records as needed. If there is already an existing record with the primary key, it is updated with the new fields; if a record does not already exist, it is created.
+A few other options exists as well:
+Using DELETE, you can remove all data from the specified datasource.
+Using PUT will clear out all the existing data first before uploading; it is the equivalent of using DELETE then POST.
+Advanced usage: the POST data does not have be an array of objects; it instead needs to be a tab-delimited string representation of the data file, or a base-64 encoded Excel 2007 file.
+When using the POST method, note the following:
+The survey path and datasource are part of the URL. You will see that the URL that is used to manipulate the data is the same as the one used to manipulate the structure of the data, but with /data appended.
+The data is an array of objects within the data. Each object must have at least the key specified by key and any amount of other keys.
+8: Verifying the Data
+After uploading the new data, we can verify that our new vkc_q1 variable has the correct values assigned using the following GET request:
+GET https://v2.decipherinc.com/api/v1/surveys/demo/ddemo/data?fields=record,q1,vkc_q1&format=json
+x-apikey: 0a5a1b7ee328b8bdd6567968eb5a62c9
+In this request, we’re calling the records for “q1” and vkc_q1, and then reviewing the outputs for these to ensure that they are showing correctly:
+<< 200 OK
+[
+{
+"q1": "love it",
+"record": "1",
+"vkc_q1": "1"
+},
+{
+"q1": "send in the clowns",
+"record": "2",
+"vkc_q1": "4"
+},
+{
+"q1": "it loads too slow",
+"record": "4",
+"vkc_q1": "3"
+},
+{
+"q1": "hate it",
+"record": "3",
+"vkc_q1": "3"
+},
+{
+"q1": "need help with my order",
+"record": "5",
+"vkc_q1": "4"
+}
+]
+That’s it! Once we have verified that our records are showing correctly, our keyword coder is complete. If they are not showing correctly, we can update them by re-appending the data for each variable as needed using another POST call.
+Note: This is an example of coding data post-field; the participants have already given their answers and you are analyzing and deriving data from them.
+You could use the datasource in a pre-field mode as well. If you have participants starting the survey with a unique source value passed in the URL, you could create a question matching the source to some data in your panel and upload it in advance. As soon as those participants start the survey, your additional panel data would be available for logic choices in the survey.

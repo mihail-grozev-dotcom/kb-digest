@@ -1,0 +1,6 @@
+Title: Editing a Reminder
+To edit a reminder for a campaign, click on the campaign name in the campaign manager and select "Edit Reminder Email."
+The campaign setup page will appear with the email you created for the initial email send. You may edit the email content and subject line for the reminder send.
+Tip: The changes will auto-save during setup.
+Once the reminder email is set up, send test emails to the recipients in the seed list to verify the email appears as expected. The "Launch Reminders" option will not be available until test emails have been sent.
+Note: For surveys using the ADB feature (ADB=1), survey links in Campaign Manager seed email sends will only open the survey if those recipients can test the survey (that is, the recipient is logged in, or the survey is in testing mode).

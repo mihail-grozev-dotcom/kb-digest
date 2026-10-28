@@ -1,0 +1,52 @@
+Title: Monitoring Campaigns in Field
+The Campaigns tab is only available if your survey is using Decipher for email sends.
+1: Summary Statistics
+The first area of the Campaigns tab is the Summary Statistics report. This area lists the statistics for the email campaign including the total number of emails sent, opt-outs, bounce backs, open rate, response rate, etc.
+Note: Campaign send statistics cannot be filtered by Date in the Campaigns tab.
+1.1: Definition of Statistics
+Below is an explanation of how each statistic is calculated in the Summary Statistics report. These definitions can also be viewed by mousing over each item in the report.
+Name
+Definition
+List Total
+Total amount of email addresses in all lists
+Sent
+Number of emails that were attempted to be sent
+Errors
+Unexpected errors that occurred during the send
+Bad/Malformed
+Incorrectly formatted email addresses
+Duplicate Addresses
+Decipher automatically dedupes lists so the recipient will only receive one email
+Opt-Out Suppressions
+Recipients who opted out prior to the inital send.
+New Company Opt-Outs
+Recipients added to the company (branded) remove survey up to 30 days after the initial send.
+New Global Opt-Outs
+Recipients added to the global (unbranded) remove survey up to 30 days after the initial send. Global opt-outs will only apply to your campaign if it is not fully branded.
+Throttled Addresses
+Recently contacted addresses not included in this send (typically in the last 14 days, however, defaults can be modified if requested)
+Bounce-Backs
+Email returned from server (address no longer exists)
+Blocks
+Email rejected by server (potentially temporary error) (for example, when inbox is full)
+Additional Suppression
+Emails not sent for other reasons (contact already completed the survey, contact previously reported email as spam, email previously bounced, etc.)
+Potential Contacts
+Number of potential recipients (total sent minus all suppressed emails)
+Opened
+Measured number of opened invitations
+Open Rate
+Opened / Potential
+Click-Through Rate
+Click-Through / Potential
+Response Rate
+(Terminates + Overquota + Qualified) / Potential
+Spam Rate
+Spam complaint rate: Spam Complaints / Total Email Sends for all campaigns
+See Splitting the Response Summary to learn more.
+Unsent
+Emails remaining to be sent
+1.2: Initial Sends
+The next area of the "Campaigns" tab is the Initial Sends report. This area lists the soft sends from your original email list with the date and time in the first column and the total number sent in the second column. If you click on each date and time, a drop-down list will show statistics for that particular send. Click again to hide the statistics.
+1.3: Reminders
+The final area of the "Campaigns" tab is the Reminders report. This area lists each reminder email sent after the initial email was sent with the date and time in the first column and the total number sent in the second column.

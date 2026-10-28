@@ -1,0 +1,12 @@
+Title: Language Options
+If you have multiple languages set for your survey, you have the ability to toggle between those languages while testing in the survey test environment.
+1: Toggling Between Languages
+To toggle between languages during testing, click the "Actions" menu and select the language you would like to view from the "Lang" drop-down. Once a new language is selected, the survey will automatically update to that language.
+2: Making Translation Edits
+You can also edit your survey translations directly from the test environment. To update your translations during testing, click the "Edit" button in the toolbar and use the text editor to make changes. Once you are satisfied with your changes, click "save".
+From that point forward, the new translations will appear in the survey whenever the associated language is selected. This is helpful if you have minor changes to make.
+For more information on editing survey text, see Editing Text in the Test Environment.
+3: Managing Translations
+The Language Manager allows you to view all the translations for your survey on one screen, along with the original English version. This feature is very useful if you have a large amount of changes you want to make to the translated text. To directly edit the translations, select "Manage Translations" from the "Lang" drop-down in the "Actions" menu.
+A new page opens, allowing you to view and edit the translations for each question. The Language Manager is set up in a grid format, listing each question in English alongside its multiple language translations.
+See Making Changes to Translations for Multi-Language Studies for instructions on how to use the Language Manager to edit translations.

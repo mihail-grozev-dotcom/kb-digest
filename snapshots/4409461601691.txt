@@ -1,0 +1,25 @@
+Title: Styles
+Decipher offers a variety of options for modifying the look and feel of any survey. In this section, we'll learn how to use dynamic question types, conditional themes, configurable layouts, and additional web languages to create a fully-customized survey design or participant interaction.
+Adding Standard Dynamic Questions
+Dynamic questions can greatly improve surveys by providing a more engaging experience for participants. These question types use the same structure as the basic question types we learned about earlier, including the same data structure. In this lesson, we'll learn how to add numerous dynamic question types to our survey using the uses attribute.
+Reference Materials:
+Dynamic Question Versioning
+Theme and Themevars
+The LESS theme file controls much of the styling within Decipher surveys. In this lesson, we'll learn how to add a theme to our survey using the <theme> and <themevars> tags. We'll also learn how to include multiple themes in the same project using the <themes> tag, and how to overwrite LESS variables to make survey-specific changes to our themes.
+Reference Materials:
+Editing the Survey Theme
+The Less Styles System
+XML Style System
+XML styles can be used to modify HTML, or add CSS or JavaScript to create a customized survey or question on a per survey basis. In this lesson, we'll learn the basics of modifying the layout of the survey page with the XML <style> tag. We'll also learn about which attributes to include to adjust when and where the style override loads.
+Note: The "Tear Down" guide referenced in the above video is no longer supported. For more information on individual style attributes, see XML Style Blocks.
+Reference Materials:
+XML Style System
+XML Style System Examples
+Embedding CSS and JavaScript
+CSS and JavaScript can be embedded within a Decipher survey either in the form of an external file or written directly to the XML within the style tag. While this lesson will cover the process for implementing these languages into surveys, it is not meant to serve as a tutorial for programming in the CSS and JavaScript languages themselves. For this reason, some understanding of CSS, JavaScript, and/or jQuery is required.
+Free online tutorials are included within the reference materials below.
+Reference Materials:
+Including Static Files (Images, JavaScript, CSS)
+Including JavaScript in a Survey
+Including CSS in a Survey
+Learn to Code | Codecademy

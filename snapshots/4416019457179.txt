@@ -1,0 +1,37 @@
+Title: Adding Sample and Panel API
+Requires Decipher Cloud & Server administrator account for self-installation. If you are interested in setting up the Sample API, contact your Account Manager for more information.
+1: What is Sample & Panel API?
+Sample API allows the sample or panel provider to communicate via API with their server using JSON objects to pull in stored participant data for use in Decipher. The sample API benefits users that manage their own regularly changing panels or lists of participants and the associated information, such as demographics, firmographics or similar categorical data.
+The steps for enabling the sample API can be found here:
+Managing Server-Specific Participant Sources
+How to Enable the Sample Provider API
+2: Using Sample & Panel API in the Survey Editor
+To use the sample / panel from your API in the Survey Editor, click the "Participant Sources" element in the question tree and select "Add New Participant Source".
+In the "Participant Sources" menu, select the "Custom Participant Source" element and click "Insert". This name is determined from "sampleName" during setup; however, you may edit how it will appear in the report using the field provided.
+2.1: Select Questions & a List
+The right panel contains the lists of questions configured by the sample API (if applicable). Select the questions you'd like to pull from the list, then click "Check for Available Lists".
+If a list of questions wasn't configured, click "Check for Available Lists", and all questions will be added from the chosen list.
+Choose a list from the options. Select the list and click "Use Selected List".
+A list is rejected for the following reasons:
+A question(s) does not exist in the list retrieved from the API.
+Note the question label(s) and click "Ok" to close the warning window. Then uncheck the question(s) and click "Check for Available Lists" again.
+A unique variable is not included in the selected list.
+The unique variable must be specified in the sampleproviders.py file. Then return to this step to sync the information.
+When the list is successfully matched to the questions, the sample list variables are also generated as individual elements, tracking the imported the data once available.
+2.2: URL Variables
+The Sample and Panel API requires a unique variable during setup, when the sampleproviders.py file is configured. This variable is automatically added in the element and is not editable within the element. The variable is appended to the participant's URL when they enter the survey, and is used to retrieve the corresponding data for the report.
+To add an additional variable, select "+ Variable." Then configure the variable options:
+Var Name: The variable that's appended to the URL for this sample provider.
+Required: Allows you to specify if the variable is optional, required or unique.
+Optional: The variable does not have to be included in the URL for the participant to take the survey.
+Required: The variable must be included in the URL for the participant to be able to take the survey.
+Unique: The variable must be included in the URL for the participant to be able to take the survey, and it must contain a unique value as tracked by the survey system.
+Authentication: Allows you to specify how you would like to validate the variable.
+If the requirement is set to "Optional," no authentication can be set.
+If the requirement is set to "Required" you can specify "No Authentication", meaning the variable is required in the URL but can be anything, or you can select "Value List", which allows you to specify the valid values for your variable.
+If the requirement is set to "Unique" you can specify "No Authentication", meaning the variable is required in the URL but can be anything and the system will use internal tracking to verify the uniqueness of the value. You can also select "File", which allows you to upload a file that contains the values you wish to verify variable values against. The file must be plain text (.txt) with one value per line, one column only.
+Note: If you upload a file, the file name will not match the name of the uploaded file. This is a security precaution.
+Once the variable has been defined, click "Save." The variable will be added for the custom sample source. To delete the variable, click on the "X" next to the variable name. To edit the variable, make changes using the drop-down menus and fields within the element.
+2.3: Exit Pages
+The exit pages are laid out for you to configure for terminated, overquota, and qualified participants. Select "Message" to show the participant a message at the end of the survey, or choose "Redirect" and enter the URL in the field provided.
+You also have the ability to add a custom exit page and define the logic condition for it. See Adding Participant Sources Using the Survey Editor to learn more.

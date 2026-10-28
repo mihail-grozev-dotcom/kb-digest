@@ -1,0 +1,258 @@
+Title: Creating and Customizing Dashboard Tables
+Create dashboard tables to pull data from a question to display in the dashboard. You can customize a table by nesting table rows, adjusting table display, and enabling stat testing.
+1: Defining A Table
+Dashboard tables are defined by the table keyword. The keyword table adds a new table to the dashboard, which will pull data from a question. Each table requires both a title and at least one row value. If the title is not specified, the base question's title will be used. The row adds a single row to the table, and should have both a condition and title specified as shown below:
+table [title]
+row <condition> [title]
+As an example, a basic table created from a gender question Q1 would have the following syntax:
+table Gender of Participants
+row Q1.r1 Male
+row Q1.r2 Female
+row Q1.r3 Non-Binary
+row Q1.r4 Self-Describe
+This will produce the following example:
+1.1: Defining Table Rows
+As mentioned above, row definitions follow the below convention:
+row <condition> [title]
+In general, each row’s <condition> is a data point reference to a question and its possible answer options. These conditions can also be converted into more complex python conditions, by adding quotes to each row condition. For example, to modify the previously created gender table to include only qualified males and females, the table syntax can be amended as follows:
+table Gender of Respondents
+row "Q1.r1 and qualified" Male
+row "Q1.r2 and qualified" Female
+This will produce the following results for qualified participants:
+Table rows can be defined in several different ways, depending on how the rows you wish to reference are labeled, how many rows you wish to reference, or whether you want to create dynamic references to row selections.
+1.1.1: Based on Numerical Element Labels
+When referencing answer options that are not labeled with valid Python identifiers, such as rows labeled with numbers only, you can convert your data point references to Python conditions, and use the Pythonic .attr() function to reference your elements. Given a gender question Q1 with answer options defined as follows:
+<row label="1">Male</row>
+<row label="2">Female</row>
+<row label="3">Non-Binary</row>
+Referencing Q1.1 and Q1.2 is not a valid Python identifier, instead, reference these answer options as follows:
+table Gender of Respondents
+row 'Q1.attr("1")' Male
+row 'Q1.attr("2")' Female
+row 'Q1.attr("3")' Non-Binary
+Note: Because the .attr() function requires double quotes to reference the numeric labels, you need to surround your Python condition with single quotes to avoid the two quotations from clashing.
+1.1.2: Using Multiple Rows at Once
+You can also use the keyword rows to add multiple rows to a table, and these can be identified using individual row labels with name-spacing, or as ranges:
+rows [row] [row] ...
+rows [questionLabel.startingRow]-[endingRow]
+For example, the two segments below, based on a color question (Q2), would produce the same result:
+table Favorite Color
+rows Q2.r1 Q2.r2 Q2.r3 Q2.r4 Q2.r5
+table Favorite Color
+rows Q2.r1-r5
+This produces the below table:
+When specifying multiple answer options using the rows keyword, the row text for the table is automatically picked up from the referenced answer option text.
+Note: Even though you are referencing multiple answer options at the same time, you do not surround them with quotes, as you are still essentially referencing data points, rather than complex Python conditions.
+1.1.3: Using Dynamic Row References
+When using the rows keyword, there may be cases where you want to dynamically reference a condition specific to each row. For example, imagine you wanted to look only at the top 2 ratings for each brand in the following question:
+<radio
+label="d6">
+<title>On a scale of 1 to 5, how would you rate each of the following car brands ?</title>
+<row label="r1">Toyota</row>
+<row label="r2">Ford</row>
+<row label="r3">Honda</row>
+<row label="r4">Tesla</row>
+<row label="r5">Chevrolet</row>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+</radio>
+Usually, you would define each row separately with a complex Python condition to reference both c4 and c5:
+table Top Vehicle Satisfaction
+row "d6.r1.c4 or d6.r1.c5" Toyota
+row "d6.r2.c4 or d6.r2.c5" Ford
+row "d6.r3.c4 or d6.r3.c5" Honda
+row "d6.r4.c4 or d6.r4.c5" Tesla
+row "d6.r5.c4 or d6.r5.c5" Chevrolet
+However, you can shorten the amount of code you need to write by using the inbuilt templating system:
+table Top Vehicle Satisfaction
+rows code="$.c9 or $.c10" d6.r1-r5
+This code produces the same result because the default condition logic is overridden using the code keyword and the dollar sign ($). The dollar sign is a copy of the default condition and everything else is additional logic.
+For example, the code rows d6.r1-r5 produces 5 rows with the default conditions d6.r1, d6.r2, d6.r3, d6.r4, and d6.r5. The system stores these default conditions into the dollar sign variable and enables you to extend the logic using the code attribute. The example below produces the same result and should help you better understand how the code attribute works, but it is not nearly as efficient as either of the two examples above:
+chart Top Vehicle Satisfaction
+row code="$.c9 or $.c10" d6.r1 Toyota
+row code="$.c9 or $.c10" d6.r2 Ford
+row code="$.c9 or $.c10" d6.r3 Honda
+row code="$.c9 or $.c10" d6.r4 Tesla
+row code="$.c9 or $.c10" d6.r5 Chevrolet
+1.2: Defining Tables for Open-Ended Responses
+If you want to define a table based on an open-ended question such as a <text> or <textarea> element, or based on an open-ended row in a question, you can achieve that by adding uses OE to your table:
+table "Open End Example"
+uses OE
+respview 1
+rows q4
+You can specify either open-end questions or rows by the following:
+rows q4 for open-end questions without rows
+rows q3.r1-r3 for open-end questions with rows
+This will produce a scrollable table with each individual answer option listed in it, as well as a search bar to quickly look for specific responses. If you optionally add respview 1, each response links to that participant's full response page.
+Note: Any empty, single character, or ‘nan’ responses are not included in this table.
+Note: To access the full response page links, the viewer must have reporting permissions.
+1.2.1: Open End Response Options
+You can use the following attributes to specify the responses to display in the Open End Responses table:
+oe.random X - random open-end responses:
+table "Show random 100 responses"
+uses OE
+oe.random 100
+rows q4
+Note: Changing filters and splits will re-fetch and re-shuffle responses when using oe.random
+oe.first X - first open-end responses received:
+table "Show first 50 responses"
+uses OE
+oe.first 50
+rows q4
+oe.last X - last open-end responses received:
+table "Show last 50 responses"
+uses OE
+oe.last 50
+rows q4
+Note: With oe.first and oe.last, the responses are ordered by the questions and or rows shown. For example, if you include open-ends q1 and q2.r1, the responses returned are in the following order:
+participant 1 q1 answer
+participant 1 q2.r1 answer
+participant 2 q1 answer
+participant 2 q2.r1 answer
+participant 3 q1 answer
+1.3: Defining Tables for Number Questions
+When creating tables based on number questions, you cannot reference each individual answer option in your question. By default, creating a table referencing a number question will give you just the number of responses given to that question:
+table id=db-5 Age
+row s2 Average Age
+In order to display meaningful information in your dashboard, there are a few things you can do.
+5.1: Defining Number Ranges
+If you want to display the numbers input by participants into different categories, such as age ranges, use complex python conditions to define the different groups as rows:
+table id=db-5 Age
+row "s2.val >18 and s2.val <25" 18-24
+row "s2.val >24 and s2.val <35" 25-34
+row "s2.val >34 and s2.val <45" 35-44
+row "s2.val >44 and s2.val <55" 45-54
+row "s2.val > 55" 55+
+This will produce the following result:
+5.2: Applying Statistical Calculations to Number Questions
+An alternative way of displaying numerical data is to apply a statistical calculation on top of the reference to your number question. Statistical functions can be applied in two ways: either to the full table and any of its rows, or separately to individual rows. To add statistics to the table as a whole, use the below syntax:
+table Average Age
+stats mean
+row q2.val Average Age
+This will display the average age based on participant responses:
+If you want to display different statistical information for different rows in your table, you can also add statistics to them individually:
+table id=db-6 Age
+row stats=mean s2.val Average Age
+row stats=count s2.val Total
+Note: When applying statistics to individual rows, use stats=mean rather than stats.mean.
+To learn more about adding statistics to dashboard tables and rows, see Enabling Statistical Testing for Dashboard Tables.
+2: Creating Tables Based on 2D Questions
+Note: Creating tables for two dimensional questions uses the dashboard banner functionality. See Using Banners to Create the Second Table Dimension below to learn more about banners.
+It is possible to display a grid question within a single table. To create this display, use the conds attribute on each row you would like to include and define multiple conditions for these rows that correspond to each segment of the table.
+If you want to view the data for a rating question evaluating your service’s “availability”, ”speed”, and ”stability”, you can use the following steps.
+2.1: Creating the Table Rows
+When creating tables based on grid questions, you first define your table rows. However, for 2D questions, define your rows based on the question’s columns. You need to specify each explicit intersection between the rows and columns of your grid to count the individual cells that participants can select. When specifying your column references, use the .anyvector logic attribute to ensure that your ratings encompass all three possible services.
+table Rating
+row q3.c1.any Poor
+row q3.c2.any Fair
+row q3.c3.any Good
+row q3.c4.any Excellent
+While the above code will display all of the ratings given, they do so without accounting for each individual service, so your percentages will be more than 100% in total. Each rating should only be counted when given to a specific service.
+2.2: Modifying the Table Rows to Include Cell Intersections
+The next modification for your table is to explicitly define which cells are to be counted towards each row when pulling the data for each row. This can be done using the conds="" attribute. Specify all the possible rows that can be selected for each row as follows:
+row conds="q3.c1.r1, q3.c1.r2, q3.c1.r3" q3.c1.any Poor
+row conds="q3.c2.r1, q3.c2.r2, q3.c2.r3" q3.c2.any Fair
+row conds="q3.c3.r1, q3.c3.r2, q3.c3.r3" q3.c3.any Good
+row conds="q3.c4.r1, q3.c4.r2, q3.c4.r3" q3.c4.any Excellent
+Note: Each conds attribute only lists the rows as part of the related column in the data point reference.
+2.3: Using Banners to Create the Second Table Dimension
+The final modification is to create a banner: the banner's segments will form the columns in your table.
+Note: See Creating Dashboard Banners to learn more about creating banners.
+Since you already have your table rows referencing the columns in your question, your banner segments should reference the question’s rows:
+banner.local
+segment q3.r1.any "Availability"
+segment q3.r2.any "Speed"
+segment q3.r3.any "Stability"
+Similar to your column data references, you can use vector logic to be sure that any rating given to your service category is counted.
+2.4: Putting It All Together
+The final result of all the modifications that you can input to your table can be seen below:
+table Rating
+banner.local
+segment q3.r1.any "Availability"
+segment q3.r2.any "Speed"
+segment q3.r3.any "Stability"
+row conds="q3.c1.r1, q3.c1.r2, q3.c1.r3" q3.c1.any Poor
+row conds="q3.c2.r1, q3.c2.r2, q3.c2.r3" q3.c2.any Fair
+row conds="q3.c3.r1, q3.c3.r2, q3.c3.r3" q3.c3.any Good
+row conds="q3.c4.r1, q3.c4.r2, q3.c4.r3" q3.c4.any Excellent
+This will produce the following output:
+If you want to display each rating as a column, modify your table setup to include the transpose keyword, which will flip its dimensions:
+table Rating
+banner.local
+segment q3.r1.any "Availability"
+segment q3.r2.any "Speed"
+segment q3.r3.any "Stability"transpose
+row conds="q3.c1.r1, q3.c1.r2, q3.c1.r3" q3.c1.any Poor
+row conds="q3.c2.r1, q3.c2.r2, q3.c2.r3" q3.c2.any Fair
+row conds="q3.c3.r1, q3.c3.r2, q3.c3.r3" q3.c3.any Good
+row conds="q3.c4.r1, q3.c4.r2, q3.c4.r3" q3.c4.any Excellent
+3: Customizing Tables
+There are a variety of options for customizing the tables you create within a dashboard. In this section, you will see the process of nesting table rows, adjusting table display, and enabling stat testing within your dashboard tables.
+3.1: Nesting Rows
+Table rows can be nested to provide multiple levels on which users can drill-down to view data. To specify the top level of an hierarchy, set rowlevel=1. Any filters under that one are children of that filter, listed with numbers in ascending order for each new level (rowlevel=2 for children of rowlevel=1, rowlevel=3 for children of rowlevel=2, and so on).
+Example:
+If you have a question with response options broken out across states and their respective counties, you could put rowlevel=1 on the state rows, and rowlevel=2 on your county rows so that they are collapsed under the state rows:
+table TableDrillDown Demo With Row Levels
+row rowlevel=1 q1.r15 Oklahoma
+row rowlevel=2 q1.r2 Cleveland area
+row rowlevel=2 q1.r3 McClain area
+row rowlevel=2 q1.r4 Haskell area
+row rowlevel=1 q1.r5 Illinois
+row rowlevel=2 q1.r6 Lake area
+row rowlevel=2 q1.r7 Madison area
+row rowlevel=2 q1.r8 Kane area
+row rowlevel=1 q1.r9 Texas
+row rowlevel=2 q1.r10 Austin area
+row rowlevel=2 q1.r11 Dallas area
+row rowlevel=2 q1.r12 Houston area
+row rowlevel=2 q1.r13 San Antonio area
+row rowlevel=2 q1.r14 Other area
+The code above creates a nested table like the one displayed below:
+3.2: Adding Nets
+The keyword net adds a row that nets the response data for a specified count of the rows listed below it. If the count specified is negative, the net includes the rows listed above it.
+Example:
+If you have a question asking participants for their likelihood to recommend a restaurant, and want to know how many people selected the top 2 ratings and the bottom 2 ratings, you can use the following code to add nets for the table’s “Top 2”/”Bottom 2” responses:
+table Likelihood to recommend
+net 2 "Bottom 2"
+rows q4.ch1-ch11
+net -2 "Top 2"
+This will produce the following result:
+Depending on where you want to place your nets, you can use both positive and negative numbers to denote the data points you wish to include in your net. To include rows below the net placement, use positive numbers. To include rows above your net, use negative numbers.
+Note: Adding nets to a table disables the default sorting functionality for that table.
+3.3: Adding a Sum
+The keyword sum adds a row that sums the response data for the next specified count of rows. If the count is negative, then sum includes the previous rows. This option is ideal for summing checkboxes, where participants can select multiple responses in one question. The default syntax for adding a sum is as follows:
+sum <count> [title]
+Example:
+If you have a question asking which restaurants your participants visit at least once a month, and you want to see how many people overall visit restaurants A and B, use the following:
+table Restaurant Visits
+sum 2 "Restaurants A+B"
+rows q1.r1-r6
+This will produce the below table:
+3.4: Adding a Total Row
+The keyword total adds a row which will count participants that fulfill the conditions for all other rows in the table. If a title for the total is not specified, "Total" will be used:
+total [title]
+Example:
+If you want to see the total number of participants answering a gender question (rather than just a split), you might use the following code:
+table Gender of Participants
+rows Q1.r1-r4
+total
+The resulting table will include a total as the final row.
+3.5: Adding Horizontal Percentages
+By default, the vertical percentage in a table is generated by dividing the row count by the base. However, you can add a set of horizontal percentages to a table to view percentages based on a segment instead. The keyword hp adds horizontal percentages based on the first banner segment in a dashboard, with the precision specified on a table or row. By default, this feature is off, but can be enabled by setting a precision.
+hp <precision or off>
+Example:
+If you want to see the percentage of each gender answering additional questions in a table, you could add the following code:
+table id=db-1 Gender of Participants
+hp 0
+row Q1.r1 Male
+row Q1.r2 Female
+row Q1.r3 Non-Binary
+row Q1.r4 Self-Describe
+This will add an extra percentage value to your table rows, as shown below:
+3.6: Disabling Sorting for Rows and Nets
+By default, tables can be sorted based on the text within their rows and nets. To disable table sorting based on row text, add the following:
+row sort=0 <logic> "<row text>"
+To disable table sorting based on net text, add the following:
+net # sort=0 "<net text>"

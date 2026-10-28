@@ -1,0 +1,13 @@
+Title: Hiding Surveys
+Hiding surveys helps to keep your company Portal clean and easy to navigate by hiding the surveys from your view that you deem old or no longer active. When you hide a survey, it is only done in your view and will not affect the view for any other user.
+Note: Hiding surveys within the Portal only hides them from your view. If you would like to hide a survey from all users, you must archive it within your company directory. See Scripts for Managing Archived Projects to learn more about archiving surveys at the company level.
+1: Hiding a Survey
+To hide a survey in Decipher, first locate the survey in the Portal and click the "..." button under "Actions" to open the Project Actions menu. Then select "Hide Survey".
+To hide multiple surveys at once, first check the boxes to select the surveys you want to hide. Then click the gears / cogs icon under the search bar and select "Hide Project(s)".
+2: Viewing a Hidden Survey
+To view surveys that have been hidden, click "All Surveys" at the top left of the Portal page to open the View menu. Then check the box for "Show Hidden Projects" and click "Apply".
+Alternatively, you can choose to show hidden surveys using the advanced search options. First, click the caret in the search bar, then check the box next to "Show Hidden Projects" and click "Go".
+All hidden surveys are then shown with any other surveys listed.
+3: Unhiding a Survey
+To unhide a survey, first follow the steps above to view the hidden survey. Then click the "..." button under "Actions" to open the Project Actions menu and select "Unhide Survey".
+To unhide multiple surveys at once, first check the boxes to select the surveys you want to unhide. Then click the gears / cogs icon under the search bar and select "Unhide Project(s)".

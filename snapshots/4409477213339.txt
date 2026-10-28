@@ -1,0 +1,149 @@
+Title: How to Create Custom Dashboard Charts Using the Highcharts Library
+Using the Highcharts JavaScript Library, you can build custom charts in Dashboard. This article will walk you through the process of creating a custom dashboard chart.
+Combining the Highcharts capabilities with Decipher’s ability to pass in datapoints directly to custom scripts, you can build custom charts that are not readily available via the inbuilt Dashboarding tools in Decipher. Using the Decipher Dashboards’ ability to support JavaScript programming, you can include and use the Highcharts Library directly in your dashboards.
+Note: To create custom charts using the Highcharts library, you need to know how to include JavaScript in a Dashboard as well as how to use the Dynamic HTML Extensions of the Dashboard system.
+Note: Creating custom charts with Highcharts requires at least basic knowledge of HTML, JavaScript, and JavaScript Object Notation (or JSON).
+1: Importing the Highcharts Library
+The Highcharts Javascript Library can be imported directly into a dashboart html element:
+html
+<script src="https://code.highcharts.com/highcharts.js"></script>
+end
+Once you have added the above piece of code, you are ready to start building your custom charts.
+2: Setting Up the Custom Chart Container
+A Highcharts custom chart needs to be rendered inside a container element. You can create a container inside your html element by adding in a <div> tag with a unique ID:
+html
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<div id="chartContainer"/>
+end
+3: Building a Basic Chart
+To gain a better understanding of how Highchart chart creation works, you will first need to build a basic pie chart.
+3.1: Adding the JavaScript globalUpdate Function
+As a rule of thumb, any JavaScript code you want to execute on your dashboards page should be added as part of the below function:
+$(document).on('globalUpdate', function() {
+//write your JavaScript here
+});
+If you wanted to add the above function to your existing chart container and Highcharts loading script, you would add it as follows:
+html
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<div id="chartContainer"/>
+<script>
+$(document).on('globalUpdate', function() {
+//write your JavaScript here
+});
+</script>
+end
+3.2: Adding the Chart Setup Function
+Now that you have the container for your chart, as well as the wrapper function for your JavaScript code, you will need to add the Highcharts chart creation function:
+var chart= new Highcharts.Chart({
+chart: {
+renderTo: 'chartContainer',
+type: 'pie'
+}
+});
+The code above creates a new variable called chart, which represents the result of your Highcharts chart construction function:
+new Highcharts.Chart({});
+Inside the Highcharts.Chart() function, you can start defining your chart properties. Defining chart properties uses a JSON format, where each property is nested inside a container, and can have more properties nested inside it.
+In the above case, the minimum number of properties you need to specify is 3: chart, renderTo and type:
+chart: The container for most chart related properties. Can hold other properties such as the chart background color.
+renderTo: Specifies the container in which you would like to render the chart. Should be set to the unique ID of the <div> element created above.
+type: Specify the chart type. For a full list of Highcharts chart types, see Highcharts.com.
+Adding the above creation function to your existing set-up will produce the following result:
+html
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<div id="chartContainer"/>
+<script>
+$(document).on('globalUpdate', function() {
+var chart= new Highcharts.Chart({
+chart: {
+renderTo: 'chartContainer',
+type: 'pie'
+}
+});
+});
+</script>
+end
+3.2.1: Nesting Chart Properties
+Chart properties can be nested in each by using the following general syntax:
+property1: {
+property2: {
+property3: value,
+property4: value
+}
+}
+In the above example, property1 is the container for property2 and property2 contains properties 3 and 4, which have values.
+Tip: Each nested property that is defined should indented further into your code block. This is done for better readability and maintainability of your code.
+Highcharts chart properties follow the nesting defined in the Highcharts API page.
+3.3: Pulling in Decipher Datapoints
+While the current chart set-up will work when it comes to the chart creation, you will be essentially creating an empty chart, as there is no data to populate the slices of your pie.
+To define what data you want to use in your custom chart, you need to define another property inside of your chart creation function, called series:
+series:[{
+data: [{
+name: "Males",
+y: {{s1.r1}}
+},
+{
+name: "Females",
+y: {{s1.r2}}
+}]
+}]
+series : A list that can be used to define multiple data series. A single data series is a set of data points to be included in the chart. Multiple series are used to create banner splits.
+data : Represents a list of data points to be pulled into the chart. A single data point can be a reference to a question or an answer option.
+name : The display name of the data point.
+y : The y-axis value of the data point. This will represent the count / percentage or other metric used for the chart. To specify the Decipher data point reference, use the Dynamic HTML extensions.
+The example above defines a collection of data series via the series attribute, and creates a single data set as a part of the series via the data attribute. Inside your data attribute, you can nest the data points you wish to use, where each data point has two additional attributes: - name , which is the display name of your data point, and y , which is the y-axis value of your data point.
+As you are creating a gender pie chart, you can set the names of your two data points to “Males” and “Females” respectively, and pass in your male and female answer option data points via the use of the Dynamic HTML Extensions- { {s1.r1} } and { {s1.r2} }.
+Note: Specifying the y value of a data point is only used for pie charts. A standard series property for a column chart can be defined as follows:
+series:[{
+name: "Frequency",
+data: [{{s1.r1}},{{s1.r2}}]
+}]
+Note: The data will be just a list of data points.
+3.3.1: Including Datapoint Percentage Calculations
+By default, the Dynamic HTML Extensions pull in only the counts of provided answers for each datapoint. In order to display those counts as a percentage, you need to perform your own custom calculations. You can use Vector Logic, and more specifically, the .any method to represent the total base for a specific question, and divide your data point count by that total.
+Example:
+{{s1.r1}}/{{s1.any}}
+This will give you the percentage as a fraction, however, so you can multiply this number by 100 to get a proper percentage:
+({{s1.r1}}/{{s1.any}})*100
+Finally, if you want to round your results to the nearest whole number, you can use the JavaScript Math.round() method:
+Math.round(({{s1.r1}}/{{s1.any}})*100)
+You can put the above calculation as part of your series’ y attribute:
+series:[{
+data: [{
+name: "Males",
+y: Math.round(({{s1.r1}}/{{s1.any}})*100)
+},
+{
+name: "Females",
+y: Math.round(({{s1.r2}}/{{s1.any}})*100)
+}]
+}]
+4: Full Chart Example
+Combining all the steps outlined in the prior sections, you should have the following block of code to create your chart:
+html
+<div id="chartContainer"/>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+$(document).on('globalUpdate', function() {
+var chart= new Highcharts.Chart({
+title:{
+text:'Gender'
+},
+chart: {
+renderTo: 'chartContainer',
+type: 'pie'
+},
+series:[{
+data: [{
+name: "Males",
+y: Math.round(({{s1.r1}}/{{s1.any}})*100)
+},
+{
+name: "Females",
+y: Math.round(({{s1.r2}}/{{s1.any}})*100)
+}]
+}]
+});
+});
+</script>
+end
+This will produce the following result for your chart:

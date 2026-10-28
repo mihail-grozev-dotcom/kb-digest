@@ -1,0 +1,179 @@
+Title: Datasource Tag: Pull Data From a Tab-Delimited File
+Using the survey builder? Check out the Import Data Element.
+1: Overview
+The <datasource> element is a survey builder-friendly way of merging external data from a tab-delimited file into your survey. The data is merged into the survey as each participant enters and can be used to create additional logic or pipes from.
+For example, given the following tab-delimited file named resp-data.txt:
+id first last age
+100 Johnny Tsunami 22
+101 Danny California 30
+102 Juniper Rose 20
+We can create a <datasource> element to pull in this data and create a custom welcome message for each participant:
+<datasource label="Resp_DS"
+title="Respondent first/last name and age"
+filename="resp-data.txt"
+ourKey="source"
+datasourceKey="id"
+normalizeKey="lower">
+<text label="Q_RespData" optional="0" dataSource="Resp_DS" where="execute">
+<title>
+Respondent first/last name and age.
+</title>
+<row label="First" dataRef="first">First</row>
+<row label="Last" dataRef="last">Last</row>
+<row label="Age" dataRef="age">Age</row>
+</text>
+</datasource>
+<html label="Introduction" where="survey">
+Welcome to the survey, ${Q_RespData.First}! Please click "Continue".
+</html>
+The code above produces the following result when ?source=102 is set:
+2: Attributes
+The <datasource> element has access to the following attributes:
+Attribute
+Type
+Description
+label
+string
+The <datasource> element's unique name
+filename
+string
+The filename of the tab-delimited data to reference
+title
+string
+The <datasource> element's optional title
+ourKey
+string
+The survey variable to use when referencing the data (should line up with datasourceKey)
+datasourceKey
+string
+The data file's key to reference when pulling in data (should line up wtih ourKey)
+normalizeKey
+set
+Can specify normalizeKey="lower" to lowercase both key values, ourKey and datasourceKey (none, lower)
+survey
+string
+Specify the path to an external survey to pull data from its dataset rather than a tab-delimited file
+dataRef & dataSource
+string
+These two attributes are used to pull in the data for the internal <datasource> variables
+2.1: label - Set the Datasource's Name
+The label attribute is the <datasource> element's unique name. This is what will be referenced at each question's dataSource attribute when pulling in the data.
+For example:
+<datasource label="DS_1"
+filename="my_data.txt"
+ourKey="source"
+datasourceKey="source">
+<text label="Q1" dataSource="DS_1" dataRef="column1" where="execute"/>
+</datasource>
+2.2: filename - Specify the File to Pull Data From
+The filename attribute should be set to the name of the tab-delimited file to pull data from. This file should exist inside your project's root directory (e.g. selfserve/9d3/proj1234).
+For example, specify filename="include.dat" for a tab-delimited file named "include.dat".
+2.3: title - Set the Datasource's Title
+The title attribute is optional and should be set to a human-readable description of the <datasource> element.
+2.4: ourKey - Set the Survey's Key Variable
+The ourKey attribute should be set to the survey variable that uniquely identifies the participants entering the survey (e.g. uuid,source, id, respID, etc...).
+For example, if participants are entering the survey with ?list=1&source=resp123 specified in the URL, then ourKey="source" should be set. Similarly, if you are updating a datasource via a live edit, you might set this to uuid, which is set by the survey (ourKey="uuid").
+2.5: datasourceKey - Set the Datasource's Key Variable
+The datasourceKey attribute should be set to a column name found in the tab-delimited file that uniquely identifies each row of the data. This attribute will be lined up with the ourKey variable to pull in the correct data.
+For example, given the following tab-delimited file:
+col1 col2 col3 rid
+1 1 0 ai3ndlxh4
+0 0 1 kd9xn3hfl
+2 1 0 zl24910x8
+datasourceKey="rid" should be specified to reference the last column.
+2.6: normalizeKey - Force Key Normalization
+The normalizeKey attribute can be set to "none" or "lower.
+If normalizeKey="lower" is specified, then the values for both attributes, ourKey and datasourceKey, will be transformed into lowercase before being compared.
+For example, a value of "aLph4d0g" will be transformed to "alph4d0g".
+2.7: survey - Specify an External Survey to Pull Data From
+The survey attribute enables you to pull data from an existing survey's dataset. This attribute is used mostly by the survey builder and the targeted survey's dataset will automatically get pulled into the project.
+If you are manually creating the <datasource> element, you will need to manually generate and pull the survey's data file over into your project's directory.
+Generate the target survey's data file with the following command:
+generate survey/path all tab > datafile.txt
+For example:
+<datasource label="DS_1"
+survey="selfserve/9d3/proj1234"
+filename="datafile.txt"
+ourKey="source"
+datasourceKey="source">
+<text label="Q1" dataSource="DS_1" dataRef="column1" where="execute"/>
+</datasource>
+2.8: dataSource & dataRef - Specify the Data to Pull In
+The dataSource attribute is applied to question elements to reference the correct <datasource> element.
+The dataRef attribute should be set to the column name of the data that should be pulled in for a specific variable.
+Check out the example below to see how these attributes are applied.
+2.8.1: dataValue - Populating without an index
+The dataValue attribute, when used in conjunction with dataSource and dataRef, can force a radio question to populate even when the data in the tab file is not coded based on index (or even numerically).
+The following is a simple example of this functionality using a gender question:
+source gender
+abc123 male
+xyz987 female
+<radio label="Q1" dataSource="dsLabel" dataRef="gender">
+<title>Gender:</title>
+<comment>Select one</comment>
+<row label="r1" dataValue=”male”>Male</row>
+<row label="r2" dataValue=”female”>Female</row>
+</radio>
+<suspend/>
+3: Example
+In this example, the following tab-delimited file is incorporated into the survey using various different question types.
+3.1: Tab-Delimited Data File ("student-records.txt")
+uid age grd1 grd2 grd3 avg rank pass1 pass2 pass3
+1 2 1 2 3 85.1 4 1 1 1
+2 1 2 2 2 80.0 6 1 1 1
+3 1 4 3 4 65.5 18 0 1 0
+4 4 5 3 2 65.2 19 0 1 1
+3.2: XML Code
+<datasource label="RDS"
+title="Student Information"
+filename="student-records.txt"
+ourKey="studentID"
+datasourceKey="uid"
+normalizeKey="lower">
+<radio label="Q1" dataSource="RDS" dataRef="age" where="execute">
+<title>Age Group</title>
+<row label="r1">18-24</row>
+<row label="r2">25-34</row>
+<row label="r3">35-44</row>
+<row label="r4">45-54</row>
+<row label="r5">55-64</row>
+</radio>
+<select label="Q2" dataSource="RDS" where="execute">
+<title>Test Grades</title>
+<row label="r1" dataRef="grd1">Test #1</row>
+<row label="r2" dataRef="grd2">Test #2</row>
+<row label="r3" dataRef="grd3">Test #3</row>
+<choice label="ch1">A</choice>
+<choice label="ch2">B</choice>
+<choice label="ch3">C</choice>
+<choice label="ch4">D</choice>
+<choice label="ch5">F</choice>
+</select>
+<float label="Q3" dataSource="RDS" dataRef="avg" where="execute">
+<title>Test Average</title>
+</float>
+<checkbox label="Q4" dataSource="RDS" where="execute">
+<title>Tests Passed</title>
+<row label="r1" dataRef="pass1">Test #1</row>
+<row label="r2" dataRef="pass2">Test #2</row>
+<row label="r3" dataRef="pass3">Test #3</row>
+</checkbox>
+</datasource>
+3.3: Result
+The code above produces the following result when ?studentID=1 is set:
+4: Technical Details
+4.1: Datasource Question Visibility
+The where attribute specified on the internal <datasource> question elements can be adjusted as usual.
+By default, where="execute" is specified and the questions will be hidden and unseen by participants.
+You may specify where="survey,report" on any question to make it visible to participants. These questions will still automatically populate by the <datasource> element, but participants will now have the opportunity to change the answers.
+4.2: Type Conversion
+When processing data from the tab-delimited file, a silent attempt to convert the data into the appropriate data type is made. For example, if data from a file is read into a <float> question, then the data value is converted into the float type. If a ValueError occurs or the value is not a float type, the data is discarded and no errors are thrown.
+Values read into <radio> or <select> questions are expected to match the data values of the <row> or <col> elements. Typically, the first cell element will have a value of 1 and so on. If an invalid value is found, then the value is silently discarded.
+<checkbox> questions read from a file are set to checked (True) if the value is not blank, 0, N, or FALSE (in any casing (e.g. false)).
+4.3: Merging
+When an hmerge or recover is performed on a survey with a <datasource> element, the datasources are executed and the data is merged. Any existing data is overwritten, except on questions which where="survey" is specified and have not already been answered.
+Performing a remerge requires that you copy over any datasources during the merge.
+Note: When a datasource element is deleted, its corresponding Data-upload- and merged- files will now be deleted as well. Using Undo, or reverting the XML, will not restore the deleted files.
+5: What's Next?
+Learn more:
+Including Campaign Manager Data Using the Automated Database System (ADB)

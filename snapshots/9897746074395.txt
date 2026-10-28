@@ -1,0 +1,25 @@
+Title: 144.8 Release Notes
+Release Date: March 10, 2020
+Release Version: 144.8
+Features
+Responses
+Sample Marketplace
+Added a zip code qualification question for the “US – English” locale.
+View/Edit Responses
+Updated the report to improve load times for complex surveys.
+Programming & Tools
+Added the analyze-email utility script, which analyzes survey email campaigns and generates their send statistics.
+API
+Added two new endpoints for accessing and clearing a user’s whiteboard. See our whiteboard API for more information.
+Bug Fixes
+Portal
+Fixed a rare issue in which the Portal would freeze due to an unresolved thread exception.
+Responses
+Response Summary
+Fixed an issue causing the ‘update quota’ prompt to fail when editing marker-based data in a live survey with delphi="1".
+Reporting
+Dashboards
+Fixed an issue that prevented some survey dashboards from loading if they referenced another survey that contained a datasource.
+Architecture/DevTools
+Improved resource management related to the generation of stacked data files.
+Fixed an issue that was preventing some re-archived projects from being recognized as re-archived.

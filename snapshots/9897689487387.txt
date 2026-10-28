@@ -1,0 +1,25 @@
+Title: January 23rd General Release Notes
+This document contains the general release notes for the Decipher (previously Decipher) January 2018 release.
+Release Date: January 23, 2018
+Highlights of January 2018 Release
+New Features
+Custom Code Elements
+Add custom code elements to surveys using the Survey Editor.
+Enjoy the full functionality of the Logic Library without ever touching any XML.
+Imperium RelevantID Integration
+Add Imperium's RelevantID participant validation to any survey.
+Prevent fraud and restrict participants from "gaming" surveys using advanced computer fingerprinting.
+Browser and System Support Updates
+New Features
+Custom Code Elements
+Looking to make your surveys do more? You can now add custom code elements to any survey using the Survey Editor. Enjoy the full functionality of the Logic Library without ever touching any XML.
+Get started modding your surveys like a pro using the new custom code elements in the Survey Editor:
+Imperium RelevantID Integration
+Harness the power and security of Imperium's RelevantID system in your Decipher surveys. The new RelevantID integration supports advanced fraud detection, allowing for higher quality data you can trust.
+With RelevantID, data gathered from participant computers is put through deterministic algorithms to create a unique fingerprint of each computer. These fingerprints help identify users who have already completed a survey and prevents them from reentry. End survey gaming now by enabling RelevantID on all of your surveys.
+The RelevantID integration can be added to any survey using the "Imperium RelevantID Integration" element in the Survey Editor:
+For users more comfortable with the XML Editor, the integration can be can also be implemented using the Logic Library's <logic> syntax.
+Learn More: Imperium RelevantID Integration
+Browser and System Support Updates
+Now you can access your Decipher projects from even more places! We've added support for several new OS and browser versions, as well as mobile devices.
+Check out our Supported Browsers and Devices page for more info.

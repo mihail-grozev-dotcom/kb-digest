@@ -1,0 +1,47 @@
+Title: About the Alert Center
+You can use the Alert Center to manage any alert notifications that you have already set up in the Survey Editor. Learn how to set up an alert notification using the Alert Element.
+1: Accessing the Alert Center
+If you received an alert email, click "View Case in Alert Center".
+You can access the Alert Center from the "More Tools" drop-down under "Responses" in the navigation menu.
+1.1: Permissions
+Access levels for the Alert Center:
+Company supervisors have unrestricted access.
+Users with "Edit" permission for the project have unrestricted access.
+Users with "View" permission for the project may view and edit cases.
+An alert may be further restricted to a list of specific users. This is done by editing the alert within the Alert Center and adding users under "Alert accessible by". An alert that is restricted to a list of users may only be seen by those users, company supervisors, and users with "Edit" permission for the project.
+2: Overview
+Note: The Alert Center does not track quota alerts set up in the Response Summary.
+Project Alert Summary: Lists the number of new, open, and closed cases for the project.
+Edit Alert: Click the edit icon to make changes to the alert.
+Search: You can further filter the list by searching for survey content within the alerts or a participant's UUID.
+Case ID: The number assigned to the alert when the condition is met. Click a case ID to enter information about the case.
+Alert Name (Only visible if multiple alerts exist for the project): The name / subject line given to the alert.
+You can filter the list by "All Alerts" or select an alert name.
+Status: The current case status.
+New: An open case that has not yet been updated by anyone.
+Open: An open case that has been edited.
+Closed: Someone has addressed the case and closed it.
+Alert Date: The date the alert was first created (i.e., when the alert condition was met).
+Last Updated: The date the case was last updated.
+Owner: The email address of the person assigned as "owner" of the case.
+2.1: Addressing Cases
+To address an alert case, click the Case ID to access the case menu, which includes the following information about the case:
+1. Case Title: Includes the project name, case name and number, and a link to view all of the participant's survey answers.
+2. Survey Content (Only shown if the alert was set up using the Alert element): The survey content shared through the Alert element.
+3. Status: Click to change the status of the case (i.e., open or closed).
+4. Owner: Click to change the owner of the case. This can be the user who set up the Alert element or any specified user. Enter a valid email address.
+5. Action(s) Taken: A list of what was changed in the case. Enter the action(s) taken and press "Enter" to save them.
+6. Notes: Details about the changes made to the case. Enter notes about the case.
+7. Update Case: Click to save your notes and update the case.
+8. History: The history of actions taken for the case.
+2.2: Editing an Alert
+To edit an existing alert from the Alert Center, click the edit icon in the Project Alert summary.
+1. Alert Name: Click here to edit the name of the alert. This is used as the subject line of the alert email.
+2. Send email notifications to: Enter a properly formatted email address for each intended recipient of the alert.
+3. From: Enter a properly formatted email address for the sender of the alert. By default, your username will appear here.
+4. Alerts accessible by: Allows you to restrict access to the alert to only the users listed here. By default, company supervisors and all users with report edit permissions (report.edit) may access the alert.
+5. Message: Enter the body of the email. The body of the email can utilize the pipe tool, allowing you to pipe survey question answers into the message body. This pipe variable generates a clickable link in the email that lets a recipient of the notification get more information about the participant.
+6. Send a Reminder: Check this box to send a reminder email. Choose the number of days of inactivity before the reminder is sent out.
+7. Include Survey Content: Select one or more questions to include in the email. Click into the field to add questions.
+8. Include link to participant's survey results: Check this box to include a link to the participant's answers to all questions in the survey.
+9. Update Alert: Click here to save the changes you made to the alert.

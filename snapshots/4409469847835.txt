@@ -1,0 +1,41 @@
+Title: Change Management and Version Control System
+The Decipher system will automatically log changes made to the following project files:
+survey.xml
+styles/nstyles
+mail/email.txt
+dashboards.json
+reports.json
+layouts.json
+LANGUAGE.xml
+email_*.eml (* represents a six-digit number)
+template_*.txt (* represents a six-character alphanumeric string)
+theme.less (when edited using Theme Editor or uploading from API)
+quota.xls
+When a change is made to any of these files, the previous version of the file is automatically stored in the database. Using the version control/change management system, you can see when, what, and who changed the file. Staff Users have the ability to revert any file to a previous version.
+Note: It may take up to 5 minutes for the change log to update after a change.
+1: Accessing the Version Control System
+The version control system for any project can be accessed from its Project Overview page. In the navigation menu, click "Build", then "More Tools", and select "Version Control".
+The URL for the version control system will look something like this:
+https://tes.decipherinc.com/admin/vc/list
+Add the ?file= parameter to the end of the url to reference any project file for any project that you have permissions to access (?file=selfserve/9d3/proj1234/nstyles).
+2: Version Control URL & Descriptions
+To access the version control system for a specific project file, use the following URL scheme:
+https://tes.decipherinc.com/admin/vc/list?file=[PATH_TO_FILE]
+Here's a glimpse of what the version control system will display:
+A quick description of each column.
+Column
+Description
+Path
+The path to the project containing the file that has been updated. Will redirect to the report page if clicked.
+File
+The name of the file that has been altered. Will download the version of the file if clicked.
+When
+The timestamp relative to the modified date of that version of the file.
+Who
+The username of the person who made the edit.
+Note: The user "hermes" represents changes made using the Survey Editor.
+Changes
+Displays the number of lines added (+) and removed (-). A side-by-side comparison of the changes made will be shown if clicked.
+3: Version Control Changes
+When viewing file changes after clicking a link under the "Changes" column, you'll see something similar to the below:
+Highlighted in green on the right side is the text that replaced the text highlighted in red on the left side. The left side represents the old and the right represents the new.

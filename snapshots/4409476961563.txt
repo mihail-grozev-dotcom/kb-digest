@@ -1,0 +1,174 @@
+Title: Pipe Tag: Show Information Conditionally
+The <pipe> element is used to display information conditionally.
+Using <case> elements, you can specify any number of conditions to be evaluated from top to down. The first case to resolve to True is used and the corresponding text is displayed. The <pipe> element is translateable and will be properly pulled by the translation system.
+For example:
+<number label="Q1" size="2" verify="range(0, 10)">
+<title>How many children do you have?</title>
+</number>
+<suspend/>
+<pipe label="children_have">
+<case label="c1" cond="Q1.ival == 1">Has your child</case>
+<case label="c2" cond="Q1.ival gt 1">Have your children</case>
+<case label="c3" cond="1">no children</case>
+</pipe>
+<radio label="Q2" optional="0" cond="Q1.ival">
+<title>[pipe: children_have] been to the zoo in the past 6 months?</title>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+All <pipe> elements must specify cond="1" for the last <case> element. This will be the default case to use when all others evaluate to False. In the example above, "c3" will be referenced only when Q1 is 0.
+A Single Select question is generated in the report containing each possible case and the last case referenced for each participant.
+1: Attributes
+The <pipe> element has access to the following attributes:
+label
+capture
+title
+1.1: label - Set the Pipe Name
+The label attribute is the unique identifier for the <pipe> element. This is used as a reference when piping the data.
+<radio label="Q1" optional="0">
+<title>Are you...</title>
+<row label="r1">Male</row>
+<row label="r2">Female</row>
+</radio>
+<suspend/>
+<pipe label="gender">
+<case label="c1" cond="Q1.r1">men</case>
+<case label="c2" cond="Q1.r2">women</case>
+<case label="c3" cond="1">undefined</case>
+</pipe>
+<html label="Introduction" where="survey">
+<p>This survey is meant to find out about the shopping habits of ${pipe.gender} like you.</p>
+<p>Please click "Continue" to take the [pipe: gender]'s portion of this study.</p>
+</html>
+<suspend/>
+Tip: You can reference the <pipe> element using the ${pipe.LABEL} or [pipe: label] syntax.
+1.2: capture - Set the Data Variable Name
+Note: In surveys with a compat level of 145+, <pipe> elements with capture="" specified must contain unique row label values.
+The capture attribute overrides the default label for the auto-generated Single Select question that the <pipe> element produces.
+For example, the following <pipe> element automatically generates a variable named pipe_MyPipe.
+<pipe label="MyPipe">
+<case label="c1" cond="1">Some Text</case>
+</pipe>
+We can use the capture attribute to rename this variable, overriding pipe_MyPipe to SomethingSpecial.
+<pipe label="MyPipe" capture="SomethingSpecial">
+<case label="c1" cond="1">Some Text</case>
+</pipe>
+1.3: title - Set the Data Variable Title
+The title attribute overrides the default title of the auto-generated Single Select question that the <pipe> element produces.
+For example, the following <pipe> element automatically generates a variable named SomethingSpecial with pipe_MyPipe as the title.
+<pipe label="MyPipe" capture="SomethingSpecial">
+<case label="c1" cond="1">Some Text</case>
+</pipe>
+Note: MyPipe is the original label of the <pipe> element. The default title for a <pipe> element is: Pipe LABEL.
+You can use the title attribute to provide a custom title for the <pipe> element.
+<pipe label="MyPipe" capture="SomethingSpecial" title="My Special Title">
+<case label="c1" cond="1">Some Text</case>
+</pipe>
+2: Pipe Transformation Functions
+There are a number of transformation functions that can alter the content of the <pipe> element as it is displayed in the survey.
+Transformation
+Description
+Example
+upper
+Upper-cases all letters of the pipe
+(e.g., PIPE TEXT LOOKS LIKE THIS)
+[pipe: LABEL upper]
+lower
+Lower-cases all letters of the pipe
+(e.g., pipe text looks like this)
+[pipe: LABEL lower]
+title
+Title-cases all letters of the pipe
+(e.g., Pipe Text Looks Like This)
+[pipe: LABEL title]
+capitalize
+Capitalizes the first letter of the pipe
+(e.g., Pipe text looks like this)
+[pipe: LABEL capitalize]
+For example:
+<pipe label="Test_Pipe">
+<case label="c1" cond="1">what does the FOX say?</case>
+</pipe>
+<html label="Test_Comment" where="survey">
+<p>[pipe: Test_Pipe]</p>
+<p>[pipe: Test_Pipe upper]</p>
+<p>[pipe: Test_Pipe lower]</p>
+<p>[pipe: Test_Pipe title]</p>
+<p>[pipe: Test_Pipe capitalize]</p>
+</html>
+The code above produces the following result:
+3: Example
+The <pipe> element is useful if you want to display any text based on a question's logical conditions. For example, it can be used to display concept images to participants based on a randomly assigned marker.
+Concept 1
+Concept 2
+Concept 3
+In the example below, a quota is called to immediately assign one of three random markers and use these markers to show one of the concept images shown above.
+<quota label="ConceptPicker" sheet="concept"/>
+<radio label="vConcept" optional="0" where="execute">
+<exec>
+for x in xrange(3):
+if hasMarker('concept_{}'.format(x+1)):
+vConcept.val = x
+</exec>
+<title>The concept you were assigned is...</title>
+<row label="r1">Concept 1</row>
+<row label="r2">Concept 2</row>
+<row label="r3">Concept 3</row>
+</radio>
+<suspend/>
+<pipe label="concept">
+<case label="c1" cond="hasMarker('concept_1')">
+<p>CONCEPT 1 TITLE</p>
+<p><img src="[rel concept_1.png]" class="concept"/></p>
+</case>
+<case label="c2" cond="hasMarker('concept_2')">
+<p>CONCEPT 2 TITLE</p>
+<p><img src="[rel concept_2.png]" class="concept"/></p>
+</case>
+<case label="c3" cond="hasMarker('concept_3')">
+<p>CONCEPT 3 TITLE</p>
+<p><img src="[rel concept_3.png]" class="concept"/></p>
+</case>
+<case label="c4" cond="1">UNDEFINED</case>
+</pipe>
+<html label="ShowConcept" where="survey">
+<p>Please take a look at the following concept.</p>
+<p>[pipe: concept]</p>
+</html>
+<suspend/>
+The code above uses the <pipe> element to produce the following result if assigned concept 1:
+4: Learn more
+Learn about the Piping Tool if you are using the Survey Editor.
+Learn about the Resource tag, another great element that can be combined with the <pipe> element to produce dynamic content.
+For example, we can rewrite the example above using a <res> and <pipe> element to achieve the same effect with lesser lines of code.
+Tip: Instead of repeating the same content for each case, you can write it once using a <res> element and use the built-in Python function, format, to replace only the changing parts (e.g., the concept number).
+<quota label="ConceptPicker" sheet="concept"/>
+<radio label="vConcept" optional="0" where="execute">
+<exec>
+for x in xrange(3):
+if hasMarker('concept_{}'.format(x+1)):
+vConcept.val = x
+</exec>
+<title>The concept you were assigned is...</title>
+<row label="r1">Concept 1</row>
+<row label="r2">Concept 2</row>
+<row label="r3">Concept 3</row>
+</radio>
+<suspend/>
+<res label="concept_text">
+<p>CONCEPT {0} TITLE</p>
+<p><img src="[rel concept_{0}.png]" class="concept"/>
+</p>
+</res>
+<pipe label="concept">
+<case label="c1" cond="hasMarker('concept_1')">${res.concept_text.format(1)}</case>
+<case label="c2" cond="hasMarker('concept_2')">${res.concept_text.format(2)}</case>
+<case label="c3" cond="hasMarker('concept_3')">${res.concept_text.format(3)}</case>
+<case label="c4" cond="1">UNDEFINED</case>
+</pipe>
+<html label="ShowConcept" where="survey">
+<p>Please take a look at the following concept.</p>
+<p>[pipe: concept]</p>
+</html>
+<suspend/>

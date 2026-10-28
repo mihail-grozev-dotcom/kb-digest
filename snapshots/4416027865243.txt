@@ -1,0 +1,42 @@
+Title: Pulling Panel Management Datapoints into a Decipher Survey
+If your company has Panel Management enabled, it is possible to pull Panel Management datapoints into an existing Decipher survey. This is useful for copying an existing Kinesis Registration Survey into Decipher, or just for re-using existing datapoints you would like to track in your Decipher survey. Datapoints can be pulled from Panel Management by adding the panel you wish to pull from to your survey as a sample source and then pulling in the datapoints using either the sample source itself or the Panel Datapoints survey element.
+Note: To enable Panel Management for your company, contact Technical Support.
+1: Adding Participant Sources
+Partcipant sources can be added to a Decipher survey using the Survey Elements menu within the Survey Editor. To view available participant sample sources, click on Participant Sources and then click the + Add New Participant Source button to bring up the Participant Sources library:
+All panels available to your company within Panel Management will display in the Participant Sources menu near the bottom of the list. Panel Management participant sources are indicated by the Panel Management icon. Once you have found the participant source (panel) you would like to add, select the source name from the list and click the Insert button:
+Multiple participant sources can be added to a single project. To add more than one sample source, repeat the above process for each individual panel you need to add.
+2: Adding Datapoints
+Once you have added your Panel Management participant source, click the source name to view the source options menu. This menu will include information on any previously added datapoints, URL variables, and exit pages. To add datapoints, click + Add Datapoint from Panel button:
+Alternatively, you can add new datapoints using the + Add Survey Element button in the Survey Editor. This will bring up the Survey Elements menu, where you can select Panel Datapoints:
+Regardless of the access method you choose, the Datapoints menu will then pop up in a new modal, showing a variety of options:
+Panel Source Name: Use this drop-down menu to toggle between all of the panel sample sources you have added to your survey.
+Datapoint Search: Use this search bar to narrow down available datapoints by keyword.
+Datapoint List: This list shows all available datapoints within the sample source you have selected. You can click on each one to view its datapoint value, question text and row text. You can also click on multiple datapoints to add multiple questions.
+Datapoint: This is the datapoint label in Panel Management.
+Question: The question text for each datapoint will appear to the right of its label.
+Rows: The available rows for each datapoint will appear below its label.
+Add as Question: Click here to add the selected datapoint as a question within your Decipher survey. Adding a datapoint as a Question will show it to participants.
+Add as Information Only: Click here to add the selected datapoint as an informational element that is visible only within the survey editor and data. Adding a datapoint as Information Only will hide it from participants.
+You can add datapoints individually or as a group (using CTRL + click) by clicking on them within the Datapoint List. The order of the selection will determine the order of the questions added to the survey. If you add a data point as a question, it will appear as an editable question within the Survey Elements tree:
+Note: Shown questions require duplicate hidden versions for data mapping.
+3: Editing a Datapoint Question
+As with any normal survey element, you will be able to change the question’s style and text formatting within the survey editor to appear properly within your survey. See Adding and Removing a Question or Element for more information on editing survey elements.
+Note: Changes to the data structure (such adding/removing answer options) will make the question incompatible with the panel datapoint and result in a warning message within the Survey Editor.
+Every datapoint you add to your survey will also be listed within an automatically generated panel datasource element with the sample source name. You can select or expand this element at any time to view all of the datapoints you have added.
+You can also delete a datapoint by clicking on the x under Remove, or adjust its functionality by checking the box next to it under Show as Question. If the Show as Question box is checked, the datapoint will be shown as a pre-populated question to participants within the survey. If the box is unchecked, it will populate as a hidden question for reporting purposes and for adding logic:
+Note: Changing or deleting a question within the Survey Editor will NOT affect its datapoint within your panel. If you would like to edit or remove a datapoint, you need to modify it within Panel Management.
+3.1: Options
+The options for the datapoint questions are the same as for a regular question of that type, with the addition of the Include Panel Data checkbox. The default for this button is checked. Datapoint questions are autopopulated with the panelist's information from Kinesis Panel.
+Unchecking the box allows you to not include data from from Kinesis Panel on this question when shown to respondents. The question will display without being pre-filled. Submitted survey data replaces the panelist's information in Kinesis Panel.
+A confirmation modal will display when you uncheck the box. Select Continue to show you understand that unchecking Include Panel Data can result in blank data if the question is optional.
+Note: You cannot remove kinesis:includeData="1" from the Survey XML. You must uncheck the Include Panel Data checkbox in the Survey Editor or change it to kinesis:includeData="0" in the Survey XML to prevent the datapoint question from being autopopulated.
+3.2: Editing Limitations & Considerations
+While “date” question types within Panel Management can have multiple formats (i.e., can be entered as MM/DD/YYYY, MM/DD/YY, YYYY-MM-DD), Decipher only sends back to Panel Management a date using the YYYY-MM-DD format.
+This means that any dates entered in a different format will not be applied/saved within Panel Management. If desired, you can add extra instructions to participants on formatting within a “date” question to ensure that dates are only entered in YYYY-MM-DD format.
+4: Launching a Survey with Datapoints
+You can launch your survey using the same process that you would for a normal Decipher survey. If you have never launched a Decipher survey before, see Launching a Survey for a guided walkthrough.
+Once your survey is set live, the Decipher system will verify that all existing datapoints are compatible with Panel Management and publish the survey to Panel Management. Live surveys with a Panel Management sample source are available from the link to Decipher survey drop-down menu:
+Note: Once a survey is closed, you will no longer be able to add it as a Panel Management project.
+4.1: Exit Links
+Exit messages are replaced by exit links that redirect to Panel Management exit pages for all panels added to a survey. You can edit the exit pages by visiting the settings page in the Panel Management Community Manager.
+Panel Management links are only generated when the survey is first launched. Editing the exit link will permanently overwrite the link.

@@ -1,0 +1,25 @@
+Title: 147.5 Release Notes
+Release Date: April 27, 2021
+Release Version: 147.5
+New Features
+Survey
+Autosuggest
+Added the Autosuggest Dynamic Question type.
+Allows participants to enter alpha-numeric responses in one or more open-ended answer fields that automatically suggest potential values as they type.
+Suggestions are pulled from a predefined list of answers uploaded as a .dat file.
+Learn More: Autosuggest Element
+Bug Fixes
+Survey
+XML Editor
+Fixed an issue causing an error when trying to save a database function with skip="1" enabled.
+Dynamic Questions
+Fixed an issue preventing some participants from being able to record a video for the Video Testimonial question when viewing the question in the German language.
+Reporting
+Data Downloads
+Fixed an issue causing responses for multi-select questions to be marked as “True” in OData RespondentText exports, regardless of whether they were selected in the survey.
+Programming & Tools
+API
+Fixed an issue preventing the OData report from showing updated data after being refreshed.
+Architecture/DevTools
+Fixed an issue causing an error when a participant with a user-agent string containing non-UTF8 characters attempted to enter a survey.
+Fixed an issue causing some database connections to display persistent errors instead of disconnecting when a database query failed.

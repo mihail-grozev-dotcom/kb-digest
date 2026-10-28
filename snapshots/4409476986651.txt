@@ -1,0 +1,71 @@
+Title: TextArea Question Attributes
+The <textarea> element is an open-ended question type that gathers text input from participants. In contrast to the <text> element, the <textarea> element produces a multi-line input box
+<textarea label="Q1" optional="0">
+<title>Please tell use about your experience:</title>
+</textarea>
+The code above produces the following result:
+1: Attributes
+In addition to the Question Attributes available, the <textarea> element has access to the following attributes:
+Attribute
+Type
+Description
+width
+int
+Controls the horizontal width of the textarea input field
+height
+int
+Controls the vertical height of the textarea input field
+verify
+string
+Validates the input provided via data verifiers
+disablecopypaste
+uses
+Prevents participants from copying or pasting text
+2.1: width - Set the Textarea Width
+The width attribute is an integer value that controls the overall width of the <textarea> element.
+For example:
+<textarea label="Q1" optional="0" width="75">
+<title>
+Please write your essay below:
+</title>
+<comment>Please be as specific as possible</comment>
+<row label="r1">Introduction</row>
+<row label="r2">Body</row>
+<row label="r3">Conclusion</row>
+</textarea>
+The code above produces the following result:
+2.2: height - Set the Textarea Height
+The height attribute is an integer value that controls the overall width of the <textarea> element.
+For example:
+<textarea label="Q1" optional="0" height="2">
+<title>
+Please write your essay below:
+</title>
+<comment>Please be as specific as possible</comment>
+<row label="r1">Introduction</row>
+<row label="r2">Body</row>
+<row label="r3">Conclusion</row>
+</textarea>
+The code above produces the following result:
+2.3: verify - Set Which Data Verifiers to Use
+The verify attribute controls which of the Data Verifiers to use. verify can apply the validation functions on the entire question or on each individual element, but not both.
+For example:
+<textarea label="Q1" optional="0" verify="len(1,140)">
+<title>In a Tweet-sized response, please tell us how you would change the world:</title>
+<noanswer label="r99">Prefer not change the world</noanswer>
+</textarea>
+The code above produces the following result (errors shown to demonstrate the verify attribute):
+2.4: disablecopypaste - Disable Participant Ability to Copy / Paste Text
+To prevent participants from copying text from and pasting text into the text field in surveys with compat level 154+, add uses="disablecopypaste.1" to the element.
+For example:
+<text
+label="q1"
+optional="0"
+size="25"
+uses="disablecopypaste.1">
+<title>New Text Question/title>
+<comment>Be specific/comment>
+</text>
+3: What's Next?
+Text Element (Survey Editor)
+To convert a <text> question to a <textarea> question in the survey editor, adjust the field height setting to a number greater than 1.

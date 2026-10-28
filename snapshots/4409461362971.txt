@@ -1,0 +1,267 @@
+Title: Survey Query Tool: Create and Query a Virtual Survey Database
+Requires Decipher Cloud
+This tool requires shell access to your project. Learn more About the View / Edit Responses Report if you don't have shell access.
+1: Overview
+The query tool is a command-line script that simulates SQL access to a large number of survey data sources, including:
+completed survey data
+open data
+the click-through log
+the exit log
+the per-page enter and exit log
+any other text file (e.g. sample list)
+Running the query tool creates a temporary virtual database that you can write SQL queries against to correlate and combine data from the survey sources above for any number of surveys.
+For example, given a survey with a question labelled Q5 that requests the participant's email address, we can use the query tool to find out the 5 most popular domain names submitted so far:
+query . 'SELECT SPLIT_PART(Q5, "@", -1) AS "Domain Name", COUNT(*) FROM s1 GROUP BY 1 ORDER BY 2 DESC LIMIT 5'
+Running the command above on a survey with the following data for Q5 produces the results that follow:
+one@decipherinc.com
+two@decipherinc.com
+one@hotmail.com
+one@gmail.com
+one@ymail.com
+two@gmail.com
+three@decipherinc.com
+four@decipherinc.com
+one@domain.com
+five@decipherinc.com
+one@website.com
+[user@server p12345]$ query . 'SELECT SPLIT_PART(Q5, "@", -1) AS "Domain Name",
+COUNT(*) FROM s1 GROUP BY 1 ORDER BY 2 DESC LIMIT 5'
+Assuming . refers to selfserve/9d3/p12345
+Domain Name COUNT(*)
+--------------- --------
+decipherinc.com 5
+gmail.com 2
+domain.com 1
+hotmail.com 1
+ymail.com 1
+2: Tool Syntax & Options
+SQL support in the query tool is driven by the SQLite library. SQL is case-insensitive, however UPPER CASE is used for all SQL reserved words in the examples that follow.
+The basic syntax for the query tool is below:
+query [options] <survey> <survey> ... [query]
+For example:
+query . 'SELECT uuid FROM s1'
+The query tool can be ran with or without a query. If no query is provided, then you will get an interactive SQL shell to run queries against the survey without reloading the survey each time.
+query .
+The command above loads the interactive shell for the survey in the current working directory. For example:
+[user@server p12345]$ query .
+Assuming . refers to selfserve/9d3/p12345
+s1 = selfserve/9d3/p12345 (23 columns)
+sql> SELECT uuid FROM s1;
+uuid
+----------------
+2q4mgtmw8xm4jw36
+syxbasnvf17x6g31
+kfqwhe6uyt5m9aj0
+ch67n8afhn2caraw
+3vg9tjb0zrk7aj8c
+xmk398g94tf2ksuc
+1h1ve1kczc0rj316
+3f739gmca2ae0pmv
+u48gz60c9da6kpxb
+0vqu8rf7r2mw8dj8
+ksv524cuz71xz5r4
+(11 rows in 0.0s)
+By default, the first survey specified is assigned a database table name, "s1". The second survey will be named "s2" and so on. You can override these default table names:
+query mytable=. 'SELECT uuid FROM mytable'
+In the example above, we specify the table name "mytable" instead of the default "s1" and run the query against this table name.
+query main=. temp=temp-12345 'SELECT uuid FROM main WHERE uuid NOT IN (SELECT uuid FROM temp)'
+In the example above, we specify two surveys to pull data from and select all uuid values that exist in the main survey (current directory) and not in the temp survey (/temp-1234).
+There are several output options available. If you're viewing the output in a terminal, then columns are truncated. If you send the output to a file (e.g. query . 'SELECT uuid FROM s1' > all_uuid.txt), then lines are as long as required.
+You may select a different output format using the -f option. For example, to output data in tab-delimited format, use -ftab:
+[user@server p12345]$ query -ftab . 'SELECT uuid, date FROM s1'
+Assuming . refers to selfserve/9d3/p12345
+uuid date
+2q4mgtmw8xm4jw36 2015-01-12 10:49:26
+syxbasnvf17x6g31 2015-01-12 10:49:37
+kfqwhe6uyt5m9aj0 2015-01-12 10:49:48
+ch67n8afhn2caraw 2015-01-12 10:50:05
+3vg9tjb0zrk7aj8c 2015-01-12 10:50:09
+xmk398g94tf2ksuc 2015-01-12 10:50:19
+1h1ve1kczc0rj316 2015-01-12 10:52:02
+3f739gmca2ae0pmv 2015-01-12 10:52:07
+u48gz60c9da6kpxb 2015-01-12 10:52:13
+0vqu8rf7r2mw8dj8 2015-01-12 10:52:24
+ksv524cuz71xz5r4 2015-01-12 10:52:32
+To output data in JSON format, use -fjson:
+[user@server p12345]$ query -fjson . 'SELECT uuid, date FROM s1'
+Assuming . refers to selfserve/9d3/p12345
+[
+{
+"date": "2015-01-12 10:49:26",
+"uuid": "2q4mgtmw8xm4jw36"
+},
+{
+"date": "2015-01-12 10:49:37",
+"uuid": "syxbasnvf17x6g31"
+},
+{
+"date": "2015-01-12 10:49:48",
+"uuid": "kfqwhe6uyt5m9aj0"
+},
+{
+"date": "2015-01-12 10:50:05",
+"uuid": "ch67n8afhn2caraw"
+},
+{
+"date": "2015-01-12 10:50:09",
+"uuid": "3vg9tjb0zrk7aj8c"
+},
+{
+"date": "2015-01-12 10:50:19",
+"uuid": "xmk398g94tf2ksuc"
+},
+{
+"date": "2015-01-12 10:52:02",
+"uuid": "1h1ve1kczc0rj316"
+},
+{
+"date": "2015-01-12 10:52:07",
+"uuid": "3f739gmca2ae0pmv"
+},
+{
+"date": "2015-01-12 10:52:13",
+"uuid": "u48gz60c9da6kpxb"
+},
+{
+"date": "2015-01-12 10:52:24",
+"uuid": "0vqu8rf7r2mw8dj8"
+},
+{
+"date": "2015-01-12 10:52:32",
+"uuid": "ksv524cuz71xz5r4"
+},
+]
+To output data in CSV format, use -fcsv:
+[user@server p12345]$ query -fcsv . 'SELECT uuid, date FROM s1'
+Assuming . refers to selfserve/9d3/p12345
+uuid,date
+2q4mgtmw8xm4jw36,2015-01-12 10:49:26
+syxbasnvf17x6g31,2015-01-12 10:49:37
+kfqwhe6uyt5m9aj0,2015-01-12 10:49:48
+ch67n8afhn2caraw,2015-01-12 10:50:05
+3vg9tjb0zrk7aj8c,2015-01-12 10:50:09
+xmk398g94tf2ksuc,2015-01-12 10:50:19
+1h1ve1kczc0rj316,2015-01-12 10:52:02
+3f739gmca2ae0pmv,2015-01-12 10:52:07
+u48gz60c9da6kpxb,2015-01-12 10:52:13
+0vqu8rf7r2mw8dj8,2015-01-12 10:52:24
+ksv524cuz71xz5r4,2015-01-12 10:52:32
+To remove the header from the output, use the -n option. For example:
+[user@server p12345]$ query -n -fcsv . 'SELECT uuid, date FROM s1'
+Assuming . refers to selfserve/9d3/p12345
+2q4mgtmw8xm4jw36,2015-01-12 10:49:26
+syxbasnvf17x6g31,2015-01-12 10:49:37
+kfqwhe6uyt5m9aj0,2015-01-12 10:49:48
+ch67n8afhn2caraw,2015-01-12 10:50:05
+3vg9tjb0zrk7aj8c,2015-01-12 10:50:09
+xmk398g94tf2ksuc,2015-01-12 10:50:19
+1h1ve1kczc0rj316,2015-01-12 10:52:02
+3f739gmca2ae0pmv,2015-01-12 10:52:07
+u48gz60c9da6kpxb,2015-01-12 10:52:13
+0vqu8rf7r2mw8dj8,2015-01-12 10:52:24
+ksv524cuz71xz5r4,2015-01-12 10:52:32
+3: Available Table Types
+Each time the query tool is used, the survey is loaded and the following tables are generated automatically:
+All tables contain a "rowid" column starting at 0.
+Default Table Name
+Description
+Entries
+s1
+Completed data and results
+One column for the first 2000 survey variables
+s1_exit
+Exit log
+One row per each entry in data/exit.log
+uuid
+session - the session cookie
+date - completion date
+type - "exit" for normal exit or "sample" for sample source error
+element - the full <exit> element used (e.g. "list=1 exit:qualified")
+exit - the condition on the exit element (e.g. "qualified")
+list - the list id for exit or sample source error (e.g. 101)
+var - for sample errors, the variable that caused the error (duplicated or invalid)
+value - for sample errors, the value that was invalid
+extra - additional exit information
+se - numeric value of the sample source error (e.g. SE-04 is 4)
+st - textual value of the sample source error (list, required, completed, invalid, progress, value for SE codes 2 through 7)
+s1_click
+Clickthroughs
+One row per entry in data/variables.dat
+uuid
+date
+ip
+url
+a column for each extra variable
+s1_opens
+Open data
+Recent open data
+date
+source
+In addition to these automatically generated tables, you may also specify a tab-delimited file to query. For example:
+query t1=filename.txt
+In the code above, a table named "t1" will be generated with a column for every column in "filename.txt". For instance, if "filename.txt" contained the following data:
+one two three four foo
+1 2 3 4 bar
+do re mi fa sol
+We can run the query tool on this file to query any of the values:
+[user@server p12345]$ query t1=filename.txt
+sql> SELECT one, two, foo FROM t1;
+one two foo
+--- --- ---
+1 2 bar
+do re sol
+(2 rows in 0.0s)
+4: Custom Functions
+There are four custom functions available built into the query tool that are not available through normal SQLite syntax.
+Function Name
+Description
+SPLIT_PART(text, delimiter, index)
+Split a text value by some delimiter. e.g.
+SPLIT_PART('user@domain.com', '@', -1) returns 'domain.com'
+STATUS(status_code)
+Convert a status value to a status string. e.g.
+STATUS(0) returns "terminated"
+STATUS(1) returns "overquota"
+STATUS(2) returns "qualified"
+STATUS(3) returns "partial"
+COUNTRY(ip_address)
+Returns the country code for a given IP address. e.g.
+COUNTRY("209.234.129.175") returns "United States"
+GENERATE_PASSWORD(length)
+Generates a random password string of provided length. e.g.
+GENERATE_PASSWORD(4) may return "9zs1"
+5: Examples
+Select all available columns in a given survey.
+query . 'SELECT * FROM s1'
+Imagine a survey with a question labelled "Q5" collecting email addresses. Which email addresses were entered more than once?
+SELECT Q5, source, date
+FROM s1
+WHERE Q5 IN
+(SELECT Q5 FROM s1 GROUP BY 1 HAVING COUNT(*) > 1)
+ORDER BY ASC
+What are the top 5 most popular domain names used in Q5?
+SELECT SPLIT_PART(Q5, '@', -1) AS "Domain Name", COUNT(*) FROM s1
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5
+Given two surveys, which sources have completed in both surveys?
+SELECT s1.source, s1.uuid AS "UUID here", s1.date AS "Completion here",
+s2.uuid as "UUID there", s2.date as "Completion there"
+FROM s1, s2
+WHERE s1.source = s2.source
+ORDER BY s1.source ASC
+What is the participant status grouped by country?
+SELECT status(status), country(ipAddress), COUNT(*) FROM s1 GROUP BY 1, 2 ORDER BY 2
+References data/exit.log, for each sample source error, split by list, error description, the variable involved and count.
+SELECT list, st, var, COUNT(*) FROM s1_exit WHERE type = 'sample' GROUP BY 1,2,3 ORDER BY 1,2,3
+In a file named "somefile.txt", what are the most common domain names used in the email column? Show only top 10 common and in any case those with 5 matches.
+query s1=somefile.txt "SELECT split_part(email, '@', -1), COUNT(*) FROM s1 GROUP
+BY 1 HAVING COUNT(*) > 5 ORDER BY 2 DESC LIMIT 10"
+Who opened this email in August and did not click through?
+SELECT source FROM s1_opens
+WHERE date BETWEEN '2014-08-01' AND '2014-09-01'
+AND source NOT IN (SELECT source FROM s1_click)
+In a file named "uuid.txt" containing 10,000 entires, pick 100 random ones.
+query s1=uuid.txt 'SELECT uuid FROM s1 ORDER BY random() LIMIT 100'
+6: What's Next?
+Learn more About the View / Edit Responses Report, a similar tool for viewing participant progress in a survey.

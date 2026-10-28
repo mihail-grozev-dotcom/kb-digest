@@ -1,0 +1,141 @@
+Title: Decipher (previously Decipher) M36 Technical Release Notes
+This document contains the technical release notes for the Decipher M36 (2017) milestone.
+Release Date: January 24, 2017
+Mission Statement
+New survey compat level is 136. Use compat=”136” for all new surveys. This enables:
+Image tag respecting optional attribute on question level
+[KB: Compat Levels]
+New Features
+RIM Weighting
+Allows users to define and implement weighting schemes, without the aid of a Data Processor or external programs.
+Weights can be easily re-run if new data was collected, and you can run weights on one or more subsets of your data.
+Image Upload
+Allows participants to upload an image file directly to a survey. On mobile devices, the camera can be used to take a new snapshot. On desktop, an existing photo file can be selected for upload.
+Participant results can be viewed in crosstabs reporting with links to view individual responses, download the image or mark as a favorite.
+Custom crosstab reporting shows photo thumbnails, with a modal/lightbox preview, download link, and favoriting.
+Language Selector
+Allows a participant to select the language in which to continue the survey and each language is shown in the translated version of that language.
+To enable, add uses=”languageselector.1” to a radio question (with no rows).
+Rows will be auto-generated based on the declared survey languages in otherLanguages and will use the decLang variable for pre-population, if supplied in the survey URL.
+Respondents language selection is tracked in reporting via the standard Language tracker table.
+Languages/rows text can not be edited in the question xml.
+Application Translations
+The following portal application interfaces are now available in Japanese, French, Spanish, German, Russian, and Portuguese:
+Language Manager
+Survey Library
+Field Report
+Crosstabs
+View/Edit Responses
+Campaign Manager
+CATI Mode
+Reporting
+Crosstabs
+Netting functionality has been improved. Now you can choose how you want to display and export nested rows. Previously you only had one option - show all rows and nested rows. Now, you can show or hide the rows you wish.
+Exports will respect the option you have applied to your table.
+Dashboards
+When a dashboard’s page links exceed the navigation space, the links are now shown as scrollable tabs (no longer shown in a drop-down menu).
+This is the default for compat 4.
+Data Downloads
+Dynamic Questions can now use code.py to modify the JSON datamap, using the function:
+def datamap(q, d):
+d['key'] = q.styles.{DQ}.{DQStyleVar}
+This function is useful if you want to automatically extract complex DQ configuration which is not apparent from the data collected or simple question or row text.
+API
+Added max weight option to RIM Weighting API.
+Survey
+Survey Editor
+The image element is now shown in the Survey Editor. The element will continue to be added via the XML Editor and now respects optional on the question level for compats 136+.
+Language Manager
+Azerbaijani and Georgian languages now available in the Language Manager
+Translation files can now be exported/imported in an XML format.
+Summary Table has an ‘Identical’ column that lists when imported translation text matches the original text in the survey.
+Resource Table now has a new ‘Identical’ filter option that allows you to easily see and/or edit text in translation file that matches original text in the survey.
+Added quick link to the System Survey Resources page to easily view the default text displayed for a language.
+Added option to omit blank resource from exported language file.
+alwaysSaveData
+If enabled on a survey with loadData, alwaysSaveData continuously recovers partial data and marks it as complete.
+Any user starting the survey once alwaysSaveData is enabled will have their data immediately available for reporting (and more importantly for loadRecordfeatures).
+This will come at a slight performance penalty: the maximum throughput for such a survey will be roughly halved.
+alwaysSaveData is only available for surveys with loadData enabled.
+Markers are always saved after every page. There are no temporary markers; the markerTimeout setting has no effect.
+XML Styles
+Added support for el.image. Style must be used in question.
+File Manager
+Added ability to upload .json file.
+Programming & Tools
+Allow use of the ad-hoc survey database (surveyDB) and related functions within SECURE surveys
+Survey Editor access can now be disabled for all users (including staff) by adding lumos=False to data/config.py. Requires Decipher Cloud
+Added new option --omit-blanks to xlate to exclude blank resources. Requires Decipher Cloud
+Umanage Updates
+Requires Decipher Cloud
+Extends the functionality of the umanage tool to allow shell users within the supervisors group to control access and permissions. The new options available are:
+Creating groups -- umanage newgroup <groupname>
+Modifying a user’s groups -- umanage groups <username> +group1 -group2 -all
+Set permissions on a directory -- umanage set <directory> <group>
+Get current permissions of a directory -- umanage get <directory>
+Promote user to a full staff user -- umanage promote <username>
+This new feature replaces the need to contact Forsta support with "root" access on the server.
+Bug Fixes
+Survey Editor
+Fixed issue where project path could not be changed in project settings when a temp-preview (from library) existed in project folder
+Fixed issues where number questions that allowed decimal (float) would stip out logic using .check()
+Fixed issue with “Quick quota” hiding “+” button
+Fixed issue with adding logic based on float question
+Project settings “unsaved changes” warning modal now only appears when there are unsaved changes
+Language Manager
+Fixed an issue when using unmacro=”0” did not disable adding languages in Language Manager
+Added “getting started” video to Language Manager page
+Fixed a bug where the translatable=”0” attribute was not respected within loops for translation file export
+File Manager
+Fixed issue where file uploader would not be accessible if you had survey errors
+Dynamic Questions
+Text Highlighter - Fixed an issue with the left mouse button and highlighting text
+Media Evaluator - Fixed legend text alignment for vertical scale
+Video Player - Fixed issue with existing fullscreen player for iOS 10.1.1 on iPhone
+Note: Previous iOS versions were not affected
+Updated stylevars inclusion in translation based on tag restrictions
+Shoppingcart - Fixed an issue where translated title & comment text was not pulled correctly from an xlate file
+Offline Project Type
+Markers can now be used in offline surveys
+Fixed issue where “Manage Interviewers” link displayed to users without required permission
+Campaign Manager
+Fixed an issue where changes to the email invite were saved too frequently, impacting server performance
+Fixed issue where reminder email content did not update
+Fixed issue where “undefined” message was shown
+Dashboard
+Dashboard exports with very long lists of elements in tables wrapped with HTML shortcode can now be exported
+Fixed error shown when using { {filter.total} }
+Fixed issue where conditional banners using showif would not work with cond
+Crosstabs
+Fixed not being able to save changes to a numeric table with a zero net
+Fixed error shown when using percent base setting "Total Shown Variable"
+Fixed issue with number DQ charts not showing option to enable/disable
+Fixed an issue with saved reports - export not working (Pinned Gridtable)
+Fixed an issue where crosstabs would not export number nets charts
+The numeric net tag now displays in the mean summary table.
+Fixed issue with percentages repeating on graphs
+Fixed timezone text shown on logic nodes to match server timezone
+View/Edit Responses
+Fixed issue where View/Edit responses would show a drop-down menu instead of text when editing an open-ended text box in a checkbox question
+Field Reports
+Fixed issue with generate-dashboard script not running due to user toggle changes Requires Decipher Cloud
+Any HTML tags are now removed when exporting the Field Report via email
+Data Downloads
+Fixed an issue where standard datamap layout could not be changed for Offline projects
+Fixed issue value was not included for Triple S export
+Portal
+Fixed error for SAML login for new/disabled accounts
+Fixed an issue preventing clearing simulated data in /temp-edit-live
+Updated project controls text to "Language Manager"
+Fixed downloading
+Project Warnings
+Fixed issue with project warnings API not being handled by the loadbalancer
+API
+Changed data editing API to allow changing a single variable per record
+Programmer Tools
+Fixed an issue where setting a survey live with the live script via the shell would cause macros to be expanded even if unmacro=”0” was set
+Fixed issue where launching a survey would add duplicate theme attributes
+Logic Nodes
+Fixed an issue when using the email logic node with a delay. It will now show the correct delivered time in the heading
+Misc / Custom Projects
+Fixed an issue when low memory could cause the survey state being left undefined

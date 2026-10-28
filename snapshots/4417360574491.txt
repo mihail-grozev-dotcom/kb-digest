@@ -1,0 +1,26 @@
+Title: Net Promoter Score (NPS) Element
+The Net Promoter Score (NPS) element allows survey participants to rate their likeliness to recommend a product or service on a scale of 0-10, following standard Net Promoter System® guidelines.
+The default response options for the Net Promoter Score (NPS) element are required for calculating the question's Net Promoter Score® (NPS) and cannot be modified. If desired, however, you may alter the legend to match your company’s brand or language.
+Note: Net Promoter, Net Promoter System, Net Promoter Score, NPS and the NPS-related emoticons are registered trademarks of Bain & Company, Inc., Fred Reichheld and Satmetrix Systems, Inc.
+1: How it Works
+The Net Promoter Score (NPS) element utilizes a Number question base with a 0-10 rating scale. Participants select a value from the scale and their responses are used to automatically calculate the Net Promoter Score for your question.
+In Crosstabs, the Net Promoter Score appears alongside a simple gauge chart for each row added to the NPS question. You will also see an indication of whether the score is good, great, excellent, or needs improvement.
+Additionally, participant responses are grouped into the following nets:
+Promoter (9-10): The number of survey participants who are most likely to remain loyal to your brand or business and to refer it to other people.
+Passive (7-8): The number of survey participants who are currently satisfied with your brand or business but may defect to a competitor’s product or service.
+Detractor (0-6): The number of survey participants who are unhappy with your brand or business and will likely defect to a competitor’s product or service.
+2: Adding an NPS Element
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to view and modify your project settings.
+You can add an NPS question to any survey using the Survey Editor. To add an NPS question, click "+ Element", select the "Rate, Rank, & Sort" tab and choose "Net Promoter Score (NPS)". Then click "Add".
+Once you have inserted the NPS question, you can change the question label and adjust the default question text in the areas provided. You may also change the text and position for the scale legend.
+2.1: Configuring the Style Settings
+To change the legend text and position for your NPS question, click the "..." button at the top right of the NPS element and select "Update Styling".
+The "Question Display Options" window will appear, where you can adjust each of the following settings for your NPS question:
+Note: Additional information about each feature will appear when you mouse-over the text in the window.
+Scale Legend Position: Select the position for the scale legend.
+Above: Displays the legend above the scale.
+Below: Displays the legend below the scale.
+Left Legend: Enter the text to appear above / below the “0” in the scale.
+Middle Legend: Enter the text to appear above / below the “5” in the scale.
+Right Legend: Enter the text to appear above / below the “10” in the scale.
+Click "Save and Preview" to preview your settings at any time. Once you are satisfied with your changes, click "Save and Close".

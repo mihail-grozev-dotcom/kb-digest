@@ -1,0 +1,54 @@
+Title: Answer Piping
+1: About Answer Piping
+Answer piping allows you to show the answer options from one question in another question, based on what the participant selects (or does not select).
+This feature allows you to perform the following:
+Show rows based on:
+Answers for rows of a previous question.
+Answers for columns of a previous question.
+Answers for choices of a previous question.
+Show columns based on:
+Answers for rows of a previous question.
+Answers for columns of a previous question.
+Answers for choices of a previous question.
+Show choices based on:
+Answers for rows of a previous question.
+Answers for columns of a previous question.
+Answers for choices of a previous question.
+General information:
+The number of answer options (rows, cols or choices) in the new question and the target question must be the same.
+Target questions can be Single Select, Multi-Select, or Number questions with rows and/or columns and/or choices.
+Definitions:
+Target question: The question and answer options used as the source for the pipe.
+1-dimensional question: A question that only has rows or columns or choices.
+2-dimensional question: A question that has rows and columns, or rows and choices, or columns and choices.
+2: Setup Answer Piping
+In order to pipe answers, the survey must have a target question (i.e., the question and answer options you will use for showing rows or columns based on the response).
+Add the target question and answer options. Then click "[Answer] Actions" and select "Copy all [Answer] Text".
+Next, add a new question that appears after the target question in the survey. There must be a page break between the target question and the new question in order for the logic to function.
+Note: The two questions must have the same number of answer options (i.e., rows, columns, or choices).
+Then click "[Answer] Actions" and select "Answer Piping".
+The next steps vary slightly based on the question type of the target question (i.e., the source of the pipe).
+Jump to the section:
+Piping From a One-Dimensional Question
+Piping From a Two-Dimensional Question
+Piping From a Number Question
+2.1: From a One-Dimensional Question
+In the "Show rows/cols if" section in the general options panel, click the drop-down menu and select the target question. If a one-dimensional question is selected as the target question, a second drop-down menu will appear below the first.
+Then choose one of the following:
+is selected: Show the rows that were selected in the target question in the new question.
+is not selected: Show the rows that were not selected in the target question in the new question.
+The logic condition is set and displays above the question text in the staging area and under "Show rows/cols if" in the panel to the right of the staging area.
+2.2: From a Two-Dimensional Question
+In the "Show rows/cols if" section in the general options panel, click the drop-down menu and select the target question. If a two-dimensional question is selected as the target question, a list of its rows or columns will appear in checkbox form. Check the rows or columns that must be selected in order to show the answer options from the target question. If multiple options are checked, choose "and" or "or" from the drop-down to complete the condition.
+The logic condition is set and displays above the question text in the staging area and under "Show rows/cols if" in the panel to the right of the staging area.
+2.3: From a Number Question
+In the "Show rows/cols if" section in the general options panel, click the drop-down menu and select the target question. If a Number question is selected as the target question, a text area will appear. Enter the number or range that must be entered in order to show the answer options from the target question.
+Examples of possible number entries:
+Single number: 25
+List of numbers (no spaces): 25,26,32
+Range of numbers (no spaces): 25-49
+Inequality signs: <50 or >60
+Combination of the above (no spaces): >25,30-50,75
+The logic condition is set and displays above the question text in the staging area and under "Show rows/cols if" in the panel to the right of the staging area.
+3: Deleting an Answer Condition
+To delete a row, column, or choice condition for answer piping, locate the question and click the "Show rows/cols if" item in the general options panel. Then click the "x" next to the condition you want to delete.

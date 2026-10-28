@@ -1,0 +1,68 @@
+Title: Uploading Data Files
+You can use the Logic Library to automatically generate any data file that the data API can create and upload it from a survey. This can be done using either the "Transfer Data" element in the Survey Editor or the "upload" logic node in the survey XML.
+1: Using the Survey Editor
+To transfer survey data to another application using the Survey Editor, click "+ Add Survey Element" under the staging area:
+In the Element Library, click "Custom" and select the "Transfer Data" element from the list. Then click "Insert":
+Your new element will appear in the staging area, where you can configure the settings for the data transfer:
+The following options are configurable:
+Username: The account username.
+Password: The account password. To encrypt your password, click "Encrypt Field".
+Host: The name of the server to connect to for data upload.
+Protocol: The protocol by which to connect to the web server. Can be set to sftp (SSH File Transfer Protocol), ftp (File Transfer Protocol), or ftps (secure File Transfer Protocol).
+Directory: The directory on the server to switch to before uploading the data file.
+Filename: The filename following the date marker format. The default format is data_%Y_%m_%d_%H_%M_%s.dat.
+Data Format: The format in which the data file will be sent.
+Condition: The crosstab logic condition that determines which participants are included in the data file.
+Layout ID: The layout ID number which determines which variables to include in the data file. Recommended for large subsets of variables. See the data layout manager for layout ID numbers.
+Variables: Variables to include in the data file. Recommended for small subsets of variables.
+Frequency: How often the data file is transferred to the external server. Can be set to share files daily or hourly.
+When: When the snapshot will be sent. Must be entered in HH:MM (24-hour) format.
+2: Using the XML
+The "upload" logic node is periodic, meaning that it can be scheduled to upload data files at pre-defined intervals. To learn more about periodic logic nodes, see Scheduling Logic Nodes.
+Note: You must have at least data view permissions to use the "upload" logic node to execute a data input/output call.
+To create and upload a data file using the upload logic node, you will need to add a <logic> tag to your survey XML, specifying both a label and uses="upload.1". You should also include at least the location of the file, its password (if encrypted), and your desired run time.
+Note: You can encrypt a data file with a password in the debug screen of the Logic Library.
+For example, if you wanted to schedule a file to upload daily from your local drive, you might add the following node:
+<logic label="df" uses="upload.1"
+upload:host="localhost" upload:password="Q1JZUBUAAAAAAAAAGwUbZ1zp3PT4NkyuUQhnMrvVB5PNEyj9W8NYJFo5yPCRfHdhxb/WCjxwdqIoQyuM"
+upload:period="daily"
+upload:time="09:00"
+upload:cond="yesterday"
+upload:username="test"/>
+2.1: Parameters
+The following parameters can be passed to the upload.1 node:
+Attribute
+Description
+upload:host
+The name of the server to connect to for data upload.
+upload:username
+The account username used for node login.
+upload:password
+The password to the account used for node login.
+Note: We recommend using encryption. To encrypt the password, visit the project logic debug page. You can encrypt a password so it's usable in a certain scope: either the survey and its subdirectories, or any survey within your company. While the encrypted password can only be encrypted by our server system, any user that can view the survey.xml can paste it into their own survey.
+upload:format
+Determines what file format is being generated (by default, a simple tab-delimited file).
+Note: For a current list of all available formats, see the API documentation.
+upload:protocol
+Determines how to connect to the server, and can be set to one of the following:
+sftp - is file transfer over SSH. This is the recommended option.
+ftps - is FTP with TLS option. This is a legacy protocol that starts insecure and negotiates into a secure connection. Not recommended. After connecting, the client will issue the PROT P command to encrypt data transferred too.
+ftp - is FTP without encryption. This is not recommended.
+upload:cond
+A Crosstabs logic condition that determines the condition for what participants are uploaded.
+Tip: As a convenient shortcut, if set to yesterday, upload:cond translates to the expression date_days(1,1) which means all data from midnight yesterday up to but excluding midnight today. Thus, if your logic node is set to run at 00:30 every night, you receive yesterday's data shortly after midnight. Other variations on this could be setting the cond to qualified and date_days(1,1) to further limit. The logic keyword yesterday can not be used with additional logic.
+upload:fields
+Restricts what data is sent; setting upload:layout may be better -- data export layouts allow you to specify which fields to include and in which order.
+upload:filename
+By default, the uploaded filename will be a date and time string (e.g., date_2015_07_28_16_00_00_dat). If preferred, you can specify this variable to customize the file name. Once enabled, you can use % formatting characters to create your own file name, similar to the date marker logic node (the default format is data_%Y_%m_%d_%H_%M_%S.dat).
+upload:directory
+Allows you to switch to another directory before uploading the file (e.g., upload:directory="uploads/survey4213/daily_data"). Multiple directories must be separated with /, and by default, the file is sent only to the connected directory.
+upload:period
+Sets how often the file gets uploaded. Can be set to:
+hourly
+daily
+upload:time
+Selects the time of day the file will be uploaded.
+When upload:period is set to daily, use 24-hour format with hours and minutes. If the logic node is added before 23:02, the upload will happen the same day; otherwise, the file will be upload the next day.
+When upload:period is set to hourly, use 0through 59 to indicate the time of each hour you want the upload to happen. For example, if you set it to 30, then the upload will happen at the thirty minute mark each hour.
+Note: The logic node writes data to the debug database.

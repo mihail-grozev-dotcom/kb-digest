@@ -1,0 +1,13 @@
+Title: Adding a Single Select Column in a Multi-Select Question
+Decipher allows you to change a column in a two-dimensional Multi-Select question into a single select form. This is can be used in "awareness" type questions, where you would like participants to select a favorite among the responses with which they have indicated they are familiar.
+1: Creating a Favorite Column
+To change a column in a Multi-Select question to a single select form, click the column you would like to change so that its options appear to the right of the staging area. Then, in the "Мore Оptions" drop-down, select "favorite".
+The "favorite" option will be added; check the box to enable it.
+1.1: Example
+When "favorite" is enabled for a column, participants will only be able to select one response for that column. In the following example, participants can select multiple responses for each of the first two columns, while the "Favorite" column is restricted to one response.
+2: Additional Considerations
+The following rules and restrictions apply when adding a single select column to a Mutli-Select question:
+The question must be grouped by columns (e.g., grouping="cols").
+There must be at least two rows present.
+There must be exactly two columns present.
+The second column must be the one with the "favorite" option applied.

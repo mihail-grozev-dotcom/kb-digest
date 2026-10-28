@@ -1,0 +1,65 @@
+Title: Crosstabs FAQs
+Q. How many segments can you have in a Crosstab report?
+A. There is no limit to how many segments you can have. This is dependent on the performance of your computer.
+Q. Can I run a quick split with multiple questions?
+A. Yes, a "Quick Split by Question" can be split by two questions using the Append option. Learn More: Running a Quick Split Crosstab
+Q. How can I quickly find a question in my Crosstab report?
+A. Press CTRL+F (on Windows) or CMD+F (on a Mac) to open the Search dropdown in the upper right corner of the page. Type any part of the question label or text to quickly jump to that question. Question labels for built-in questions such as qtime, status, and vdropout are shown in the list as well for easier searching.
+Q. Can I create a table report and group questions that share the same banner?
+A. You'll need to create your Crosstab report, run it, and apply a table set. You can create a table set from the Edit Settings window.
+Q. Is the saved report name going away?
+A. No, Saved Reports are still available in Crosstabs. Save Reports allow you to create a public deliverable.
+Q. Can all three logic types be combined in this area?
+A. Yes, to merge all logic together and be treated as one, click the merge link icon.
+Q. Could you exclude a certain set of responses?
+A. Yes, you can do this by selecting the responses you want to exclude and linking them using the link icon. Then add more logic using the +Logic button and select responses you wish to exclude. Use the logic connector "And Not" to exclude those items.
+Q. Will speed be better for running reports than before?
+A Generally, yes. A lot of optimizations have happened. You should be able to access your data faster with the improved user interface and load times have been optimized. A few things you can do to increase speed:
+1) Create table sets to reduce the number of tables displayed
+2) Reduce the number of segments
+3) Group stat testing to specific columns so calculations do not need to be run on all segments.
+4) Use the export feature on the report landing page. This will allow you to export all your traditional raw data as well as Excel/PowerPoint/PDF without having to load the entire report.
+Q. Will the multi-dimension summary grids work if each brand has a different base size (for example, for attributes asked among aware, each brand will have a different base size, will the multi-dimension grid work in this case?)
+A. Yes, bases sizes will work properly for conditional multi-dimension grid questions.
+Q: Can you easily nest more than two questions to create a banner?
+A: Yes, a "Quick Split" can nest two questions and groups can be nested multiple times from the editor preview.
+Q: Is there a way to show charts in one click instead of enabling question by question?
+A: Unfortunately, that feature is not available at this time.
+Q: Can we see what the XML view looks like?
+A: You can access the XML editor by editing a crosstab and selecting XML from the top left of the window.
+Q: Do you have outputs that work with eTabs - also what outputs of the crosstabs (Word, Excel, etc.) are available?
+A: You can browse for an eTabs compatible data download option in Crosstabs by accessing the exports action icon for each saved crosstab on the landing page, and then selecting “view all data formats”. All data download options for Crosstabs remain the same in this new update.
+Additional exports in crosstabs include Powerpoint, PDF and Excel. You can access crosstabs exports from the landing page, by selecting the "Export" action icon for each saved Crosstab. Learn More: Download Data in Crosstabs
+Q: Is there a way to enable that table view for all two dimensional grids or will it have to be done on a table by table basis for projects that were created before the release?
+A: This will be done automatically for any grid / two dimensional question created after the Decipher M28 release. There is an option to turn grid tables On/Off for the project under the "View Options" menu.
+Q: Can you group Boolean logic? In other words, put parenthesis around arguments?
+A: Yes, this can be done in the UI by using the merge logic feature. When the merge button is hovered the two logic nodes that will be merged are highlighted with green borders and this creates similar logic to wrapping those nodes with parenthesis. You can also work in the XML editor to group Boolean logic if you're familiar with the syntax. Learn More: Nested Logic
+Q: On the table editor, how do you filter it so you can just see counts?
+A: This feature is not available with the current updates to Crosstabs.
+Q: Since you can only create a table set in Edit Settings, do you have to run the entire database before creating/setting a table set? It can't be done before running everything?
+A: No, you can create a table set directly from the landing page by clicking on the "Settings" action icon for any saved crosstab.
+Q: Is it possible to add ALL questions at once to the whiteboard, without favoriting each question? So, is it possible to put ALL survey questions onto the whiteboard all at once?
+A: This feature is not available with the current updates to Crosstabs.
+Q: Can you adjust the definition of small base sizes? E.g., change ** to <30 and * to <20.
+A: This change cannot be performed in the crosstabs user interface. However, you can submit this as a custom request to your support team and they can implement the changes.
+Q: What has changed regarding Video Analyzer/Media Evaluator output in the crosstab?
+A: No changes have been made to the Video Analyzer/Media Evaluator output at this time.
+Q: Has the netting been improved? So the responses are under the net?
+A: Nets are going to remain the same with this update to Crosstabs. When adding nets to your table you have the option to indicate location either “Above the first included row” or “Below the last included Row”.
+Q: Are the grid tables the default on all new projects? Or will Ihave to manually add them?
+A: They will be automatically created for any grid / two dimensional question created after the Decipher M28 release. There is an option to turn grid tables On/Off for the project under the "View Options" menu.
+Q: What is the syntax for the stat testing groups? Can you do a quick simple example showing how to you would make a banner where you only test A-B and C-D?
+A: You can use commas to separate segments into stat test groups. Each segment is represented by the letter shown in the Crosstab Preview.
+Example:
+A-C,DE,F or ABC,DE,F would stat test segments A vs. B vs. C together. It would also test D vs. E separately, and F wouldn't be stat tested against any other segments.
+Q: Any changes to the sig testing capabilities? Is it possible to have significance testing across non-unique groups? Women 18-24 vs. Women 18-34, for instance.
+A: Yes, if you’re adjusting the settings for a saved crosstab with these two non-unique segments then you can assign the stat testing groups by using commas to group the segments.
+Example:
+A-C,DE,F or ABC,DE,F would stat test segments A vs. B vs. C together. It would also test D vs. E separately, and F wouldn't be stat tested against any other segments.
+Q: Will the new crosstabs work with any compat version?
+A: Yes, we plan to migrate all existing Crosstab reports to the new format. There are a few exceptions with certain banner reports that may not work. Our support staff is aware and will assist in migrating reports that don't load. The standard "Total" report will work for all studies.
+Q: Can you show us how to chart within the crosstabs tool? (in PowerPoint)
+A: You can still add charts to crosstabs by clicking the “Add/Edit Charts” button for each table in Crostabs. Once you have all of your charts added, you can export your crosstab by clicking Export at the top of the page and selecting powerpoint.
+Learn more: Exporting Crosstabs
+Q: What is the default for saving crosstabs and table sets?
+A: Private, only the owner is shown the crosstab or table set.

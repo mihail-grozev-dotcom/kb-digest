@@ -1,0 +1,23 @@
+Title: 143.9 Release Notes
+Release Date: September 17, 2019
+Release Version: 143.9
+New Features
+Participant Sources
+Response Summary
+Optimized how quotas are handled to improve loading times in surveys with delphi="1".
+Sample Marketplace
+Improved participant source management:
+Closing a survey now automatically pauses all participant sources containing purchased sample.
+When copying a survey, any participant sources containing purchased sample are now disabled in the duplicate survey.
+When creating or re-qualifying participants, participant sources containing purchased sample are now automatically closed once their total response count is fulfilled.
+In-App Text Changes
+"Participant Sources" renamed to "Participant Sources" within the navigation menu and all tool headers.
+"Participant Sources" renamed to "Participant Sources" within the Survey Editor.
+References to "participant(s)" updated to "participant(s)" throughout all tools, menus, and tooltips.
+Bug Fixes
+Reporting
+Fixed an issue causing extraneous record duplication when using certain survey attributes.
+Fixed an issue causing participants’ total interview times to be displayed incorrectly for some surveys with delphi="1".
+Survey
+Participant View
+Fixed an issue which prevented some participants from completing surveys without delphi="1" that utilized certain survey attributes.

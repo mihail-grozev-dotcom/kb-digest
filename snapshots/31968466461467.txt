@@ -1,0 +1,97 @@
+Title: Media Testimonial Element
+The Media Testimonial element prompts participants to answer a question using a video or audio recording. This reveals the participant's true voice by capturing their tone, volume, and even facial expressions.
+1: Adding a Media Testimonial Element
+Media Testimonial is desktop, tablet, and smartphone compatible.
+Note: You can set the Show filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to verify your project settings.
+To add a Media Testimonial element, first click the + Element button to add a new survey element. Then click Participant Upload under Question Types and select the Media Testimonial element. Then click Add.
+2: Configuring Style Settings
+To configure the style settings for the Media Testimonial question, click the ellipsis ("...") button at the top right of the element in the staging area and select Update Styling.
+The Question Display Options modal opens for you to specify how the question is displayed to participants. Mouse-over a feature on the left to view information about that feature at the right.
+All of the texts listed below can be shown in each participant's respective language. See Language Manager Overview to learn how to manage translations for your survey.
+Audio Only: Enable this option to capture audio without video. Disabled by default.
+Recording Time Minimum: The default is 5 seconds. You can select one of five options ranging from 0 to 30 seconds. More options are available via XML Editor. Learn more: Customizing the Media Testimonial Element
+Recording Time Limit: The default is 120 seconds. You can select one of eight options ranging from 15 to 120 seconds.*
+Skip Option: Leave this enabled to add a checkbox to the question, which participants can use to indicate they experienced a recording issue. Even if the question is configured as mandatory, participants who check this box can proceed without submitting a recording.
+Skip Option Text: When you leave Skip Option enabled, participants see this text next to the checkbox.
+Open Microphone Text: When you enable Audio Only, participants see this text near the microphone button.
+Open Camera Text: Participants see this text near the camera button.
+Upload Audio File Text: Participants see this text near the upload button.
+Upload Video File Text: When you enable Audio Only2, participants see this text near the upload button.
+Cancel Text: Participants can click this, after recording or uploading, to return to the question's initial menu.
+Loading Text: Participants see this when their recording is being uploaded.
+Participants will see the following texts (or hear them, when using a screen reader) only in certain browsers and on certain devices:
+Flip Camera Button Title
+Change Camera Button Title
+Cameras Menu Title
+Change Microphone Button Title
+Microphone Menu Title
+Time Limit Text and Seconds Text: Participants see these texts near the recording time limit amount.
+Upload Size Limit Text: Participants see this text near the upload size limit amount.
+Existing Response Text: Participants see this text when navigating backward through the survey to a Media Testimonial question they've already answered.
+Invalid Audio File: Participants see this text after trying to upload an audio file that doesn't meet the filetype requirements.†
+Playback Error: Participants see this text if their recording has the correct filetype but can't be played back in their browser.
+Unsupported Encoding: Participants see this text when trying to submit a recording that doesn't meet the filetype requirements.
+Time Limit Exceeded: Participants see this text after uploading a recording that exceeds the Recording Time Limit.
+General Error: Participants see this text when an unidentified error occurs.
+* More options are available via XML Editor. Learn more: Customizing the Media Testimonial Element
+† Media Testimonial accepts the following recording filetypes/encodings. Note that if the participant uploads a video file when "Audio Only" is enabled, Media Testimonial will try to extract the audio from that video.
+audio
+.mpeg
+audio/wav
+audio/webm
+video/mp4
+video/webm
+video/quicktime (.mov)
+video
+video/mp4
+video/webm
+video/quicktime (.mov)
+Note: We strongly recommend allowing participants to skip uploading a recording due to any compatibility issues they might experience.
+Note: Recordings are stored in the same geographical location as your Forsta Surveys server.
+3: Configuring Question Options
+Question options are located to the right of the staging area. You can set rules for the entire question by clicking near the question text. The Options menu will show the question label and type for the element you select.
+Label: The label assigned to the element. Click to edit the default label for the Video Testimonial element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all".
+Mandatory: Check the box to force participants to provide a response. When checked, participants will be unable to continue the survey without completing the question (or selecting the Skip option, if available).
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+Learn more: Customizing the Media Testimonial Element
+4: Recording or Uploading a Testimonial
+Media Testimonial appears to the participant as shown below, with some default texts changing to match the type of recording (video vs. audio). You can customize all texts via the question's style settings.
+The participant can click "Open Camera" / "Microphone" button, or "Upload Video" / "Upload File" to provide their testimonial. The participant can also check the box under these buttons to skip the question, if needed. You can toggle this option (which is enabled by default) via the question's style settings.
+The participant clicks the Record button to start the testimonial, and may click the Stop button to finish recording. If the participant doesn't stop the recording manually, it stops automatically when it reaches the configured maximum time (default 120 seconds) or the maximum file size limit (default 1 GB).
+The participant will be notified A warning icon displays if the participant's soulnd or light levels are too low.their overall lighting is poor or when no sound is detected.
+When "Audio Only" is enabled, a live waveform is displayed, as shown below:
+Afterward, the participant can playback/pause the recording by tapping it, or record a new testimonial if desired. They can also click "Cancel" to return to the original options of recording or uploading their testimonial.
+5: AI Transcriptions
+Important: To enable the AI transcription feature, contact your Forsta representative.
+Version 2 of the Media Testimonial Element allows for automatic AI transcriptions. To enable the transcription feature, contact your Forsta representative.
+Once the AI transcription feature is enabled, responses to the Media Testimonial Element are automatically sent for translation every 30 minutes.
+To view the transcriptions, go to Responses, then View/Edit Responses. Select Load Data, then select a specific record number and view the Q#_transcription response.
+If no speech/audio was detected, the Q#_transcription response may be Failed to transcribe or (No speech detected.
+The language of the speech/audio is automatically detected by OpenAI and the audio is automatically transcribed in that language.
+6: Viewing Results in Crosstabs
+After your survey has collected data, you can run a Crosstabs report to view and download media testimonial recordings, with options to filter responses by your defined segments and variables.
+6.1: Retrieving the Videos
+In Crosstabs, you can:
+View reports to download participants' answers.
+Use "Download All" to bulk download all testimonials. Recordings are split into different directories based on segment.
+Use "Current Segment" to bulk download only the selected segment of video testimonials.
+Download videos by report segment, or by those marked as Favorite.
+Play back the testimonials.
+Mark a testimonial as a favorite. Favorites are used for filtering in the Dynamic Questions chart.
+Important: Uploaded media files for Media Testimonial are removed 90 days after date of upload.
+Learn more: Running a Total Crosstab
+7: Data Privacy
+The Speech Service is part of Forsta's Azure subscription. Once data has been submitted to Azure, it is governed by their data policy.
+Media files are stored on the AWS S3 and not elsewhere, and only participant response data (audio files or video’s audio files) are submitted. We do not include any metadata.
+Your participant responses:
+are NOT available to other customers.
+are NOT available to Speech Service.
+are NOT used for training (including improvement of Speech models, any Microsoft or 3rd party products or services, etc.)
+For Decipher servers hosted in EU, Regional Azure Speech Service installations are used. The data is routed to the Speech Service installation in Stockholm, Sweden. For non-EU installations, global deployment of Speech Service means it is processed in the nearest available node.
+Data stored on the Decipher side:
+follows standard Decipher data retention and security including encryption at rest
+logging for Speech Service (such as request and response) is retained for 5 weeks separate from the retention for the survey data
+ISO certification notes: Microsoft Azure undergoes ISO/IEC 27017 audit for compliance. You can download the list of certifications undergone by it on the Microsoft portal
+Third party: Data sent to Azure Speech is retained on Azure for 48 hours and deleted after; see the Data Privacy note for Azure Speech Service.

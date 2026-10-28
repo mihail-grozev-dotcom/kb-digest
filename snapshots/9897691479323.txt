@@ -1,0 +1,11 @@
+Title: May 30th Technical Release Notes
+Release Date: May 30, 2018
+Bug Fixes
+Reporting
+Field Report
+Fixed a rare issue where the Field Report could not be split by list values which started with "r" and were not followed by a number
+Survey
+Survey Editor
+Fixed an issue with <script> content not loading within notes in the Survey Editor
+Misc / Custom Projects
+Updated the portal user menu to show "enable IP address" for users with shell access, even if non-staff

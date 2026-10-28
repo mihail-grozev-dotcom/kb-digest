@@ -1,0 +1,15 @@
+Title: Survey Summary
+The Survey Summary allows you to quickly review the URLs, exit links, quotas, and other important settings for your survey all in one place.
+1: Accessing the Survey Summary
+The Survey Summary can be accessed from both the survey and the project pages in the Portal.
+1.1: From the Survey
+To access the Survey Summary while viewing your survey in the test environment, select "Project Summary" under "Test" in the Quick Links menu.
+1.2: From the Portal
+To access the Survey Summary from the Portal, first click “RESPONSES” in the navigation menu at the top of any Portal page. Then select “Survey Summary”.
+2: Viewing Summary Details
+The following information is displayed in the Survey Summary:
+Survey URLs: This section displays the current URLs for the survey. The URLs are system-generated to specify the survey path, sample list and language, and the variables that must be included for the link to function. You may select "Use the grid to configure the survey URLs for this project" to edit the links.
+Exit Links: This section includes a summary of the exit links or messages that will appear for qualified, terminate, and overquota participants when they complete the survey. See Creating a Survey Link to learn more about customizing survey exit links.
+Quotas: This section includes a summary of the quotas associated with the survey. To edit the quotas, select the quota icon in the question tree and edit the quota element.
+Mobile: This section describes the mobile settings, including the compatibility level and allowed devices. You will also find any warnings about the features in your survey that are not ideal for mobile surveys.
+Settings: This section includes a summary of the current settings in the survey.

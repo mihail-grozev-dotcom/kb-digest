@@ -1,0 +1,51 @@
+Title: Splitting the Response Summary
+The Response Summary can be split by several different variables, including system default variables, variables passed through the URL with a value list defined, and custom date ranges.
+Splitting the Response Summary by URL Variables and date ranges require some setup beforehand. This document will cover the process for setting up and applying splits to these custom variables in the Response Summary.
+1: Setup
+The following section describes how to setup URL Variables and custom date ranges in the Response Summary.
+1.1: URL Variables
+If a variable passed through the URL has a value list defined, tabs in the Response Summary can be split by the set values of the variable.
+To begin, the variable must be included in the URL variables configured for the participant source, set to “Required”, and have a value list defined for authentication.
+In the example below, the email sample includes the required group variable with a value list of 1, 2, 3.
+Note: Avoid starting your variable name with "r" followed by a number or numbers.
+Learn More: Customizing Participant Sources
+2: Usage
+To access the Response Summary, select "Response Summary" from the Report menu.
+Learn More: About the Response Summary
+The Response Summary can be split by a variety of variables. To select a variable for the split, open the "Split Report by:" menu at the top of the report, select the variable or variables to split the report by, and click "split."
+2.1: Default Variables
+By default, there are several variables by which the Response Summary can be split. No setup is required for the variables available in the "Split by" menu.
+The Response Summary can be split by the following variables:
+decLang: Languages added to the survey.
+OS: Operating systems tracked by the “vos” virtual question.
+browser: Browsers tracked by the “vbrowser” virtual question.
+Mobile OS: Mobile operating systems tracked by the “vmobileos” virtual question.
+Mobile Category: Types of mobile device tracked by the “vmobiledevice” virtual question.
+The Response Summary can be split by multiple variables at once.
+2.2: Participant Source Variables
+If a required variable with value list authentication is added to a participant source, the Response Summary can be split by the defined values of the variable. Only variables with a defined value list are available in the "Split by" menu.
+Note: Value lists are defined in the Email Campaign recipient list. See Creating a Recipient List to learn more.
+After running the split, all tabs in the Response Summary will be split by all values of the selected variable or variables.
+2.3: Date Ranges
+If a date range is declared in a custom report, the Response Summary can be split by the defined dates.
+2.4: Email Providers
+When you split the campaign by email in the Response Summary, the campaign tab splits to show you the details of how the email was sent through various email providers.
+The following table lists the providers and the associated domains used for most summary statistics. The asterisk character (*) indicates a wildcard match.
+Email Provider
+Associated domains
+Gmail
+googlemail.com, gmail.com
+Yahoo
+ymail.*, yahoo.*
+Hotmail
+hotmail.*, outlook.*, live.*, msn.*
+AOL
+aim.*, aol,*
+Apple
+icloud.com, mac.com, me.com
+Other
+*
+2.4.1: Understanding the Spam Rate
+The spam rate is based on the number of spam complaints divided by the number of emails sent, including reminder sends.
+On the Responses > Response Summary > Campaigns tab, in the Summary Statistics table, the Spam Rate is the number of spam complaints divided by the number of emails in the initial send for all campaigns.
+On the Responses > Email Campaigns tab, the Spam Rating column is the number of spam complaints divided by the total number of emails sent (including reminders) per campaign.

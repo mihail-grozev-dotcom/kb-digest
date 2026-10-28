@@ -1,0 +1,8 @@
+Title: Valid Input Characters for Question Options
+The following details the valid and restricted characters which can be used for label names, and row / column / choice options when creating survey questions in Decipher. This information applies to all question types.
+1: Valid Characters
+Use only a-z, A-Z, 0-9, and the underscore character (_) for label names and question options.
+Note: Make sure that you do not use any of the following special characters when changing your label names: ~`!?><@#$%^|&*()[]{}-+=\""/:;., etc.
+2: Reserved Words for Labels
+Decipher also has a list of reserved words, which will result in an error when used in a survey for a variable or label name.
+View a list of all Decipher Reserved Words.

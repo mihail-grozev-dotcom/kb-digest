@@ -1,0 +1,32 @@
+Title: Monitoring Completions in Field
+The "Completions" tab is the default view of the Response Summary. There are various statistics that can be viewed on the "Completions" tab, along with a visual representation of the field activity.
+1: Viewing the Completions Tab
+The “Completions” tab displays all completion details for a live project. Included with the information is a visual breakout of how many qualified completes finished each day.
+1.1: The Chart
+You can mouse-over any point on the chart to view the total qualified completes for that day. Click on a point to see the hourly breakdown for that day.
+The field graphic can be drilled down further to show the hourly completes on a specified day. This can be done by clicking anywhere on a point in the graph. To return to the daily breakdown, click "Zoom Out."
+1.2: Completion Statistics
+Below is an explanation of how each statistic is calculated in the Response Summary. The statistics are modifiable, and can be set to show your preferred statistics by default.
+Click-Through
+Participants who opened the first page of the survey. Click on the number to open the partial data in tab-delimited form in a new browser window. To learn more, see Monitoring Click-Through Data.
+Partial Completes
+Participants who dropped out of the survey
+In-Progress
+Participants who are currently taking the survey.
+Terminates
+Participants who were terminated
+Overquota
+Participants terminated due to quota logic
+Qualified Completes
+Participants who qualified and completed the survey
+Participation Rate
+(Terminates + Overquota + Qualified) / Click-Through
+Incidence
+(Qualified + Overquota) / (Click-Through - Partial)
+Completion Time (average)
+Average completion time for a qualified participant. The average is calculated by removing the top and bottom 1% (i.e., any time outside of 3 standard deviations), then recalculating the average with the remaining 99%.
+Completion Time (median)
+Median completion time for a qualified participant. The median is adjusted by removing those values outside of 3 standard deviations (~1% of values), then recalculating the median with the remaining ~99%.
+1.3: Segment Drill-down
+The completions tab can be split by predefined segments, including languages and participant source lists. Below we see the same Response Summary as above, split by various lists used for sample. All formulas hold per category, and percentages are based only on that segment.
+Tip: Hide a segment by clicking the segment name below the chart.

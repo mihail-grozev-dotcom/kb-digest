@@ -1,0 +1,667 @@
+Title: XML Style System
+Note: The "Tear Down" guide referenced in the above video is no longer supported. For more information on individual style attributes, see the style block descriptions below.
+The XML <style> tag can be used to modify or add HTML, CSS, or Javascript to create a customized survey experience.
+1: The <style> Tag
+An XML <style> tag can be added to a <survey> tag to apply the included styles to the entire survey, or it can be nested under a question tag to apply the styles only to that question. The <style> tag requires just a name attribute, which designates the style block to be overridden.
+For example, the following code can be added within a text or number question to change the text input display style:
+<style name="el.text">
+… style code goes here
+</style>
+When adding HTML to XML styles, you can use the CDATA wrapper to avoid escaping special characters. In the <style>tag, start your content with "<![CDATA[" and end it with "]]>".
+For example:
+<style name='button.continue'>
+<![CDATA[
+<input type="submit" name="continue" id="btn_continue" class="button continue" value="@(continue) &raquo;" />
+]]>
+</style>
+Python code can be embedded using ${python code}syntax. For example, the following code would display the value for row 5 in question 3:
+${q3.r5.val}
+Ordinary survey pipes and persistent variables can also be used (i.e., :[pipe], ${p.pipe} and [pipe: q3]).
+Similarly, flow control can be added using the following:
+\@if (ended using \@else or \@endif)
+\@else
+\@endif
+\@for (ended using \@end)
+\@end
+Note: An XML style cannot call upon other styles using [some.style] or [dynamic some.style].
+See Python Expressions to learn more about accessing previous question data, or System Language Resources to learn more about system language resources.
+2: XML Style Attributes
+Below are the attributes available in XML Style System:
+Attribute
+Type
+Description
+name
+string
+The name of the style to override. This attribute is required.
+label
+string
+The label to identify this style for later use.
+copy
+string
+The name of a style label or question label. All styles from a question with the same style label are copied into the current context.
+cond
+Python code
+A condition that must be true for this style to apply.
+rows
+A comma separated list of rows labels.
+If specified, the style is applied only when rendering specific rows. If not specified, the style is applied to all rows.
+Note: This is allowed only for certain style overrides.
+cols
+A comma-separated list of column labels.
+If specified, the style is applied only when rendering specific columns. If not specified, the style is applied to all columns.
+Note: This is allowed only for certain style overrides.
+mode
+instead, before or after
+instead: Used to replace the default with the new style code.
+before: Used to add the new style code before the default.
+after: Used to add the new style code after the default.
+after
+Question label
+Applies this style only on pages following the page which includes the question label.
+before
+Question label
+Applies this style only on pages preceding the page which includes the question label.
+with
+List of question labels
+Applies this style only on pages which display any of the listed questions.
+wrap
+ready or left blank
+If ready, the contents of the style override are wrapped in <script>and the jQuery ready event.
+arg:XXX
+Adds a style variable which can be used as $(XXX) within the style. This can also modify the values of arguments passed from the system.
+3: Labeling & Reusing Styles
+An XML <style> override can be labeled using the label attribute. This declares a group of styles that share the same label rather than one specific override. A label can be applied to any style, with the same label applied to multiple styles and not necessarily in the same location. The label is optional. Using a label on an XML <style> allows the use of the copy attribute which at any other point in the survey can reference that label to copy everything in the <style>.
+4: Style Variables
+Style variables created through the arg:var="value" attribute are referenced in the <style> tag using $(var). Variables can be filtered; for example, $(var|upper) changes the text to uppercase.
+For example:
+<style name=el.text arg:before="€" mode="before">
+$(before)
+</style>
+Why would you put the € inside the attribute rather than just putting it directly in the style override? The advantage comes when using this style multiple times while slightly adjusting the text. When defining this style within "q1" with "€" the <style> can be copied and a new value can be set for the variable before in "q2".
+For example:
+<style copy="q1" arg:before="AUS$"/>
+There is no limit to the number of arguments for a <style>. When copying the style using <style copy=...>, supplying new values for the arguments overrides the original, and the arguments that are not supplied in the copy use the original.
+5: Calling on the Default Style
+Often you would want to enhance an existing style, reusing the default but just adding HTML before / after, or wrapping some HTML around the code. This can be done using [super]. Inserting [super] displays the custom styling and then display the rest of the style as if the override was not there, right where [super] is.
+[super] also works within overrides. For example, a footer can be overridden multiple times and if each called [super], all the overrides would be appended after each other. The mode attribute is set to "after" or "before" to implicitly add a [super] at the beginning or end of the style.
+6: Declaring Static Resources
+An XML style may often refer to local static resources. Typically, those will be saved in your/survey/static/file.png and referenced as /survey/your/survey/file.png.
+The shortcut [rel file.jpg] can be used to insert a link that is relative to the current survey. This automatically sends access to the file through a caching proxy server that accelerates the download of the resource.
+7: Wrapping With Javascript
+To run some Javascript after a certain question has been displayed, you can use the following override:
+<style name="question.after" with="q0"> <![CDATA[
+<script>
+jQuery(document).ready(function() {
+$ ("#someelement").doSomething();
+});
+</script>
+]]></style>
+Using wrap="ready" will add the script tag, wrap the code in a jQuery-ready function, and simplify the code to the following:
+<style name="question.after" with="q0" wrap="ready">
+<![CDATA[
+$ ("#someelement").doSomething();
+]]></style>
+8: Applying Styles
+In addition to applying styles to specific rows or columns using the rows and cols attributes, XML styles can be applied based on logic conditions and the attributes before, after, or with.
+8.1: Using Cond to Apply Based on Logic Conditions
+A <style> can have a condition, which is Python code just like a question condition. For styles that refer rows / cols, the row variable or any other variable passed in can also be used in the condition. Using conditions can be useful when creating a custom question style that should present a different look and feel on mobile devices.
+8.2: Using Before & After to Apply During Parts of the Survey
+Global style overrides may be given an after and before attribute, referencing any label in the survey (questions, <label> elements or <html> elements). Each time a survey page is displayed, Decipher tracks the first element that might be displayed on the page. This element will be used to determine which after / before styles are applied. If a <style> has after set, it will only be displayed if the after element precedes the first element on the page. If a <style> has before set, it will only be displayed if the before element succeeds the first element on the page.
+Note: It does not matter whether the participant actually saw this element; what matters is the relative position (in the survey.xml) of the before / after element versus the first element to be shown on that page.
+For example, consider the following three-page survey with "q1", "q2", "q3", each on its own page, and three style overrides:
+Page contains
+before="q2"
+after="q1"
+after="q1" before="q3"
+q1
+X
+q2
+X
+X
+q3
+X
+The "X" above denotes on what pages each style override will be effective.
+The before="q2" style override is displayed only on the page containing "q1". As soon as the "q2" element becomes the first element on the page, it is no longer shown. Thus it can be used to apply a special style in some introductory section of the survey.
+The after="q1" style override only takes effect when an element after "q1" in the survey.xml is displayed as the first element on the page.
+Note: When displaying any exit page, Decipher uses the first question on the page as the very last question in the survey regardless of what was displayed to the participant.
+8.3: Using With to Apply Based on Question Visibility
+It is also possible to override a global style when a question is being shown to participants using the with attribute. The with attribute specifies a comma-separated list of question labels, each of which must have just been displayed for the style override to take effect. The questions must have actually been displayed (not just skipped due to conditions).
+9: XML Style Blocks
+A page style applies to the entire survey page and can be nested anywhere in the <survey> tag, but not within a <block> or question tag. These style overrides allow the use of the attributes after, before, and with, but not rows or cols. A question style applies only to the question it is defined in. It cannot be defined anywhere else. However, you can copy styles in questions and define a style block outside of any questions.
+Page Styles
+Question Styles
+Element Styles
+global.page.head
+question.header
+question.element
+respview.client.meta
+survey.question
+question.left
+respview.client.css
+survey.question.instructions
+question.right
+respview.client.js
+survey.question.answers.start
+el.radio
+survey.header
+question.group-column
+el.checkbox
+survey.logo
+question.group-column-cell
+el.select.header
+buttons
+question.top-legend
+el.select.default
+button.continue
+question.left-blank-legend
+el.select.element
+button.finish
+question.top-legend-item
+el.select.footer
+button.cancel
+question.right-blank-legend
+el.textarea
+survey.completion
+question.group-3
+el.noanswer
+survey.respview.footer
+question.group-2
+el.text
+survey.respview.footer.support
+question.group
+el.open
+button.goback
+question.row
+el.image
+page.head
+question.col-legend-row
+question.col-legend-row-item
+question.na.row
+question.bottom-legend
+question.bottom-legend-item
+question.footer
+survey.question.answers.end
+question.after
+Style Name & Description
+Default Style Code
+global.page.head
+Adds more HTML codes in the <HEAD> section of a page globally.
+<style name="global.page.head"> <![CDATA[
+]]></style>
+respview.client.meta
+Add additional <meta> tags.
+<style name="respview.client.meta"> <![CDATA[
+]]></style>
+respview.client.css
+Adds additional custom CSS after default external CSS links in the <head>.
+<style name="respview.client.css"> <![CDATA[
+]]></style>
+respview.client.js
+Adds additional custom Javascript after default external Javascript links in the <head>.
+<style name="respview.client.js"> <![CDATA[
+]]></style>
+survey.header
+Displays a header before the survey content and logo.
+<style name='survey.header'> <![CDATA[
+<div class="page-header"></div>
+<!-- /.page-header -->
+]]></style>
+survey.logo
+Displays the survey logo included in the survey tag.
+<style name='survey.logo'> <![CDATA[
+\@if gv.inSurvey() and gv.survey.root.styles.ss.logoFile
+<div class="logo logo-$(gv.survey.root.styles.ss.logoPosition)">
+<img src="[static]/survey/$(gv.survey.root.styles.ss.logoFile)" class="logo-image" alt="Logo" />
+</div>
+<!-- /.logo -->
+\@endif
+]]></style>
+buttons
+Displays the buttons at the bottom of the page.
+<style name='buttons'> <![CDATA[
+<div class="survey-buttons">
+$(left)
+$(right)
+</div>
+<!-- #surveyButtons -->
+]]></style>
+button.continue
+Displays the "Continue" button.
+<style name='button.continue'> <![CDATA[
+<input type="submit" name="continue" id="btn_continue" class="button continue" value="@(continue) &raquo;" onClick="var i = document.createElement('input');i.setAttribute('type', 'hidden');i.setAttribute('value', '1');i.setAttribute('name', '__has_javascript');document.forms.primary.appendChild(i);"/>
+]]></style>
+button.finish
+Displays the "Finish" button on the last page of the survey.
+<style name='button.finish'> <![CDATA[
+<input type="submit" name="finish" id="btn_finish" class="button finish" value="@(finish)" onClick="var i = document.createElement('input');i.setAttribute('type', 'hidden');i.setAttribute('value', '1');i.setAttribute('name', '__has_javascript');document.forms.primary.appendChild(i);"/>
+]]></style>
+button.cancel
+Blank by default. Can be used for an additional button (e.g., "Back" or "Come back later").
+<style name="button.cancel"> <![CDATA[
+]]></style>
+survey.completion
+Overrides the survey progress bar.
+<style name='survey.completion'> <![CDATA[
+\@if not gv.survey.root.styles.ss.hideProgressBar
+<div role="progressbar" aria-valuenow="$(percent)" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-${"top" if gv.survey.root.progressOnTop else "bottom"}" title="@(progress-bar) - $(percent)% @(complete)">
+<div class="progress-box-outer" aria-hidden="true"><span class="progress-box-completed" style="width: $(percent)%;"></span></div>
+<div class="progress-text" aria-hidden="true">$(percent)%</div>
+</div>
+<!-- /.progress-bar -->
+\@endif
+]]></style>
+survey.respview.footer
+Displays a footer at the end of the survey page.
+<style name='survey.respview.footer'> <![CDATA[
+<div class="footer">${v2_insertStyle('survey.respview.footer.support')}</div>
+<!-- /.footer -->
+]]></style>
+survey.respview.footer.support
+Displays the support links at the bottom of the page.
+<style name="survey.respview.footer.support"> <![CDATA[
+@(support)
+]]></style>
+button.goback
+Displays a "Back" button when backward navigation has been enabled (requires ss:enableNavigaton="1").
+<style name='button.goback'> <![CDATA[
+<input type="button" id="btn_goback" class="button back" onClick="Survey.postControl('back2')" value="&laquo; @(back)" />
+]]></style>
+page.head
+Blank by default. Adds more codes in the <head> section (even when overriding within a question).
+<style name="page.head"> <![CDATA[
+]]></style>
+question.header
+Displayed at the beginning of a question. Defines where the question text, errors, instruction text, and answer options start. This style pipes other style blocks. This style can be used with mode before or after, but cannot be overridden.
+<style name='question.header'> <![CDATA[
+<div id="question_${this.label}" class="question ${'disabledElement ' if why and gv.debug.qa else ''}${this.getName().lower()} label_${this.label} $(this.styles.ss.questionClassNames) $(hasError)"${' role="radiogroup" aria-labelledby="' + (this.label + '_' + ec.enabledCols[0].label if ec.haveColLegend else 'question_text_' + this.label) + '"' if ec.simpleList else ''}>
+${v2_insertStyle('survey.question')}
+$(error)
+${v2_insertStyle('survey.question.instructions')}
+${v2_insertStyle('survey.question.answers.start')}
+]]></style>
+survey.question
+Displays the question text.
+<style name='survey.question'> <![CDATA[
+<h1 title="@(question)" class="question-text" id="question_text_${this.label}">${this.styles.html.showNumber and (str(number) + '. ') or ''}$(title)</h1>
+<!-- /.question-text -->
+]]></style>
+survey.question.instructions
+Displays the instruction text.
+<style name='survey.question.instructions'> <![CDATA[
+<h2 title="@(instructions)" class="instruction-text">$(comment)</h2>
+<!-- /.instruction-text -->
+]]></style>
+survey.question.answers.start
+Displays the start of the question-answer table.
+<style name='survey.question.answers.start'> <![CDATA[
+<div class="answers $(answerClassNames)">
+$(fir)
+\@if not ec.simpleList
+<$(tag) class="grid $(gridClassNames)" data-settings="$(gridOptions)" data-height="${this.styles.ss.rowHeight if this.styles.ss.rowHeight else ""}" summary="This table contains form elements to answer the survey question">
+\@if not simple
+<tbody>
+\@endif
+\@if not forceDesktop
+${v2_insertStyle('question.borderfix')}
+\@endif
+\@endif
+]]></style>
+question.group-column
+Displays the table row contain the column group headings.
+<style name='question.group-column'> <![CDATA[
+<$(tag) class="row row-col-legends row-col-legends-top colGroup">
+$(left)
+$(elements)
+$(right)
+</$(tag)>
+]]></style>
+question.group-column-cell
+Displays the column group heading containing the column group text.
+<style name='question.group-column-cell'> <![CDATA[
+<$(tag) scope="colgroup" colspan="$(span)" id="$(this.label)_$(group.label)" class="cell nonempty legend col-legend col-legend-top col-legend-group $(levels) ${"desktop" if this.grouping.cols else "mobile"} ${"col-legend-space" if this.grouping.cols and ec.haveLeftLegend and ec.haveRightLegend else "border-collapse"} $(group.styles.ss.groupClassNames)">
+$(text)
+</$(tag)>
+]]></style>
+question.top-legend
+Displays the table row containing the column legends.
+<style name='question.top-legend'> <![CDATA[
+\@if ec.simpleList
+$(legends)
+\@else
+\@if this.styles.ss.colLegendHeight
+<$(tag) class="row row-col-legends row-col-legends-top ${"mobile-top-row-legend " if mobileOnly else ""}${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)" style="height:${this.styles.ss.colLegendHeight};">
+\@else
+<$(tag) class="row row-col-legends row-col-legends-top ${"mobile-top-row-legend " if mobileOnly else ""}${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)">
+\@endif
+$(left)
+$(legends)
+$(right)
+</$(tag)>
+\@if not simple
+</tbody>
+<tbody>
+\@endif
+\@endif
+]]></style>
+question.left-blank-legend
+Displays the table cell that is normally blank shown to the left of the question.top-legend. Check $(pos) to see if the position is top or bottom.
+<style name='question.left-blank-legend'> <![CDATA[
+<$(tag) class="cell empty empty-left empty-$(pos) unused ${"desktop" if this.grouping.cols else "mobile"} border-collapse"></$(tag)>
+]]></style>
+question.top-legend-item
+Displays the row-column headings containing the column text.
+<style name='question.top-legend-item'> <![CDATA[
+\@if ec.simpleList
+<div id="$(this.label)_$(col.label)" class="legend col-legend col-legend-top col-legend-basic $(levels) ${"col-legend-space" if this.grouping.cols and (col.group or col.index!=0) and ec.haveLeftLegend and ec.haveRightLegend else "border-collapse"} $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""} $(colError)">
+$(text)
+</div>
+\@else
+\@if this.styles.ss.colWidth
+<$(tag) scope="col" id="$(this.label)_$(col.label)" class="cell nonempty legend col-legend col-legend-top col-legend-basic $(levels) ${"desktop" if this.grouping.cols else "mobile"} ${"col-legend-space" if this.grouping.cols and (col.group or col.index!=0) and ec.haveLeftLegend and ec.haveRightLegend else "border-collapse"} $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""} $(colError)" style="width:${this.styles.ss.colWidth}; min-width:${this.styles.ss.colWidth}">
+$(text)
+</$(tag)>
+\@else
+<$(tag) scope="col" id="$(this.label)_$(col.label)" class="cell nonempty legend col-legend col-legend-top col-legend-basic $(levels) ${"desktop" if this.grouping.cols else "mobile"} ${"col-legend-space" if this.grouping.cols and (col.group or col.index!=0) and ec.haveLeftLegend and ec.haveRightLegend else "border-collapse"} $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""} $(colError)">
+$(text)
+</$(tag)>
+\@endif
+\@endif
+]]></style>
+question.right-blank-legend
+Displays the table cell that is normally blank shown to the left of the question.top-legend.
+<style name='question.right-blank-legend'> <![CDATA[
+<$(tag) class="cell empty empty-right empty-$(pos) unused ${"desktop" if this.grouping.cols else "mobile"} border-collapse"></$(tag)>
+]]></style>
+question.group-3
+Displays the row group heading containing the row group depth three text.
+Note: The Survey Editor does not support sub-groups and will not display correct group depth.
+<style name='question.group-3'> <![CDATA[
+<$(tagRow) class="row row-group row-group-3 rowGroup group3">
+<$(tagCell) scope="rowgroup" colspan="$(span)" id="$(this.label)_$(group.label)" class="cell nonempty legend row-legend row-legend-left row-legend-group $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse $(group.styles.ss.groupClassNames)">
+$(text)
+</$(tagCell)>
+</$(tagRow)>
+]]></style>
+question.group-2
+Displays the row group heading containing the row group depth 2 text.
+Note: The Survey Editor does not support sub-groups and will not display correct group depth.
+<style name='question.group-2'> <![CDATA[
+<$(tagRow) class="row row-group row-group-2 rowGroup group2">
+<$(tagCell) scope="rowgroup" colspan="$(span)" id="$(this.label)_$(group.label)" class="cell nonempty legend row-legend row-legend-left row-legend-group $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse $(group.styles.ss.groupClassNames)">
+$(text)
+</$(tagCell)>
+</$(tagRow)>
+]]></style>
+question.group
+Displays the row group heading containing the row group text.
+<style name='question.group'> <![CDATA[
+<$(tagRow) class="row row-group row-group-1 rowGroup group1">
+<$(tagCell) scope="rowgroup" colspan="$(span)" id="$(this.label)_$(group.label)" class="cell nonempty legend row-legend row-legend-left row-legend-group $(levels) ${"desktop" if this.grouping.cols else "mobile"} ${"row-legend-group-space" if row.index!=0 and ec.haveRightLegend and ec.haveLeftLegend else "border-collapse"} $(group.styles.ss.groupClassNames)">
+$(text)
+</$(tagCell)>
+</$(tagRow)>
+]]></style>
+question.row
+Displays the table row containing the row legend text and the input element.
+<style name='question.row'> <![CDATA[
+\@if ec.simpleList
+$(elements)
+\@else
+\@if this.styles.ss.rowHeight
+<$(tag) class="row row-elements $(style) colCount-$(colCount)" style="height:${this.styles.ss.rowHeight};">
+\@else
+<$(tag) class="row row-elements $(style) colCount-$(colCount)">
+\@endif
+$(left)
+$(elements)
+$(right)
+</$(tag)>
+\@endif
+]]></style>
+question.col-legend-row
+Displays the table row used for repeated legends.
+<style name='question.col-legend-row'> <![CDATA[
+\@if ec.simpleList
+$(legends)
+\@else
+\@if this.styles.ss.colLegendHeight
+<$(tag) class="row row-col-legends row-col-legends-middle ${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)" style="height:${this.styles.ss.colLegendHeight};">
+\@else
+<$(tag) class="row row-col-legends row-col-legends-middle ${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)">
+\@endif
+$(left)
+$(legends)
+$(right)
+</$(tag)>
+\@endif
+]]></style>
+question.col-legend-row-item
+Displays the table row column legends used for repeated legends.
+<style name='question.col-legend-row-item'> <![CDATA[
+\@if ec.simpleList
+<div class="legend col-legend col-legend-middle col-legend-basic $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse q-col-legend-row-item $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""} $(colError)">
+$(text)
+</div>
+\@else
+\@if this.styles.ss.colWidth
+<$(tag) scope="col" class="cell nonempty legend col-legend col-legend-middle col-legend-basic $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse q-col-legend-row-item $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""} $(colError)" style="width:${this.styles.ss.colWidth}; min-width:${this.styles.ss.colWidth}">
+$(text)
+</$(tag)>
+\@else
+<$(tag) scope="col" class="cell nonempty legend col-legend col-legend-middle col-legend-basic $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse q-col-legend-row-item $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""} $(colError)">
+$(text)
+</$(tag)>
+\@endif
+\@endif
+]]></style>
+question.na.row
+Displays the noanswer response row.
+<style name='question.na.row'> <![CDATA[
+\@if ec.simpleList
+$(naElement)
+\@else
+<$(tagRow) class="row row-elements row-no-answer $(rowStyle)">
+$(left)
+<$(tagCell) colspan="$(colCount)" $(headers) class="cell nonempty element cell-no-answer ${"desktop" if this.grouping.cols else "mobile"} border-collapse $(extraClasses) $(col.styles.ss.colClassNames) $(row.styles.ss.rowClassNames) clickableCell" $(extra)>
+$(naElement)
+</$(tagCell)>
+$(right)
+</$(tagRow)>
+\@endif
+]]></style>
+question.bottom-legend
+Displays the table row containing column legends used when colLegend is set to bottom.
+<style name='question.bottom-legend'> <![CDATA[
+\@if ec.simpleList
+$(legends)
+\@else
+\@if not simple
+</tbody>
+<tbody>
+\@endif
+\@if this.styles.ss.colLegendHeight
+<$(tag) class="row row-col-legends row-col-legends-bottom ${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)" style="height:${this.styles.ss.colLegendHeight};">
+\@else
+<$(tag) class="row row-col-legends row-col-legends-bottom ${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)">
+\@endif
+$(left)
+$(legends)
+$(right)
+</$(tag)>
+\@endif
+]]></style>
+question.bottom-legend-item
+<style name='question.bottom-legend-item'> <![CDATA[
+\@if ec.simpleList
+<div id="$(this.label)_$(col.label)" class="legend col-legend col-legend-bottom col-legend-basic $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""} $(colError)">
+$(text)
+</div>
+\@else
+\@if this.styles.ss.colWidth
+<$(tag) scope="col" id="$(this.label)_$(col.label)" class="cell nonempty legend col-legend col-legend-bottom col-legend-basic $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""} $(colError)" style="width:${this.styles.ss.colWidth}; min-width:${this.styles.ss.colWidth}">
+$(text)
+</$(tag)>
+\@else
+<$(tag) scope="col" id="$(this.label)_$(col.label)" class="cell nonempty legend col-legend col-legend-bottom col-legend-basic $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse $(col.styles.ss.colClassNames) ${col.group.styles.ss.groupClassNames if col.group else ""} $(colError)">
+$(text)
+</$(tag)>
+\@endif
+\@endif
+]]></style>
+question.footer
+Displays a footer at the end of the question.
+<style name='question.footer'> <![CDATA[
+${v2_insertStyle('survey.question.answers.end')}
+</div>
+<!-- /.question -->]]>
+</style>
+survey.question.answers.end
+Displays the end of the question-answer table.
+<style name='survey.question.answers.end'> <![CDATA[
+\@if not ec.simpleList
+\@if not simple
+</tbody>
+\@endif
+</$(tag)>
+\@endif
+<!-- /.grid -->
+</div>
+<!-- /.answers -->]]>
+</style>
+question.after
+Blank by default. Can be used with wrap="ready" to add Javascript to after the question.
+<style name="question.after"> <![CDATA[
+]]></style>
+question.element
+Displays the answer cell containing the question type input element.
+<style name='question.element'> <![CDATA[
+\@if ec.simpleList
+<div class="element $(rowStyle) $(levels) $(extraClasses) ${col.group.styles.ss.groupClassNames if col.group else (row.group.styles.ss.groupClassNames if row.group else "")} $(col.styles.ss.colClassNames) $(row.styles.ss.rowClassNames) ${"clickableCell" if isClickable else ""}"$(extra)>
+${v2_insertStyle('el.label.start')}
+$(text)
+${v2_insertStyle('el.label.end')}
+</div>
+\@else
+<$(tag) $(headers) class="cell nonempty element $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse $(extraClasses) ${col.group.styles.ss.groupClassNames if col.group else (row.group.styles.ss.groupClassNames if row.group else "")} $(col.styles.ss.colClassNames) $(row.styles.ss.rowClassNames) ${"clickableCell" if isClickable else ""}"$(extra)>
+${v2_insertStyle('el.label.start')}
+$(text)
+${v2_insertStyle('el.label.end')}
+</$(tag)>
+\@endif
+]]></style>
+question.left
+Displays the row legend text when rowLegend="default".
+<style name='question.left'> <![CDATA[
+\@if this.styles.ss.legendColWidth
+<$(tag) scope="row" class="cell nonempty legend row-legend row-legend-left ${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic ${"mobile-left-row-legend " if force else ""}$(levels) ${"desktop" if this.grouping.cols else "mobile"} ${"row-legend-both-space " if ec.haveRightLegend and ec.haveLeftLegend and (not row.group or not row.index==0) else "border-collapse "} $(row.styles.ss.rowClassNames)" style="width:${this.styles.ss.legendColWidth}; min-width:${this.styles.ss.legendColWidth}">
+$(text)
+</$(tag)>
+\@else
+<$(tag) scope="row" class="cell nonempty legend row-legend row-legend-left ${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic ${"mobile-left-row-legend " if force else ""}$(levels) ${"desktop" if this.grouping.cols else "mobile"} ${"row-legend-both-space " if ec.haveRightLegend and ec.haveLeftLegend and (row.group or not row.index==0) else "border-collapse "} $(row.styles.ss.rowClassNames)">
+$(text)
+</$(tag)>
+\@endif
+]]></style>
+question.right
+Displays the row legend text when rowLegend="right" or the row has rightLegend text.
+<style name='question.right'> <![CDATA[
+\@if this.styles.ss.legendColWidth
+<$(tag) scope="row" class="cell nonempty legend row-legend row-legend-right ${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse $(row.styles.ss.rowClassNames)" style="width:${this.styles.ss.legendColWidth}; min-width:${this.styles.ss.legendColWidth}">
+$(text)
+</$(tag)>
+\@else
+<$(tag) scope="row" class="cell nonempty legend row-legend row-legend-right ${"row-legend-both " if ec.haveRightLegend and ec.haveLeftLegend else ""}row-legend-basic $(levels) ${"desktop" if this.grouping.cols else "mobile"} border-collapse $(row.styles.ss.rowClassNames)">
+$(text)
+</$(tag)>
+\@endif
+]]></style>
+el.radio
+The Single Select (radio) type input element.
+<style name='el.radio'> <![CDATA[
+<input type="radio" name="$(name)" value="$(value)" id=$(id) $(checked) class="input radio" $(extra)/>
+]]></style>
+el.checkbox
+The Multi-Select (checkbox) type input element.
+<style name='el.checkbox'> <![CDATA[
+<input type="checkbox" name="$(name)" id="$(id)" value="1" $(checked) class="${flags.CSS} input checkbox" $(extra)/>
+]]></style>
+el.select.header
+The start of the Select type element.
+<style name='el.select.header'> <![CDATA[
+<select name="$(name)" id="$(id)" class="input dropdown" $(extra)>
+]]></style>
+el.select.default
+The Select type default element.
+<style name='el.select.default'> <![CDATA[
+<option value="-1" $(selected)>@(select)</option>
+]]></style>
+el.select.element
+The Select type choice element.
+<style name='el.select.element'> <![CDATA[
+<option value="$(value)" $(selected) class="${choice.styles.ss.choiceClassNames if ec.choice else ""}">$(text)</option>
+]]></style>
+el.select.footer
+The end of the Select type element.
+<style name='el.select.footer'> <![CDATA[
+</select>
+]]></style>
+el.textarea
+The multi-line text input field used in <textarea> elements.
+<style name='el.textarea'> <![CDATA[
+\@if row.styles.ss.preText or this.styles.ss.preText
+${row.styles.ss.preText or this.styles.ss.preText or ""}&nbsp;
+\@endif
+<textarea name="$(name)" id="$(id)" rows="$(height)" cols="$(width)" wrap="virtual" class="input textarea" $(extra)>$(value)</textarea>
+\@if row.styles.ss.postText or this.styles.ss.postText
+&nbsp;${row.styles.ss.postText or this.styles.ss.postText or ""}
+\@endif
+]]></style>
+el.noanswer
+The checkbox used for <noanswer> elements.
+<style name='el.noanswer'> <![CDATA[
+\@if ec.simpleList
+<div class="element">
+\@endif
+<span class="cell-sub-wrapper cell-legend-right"><span class="cell-input cell-sub-column">
+<input type="checkbox" id="$(row.checkboxLabel)" name="$(row.checkboxLabel)" value="1" class="input no-answer checkbox" $(value|checkbox)/>
+</span><span class="cell-text cell-sub-column"><label for="$(row.checkboxLabel)">$(label)</label></span></span>
+\@if ec.simpleList
+</div>
+\@endif
+]]></style>
+el.text
+The open-ended input field used in text and number questions.
+<style name='el.text'> <![CDATA[
+\@if row.styles.ss.preText or this.styles.ss.preText
+<span class="pre-text">
+${row.styles.ss.preText or this.styles.ss.preText or ""}&nbsp;
+</span>
+\@endif
+\@if this.xmlTagName in ('number', 'float')
+<input type="number" name="$(name)" id="$(id)" value="$(value)" size="$(size)" class="input text-input" $(extra)/>
+\@else
+<input type="text" name="$(name)" id="$(id)" value="$(value)" size="$(size)" class="input text-input" $(extra)/>
+\@endif
+\@if row.styles.ss.postText or this.styles.ss.postText
+<span class="post-text">
+&nbsp;${row.styles.ss.postText or this.styles.ss.postText or ""}
+</span>
+\@endif
+]]></style>
+el.open
+The open-ended input field used in open-ended rows.
+<style name='el.open'> <![CDATA[
+<input type="text" name="$(name)" id="$(name)" value="$(value)" data-cell="$(cell.parent.label)_$(cell.label)" size="$(size)" class="input text-input oe oe-$(align)" $(extra)/>
+$(scripts)
+]]></style>
+el.image
+The upload input field. Allows participants to upload an image, video, or any kind of file.
+<style name='el.image'> <![CDATA[
+\@if data
+\@if this.displayInline
+<img align='center' src='/survey/${gv.survey.path}/$(localFilename|q)'>
+\@endif
+<input type="hidden" name="old-$(name)" value="$(data)">
+<br/><br/>
+\@endif
+<input type="file" name="$(name)" size="$(size)">]]></style>

@@ -1,0 +1,20 @@
+Title: Scheduling a Survey to Close
+You can use the Logic Library to close a survey at a pre-specified time. This can be done using either the "Schedule Survey Closing Time" element in the Survey Editor or the "close" logic node in the survey XML.
+1: Using the Survey Editor
+To close a survey at a pre-specified time using the Survey Editor, click "+ Add Survey Element" under the staging area:
+In the Element Library, click "Custom" and select the "Schedule Survey Closing Time" element from the list. Then click "Insert":
+The new element will appear in the staging area, where you can configure the settings for it:
+To set a closing time, click into the "When" text-box and select a date from the calendar that appears. Then set a time using the "Hour" and "Minute" drop-down menus:
+2: Using the XML
+To schedule a survey to close using the close logic node, you will need to add a <logic> tag to the survey XML, specifying both a label and uses="close.1", as well as the desired closure date and time:
+<logic label="close" close:at="YYYY-MM-DD HH:MM" uses="close.1" />
+<title>Schedule Survey Closing Time</title></logic>
+For example, the code below would close a survey just as if the "close" action was performed at approximately 17:45 on October 20th:
+<logic label="close" close:at="2024-10-07 00:01" uses="close.1" />
+<title>Schedule Survey Closing Time</title></logic>
+There can be up to 10 minutes of delay depending on what other jobs are scheduled to run close to that time, and the date format passed as close:at is always YYYY-MM-DD HH:MM.
+A few other things to keep in mind:
+The close node runs only if the survey is live.
+If the survey cannot be loaded, this node (like other scheduled nodes) will retry after 1 hour, then 2 hours etc.
+The close action will run once per survey and per scheduled time. For example, if your close logic node labeled "close" is scheduled to run at 16:45 and it runs and closes the survey, if you reopen the survey, it will not run again, unless you re-label it or change the time. At which point, it is considered a new instruction to close the survey.
+To undo a scheduled close, simply remove the close logic node and reload the survey.

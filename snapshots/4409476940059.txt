@@ -1,0 +1,111 @@
+Title: Generating Data from the Command Line
+Requires Decipher Cloud
+The generate script is used to generate data files from the command line.
+For example, the following command generates all of the participant data for the current project in tab-delimited format and outputs it to a file named "all_data.txt".
+generate . all tab > all_data.txt
+A snippet of this file is shown below:
+record uuid date markers status Q1 ...
+1 qb9nuj5u6utptzap 05/13/2014 16:01 qualified 3 3 ...
+5 zu520guzq6ugbv3y 05/13/2014 16:31 qualified 3 2 ...
+3 sve0pnufdzewfwtn 05/13/2014 17:04 qualified 3 4 ...
+2 uvkr5yus8e7bm67w 05/13/2014 17:21 qualified 3 3 ...
+4 a037mefyqp8d0n0z 05/13/2014 17:32 qualified 3 4 ...
+6 4k0a11cyh2sw08mq 05/13/2014 17:51 qualified 3 2 ...
+1: Generating Syntax & Options
+The syntax for the generate command is shown below:
+1.1: Syntax
+generate [-avp] [--layout=layout] [--force-oe] [--encoding=charset] <survey> <config> <datatype> [fields]
+1.2: Option Descriptions
+Option
+Description
+-a
+Output all fields, including hidden ones. By default, generate outputs the same information as you would find in the data downloads area. Specify -a to output all information, including hidden questions like ones with where="none" set.
+-p
+Execute Python code. You can specify custom Python logic to generate data only where a Python expression evaluates to "True".
+e.g. generate -p . "Q1.r1 and qualified" tab > Q1_r1_data.txt
+-v
+Verbose mode.
+--layout
+Allows you to specify a layout # for generating the data file rather than the standard layout or a variables.xls file.
+--force-oe
+Force OE data to be generated.
+--encoding
+The default output of the generate command will be the same character set as the survey. You can override and force this to be any character set.
+e.g., generate --encoding=utf8
+--textual
+Responses are generated as answer text instead of numbers.
+e.g., generate --textual . all xlsx out.xlsx
+--stack
+Use to retrieve stacked data files. Can be set to:
+top Outputs all looped variables.
+label: Outputs looped data for the specified loop.
+<survey>
+The path to the survey to generate data from e.g., selfserve/9d3/proj1234.
+<config>
+The type of participant data to generate. Choose any of the following or use the -p modifier to specify custom Python logic:
+all : Terminated, overquota and qualified.
+qualified : Qualified only.
+config : Configuration of a saved report (appears after config= in report URL).
+partials : Partials only.
+everything : all + partials.
+xt: : prefix for crosstabs id. Will only generate data from the first segment of the crosstab. Example: xt:sgp338n233fcxfr9. To generate data from the second segment of the crosstab, use the suffix :2. Example: xt:sgp338n233fcxfr9:2. To generate data from the third segment of the crosstab, use the suffix :3. Example: xt:sgp338n233fcxfr9:3.
+"Python Expression" : Python expression if -p option is set.
+<datatype>
+The type of data to generate. Can be set to:
+fw
+pipe
+flat
+flat_all
+cb
+cbtext
+tab
+sav
+tab-text
+csv
+excel
+wincross
+datamap [fw html oe]
+xlsx (use the --textual option to get answer values).
+json
+You may also generate files into a ZIP bundle.
+e.g. generate . all zip:spss.fw,data.fw myFile.zip
+[fields]
+The variables you would want to generate if you do not want all variables e.g., generate . all tab uuid status Q1 > data.txt.
+Notes:
+Running generate to create an SPSS *.sav file will create an SPSS 16+ Unicode-enabled file by default.
+Be sure to only use the supported Excel format (.xlsx) when generating an Excel dataset via the command line as shown in the example below.
+To control the fields contained in the output when generating .xlsx files, you will need to create a custom data layout and then use the --layout option to pull only the desired columns.
+Note: Setting blankValue as a string in the <survey> tag will cause an error when exporting an SPSS file. Use a numeric response for blankValue instead.
+2: Examples
+All of the following generate commands are valid:
+# Tab Delimited Output of "all" data
+generate . all tab > tab_delimited.txt
+# Generate Using Python Expressions
+generate -p . 'Q1.r1 and terminated' tab > Q1_terms.txt
+generate -p . 'Q2.r1.val < 40 and qualified' tab > Q2_quals.txt
+generate -p . 'hasMarker("/Concept/C1") and overquota' tab > C1_OQs.txt
+generate -p . 'date_range("01-jan-2014", "31-jan-2014")' tab
+# Generate ALL Variables
+generate -a . everything tab > all_data.txt
+# Bundle in SPSS Download
+generate . all zip:spss.fw,data.fw myFile.zip
+# Generate Partial Data
+generate . partials tab > partial_data.txt
+# Generate Based on Report Configuration
+generate . '$FS1oQ' tab > report_config_data.txt
+# Generate Only Certain Fields
+generate . all tab uuid date status Q1 Q2r1 Q2r2 Q2r3 > my_data.txt
+# Generate Certain Fields Sorted By Record
+generate . all tab record uuid data markers | sort > sorted_data.txt
+# Generate Completes Between Midnight 14 Days Ago to End of Day Today
+generate -p . 'date_days(14, 0)' tab uuid date
+# Generate an XLSX Excel 2007 File
+generate . all xlsx out.xlsx
+# Generate an XLSX Excel 2007 File with Text Answers Instead of Numbers
+generate --textual . all xlsx out.xlsx
+# Generate an SPSS File
+generate . all sav out.sav
+#Generate the UUIDs for the first segment of the crosstab (with id yh04vrsq5p2j4cex)
+generate . xt:yh04vrsq5p2j4cex tab uuid
+#Generate the UUIDs for the second segment of the crosstab (with id yh04vrsq5p2j4cex)
+generate . xt:yh04vrsq5p2j4cex:2 tab uuid

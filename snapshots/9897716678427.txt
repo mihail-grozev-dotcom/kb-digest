@@ -1,0 +1,27 @@
+Title: 144.12 Release Notes
+Release Date: May 5, 2020
+Release Version: 144.12
+Features
+Survey
+Logic Nodes
+Upgraded the RelevantID logic node to version 2 (relevantid.2), which includes the following:
+Enhanced data and device detection.
+Updated fraud profile checks.
+Programming & Tools
+API
+Added an endpoint to create new projects.
+Added an endpoint to retrieve information about individual projects.
+Added an endpoint to upload files to a project.
+Added endpoints to create, update, and retrieve information about individual email campaigns.
+Added endpoints to retrieve and modify the invite content for an email campaign.
+Added endpoints to download and upload recipient lists for an email campaign.
+Added an endpoint to retrieve information about email sends for an email campaign.
+Added an endpoint to cancel an email send.
+Made the following updates to the Retrieve Companies endpoint:
+Added company subdirectory information.
+Enabled supervisor use (previously only usable by Forsta Staff).
+Modified the Shared Recipients endpoint so that lists are no longer automatically shareable with other email campaigns in the project.
+Bug Fixes
+Programming & Tools
+API
+Updated call and endpoint names in the Decipher API documentation for improved readability and better page navigation.

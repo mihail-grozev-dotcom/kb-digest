@@ -1,0 +1,33 @@
+Title: 143.6 Release Notes
+Release Date: August 6, 2019
+Release Version: 143.6
+New Features
+Survey
+Added the delphi="1" survey attribute. Surveys with delphi="1" will have improved performance and the following new features:
+Partial data is automatically available in Crosstabs for immediate viewing.
+Data edits are much faster and reflect instantly in the Response Summary.
+The Drop-outs tab in the Response Summary includes a page events report.
+Resuming survey sessions shows the latest state of the survey.
+Languages
+Updated translations to provide full support for the following survey languages:
+Afrikaans
+Burmese
+Kannada
+Punjabi
+Samoan
+Slovenian
+Tongan
+Reporting
+Participant Sources
+Added the Sample Marketplace, where users can submit bids and purchase survey sample.
+Added a link to the Sample Marketplace to the "+ Participant Source" button.
+Added more details and action options for managing participant sources.
+Bug Fixes
+Survey
+Survey Editor
+Fixed the warning text for some XML errors to display "Fix XML".
+Reporting
+Crosstabs
+Fixed an issue where questions with where="none" were displayed and able to be added when creating a new segment.
+Downloads
+Fixed an issue where emojis included in participant data were preventing some data exports.

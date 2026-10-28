@@ -1,0 +1,17 @@
+Title: 150.6 Release Notes
+150.6 Release Notes
+Release Date: June 21, 2022
+Release Version: 150.6
+New Features
+Respondent View
+Fixed an issue with the progress bar when entering data in a block to answer survey questions.
+Dynamic Questions
+Added a multiFilter option to the Autosuggest element, available only via the XML Editor. Adding the attribute allows you to add additional filters beyond the standard four available in the Source File Settings menu.
+Learn More: Autosuggest Element
+Bug Fixes
+Respondent View
+Fixed an error with the View/Edit Response report for surveys with delphi="1" where the elements displayed on multiple pages within a block.
+Dynamic Questions
+Fixed an issue that prevented the use of the Survey Editor when Autosuggest v2 was present in the survey.
+Sample Marketplace
+Fixed an issue that prevented updates to Sample Marketplace participant source statuses.

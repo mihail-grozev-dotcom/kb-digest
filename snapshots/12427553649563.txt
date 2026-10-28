@@ -1,0 +1,47 @@
+Title: M53 Release Notes
+Release Date: January 31, 2023
+Release Version: M53
+Survey Versioning
+The new survey compatability level is 153. The system automatically uses compat="153" for all new surveys. The new level adds the ability to create nested answer groups, and to order groups and subgroups using attributes and exec tags.
+Subgroup headers can be displayed to the participant using Group Depth. Parent and sub-group headers are separated with a backslash ("/") in list view.
+Questions can be shuffled by grouped answers, without shuffling the answers within each group by checking Groups Only under the Randomize options for the question.
+Logic conditions can be applied to grouped rows of answers.
+New Features
+Survey
+Added the ability to create nested answer groups, and to order groups and subgroups using attributes and exec tags.
+Learn More: Adding Answer Groups, Group Tag: Group Response Options
+Survey Editor
+Added a warning to prevent accidental overwriting of quota configurations when merging changes into a live survey.
+Programming and Tools
+API
+API calls are now only accepted over an HTTPS connection. Doing API calls over an HTTP connection will result in that key being disabled.
+Added a meta parameter to the data API endpoint (surveys/<survey>/data). Using meta=modified, you can now filter results by the record's data_updated field (includes data edits) rather than the last_activity field (only includes participant submissions).
+Added documentation for the meta parameter in the Download Data API endpoint (surveys/{survey}/data) to both the GET and POST versions.
+Custom Code Elements (Logic Nodes)
+Up to four scheduled logic nodes (e.g. upload, fieldreport, crosstab) can now run simultaneously, decreasing wait-to-run time.
+Upgraded Imperium RelevantID logic node (relevantid.6) to use the latest version (v4.4).
+Upgraded Imperium Real Answer logic node (realanswer.4) to use the latest version (v3.5.1), adding four new attributes.
+Learn More: Imperium Real Answer Integration
+Bug Fixes
+Portal
+Removed supervisor access to set the API Key Creator status.
+Upload System Files
+Updated the video upload process so the user only receives one email confirmation instead of two.
+Survey
+When launching a project from Response Summary, the loading bar now has the correct coloring.
+A project with streamline launch enabled will now launch without error even when erroneous test data exists.
+Updated the theme editor and example survey to use the newest version of the Button Select element (atm1d.11).
+In Project Parameters, users can now use non-latin characters as the title and value when "includeInRespondentData" is set.
+Dynamic Questions
+On a page where a Slider Decimal element is set to 'no answer', an incorrect value is no longer displayed when a participant selects "continue", "back" and "continue" in succession.
+Participant View
+Open-end inputs on Button Select elements (atm1d.11) now properly align with buttons when the button alignment is set for center or right.
+The text in Button Select element (atm1d.11) open-end buttons is no longer hidden when showInput is set.
+Optional open-end answers can now be submitted as empty in multi-select questions.
+Survey Editor
+For questions without values="order" set: inserting a reusable answer list now shows a warning when that list has some but not all values defined, and prevents that list from being inserted.
+Reporting
+Crosstabs
+Added validation to ensure that when clicking "Creating Table from Banner" that a table cannot be created with a virtual that would execute after the virtual that the table is being created from.
+Data Downloads
+SPSS *.sav file export will use the DATETIME40 data type for date and start_date field even if you relabel the variable using the Layout Manager.

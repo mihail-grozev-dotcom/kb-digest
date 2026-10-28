@@ -1,0 +1,14 @@
+Title: Targeting Sample by Zip Code
+When purchasing sample for a survey that will field in the United States, you can use the Zip Code qualification question to target participants by zip code.
+Note: The Sample Marketplace only supports zip code targeting for surveys fielded in English within the United States.
+1: Adding the Question
+To start targeting zip codes, you must add the Zip Code qualification question to your sample bid. First, navigate to the Sample Criteria page and select “United States - English” from the locale drop-down.
+Then, click “Add Target” and select the “Zip Code” question from the qualification list.
+2: Specifying the Zip Codes
+Next, upload a list of the codes you would like to use as either an Excel file or a comma-delimited text file.
+Note: The file must be uploaded in .xlxs, .xls, or .csv format.
+To upload the list, drag and drop your file into the box or click “Browse” to pull it directly from your device. Then click “Upload File”.
+Once you have uploaded your file, all the included zips will appear as response options on the Sample Criteria page, where you can select / deselect which zip codes to target. You also have the option to add quotas for individual zip codes or configure them for an even distribution.
+Note: The Sample Marketplace supports only one code file per bid. If you would like to upload a new code file, you must first remove the current file and re-add the Zip Code qualification question.
+2.1: Creating the Code File
+To create a usable code file using Excel, open a blank spreadsheet and label the first column “Zip”. Then enter each of the desired zipcodes in a separate row within that column.

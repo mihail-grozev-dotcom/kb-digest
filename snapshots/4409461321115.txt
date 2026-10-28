@@ -1,0 +1,212 @@
+Title: Customizing the Slider Rating Question
+The Slider Rating element is a dynamic question style that transforms a <select> element into a slider track with points for each response option.
+The Slider Rating element is mobile friendly and versatile. If desired, you can add images and descriptive legend text to your slider. You can also customize it using CSS and numerous other XML attributes.
+1: Underlying Element Architecture
+The Slider Rating style sits on top of a <select> question. See below for an example of the base XML code needed.
+1.1: Base XML
+<select label="Q1" optional="0">
+<title>
+<p>Please indicate how appealing you find the below message.</p>
+<p><i>Defend the American Dream</i></p>
+</title>
+<comment>Drag the slider to a point on the scale.</comment>
+<choice label="ch1">Very unappealing</choice>
+<choice label="ch2">Somewhat unappealing</choice>
+<choice label="ch3">Neither appealing nor unappealing</choice>
+<choice label="ch4">Somewhat appealing</choice>
+<choice label="ch5">Very appealing</choice>
+</select>
+The XML code above produces the following result:
+2: Converting to the Slider Rating Style
+To add the Slider Rating style to this element, add uses="sliderpoints.4" to the <select> tag as shown below:
+<select label="Q1" optional="0" uses="sliderpoints.4">
+Using the same example as above, this change produces the following result:
+Once the style is applied, users can drag the handle onto the track or click the desired choice to make a selection.
+3: Customization
+Listed below are all the custom attributes available for this question style. Override them to create a custom look and feel for your Slider Rating question:
+Name
+Type
+Description
+sliderpoints:sliderPosition
+enum
+The initial position of the slider (Off Scale, Left End, Middle, Right End).
+Default: Off Scale
+Tip: "Middle" is best applied with an odd number of elements.
+Example:sliderpoints:sliderPosition="Middle" positions the slider to the middle of the track when the question is loaded.
+sliderpoints:legendPosition
+enum
+The position of the scale legend (Above Slider, Below Slider).
+Default: Below Slider
+Example: sliderpoints:legendPosition="Above Slider" shows the scale legend above instead of below the slider.
+sliderpoints:showRange
+bool
+Fills the track color to show the range of points selected. The range is shown from left to right, so this is ideal for choices with ordinal values.
+Default: 1
+Example: sliderpoints:showRange="0" disables the track range color.
+sliderpoints:OO
+bool
+Allows participants to bypass the question.
+Default: 0
+Example: sliderpoints: OO displays an opt-out checkbox with the text "Don't know".
+sliderpoints:sliderWidth
+string
+The width of the slider container.
+Default: 75%
+Example: sliderpoints:sliderWidth="30%" shows a much slimmer slider.
+sliderpoints:offScaleAdjustment
+string
+The number of pixels to adjust the slider handle off of the scale.
+Default: -40px
+Note: For this to work, the sliderPosition attribue must be set to "Off Scale".
+Example: sliderpoints:offScaleAdjustment="0px" initializes the slider handle on top of the first scale item.
+sliderpoints:offScaleText
+string
+The text to display in the slider handle before a selection has been made.
+Note: For this to work, the sliderPosition atribute must be set to "Off Scale".
+Example: sliderpoints:offScaleText="A" initializes the handle with the letter "A" inside.
+sliderpoints:offScaleAdjustment_smartphone
+string
+The number of pixels to adjust the slider handle off of the scale for smartphone devices.
+Default: -36px
+Note: For this to work the sliderPosition attribute must be set to "Off Scale".
+Example: sliderpoints:offScaleAdjustment_smartphone="0px" initializes the slider handle on top of the first scale item.
+sliderpoints:offScaleText_smartphone
+string
+The text to display in the slider handle before a selection has been made for smartphone devices.
+Note: For this to work, the sliderPosition attribute must be set to "Off Scale".
+Example: sliderpoints:offScaleText_smartphone="A" initializes the handle with the letter "A" inside.
+sliderpoints:handle_css
+CSS
+CSS for the slider handle.
+Example: sliderpoints:handle_css="border: 3px solid black; background-color: red;" updates the style for the handle to include a thick border and red background.
+sliderpoints:track_css
+CSS
+CSS for the slider track.
+Example: sliderpoints:track_css="border: 1px dotted black; background-color: white;" replaces the gray track with a dotted one.
+sliderpoints:track_range_css
+CSS
+CSS for the slider track range.
+Example: sliderpoints:track_range_css="background-color: black;" replaces the orange track range with a black one.
+sliderpoints:legend_selected_css
+CSS
+CSS for the legend bullet and text when selected and / or hovered.
+Example: sliderpoints:legend_selected_css="color: red;" updates the color of the legend bullets and text to red when hovered over or selected.
+sliderpoints:handle_unanswered_css
+CSS
+CSS for the slider handle before a selection has been made.
+Note: For this to work, the sliderPosition attribute must be set to "Off Scale".
+Example: sliderpoints:handle_unanswered_css="background-color: red;" changes the handle's default orange color to red.
+sliderpoints:handle_unanswered_hover_css
+CSS
+CSS for the slider handle before a selection has been made and is hovered over.
+Note: For this to work, the sliderPosition attribute must be set to "Off Scale".
+Example: sliderpoints:handle_unanswered_hover_css="opacity: 0.5; filter: alpha(opacity=50);" maintains the transparent handle color when hovered over.
+4: Customization Examples
+Using the attributes above, you can customize the default look and feel for this question style. The examples below help illustrate just a few of the possibilities.
+4.1: Example 1
+In this example, several style attributes are used to update the color of the slider handle and track.
+4.1.1: XML Code
+<select label="Q1" optional="0" uses="sliderpoints.4"
+sliderpoints:handle_css="background-color: black; border: 1px solid black;"
+sliderpoints:track_css="background-color: black;"
+sliderpoints:legend_selected_css="color: black;"
+sliderpoints:showRange="0"> <title> Which browser do you prefer?
+</title>
+<comment>Please select one</comment>
+<choice label="ch1">Chrome</choice>
+<choice label="ch2">Firefox</choice>
+<choice label="ch3">Internet Explorer</choice>
+<choice label="ch4">Opera</choice>
+<choice label="ch5">Other</choice>
+</select>
+4.1.2: XML Code Description
+Listed below are each of the attributes applied within the example, along with a quick description of how they affected the question style.
+sliderpoints:handle_css="...": Changed the color of the handle to black (the handle is set to orange by default).
+sliderpoints:track_css="...": Changed the color of the track to black (the track is set to grey by default).
+sliderpoints:legend_selected_css="...": Changed the color of the slider point and legend text to black when hovering over or making a selection (these are set to orange by default).
+sliderpoints:showRange="0": Removed the track range. Since this question does not involve rating, there is no need to show a track range.
+4.1.3: Result
+4.2: Example 2
+In this example, CSS is used to completely transform the overall look and feel of the question style. In addition to updating the handle and selection text, the track's background color goes from red to black to help supplement the idea of a rating question.
+4.2.1: XML Code
+<select label="Q2" optional="0" uses="sliderpoints.4"
+sliderpoints:sliderPosition="Middle"
+sliderpoints:handle_css="background-color: black; border: 1px solid black; border-radius: 0px;"
+sliderpoints:legend_selected_css="color: black; font-weight: bold;"
+sliderpoints:track_css="height: 4px;
+background: #cc0000;
+background: -moz-linear-gradient(left, #cc0000 0%, #005602 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,#cc0000), color-stop(100%,#005602));
+background: -webkit-linear-gradient(left, #cc0000 0%,#005602 100%);
+background: -o-linear-gradient(left, #cc0000 0%,#005602 100%);
+background: -ms-linear-gradient(left, #cc0000 0%,#005602 100%);
+background: linear-gradient(to right, #cc0000 0%,#005602 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#005602',GradientType=1 );"
+sliderpoints:showRange="0">
+<title>
+Did you enjoy the following movies?
+</title>
+<comment>Please select one for each movie title</comment>
+<row label="r1">Ender's Game</row>
+<row label="r2">Gravity</row>
+<choice label="ch1"><i class="fa-icon-frown"></i><br/>No, didn't like it at all</choice>
+<choice label="ch2"><br/>Not really</choice>
+<choice label="ch3"><i class="fa-icon-meh"></i><br/>It was OK</choice>
+<choice label="ch4"><br/>A little bit</choice>
+<choice label="ch5"><i class="fa-icon-smile"></i><br/>Yes, I liked it a lot</choice>
+</select>
+4.2.2: XML Code Description
+Listed below are each of the attributes applied within the example, along with a quick description of how they affect the question style.
+sliderpoints:sliderPosition="...": Positioned the handle in the middle of the scale (the handle starts to the left of the scale by default).
+sliderpoints:handle_css="...": Changed the handle color to black (the handle is set to orange by default). In addition, the border-radius property shows a square handle instead of a circle (default).
+sliderpoints:legend_selected_css="...": Changed the legend text to black (the text is set to orange by default). Also emboldens text when hovered over or selected.
+sliderpoints:track_css="...": Increased the track’s default height and updates the background color of the track to transition from red to green. This helps indicate that points on the left of the slider are more negative than those on the right.
+sliderpoints:showRange="0": Removed the track range. Since the track color indicates a shift from negative to positive, the range is unnecessary.
+The <choice> elements include icons from the Font Awesome Icon Library and use <br/> tags to display the text evenly on the slider's vertical axis.
+4.2.3: Result
+4.3: Example 3
+This example illustrates how to place the response option above the track and how to include an opt-out option.
+4.3.1: XML Code
+<select label="Q3" optional="0" uses="sliderpoints.4"
+sliderpoints:legendPosition="Above Slider"
+sliderpoints:sliderPosition="Middle">
+<title>
+Please rate the following social networks.
+</title>
+<row label="r1">Facebook</row>
+<row label="r2">Twitter</row>
+<row label="r3">Pinterest</row>
+<choice label="ch1"><i class="fa-icon-star-empty"></i></choice>
+<choice label="ch2"></choice>
+<choice label="ch3"><i class="fa-icon-star-half-full"></i></choice>
+<choice label="ch4"></choice>
+<choice label="ch5"><i class="fa-icon-star"></i></choice>
+<choice label="ch10" sliderpoints:OO="1">No comment</choice>
+</select>
+<style name='respview.client.css' with="Q3"> <![CDATA[
+<style>
+/* Align the row text to the middle */
+.sq-sliderpoints-row-legend { text-align: center; }
+/* Increase the star icon size */
+i { font-size: large; }
+</style>
+]]></style>
+4.3.2: Result
+5: Customizing the Error Message
+This example illustrates how to customize the Slider Rating question’s unique error message using the sys_noAnswerSelected resource tag.
+5.1: XML Code
+<select
+label="q5"
+ss:questionClassNames="sq-sliderpoints"
+uses="sliderpoints.4">
+<title>New Slider Rating Question</title>
+<comment>Drag the slider to a point on the scale.</comment>
+<res label="sys_noAnswerSelected">Please slide the handle to rate your response.</res>
+<choice label="ch1" value="1">Rating 1</choice>
+<choice label="ch2" value="2">Rating 2</choice>
+<choice label="ch3" value="3">Rating 3</choice>
+<choice label="ch4" value="4">Rating 4</choice>
+<choice label="ch5" value="5">Rating 5</choice>
+<choice label="ch_na" aggregate="0" percentages="0" randomize="0" sliderpoints:OO="1" value="99">Don't Know</choice>
+</select>
+5.2: Result

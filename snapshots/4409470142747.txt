@@ -1,0 +1,3 @@
+Title: Download Data in Crosstabs
+To download your raw data in Crosstabs, first run the crosstab, then open the Exports menu and select the desired download.
+Alternatively, select View All Data Formats. The full list of download formats will display on a new page. See Data Downloads and Formatting Options for a description of each format type.

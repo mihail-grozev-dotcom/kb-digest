@@ -1,0 +1,34 @@
+Title: Disable or Hide Submit Button for Specific Time
+This code can be applied for both the "Continue" and "Finish" submit buttons. No changes required.
+Setup requires use of the XML editor. To learn more about the XML editor, see Editing XML.
+1: Disabling the Submit Button
+This XML style disables the submit button for a specified amount of time. During this time, a participant will not be able to submit their answers. After the time has passed, the button will be enabled and clickable again, allowing the participant to continue.
+To do this, open the XML editor by selecting "XML" in the "Build" section of the menu and the XML editor will open in a new window.
+Navigate to the bottom of the XML code, just above the end tag, and enter the following code. The highlighted portions must be adapted for your survey.
+<style label="disable_continue" with="Q1" arg:timeout="#" mode="after" wrap="ready"
+name="respview.client.js"><![CDATA[
+var $submitButton = $ ("#btn_continue, #btn_finish");
+$submitButton.prop("disabled", true);
+setTimeout( function() {
+$submitButton.prop("disabled", false);
+}, $(timeout) * 1000);
+]]></style>
+Where:
+Q1 is the question where the disabled submit button should occur
+# is the amount of time in seconds that the button will be disabled (e.g., 5)
+Once entered, save your survey and you're all set! Be sure to test this survey-side and confirm that the duration is appropriate for the question it applies to.
+2: Hiding the Submit Button
+This XML style hides the submit button for a specified amount of time. During this time, a participant will not be able to submit their answers. After the time has passed, the submit button will become visible and clickable again, allowing the participant to continue.
+To do this, open the XML editor by selecting "XML" in the "Build" section of the menu and the XML editor will open in a new window.
+Navigate to the bottom of the XML code, just above the end tag, and enter the following code. The highlighted portions must be adapted for your survey.
+<style label="disable_continue" with="Q1" arg:timeout="#" mode="after" wrap="ready" name="respview.client.js"><![CDATA[
+var $submitButton = $ ("#btn_continue, #btn_finish");
+$submitButton.hide();
+setTimeout( function() {
+$submitButton.show();
+}, $(timeout) * 1000);
+]]></style>
+Where:
+Q1 is the question where the hidden submit button should occur
+# is the amount of time in seconds that the button should be hidden (e.g., 5)
+Once entered, save your survey and you're all set! Be sure to test this style survey-side and confirm that the duration is appropriate for the question it applies to.

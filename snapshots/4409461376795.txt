@@ -1,0 +1,32 @@
+Title: XML Syntax
+1: Introduction to XML
+XML is a markup language which is a set of markup tags that describe the page content. XML is well-formed meaning that tags are opened, subsequently closed and properly nested. XML is composed of three kinds of entities: tags (also referred to as elements or nodes), attributes of tags and data. XML also follows the following syntax rules:
+Contains only properly encoded legal Unicode characters.
+The special syntax characters such as "<" and "&" only appear where performing their markup-delineation roles.
+The begin, end, and empty-element tags that delimit the elements are properly nested, with none missing and not overlapping.
+The element tag names are case-sensitive; the beginning and ending tags must match exactly.
+Tag names cannot contain any of the following characters: ! " # $ % & ' ( ) * + , / ; < = > ? @ [ \ ] ^ ` { | } ~
+Tag names also cannot contain a space character and cannot start with -, ., or a numeric digit.
+There is a single "root" element that contains all the other elements.
+1.1: Tags
+Tags are the basic building blocks of XML and are delimited by angle brackets. Tags tell the browser how to display the information and are not displayed on the HTML page. A closing tag is identical to the opening tag, except that the tag name is preceded by a forward slash (/). All tags must be closed. If a tag does not contain any other tags or data, a self-closing tag that includes the forward slash before the closing angle bracket in the opening tag can be used. Tags must be nested properly. If a <row> tag is nested in a <radio> tag, then a closing </row> tag must be added before the closing </radio> tag. Any data must be nested inside a tag.
+Example tags:
+opening: <tagname>
+closing: </tagname>
+self-closing: <tagname/>
+1.2: Attributes
+Attributes define properties of the tag. Attributes can be included in the opening tag in the form attributename="value". Attributes can also use a nested tag in the form <attributename>value</attributename>.
+Here is an example of a <radio> tag with the attributes label and shuffle:
+<radio label="q6" shuffle="rows">
+Note: All tags and attribute names are case sensitive. For example, the tag name Label with an uppercase "L" is not the same as label with a lowercase "l". In some cases, all the possible values of an attribute are specified, and in that case, the values are also case sensitive.
+1.3: CDATA
+There are also some special tag-like entities that are not part of a specific XML language and can be used in XML. One is the CDATA wrapper, which can be used to wrap data to ensure that an XML processor does not try to interpret data as XML code. The CDATA wrapper doesn't have to be used if there's nothing in the data that could be mistaken for XML code but you can always play it safe by including it.
+Example CDATA tag:
+<![CDATA[
+data
+]]>
+2: XML in Decipher Surveys
+Each Decipher survey has a corresponding survey.xml file located in the project directory. The survey.xml file uses standard XML format. Without further information, Decipher assumes the survey.xml file is in UTF-8 format where each national character is represented by 2 or more bytes which can represent any national character set such as including Japanese. This can be overridden to use iso-8859-1, a common western character set:
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+With that header, the string "Blåbær" could appear in the XML file. Without, the UTF-8 encoding would require the string "BlÃ¥bÃ¦r".
+Decipher will also recognize a UTF-16 encoded file. Those files start with a certain sequence of coded characters at the very beginning of the file. All tags and attributes in Decipher are in lowercase. The "root" tag in a Deciphersurvey.xml file is <survey>. Inside the <survey> tag will be one or more survey element tags.

@@ -1,0 +1,26 @@
+Title: 149.1 Release Notes
+Release Date: October 12, 2021
+Release Version: 149.1
+New Features
+Survey
+Added the MaxDiff survey element, allowing a simple MaxDiff exercise to be added to a survey without the use of a complex design file.
+Learn More: MaxDiff Element
+Responses
+View/Edit Responses
+Added a timeout process to end background tasks that have stopped loading while editing or exporting data.
+Architecture/DevTools
+Improved system checking to prevent the Portal from becoming unresponsive when running certain reports.
+Bug Fixes
+Portal
+Fixed an issue causing the Portal to become unresponsive on some servers.
+Participant View
+Fixed an issue causing an error when attempting to add a <noanswer> response option to a one-dimensional question on a survey with a compat level of 149.
+Survey
+Dynamic Questions
+Fixed an issue preventing response files in .mp3 format from being played back in the Audio Player element on certain iOS devices.
+Reporting
+Crosstabs
+Fixed an issue causing table rows to appear in the wrong order in report exports if sorting was enabled and those rows consisted of a text mixture starting with or only containing numbers.
+Programming & Tools
+API
+Fixed an issue preventing the Datafeed API call from running in some surveys with delphi="1" enabled.

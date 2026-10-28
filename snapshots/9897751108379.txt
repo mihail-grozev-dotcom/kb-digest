@@ -1,0 +1,65 @@
+Title: 150.5 Release Notes
+Release Date: June 7, 2022
+Release Version: 150.5
+New Features
+Survey
+Respondent View
+The Survey performance for large surveys (> 500 questions after loop
+expansion) has been improved.
+Dynamic Questions
+Created a new version (3) of Autosuggest with several new options.
+Three new option boxes in the Source File Settings:
+Include “No Match” virtual question
+Append all file data
+Exclude selections between rows
+A new option is shown in the “Source File Settings” modal, titled
+Include Answers Selected in
+The “Column with Language Code” has been renamed and relocated. It is
+now labeled “Language code (optional)” and is now located in the
+Column Mapping section.
+The sections “Column Mapping” and “Optional Filters” are now individually
+collapsible.
+Value-based filtering has been expanded to allow four distinct filters
+instead of just two.
+Participant Sources
+Updated CAPI source text in the Participants Sources screen to inform
+all users that the mobile CAPI app is no longer supported.
+Reporting
+Added the “Excel with Text-Piping" export options, which provides the
+text values of responses that were filled by piping and reduces the need
+to cross reference values.
+Programming & Tools
+API
+Added a new API endpoint that allows staff users to obtain specific configuration
+settings from the server.
+Added documentation for the new API endpoint for system configuration.
+Added a new user_account_active field to the response of the API-keys
+API endpoints.
+Added API documentation to include rh/apikeys additions in reference
+to user_account_active.
+Bug Fixes
+Portal
+Fixed an issue that prevented changing settings for company sub-directories.
+Survey
+Survey Editor
+Fixed an issue that prevented the use of nested (double) parentheses
+in custom logic conditions.
+Fixed an issue that prevented the use of `.count` in custom logic under
+certain conditions.
+Example: "q24.c1.count > 8" changes to "q24.count > 8"
+instead
+Language Manager
+Fixed an issue that caused translations to be out of date when a survey
+had break formatting and a second language was added. The <br />
+coding setup will now stay in place correctly.
+Survey Testing Tools
+Participant View
+Disabled the browser back button in surveys that prevents users from
+going to previous survey pages. (Only compat 150 was affected)
+Reporting
+Crosstabs
+Fixed table/charts that were mislabeled when exported to PowerPoint to
+create bar charts and mirror crosstabs reports.
+Architecture/DevTools
+Temp-edits are now archived locally. When S3 archiving is enabled, it
+is temporarily archived locally as well.

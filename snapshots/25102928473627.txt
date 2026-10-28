@@ -1,0 +1,39 @@
+Title: 153.30 Release Notes
+Release Date: April 23, 2024
+Release Version: 153.30
+New Features
+Survey
+Survey compats 1 through 18 are retired.
+Learn More: Survey Compat Levels
+Responses
+Participant Sources
+Error messages displayed in Participant Sources when a survey contains HTML comments (e.g. <!-- comment text -->) now include the reason for the error.
+Campaign Manager & Response Summary
+The Campaigns Tab of Response Summary now shows the correct numbers of Opt-Out Suppressions, New Company Opt-Outs, and New Global Opt-Outs in three separate rows.
+The Spam Rate calculation is now consistently calculated as the actual number of individual spam complaints divided by the total number of emails actually sent.
+Blocks are now counted and displayed separately from Bounce-Backs.
+Learn More: Monitoring Campaigns in Field, Splitting the Response Summary, Email Campaign Manager Overview
+Programming and Tools
+Admin Reports
+The elements_per_deactivated_user report now includes library elements saved by all deactivated users, regardless of the reason for their deactivation.
+API
+Updated surveys/{survey}/data and surveys/{survey}/datamap documentation to include a layout parameter description explaining that Standard Layout is used if layout ID is not specified.
+Learn More: getSurveyData, getSurveyDatamap
+Full API documentation is now published for the endpoints that create and verify signed survey links.
+Learn More: Verify signed links, Create signed links
+Custom Code Elements (Logic Nodes)
+The logic node page now has a default description for the debug_level attribute on all logic nodes that do not use it, and a specific description that details how it should be used for logic nodes that do use it.
+Added new Research Defender REVIEW logic node.
+Learn More: Research Defender REVIEW Integration
+Architecture and DevTools
+Watermarked Brightcove videos older than 3 years will now be removed more often (nightly).
+Bug Fixes
+Survey
+Participant View
+Navigating back to a submitted Autosuggest question now displays the submitted answer as expected, rather than a blank input field.
+Reporting
+Data Downloads
+Users with custom permissions including Reporting / Crosstabs: View and Data: Download can switch the Datamap Layout.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+Participants taking surveys that include a Research Defender logic node (not seen by participants) are now allowed to proceed when the API call returns an error.

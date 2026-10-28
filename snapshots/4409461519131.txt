@@ -1,0 +1,13 @@
+Title: Getting Started with Decipher
+Welcome to Decipher! Decipher offers the ability to build engaging, mobile-friendly surveys, distribute them to participants, and analyze your data.
+This Decipher Quick Start Guide will take you through the full life of a Decipher project so you can be on your way to fielding your own surveys in no time!
+Additional exercises and more in-depth walkthroughs can be found on our Training Page. Our Getting Started guide is also available in a downloadable PDF:
+Decipher Quick Start PDF
+Portal Overview
+The Portal is Decipher's project management tool where you can create, manage, review, and collaborate on projects. In this step, you will learn how to navigate the Portal and create new Decipherprojects.
+Building a Project
+In Decipher, creating a survey is quick and easy! This section will teach you the basics of adding questions, logic, and quotas to your projects, as well as modifying the look and feel of the survey for your participants.
+Monitoring Your Project in Field
+As a survey is fielding, it is important to keep an eye on the data collection progress. In this section, you will learn to use the Response Summary to monitor your project in field.
+Analyzing Data
+Real-time reporting and data analysis is included in every Decipher project. In this section, you will learn how to take advantage of the Crosstabs tool to review the data you collect.

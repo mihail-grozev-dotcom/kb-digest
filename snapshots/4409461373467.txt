@@ -1,0 +1,135 @@
+Title: Xlate: Pulling Survey Translation Files
+Requires Decipher Cloud
+Working with a multi-language survey? See Guide to Programming Multi-Language Studies to learn more.
+Note: It is recommend to use the Language Manager Overview to export and import translation files.
+1: Overview
+The xlate command is used to get/add translations from/to a survey.
+The process for translating a survey is below:
+Finish programming the survey and ensure the wording reflects most recent changes
+Use xlate to get all translateable elements from the survey into an Excel spreadsheet
+Send the translations to a 3rd party translation company
+Use xlate to add all translated elements into the survey
+If changes occur, go back to step 1
+When a translation file is first pulled, it's saved as an Excel spreadsheet and looks similar to the table below:
+A
+B
+C
+1
+Resource
+Primary Language
+Translation
+2
+general,name
+Survey
+Survey
+3
+Q0,title
+Are you...
+Are you...
+4
+Q0,r1,cdata
+Male
+Male
+5
+Q0,r2,cdata
+Female
+Female
+After the file above has been received back from the translation team with the translations in place, the updated translation file looks like this:
+A
+B
+C
+1
+Resource
+Primary Language
+Translation
+2
+general,name
+Survey
+調査
+3
+Q0,title
+Are you...
+あなたは...
+4
+Q0,r1,cdata
+Male
+男性
+5
+Q0,r2,cdata
+Female
+女性
+Using xlate, the file above can be uploaded to a survey and used to translate the original text into the translated language.
+Note: To account for the collapse duplicate option on file exports, the Language Manager will read the header area from the second column of the saved xls file. Headers will show as follows:
+Resource
+Primary Language
+'- collapsed': the default, duplicate resources are not included
+'- non collapsed': duplicate resources are included
+Translation
+2: Xlate Syntax
+The syntax for the xlate command is below:
+xlate --unsafe --new --dupes -l LANGUAGE SURVEY XLATE_FILE.xls SURVEY
+2.1: Exporting Translations to a Survey
+To export language-specific text from a survey, use the following command:
+xlate -l german . FILENAME.xls
+The command above creates a file named "FILENAME.xls" containing all of the translatable survey text for the German language.
+See Available Survey Languages for a list of all languages.
+To export all of the translatable text from a survey, use the following command:
+xlate . FILENAME.xls
+The command above creates a file named "FILENAME.xls" containing all of translatable survey text that can be sent to the translation team.
+Note: You can pull an xlate for any language added to the project through language manager or using the otherLanguages attribute.
+2.1.1: Include New/Modified Text
+To pull out survey text that has been added or modified, use the following command:
+xlate --new -l spanish . FILENAME.xls
+The --new option only considers survey texts that have been changed since the last translation. Modified survey text is pulled with the current outdated translation. For example, if the primary language (English) of q1.r1 has been modified from “Red” to “Magenta”, the Spanish translation will be pulled as “Rojo”.
+To pull out added or modified survey text without pulling the original translation, use the following command:
+xlate --new –without-existing -l spanish . FILENAME.xls
+Adding the --without-existing option pulls modified survey text without pulling the current outdated translation.
+For example, if the primary language (English) of q1.r1 has been modified from “Red” to “Magenta”, the Spanish translation will be pulled as “Magenta” (instead of “Rojo”).
+2.1.2: Include Duplicate Text
+By default, the xlate command will ignore duplicate texts. The text will still properly exist when adding translations back into the survey, but to prevent the translation team from translating the same text, it's left out of the translation file. To include these duplicate texts, using the --dupes option:
+xlate --dupes -l german . FILENAME.xls
+If you use the --dupes option when exporting the translation file, you need to also use the --dupes when importing it. If you do not do this, the survey transltion file will not be updated correctly. When you use the --dupes option in the shell, the following warning message appears to make sure you run it when importing:
+"WARNING: Remember to use --dupes option when importing as well to AVOID replacing dupes!"
+2.1.3: Omit Blank Resources
+Similarly, if you would like to exclude any blank resources from your export file, you can add --omit-blanks to your command:
+xlate --omit-blanks -l german . FILENAME.xls
+2.2: Importing Translations to a Survey
+To add language-specific translations into your survey, use the following command:
+xlate -l german . FILENAME.xls .
+The command above will create a file named "german.xls" that will be referenced anytime the survey's language is set to "german."
+See Available Survey Languages for a list of all languages.
+To add language-specific translations into your survey as an overlay instead, use the following command:
+The command below instead of doing an overlay will replace all existing survey text in our programmed survey and report with the text in the "Translation" column of FILENAME.xls.
+xlate . FILENAME.xls .
+Note: If a piped variable was changed during the translation process (e.g. [pipe] or ${python code}) that is not reflected in the original text of the survey, this translation will be skipped over.
+For example, if [some code] was translated to [code], attempting to add this translation back into your project will display an error message.
+[user@server proj1234]$ xlate -lgerman . german_xlate.xls .
+Assuming . refers to selfserve/9d3/proj12342
+Assuming . refers to selfserve/9d3/proj12342
+TXM: 'germanmg':'INTRO,cdata' set(['code']) not subset of set(['some_code'])
+Row 8, INTRO,cdata: translation variables do not match and were not imported
+Changed 0 texts, and 1 duplicates. 7 were identical with the XLS file
+WARNING! 1 translations were skipped due to invalid piping
+Rerun xlate --unsafe if you want to accept them
+File selfserve/9d3/proj1234/german.xml saved.
+To import this translation anyway and ignore the errors, use the --unsafe option:
+xlate --unsafe -lgerman . german_xlate.xls .
+Note: This is the recommended way to upload translations for a study.
+3: Exclude Text from Translations
+You can prevent an element from being pulled into the translation file by setting translateable="0" on it.
+For example:
+<html label="Introduction" where="survey" translateable="0">
+Welcome to the survey! Please click "Continue".
+</html>
+You can use the mls="LANGUAGE" attribute to set the language for a particular element. Similar to the cond attribute, setting mls="LANGUAGE" will only show that element for that particular language. Additionally, the element will only be pulled into the translation file when using xlate -l LANGUAGE.
+For example:
+<radio label="Q10" atleast="1">
+<title>Which of these TV stations do you watch?</title>
+<row label="r1">ABC</row>
+<row label="r2">NBC</row>
+<row label="r3">CBS</row>
+<row label="r4" mls="spanish">TV Telemundo</row>
+<row label="r5" mls="spanish">¡Buenos Días TV!</row>
+</radio>
+In the example above, r4 and r5 will only be shown to participants taking the survey in Spanish. These two rows will only appear in the translation file when using the following command:
+xlate -l spanish . FILENAME.xls

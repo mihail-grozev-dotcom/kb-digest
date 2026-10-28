@@ -1,0 +1,23 @@
+Title: 153.48 Release Notes
+Release Date: February 11, 2025
+Release Version: 153.48
+New Features
+Responses
+Campaign Manager
+Support for using the latest top-level domains in From: addresses in both Campaign Manager and bulk (in shell environments) has been improved, such that new domains should be recognized very shortly after they become available for registration.
+View/Edit Responses
+To optimize page performance, participant data now loads only when a Filter, Search, Column Change, or Load Data is triggered.
+Reporting
+Data Downloads
+An issue sometimes causing data to be missing from large downloads has been resolved.
+The JSON datamap now contains a "rating": true attribute for single- and multi-select questions whose value cells have the value="" attribute explicitly set.
+Bug Fixes
+Reporting
+Crosstabs
+Crosstabs exports now properly omit percentages for rows not included in the base.
+Data Downloads
+An issue preventing the JSON datamap from stripping HTML out of rowTitle, colTitle and question title fields has been resolved.
+Programming and Tools
+An issue preventing restricted shell users from using the copy-survey script has been resolved.
+Custom Code Elements (Logic Nodes)
+An issue allowing participants to cause an error in the Open Assist question by clicking Continue too soon has been resolved.

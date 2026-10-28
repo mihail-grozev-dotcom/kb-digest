@@ -1,0 +1,41 @@
+Title: Redirect Logic Node
+The Redirect logic node redirects participants out of a survey to another website while retaining the participant's survey progress. Two query parameters are automatically appended to the URL: one for returning to the survey, and one with a unique participant ID. Logic conditions can be used to determine which participants are redirected.
+1: Using the Survey Editor
+To add the Redirect logic node using the Survey Editor, click + Add Survey Element under the staging area:
+In the Element Library, click Advanced and select the Redirect element from the list. Then click Add:
+The new element will appear in the staging area, where you can specify the settings for your integration:
+1.1: Configuration
+The following options are configurable:
+URL: The external URL participants will be redirected to. The query parameter return-url=[return] will be appended to the URL automatically if [return] is not found in this URL. Example: https://example.com or https://example.com?custom-url=[return]
+Participant ID Query Parameter: The query parameter to append to external URL for the participant ID. Example: rid
+Participant ID Value: Enter the value to use for the participant ID. This field is pipeable. Example: ${uuid}
+Extra Parameters: Enter any additional query parameters to append to the external URL. Example: list=${list}&key=value
+Using the above attributes, the Redirect logic node redirects to https://example.com/?return-url=https%3A%2F%2Fyour-server.decipherinc.com%2Fsurvey%2Fselfserve%2F57e%2F240301%3Fstate%3D7d831b32-2705-4a91-9978-268222ea97ab&rid=3wtx0eg9j8rmf1wy&list=0&key=value, which includes the information provided in the Redirect logic node, as well as the URL required to return to the survey.
+2: Using the XML
+To add the Redirect logic node using the XML Editor, add the following <logic> tag to your survey XML:
+<logic label="ln1"
+redirect:rid_key="rid"
+redirect:rid_value="${uuid}"
+redirect:url="https://example.com"
+redirect:extra_params="list=${list}&amp;key=value"
+uses="redirect.1">
+<title>Redirect</title></logic>
+2.1: Required Attributes
+Attribute
+Description
+Example
+url
+The URL to redirect to. Query parameter return-url=[return] will be appended to the URL automatically if [return] is not found in this URL.
+https://example.com?custom-url=[return]
+rid_key
+The query parameter to append to external URL for the participant ID.
+rid
+rid_value
+Enter the value to use for the participant ID. This field is pipeable.
+${uuid}
+extra_params
+Enter any additional query parameters to append to the external URL.
+list=${list}&key=value
+Using the above attributes, the Redirect logic node redirects to https://example.com/?return-url=https%3A%2F%2Fyour-server.decipherinc.com%2Fsurvey%2Fselfserve%2F57e%2F240301%3Fstate%3D7d831b32-2705-4a91-9978-268222ea97ab&rid=3wtx0eg9j8rmf1wy&list=0&key=value, which includes the information provided in the Redirect logic node, as well as the URL required to return to the survey.
+3: Additional Considerations
+You can use logic conditions to determine which participants are redirected.

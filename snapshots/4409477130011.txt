@@ -1,0 +1,13 @@
+Title: Duplicating a Survey
+You can create a copy of a survey at any time using the survey actions menu.
+To duplicate a survey via the Portal: First locate your project in the Portal and click the "..." button under "Actions" to open the project actions menu. Then select Duplicate Survey.
+To duplicate a survey via the Project Overview: Click Actions at the top left of the page. Then select Duplicate Survey.
+Note: You cannot duplicate a
+Registration Survey
+because only one Registration Survey is allowed per panel.
+Next, enter a name for the copied project and define its duplication settings. The following options are configurable:
+Copy project permissions (users and groups): Check the box to share the copied project with the same users and groups as the original.
+Copy project subscriptions (requires copying project permissions): Check the box to include the original project’s subscribers on the copied project.
+Copy project data: Check the box to copy the original project data to the copied project.
+Survey Path: By default, the survey path for the copied project will be automatically generated using an incremental project ID. Click the pencil icon to define a custom survey path.
+Once you are satisfied with your settings, click Duplicate to create the copy.

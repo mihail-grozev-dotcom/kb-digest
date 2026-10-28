@@ -1,0 +1,92 @@
+Title: Decipher (previously Decipher) M37 Technical Release Notes
+This document contains the technical release notes for the Decipher M37 (2017) milestone.
+Release Date: April 11, 2017
+Mission Statement
+New survey compat level is 137. Use compat="137" for all new surveys. This enables:
+New <themes> tag
+Dynamically setting gv.survey.root.styles.ss.includeLESS is no longer allowed
+New Features
+Reusable Answer Lists
+Allows users to establish an answer list for use in multiple survey questions.
+Allows users to control answer options and apply updates to several questions at once.
+List creation option appears in both the Element Library and the "Row Actions" menu within the Survey Editor for easy application.
+Survey XML Importing: Forsta Plus Conversion & Decipher
+Allows users to import both Decipher and Forsta Plus survey XML files directly to the portal.
+Incompatible elements are flagged for user review.
+Quota Reassignment
+Speeds up edit process by automatically checking quota tables for changed cells.
+Decreases risk for live changes by flagging quota changes for user review.
+Nested Loops
+Allows users to expose their participants to a repeated series of questions with different variables piped in.
+Adds two stacked data download options when nested loops are created.
+Project Parameters
+Allows users to design their own fully-customizable structured tags in the Decipher portal.
+Reporting
+Crosstabs
+Improved performance for projects loading large grid tables.
+Improved performance on the report optimizer to reduce load times for questions with a large number of answer options.
+Field Report
+Quotas downloaded to Excel will now include the quota sheet and table name.
+Survey
+The question attribute valuesnow accepts the reverse option. This option excludes explicit value answers first.
+Survey Editor
+Improvements to loading times.
+The following templates are now available on all servers:
+Copy Test (requires compat 134 or below for DQ version)
+Concept Test
+Pricing Study
+Employee Satisfaction
+Customer Satisfaction
+Updates to <note> and <condition> tags for warnings system:
+Using builder:warning="unsupported" will flag a conditioned element as unsupported and prevent project launch.
+Using builder:title on a <note> can be used to identify the element when using the live script.
+Programming & Tools
+Enabled use of gv.survey.replaceVariables() in secure surveys
+The tsst script now ignores custom style overrides in the project’s nstyles file by default; new --style option can be added to force the tsst script to evaluate them. Requires Decipher Cloud
+When using wildcards (e.g., "/*/something"), hasMarker performance is now 20 times as fast.
+Added the ability to access data layout information via the API. See our API documentation for more details.
+New <themes> tag added to allow for using multiple themes in a survey.
+Technical Notes
+The basic server memory footprint increased by 7% or 47 megabytes, which accounts for 0.3% of the level-1 cloud server.
+Bug Fixes
+Survey Editor
+Fixed an issue where extra ‘span’ tags would be inserted into the text for response options
+Fixed an issue with the Survey Editor removing elements referencing adb datasources
+Fixed an issue where sortRows did not support unicode characters
+Fixed an issue where long sample source names would overlap
+Fixed an issue where the "new" icon in the Survey Editor would not show correctly when using Internet Explorer v11
+Survey edit locks are now saved in database
+Survey
+Fixed an issue where [pipe]s were not accessible within a <loop>
+Fixed an issue with incorrect sub-loop label access via loopvar:label
+Fixed an issue with the translation of loop variables within nested loops
+Added support for unicode when using sortRows
+Fixed an issue where the system could fail while attempting to synchronize plus markers across different sheets; plus markers are now synchronized per sheet
+Language Manager
+Added error message display when an upload fails
+Fixed an issue with the “Add Language” button disappearing
+Improved performance when collapsing and expanding duplicate translations
+Dynamic Questions
+Fixed an issue with the Image Uploader which would allow image files over 5 MB in size to be uploaded
+Fixed an issue with the Image Uploader where you could continue without using the ‘No Answer’ option
+Fixed an issue where the Audio Player 3 DQ would not play in Chrome on an Android device
+Fixed an issue with padding for the Media Evaluator
+Campaign Manager
+Fixed an issue with bulk email sends where they would hang when bulkagent would fail
+Fixed an issue with encoding detection when uploading .txt files
+Fixed an issue where the Campaign Manager would not close all files after using them, causing the application to crash
+Crosstabs
+Fixed an issue with the PDF export not displaying counts
+Fixed an issue with stacked data options not displaying for a project with nested loops
+Fixed an issue where errors were shown for logic reuse when logic is mutually exclusive
+Responses Report
+Records that fail to load are now skipped
+Data Downloads
+Changed range for Triple S Download to 1-9999999
+Programmer Tools
+The tsst script will now ignore any XML style overrides unless the --style flag is used
+Fixed an issue with surveys failing to relaunch when using datasource keys based off of optional questions
+Architecture/Dev Tools
+Improved participant view performance by serving files from CDN; especially noticeable for out-of-country users or those with slow connections
+CATI
+Fixed an issue where the CATI server would sometimes fail to restart during nightly main server restarts

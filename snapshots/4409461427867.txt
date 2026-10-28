@@ -1,0 +1,22 @@
+Title: Word to Excel Conversion Macro
+The Word to Excel Conversion Macro is designed to clean and convert a Word based survey into Excel.
+1: Installing the Word to Excel Conversion Macro
+Step 1: Download the Macro files at the following link and save to your desktop (or preferred download folder):
+Macro Files
+Step 2: Extract the files from the compressed folder.
+Step 3: Open Microsoft Word
+Step 4: From the Macros toolbar, choose "View Macros".
+In Word 2003, you will find Macros in the "Tools" menu
+In Word 2013, 2010, and 2007, you will find Macros in the "View" menu
+In Word for Mac 2011, you will find Macros in the "Tools" menu
+Step 5: Enter temp in the "Variable name" window and select "Create".
+Below is an image from 2007:
+Step 6: You will now be in Microsoft Visual Basic (macro editor). As shown in the image below, open the "File" menu and choose "Import File...". You will do this twice for the following two files:
+DecipherInc.frm
+NewMacros.bas
+Step 7: Once both are imported, exit Visual Basic and return to Word.
+2: Running the Word to Excel Conversion Macro
+Step 1: Open the survey in Word.
+Step 2: From the Macro toolbar, choose "View Macros".
+Step 3: Select the "startDecipher" macro and select "Run".
+Step 4: The default settings will be loaded in the Word to Excel Conversion Macro. Simply select "Prepare XLS" to proceed.

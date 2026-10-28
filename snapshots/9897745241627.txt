@@ -1,0 +1,52 @@
+Title: 144.18 Release Notes
+Release Date: July 28, 2020
+Release Version: 144.18
+New Features
+Portal
+Updated the display of the company page.
+Adjusted the alignment and display of all menu options in the left-hand navigation bar.
+Converted the following window tabs into additional menu options:
+Users
+User Groups
+Project Tags
+Directories
+Participant Sources
+Sample Marketplace
+Disabled the Sample Marketplace by default for all new companies created in the Portal. Users must now participate in a special training program in order to get the Sample Marketplace enabled for their company.
+If you are interested in enabling the Sample Marketplace for your company, please contact your Forsta representative.
+Reporting
+Dashboards
+Removed an old, obsolete function: getAllVariables
+Architecture/DevTools
+Added the “dq_usage_f_any_state” admin report, which displays a list of all surveys with any state that contain one or more Dynamic Question (DQ) types.
+In-App Text Changes
+Hiding Surveys
+Renamed all “archive/archived” options to “hide/hidden” throughout both the Portal and the Project Overview page.
+“Archive Survey” renamed to “Hide Survey” within the survey Actions menu in the Portal.
+“Show Archived Projects” renamed to “Show Hidden Projects” within the View menu in the Portal.
+“Archive Project(s)” renamed to “Hidden Project(s)” within the bulk Actions menu in the Portal.
+“Unarchive Project(s)” renamed to “Unhide Project(s)” within the bulk Actions menu in the Portal.
+“Show Archived Projects” renamed to “Show Hidden Projects” within the Refine Search menu in the Portal.
+“Archive Survey” renamed to “Hide Survey” within the Actions menu on the Project Overview page.
+Bug Fixes
+Portal
+Upload System Files
+Updated the error messaging displayed in the system file manager when attempting to upload certain disallowed file types.
+Survey
+Survey Editor
+Fixed an issue with the hmerge lock, which allowed some participants to complete surveys during live merges.
+Fixed an issue preventing response options from being piped in from grid questions containing columns without any text.
+Survey Testing Tools
+Fixed an error causing simulated test data (SST) to hang when using a very long data value for verify=len().
+Participant View
+Updated the messaging displayed for the MemoryError proxy error.
+Reporting
+Report (2010)
+Fixed a system error caused by reports accepting values that were out of range.
+Data Downloads
+Fixed an issue preventing “Flat” data exports from being generated based on custom layouts.
+Programming & Tools
+API
+Corrected an error within the API documentation for the Restore endpoint.
+Architecture/DevTools
+Updated user database authentication to support Decipher instances running on Azure servers.

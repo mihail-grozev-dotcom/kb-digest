@@ -1,0 +1,66 @@
+Title: Adding CATI Sample
+Requires Decipher Cloud
+1: What is CATI Sample?
+CATI stands for Computer Assisted Telephone Interview. The CATI participant source allows interviewers to be more efficient.
+1.1: How Does it Work?
+The CATI dialer prioritizes "fresh" sample (i.e., numbers that have never been dialed) over all other sample. Once all "fresh" sample has been dialed, available callbacks are queued according to the calling times associated with each phone number.
+A phone number's calling time consists of the minimum (earliest) and maximum (latest) times at which it may be dialed. These times are determined by the timezone(s) associated with each number and cannot be changed:
+US and Canada: Timezones are determined using a predefined list of phone number prefixes.
+Other countries: Phone numbers are mapped to timezones using the Pythonpytz library and statistical data from Google's Libphonenumber.
+When the dialer pulls available sample, it checks that the current time falls within the min-max range local to each phone number. If the current time is outside of the min-max range for a phone number, that number is removed from the queue. For example, if a phone number has a min of 8am and a max of 8pm, it will not be available earlier than 8am nor later than 8pm.
+Note: Some phone numbers may be associated with more than one timezone and subsequently more than one min-max range. For example, if you have a list of Brazilian phone numbers and your maximum calling time is 8pm, some people may still be dialed at 9pm.
+Phone numbers can be further filtered using special syntax within the sample file before uploading:
+Timezone: You can include or exclude certain timezones.
+Sample Data: You can include or exclude a range of numbers, or list of numbers or strings.
+1.2: Enabling CATI Sample for Your Company
+Currently, your company must have a Decipher Cloud account to enable CATI sample on your own. See Enabling CATI Sample for a Company for instructions.
+If you do not have a Decipher Cloud account, contact the Support Team to have CATI sample enabled for your company.
+2: Adding CATI Sample
+To add the CATI participant source, click the “Participant Sources” element in the question tree and click the "Add New Participant Source" button.
+In the "Participant Sources" page, select the "CATI (Manual)" participant source and click "Insert."
+Next, follow the steps below to setup the CATI sample.
+2.1: Intro Script
+The introduction script is read by the interviewers to each contact they call before beginning the survey. Enter this script in the "Intro Script" field.
+2.2: CATI Files
+2.2.1: Phone List
+The phone list file must be in an Excel file (.xls or .xlsx) and contain the following column headers:
+The first column header must be titled phonenumber, and contain 10-digit phone numbers of the recipients (mandatory)
+The second column must be titled name, and contain the names of the recipients (mandatory)
+The third column and beyond may be used to append filter criteria. E.g., demographic information like zipcode, gender, etc. (optional)
+Note: When applying a filter in the CATI management console, keep in mind that the values are case-sensitive
+Select "+Upload Phone List" to upload your list of telephone interview participants.
+Tip: If you want to add new participants, simply upload a new file and the system will update your list.
+2.2.2: Interviewer / Stations
+The interviewer file must be in an Excel file (.xls or .xlsx) and contain the following column headers:
+The first column header must be titled interviewers, and contain the alpha-numeric code assigned to your interviewers (i.e., the Interviewer ID)
+The second column must be titled stations, and contain the alpha-numeric station code
+Note: The interviewers and stations listed in your file must be a subset of the files applied for your company. See Enabling CATI Sample for a Company for information about the company files.
+Select "+Upload Stations / Interviewers" to upload your file.
+2.3: URL Variables
+The counts for these variables are pulled from the CATI files that were uploaded.
+phoneNumber: Displays the total number of phone numbers in the list.
+Remove Sample: Click this link to remove the entire phone list that was uploaded.
+stationID: Displays the total number of (unique) stations assigned to the project.
+interviewerID: Displays the total number of interviewers assigned to the project.
+2.4: Exit Pages
+The exit pages are laid out for you to configure for terminated, over-quota and qualified participants. Simply select "Message" to show the participant a message at the end of the survey, or choose "Redirect" and enter the URL in the field provided.
+You also have the ability to add a custom exit page and define the logic condition for it. See Adding Participant Sources Using the Survey Editor to learn more.
+2.5: CATI Settings
+Contact Hours: Set the time frame in which the dialer may make calls to participants. The time zone is set for the interviewer's local time and adjusted to the participant's time zone.
+Number of Attempts: Set the maximum number of attempts that may be made to contact a potential participant before a disqualification disposition is logged.
+Country: Set the country in which the dialer may make calls to participants.
+3: CATI Comment Element
+Once the CATI Sample is setup, add the CATI Comment Element to your survey to provide instructions to your interviewers.
+3.1: Sending the Survey to Your Interviewers
+After the survey has been built, tested and launched (i.e., set live), you may distribute the URL to your interviewers. To access the URL, first click “Responses” in the navigation menu at the top of any project page. Then select “CATI Mode”.
+This opens a new tab with the login screen. Copy the entire URL.
+Then send the URL along with login instructions (click here to download) to each of your interviewers.
+3.1.1: Troubleshooting
+Interviewers are told to contact their Project Supervisor for assistance with problems.
+Login problems may be due to:
+The Interviewer simply forgot their ID or station ID
+Their ID wasn't in the "Interviewer/Station" file that was uploaded in the survey builder
+An interviewer cannot find the correct project in the dropdown menu:
+Check that the survey was set LIVE. All projects assigned to an interviewer ID with CATI sample that have been launched will appear in the dropdown menu.
+3.2: CATI Management Console
+Manage your settings, sample and interviewers once the survey is live in the CATI Management Console.

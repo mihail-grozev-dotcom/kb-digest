@@ -1,0 +1,14 @@
+Title: Archiving Surveys
+Archiving surveys helps to keep your company Portal clean and easy to navigate. When a user with supervisor permissions archives a survey, it is no longer available in the portal for any user in your company. Live surveys cannot be archived.
+To unarchive a survey, see Archived Surveys Report.
+1: Archiving a Survey
+To archive a survey in Decipher, locate the survey in the Portal and click the "..." button under Actions to open the Project Actions menu. Then select Archive Survey.
+A warning modal will appear, asking if you are sure you want to archive the survey. If the project is too young to be archived, you will need to check the box to allow archival. Select Archive Survey to confirm archival.
+The survey and its shared documents are archived.
+To learn more about survey age and archival, see Survey Archival and Deletion.
+2: Viewing an Archived Survey
+To view a list of archived surveys, go to your Company page, then select the Archived Surveys Report. You will need to unarchive a survey in order to view it.
+3: Unarchiving a Survey
+To unarchive a survey, go to your Company page, then select the Archived Surveys Report.
+Find the survey you want to unarchive. Click the Unarchive button on that row.
+The survey and its shared documents are unarchived.

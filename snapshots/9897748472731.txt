@@ -1,0 +1,48 @@
+Title: 147.9 Release Notes
+        
+Release Date: June 22, 2021
+Release Version: 147.9
+New Features
+Survey
+Dynamic Questions
+Added the ability to control the size of the individual rows displayed within an Autosuggest element.
+The size attribute controls the length of a row in pixels.
+This is separate from the option to set a response input length.
+Added support for uploading .dat answer files directly to an Autosuggest element.
+Programming & Tools
+API
+Updated the convertToTab parameter for the Upload/Replace File endpoint to support converting .dat answer files for Autosuggest elements.
+Added new endpoints:
+Create survey from template – allows you to create a survey using an existing survey template.
+Copy survey – allows you to create a survey by copying an existing survey, including its nstyles file.
+Backend
+Improved load time performance for survey archival tasks and reports.
+In-App Text Changes
+Portal
+Data Retention
+Updated "Purge PII” to read as “Purge Data” in two places:
+Within the Company Settings menu of the Company Page.
+Within the Archive and Deletion option in the survey Actions ellipsis menu.
+Bug Fixes
+Portal
+Fixed an issue causing an empty copy of some surveys to automatically be created when using the setfolder command.
+Fixed an issue preventing surveys from having delphi="1" enabled if they were created using a survey template, even if they were created on a server that requires all surveys to use delphi="1" by default.
+Survey
+Fixed an issue causing some survey archival tasks to time out before completion.
+Survey Editor
+Fixed an issue causing multiple answer files to appear as selected when using the File Manager within the Autosuggest element.
+Fixed an issue causing an invalid error message to appear when making changes to a variable name within a participant source.
+Themes
+Fixed an issue causing some options within Autosuggest elements to appear invisible (white text on white background) when using the “Education” survey theme.
+Programming & Tools
+API
+Fixed an issue preventing some older Excel files from being uploaded to the Language Manager when using the Language endpoint.
+Fixed an issue which allowed users to specify a negative row index for Autosuggest answer files when using the Edit File endpoint.
+Custom Code Elements (Logic Nodes)
+Fixed an issue causing some servers to run out of memory when attempting to run many logic nodes (2,000+) at the same time.
+Data Retention
+Fixed an issue preventing more than one survey from being automatically archived per day.
+Fixed an issue causing data to be cleared from some archived surveys after 365 days, even if Purge Data was disabled at the company level.
+Fixed an issue preventing users from enabling archival for all projects within a company.
+Architecture/DevTools
+Fixed an issue preventing some nightly system clean-up scripts from running.

@@ -1,0 +1,22 @@
+Title:  154.5 Release Notes
+Release Date: September 23, 2025
+Release Version: 154.5
+New Features
+Programming and Tools
+Autoclose
+Improves handling of autoclose task to avoid errors.
+Architecture and DevTools
+Old Version Control entries are being migrated to a different storage system to reduce the server disk space usage and make system migrations easier.
+Bug Fixes
+Survey
+Dynamic Questions
+An issue causing unintended vertical scrolling in Participant View for Button Select questions on mobile devices has been resolved.
+Survey Editor
+An issue creating unnecessary paragraph tags in row texts has been resolved.
+Reporting
+Crosstabs
+When editing the configuration for a crosstab, adding or removing items now displays the correct items.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+When the Research Defender REVIEW v1 logic node does not set expected persistent variables, the error is logged, allowing participants to complete the survey.
+RealAnswer v4 now provides additional debug logging, supports optional verbose debug logging, and improves compatibility with custom JavaScript.

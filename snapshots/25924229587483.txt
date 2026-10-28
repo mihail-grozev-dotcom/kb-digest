@@ -1,0 +1,23 @@
+Title: 153.32 Release Notes
+Release Date: May 21, 2024
+Release Version: 153.32
+New Features
+Survey
+Survey Editor
+Multiple "Learn More" links for Kinesis Panel Management panels and Kinesis Registration surveys now lead to the correct Knowledge Base pages.
+Kinesis Panel sample source exit links now default to using Kinesis exit page URLs.
+Bug Fixes
+Portal
+Regional supervisors can no longer access the "Create New Company" modal.
+Survey
+Survey Testing Tools
+Live surveys can no longer be edited directly in Participant View.
+Reporting
+Crosstabs
+Multi-select dropdown menus are positioned correctly in Firefox when editing a Crosstab report's question logic.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+With this update, Research Defender auth token failures are handled more efficiently.
+With this update, Research Defender REVIEW v1 and SEARCH v2 logic nodes have better SST support.
+API
+API documentation for the get translations endpoint now clarifies how the survey attribute tapiDue is used.

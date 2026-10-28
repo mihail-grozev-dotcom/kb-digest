@@ -1,0 +1,44 @@
+Title: Grid Separator Question Style
+Grid separator is a unique style that can be applied to any basic element with multiple answer options (i.e., rows, columns and/or choices).
+The following examples highlight the options available when using the grid separator question style.
+Example: Break in columns
+Example: Break in rows
+1: Applying Grid Separator to a Question
+To apply the grid separator style to a question, select the question so it appears in the staging area of the Survey Editor. Then click the "..." button at the top right of the question and select "Update Styling".
+The "Question Display Options" window will appear. Select "Grid Separator" in the drop-down menu. Then click "Save and Close" and the default style will be applied to the question.
+Break elements:
+Enter the row and/or column label(s) to specify where the breaks in the grid will occur before. To enter multiple rows and/or column spaces, enter the labels separated by commas (no spaces).
+Example: c2,c4,r3 will create spaces to the left of columns c2 and c4, and above row r3.
+Separator space:
+Enter a number to specify the width and height of the break(s) in the grid. Space is measured in pixels. If left blank, the default spacing of 6 pixels is used.
+Example: 20 will space the grid 20 pixels apart where breaks occur.
+Separator color:
+Enter a hex color code to specify the background color for space(s) in the grid. If left blank, the default "clear" color is used.
+Example: #FF0000 will make the background color of the spaces red.
+You can preview the element at any time by clicking either "Save and Preview" in the "Question Display Options" window or the "Preview" link located at the top right corner of the element. To find out more about previewing an element, see Previewing a Question.
+2: Technical Information (XML)
+The following information can be used to modify the question style in the survey XML.
+To apply the grid separator style to a standard question, add uses="separator.5" to the question tag.
+2.1: Unsupported Elements
+Does not support fused/hybrid questions.
+Does not support noanswer elements.
+Does not support groups.
+2.2: Customization
+Break elements (separator:elements)
+A comma-separated list of element labels that a separator will precede.
+Rows and columns can be contained in the list.
+Type="string"; Default: Blank.
+Example -- separator:elements="c1,c4,r3"
+Separator space (separator:space)
+Sets the width in pixels of the column separator.
+Sets the height in pixels of the row separator.
+Allowed on a row, column or question tag.
+separator:space on row or col will overwrite separator:space on question tag.
+Type="string"; Default: 6;
+Example -- separator:space="10"
+Separator color (separator:color)
+Sets the background color of a separator space.
+Allowed on a row, column or question tag.
+separator:color on row or col will overwrite separator:color on question tag.
+Type="string"; Default: Blank.
+Example -- separator:color="red" or separator:color="#FF0000"

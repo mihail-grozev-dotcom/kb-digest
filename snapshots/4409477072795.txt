@@ -1,0 +1,50 @@
+Title: Editing Question Styles
+The Survey Editor allows you to configure the display settings for most basic and interactive elements.
+1: Accessing the Style Editor
+To edit the display settings for a survey element, click the "..." button at the top right of the question in the staging area and select "Update Styling".
+An example of the style editor is shown below. Scroll down to view a table with the default display settings for all basic question types, including examples for each.
+Note: The options available for survey questions may vary due to survey layout or question setup. Highly customized questions, like those created using the Button Select and Card Sort elements, require that additional style settings be applied.
+2: Display Options
+The following display options are available for most survey questions by default.
+Note: Click to enlarge each image.
+Display Option:
+Description:
+Example:
+Use FIR for This Question
+Replaces the browser default formatting for radio buttons and checkboxes with a stylized form. See Form Image Replacement (FIR) Question Style for more information.
+Single Select with FIR:
+Multi-Select with FIR:
+Column Legends
+(Requires columns) Allows you to choose where the column legend headers appear. By default, they appear only at the top of the answer options, but may also appear only at the bottom, or top and bottom both. See Setting the Placement of Column Legends for more information.
+column_legends=top:
+column_legends=bottom:
+column_legends=both:
+Custom Column Legends
+(Requires columns) Allows you to customize the placement of column legends. The legend will appear at the top and you may specify the row above which you want an additional legend to appear. Enter the row number (e.g., 7) in the field. For multiple rows, insert a comma between each (e.g., 5,10). See Setting the Placement of Column Legends for more information.
+Column Width
+(Requires columns) Allows you to define custom column width in pixels. See Setting the Column Width for more information.
+Row Legends
+(Requires rows) Allows you to change the position of the answer option text in relation to the response form (e.g., radio button). By default, the text appears on the left, but may also appear to the right or both right and left. See Setting the Placement of Row Legends for more information.
+row_legend=left:
+row_legend=right:
+row_legend=both:
+Row Legend Width
+(Requires rows) Allows you to customize the width of the row legends in pixels (i.e., the column that contains the answer option text). See Setting the Row Legend Widthfor more information.
+Merge Below
+Allows merging two or more types of elements into one question, one below the another. The question above must have the same number of columns. See Create Hybrid Questions by Merging Elements for more information.
+Merge Right Of
+Allows merging the answer options of the question(secondary element) to the right of another question(primary element). The other question must have the same number of rows. See Create Hybrid Questions by Merging Elements for more information.
+Keep With
+When two questions are to be shown on the same page, "Keep With" allows you to display the question with the other question. The question can also be re-displayed (e.g., due to a response error, validation failure, etc.). See Keeping Questions Together for more information.
+Field Height
+Allows you to define the number of lines in the response field, therefore adjusting the height in text elements. See Setting the Height and Width of an Answer Field for more information.
+Field Width
+Allows you to define the width of the response field in text or number elements. See Setting the Height and Width of an Answer Field for more information.
+Form Pre-Text
+Allows you to display a character (e.g., $, %) to the left side of an open-ended answer field in text or number elements. See Displaying a Character Next to a Response Field for more information.
+Form Post-Text
+Allows you to display a character (e.g., $, %) to the right side of an open-ended answer field in text or number elements. See Displaying a Character Next to a Response Field for more information.
+Mobile Optimization
+Determines whether to display the survey in a desktop or mobile-optimized format.
+Display 1-Column Question As
+Determines whether to render 1-column questions in list or table format.

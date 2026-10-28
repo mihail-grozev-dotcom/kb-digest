@@ -1,0 +1,19 @@
+Title: Language Selector Element
+The Language Selector element allows a participant to select the language in which they would like to take the survey. Languages are shown based on the declared languages within the Language Manager for that survey, and each language is shown in its own translated form.
+1: Adding the Language Selector
+The Language Selector element can be added to any survey using the Survey Editor.
+Important: Add the languages for the survey in the Language Manager before adding the Language Selector element.
+To add a Language Selector element, first select the + Element button to add a new survey element. Then, select Logic Elements under Question Types and select the Language Selector element. Then select Add.
+The Language Selector element comes with default question and instruction text. You can select each text box to edit these fields or just leave them as is. The row options will be auto-populated with language choices based on the declared languages already set within your survey, and these values will be locked down.
+To add or remove a language, or to see a list of the languages available within your survey, select the Open Language Manager link located below the instruction text in the staging area.
+You can add more than one Language Selector element to any survey, but you need to ensure proper placement of multiple Language Selector elements within the question tree.
+Note: All questions listed after a Language Selector element will be shown in the language the participants select at that question, so it's best to add any intentionally untranslated questions before any Language Selector elements.
+2: What Participants See
+The Language Selector element is dynamic and any declared languages will be automatically translated to appear in their native form. This means that regardless of what primary language you are using in your survey, participants will be able to read their language as provided in the Language Selector element.
+This also means that all default instruction, button, and support link text shown after the Language Selector element will appear in the language that the participant selected.
+Note: All question and option text, as well as customized instruction text will still need to be translated manually. See Language Manager Overview for more information on managing survey translations.
+Tip: If the Language Selector element is not displaying to participants, remove the cond="0" attribute on the element in the XML Editor.
+3: Reporting
+The Language Selector element tracks and records participant data and language in reporting. You can find all language selection data within the standard language tracker table near the end of any Decipher report (typically labeled vdecLang).
+Like any other report table, the language tracker table can be transposed, split, or exported from within Crosstabs.
+For more information on viewing and editing Crosstabs tables, see Editing Tables in Crosstabs.

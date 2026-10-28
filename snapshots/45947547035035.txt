@@ -1,0 +1,13 @@
+Title: Hibernated Surveys
+Surveys that have not been accessed and meet the inactivity criteria defined below are hibernated. Surveys that are live can be hibernated if no respondents have taken the survey and no users have accessed the survey in the last 90 days. All survey data is saved when the project is hibernated.
+1: Restoring a Hibernated Survey
+1.1: The Respondent Experience
+When a survey is live and hibernated, the first respondent to enter the hibernated survey will have a longer load time than normal. All other respondents entering the live survey after it is restored will have a normal load time.
+1.2: The User Experience
+When a logged in user attempts to open a hibernated survey, a page with the option to restore the survey displays. Select Click here to restore the survey.
+You will need to wait while the project is restored. Once the project is restored, you can access it as usual.
+2: Avoiding Hibernation
+To avoid hibernation, access the survey before 90 days from the last time the survey was accessed. Opening a survey or loading a report for that survey will reset the Last Accessed date (displayed on the Portal page under the Accessed by Anyone column) and keep it from being hibernated. The KEEP flag does not prevent hibernation.
+3: Additional Considerations
+If a project is hibernated and then meets the criteria to be auto-archived, it will be archived.
+The 428 error code, when calling the Decipher API, indicates that the survey used is hibernated.

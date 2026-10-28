@@ -1,0 +1,86 @@
+Title: Autosuggest Element
+The Autosuggest element is a Dynamic Question type that allows you to upload a set of answers that will automatically be suggested to participants as they type a response into an open-ended text box.
+Autosuggest questions may contain one or more text boxes and suggested answers are controlled using a set of preconfigured filters.
+1: Creating the Answer File
+Before you can add an Autosuggest element to a survey, you must first create the file containing the answers you would like to be suggested to participants.
+The answer file must contain a list of all the answers you would like to suggest, along with a unique identifier for each of those answers. Answer files can be created using a text or spreadsheet editor and can be uploaded directly from the element, or via the file manager or the Upload/Replace Files API endpoint.
+Learn more: Creating an Autosuggest Answer List
+2: Adding the Element
+Once you have uploaded your answer list, you can add the Autosuggest element.
+Click the + Element button to add a new survey element. Then click Open End under Question Types and select the Autosuggest element. Then click Add.
+Enter the question text and instructions as you would like them to appear in the survey.
+2.1: Uploading Your Answer File
+Then, select Add Source File to select the answer file to use in the element.
+In the Answer Source File menu, use the tab options to upload a new file or select an existing file from the system files manager. Click Continue.
+2.2: Configuring File Settings
+You must map the required columns in the file to the fields in the element and configure the settings for any additional filters you have added. Click Edit Settings to customize your answer file and map its answer columns in the Source File Settings.
+Note: "No Match" is always populated for all unanswered optional answers.
+2.2.1: Column Mapping
+The Column Mapping settings identifies which columns contain the answer values and IDs, as well as related reporting settings. Selected options display in the Source File Settings section.
+Column With Answer Values: Select which column in the file contains the answers to be displayed to survey participants. This is a required field.
+Column With Answer IDs: Select which column in the file contains the unique ID values for the displayed answers (e.g., WID, PID, etc.). This is a required field.
+Language code (optional): Select which column contains the country or language code for the displayed answers. This is an optional field that can be used to customize the survey experience by participant language.
+Include "No Match" virtual question: Selecting this checkbox adds a virtual question that tracks answers with no match in the answer file. This virtual question will track "No Match" submitted answers with a counter to mirror the way the Autosuggest Element tracks matching answers. In Crosstabs, a link will open a modal to display non-matching answers.
+Note: "No Match" is always populated for all unanswered optional answers whether or not this box is checked.
+Append all file data: Selecting this checkbox will add a virtual question to the report for each optional column in the answer file. The virtual questions will be available in the Crosstabs reports.
+Exclude selections between rows: By default, this checkbox is selected. In Autosuggest questions with more than one row, selecting this checkbox will prevent answers typed in one row from appearing in the drop-down menus for other rows.
+Note: When "Exclude selections between rows" is checked, custom validation is not possible. To add custom validation, de-select this option.
+2.2.2: Optional Filters
+The Optional Filters setting allows you to filter what answers are shown to participants.
+Exclude Answers Selected In: If you have more than one Autosuggest question in the same survey, you can specify another Autosuggest question to be used as a filter. If specified, all answers submitted by the participant from that question will be excluded.
+The specified question must be completed before the current question and be separated by at least one page break.
+If multiple rows exist, all rows will be considered for both questions. For example, if Q2 is filtered by Q1, then all the answers submitted in Q1 will be excluded from the suggested answers for all rows in Q2.
+Questions selected in this filter are not available in the "Include Answers Selected In" filter.
+Note: While this filter will hide the rows from the previous element, it will not prevent them from being submitted in the current element.
+Note: The Autosuggest element respects response options flagged with the noanswer attribute.
+Include Answers Selected In: If you have more than one Autosuggest question in the same survey, you can specify another Autosuggest question to be used as a filter. If specified, only answers submitted by the participant from that question will be included.
+The specified question must be completed before the current question and be separated by at least one page break.
+If multiple rows exist, all rows will be considered for both questions. For example, if Q2 is filtered by Q1, then only the answers submitted in Q1 will be included in the suggested answers for all rows in Q2.
+Note: While this filter will hide the rows from the previous element, it will not prevent them from being submitted in the current element.
+Note: The Autosuggest element respects response options flagged with the noanswer attribute.
+Column with Filter: Select which column in the file contains tags repeated in multiple answer values.
+Filter Value(s): Enter values for the tags you would like to use to filter answers. To enter a tag value, type the value into the field and press the "Enter" key. Values from the file will automatically be suggested as you type. You can remove any tag value by clicking the "x" next to that value in the list.
+If desired, you can use an asterisk (*) when adding filters to allow for partial matches (e.g., adding “*group” will match “red-group”, “no group”, and “group”). Multiple asterisks are supported for a single filter (e.g., “*ab*” will match “table”, “grab”, and “able”; “*a*e*” will match “orange”).
+Multiple pipe-separated values are also supported in the answer file (e.g., “group3|group 3|category_3” will match “category_3”, “group*”, or “*3” filter values).
+Note: Up to four custom filters can be added. If no custom filters are specified, all values from the answer file will be available.
+Warning: Misspelling tags could result in a null value. Be sure to verify that the values you have entered here are spelled correctly prior to running your survey.
+2.1.3: Editing File Settings
+Once you have configured your answer file, a summary of its settings appears within the element. Click Edit settings to make changes.
+You can also choose to replace the current answer file by clicking Select new source.
+Note: If you replace an answer file, you will need to reconfigure your file settings before continuing.
+3: Testing Your Setup
+Once you have finished setting up your Autosuggest question, you can verify your configuration by testing through the survey as a participant.
+Learn More: Testing an Online Survey
+4: Additional Considerations and Limitations
+The following considerations and limitations apply when working with Autosuggest questions.
+4.1: Filtering Rules
+When added, custom filters will affect all participants. Additionally, the following rules apply:
+Only those answers which have the values specified for a filter will be shown if that filter is applied.
+Filters should only be applied to non-answer columns. Survey Editor will not allow you to apply a filter to the answer column, also known as the answer key.
+If a typo exists in the values you have specified for a filter, it will not affect the question’s behavior and you will not receive any warning messages.
+When two filters are applied, they are joined by “and” logic; in other words, answers must meet the criteria from both filters to appear in the survey.
+Multiple values for a single filter are joined by “or” logic; in other words, specifying “red,blue” will show all answers which include "red” or “blue” in that column.
+To include answers which have no value in a specific column, a comma must be added to the beginning or end of the value list (e.g., filter1="red,blue," or =",red").
+4.2: Troubleshooting Issues
+Follow the steps below to resolve any issues you experience during implementation.
+"I see the following error:" Survey Load Error: Fix XML
+If this appears while you are making changes to your Autosuggest element, it may have been caused by one of the following actions:
+Uploading a new file which is missing some of the column headers you specified for the previous file.
+Deleting an Autosuggest element that was being used as a filter for another Autosuggest element.
+Resetting a column filter to “No Selection” when its filter values still exist.
+Moving an Autosuggest element to the same page as, or a page ahead of, its specified question filter.
+Try changing the configuration and then refresh your browser window.
+“I tried to upload an answer source file, but it failed and displayed an error.”
+Make sure your answer file meets the listed requirements. If it does, make sure that the following criteria is also being met:
+Your file does not contain spreadsheet formulae (e.g., including =FORMULA("string",True,0) will cause an error).
+Your file’s extension matches its type (e.g., an Excel spreadsheet called txt will cause an error).
+“I tried to launch my survey and saw the following error:”Exception occurred, code "NDCWC" Error text: <h3>Error autosuggest:filename is required. </h3>
+This message indicates that the Autosuggest element is not configured properly. Verify that:
+You have added a valid answer file.
+You have mapped the required columns (“Answer” and “Unique ID” are required).
+Any optional filters you have applied are configured properly.
+If you have verified that all Autosuggest elements are configured properly, try refreshing the browser page before re-attempting to launch your survey. You may also try deleting your Autosuggest element(s) and re-building them from scratch.
+4.3: Restricting Response Length
+By default, there are no limitations on the length of the values participants can enter for Autosuggest rows. If you would like to restrict the length of participant responses, use the Response Length in the Autosuggest Options. You can restrict response length by row or by question.
+5: Learn More
+See Customizing the Autosuggest Element to learn how to add an Autosuggest Element via XML.

@@ -1,0 +1,75 @@
+Title: Language Manager Overview
+The Language Manager allows you to manage multiple survey languages from a single location.
+To access the Language Manager, click More Tools under BUILD in the navigation menu and select Language Manager.
+1: How it Works
+The Language Manager allows the convenience of exporting a survey's primary language text in Excel once the survey has been programmed. This Excel document (aka XLATE) can then be transferred to any preferred vendor for translation. The translated document is uploaded directly into the Language Manager, populating the appropriate content based on the survey's question labels.
+Below is an example of an XLATE file that is ready for upload with translations.
+See Available Survey Languages for more information on the languages that are available for translation using the Language Manager.
+Note: Because XLATE files include programming tags and other logic that Decipher uses to read them, it is a good practice to include notes for translators on what not to translate. See Best Practices for Programming Multi-Language Surveys for more information on this and other best practices for multi-language studies.
+2: Summary Table Overview
+The Language Manager provides a summary table to help you check the status of your translations. From the summary table, you can see both aggregated details on the translations and a question-by-question breakdown, including a built-in warning system that highlights potential issues.
+The following sections outline each type of language warning.
+2.1: Total
+This column indicates the total number of resources (specific to each language).
+2.2: Missing
+This column indicates the number of resources not currently translated - counts appear in red.
+2.3: Outdated
+This column indicates the number of resources that have been changed in the primary language after a translation was imported (i.e., that the current translation is not up to date with the survey) - counts appear in orange.
+2.4: Identical
+This column indicates the number of resources for which the imported translation text matches the original text in the survey.
+2.5: Export
+You can use the arrows in this column to export each language file to be used for quality review and / or translation.
+When you click the arrow for any language, the Export settings box appears. In the Export settings box, select what specifications you would like applied to your output file and then select Export File to download it.
+Export settings specifications are defined as follows:
+All Resources: Includes every resource from the survey in the translation file.
+Outdated Resources With Existing Translations: Includes only resources that need a translation in the translation file.
+Modified survey text will be pulled with the current outdated translation. For example, if the word "Red" has been changed to "Magenta", the Spanish translation will be pulled as "Rojo" to reflect the original text.
+Outdated Resources Without Existing Translations: Includes only resources that need a translation in the translation file. Modified survey text will be pulled without pulling the current outdated translation. For example, if the word “Red” has been changed to “Magenta”, the Spanish translation will be pulled as “Magenta” as the original translation is no longer correct.
+Collapse Duplicates:
+If Yes - The system exports the translation file with all duplicate resources removed.
+If No - The system includes all duplicate resources in the translation file.
+Format:
+XLS - Exports content in an .xls format.
+XML - Exports content in an .xml format.
+Omit blank resources?:
+If Yes - The system excludes blank resources from the exported file.
+If No - The system includes blank resources in the exported file.
+See Translating Multi-Language Studies to learn more about the XLATE language output file, and how to use it to source translations for your survey.
+2.6: Import
+You can use the arrows in this column to import translated files into the survey for each language.
+Note: survey:view users cannot import translated files.
+2.7: Remove
+You can use the buttons in this column to remove individual languages from your survey or to flag a language as "unused".
+Setting an available language as “unused” allows the system to ignore the simulated data requirement for that language. This can be very helpful when attempting to set a multi-language survey live, as the Decipher system requires a specific number of simulated data completes in all languages before a survey’s state can be changed to “live”.
+Note: The system saves the most updated version of each language file, even if you remove it here. This allows you to retrieve old languages and continue editing where you left off if needed.
+Note: survey:view users cannot remove languages.
+3: Resource Comparison Table Overview
+The Language Manager also includes the following information on all translations within your survey. The following sections outline each type of language resource.
+3.1: All Resources
+Check this box to apply a filter to display all the survey's language resources in the list.
+3.2: Missing
+Check this box to apply a filter to display only the language resources that are missing translations (e.g. have not yet been translated), with a red line next to each missing cell.
+3.3: Outdated
+Check this box to apply a filter to display only the language resources that are outdated (e.g. have not been updated since the last translation file was imported), with an orange line next to each missing cell.
+3.4: Identical
+Check this box to apply a filter to view and / or edit language resources in the translation file that match the original text in the survey.
+3.5: Collapse Duplicates
+Check this box to apply a filter to display only the first occurrence of any duplicated language resources. Counts are also displayed for any resources that have a duplicate occurrence.
+4: DeepL AI Translations
+Decipher AI translations uses DeepL Pro. DeepL Pro supports translations between the languages identified on their website: Languages included in DeepL Pro.
+Note: To useDecipher's AI translation services, reach out to your Forsta representative to enable the Translate button.
+If a language is not supported, the Translate button will be grayed out.
+4.1: Adding Context
+To improve AI translations, provide a summary of what your survey is about in the context textfield. Translations are improved with a descriptive context that provides plenty of detail.
+The following are examples of context for a study about surveying passengers about their satisfaction with airlines' services, airplane cleanliness, and in-flight food accommodations:
+Poor Context Example: The study is about surveying passengers on an airplane.
+Excellent Context Example: The study focuses on gathering feedback from passengers regarding their overall experience with [Brand] Airlines. It examines customer satisfaction with various aspects of the flight, including the quality of service provided by the airline staff, the cleanliness and upkeep of the airplane, and the food and beverage options available during the flight.
+5: Reviewing Translations
+Once survey translations have been uploaded, you can use the Translation drop-down in the Resource Table to toggle the table display from language to language.
+6: Editing Translations
+The Language Manager also allows you to make inline edits to the survey's language resources. To change the text for any resource, click the text in the translation column that needs to be edited and enter your changes there.
+Note: survey:view users cannot edit translations inline.
+Tip: This is great for accommodating a second quality review by a language translator, or in-country transcript expert.
+Once you are done editing a resource, you can press the Enter key or click outside of the cell to apply your changes. Once new changes are applied, a message automatically pops up in the languages menu, letting you know that the summary table is out of date. You can continue editing or select Update Now to update your summary table and review your applied changes.
+You can also use the search bar above the translations to search the current view of the Resource Table. It also performs an autocomplete and displays matching occurrences so that you can filter through these quickly. This can be very helpful for making resource- or word-specific changes.
+Note: The Language Manager saves all translation changes as you work, but the summary tables need to be manually refreshed once all edits are complete. To refresh all summary tables, select Update Now.

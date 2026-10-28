@@ -1,0 +1,121 @@
+Title: Multi-Select Question Attributes
+The <checkbox> element represents the only multiple-selection question type available.
+<checkbox label="Q1" atleast="1">
+<title>
+In the past 7 days, when did you eat the following meals?
+</title>
+<comment>Please select all that apply</comment>
+<col label="c1">Monday</col>
+<col label="c2">Tuesday</col>
+<col label="c3">Wednesday</col>
+<col label="c4">Thursday</col>
+<col label="c5">Friday</col>
+<col label="c6">Saturday</col>
+<col label="c7">Sunday</col>
+<col label="c99" exclusive="1"><b>None</b></col>
+<row label="r1">Breakfast</row>
+<row label="r2">Lunch</row>
+<row label="r3">Dinner</row>
+</checkbox>
+A participant may choose any number of the non-exclusive <row>/<col> elements.
+By default, multi-select questions are optional. There are three attributes available to force a certain number of responses: atleast, atmost & exactly.
+1: Attributes
+In addition to the Question Attributes, the following attributes are unique to the <checkbox> element:
+1.1: atleast - Set the Minimum Number of Responses
+The atleast attribute is an integer value that controls the minimum number of selections that must be selected in order to continue.
+<checkbox label="Q1" atleast="1">
+atleast="1" means the participant is forced to select at least 1 answer for each row or column (depending on the Cell Grouping).
+1.2: atmost - Set the Maximum Number of Responses
+The atmost attribute is an integer value that controls the maximum number of selections that must be selected in order to continue.
+<checkbox label="Q1" atmost="5">
+atmost="5" means the participant can select up to 5 answers for each row or column (depending on the Cell Grouping).
+1.3: exactly - Set the Exact Number of Responses
+The exactly attribute is an integer value that controls the total number of selections that must be selected in order to continue.
+<checkbox label="Q1" exactly="3">
+exactly="3" means the participant must select 3 answers for each row or column (depending on the Cell Grouping).
+1.4: pipeMultiple - Choose Which Answer to Pipe
+The pipeMultiple attribute applies to single-dimension <checkbox> questions containing only <row> elements.
+By default, piping a <checkbox> question (e.g., [pipe: Q1]) will result in showing all of the elements that were selected (e.g., "Item 1, Item 2 and Item 3"). Specify pipeMultiple="ROWLABEL" to control which <row> element to pipe. For example:
+<checkbox label="Q1" atleast="1" pipeMultiple="r3">
+<title>Please select all that apply.</title>
+<row label="r1">Item 1</row>
+<row label="r2">Item 2</row>
+<row label="r3">Item 3</row>
+</checkbox>
+<suspend/>
+<html label="Q1_Selections" where="survey">
+You selected [pipe: Q1]!
+</html>
+With pipeMultiple="r3" specified, "Item 3" will be piped into the comment if multiple selections are made.
+If a single selection is made, then that selection will be piped into the comment and not r3's text.
+Note: If pipeMultiple is applied to a two-dimensional <checkbox> element, the pipe will read "Multiple columns". In other words, use it only for single-dimension <checkbox> elements.
+1.5: groupRestrict - Restrict Responses Into Groups
+The groupRestrict attribute can be set to "none" or "cols". By default, groupRestrict="none" is specified.
+If groupRestrict="cols" is specified, then each column element must belong to a <group> element and the question's checkbox inputs are transformed into radio inputs, allowing only one selection per group. For example:
+<checkbox label="Q1" exactly="2" groupRestrict="cols">
+<title>
+Which days do you enjoy the following meals the most? Please select a weekday and weekend day.
+</title>
+<comment>Please select all that apply</comment>
+<group label="g1">Weekdays</group>
+<group label="g2">Weekend</group>
+<col label="c1" groups="g1">Monday</col>
+<col label="c2" groups="g1">Tuesday</col>
+<col label="c3" groups="g1">Wednesday</col>
+<col label="c4" groups="g1">Thursday</col>
+<col label="c5" groups="g1">Friday</col>
+<col label="c6" groups="g2">Saturday</col>
+<col label="c7" groups="g2">Sunday</col>
+<row label="r1">Breakfast</row>
+<row label="r2">Lunch</row>
+<row label="r3">Dinner</row>
+</checkbox>
+In the example above, two selections must be made per row, one for each group (i.e., a "Weekday" and a "Weekend").
+1.6: trackHiddenCheckbox - Control How Data is Displayed for Hidden Checkbox Elements
+For surveys with a compat level of 145+, the trackHiddenCheckbox attribute can be set to "on" or "off" for each hidden checkbox element. By default, trackHiddenCheckbox="on" is specified for all surveys with delphi="1".
+When enabled, turns on tracking for hidden <checkbox> elements that contain response options with condition logic (i.e., where="execute", or where="report"). If the condition for a response option in the specified element is not met, that response option appears as a blank in reports, instead of appearing with a “0” value. When conditions are met, responses still appear with a “1” value.
+Enabling trackHiddenCheckbox can help you cut down on the performance load for surveys containing <checkbox> elements with thousands of response options and conditions.
+Note: Using the tv="off" attribute on a <checkbox> element with trackHiddenCheckbox="on" will disable trackHiddenCheckbox for that element.
+2: Autofill a Single Checkbox
+For single dimensional <checkbox> questions (e.g., only <row> or only <col> elements), you may supply autofill="CONDITION" to automatically select the checkbox option.
+For example:
+<checkbox label="Q1" atleast="1">
+<title>Please select all that apply.</title>
+<row label="r1">Option 1</row>
+<row label="r2">Option 2</row>
+<row label="r3">Option 3</row>
+<row label="r4">Option 4</row>
+<row label="r5" exclusive="1" autofill="1">None of these</row>
+</checkbox>
+In this example, the option for "None of these" will be checked automatically since the condition is always True.
+Important: If an error is displayed (e.g., did not select a value), the autofill attribute will be re-evaluated and auto-select the auto-filled element again.
+You may supply any normal condition logic to the autofill attribute.
+Note: The autofill attribute does not support vector logic.
+For example:
+<checkbox label="vQ1" atleast="1" where="execute">
+<title>AUTOCODED</title>
+<row label="r1" autofill="S1.r1 and S1.r2">Selected S1.r1 and S1.r2</row>
+<row label="r2" autofill="AGE.check('18-25')">AGE is 18-25</row>
+<row label="r3" autofill="S2.c4 or S2.c5">Is happy with the survey.</row>
+<row label="r4" autofill="S5.val == None">Did not provide a dollar amount.</row>
+</checkbox>
+Since this only works for one-dimensional <checkbox> elements, you can achieve the same thing using an <exec> element. Here's the same example above written with an <exec> block:
+<exec>if S1.r1 and S1.r2:
+vQ1.r1.val = 1
+if S1.r1 and AGE.check("18-25"):
+vQ1.r2.val = 1
+if S2.c4 or S2.c5:
+vQ1.r3.val = 1
+if not S5.val:
+vQ1.r4.val = 1
+</exec>
+<checkbox label="vQ1" atleast="1" where="execute">
+<title>AUTOCODED</title>
+<row label="r1">Selected S1.r1 and S1.r2</row>
+<row label="r2">AGE is 18-25</row>
+<row label="r3">Is happy with the survey.</row>
+<row label="r4">Did not provide a dollar amount.</row>
+</checkbox>
+3: What's Next?
+Multi-Select Element
+Multi-Select Question XML

@@ -1,0 +1,27 @@
+Title: Launching a Survey
+Once you have completed all changes and are ready for participants to take the survey you may launch the survey.
+1: How to Launch
+To launch a project, first locate your project in the Portal and click the "..." button under "Actions" to open the project actions menu. Then select "Launch Survey".
+You can launch surveys at any time using the Launch Survey button located throughout the application.
+To launch a survey via the Portal: First locate your project in the Portal and click the "..." button under "Actions" to open the project actions menu. Then select "Launch Survey".
+To launch a survey via the Project Overview: Click "Actions" at the top left of the page. Then select "Launch Survey".
+To launch a survey via the Response Summary page: Click "Launch Survey" in the banner at the top right of the page.
+To launch a survey via the Survey Editor: Click the "Launch Survey" button at the top right of the page.
+To launch a survey via the XML Editor: Click the "Launch Survey" button at the top right of the page.
+The "Launch Survey" dialog will appear with a short description of launch tasks. Click "Proceed" to continue with the launch. If you still need to make some changes to the survey, click "Cancel" to stop the launch and exit the dialog.
+2: The Launch Procedure
+The launch system will check for open or unresolved tasks. If you would like to skip this check, please see 2.1: Streamline Launch below. If there are open tasks, you have an opportunity to review and address them before the survey is launched. Click View tasks and the open tasks will appear in the window. If the tasks need to be addressed before launch, close the task window, click Cancel to stop the launch process, and address the changes. If all open tasks are resolved, click Continue to proceed with the launch.
+Next, the launch system will run test data through the survey to check for errors.
+If errors exist in the survey, a warning message will appear in the window and you will not be able to launch your survey. All issues with test data must be resolved before you can continue. To resolve issues, click Edit Survey and run test data through the option in the actions menu. This will allow you to identify the specific issue(s) in the survey before launch.
+Note: To launch a multi-language survey, you must first get 100 test completes, with at least 31 of these qualifying for each language used.
+If no errors are found in the survey, the survey will launch and you will see the "Your survey is now live!" messaging. You can close the dialog or click "Get Responses" to go to the project's Participant Sources page.
+In the Portal, the "state" of the project will change to "LIVE".
+2.1: Streamline Launch
+When enabled, the Launch Options modal displays before checking tasks, running test data, and checking survey logic. Using launch options can allow large and/or complicated projects to become live and field responses more quickly.
+Note: Launch options must be enabled at the survey or company level prior to use. If you are interested in using this feature, please contact your Forsta representative.
+If Ignore task checking warnings is selected, the launch system will launch the survey even if tasks have not been completed.
+If Exclude test data and survey logic test is selected, the launch system will launch the survey without running test data or checking survey logic. Excluding test data could affect accuracy of the participant progress bar.
+If either of these options are selected, you must check the final box to confirm that you understand that skipping one or more of these steps may result in uncaught survey errors and / or an inaccurate progress bar. Then you can click Continue.
+3: After Launch
+Once a survey is launched, the survey can be edited following the procedure for editing a live survey. The process involves setting up a temporary version of the live survey that will allow you to make the appropriate edits and merge changes to the live survey without interrupting data collection. Merging changes to a live survey follows the same launch process mentioned above.
+Learn More: Editing a Live or Closed Survey

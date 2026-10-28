@@ -1,0 +1,73 @@
+Title: Image Map Element
+1: About the Image Map
+The Image Map element utilizes a text area type question with one to three markers. It offers a fully interactive experience, allowing survey participants to capture different areas of an image to communicate what interests them instead of manually typing a description.
+This element is compatible with desktop and tablet devices.
+Smartphones/feature phones are not supported.
+The size of the image should be large enough for the participant to be able to pick out details but small enough to minimize scrolling.
+Large images may slow down the heat map load time.
+Too many participant records may slow down the heat map load time. It is advised to limit the number of participants taking the survey when using this question, and only use one image map element in a survey.
+Heat Map generation is only supported in Crosstabs.
+2: Adding an Image Map
+Note: You can set the "Show" filter to display only elements that are compatible or optimized for the devices allowed for your project. See Project Settings Summary to learn how to how verify your project settings.
+To add an Image Map element, first click the "+ Element" button to add a new survey element. Then click "Stimulus" under Question Types and select the "Image Map" element. Then click "Add".
+Enter the question text and instructions.
+2.1: Adding Markers
+Image Map elements must have one to three markers specified (additional markers can be added using the survey XML). The markers perform as the response options for the highlighters. To add a marker, click "+ New Marker" and enter the text you would like to use for it.
+2.2: Customizing Markers
+You can use the “Marker Actions” menu to further customize your markers. Click "Marker Actions" to access the following options:
+Import Answers
+Save Answers to Library
+Copy All Answer Text
+Insert Reusable Answer List (only available if you have previously saved
+an answer list)
+Create Reusable Answer List
+Add Answer Group
+Answer Piping
+Reverse Values
+Reset Values
+Reset Labels
+Delete All Answers
+Edit All Answers
+2.3: Uploading the Image
+To upload the image to use for the map, click "More Tools" under "Build" in the navigation menu. Select "Upload System Files" from the drop-down. Then click "Add Files" and click "Upload".
+Tip: As a general guideline, the size of the image should be limited to 500 x 500 pixels, and the number of survey participants should be limited to 200.
+Once uploaded, copy the file name or click the copy icon to copy it to your clipboard.
+To return to the Survey Editor, click "Build" in the navigation menu and select "Edit Survey". Then locate your Image Map question to continue the setup.
+3: Style Settings
+To configure the display settings for the Image Map question, click the "..." button in the staging area and select "Update Styling".
+In the "Question Display Options" window, hover over a display option and review its description on the right. Click "Save and Preview" to preview the settings. Once you are satisfied with your style options settings, click "Save and Close".
+Image File Name: Enter the file name of the file uploaded in the file manager (e.g., image.png or survey/selfserve/11111/image.png).The file name must be path to image file and not an evaluated expression (e.g., a resource tag or pipe).
+Loading Message: Allows you to enter a message to display with a spinner while the question is loading (e.g., "Loading..." ). If left blank, the spinner alone is displayed.
+4: Question Options
+The question options are located to the right of the staging area. You can set rules for the entire question by clicking near the question text or set rules for individual markers / columns by clicking the marker / column you wish to edit. The options menu will show the question or marker / column label and type you have selected to edit.
+4.1: General Options
+When changed, each of the following options affect all attributes within the Image Map element.
+Label: The label assigned to the element. Click to edit the default label for the text element.
+Show If: Click to create new logic conditions or select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: Select what languages the element will be shown in if the survey has multiple languages. The default is "all languages".
+Mandatory: Check the box to force participants to provide a response. Participants will be unable to continue the survey without completing the question.
+Randomize: Image Map items can only be randomized by column. Check the box next to “Columns” to randomize response options by column.
+Response Length: Not used.
+grouping: Not used.
+sst: Not used. Simulated data does not run on this question type.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+4.2: Marker Options
+These options only affect specific marker (i.e., column) line attributes.
+Label: The label assigned to the column. Click to edit the default label for the marker.
+Data Value: The value assigned to the marker in the data. Click to edit the default value for the column, if the option is available.
+Show If: Click to create new logic conditions or select an existing logic condition for the marker. For more information, see Adding Logic to a Question or Response Option.
+Languages: Click to select what languages the marker will be shown in if the survey has multiple languages. The default is "all languages".
+Do Not Randomize: This option is only available if the "Randomize" general option is selected. Check the box to force the line to remain stationary.
+Optional: This option is only available if the "Mandatory" general option is selected. Check the box to make the marker optional and non-mandatory.
+Hidden: Check the box to hide the marker from participants.
+More Options: Click to select less commonly used options. Once selected, you will be able to specify the setting for that option. For more information on each option, see More Options - Advanced Features.
+5: Charting in Crosstabs
+Once you have applied your desired crosstab, locate the Image Map element. Then click "..." on the top right of the table and select "Add/Edit Charts" from the drop-down.
+Check "Custom" and select "Heat Map", then click "Save".
+Tip: If you are unable to view the Image Map chart, you may not have the appropriate permission level (requires Data Permissions: Download). See Create and Manage Users to view the project permissions presets.
+Next, select the marker and segment from the drop-down and click "Apply". The report will take several seconds to load. Once loaded, the heat map indicates the selected pixels.
+5.1: Calculations
+The heat map chart uses counts to generate intensity color. The heat map will compute the count for each pixel for each participant who selected that particular marker and segment. From there, a pixel max is determined. This max counts as the "Most Selected" color. From there, the range is set from zero to this max number into 100 different color points (100%), and colors are assigned for each pixel in relation to this percentage.
+Tip: Hover over the heat map to get individual counts per pixel.
+5.2: Exporting
+To export the heat map, right-click the heat map and save the image as an image.png file.

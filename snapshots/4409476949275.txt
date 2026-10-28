@@ -1,0 +1,52 @@
+Title: Layout Script
+Requires Decipher Cloud
+You can use the layout script to import, export and list the variable layouts for a project from the terminal.
+To customize variable layouts using the Data Layout Manager, see Modifying the Survey Data Layout.
+1: Syntax
+The syntax for the layout command is shown below:
+layout [--id ID] [--out OUT] [--name name] [--in IN] [--t TITLE] <import,export,list> <survey>
+import: imports the data layout in CSV format for the specified id>
+export: exports the data layout in CSV format for the specified id
+list: lists the layout IDs for a project
+survey: path to project where you want to customize the variable layouts
+2: Examples
+This describes how you would use a layout script to customize the variable layout.
+2.1: Listing
+Using the list argument we can see all the configured layouts that currently exist for a project.
+layout list selfserve/9d3/proj1234
+[{'description': 'Standard', 'id': None}, {'description': 'New layout #6', 'id': 6}, {'description': 'test #1', 'id': 7}, {'description': 'test #2', 'id': 11}]
+2.2: Exporting
+The export argument will allow you to specify a layout id and return the corresponding layout in CSV format.
+Arguments for exporting
+Command
+Description
+--id ID
+ID of layout to export. If omitted will use standard layout.
+--out OUT
+Specify name of output file. If omitted layout will print to screen. File specified must put the full path of where it will be written.
+If you want to export the "Standard" layout, omit the --id parameter when exporting.
+Once you have the layout ID, the next step is to export the .CSV file to your system.
+layout —-id 11 --out selfserve/9d3/proj1234/myfile.csv export selfserve/9d3/proj1234
+The above example will output the layout from proj1234 with the id 11 to a file called myfile.csv. This file can then be modified with Excel or any compatible text editor.
+Note: Any items that you cannot edit in the layout manager, such as the label field, are also read-only in the .CSV file. As a work around for label, use altlabel.
+The fields you want to edit include:
+shown
+title
+minStart
+fwidth
+altlabel
+2.3: Importing
+The import argument will allow you to specify a layout to import into your project.
+Command
+Description
+--name name
+new name for the layout
+--in IN
+Specify name of input file. This is required when importing. File specified must be the full path of where it will import from.
+--t TITLE
+Specify the title/description of the layout. if omitted will default to "New layout."
+Note: The --u option is for running this locally in development mode. You should not try to use it.
+After you have made your edits to the .CSV file, import it back to the project.
+layout --in selfserve/9d3/proj1234/mylayout.csv --t "Test" import selfserve/9d3/proj1234
+The above example will import the layout defined in mylayout.csv to the project specified with a title of "Test."
+You must specify the .CSV to import with the --in parameter, and you can optionally give the new (this script doesn't currently overwrite layouts) layout a title with the --t parameter.

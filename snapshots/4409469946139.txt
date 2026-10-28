@@ -1,0 +1,40 @@
+Title: Testing an Offline Survey
+Note: The Forsta Surveys CAPI mobile app is no longer available. Please see Forsta Plus CAPI Platform Overview for information on our improved CAPI solution.
+Interviewers administer offline surveys from either the offline application or the Decipher CAPI App, each of which include controls to manage the interview process, including collecting data and storing responses. As a researcher, you should always test your offline surveys using the offline application to verify that your interviewers will see the survey as intended.
+The offline application allows you to review each survey question for errors before it goes live. You can also check the supported logic, skip paths, terminates, question settings, and text for your survey, as well as test using a variety of devices (laptop, tablet, mobile).
+1: Beginning the Test
+1.1: Using the Web Application
+To test your survey in the offline web application, select "Test Survey" under "Preview" in the navigation menu.
+The "Test Project" window opens for you to select where to send the survey's URL.
+Test In Browser: To send the URL to the browser of the current device.
+Copy to Clipboard: To copy the URL to the clipboard to be pasted elsewhere.
+Send to Phone: To send the URL to a mobile device via a text message (selecting this option will open a numeric entry box for you to input the desired phone number).
+The offline interview application opens to the home page and functions exactly as it would for an interviewer.
+1.2: Using the CAPI App
+For an App-Only offline survey, you will need to test your survey using the Decipher CAPI App. To test your survey using the app, select "Test Survey" under "Preview" in the navigation menu.
+The "Test Project" window opens for you to send the survey's URL to your mobile device.
+Once you confirm, you will need to login to the CAPI app on your device to view the survey, which will appear just as it would for an interviewer.
+2: Testing the Survey in Practice Mode
+On the app home screen, click "Practice Survey" to enter practice mode.
+Note: If your survey includes multiple languages, you will also have the option to select a survey language here.
+While in practice mode, test through the survey as an interviewer would, answering questions and clicking "Continue" on each page. At the end of the test survey, you will be redirected back to the app home screen, where you can start a new survey or practice the survey.
+To stop practicing and end a test survey, click "Menu" at the top right of any page. Then click "End Practice Mode". You can also click back into the survey and test through to the survey finish, if desired.
+3: Testing the Survey and Collecting Data
+You may also want to test the survey with data collection enabled to familiarize yourself with the live interview process. To test the survey with data collection enabled, click "Start Survey".
+Note: If your survey includes multiple languages, you will also have the option to select a survey language here.
+The survey opens for you to administer the survey as an interviewer would for data collection. If you need to interrupt the survey, you may choose to end the survey (drop out) or save the survey for later (partial data is saved).
+To end a survey, click "Menu" at the top right of any page. Then click "End Survey".
+You can also click back into the survey page, test through to the survey finish and then start a new survey if desired. If you choose to save the survey for later, enter a description to help you remember the record / participant and click "Save".
+3.1: Resuming an Interview
+Just as an interviewer would, you can resume any interviews you have saved previously from the app home screen. To resume saved interviews, click the arrow next to "Partial Surveys (on device)" and then select a record/interview from the list.
+You can remove a saved record from the partial list using the icons to the right of the record name:
+The arrow will upload the partial data to Decipher when an internet connection is available.
+The trashcan will permanently delete the partial data without uploading it to Decipher.
+Note: You will be asked to confirm your selection because once it is removed, the interview cannot be recovered.
+4: Viewing Performance
+Individual interviewer performance is tracked from the app home screen.
+Completed surveys: The number of completed surveys uploaded to the Decipher server by the interviewer.
+Partial surveys (on device): The number of interview that are progress and waiting to resume. From the partial survey list, you can choose to upload or delete the partial survey data.
+Once a network connection is detected, a brief message displays on the home page showing the number of surveys that have just been uploaded. This number is reflected in the completed survey counts.
+After you have tested the offline survey, you can send the application links to the interviewers and then launch the survey. See Launching a Survey for more information about launching surveys within Decipher.
+Note: Once a survey is set live, any data collected while it was in testing mode is cleared.

@@ -1,0 +1,148 @@
+Title: Create and Manage User Groups
+In Decipher, you can quickly add teams of people to a project by creating one or more user groups. This document outlines the process for creating user groups and adding or removing them from projects.
+1: What is a User Group?
+A user group is simply a collection of users, analogous to an email group alias. Referencing the group implicitly references all user group members. There are two types of user groups:
+A regular user group consists of individual users, with a shared permission level across the group.
+A macro user group may contain both individual users and existing user groups, each with unique permission levels within the group.
+2: Creating a User Group
+To create a new user group, first click your company name or logo in the Portal to access your company page. Then select "User Groups" in the left-hand panel of the page and click "+ Add User Group".
+2.1: Defining Group Settings
+Once you have added a new user group, the New User Group window appears, where you can define the group type, name, user list, and default project permissions:
+2.1.1: Group Type
+Regular User Groups
+Regular user groups consist of individual users. You can define the following for regular user groups:
+Group Name: Enter a name for the group
+Users: Enter the user names for the group members.
+Default Project Permissions: Select the default project permission level for the group. The project permissions presets are described in full below.
+"Custom" permissions allow you to select the access level for each area, if none of the presets match your needs. See Permission Options below for a definition of each option.
+Enter the required information and click "Create Group."
+Macro User Groups
+Macro user groups may contain individual users and existing user groups. You can define the following for macro user groups:
+Macro Group Name: Enter a name for the group
+User/User Group: Enter individual user names or existing user group names to add them to the macro user group.
+Assign each user or user group a permission level:
+Default Project Permissions: Select the default project permission level for the group. The project permissions presets are described in full below.
+"Custom" permissions allow you to select the access level for each area, if none of the presets match your needs. See Permission Options below for a definition of each option.
+Enter the required information and click "Create Group."
+2.1.2: Default Project Permissions
+Project Permissions Presets
+See the "Permissions Options" below for descriptions of each access level setting.
+Full Access
+Edit Access
+View Only w/Data
+View Only
+Vendor
+Survey
+Build
+Edit
+View
+View
+View
+Reporting
+Edit
+Edit
+View
+View
+None
+Data
+Edit
+Download
+Download
+None
+None
+Response Summary
+Edit
+Edit
+View
+View
+View
+Campaign Manager
+Build
+None
+None
+None
+None
+Dashboards
+Build
+View
+View
+View
+None
+Theme Editor
+Full
+Use All
+Use All
+Use All
+None
+Admin
+Full
+Full
+None
+None
+None
+Permission Options
+These options explain the presets outlined above, and may also be used to define custom permission settings.
+Survey:
+Build: Create and edit surveys in the survey builder
+Edit: Edit surveys in the survey testing application
+View: Test surveys (but without the testing tools)
+None: No survey access
+Reporting / Crosstabs:
+Edit: Create and edit reports in Crosstabs
+View: Run crosstabs reports and save private banners and table sets
+None: No crosstabs access
+Data:
+Edit: Modify data using the "Edit Data" tool
+Download: Download data
+None: No data access
+Response Summary:
+Edit: Edit quotas
+View: View all tabs in the Response Summary
+None: No Response Summary access
+Campaign Manager:
+Build: Create and manage email campaigns
+None: No campaign manager access
+Research Dashboards:
+Build: Create and edit research dashboards
+View: View private research dashboards
+None: No dashboard access
+Theme Editor:
+Full: View, apply, customize, export and import all survey themes
+Use All: View and apply all survey themes (no export, import and theme customization)
+Use Company: View and apply only company survey themes (no export, import, or theme customization)
+Use System: View and apply only system survey themes (no export, import, or theme customization)
+None: No theme editor access
+Admin:
+Full: Add/Remove existing users to projects. Only supervisors can create new users. The permissions granted to others cannot exceed your existing permissions for the project.
+None: No adding/removing user permissions
+3: Managing User Groups
+User groups are managed from the company page. To access this, select the link to your company page located under the company name/logo.
+3.1: Adding Members
+Tip: These methods apply to regular user groups. Macro groups must be edited in order to add new members, since each member may have a unique permission level.
+3.1.1: From the User Groups Tab
+To add a user to a group from the User Groups menu, check the box for the group to which you want to add a member. Then click "Add Members" and enter the user's name or email in the field provided. You may enter as many members as you like. Once ready, click "Add."
+3.1.2: From the Users Tab
+To add a user to a group from the Users menu, check the box for the user and click "Add to User Group". Then enter the name of the existing user group in the field provided and click "Apply".
+3.2: Editing a Group
+In the company page, select "User Groups". Locate the group you want to edit (regular or macro) and click on the group name. In the "Edit User Group" window you may edit the group name, users or project permissions.
+If you are making changes to the default project permissions for the group, click here for a detailed explanation of the project permissions presets. If you need further customization, select "Custom" and you can set default project permissions individually for:
+Survey (Build, Edit, View, None)
+Reporting/Crosstabs (Edit, View, None)
+Data (Edit, View, None)
+Response Summary (Edit, View, None)
+Campaign Manager (Build, None)
+Research Dashboard (Build, View, None)
+Theme Editor: (Use Company, Use System)
+Admin (Full, None)
+Once changes are complete, click "Save."
+3.3: Removing a Group
+To remove a user group, first click your company name or logo in the Portal to access your company page. Then select "User Groups" and check the box for the group(s) you want to remove. Then click "Remove Groups."
+Review the message and group name, then select "Yes, Remove Groups." This action cannot be undone.
+3.4: Managing Legacy Groups
+Legacy groups were automatically created based on the folder system used in the previous version of our portal in order to retain permissions for existing projects. Green sub-directory folders with specific users and permissions were converted to user groups, and projects within now have the user group assigned to it. The yellow public folders became user groups, with permission settings intact. These legacy groups are not editable, however they can be converted into a full group.
+Tip: To find a legacy group, search by Tag with the legacy group name. This will result in a list of all projects the legacy group has access to.
+3.4.1: Converting a Legacy Group
+Once you find the legacy group, in the "User Groups" menu on the company page, hover-over the group name. Select "Convert to a Full Group."
+The legacy group is split into multiple groups if any users had different permissions. Specify the name of the group(s), which users are included, and edit the permissions. Once the group(s) is defined, select "Convert Group."
+Important: Once a legacy group is converted it cannot be undone, however the new group(s) will be editable.
+Once complete, the new group(s) is listed under the "User Groups" menu on the company page.

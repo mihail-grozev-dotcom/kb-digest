@@ -1,0 +1,102 @@
+Title: Creating a Survey from a Word Document (Word Importer)
+The Word Importer allows users to import their survey questionnaires directly from Microsoft Word into Decipher. Importing a Word questionnaire automatically transforms it into an online survey by converting each bit of content into a system-recognizable survey element.
+Note: The Word Importer accepts only Microsoft Word documents with the .docx file extension.
+1: How it Works
+The Word Importer uses machine algorithms to detect survey question types and answer options, as well as common patterns to build out a survey using the provided questionnaire. Once the survey has been created, you can review its contents and further customize it using the Survey Editor.
+Note: Decipher has various AI features that rely on AI Models. New versions of these models are frequently released and older versions are retired. When new models are used, there may be variances in responses based on the newer models.
+The Word Importer can detect and implement the following types of survey elements:
+Single Select, Multi-Select, Text, Essay, and Number question types
+Question labels
+Question instructional text (will be appended to the end of the question text)
+Researcher / programmer comments and questionnaire notes
+Response options (including raw text, bulleted lists, and Word tables)
+Page breaks
+Any content that is not detected as one of the element types listed above will still be accepted by the importer but flagged as “unidentified content”. Unidentified content can be excluded from the import or manually converted into a survey element.
+The Word importer cannot detect the following types of questionnaire content:
+Logic conditions or survey pathing
+Quota tables or definitions
+Question and response grouping
+Termination points
+2: Accessing the Importer
+Note: You must have survey:build permissions to access the Word Importer.
+The Word Importer is only available when creating a new survey. To access the importer, first click the “New Survey” button in the Portal to create a new survey.
+In the New Survey menu, click the “Start with Word” tile.
+3: Importing a Word Document
+To import a Word document, either drag and drop the document into the file field or click “browse” to upload a file directly from your device.
+Next, enter a name for your survey and click “Survey Options” to configure your survey’s language, Portal, and URL settings. To learn more about the options available when starting a new project, see Creating a New Survey.
+Note: The name entered here will appear for the survey in the Portal and any associated reports.
+Finally, click “Create Survey” to create a survey using the selected document.
+4: Reviewing Imported Content
+Upon creation of the survey, all supported content will be converted into question types that are compatible with Decipher survey elements and you will be redirected to the Content Review page.
+The Content Review page contains a configurable preview of the survey created from your Word document. From here, you can review the survey’s contents and adjust anything the importer may have converted incorrectly. You may also choose to restart the import at any time.
+When reviewing your imported content, be on the lookout for the following:
+Misidentified question types
+Misidentified programming notes / comments
+Response options that were separated from their questions or merged into other questions
+Broken question and response option formatting
+4.1: Reassigning Element Types
+To reassign a misidentified element, click the “Type” icon next to it and select a new type from the drop-down.
+4.2: Editing Content
+To edit a question’s body or instruction text, or to make changes to its response options, first click into the element to open the free-form text editor. Then make the desired updates and click away from the element to save your changes.
+4.3: Adding New Content
+To add new content, click the location where you would like it added and begin typing.
+Once you are satisfied with your new content, click the “Type” icon to assign it a type from the drop-down.
+You can also press the ‘Enter’ key twice and the importer will automatically convert the content into the most appropriate question type. Then click away from the element to save your changes.
+4.4: Deleting Elements
+To delete an element, you must first remove any applied formatting. Click the “Type” icon and select “Remove Format”.
+Then click onto the element content and delete it manually using your keyboard’s ‘Backspace’ key.
+4.5: Starting Over
+If you make a mistake or would like to restart the import, you can do so at any time by clicking the “Start Over” button at the top of the importer.
+From the Start Over menu, you can re-import the file or import a new file by either dragging and dropping the document into the file field or clicking “Browse” to upload a file from your device.
+Once you are satisfied with your selection, click “Upload” to restart your import.
+5: Creating the Survey
+Once you are satisfied with your survey, you must import it into the Survey Editor to add any further customization and finalize its field settings. To import your survey to the Survey Editor, click the “Import” button at the top right of the Content Review screen.
+In the pop-up window, review the counts reported for identified and unidentified survey content and choose whether to exclude any unidentified content from the import. If the reported numbers do not match your expectations, click “Go back to review” to cancel the import and adjust the survey content.
+If everything looks good, click “Proceed to survey editor” to import the survey.
+Upon import, all identified content will be converted into compatible Decipher survey elements and response options.
+Any unidentified content will be converted into Decipher Note elements. These elements appear only in the Survey Editor and are not visible in the survey or report.
+From this point forward, you may edit and launch your survey as normal. Click here to learn more about the various customization options available within the Survey Editor.
+6: Limitations
+The Word Importer is not supported for Internet Explorer 11 and has only limited support for Edge browsers. Additionally, the following restrictions apply when importing survey content:
+Only one-dimensional question types are supported
+Question tables can include up to two columns
+Images are not supported
+Text formatting is not supported (i.e., bolding, underlining, italics)
+7: Additional Considerations
+7.1: Question Labels
+The Word Importer can identify most types of question labels if they are entered on their own line. For example, the importer would recognize “S6” as the label for the following question:
+S6
+Question text
+Instructional text
+Answer option #1
+Answer option #2
+7.2: Instructional Text
+The Word Importer can identify the instructional text for most common question types and will automatically append this information to the end of the associated question text (e.g., “please select one”, “select all that apply”, etc.).
+Tip: For best results when working with open-ended questions (e.g., text and essay question types), you should add instructional text directly within the question text in your import file.
+7.3: Line Breaks
+The Word Importer works best when a question’s instructions or response options are located directly after its body text, with additional line breaks. Blank lines are considered separate content by the importer and should not be used to differentiate between the various parts of a question.
+Examples:
+Good
+Bad
+What is your gender?
+Male
+Female
+What is your gender?
+Male
+Female
+7.4: Page Breaks
+The Word Importer will identify page breaks only if the following key phrases appear as standalone text on a single-spaced line below all other survey content for the desired page:
+page break
+new page
+new screen
+Note: Response options should always appear below and on the same page as their associated question.
+7.5: Questionnaire Notes
+The Word Importer will identify survey questionnaire notes only if they appear as standalone text that meets at least one of the following conditions:
+Begins with an opening bracket and ends with a closing bracket (e.g., [IF S10=1, SKIP TO Q20]).
+Appears in all caps inside a set of parentheses (e.g., (THANK AND TERMINATE)).
+Appears in all caps from start to finish (e.g., ASK IF COUNTRY=JAPAN).
+Begins with “PROGRAMMER NOTE:” (e.g., PROGRAMMER NOTE: Ask if male).
+Begins with “PN:” (e.g., PN: Ask if male).
+Begins with “Base:” (e.g., Base: Male).
+Note: When scanning content in all caps, the Word Importer considers all included non-alpha characters as upper case (e.g., ., =, numbers).
+Note: If a question has a custom label and the importer detects it as a note instead of a question, that label will be stripped when it is converted.

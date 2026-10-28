@@ -1,0 +1,24 @@
+Title: 153.18 Release Notes
+Release Date: October 10, 2023
+Release Version: 153.18
+New Features
+Portal
+Project Overview
+Users with multiple permissions sets on a project (by belonging to multiple user groups) now show a lightning bolt indicator that displays their effective permissions. Previously, this indicator was only shown for users with both an individual permission set and a group permission set.
+Learn More: Connecting Users to Projects
+Survey
+Language Manager
+Bosnian language has been added as a selectable language.
+Learn More: Available Survey Languages
+Reporting
+Data Downloads
+Enables translations for downloads that support the language parameter.
+Learn More: Data Downloads and Formatting Options
+Conditionally disables links that do not support the layout or language parameters.
+Bug Fixes
+Responses
+Campaign Manager
+The bulk/bounced API endpoint and the Export Bounce-Backs and Opt-Outs report now support email addresses that include non-ascii characters.
+Programming and Tools
+API
+Clients now have access to their own integrations with the integration/smarthub API call.

@@ -1,0 +1,173 @@
+Title: Customizing the Shopping Cart Element
+The Shopping Cart is a fully interactive Dynamic Question powered by the XML Styles system. It replicates an online shopping experience where customers are able to view and purchase products. Shopping Cart is available for all desktop, tablet and smartphone devices.
+1: Converting to a Shopping Cart Element
+The Shopping Cart question requires:
+a survey with compat 129+
+the attribute grouping set to rows
+2: Underlying Question Architecture
+The dynamic style sits on top of a <text> question. See below for an example of the base XML code required.
+2.1: Base XML:
+<text label="q3" optional="0" size="25">
+<title>
+Imagine you are shopping for new toys for your cat and have $50 to spend. What would you buy?
+</title>
+<comment>Add products to your cart.</comment>
+</text>
+The code above produces the following result:
+The code below reflects the XML used when the shopping cart element is added via the survey builder with the following changes made to the underlying <text> question:
+uses="shoppingcart.3" is added to the question tag
+grouping="rows" attribute is specified
+<text
+label="q1"
+grouping="rows"
+shoppingcart:thumb_size="45%"
+size="25"
+uses="shoppingcart.3">
+<title>Imagine you are shopping for new toys for your cat and have $50 to spend. What would you buy?</title>
+<comment>Add products to your cart.</comment>
+<row label="r1" shoppingcart:product_name="Jingle Ball Cat Toy" shoppingcart:product_price="0.99"><img class="survey_image survey-image-original" src="/survey/selfserve/1195/151003/3.png" title="3.png" /></row>
+<row label="r2" shoppingcart:product_name="Big Size Lovely Cat Toys Sisal Fish" shoppingcart:product_price="27.50"><img class="survey_image survey-image-original" src="/survey/selfserve/1195/151003/4.png" title="4.png" /></row>
+<row label="r3" shoppingcart:product_name="Ruff n Tumble Toy Mouse for Cats" shoppingcart:product_price="3.99"><img class="survey_image survey-image-original" src="/survey/selfserve/1195/151003/1.png" title="1.png" /></row>
+<row label="r4" shoppingcart:product_name="Basket Case Natural Cat Toy" shoppingcart:product_price="3.95"><img class="survey_image survey-image-original" src="/survey/selfserve/1195/151003/2.png" title="2.png" /></row>
+</text>
+2.2: Example:
+3: Customization
+Listed below are all of the attributes available for this element. Override them to create a custom look and feel for your shopping cart element:
+Attribute
+Description
+Details
+pre_currency
+Currency Before. Shown in the question, detailed view and checkout summary. Allows you to enter the currency symbol displayed before a product's monetary amount. If Currency Before and Currency After are left blank, the "$" symbol is used by default.
+Type: string
+Available in the Survey Editor: yes
+Example:shoppingcart:pre_currency="$" displays a dollar sign before the product's monetary amount.
+post_currency
+Currency After. Shown in the question, detailed view and checkout summary. Allows you to enter the currency symbol after a product's monetary amount.
+Type: string
+Available in the Survey Editor: yes
+Example: shoppingcart:post_currency="¢" displays a cent sign after a product's monetary amount.
+item_caption
+Item Caption. Shown in the shopping cart checkout summary. Allows you to enter a title for the products in a shopping cart. This name is displayed in the first column of the shopping cart checkout summary. If left blank, this column defaults to "Item."
+Type: res.
+Default: Item
+Available in the Survey Editor: yes
+Example: shoppingcart:item_caption="Item" displays "Item" as a product title in the first column of the shopping cart checkout summary. This is the default.
+quantity_caption
+Quantity Caption. Shown in the shopping cart checkout summary. Allows you to enter a title for the sum of products in a shopping cart. This name is displayed in the second column of the shopping cart checkout summary. If left blank, this column defaults to "Quantity."
+Type: res.
+Default: Quantity
+Available in the Survey Editor: yes
+Example:shoppingcart:quantity_caption="Quantity" displays "Quantity" as a title for the sum of products in a shopping cart. This is the default.
+price_caption
+Price Caption. Show in the shopping cart checkout summary. Allows you to enter a title for the price of products in a shopping cart. This name is displayed in the third column of the shopping cart checkout summary. If left blank, this column defaults to "Price."
+Type: res.
+Default: Price
+Available in the Survey Editor: yes
+Example:shoppingcart:price_caption="Price" displays "Price" as a title for the price of products in a shopping cart. This is the default.
+subtotal_caption
+Subtotal Caption. Shown in the shopping cart checkout summary. Allows you to enter a title for the Subtotal in the shopping cart. This name is displayed in the summary row of the shopping cart checkout summary. If left blank, this row defaults to "Subtotal."
+Type: res.
+Default: Subtotal
+Available in the Survey Editor: yes
+Example:shoppingcart:subtotal_caption="Subtotal" displays "Subtotal" as a title for the Subtotal in the shopping cart. This is the default.
+empty_cart_caption
+Empty Cart Caption. Shown in the shopping cart checkout summary. Allows you to specify the text on the shopping cart checkout summary when the cart is empty. If left blank, the message defaults to "You have no items in your shopping cart."
+Type: res.
+Default: You have no items in your shopping cart.
+Available in the Survey Editor: yes
+Example:shoppingcart:empty_cart_caption="You have no items in your shopping cart." specifies the text on the shopping cart checkout summary when the cart is empty. This is the default.
+checkout_tooltip_caption
+Checkout Tooltip Caption. Shown in the shopping cart checkout summary. Allows you to set the tooltip text, shown when the participant hovers-over the checkout button. If left blank, the message defaults to "Click Checkout" to continue to the next question.
+Type: res.
+Default: Click "Checkout" to continue to the next question.
+Available in the Survey Editor: yes
+Example:shoppingcart:checkout_tooltip_caption="Click "Checkout" to continue to the next question." sets the tooltip text, shown when the participant hovers-over the checkout button to "Click "Checkout" to continue to the next question." This is the default.
+view_cart_button_singular
+View Cart Button (Singular). Shown in the question when there is a single item in the cart. Allows you to specify the text for the button that allows the participant to view their cart and then checkout. If left blank, the message defaults to "[Number of] item."
+Type: res.
+Default: item
+Available in the Survey Editor: yes
+Example:shoppingcart:view_cart_button_singular="item" specifies the text for the shopping cart to "item." This is the default.
+view_cart_button_plural
+View Cart Button (Plural). Shown in the question when there are multiple items in the cart, and when the cart is empty. Allows you to specify the text for the button that allows the participant to view their cart and then checkout. If left blank, the message defaults to "[Number of] items."
+Type: res.
+Default: items
+Available in the Survey Editor: yes
+Example:shoppingcart:view_cart_button_plural="items" specifies the text for the shopping cart button to "items" when there are multiple items. This is the default.
+view_details_button
+View Details Button. Shown in the question when the participant hovers-over a product. Allows you to change the text of the "View Details" button displayed when you click or hover-ever an item on the question. If left blank, the message defaults to "View Details."
+Type: res.
+Default: View Details
+Available in the Survey Editor: yes
+shoppingcart:view_details_button="Show Details" changes the text of the "View Details" button to "Show Details."
+add_to_cart_button
+Add to Cart Button. Shown in the question when the participant hovers-over a product and in the detailed view. Allows you to change the text of the "Add to Cart" button displayed when you click or hover-over an item. If left blank, the message defaults to "Add to Cart."
+Type: res.
+Default: Add to Cart
+Available in the Survey Editor: yes
+Example:shoppingcart:add_to_cart_button="Buy now" changes the text of the "Add to Cart" button displayed when you click or hover-over an item to "Buy now."
+remove_button
+Remove Button. Shown in the shopping cart checkout summary. Allows you to add text to the right of the "Remove" icon. By default only the remove icon is displayed.
+Type: res
+Available in the Survey Editor: yes
+Example: shoppingcart:remove_button="Remove from Cart" adds the text "Remove from Cart" to the right of the "Remove" icon.
+continue_shopping_button
+Continue Shopping Button. Shown in the shopping cart checkout summary. Allows you to replace the text for the "Continue Sopping" button.
+Type: res.
+Default: Continue Shopping
+Available in the Survey Editor: yes
+Example:shoppingcart:continue_shopping_button="Shop for more Items" replaces the text for the "Continue Shopping" button.
+checkout_button
+Checkout Button. Shown in the shopping cart checkout summary. Allows you to replace the text for the "Checkout" button.
+Type: res.
+Default: Checkout
+Available in the Survey Editor: yes
+Example:shoppingcart:checkout_button="Proceed to Checkout" replaces the text for the "Checkout" button.
+show_product_name
+Show Product Name. Allows you to Show or Hide product default name in the shelf view.
+Type: enum
+Available in the Survey Editor: none
+Example: shoppingcart:show_product_name="no" set to "no" doesn't display the product name in the shelf view.
+product_name
+Product Name. Allows you to display the name of the product in the shelf view.
+Type: res
+Available in the Survey Editor: yes
+Example:shoppingcart:product_name="Ball Cat Toy" displays "Ball Cat Toy" as a product name.
+product_price
+Product Price. Allows you to set a price for your product or service. Enter any Numeric price value.
+Type: res
+Available in the Survey Editor: yes
+Example: shoppingcart:product_price="0.99" displays the product price "0.99".
+product_image
+Product Image. Allows you to display any image file uploaded or found in the Image Manager.
+Type: string
+Available in the Survey Editor: adv
+Example:shoppingcart:product_image="2.png" displays image "2.png" found in the Image Manager.
+Note: The Shopping Cart question is not compatible with protected or watermarked images.
+thumb_size
+Item Size in Question. Determinies the size of the product image displayed in the question. The size is measured in pixels. Valid formats include: 25x35 , 25w, 35h, 45%.
+Type: string
+Available in the Survey Editor: yes
+Example:shoppingcart:thumb_size="25%" sets the size of the original image displayed in the question to 25%. This is the default size.
+full_size
+Item Size in Detailed View. Determines the size of the product image displayed in the detailed view. This should be the largest, full-sized version of the product image. The size is measured in pixels. Valid formats include: 250x350, 250w, 350h, and 90%.
+Type: string
+Available in the Survey Editor: yes
+Example:shoppingcart:full_size="100%" sets the size of the original image displayed in the product detail view to "100%". This is the default size.
+icon_size
+Item Size in Checkout Summary. Determines the size of the product image displayed in the checkout summary. Valid formats include (measured in pixels): 15x20, 15w, 20h, and 25%. Default size is 15% of the original image.
+Type: string
+Available in the Survey Editor: yes
+Example:shoppingcart:icon_size="15%" sets the size of the product image displayed in the checkout summary to "15%".
+library_path
+Allows you to modify the Path to Dynamic Question Library.
+Type: string.
+Default: /survey/lib/steam/shoppingcart/v3/.
+Available in the Survey Editor: none
+Example: shoppingcart:library_path="/survey/lib/steam/shoppingcart/v3/." changes the path to your Dynamic Question Library to "/survey/lib/steam/shoppingcart/v3/.". This is the default.
+survey_path
+Allows you to modify the Path to Active Survey.
+Type: string.
+Default: [rel .]
+Available in the Survey Editor: none
+Example: shoppingcart:survey_path="[rel.]" changes the path to your Active Survey to "[rel.]" .This is the default.

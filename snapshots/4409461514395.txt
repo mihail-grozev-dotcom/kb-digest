@@ -1,0 +1,376 @@
+Title: Long Survey Best Practices
+Some larger surveys, such as multi-wave tracker studies or projects fielded in multiple markets, can become so long that they run slower than standard surveys, affecting either participant experience or data reporting and exporting within the platform. In extreme cases, this can also result in the platform becoming unresponsive.
+In order to avoid such issues, there are several steps you can take when programming large studies to cut down on load times and improve performance.
+1: Controlling the Variable Count
+1.1: Avoiding Placeholders
+A common practice when programming tracking surveys is to create additional “placeholder” rows in certain questions. These rows do not hold any answer options and are not actually shown to participants. They are programmed so that if the need arises, a new answer option can easily be added while the survey is in field.
+This is most often encountered when a survey includes a short brand list but the expectation is to add more brands later, possibly going well over the original number of brands during the fielding process.
+For example, a brand list with placeholders may look like the following:
+<radio
+label="q1">
+<title>Which of these brands is the primary brand that you use when it comes to....?</title>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+<row label="r5">Brand E</row>
+<row label="r6">Brand F</row>
+<row label="r7">Brand G</row>
+<row label="r8">Brand H</row>
+<row label="r9">placeholder</row>
+<row label="r10">placeholder</row>
+<row label="r11">placeholder</row>
+<row label="r12">placeholder</row>
+<row label="r13">placeholder</row>
+<row label="r14">placeholder</row>
+<row label="r15">placeholder</row>
+...
+<row label="r20">placeholder</row>
+</radio>
+While placeholders may help with questionnaire design and project planning, they are unnecessary in a Decipher survey as there are no penalties when it comes to adding answer options during field. You can add new options quickly and easily as needed, so there is no need to front-load a survey with these extra variables.
+1.1.1: Datamap Considerations
+Decipher survey datamaps are handled consistently, with the width for all open-end question types set to 255 to account for longer answer options. Likewise, all checkbox question types automatically create a variable per answer option, which has a value of either 1 (selected) or 0 (not selected).
+While this consistency largely eliminates the need for placeholders to avoid datamap shift, you may still wish to include these for single select and drop-down question types, where the variable width can vary. In this case, you have a couple of options to add placeholders while still using the least amount of datapoints.
+Option 1
+Program a single placeholder row, and set its value="" attribute to the highest possible number of answer options that you expect to have. For example:
+<radio
+label="q1">
+<title>Which of these brands is the primary brand that you use when it comes to....?</title>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+<row label="r5">Brand E</row>
+<row label="r6">Brand F</row>
+<row label="r7">Brand G</row>
+<row label="r8">Brand H</row>
+<row label="r99" value="999">placeholder</row>
+</radio>
+This will automatically set the maximum width of the q1 variable in the above dataset to three digits, accommodating up to 999 answer options for this question.
+Option 2
+Use the fwidth attribute to hardcode the fixed-width value of your question for fixed-width and triple-S data downloads. The example below sets the fixed width of q1 to 3 digits, so that it will always take up that length in Triple-S/FW files:
+<radio
+label="q1"
+fwidth="3">
+<title>Which of these brands is the primary brand that you use when it comes to....?</title>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+<row label="r5">Brand E</row>
+<row label="r6">Brand F</row>
+<row label="r7">Brand G</row>
+<row label="r8">Brand H</row>
+</radio>
+As a general rule of thumb, you should try to keep the number of data variables in a single question under 300 where possible.
+1.2: Minimizing Loops
+As with placeholders, looped variables can easily add more unnecessary bulk to an already long survey. By default, the Loop Element generates a large number of datapoints, as it expands the number of iterations of one or more questions. For example, if you loop two questions five times, the element will create 10 datapoints in order to store the data for each question.
+Generally, you should always avoid going over 30 looped iterations to minimize a loop's impact to survey load. However, there are a few things you can do to program longer and more complex loops without sacrificing performance.
+1.2.1: Using looprows
+While both the looprows and cond attributes allow you to display certain questions or answer options for specific loop iterations only, looprows is a better choice for long surveys. This is because the looprowsattribute does not create datapoints for question or answer options that are not displayed, while the cond attribute does.
+This is illustrated in the below example, which uses looprows to only display q2 for loop rows r1 and r2, not r3. Using this method, the variable q2_r3 will not be created as a datapoint, so you would not have an unnecessary variable that holds no data.
+<loop label="l1" randomizeChildren="1" vars="lv1">
+<title>Car Types</title>
+<block label="b1" builder:title="default loop block">
+<radio
+label="q1_[loopvar: label]"
+optional="0"
+randomize="0">
+<title>How do you feel about [loopvar: lv1]?</title>
+<comment>select one</comment>
+<row label="r1">5</row>
+<row label="r2">4</row>
+<row label="r3">3</row>
+<row label="r4">2</row>
+<row label="r5">1</row>
+</radio>
+<suspend/>
+<textarea
+size="300"
+label="q2_[loopvar: label]"
+looprows="r1,r2">
+<title>And why do you feel this way about [loopvar: lv1]?</title>
+</textarea>
+</block>
+<looprow label="r1" randomize="0">
+<loopvar name="lv1">Mid-Size Sedans</loopvar>
+</looprow>
+<looprow label="r2">
+<loopvar name="lv1">Crossovers</loopvar>
+</looprow>
+<looprow label="r3">
+<loopvar name="lv1">SUVs</loopvar>
+</looprow>
+</loop>
+See Loop Tag: Cycle Through Questions to learn more about the looprows attribute.
+1.2.2: Creating a Rotated Dataset
+One of the main reasons for having a large number of loop rows within a survey is a brand / concept picker setup. In a brand/concept picker, a large list of brands is created and a subset of these brands is shown to each participant based on specific criteria. Pickers are typically programmed using a single loop row per brand, and conditionally displaying that row only if the brand was picked to be shown. However, this method can result in loops with 100+ iterations, which is excessive regardless of the number of questions to be looped and their complexity.
+An alternative approach is to create what is called a "rotated dataset". A rotated dataset will set the loop rows to the maximum number of concepts a participant can see. For example, if you wish to display only 5 concepts out of the 50 you have, you would program a loop with 5 iterations only and dynamically pipe in the selected concepts to the loop.
+See Creating a Rotated Dataset to learn how to create a rotated dataset.
+1.2.3: Nested Loop Considerations
+The considerations listed above also apply to nested loops. In nested loops, each looped question as well as its nested loop iteration will be expanded in order to created the dataset of a nested loop.
+This means that a nested loop with three questions, one with three outer-loop rows and two with four inner-loop rows, would generate a total of 27 datapoints:
+(3 x 1) + (3 x 4 x 2) = 27
+Additionally, it is important to note that while there is validation built into the platform to prevent nested loops from going over 500 combined iterations(i.e., a nested loop with 20 outer-loop rows and 25 inner-loop rows), this number can differ based on the count and complexity of questions included in the loops.
+2: Making the Code More Efficient
+While Python is a integral part of the Decipher platform, some Python code can greatly affect survey performance, specifically on the participant side. In long surveys, making sure that your Python code works is only the first step of the process. The next step is to make sure that the code does not add significant overhead to your survey.
+The below sections offer some standard best practices used internally by Decipher programmers when using Python.
+The following sections require advanced knowledge of Python and its use in Decipher.
+2.1: Using if Statements
+In Python, if statements are the best way to execute conditional survey logic (e.g., punching hidden questions, displaying questions based on participants' answers to other questions, etc.). Although not requiring a lot of code to execute, if statements can still add some unnecessary overhead to a survey. Below is a basic example of this.
+In the following code snippet, participants are automatically punched into a country tracking question based on their covalue, a variable passed via the survey link:
+<exec>if co=='uk':
+qCountry.val = qCountry.r1.index
+if co=='us':
+qCountry.val = qCountry.r2.index
+if co=='de':
+qCountry.val = qCountry.r3.index
+</exec><radio
+label="qCountry">
+<title>Which of these brands have you heard of ?</title>
+<row label="r1">UK</row>
+<row label="r2">US</row>
+<row label="r3">Germany</row>
+</radio>
+While this code accomplishes the task just fine, it also requires that all possible values are checked, adding a good deal of validation on the backend. In the above example, this means that even if our participant comes into the survey with "uk" as their co value, the survey will still check for the usand devalues.
+In terms of survey performance, these extra checks can really have an impact. For example, if our project is fielding in 30 countries with 1000 participants per country, that’s a lot of unnecessary if statements for the system to execute.
+2.1.1: Using elif
+To avoid bogging down your survey with excessive if statements, you can use the elifstatement instead. elif is short for "else if", and only requires checking after the first condition has been ruled out. To use the same example, elif will only check each country after UK ( uk ) if the participant hasn’t already been assigned to a country:
+<exec>if co=='uk':
+qCountry.val = qCountry.r1.index
+elif co=='us':
+qCountry.val = qCountry.r2.index
+elif co=='de':
+qCountry.val = qCountry.r3.index
+</exec>
+<radio
+label="qCountry">
+<title>Which of these brands have you heard of ?</title>
+<row label="r1">UK</row>
+<row label="r2">US</row>
+<row label="r3">Germany</row>
+</radio>
+As a general rule of thumb, if your survey logic implies exclusivity, you should use if /elif statement combinations. This is always recommended for radio question types, as they are exclusive by nature. For checkbox question types, this is advised if the required logic can pick only one selection at a time, or if there are two or more sets of multiple selections exclusive to each other.
+2.2: Using for Loops
+for loops are another common command structure used within Decipher, as they allow you to quickly traverse through a question’s rows or columns. However, because nesting for loops inside each other results in a large penalty on the performance of any code executed inside them, for loops can be quite damaging to survey performance if used without a specific need.
+Additionally, quite a lot of the usage of double for loops can be avoided in different ways. Below are a few examples of using nested for loops that can be avoided.
+Punching a question based on selections from multiple questions:
+<checkbox
+label="q_unPrompted_Brands"
+atleast="1">
+<title>Which of these brands have you heard of ?</title>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+<row label="r5">Brand E</row>
+<row label="r6">Brand F</row>
+<row label="r7">Brand G</row>
+<row label="r8">Brand H</row>
+</checkbox>
+<suspend/>
+<checkbox
+label="q_Prompted_Brands"
+atleast="1">
+<title>Which of these brands did you recognize in this advertisment?</title>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+<row label="r5">Brand E</row>
+<row label="r6">Brand F</row>
+<row label="r7">Brand G</row>
+<row label="r8">Brand H</row>
+</checkbox>
+<suspend/>
+<exec>for unPromptedBrand in q_unPrompted_Brands.rows:
+for promptedBrand in q_Prompted_Brands.rows:
+if unPromptedBrand:
+finalAwareness.rows[unPromptedBrand.index].val = 1
+if promptedBrand:
+finalAwareness.rows[promptedBrand.index].val = 1
+</exec>
+<checkbox
+label="finalAwareness"
+atleast="1"
+where="execute,survey,report">
+<title>Hidden to track final brand awareness.</title>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+<row label="r5">Brand E</row>
+<row label="r6">Brand F</row>
+<row label="r7">Brand G</row>
+<row label="r8">Brand H</row>
+</checkbox>
+The above example asks participants for an unprompted selection of brands, followed by a prompted selection. Then, both the prompted and unprompted brand selections are stored in a hidden question. If we look at the exec block programmed more closely, we can see that a nested loop is used to separately traverse the prompted and unprompted selections:
+<exec>
+for unPromptedBrand in q_unPrompted_Brands.rows: # we check unprompted selections
+for promptedBrand in q_Prompted_Brands.rows: #we check prompted selections
+if unPromptedBrand:
+finalAwareness.rows[unPromptedBrand.index].val = 1
+print finalAwareness.rows[unPromptedBrand.index].val
+if promptedBrand:
+finalAwareness.rows[promptedBrand.index].val = 1
+print finalAwareness.rows[promptedBrand.index].val
+</exec>
+This example works because it does perform checks based on both questions, but it fails to take into account that both questions have the same answer options. This means that only rows from one of the two base questions can be used. However, both can be checked using the.indexproperty of the row object:
+<exec>
+for eachRow in q_unPrompted_Brands.rows:
+if eachRow or q_Prompted_Brands.rows[eachRow.index]:
+finalAwareness.rows[eachRow.index].val = 1
+</exec>
+Since the above example uses the unprompted brand selection’s rows, you can check their value directly using if eachRowand use the index of each brand to find the corresponding answer option in the Prompted Brands Question or q_Prompted_Brands.rows[eachRow.index].
+You can then use the same index property to punch the corresponding rows in the finalAwarenessquestion. The revamped example is not only more efficient, but also shorter and easier to read / maintain.
+2.3: Using List Comprehension
+List comprehension is a way of creating Python lists using dynamic syntax that gets evaluated as the lists are built. They are a bit more complex in nature than for loops, but will function better in terms of the lower overhead they add to the system.
+Click here to learn more about list comprehension.
+The below example checks whether a selected brand belongs to a list of primary brands or a list of secondary brands. In the example, each even row is a primary brand and each odd row is a secondary brand:
+<radio
+label="qBrands">
+<title>Which of these brands is the main brand that you purchase ?</title>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+<row label="r5">Brand E</row>
+<row label="r6">Brand F</row>
+<row label="r7">Brand G</row>
+<row label="r8">Brand H</row>
+</radio>
+<suspend/>
+<exec>
+secondaryBrands = ['r1','r3','r5','r7']
+primaryBrands = ['r2','r4','r6','r8']
+for eachRow in qBrands.rows:
+if eachRow:
+for eachSecondaryLabel in secondaryBrands:
+if eachRow.label == eachSecondaryLabel:
+qBrandType.val = qBrandType.r2.index
+for eachPrimaryLabel in primaryBrands:
+if eachRow.label == eachPrimaryLabel:
+qBrandType.val = qBrandType.r1.index
+</exec>
+<radio
+label="qBrandType"
+where="execute,survey,report">
+<title>Which of these brands is the main brand that you purchase ?</title>
+<row label="r1">Primary Brand Selected</row>
+<row label="r2">Secondary Brand Selected</row>
+</radio>
+Even though the code works, it is both inefficient and unmaintainable. It not only uses two if statements that should be exclusive and executes a nested for loop for each of them, but if more brands are added to qBrands, the primary and secondary brand lists will both need to be updated.
+List comprehension can be used to dynamically create these same brand lists so that they always take into account new odd and even rows.
+For example, the following code will populate the secondaryBrands list with the odd rows from the question, and the primaryBrands list with the even rows from the question, regardless of how many of each are added during field.
+secondaryBrands = [eachRow.label for eachRow in qBrands.rows if eachRow.index%2 == 0]
+primaryBrands = [eachRow.label for eachRow in qBrands.rows if eachRow.index%2 == 1]
+You can also use the in keyword instead of a second for loop to further optimize the exec block:
+for eachRow in qBrands.rows:
+if eachRow:
+if eachRow.label in secondaryBrands:
+qBrandType.val = qBrandType.r2.index
+if eachRow.label in secondaryBrands:
+qBrandType.val = qBrandType.r1.index
+These changes make the code both faster and more readable. To further reduce overhead you can change the if statements to if / elif statements, or in this case if /else, as there are only two possible brand types:
+for eachRow in qBrands.rows:
+if eachRow:
+if eachRow.label in secondaryBrands:
+qBrandType.val = qBrandType.r2.index
+else:
+qBrandType.val = qBrandType.r1.index
+Additionally, for single select questions (like qBrands above), you can use the .selected property of the question to avoid using a for loop altogether.
+if qBrands.selected.label in secondaryBrands:
+qBrandType.val = qBrandType.r2.index
+else:
+qBrandType.val = qBrandType.r1.index
+Combined with list comprehension’s ability to define lists on the fly, the final code block would appear as follows:
+if qBrands.selected.label in [eachRow.label for eachRow in qBrands.rows if eachRow.index%2==0]:
+qBrandType.val = qBrandType.r2.index
+else:
+qBrandType.val = qBrandType.r1.index
+The above example can be made even simpler via the use of Style variables.
+2.4: Reusing Code
+Another way to improve Python efficiency is to make sure that any Python code you know you will use more than once is only defined once. This can be done in combination with Python functions and adding when="init"to the exec block in which your code is defined.
+In the example below, question q1's selection is cleared before the question is displayed to the participant:
+<exec>
+for eachRow in q1.rows:
+eachRow.val = None
+</exec>
+<checkbox
+label="q1"
+atleast="1">
+<title>Which of these brands have you heard of ?</title>
+<row label="r1">Brand A</row>
+<row label="r2">Brand B</row>
+<row label="r3">Brand C</row>
+<row label="r4">Brand D</row>
+<row label="r5">Brand E</row>
+<row label="r6">Brand F</row>
+<row label="r7">Brand G</row>
+<row label="r8">Brand H</row>
+</checkbox>
+If you wanted to clear out the selection of a similar question, you would need to add another exec block to execute the same command for that question. Depending on how many questions you'd like to clear, this can easily spiral into a lot of exec blocks and code. However, you can simplify this by defining the above piece of code as a Python function:
+<exec when="init">
+def clearSelection(qID):
+for eachRow in qID.rows:
+eachRow.val = None
+</exec>
+Now you can call this function instead when you want to clear out a question. To call it, pass the label for the question you'd like cleared instead of qID as an argument:
+<exec>
+clearSelection(q1)
+</exec>
+This function can only be used for single-dimension checkbox questions.
+2.5: Using when="init"
+In addition to defining reusable Python functions, you can use an <exec when="init"> tag to define constant values that you want to use throughout your survey, instead of assigning those to persistent variables which would need to be created per participant.
+For example, if you wanted to make the variable surveyID constantly present in your survey, you could define that variable in an exec when="init" block instead of referencing p.surveyID throughout the survey:
+<exec when="init">
+surveyID = '1234'
+</exec>
+When creating variables in a when="init" block, these values are constants. You should not change their values throughout the survey. See Defining Python Variables to find out more about variable scope within Decipher.
+3: Using Cloud Profiling Tools
+Requires Decipher Cloud
+Enterprise clients with access to the shell environment can use the virtual-timings.txt file and the howfast command to analyze potential survey performance and take appropriate action.
+3.1: Reviewing the virtual-timings.txt File
+The virtual-timings.txt file, located in the main project directory in the shell, holds calculations for how long each virtual question in the survey takes to execute (including system questions). The file has the following structure:
+questionLabel # of Executions # of microseconds per record to execute
+vQ1 181 21.91
+vQ2 305 19.23
+vQ3 286 13.90
+vQ4 100 4.50
+The final line of the file will always provide a summary of the total number of virtual executions, as well as how many records per second can be processed when virtuals are updating (e.g., with new data coming in or old data being modified/deleted):
+TOTAL 1826 (547.64 records per second)
+Generally, the TOTAL row will contain the most important information to determine potential survey performance. To get the update time (in seconds), divide the total number of survey participants by the number in parentheses.
+For example, if you have 100,000 participants and 547.64 records per second, your update time is about 182 seconds, or 3 minutes:
+100,000 / 547.64 = 182.6017
+Ideally, the number in parentheses should be as high as possible.
+If you have slow calculation times for virtuals, check the top of the virtual-timings.txt file, as virtual questions are displayed sorted by the amount of time it takes to calculate them (the third column). From there, look for a severe drop off in calculation times to draw as the bottom line for virtuals to examine.
+For example, if vQ1 takes 21ms per record, vQ2 19ms, vQ3 takes 13ms, and vQ4 takes 4.5ms, you would draw the line at vQ3, as this is where the significant drop off is in calculation times. Then look at those three virtual questions and check whether you can optimize the code using some of the techniques outlined in Section 2 above.
+3.2: Running the howfast Command
+The howfast command requires you to have at least some test data run through the survey prior to executing the command. Below is the output of howfast in a project directory:
+Page performance: 19 ms #how long it takes to display a single survey page to the participant
+Per second: 71.1 #how many pages per second the system can handle displaying
+Pages per hour: 255862 #how many pages per hour the system can handle displaying
+Average pages per complete: 41 #the average number of pages displayed to a single participant
+Completes per hour: 6240 #based on the above information a calculated number of how many survey completes per hour the system will handle
+Depending on the output, mainly the completes per hour section, you can calculate how much strain can be put on your server when fielding the study.
+For example, if you have 100,000 sample, you may want to spread invitations out into batches of 10,000 to avoid straining the study beyond the limits shown by the howfast command.
+These numbers are not absolute. Survey performance will also depend on the overall strain of your server, not just individual project performance.
+3.3: Running tsst --profile
+When running test data in the command line, you can pass the --profile argument to provide profiling information on your survey. Since profiling information can be quite large, however, you will want to ensure that it is piped to a file.
+For example:
+tsst -–profile –qv . 10 > profile.txt
+The above command will output each request the survey needs to make when a participant is running through it, how many times the request is made based on the number of SST run, as well as how much time these requests take in total (this is different than the TOTAL from the virtual-timings.txt file). The following is a truncated example of that output:
+Request being made # of Requests Total time for all requests of this type to be executed
+get survey.respview 380 1.532071
+conditionIsTrue 299700 0.328670
+get survey.logo 381 0.175675
+display QA5 10 0.073021
+display QA8 9 0.051852
+get survey.completion 380 0.036571
+In the output, the most important line is the success message:
+All done. 10/10 succeeded. CPU usage per page: 21
+If received, the test is complete and the survey will run efficiently. If CPU usage per page is high, you will receive a warning message and should review the profile output to check on any elements that take an excessive amount of time to execute.
+Usually get survey.respview will be at the top of the profile data as that represents a survey page being displayed to a participant. In this case, though, you should be most interested in items such as conditionIsTrue(the total number of conditions that need to be evaluated across SST). To check the number of evaluated conditions per participant, you can divide that number by the number of SST run.
+For example, if the total is 29970, each participant will have roughly 2997 conditions evaluated for them in the survey:
+29970 / 10 = 2997
+This may point to either very complex survey logic or inefficient scripting. Similarly, if an exec block takes a long time to display, you may want to optimize its code. If a specific question has a long display time, possible causes may be complex styling or long answer lists.

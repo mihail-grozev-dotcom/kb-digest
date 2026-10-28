@@ -1,0 +1,53 @@
+Title: Enabling CATI Sample for a Company
+Note: If you do not have "Shell" access, you must contact your Account Manager to enable CATI sample for your company. You will need to provide them with a file listing the interviewers and stations mentioned in section 1, below.
+1: Files
+There are two files that are used to define the interviewers and stations for the company, added via the "Shell". The project specific lists are then matched against these main, company files.
+If your company does not have a Decipher Cloud account, send the files explained below to your Account Manager.
+1.1: Interviewers
+This file is used to create the interviewers.csv file, which contains the interviewer ID's and names.
+First column: The interviewer ID / employee ID assigned to the interviewer and used for logging into the CATI system.
+Unique, alpha-numeric string (e.g., 12345abc).
+Second column: The interviewer / employee name.
+Name of employee, alpha-numeric string (e.g., John Smith).
+Tip: Column headers are not required for setting up the file in the Shell, but help to identify the contents of the file for future reference.
+Example file:
+1.2: Stations
+This file is used to create the stations.csv file, which contains the station names and phone extensions.
+First column: The station name, where the interviewer sits.
+Alpha-numeric text (e.g., E22).
+Second column: The phone extension for the station.
+Numeric extension number (e.g., 325).
+Tip: Column headers are not required for setting up the file in the Shell, but help to identify the contents of the file for future reference.
+Example:
+2: Shell Setup
+Requires Decipher Cloud for self-setup.
+To enable either the CATI (Manual) or CATI ProTS participant source, the interviewers.csv and stations.csv files mentioned in the section above must be uploaded to the company's directory. The files must be in CSV (comma-separated values) format and look similar to the below.
+Note: Field headers should not be included.
+interviewers.csv
+stations.csv
+ACME123,Miyoko Griffis
+ACME124,Jarod Donnell
+ACME125,Junko Yoho
+ACME126,Marivel Lymon
+ACME127,Marcene Wickstrom
+ACME128,Aide Driggs
+ACME129,Belinda Durfey
+ACME130,Erasmo Oritz
+...
+...
+W1,537
+W2,547
+W3,557
+E1,341
+E2,351
+E3,361
+N1,467
+N2,477
+...
+...
+If you do not have Shell access, please forward the two files to your Account Manager to complete the upload process.
+If you have Shell access, you may use the FTP or SSH protocol to upload the CSV files to the company's directory (e.g. /selfserve/9d3).
+As soon as the interviewers.csv and stations.csv files are present in the company's directory, both the CATI (Manual) participant source and the CATI ProTS participant source will be enabled and ready to be added to your project.
+3: Learn More
+Adding CATI Sample (Manual)
+Adding CATI ProTS® Sample

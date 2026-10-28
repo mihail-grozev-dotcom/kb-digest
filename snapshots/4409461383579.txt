@@ -1,0 +1,14 @@
+Title: Ranking Questions
+In a Ranking question, survey participants must enter a unique response in the rows or columns. Ranking questions can be created using Select elements.
+Tip: Looking for a more engaging participant experience? Check out the dynamic Rank Sort element, which allows participants to rank answers by dragging them into a rank position.
+1: Adding the Base Question
+To create a Ranking question, start by adding a new Select element to your survey. In the Survey Editor, click “+ Element” to add a new survey element. Then select the “Dropdown Menu” element under “Single and Multi Select” and click “Add”.
+In the staging area, update the question and instruction text, and add the desired rows, columns and / or choices.
+2: Configuring the Ranks
+Next, you must set up the ranks for the question, as well as its ranking behavior. To configure the ranks for your question, select "minRanks" from the "More Options" drop-down menu that appears to the right of the staging area.
+Then enter a whole number in the field provided. This number defines the minimum number of items you want to be ranked.
+For example, if a question has five rankable items and you want all of them to be ranked, you would enter "5" in the "minRanks" field.
+A number less than the number of ranks can also be entered for "minRanks". For example, to force participants to select their top three choices out of a list of 10 items, you would enter "3" in the "minRanks" field.
+2.1: Error Messages
+If a participant enters a duplicate response for any rank, an error message will appear.
+Note: When you set the attribute minRanks to anything other than 0, minRanks will make the question optional, even if you have the attribute optional="0" applied on the same question.

@@ -1,0 +1,174 @@
+Title: Decipher (previously Decipher) M28 Release Notes
+Release Date: May 5, 2015
+Crosstabs & Classic Reporting
+Crosstabs had a major overhaul with an improvement in workflow, usability, and performance. Here’s a snapshot of some of the improvements:
+Entry page: allows you to view a list of saved crosstabs and search by name and description. Each crosstab has a preview of the segments and options to edit segment, settings, duplicate, export (without running) and delete.
+Editor: allows you to drag and drop of segments, editing the segments using XML and creating groups. Groups add headings to segments in the report, automatic stat testing and nets when using "Create Table". Users can now create nested logic conditions (sets precedence for boolean logic).
+Settings options: allows you to filter by logic and date. The date options have several preset date filters which are dynamic for each run of the crosstab. Users will be able to customize their stat testing groups and set the significance levels.
+Stat testing: stat testing groups can be customized to test specify segments against specified segments, by default grouped segments are tested against each other. This is limited to up to 26 segments. Users can set sigtest Major (capital letters) and sig test Minor (lower case letters) per crosstab.
+Quick split: allows you to quickly create segments based on questions or date. For dates a user can choose to split their date range by days, 7 day increments, 30 day increments or a custom increment.
+Grid tables: new projects (newly create after release, doesn't included copied project) will have grid tables enabled by default for multidimensional closed end questions. User will have the option to enable/disable in the table editor. Note this is limited version of the grid table functionality programmers have access to add to the report.
+Create Table: adds a new table based on the segments in the crosstab to the report and data downloads. Groups become nets for the grouped segments and segments become rows in the table.
+Report Page: new layout for table icons, quick filters to change report filters.
+#20346 Grid tables are stat-tested
+#18944 Autorecover performance has been increased.
+The autoRecoverDelay (default 120 seconds) survey parameter lets you tune how long after an autorecover run is the record eligible for recovery. You can set it to 0 for no delay: however constant recovery of partials will decrease performance of virtual data and bulk sends as partial recover resets certain cache data -- this is more visible in large survey.
+Setting the delay to 0 will not mean instant auto-recovery: the autorecover process (running every 2 minutes) still has to get to this survey and consider the partial data.
+Retroactively adding autoRecover to an old survey no longer requires modifying any data files.
+#19654 PII support allows masking of certain variables from reports, downloads and field report. The masking assigns a level to a variable and a level to a user; you have to meet or exceed the PII level to see the data. Python hooks allow for automatic application.
+In addition, the download type "field report dump" can be used to review what PII level has been assigned to each variable.
+#20359 ZIP files generated use extensions to allow them to be above 2 gigabytes (as often happens when downloading all images uploaded to a survey). This extended format is supported by Windows Vista and onwards
+#19597 The "rconf" script which allows command line editing of the reports.json file, is again functional.
+Automation
+Please see the API reference for current complete list of API and parameters.
+#20168: API for datamap access supports more datamap formats: Wincross, Triple-S XML, Uncle, SAS, Quantum, SPSS (fw & tab), Net MR
+#20175: The Decipher API can be used to edit data. You can:
+create new participants in an existing survey
+delete or disqualify existing participant
+edit any data
+#20306: API exposes quota definitions (sheets, tables, conditions) and current marker counts
+#20317: You can replace the survey.xml file via the API (in dev/testing surveys but also live/closed with an option). This allows external programs to edit your survey.
+Research Hub / Portal
+#20344 -- Project Creation hook
+#20293 A custom hook exists for the portal that allows control over what users are shown
+#20299 Portal performance has been improved when there are many projects around
+#20325 The automatic assignment of unassigned projects to companies supports any directory depth now (i.e. not just client/ or selfserve/1234 but you can use somedir/otherdir/client3)
+#20294 Updated ‘portal_restrictions’ hook. The returned dictionary can also return the following keys:
+canViewUsersInSearch = True/False. Will show or hide the users in the advanced search, and show hide the users in the search autocompletion
+canViewTagsInSearch = True/False. Will show or hide the tags in the advanced search, and show hide the tags in the search autocompletion
+canViewUsersTab = True/False. Will show or hide the users tab in detail views
+#20323 “All Clients” can be selected in the usage statistics page in the detail and summary tabs [ Requires Decipher Cloud]
+#20423 Deactivated user accounts are no longer displayed under groups or projects
+Builder
+#19928 New hooks added:
+builder_restrictions
+Has one parameter: a user object
+Should return a dictionary with ‘forceTheme’ set to some path to a theme directory
+Dictionary returned can also contain a ‘canChangeLogo‘ key. If true, the user will be able to change the logo through the UI. If false, they should not be able to change the logo through the UI.
+Projects created by a user with a forced theme should have that theme set when the project is created
+User with a forced theme will not see theme options in project settings or have access to theme builder for that project
+#20292: Most of the Mobile Warnings have been removed
+SPSS
+Updated User Interface
+#18387, #20442, #20338, #20339, #20340, #20348, #20356 Various user interface fixes
+Better Data Importing
+#20503 A variables.xls with altLabels is now created upon import so the downloaded data labels will match the original labels
+#20430 trackVars="checkbox" is now added to new spss uploads in order to preserve blank values
+#18737 Floats with blank values should now import as blanks
+#20357 Negative checkbox values are now imported as blank
+#20441 Imported values now match correctly when 0 is included as a value
+Better Manual Grouping/Ungrouping
+#20407, #20476 Retain variable order when grouping and ungrouping
+#20470 When manually grouping show row text and values in the group editor
+#20479 when manually grouping show values on group
+#20361 Adding a group to another group will no longer fail but remove the orginial group after combining
+Better Automatic Grouping
+#20408 Special case for grouping checkboxes with only 1 value
+#20420 Group title will exclude row text
+#20458, #20504 Refining question grouping for more accurate matching
+#20553, #20554 Special case for checkboxes that do not use ‘no’ and ‘yes’ for value labels.
+Various Fixes
+#20449 Changing a group label won't crash on import
+#20468 Changing a group's row text now updates correctly in the survey.xml
+#20362 Disable changing the question type of text questions
+Dashboard
+#20124 New chartoption legendPrecision added. This new option allows you to set the precision of the participant counts on legend labels. Default precision is '0' for 0 decimal places
+#20161 Fix case where dashboard's local banner title text is replaced with [object Object]
+#20187 Fix dashboard fataling on export
+#20206 Dashboards now round data points instead of just truncating the number
+#20017 Dashboards now have an option for sig testing
+#20209 Splitting a dashboard now works correctly when local banners are applied to a chart.
+#20371 Dashboards now allow the same name to be used for a row as the title.
+#19055 Dashboard exports now use global chartoptions when local chartoptions don't exist
+#20351 Dashboard no longer fatals with “'dict' object has no attribute 'replace'” on Export
+Survey & CMS
+#17316 The list of illegal question labels has been significantly expanded with 172 new items. This avoids many mysterious fatal errors, especially when you name a question "None", "zip" or "TOTAL_TIME". This applies to new (compat=128+) surveys only.
+#20126 Configuring element verify incorrect (i.e. verify="range(1,100)" attribute) would generate a fatal error. Now a more useful message is displayed.
+#20029 The <style> XML style override can now target the "button.goback" style.
+#20529 Fixed import of multi-variable questions so that missing data does not produce false selections
+#18069 The survey attribute persistentExit="[0-1]" has been added. This attribute will only affect duplicate UUIDs. The idea is to prevent displaying the wrong exit URL / page if the form is resubmitted.
+When set to "0", the exit status that matches a participant's current completion statis is used. The default is "0".
+When set to "1", a participant is redirected using their most-recently-used exit status (assuming the <exit> tag has not been removed).
+#20508: The survey now checks to see if it is closed before it checks if autosave is enabled.
+#19919, #19920, and #20383: The bracketed syntax has been expanded to include [url …] for url-query variables, [res …] for survey-environment resources (i.e., <res ..> stuff), and [adb ...] for adb variables.
+#1761: Typing into an inline OE now populates both checkbox and and radio elements, and clearing your OE response will de-select buttons as well
+#20448: Support request emails contain new debugging information (extra variables, link to participant's spot in the survey, etc.) if the request was submitted via the "Help" link
+Field Report & Campaign Manager
+#19928 New hook added:
+campaign_allow_email
+Has two parameters: email (String) and user: user object
+Should return a boolean indicating if the supplied email should be allowed in a campaign list
+Programming & Tools
+#20366 The assignRandom Database function will correctly assigned mixed-case sources. If the Database is configured with lower=True (the default), the gift codes are converted to lowercase. If configured with lower=True, the case sensitivity is correctly retained.
+#20147 The list of builtin Python functions in SECURE surveys has been reviewed, with the following added:
+Python builtins: map next reduce reversed filter
+Our utility functions: takeWeighted, urlencodeDict, oneArgument, nullfun, indices, identity, generatePassword, flatten, ddict, commaify, tesAll, tesAny
+Virtual functions: labelSearch, bucketizeSearch, completionTimeFor setIfEqual
+#20167 The update-virtuals script will now exist on cloud servers
+The howfast script can help you determine survey performance, calculating number of completes per hour based on a recent simulated data run. E.g. howfast selfserve/123/456.
+#19149 The "adb" system when given lists="mail" will read files that start both with list*txt but also seedlist*txt.
+#20516: a live merge will no longer take a copy of data.db, variables.dat nor completions.dat as those files are not being changed by remerge. Especially a safe copy of data.db could significantly decrease performance for e.g. the Sky server.
+#20015 Markers for a single participants are de-duped when writing the data file. This avoids scripts like transform from setting duplicate markers accidentally and affecting quotas.
+#20540 The saveRandom="0" option set on a survey will mean the random order of elements (that can be restored by getRandomOrder in virtuals) is not saved. This can be a significant performance increase for surveys with heavy nested blocks.
+Bugfixes
+#19401 ADB matching is stricter and you cannot bypass it by just specifying .e.g ?source=invalid&list=1.
+#13585 Removing the logo of a dashboard no longer interferes with the split-by dropdown
+#20381 Using [rel file.jpg] to display an image in a row could stop Crosstabs from working
+#20202 When using weighting and exporting using Crosstabs, the total summary on top might be rounded differently than the main report
+#20353 A report using weights set to 0 could fail to load
+#20163 Following an invalid link to a field report will avoid splitting rather than showing a fatal error. Those links are quite common when pasted (e.g. ?split=lishibobhere's there report)
+#20257, #19866 Certain incorrect surveys could prevent builder from loading
+#19059 It was possible to create user@email.com and user@EMAIL.com as two separate users in portal. Emails are now forced to lowercase.
+#20162 Certain quota files that generated fatal errors now display a more useful error message
+FT: [#19620] Using DQs with type="res" style variables in a loop could generate a fatal error
+#19947 Invalid "user agent" strings could sometimes generate a fatal error, preventing a user from taking a survey.
+FT: [#20365] Simulated Data and ADB compatibility was improved
+#20465 Fixed a race condition when hmerging a /temp-live-edit survey that has an external sample source.
+#20343 Fixes performance issues with SpellCheck testing tool
+#20271 Fixes issue where SpellCheck testing tool was unable to detect misspellings within a loop
+#20111 Fixes bug where “sub” attribute was skipped during XLS import process
+#20267 Added a warning message when creating conditions with non-unique names via the survey builder
+#20182 Fixes issue where saving new condition in survey builder with name that already exists as question applies logic to question instead
+#20178 Fixes email headers for various survey applications emails that go out to use generic, white labeled sender information
+#20130 Fixes issue where logo shown in welcome and password reset emails weren’t shown as designated white labelled logo
+#7841 Fixes samplesource deduplication issue to ensure participants are checked for having already completed when marker timeout limit has passed
+#20286 Fixes issue to properly apply FIR to special “favorite” question type
+FT: [#20304] SPSS downloads could fail if invalid unicode data was stored
+FT: [#20260] The "filter.always" option used by hierarchical data could in some cases fail in compat=2 dashboards
+#19479 Toluna redirect Urls to be encrypted.
+#20141: Fixes issue where autofill elements where not being updated upon entering answers
+#19898: Fixes issues with multi-line pasting with formatted content
+FT: [#20145] Fixes issue where the column-legend of a noanswer choice is duplicated on lists
+FT: [#20156] Fixes extra space appearing above lists when row-legend is blank
+FT: [#19886] Fixes issue where the play button doesn’t show using bcvideo
+FT: [#17288] Fixes issue where take over popup appears randomly when working in survey edit mode
+FT: [#20131] Fixes question preview to respect randomize shuffle
+FT: [#18459] PDF and pptx exports to include all charts
+#20159: CriticalMix redirects update
+FT: [#20173] Fixes formatting, layout, table sort order, and other font related issues with PPTX exports
+FT: [#20222] Fixes PPTX export error for saved reports
+FT: [#18887] Allow non-fulcrum participants to answer fulcrum questions
+FT: [#20140] Fixes issue when a non question element is viewed which causes the last viewed element to be inaccurate in In-Progress report
+FT: [#20298] In-Progress report to be compatible with GMI date format (FT)
+#18521 Characters such as Emoji (e.g. ��) would previously prevent Excel 2007/97 files from opening correctly
+#20268 The indexing of invited.txt and ADB list files has been improved when the original file is changed without changing the timestamp (e.g .when using the "recode" command). When list.txt has been indexed as e.g. list.txt_source0.index you will now also see a list.txt_source0.index.attr file that contains information about the source file at the time of indexing.
+Misc
+#20443 Data collection optimizations allow approx. 10% higher throughput on very busy but small surveys
+#20244 The scoreboard page (available only for server staff) now includes recent dropout%. Fields displayed are:
+[ Requires Decipher Cloud]:
+loaded -- number of unique IDs that have loaded at least 1 page of the survey in the last 60 minutes.
+Compl -- as above, but completed in any way
+Drop%: percentage of participants who have loaded a survey page more than 5 minutes but less than 60 minutes ago that have NOT also completed during that time. This is shown only for surveys with non-trivial activity.
+Based on our collected data, 99% of participants take 256 seconds or less between each page, so the indicator above should only have 1% false dropouts.
+Surveys above 30% which is slightly more than our above average dropout, have the Drop% highlighted in bold.
+Only live & closed projects are shown
+#20375 When server load is extreme and new requests have overwhelmed the queue (as in the March 11th event), new survey starts of the survey are shown this error message.
+#19726: CATI: large sample file uploads have superior performance
+#20045: CATI better unicode support
+#19712: Fulcrum: copying a Fulcrum Auto survey creates a new Fulcrum project on Fulcrum's side as expected
+#20248: Fulcrum: moving a Fulcrum Automatic survey updates the eid:fulcrum mapping
+#20254: Fulcrum: when doing End2End testing you can see populated data when returning to Decipher
+#20500: Performance increase regarding loading very large surveys with lot's of xlatable text
+#20515, 20009: ppt, pptx, and .less files can now be uploaded by staff and non-staff users via the file manager page
+#20591 The main v2.decipherinc.com server will be monitoring user performance to determine where to improve user performance. This will involve requests to a third-party site, .pingdom.net.
+#20517 Added a custom registration page that allows users to register for a user account as long as their email falls under a specific domain.

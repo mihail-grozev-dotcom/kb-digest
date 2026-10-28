@@ -1,0 +1,32 @@
+Title: About Participant Sources and Survey URLs
+Participant sources determine how participants get to the survey and where they are directed after finishing the survey. Participant sources are needed when you have more than one source of sample for the survey.
+When you want to have more than one exit URL or exit text, or add extra variables to the data that are collected via the URL, you need to create a special lock-down of the survey. Participant sources can be locked down to allow only one unique ID, or they can be setup to a static link that does not track IDs. Most likely you will need to setup participant sources before you launch but not in all cases.
+You do not need to add a participant source if you meet all of these conditions:
+Only one source of sample for the survey (such as one email list, one personal panel, one intercept from a single website)
+Only one exit URL or exit text
+Do not need to create any special lock-down of the survey or add extra variables to the data collected via the URL
+1: Using a Pre-Programmed Sample Provider
+You can add pre-programmed sample providers to any survey via the Participant Sources menu. The providers listed in the "Sample Provider" source option are pre-setup with those vendors, along with any necessary variables and exit URLs to allow the vendor to send sample and get the appropriate feedback when the participant terms, overquotas, or qualifies.
+Each option is tracked using a special reserved variable named "list". The list variable is used in the URL, collected in the data when the participant enters the survey, and can then be used to classify the participant's source of entry in the Response Summary, Crosstabs reports, and data downloads. More than one sample provider can be used for a single project.
+Purchase of the sample for the project should be done in advance through one of our Decipher Account Managers, or directly with that vendor (Decipher may be able to provide better rates, so please reach out if you need a bid).
+Learn More: Participant Sources
+2: Using a Custom Participant Source
+You can specify to use a custom participant source if:
+The vendor you would like to use is not in the list
+You have your own custom panel
+You need to track one or more email lists
+Custom participant sources have many options to help tailor to your specific needs. The benefit of custom participant sources is that you can have more than one variation of exit text if participants are coming from multiple locations (panel, email, intercept, etc.) or you can send participants to any specified URL that can also contain special variables for passing information to that URL (such as, a unique ID to a panel or a username to a website).
+Here's some more insight into the capabilities of custom participant sources:
+They can be locked down to allow only one unique ID, or they can be setup to be a static link that does not track IDs.
+There is a field called "extraVariables" that sometimes causes confusion. You only need an extraVariable if you are passing variables in the URL. As mentioned above, there is a variable called "list" that is used for each participant source. Decipher also has a default variable called "source" that can be used for a unique ID. There's also the "decLang" for tracking languages. You will notice when you add the participant source, the list and decLang extra variables get added to the URL by default.
+Learn More: Creating a Survey Link
+3: Survey URL and Variables
+There is a URL variable called "list" that is used for each participant source. Decipher also has a default variable called "source" that can be used for a unique ID. There's also the "decLang" for tracking languages. You will notice when you add the participant source, the list and decLang extra variables get added to the URL by default. You only need an extraVariable if you are passing variables in the URL.
+To see this in action, first setup a participant source, then go to the "Preview" menu and select "Test Survey". You should see the default URL for testing and fielding the survey at the bottom of the window. If you have multiple participant sources and languages, there is a drop-down menu available to configure your URLs.
+Your URL(s) should look something like the below:
+http://v2.decipherinc.com/survey/selfserve/abc/123456?list=1&decLang=english
+If you added "var1" in the extraVariables field, then your link might now look like the below:
+http://v2.decipherinc.com/survey/selfserve/abc/123456?list=1&var1=$var1&decLang=english
+Where $var1 would be replaced with some special value you are piping into the survey.
+By adding var1 to the extraVariables, it adds a variable in the dataset that stores the data for downloading later. It also would allow it to pass to an exit URL if needed. Note that the extraVariable field in participant sources is optional.
+Learn More: Attributes for Project Settings

@@ -1,0 +1,25 @@
+Title: Creating Saved Reports
+A saved report is a custom collection of tables and charts that you can create using the tables you have pinned to your whiteboard. You can choose to share your saved reports publicly or keep them private so that only you are able to view them.
+1: Creating a Saved Report
+Once you have pinned one or more tables to your whiteboard, you can create a saved report. From the Actions menu at the top-left of any report, select Create Saved Report.
+The Saved Report Editor displays. Click Add Data to open the whiteboard.
+In the whiteboard window, use the toolbar to select the tables you would like to include in the report. It is possible to pin multiple versions of the same table, so reference the summary to identify the original configuration.
+Once you are satisfied with your selections, click Insert Selected to create a saved report with the selected tables.
+The Saved Report Editor allows you to further configure the report before saving. The editor contains the following tools and features:
+Crosstabs: Return to Crosstabs.
+Insert Data: Insert an additional table from your whiteboard in the position where Insert Data is selected.
+Tables: Tables selected from your whiteboard are included. Select Chart or Table if you want them included in the report (charts are only enabled if the table included a chart when it was pinned in Crosstabs).
+Delete: Removes the table from the report.
+Move: Click and hold to drag and drop the table into a different position.
+Preview Report: View the report without saving.
+Save: Save the report. Enter the following details in the Save Report window:
+Name: The name of the saved report.
+Description: A short description of the report.
+Access: The access level for the report. Can be set to any of the following:
+Public: Anonymous users can view the report and logged-in users can edit it.
+Protected: Anonymous users cannot view the report and logged-in users can only view it.
+Private: Only you can view the report.
+After you click Save in the Save Report window, the report loads within Crosstabs with your settings applied.
+2: Viewing Saved Reports
+To view saved reports, click REPORT in the navigation menu. Then click MORE TOOLS and select View Saved Reports.
+Each saved report includes the report's name, creator, access level, actions (view, edit and/or delete, based on your access level), and the date it was last updated. Select the desired report from the list to view it.

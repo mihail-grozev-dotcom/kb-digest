@@ -1,0 +1,11 @@
+Title: Adding Custom Code Elements Using the Survey Editor
+All of the logic nodes available within the Logic Library can be added to Decipher surveys as custom code elements using the Survey Editor.
+1: Adding a Custom Code Element
+In the Survey Editor, Logic Library logic nodes can be found in the "Custom" section of the "Survey Elements" Menu. To add a custom code element to a survey using the Survey Editor, click "+ Add Survey Element" under the staging area:
+In the "Survey Elements" menu, click "Custom" and select the custom code element from the list. Then click "Insert" to add it to your survey:
+Once inserted, the custom question will appear in the staging area of the Survey Editor where you can configure its settings:
+2: Debugging Information
+If you have a survey with custom code elements, you can view a list of all the elements and any debug information that has been logged on the project logic debugging page. To view the debugging and status reports for your custom code element(s), click "Logic" under the "Report" menu.
+You can additionally view this information using the following link:
+https://[server]/apps/logic/[path/to/project]:debug
+See Logic Debug for more information.

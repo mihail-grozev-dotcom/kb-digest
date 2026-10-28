@@ -1,0 +1,76 @@
+Title: Viewing Audit Logs
+Every project has a number of audit events that are logged into a database. The process of accessing the log files varies depending on the events they capture.
+1: Accessing User Audit Logs
+To view your personal audit log, click your profile picture in the upper-right of the Portal and select "View Audit Log".
+To access a teammate's audit log, visit your company's page and click on their username to access a menu with an Audit Log link available. You may also click on the timestamp reflecting their Last Login date.
+The following events are logged per user:
+Viewing or deleting a report
+Viewing or deleting an extra report
+Downloading data
+Accessing the project data editor
+Editing/saving a theme
+Editing the project data
+Changing passwords
+Logging in (both successful and failed attempts)
+Logging out (if the user clicked "Logout")
+Modifying the company's permissions
+Disabling, enabling, or editing a user account
+Creating a new account
+Changes to users' permission levels are logged as well. Both the user performing the action and the user upon which the action is performed will have actions logged in their individual audit logs. The log entry will include the user, project (if applicable), and raw permissions (if applicable).
+The following permission actions are logged per user:
+Modifying a user's default permissions
+Modifying a group’s default permissions *
+Adding or modifying a user’s default permissions for directory auto-assignment
+Adding or modifying a group’s default permissions for directory auto-assignment *
+Adding/removing/modifying a group’s or user’s project permissions
+Note: The actions marked with an asterisk (*) will only be logged for the user performing the action, not the users in the group being acted upon.
+2: Accessing Project Audit Logs
+Use the tables below to access the various audit logs related to your project. Replace "project/path" with the actual path to your project (e.g., selfserve/abc/proj1234). The following events are logged per project:
+Participant information
+Entering/exiting the survey
+Status (e.g., qualified, terminated, overquota)
+Duplicate attempts
+Quota markers set
+Variables passed into the URL sample source URLs
+File edits made
+Data edits made
+Test data history
+Users viewing reports
+Data downloads and generation
+Project copies made
+Survey status (e.g., live, closed, testing)
+Various other debugging information
+2.1: Project Applications
+The following is a list of audit logs that can be accessed via a web browser.
+Some applications can be viewed using the User Interface, while others require you to enter the exact URL.
+2.1.1: Project Applications (User Interface)
+To access Project Audit Logs, select Reports in the navigation menu located at the top of any project page, then select More Tools from the drop-down menu. Select Survey Audit Log from the More Tools drop-down menu.
+To access Version Control (Change Management), select Build in the navigation menu located at the top of any project page, then select More Tools from the drop-down menu. Select Version Control from the More Tools drop-down menu.
+To access Test Data History, select Preview in the navigation menu located at the top of any project page, then select Simulated Data History from the drop-down menu.
+2.1.2: Project Applications (URLS)
+In this list, where it states your-server, replace your-serverwith your cloud server sub-domain. For example, if your portal login page is located at: https://client.decipherinc.com/apps/portal, replace your-server with client.
+Path to Logs
+Description
+https://your-server.decipherinc.com/admin/users/audit-survey/PROJECT/PATH
+Interesting project events (Project Audit Log)
+https://your-server.decipherinc.com/admin/users/audit/USER-ID#
+Interesting user events (User Audit Log)
+https://your-server.decipherinc.com/admin/vc/list?file=PROJECT/PATH/FILE
+Project version control (Change Management)
+https://your-server.decipherinc.com/admin/sst/list?survey=PROJECT/PATH
+Test data history
+2.2: Project Directory
+The following is a list of audit logs that can be accessed via the command line.
+Requires Decipher Cloud
+Path to Logs
+Description
+/project/path/survey.log
+Interesting survey events
+/project/path/report.log
+Report viewing events
+/project/path/quota.xls.log
+Quota marker events
+/project/path/data/exit.log
+Participant exit events
+/project/path/mail/*.report
+Email send events

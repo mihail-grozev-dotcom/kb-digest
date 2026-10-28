@@ -1,0 +1,40 @@
+Title: Running a Quick Split Crosstab
+A quick split crosstab allows you to quickly view a crosstab report split by question or date logic, or by using logic from a previously saved segment.
+1: Configuring a Quick Split Crosstab
+To run a quick split crosstab, first open Crosstabs for your project, and select Run Quick Split Crosstab.
+Note: To run a crosstab based only on participant status, select Participant Status instead. Then choose a status option from the drop-down menu to run the report.
+Then configure your crosstab by adding question or date logic, or applying previously saved segments.
+1.1: Question Logic
+Allows you to run the crosstab based on a question in the survey, or any existing additional variables.
+To add question logic, select Question Logic. Then follow the steps below.
+Select a question from the drop-down menu.
+Choose the answers that you want to use as segments.
+(Optional) Add a Group Header to display the header in the report and change the stat testing results, so that items in the same group are tested together.
+1.2: Date Logic
+Allows you to run the crosstab based on a date range.
+To add date logic, select Date Logic. Then follow the steps below.
+1. Select the From and To dates in the fields provided.
+2. Choose how the dates are broken into segments. Create segments for each:
+Day
+Rolling 7 days
+Rolling 30 days
+Custom (specify an exact number of days in a segment interval)
+3. (Optional) Add a Group Header to display the header in the report and change the stat testing results, so items in the same group are tested together.
+1.3: Saved Crosstab Segment
+Allows you to run the crosstab based on a previously saved crosstab.
+To apply previously saved crosstab segments, select Saved Crosstab Segment. Then follow the steps below.
+1. Select a question from the drop-down menu. You can run the crosstab as saved or modify the segments shown.
+2. Choose the answers that you want to use as segments.
+3. (Optional) Add a Group Header to display the header in the report and change the stat testing results, so items in the same group are tested together.
+2: Add Nested or Appended Segments
+You can add an additional layer of logic to your quick split by nesting or appending additional segments. Nesting and appending can be achieved by opening the Quick Split editor, creating a split, and then selecting + Add Nested or Appended Segments (located above the crosstab preview).
+Nesting segments will create multiple segments with complex logic by splitting the first set of segments by the second set of segments.
+Appending segments will create multiple segments by displaying all segments side by side.
+To nest or append additional segments, follow the steps below.
+1. Configure your top set of segments using the Question Logic, Date Logic, or Saved Crosstab Segment options.
+2. Select the option for + Add Nested or Appended Segments, which can be found above the Crosstab preview.
+3. Configure your second set of segments using the Question Logic, Date Logic, or Saved Crosstab Segment options.
+4. Select Nest Segments or Append Segments.
+5. (Optional) Add Group Segments to display the header in the report and change the stat testing results, so items in the same group are tested together.
+3: Run Crosstab
+Once you have configured your quick split, click Run Crosstab with X Segments, where X is the number of segments you have created.

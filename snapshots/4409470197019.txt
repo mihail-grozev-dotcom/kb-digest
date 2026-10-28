@@ -1,0 +1,65 @@
+Title: Running Simulated Data
+An important step in completing any Decipher project is running simulated data through your survey using the Run Test Data feature. The Run Test Data feature looks for errors in survey logic or survey flow by forcing simulated data through your survey.
+By generating enough data to populate all survey questions and hidden elements, this process also allows for thorough testing of the report to help verify that skips and question logic has been defined properly.
+1: Running Simulated Data
+Note: The option to run simulated data is only available while a survey is in “DEV” or “DRAFT” mode. You cannot run simulated data on a live survey unless you are working in a temporary copy of the project.
+To run test data, click Preview in the navigation menu available at the top of any project page and select Run Simulated Data. In the test data window, click Run Test Data.
+Clicking Run Test Data forces a minimum of 100 simulated responses through your survey, randomly testing each question and hidden element.
+Simulated survey data mimics the path that actual participants take when the survey is live and displays its result in all reporting tools. The simulated data must obey the setup of the survey, respecting question logic, quotas, participant sources, languages, etc.
+The process could take a few seconds or a few minutes, depending upon the length and complexity of the survey.
+2: Configuring a Test Simulation
+To set additional conditions for the test data, click Configure Test Simulation. The following configurable options appear:
+Run # simulations: Allows you to choose how much test data to send through the survey.
+Qualified data only: When checked only test records with qualified responses are included within reports.
+Skip validation: When checked, the test data ignores any validation logic in order to maximize the efficiency of the test.
+Respect optionals: When checked, optional answers are respected, leaving some response fields blank.
+Quota inc./Dec.: Allows you to increase or decrease the quota count.
+You also have the option to configure a custom test simulation.
+2.1: Custom Test Simulation
+While it is generally good practice to let test data fall out naturally, you can use a custom test simulation if you need more data to reach a certain part of your survey or if you need to see data spread out over a longer period of time.
+The Custom Test Simulation area allows you to enter specific commands to direct the path and time frame for your test data. For example, you can specify list variables or force a specific answer to a survey question. If you are entering multiple commands, enter each on a new line. Once the test simulation is configured, click Apply and Run Test Data.
+See Specifying Answers for Simulated Data to learn more about custom test simulation options.
+3: Viewing Test Data Results
+Once a test run has completed, an updated testing status appears in the Test Result / Errors box.
+3.1: Survey is Ready for Launch
+Because the survey progress bar relies on simulated data, it is recommended that you run at least 200 attempts through the final version of your survey prior to launch. This helps establish all of the possible paths that a participant can take and ensures that the progress bar percentage lines up correctly.
+Tip: If your survey is especially complex or contains multiple languages, consider running more simulated data to account for those complex paths.
+Once you have had at least 200 qualified completes successfully make it through your survey, the survey is ready for launch. You will receive the following message upon a successful attempt:
+If desired, you can click View Test Data History for more information or click View Simulated Data in Report to open the report and further verify the data quality.
+Note: When running test data, quotas with smaller limits may run overquota. This must be done to ensure that enough test data is run through the survey to qualify it for launch.
+3.1.1: Simulated Testing Tips for Multi-Language Surveys
+At least 31 qualified completes per each version of the survey are required (a green symbol will display once there are enough qualified completes).
+Once the final version of the survey has sufficient overall qualified completes and sufficient qualified completes per language, SST data can be cleared and the survey will still be considered ready for launch.
+Changing the data layout of the survey (such as adding a new element) requires new SST testing with the required number of overall and per-language completes, unless using Launch Options to skip SST checks.
+3.2: Survey Contains Errors
+If an error is present in the survey logic or flow, you are able to view the associated question or element directly from the test data window.
+There are two types of errors you might encounter when running simulated data.
+3.2.1: Fatal Errors
+Fatal errors indicate that the survey ended unexpectedly due to an error in the survey's structure. If you see any error with the word "fatal" next to it, that is a serious issue that needs to be resolved prior to launching the survey.
+Clicking an error opens the Fatal Report detail page for that particular error. You can review the Fatal Report detail page to locate the source of the error and help you troubleshoot a solution. If available, you can click "Previous" to view information about any questions that were submitted before the error.
+The information displayed after "The traceback:" should give you a precise snapshot of the error that caused the simulated data to fail. Use this information to identify and resolve the error within the Survey Editor or XML.
+After resolving the error, it is good practice to clear past data and re-run simulated data.
+If fatal errors persist, repeat the process for troubleshooting. If you are unable to resolve an error, contact Forsta Support for assistance.
+3.2.2: Failed Attempts
+Failed attempts indicate that the simulated data was unable to continue through the survey because of things like validation errors.
+If a failed attempt occurs, click View Test Data History, select the most recent test data attempt and click Fail to view details about the error.
+You can use the details screen to help you troubleshoot the error. The details screen displays the survey page on which the data failed. Review the survey page to help you determine the issue. You can manually correct the error by updating the fields or selected answers on the page and clicking "Continue".
+If you are allowed to continue through the survey after submitting any required information in the proper format, then you know that this was an error with the test data rather than the question, and your survey is working properly. If needed, you can prevent this error from recurring in the future by specifying the correct data behavior for the troublesome question in the Custom Test Simulation box.
+If you are not allowed to continue after submitting corrected information, then the survey is not working as expected, and you must use the Survey Editor or XML Editor to fix the issue.
+If simulated data failures persist, repeat the process for troubleshooting. If you are unable to resolve the error(s), contact Forsta Support for assistance.
+3.2.3: CPU Warning
+A CPU warning indicates that a code block in the survey is using too much CPU processing power and the test run could not complete. This issue must also be corrected before launching the survey. Possible causes for CPU warnings include:
+Questions with long attribute lists
+Large surveys
+Complex quota setup
+Extensive use of persistent variables
+Poorly written exec blocks
+Review your survey structure and question design, and adjust any suspected problem areas, then re-run simulated data. If you are unable to resolve the warning, contact Forsta Support for assistance.
+Tip: Users with Cloud access can run sst --profile to help troubleshoot the problem.
+4: Clearing Simulated Data
+Note: Clearing simulated test data also resets the survey for any individuals who are currently manually testing the survey. Their place is reset and they must restart their test at the beginning of the survey.
+Clearing simulated data removes all old test data and allows you to restart the debugging process by running new simulated data through the survey. Clearing test data also removes any errors found in previous simulated data runs, thereby allowing you to look for new or persistent errors.
+Click Preview in the navigation menu at the top of any project page and select Run Simulated Data to open the test data window. Then click the Clear Test Data button.
+There may be a delay while the system loads.
+You are asked if you want to clear all test data. Click Yes, Clear Data to clear the test data.
+A message appears confirming that the test data has been cleared. Click OK to return to the test data window.

@@ -1,0 +1,160 @@
+Title: Best Practices for Programming Multi-Language Surveys
+Note: If you have never before created a multi-language project, be sure to read our Guide to Programming Multi-Language Studies.
+The following best practices have been designed in order to help you save time, money and effort when programming multi-language surveys.
+1: Using Complete Sentences
+In a multi-language study, it is extremely important to use complete sentences when performing variable replacement, as the grammatical structure and syntax for languages varies from country to country. You should pipe complete sentences and phrases rather than individual words (e.g., DON’T use "Would you buy a [pipe: color] car" ) to preserve the content of your survey.
+For example:
+<pipe label="table_shape">
+<case label="c1" cond="Q1.r1">round</case>
+<case label="c2" cond="Q1.r2">square</case>
+<case label="c3" cond="Q1.r3">triangular</case>
+<case label="c4" cond="1">BAD PIPE</case>
+</pipe>
+<textarea label="Q2" optional="0">
+<title>Why do you prefer a [pipe: table_shape] table?</title>
+</textarea>
+<suspend/>
+When translated to French, it may be possible that Q2 reads:
+"Pourquoi préférez-vous un [pipe: table_shape] table?"
+However, the proper translation should have been: "Pourquoi préférez-vous une table [pipe: table_shape]?"
+Notice the placement of the shape adjective. It may appear after the noun in French. You can prevent any syntax issues when translating your project by using complete sentences when piping.
+For example:
+<pipe label="table_shape">
+<case label="c1" cond="Q1.r1">Why do you prefer a round table?</case>
+<case label="c2" cond="Q1.r2">Why do you prefer a square table?</case>
+<case label="c3" cond="Q1.r3">Why do you prefer a triangular table?</case>
+<case label="c4" cond="1">BAD PIPE</case>
+</pipe>
+<textarea label="Q2" optional="0" alt="Why do you prefer a SHAPE table?">
+<title>[pipe: table_shape]</title>
+</textarea>
+<suspend/>
+2: Using <res> Tags for Text & Error Messages
+Text written inside <exec> or <validate> blocks cannot be pulled by the Language Manager into the translation file. Whether you are storing a variable, manually updating an element's attribute, or presenting an error message, always use the <res> or <pipe> tags to store the original text.
+For example:
+<res label="Q1_number_less_than">Please enter a number less than 12.</res>
+<res label="Q1_number_greater_than">Please enter a number greater than 0.</res>
+<number label="Q1" size="2" optional="0">
+<title>How many months in a year have 28 days?</title>
+<validate>
+if Q1.ival gt 12:
+error(res.Q1_number_less_than)
+elif not Q1.ival:
+error(res.Q1_number_greater_than)
+</validate>
+</number>
+2.1: Supported Languages
+You may also use any of the built-in system language resources for programming error messages. The most common error messages and resources are already translated for most (but not all) countries.
+The following is an example of an error message that references the system language resources:
+<number label="Q1" size="2" optional="0">
+<title>How many months in a year have 28 days?</title>
+<validate> if Q1.ival gt 12:
+error(this.lget('valueAtMost', max=12))
+elif not Q1.ival:
+error(this.lget('valueAtLeast', min=0))
+</validate>
+</number>
+Note: Not all of the language resources on file are translated into all languages. See Available Survey Languages for a list of all languages fully supported within the Language Manager.
+Learn more:
+System Language Resources
+Resource Tag: Create Translatable Resources
+2.2: Unsupported Languages
+Note: Adding an invalid language will display an error for compats 139+.
+Any languages that are not supported in the Language Manager will use our generic error messages and these will be shown in English. For this reason, we recommend that you always check that your language is supported before using any of the system language resources.
+See Available Survey Languages to view all languages that are currently supported in the Language Manager.
+3: Considering Question Types & Configurations
+3.1: Zip Code Questions
+ZIP codes vary from country to country and may contain various combinations of alphanumeric responses. For example, a valid zip code in the U.S. could be "08001" and a valid zip code in Canada could be "K4N 0B1".
+When working with a multi-language survey, program individual text questions per each language in your survey and use the mls= attribute to filter participants that see each question. After programming each question, use <validate> logic to make sure participants' answers are submitted in the proper format, as shown in the examples below.
+Here, Q1 is using the built-in verifiers to check that a valid US zip code is entered:
+<text label="Q1" optional="0" verify=”zipcode” mls=’english’>
+<title>What is your ZIP code?</title>
+</text>
+In the example below, Q1_ca can't use the built-in verifiers to check that a valid Canadian zip code is entered. For this example, we must use a custom validate to verify that the zip code entered is in the proper format.
+<text label="Q1_ca" optional="0" mls=’candian’>
+<title>What is your ZIP code?</title>
+<validate>
+if re.match("^[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]$", this.val) == None:
+error(res.can_ziperror)
+</validate>
+</text>
+3.2: Currency Questions
+Questions that are related to money often utilize the ss:preText="$" row attribute to show the currency symbol before the input boxes.
+There are two main reasons why this method of programming currency symbols is not recommended for multi-language studies:
+1. The currency symbol is not the same for each country.
+2. The currency symbol is not always in the prefix condition.
+When you use the ss:preText="$", you hardcode the dollar sign to show before the input box for a particular row, regardless of country. You can avoid this error by using a resource tag (e.g. <res label="currency">$</res> and then ss:preText="${res.currency}" ) as shown below:
+Note: Use two resource tags and both attributes, ss:preText and ss:postText. Confirm that the appropriate currency is in place and test the question to ensure it is working correctly.
+4: Using the Multi-Language System (MLS)
+4.1: In the Survey Editor
+You can set a filter for a particular question, row or column by using the “Languages” filter in the right options panel of the survey editor. By default, “Languages” is set to “all”, meaning that all participants see the question/row/column, regardless of language.
+Note: The Languages filter is only available after adding multiple languages to your project.
+To set the Languages filter, select Languages in the right options panel and select/de-select the languages as desired.
+If you have QA codes turned on, the MLS:LANGUAGE code for the languages that the question/element is restricted to will display. In the example above, only participants taking the survey in French will see question s3_FR.
+Here’s how it works:
+Like a condition, elements with “Languages” set only show for those participants taking the survey with the corresponding language. For example, if “Languages” is set to French, then elements in the survey only show for participants currently viewing the survey in French.
+Elements with “language” set are only pulled into the appropriate translation files. For example, if “Languages” is set to French for a given question, then it only exist when exporting the French translation file from the language manager. This saves you time and translation costs by limiting language-specific translations to the appropriate translation files.
+4.2: In the XML Editor
+You can use the mls="LANGUAGE" attribute to conditionally show elements based on the survey's language.
+Here’s how the mls attribute works:
+Like a condition, elements with mls="LANGUAGE" set only show for those participants where the corresponding language is set. For example, mls="french" elements only show for participants currently viewing the survey in French.
+Elements with mls="LANGUAGE" are only be pulled into the appropriate translation files. For example, a question with the mls="french" attribute only exists when exporting the French translation file from the language manager. This saves you time and translation costs by limiting language-specific translations to the appropriate translation files.
+For example:
+<radio
+label="s3_FR"
+mls="french">
+<title><p>In which city do you reside?</p></title>
+<comment>Select one</comment>
+<row label="r1">Paris</row>
+<row label="r2">Lyon</row>
+<row label="r3">Marseille</row>
+<row label="r4">Toulouse</row>
+<row label="r5">Other City</row>
+<row label="r6">I don’t live in France</row>
+</radio>
+In this example, we only want participants who are taking the survey in French to see this question. By adding the mls="french" attribute, we can restrict the participants who view this question and limit these language-specific translations to the French translation file.
+5: Using the Page System
+Requires Decipher Cloud
+Use the built-in Page System when working with multi-language studies to link participants to an external document (e.g. disclaimer, contest rules, additional information, etc...) in your survey.
+The Page System allows you to pass a project’s resource tags to the static page for custom variable replacement. Since a project's resource tags are pulled into a translation file, programming external documents in this way allows you to create a single external document for multiple languages.
+Tip: Instead of creating multiple static pages for each language, you can create the content once using a <res> tag and pipe in the entire contents to the <body> of the static page.
+5.1: Example
+The example below utilizes the Page System to include a disclaimer:
+Disclaimer HTML (/static/disclaimer.html):
+<!doctype html>
+<html>
+<head>
+<title>${res.disclaimer_title}</title>
+</head>
+<body>
+${res.disclaimer_body}
+</body>
+</html>
+Survey XML:
+<res label="disclaimer_title">Hello!</res>
+<res label="disclaimer_body">Hello, World!</res>
+<radio label="Q1">
+<title>Choose your language:</title>
+<comment>Please select one</comment>
+<row label="r1">English</row>
+<row label="r2">French</row>
+<row label="r3">Spanish</row>
+</radio>
+<suspend/>
+<exec>
+setLanguage(["english", "french", "spanish"][Q1.val])
+</exec>
+<html label="Introduction" where="survey">
+<a href="/page/selfserve/9d3/proj1234/disclaimer.html?lang=[LANG]" target="_blank">
+Click here for the "Hello, world!" disclaimer.
+</a>
+The final result of the code above is shown below. In the example, any participant who entered the survey with decLang=french or used a language selection question and activated mls=french sees the text for the external document translated into French:
+5.2: Staggering Launches in Multiple Countries
+Depending on your project needs, launching a survey in multiple countries can be quite daunting. If you do not need to launch your survey in every language at once, consider translating/launching your survey in only one or a few languages, and removing others so that they are marked as "unused" and can be translated at a later time. The Language Manager will save the changes you make to each language individually, so you can resume your translation process for any country at any time.
+See the Language Manager to learn more about editing translations within the Language Manager.
+5.3: Adding Instructions for Translators
+Because our translation files include programming tags and other logic that our system uses to read these files, it is good practice to include some notes for translators regarding what not to translate.
+For example, you should avoid translating:
+Pipes and other bracketed information (i.e., any text within [ ] or ${ })
+Tags (e.g., <script>, <style>, <html>, etc.)
+Question, row, and column labels (e.g., Q1, question85, r1, satisfaction_q23, etc.)

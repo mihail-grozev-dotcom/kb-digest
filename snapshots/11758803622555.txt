@@ -1,0 +1,39 @@
+Title: M52 Release Notes
+Release Date: January 3, 2023
+Release Version: 152
+Survey Versioning
+The new survey compatability level is 152. The system automatically uses compat="152" for all new surveys. The new level improves several elements to be more compatible with accessibility standards.
+New Features
+Portal
+When duplicating/creating a survey from a template and there is not enough disk space on the server, the error message is now more clear.
+(Limited Availablility) Added the setting Limit API Creation to the Company Page to limit which users can create API keys.
+Survey
+Accessibility
+Added a small gray box to serve as a visual aid around links in survey elements that are in focus.
+Updated the Button Single Select and Button Multi-Select dynamic questions to a new version (atm1d.11) to be more compliant with accessibility standards.
+Updated the Radio and Checkbox elements so that screen readers are less likely to provide duplicate readings.
+Updated the default input from keyboard to number pad for the mobile versions of number and float elements.
+Responses
+Response Summary
+Improved the descriptive text in the shared link modal in Response Summary that helps guide the user on how to preview the shared link without being logged out of their user account.
+Programming and Tools
+Requests such as reports that run slow virtual updates, or other users' SST tasks can now be canceled through the status API call.
+API
+Added documentation for the Miscellaneous/CancelTask API endpoint.
+Bug Fixes
+Portal
+The Example Survey now loads correctly when first loading.
+Creating a new company no longer creates unassociated log entries for setting changes.
+Survey
+Accessibility
+VoiceOver for macOS can now read surveys in Firefox.
+Language Manager
+When a text with translations is replaced with just a pipe, the element will now show in the Language Manager, be included in exports, and handled in imports.
+Participant View
+Text in an open-end text field is no longer replaced when the question has validation.
+Survey Editor
+A user in a group with permission to edit elements saved in a library can now delete those elements.
+A user in a group with permission to edit elements saved in a library can now edit those elements.
+Reporting
+Data Downloads
+Exporting a data layout where the title of a question or answer options had unicode in it no longer causes the export to error out.

@@ -1,0 +1,68 @@
+Title: Launching and Closing a Survey in the Shell
+Requires Decipher Cloud
+You can use the live and closed commands to launch or close a survey directly from the shell environment.
+1: Launching the Survey
+The live script is used to launch a survey from the command line.
+Note: When running a survey in "Legacy" mode, you must make sure you have generated an adequate progress.bin file by running at least 100 qualified completes using test data before running the live command.
+See Running Simulated Data from the Command Line for more information on running test data within Decipher.
+Once run, the live command checks the survey to verify whether it can be launched, and then changes its state to "live".
+1.1: Command Syntax
+The live command takes only one argument, which is the project directory.
+live PROJECT/DIRECTORY
+Note: If you want to set a survey live from within the project directory, run "live ." instead.
+If there are issues with your survey, the live script will prompt you before setting the survey live.
+1.2: Additional Considerations
+The live script uses the launch survey API call by default, and allows you to view system errors and other warnings.
+If desired, you can skip these prompts using launch flags:
+usage:
+live [-h] [--legacy] [--relaunch] [--ignore-warnings]
+[--ignore-kinesis] [--ignore-fulcrum] [--ignore-sst]
+survey
+Flags
+Description
+--legacy
+Run the live script with prompts and without using the launch survey API.
+--relaunch
+Relaunch a closed survey.
+--ignore-warnings
+Ignore other survey warnings, including those for open tasks, incompatible elements, missing project parameters, and outdated translations.
+--ignore-kinesis
+Ignore any Panel Management errors and skip any syncing with Panel Management.
+--ignore-fulcrum
+Ignore any Fulcrum errors and skip syncing questions. This flag also skips changing the survey state in Fulcrum.
+--ignore-sst
+Ignore any simulated data (sst) warnings and launch the survey without valid progress data.
+Note: Use of this flag is not recommended, as it may result in uncaught survey errors and an inaccurate progress bar.
+2: Closing the Survey
+The closed script is used to close a survey from the command line. Once run, the closed command changes the survey's state to "closed".
+2.1: Command Syntax
+The closed command takes only one argument, which is the project directory.
+closed PROJECT/DIRECTORY
+Note: If you want to close the survey from within the project directory, run "closed ." instead.
+Using the closed command will schedule the survey for a "soft" close, which will allow any currently active participants one hour to complete the survey. If you prefer to close the survey without this grace period, you can add the now keyword after the project directory.
+For example, to close a survey immediately from within the directory, run the following:
+closed . now
+Note: Participants who are active when now is run will see a message informing them that the survey is closed.
+3: Scheduling a Survey for Later
+You can also schedule a survey to launch or close at a later time by adding the at Unix command.
+3.1: Launching Later
+The following outlines the syntax for scheduling a survey to launch at a later date / time:
+at 'time month day'
+live <survey>
+(PRESS CONTROL-D)
+For example:
+[shell]~ at '11:30am apr 11'
+at> live selfserve/9d3/proj1234
+at> (PRESS CONTROL-D)
+job 1 at 2014-04-11 11:30
+3.2: Closing Later
+The following outlines the syntax for scheduling a survey to close at a later date / time:
+at 'time month day'
+closed <survey> now
+(PRESS CONTROL-D)
+For example:
+[shell]~ at '11:30am apr 11'
+at> closed selfserve/9d3/proj1234 now
+at> (PRESS CONTROL-D)
+job 1 at 2014-04-11 11:30
+Note: You can also schedule a survey to close via the XML using the close logic node.

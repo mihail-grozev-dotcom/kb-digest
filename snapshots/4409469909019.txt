@@ -1,0 +1,251 @@
+Title: Creating a Rotated Dataset
+When programming brand / product test studies or multi-country projects, you may be working with a very large list of response options. Lists which include fifty or more response options can add significant length to a survey, especially if question looping is required, and can sometimes cause issues when collecting data or loading reports.
+In these cases, you can implement a "rotated dataset" to help you capture data without bulking up your survey. Rather than adding a loop for each available response option, rotated datasets allow you to loop through the maximum number of response options that a participant can choose to answer.
+Note: The rotated dataset trades the ease of reading your dataset for more efficient survey scripting, allowing the system to load the survey without facing issues such as running out of memory when running reports or generating data exports. This approach is recommended for large studies with 30+ response options that are to be looped through multiple times.
+1: How it Works
+The standard approach for looping through brand lists involves creating the same number of looped rows as the total number of response options you have.
+For example, if you want to allow participants to pick the five most popular brands they know from a list of thirty, use the following setup to loop participants through the brands they selected at a previous question ("q1").
+<loop label="l1" builderSource="q1" vars="q1">
+<title>Brands Loop</title>
+<block label="b1" builder:title="default loop block">
+<radio
+label="q2_[loopvar: label]"
+optional="0"
+randomize="0">
+<title>Have you used [loopvar: q1]?</title>
+<comment>Select one</comment>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<radio
+label="q3_[loopvar: label]"
+optional="0">
+<title>Have you purchased [loopvar: q1] in the past 6 months?</title>
+<comment>Select one</comment>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<textarea
+label="q4_[loopvar: label]"
+height="10"
+optional="0"
+width="50">
+<title>What do you think of [loopvar: q1]?</title>
+<comment>Be specific</comment>
+</textarea>
+</block>
+<looprow label="r1" cond="(q1.r1)">
+<loopvar name="q1">Brand 1</loopvar>
+</looprow>
+<looprow label="r2" cond="(q1.r2)">
+<loopvar name="q1">Brand 2</loopvar>
+</looprow>
+<looprow label="r3" cond="(q1.r3)">
+<loopvar name="q1">Brand 3</loopvar>
+</looprow>
+<looprow label="r4" cond="(q1.r4)">
+<loopvar name="q1">Brand 4</loopvar>
+</looprow>
+<looprow label="r5" cond="(q1.r5)">
+<loopvar name="q1">Brand 5</loopvar>
+</looprow>
+<looprow label="r6" cond="(q1.r6)">
+<loopvar name="q1">Brand 6</loopvar>
+</looprow>
+<looprow label="r7" cond="(q1.r7)">
+<loopvar name="q1">Brand 7</loopvar>
+</looprow>
+<looprow label="r8" cond="(q1.r8)">
+<loopvar name="q1">Brand 8</loopvar>
+</looprow>
+<looprow label="r9" cond="(q1.r9)">
+<loopvar name="q1">Brand 9</loopvar>
+</looprow>
+<looprow label="r10" cond="(q1.r10)">
+<loopvar name="q1">Brand 10</loopvar>
+</looprow>
+....
+<looprow label="r30" cond="(q1.r10)">
+<loopvar name="q1">Brand 30</loopvar>
+</looprow>
+</loop>
+This setup will expand each looped variable (the <looprow> tags) into three separate questions per brand, resulting in the survey including thirty questions and ninety datapoints for the loop alone (30 x 3 = 90).
+While looping datasets can make reading the collected data easier, it can cause issues when loading the survey for participants and when loading or exporting data. With a rotated dataset, the number of loop rows will instead be set to the maximum number of brands the participant can select (in this case, five).
+2: Creating a Rotated Dataset
+There are two ways to create a rotated dataset. You can either program the loop setup from scratch or you can use the rotated dataset loop template.
+2.1: Programming the Dataset
+Below are the steps to program a rotated dataset.
+2.1.1: Storing the Selected Items
+To create a rotated dataset, you must first find out which brands participants selected. This can be done by storing the text of each selected row in your main brand question in a persistent Python list.
+<exec>
+p.eligibleBrands=[] #initialize the python list
+for eachRow in q1.rows: #traverse the rows within our brands question
+if eachRow: #if the row is selected
+p.eligibleBrands.append(eachRow.text) #we add its text to our python list
+</exec>
+Once you have created the list, you can use this to pipe the selected brands into your brand loop.
+2.1.2: Setting up the Brand Loop
+With a rotated dataset, set the number of loop rows to the maximum number of brands that can be selected. Using the above example, since the atmost attribute of the main brand question is set to 5, the loop will have five loop rows.
+<loop label="l2" builderSource="q1" randomizeChildren="1" vars="q1">
+<title>Brands Loop</title>
+<block label="b2" builder:title="default loop block">
+<radio
+label="q5_[loopvar: label]"
+optional="0"
+randomize="0">
+<title>Have you used [loopvar: q1]?</title>
+<comment>Select one</comment>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+…
+</block>
+<looprow label="1">
+<loopvar name="q1">Brand 1</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="q1">Brand 2</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="q1">Brand 3</loopvar>
+</looprow>
+<looprow label="4">
+<loopvar name="q1">Brand 4</loopvar>
+</looprow>
+<looprow label="5">
+<loopvar name="q1">Brand 5</loopvar>
+</looprow>
+</loop>
+Note: The looprow labels have been changed from r1 / r2 / r3 to 1 / 2 / 3 , etc. This will facilitate the finalized setup that includes a tracking question for which brand is displayed at each loop row.
+2.2: Modifying the Piped Variables
+To dynamically pipe in a selected brand, you need to modify the text inside the <loopvar> tags. Using the same example where participants are always asked about exactly five brands, and those are always brands "1" through "5", this would appear per the following:
+<looprow label="1">
+<loopvar name="q1">${p.eligibleBrands[0]}</loopvar>
+</looprow>
+<looprow label="2">
+<loopvar name="q1">${p.eligibleBrands[1]}</loopvar>
+</looprow>
+<looprow label="3">
+<loopvar name="q1">${p.eligibleBrands[2]}</loopvar>
+</looprow>
+<looprow label="4">
+<loopvar name="q1">${p.eligibleBrands[3]}</loopvar>
+</looprow>
+<looprow label="5">
+<loopvar name="q1">${p.eligibleBrands[4]}</loopvar>
+</looprow>
+Note: Each loopvar tag is now accessing an element from the p.eligibleBrands list.
+From here, you can keep adding more looprows and loopvars referencing ${p.eligibleBrands[n]}, where n is the index of each item in your brand list that starts at "0" and is incremented by "1" for each consecutive piped variable. Although this setup enforces dynamic piping of selected brands only, you may still see an issue if a participant does not select exactly five brands.
+For example, if a participant selects three brands, the survey still executes loop rows 4 and 5, even though there are no eligible brands for those loop rows. Because these rows now reference non-existent elements, the survey will throw a fatal error.
+To avoid this, you can add conditions to each loop row to check whether there are enough brands selected to execute it. These conditions can be based on the length of your p.eligibleBrands list (e.g., len(p.eligibleBrands)).
+<looprow cond="len(p.eligibleBrands) gt 0" label="1">
+<loopvar name="q1">${p.eligibleBrands[0]}</loopvar>
+</looprow>
+<looprow cond="len(p.eligibleBrands) gt 1" label="2">
+<loopvar name="q1">${p.eligibleBrands[1]}</loopvar>
+</looprow>
+<looprow cond="len(p.eligibleBrands) gt 2" label="3">
+<loopvar name="q1">${p.eligibleBrands[2]}</loopvar>
+</looprow>
+<looprow cond="len(p.eligibleBrands) gt 3" label="4">
+<loopvar name="q1">${p.eligibleBrands[3]}</loopvar>
+</looprow>
+<looprow cond="len(p.eligibleBrands) gt 4" label="5">
+<loopvar name="q1">${p.eligibleBrands[4]}</loopvar>
+</looprow>
+The conditions added above will check if there are at least N brands selected, where N is the index of the brand being piped. This will ensure that the survey does not pipe in a brand item that is not a part of your list.
+2.3: Using the Dataset Template
+If desired, you can use the rotated dataset loop template to create a customizable rotated dataset. To use the template, copy the below code into your project’s XML where the standard loop programming would be. This code sets up the loop and dynamic assignment necessary for the rotated dataset to work.
+Once inserted, you can modify the template to match your survey's individual loop requirements.
+<loop label="l2" builderSource="q1" randomizeChildren="1" vars="q1">
+<title>Brands Loop</title>
+<block label="b2" builder:title="default loop block">
+<radio
+label="q5_[loopvar: label]"
+optional="0"
+randomize="0">
+<title>Have you used [loopvar: q1]?</title>
+<comment>Select one</comment>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<radio
+label="q6_[loopvar: label]"
+optional="0">
+<title>Have you purchased <span>[</span><span>loopvar: q1] in the past 6 months</span>?</title>
+<comment>Select one</comment>
+<row label="r1">Yes</row>
+<row label="r2">No</row>
+</radio>
+<suspend/>
+<textarea
+label="q7_[loopvar: label]"
+height="10"
+optional="0"
+width="50">
+<title>What do you think of <span>[</span><span>loopvar: q1]</span>?</title>
+<comment>Be specific</comment>
+</textarea>
+<suspend/>
+</block>
+<looprow cond="len(p.eligibleBrands) gt 0" label="1">
+<loopvar name="q1">${p.eligibleBrands[0]}</loopvar>
+</looprow>
+<looprow cond="len(p.eligibleBrands) gt 1" label="2">
+<loopvar name="q1">${p.eligibleBrands[1]}</loopvar>
+</looprow>
+<looprow cond="len(p.eligibleBrands) gt 2" label="3">
+<loopvar name="q1">${p.eligibleBrands[2]}</loopvar>
+</looprow>
+<looprow cond="len(p.eligibleBrands) gt 3" label="4">
+<loopvar name="q1">${p.eligibleBrands[3]}</loopvar>
+</looprow>
+<looprow cond="len(p.eligibleBrands) gt 4" label="5">
+<loopvar name="q1">${p.eligibleBrands[4]}</loopvar>
+</looprow>
+</loop>
+3: Creating a Tracking Question
+As mentioned earlier, the rotated dataset approach for looping through questions sacrifices ease of use on the reporting side for more efficient survey scripting. For this reason, you may want to consider adding a tracking question to track the rotation of the data in your reports.
+The tracking question should be a hidden question that displays exactly which brand was shown at each loop iteration. It should contain each brand from the main brand list as its rows, and each loop iteration as its column.
+For example, if your main brand list contains ten brands and five loop iterations, it would appear as follows:
+<radio
+label="q8"
+where="execute,survey,report">
+<title>Hidden to track displayed brands</title>
+<comment>Select one</comment>
+<row label="r1">Brand 1</row>
+<row label="r2">Brand 2</row>
+<row label="r3">Brand 3</row>
+<row label="r4">Brand 4</row>
+<row label="r5">Brand 5</row>
+<row label="r6">Brand 6</row>
+<row label="r7">Brand 7</row>
+<row label="r8">Brand 8</row>
+<row label="r9">Brand 9</row>
+<row label="r10">Brand 10</row>
+....
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+Once you have created your hidden question, you need to add some exec code to get it working. To start tracking rotations in your hidden question, first add the following exec block before the beginning of your loop.
+<exec>
+p.loopCount = 0 #we initialize a counter variable to keep track of each displayed loop iteration
+</exec>
+Then, add the following exec block inside the loop to punch the hidden question.
+<exec>
+for eachRow in q8.rows: #traverse the rows of our tracking question
+for eachItem in p.eligibleBrands: #traverse the stored brands in our array
+if eachRow.text == p.eligibleBrands[int('[loopvar: label]')-1]: #check if the current piped variable text matches the text of the row we’re iterating over
+eachRow.val = p.loopCount #if yes, we punch the column corresponding to the current loop iteration
+p.loopCount = p.loopCount+1 #we move on to the next loop iteration
+</exec>
+This final exec block checks which brand from the list is currently being displayed and punches the column corresponding to the current loop iteration. Once added, you can increment your loop counter to move on to the next loop iteration when punching the hidden question.
+The screenshot below shows what the tracking question for the above example will look like in Crosstabs:
+In addition to tracking which brands are shown and how often, the tracking question also allows you to split Crosstabs reports based on whether or not brands were displayed using the exact position of each brand within the loop. The data from this table can also be exported to view and reference brand information directly from the raw data.

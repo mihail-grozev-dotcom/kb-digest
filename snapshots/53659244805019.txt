@@ -1,0 +1,7 @@
+Title: 155.2 Release Notes
+Release Date: June 16, 2026
+Release Version: 155.2
+Bug Fixes
+Survey
+Participant View
+An issue preventing postText from being displayed in the Autosum question's Total fields has been resolved.

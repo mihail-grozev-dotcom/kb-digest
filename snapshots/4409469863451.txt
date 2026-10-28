@@ -1,0 +1,110 @@
+Title: Managing Subscriptions for a Project
+Decipher users can subscribe to projects in order to receive email notifications about future errors or changes made to their surveys. Along with subscribing to projects, shell users also have the ability to manage existing subscriptions for any project directly from the Command Line.
+1: Subscribing to a Survey
+1.1: Subscribe to a Survey in the Project Overview
+To subscribe to a project, open the Project Overview page.
+Under "Subscribers", click + Add Subscriber. Subscribers must already be users with at least view access to the project.
+To remove a subscriber, click the X button.
+1.2: Subscribe to a Survey in the Testing Environment
+To subscribe to a project, open the survey testing environment and choose "Show Survey with Tools." Then click "Actions" and select "Subscribe to This Project":
+2: Managing Subscriptions via the Command Line
+Requires Decipher Cloud
+Shell users have access to the subscribe command which can be used to mass-manage email subscriptions to projects. Users who are subscribed to a project will receive the following notification emails:
+support request notifications
+survey status (e.g. going LIVE or closing)
+fatal error message reports
+team emails regarding data edits
+project errors and warnings
+2.1: Subscribe Functions
+The subscribe command takes one of the arguments below as its first parameter followed by either an email address or project path (or both).
+Function Syntax
+subscribe [ARGUMENT] <EMAIL ADDRESS> <SURVEY PATH> <SURVEY PATH>
+Argument
+Description
+list
+Shows who has subscribed to one or more surveys or what survey(s) a user is subscribed to
+add
+Adds a new subscriber to one or more surveys
+remove
+Removes a subscriber from one or more surveys
+replace
+Replaces a subscriber on ALL surveys the subscriber belongs to with another
+import
+Loads subscriptions from a tab-delimited file
+2.1.1: list
+The list argument displays all subscriptions for one or more projects or the subscriptions a user is subscribed to.
+Function Syntax
+subscribe list <EMAIL ADDRESS>
+subscribe list <SURVEY PATH> <SURVEY PATH> ...
+Function Example
+# List all projects user is subscribed to
+$> subscribe list user@domain.com
+selfserve/9d3/proj100
+selfserve/9d3/proj301
+selfserve/9d3/proj310
+selfserve/9d3/proj711
+# List all subscribers for these projects
+$> subscribe list selfserve/9d3/proj100 selfserve/9d3/proj301
+* selfserve/9d3/proj100
+user@domain.com
+bob@domain.com
+* selfserve/9d3/proj301
+user@domain.com
+jade@domain.com
+frodo@theshire.com
+# List all subscribers for this directory's project
+$> subscribe list .
+user@domain.com
+jade@domain.com
+2.1.2: add
+The add argument adds a subscriber (email address) to one or more projects.
+Function Syntax
+subscribe add <EMAIL ADDRESS> <SURVEY PATH> <SURVEY PATH>
+Function Example
+# Add user@domain.com to this directory's project
+$> subscribe add user@domain.com .
+Adding user user@domain.com to these 1 projects: selfserve/9d3/101
+Continue?? (Y/N) Y
+# Add user@domain.com to many projects
+$> subscribe add user@domain.com selfserve/9d3/102 selfserve/9d3/103
+Adding user user@domain.com to these 2 projects: selfserve/9d3/102 selfserve/9d3/103
+Continue?? (Y/N) Y
+2.1.3: remove
+The remove argument removes a subscriber (email address) from one or more projects.
+Function Syntax
+subscribe remove <EMAIL ADDRESS> <SURVEY PATH> <SURVEY PATH>
+Function Example
+# Remove subscriber from this directory's project
+$> subscribe remove user@domain.com .
+Removing user user@domain.com from these 1 projects: selfserve/9d3/101
+Continue?? (Y/N) Y
+# Remove subscriber from many projects
+$> subscribe remove user@domain.com selfserve/9d3/102 selfserve/9d3/103
+Removing user user@domain.com from these 2 projects: selfserve/9d3/102 selfserve/9d3/103
+Continue?? (Y/N) Y
+2.1.4: replace
+The replace argument replaces a subscriber (email address) with another subscriber (email address) for ALL projects the subscriber is subscribed to.
+Function Syntax
+subscribe replace <EMAIL ADDRESS> <EMAIL ADDRESS>
+Function Example
+# Replace all of user@domain.com's subscriptions with user2@domain.com
+$> subscribe replace user@domain.com user2@domain.com
+Move user@domain.com's 73 existing subscriptions to user2@domain.com?? (Y/N) Y
+2.1.5: import
+The import argument adds subscribers (email addresses) to the paths provided in a tab-delimited file. The tab-delimited file must contain exactly two columns named "email" and "path". The import function is the equivalent to calling the add argument for every line in the file.
+Function Syntax
+subscribe import <FILENAME>
+Function Example
+Here are the additional subscriptions we will be creating (new_subscriptions.txt):
+email path
+user@domain.com selfserve/9d3/proj456
+user@domain.com selfserve/9d3/proj567
+bob@domain.com selfserve/9d3/proj567
+user@domain.com selfserve/9d3/proj678
+user@domain.com selfserve/9d3/proj789
+user@domain.com selfserve/9d3/proj890
+jade@domain.com selfserve/9d3/proj890
+frodo@theshire.com selfserve/9d3/proj890
+To add these subscriptions:
+$> subscribe import new_subscriptions.txt
+OK.

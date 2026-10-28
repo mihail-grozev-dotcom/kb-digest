@@ -1,0 +1,10 @@
+Title: Identifying Email Recipients
+Requires Decipher Cloud
+It is possible to identify recipients of any emails sent from the Decipher system.
+1: Find Out Who Opened an Email
+To find out who opened a certain email for any given project, run:
+dump-opens selfserve/9d3/proj1234 > emails_opened.txt
+The emails_opened.txt file will contain the source ID and timestamp for each recipient who opened the email and successfully fetched the tracker image.
+The command dump-opens may take a while to fetch all opens for a large project. If you only need find out who opened the email since a specific date, run:
+dump-opens selfserve/9d3/proj1234 05/01/2014 > emails_opened.txt
+The command above will only return those who opened the email since May 1, 2014.

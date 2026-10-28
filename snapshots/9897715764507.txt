@@ -1,0 +1,14 @@
+Title: 144.1 Release Notes
+Release Date: November 13, 2019
+Release Version: 144.1
+Bug Fixes
+Portal
+Fixed an issue preventing users from logging into the Portal if their last login time was around the recent daylight saving time (DST) adjustment.
+Survey
+Survey Editor
+Fixed an issue preventing participant sources from being added as quota rows when using “quick quotas”.
+Fixed an issue preventing users from uploading logo images to projects.
+Reporting
+Fixed an issue causing invalid response submissions to be recorded in surveys with both delphi="1" and autosave="1".
+Programming & Tools
+Fixed an error that sometimes occurred when running simulated data via the command line.

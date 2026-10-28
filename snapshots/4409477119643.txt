@@ -1,0 +1,108 @@
+Title: Technical Support
+1: Email Support
+Email support is available as follows:
+SurveySupport@forsta.com
+2: Support Holiday Schedule
+Support will have limited shifts or be closed on the following holidays.
+Holiday Name
+Holiday Date
+New Years Day*
+Thursday, January 1, 2026
+Martin Luther King Jr. Day
+Monday, January 19, 2026
+Liberation Day (Bulgaria)
+Independence Day (Bosnia)
+Monday, March 2 – Tuesday, March 3, 2026
+Orthodox Easter
+Friday, April 10 – Monday April 13, 2026
+Labour Day (Bulgaria/Bosnia)
+Friday, May 1 - Saturday, May 2, 2026
+St. George Day
+Wednesday, May 6, 2026
+Memorial Day*
+Culture and Literacy Day*
+Sunday, May 24 - Monday, May 25, 2026
+Juneteenth
+Friday, June 19, 2026
+Independence Day (USA)
+Friday, July 3 – Saturday, July 4, 2026
+Labor Day (USA)*
+Unification Day*
+Sunday, September 6 - Monday, September 7, 2026
+Independence Day (Bulgaria)
+Monday, September 22, 2026
+Day of Bulgarian Enlighteners
+Sunday, November 1 - Monday, November 2, 2026
+Statehood Day (Bosnia)
+Thanksgiving (USA)
+Wednesday, November 25 – Saturday, November 28, 2026
+Christmas*
+Thursday, December 24 - Saturday, December 26, 2026
+Christmas
+Sunday, December 27 – Monday, December 28, 2026
+New Years Eve/Day*
+Thursday, December 31, 2026 – Friday, January 1, 2027
+* No Support Coverage
+3: Support Guidelines for Decipher and Panel Management
+3.1: Communication Methods
+Tickets to the support team can be submitted via email or via the Forsta Zendesk help center.
+A chat escalation can be accessed from the automated response email of any open ticket for the following criteria.
+Any Severe or Fatal issue as defined by the Terms and Conditions.
+Any issue that is impacting live respondents that needs immediate attention.
+You’ve received no support response for over 4 hours on a non-holiday.
+Phone support and online screenshare are not available.
+Support is limited to end-clients only. Forsta does not ensure support services to clients of clients, nor have direct discussions with 3rd party vendors to debug issues. To ensure proper routing, all tickets should be opened by a client-associated email domain.
+For High Severity Issues, please follow guidelines specified in Appendix 1 of the Additional Terms and Conditions.
+3.2: Scope of Support
+High level explanation of standard tools and supported integrations
+Software Defect Submittals
+Replicating and submitting product defects
+Clarifying online documentation
+Defining feasibility of request within standard toolset
+Kinesis Panel Authorization
+Explanation of error codes thrown by software
+Debugging failed email sends sent though bulk or campaign manager
+Turning on Feature Flags for limited availability/beta features
+Facilitating setup of branded survey and email domain aliases
+Authorizing domains for survey access, email domains or API integrations
+Data Recovery (If Possible)
+Keyring Implementations
+Data Retention Server Customization requests for dedicated server clients
+Authorize Domains for ReCAPTCHA Element
+User Administration Requests
+Requires proper authorization on client end
+Support for official integrations within parameters
+Digital Feedback
+Non-Custom Logic Node debugging where issue is on Forsta side
+Forsta Visualization and Smart Hub
+Modifying Standard Panel Properties
+3.3: Outside Scope of Support
+Proof of concepts
+Debugging Custom Code
+Examples: JavaScript code, non-platform specific python code, custom shell scripts, API workflows
+Programming Consultations
+Email Deliverability Consultation
+Partial Survey Programming
+Downloading or uploading survey stimuli, design files, survey files or panel files unless to resolve an error that cannot be done by the client
+Edits or uploads of client data or import files
+Modifying Company Settings outside of those required for supported tasks
+Generating API keys
+Debugging any questions, elements or modules created by professional services or created by client programming teams
+Reaching out to sample providers utilized by Sample Market Place
+Editing any panel data points
+Editing of panelist information
+Uploading or managing any panel rewards
+Creating Panel Webhooks
+3.4: Customer Success Manager Support
+Request items that should be directed to Customer Success Representatives:
+Usage Questions
+Suggesting Feature Requests
+Product Roadmap Questions
+Custom Dynamic Question or Logic Node Development Requests
+Support Ticket Feedback or escalation request beyond support systems
+Custom Export Development Requests
+Cost Estimates for Project Migration Requests
+Custom Community Build Requests
+Community Page Maintenace Requests
+Custom Theme Development Requests
+Note: See Training Courses for guidelines on scope of training support.

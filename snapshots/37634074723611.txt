@@ -1,0 +1,23 @@
+Title: 153.54 Release Notes
+Release Date: June 3, 2025
+Release Version: 153.54
+New Features
+Survey
+Dynamic Questions
+On mobile devices, Media Testimonial now supports playback via tapping the video itself. Some minor improvements have also been made to camera switching functionality.
+XML Editor
+The "View XML" feature now prevents all editing actions.
+To improve performance, the "View XML" feature no longer creates a temporary copy of the survey.
+Bug Fixes
+Portal
+An issue affecting 2FA settings for some users has been resolved.
+Survey
+Dynamic Questions
+An issue preventing Video Player's mustWatch attribute from working has been resolved.
+Integration
+An issue preventing some Kinesis Panel registration surveys from launching has been resolved.
+Survey Testing Tools
+The Research Defender logic node no longer prevents previewing surveys in One Page Mode.
+An issue preventing children of hybrid questions from appearing in the Recorder's question selection dropdown menu (and in the recorded answers section) has been resolved.
+Participant View
+An issue with the total_time in state_dump now shows correct consistent values.

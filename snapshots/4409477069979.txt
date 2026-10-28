@@ -1,0 +1,9 @@
+Title: Descriptive Content Element
+1: About the Descriptive Content Element
+The Descriptive Content element allows you to display a message or description to the participant (e.g., an introduction or welcome message to the survey). This element does not contain any answer options and can display on its own screen or on the same screen as another question in a survey.
+Mobile Optimized: Yes
+2: Adding a Descriptive Content Element
+The Descriptive Content element can be added to any survey using the Survey Editor. To add a Descriptive Content element, first click the "+ Element" button to add a new survey element. Then, click "Structural Elements" under Question Types and select the "Descriptive Content" element. Then click "Add".
+Finally, enter the message or description in the text box.
+Click "Page Break" if you want the message to display on its own screen.
+Note: To customize the look and feel of a survey such as applying a theme or adding a logo, see Display Settings.

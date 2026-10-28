@@ -1,0 +1,156 @@
+Title: Imperium Real Answer Integration
+Imperium's Real AnswerTM is a third-party service used to validate open-end text responses while a participant is taking a survey. Real AnswerTM will help you make sure that users are inputting valid responses by providing you with a Real Answer ScoreTM (“RAS”) for each open-ended response as it is submitted by a participant.
+The RAS allows you to score how valid a participant’s responses are (i.e., does it contain gibberish, profanity, copied text from another source, etc.) while they are taking your survey, instead of having to look at the data after the participant has finished the survey.
+A response’s RAS is determined by an analysis of the following factors:
+“Bad” language – Words and phrases not likely found in a newspaper.
+Garbage words – Words not found in the lexicon for the specified language.
+Robot-submitted responses – Text filled in programmatically.
+Pasted-in responses – Text filled in from a computer clipboard.
+Similarity – Text very similar to previously submitted content.
+Engagement – Length of response in comparison to other responses to the same question.
+Note: This functionality is achieved without the knowledge of the participant and therefore no consent is required. There are no client-side application downloads of any kind and no personally identifiable information is gathered.
+You can use the Logic Library to add Real Answer to your survey. This can be done using either the "Imperium Real Answer Integration" element in the Survey Editor or the "realanswer" logic node in the survey XML.
+Note: Imperium Real Answer Integration is not compatible with Decipher Registration Surveys. See Creating a Registration Survey Using Decipher to learn more about creating a Registration Survey in Decipher.
+Note: Imperium Real Answer logic node cannot be added to a survey that includes a Dynata QualityScore Integration logic node as the Dynata QualityScore logic node includes Real Answer services.
+1: Using the Survey Editor
+To add Real Answer validation using the Survey Editor, first click + Element under the question tree to open the Element Library.
+From here, click Advanced and select the Imperium Real Answer Integration element from the list. Then click Add:
+The new element will appear in the staging area, where you can specify the settings for your integration:
+The following options are configurable:
+Client ID: Your client ID, as provided by Imperium.
+SurveyID: The ID for the survey you would like to use.
+Targets: A comma-separated list of the question label(s) of the open-end(s) to be validated.
+Billing Code: A billing code with your RealAnswer data for reporting purposes (optional).
+Engaged Word Count: The minimum word count to consider the participant engaged. Responses shorter than the minimum will trigger the NonEngaged flag (optional and disabled by default). Click into the text-box to enter a number or hover over it to display and use the single-digit increase arrows.
+Suppress Similarity: Set to "1" to disable similarity checking against previous answers in the same SurveyID/QuestionID.
+Custom Factor 1: Set to "1" to perform a check for a custom factor to see if the string matches any of the previously defined phrases for this factor.
+Custom Factor 2: Set to "1" to perform a check for a custom factor to see if the string matches any of the previously defined phrases for this factor.
+Custom Factor 3: Set to "1" to perform a check for a custom factor to see if the string matches any of the previously defined phrases for this factor.
+Custom Factor 4: Set to "1" to perform a check for a custom factor to see if the string matches any of the previously defined phrases for this factor.
+Custom Factor 5: Set to "1" to perform a check for a custom factor to see if the string matches any of the previously defined phrases for this factor.
+Custom Factor 6: Set to "1" to perform a check for a custom factor to see if the string matches any of the previously defined phrases for this factor.
+Autocorrect Text: Set to “1” to enable autocorrection of misspelled words (English only) (optional).
+Text Classification ID: Specify the ID indicating the type of question to use for text classification (optional).
+-1: None
+0: Question-specific
+1: Vacation
+2: Technology
+3: Job Roles
+Detect PII: Set to “1” to detect any Personally Identifiable Information (PII) entered within the open-ended text field (optional).
+Suppress Respondent Duplication Check: Set to “1” to disable checking for duplicate participants (optional).
+Use Detected Language as Backup: Set to “1” to automatically detect garbage words as well as any of the bad words and phrases listed in Imperium’s DetectedLanguage lexicon.
+Accept Custom or Common Phrases: Set to "1" to exclude Open End responses from Non-Engaged and Similarity checks if the response is a Custom Factor or common phrase.
+Ignore Garbage Words: Set to "1" to ignore the garbage words check. The garbage words check will not affect the score when this is set to "1".
+Is Brand Question: Used to indicate that the question is asking for brands/names. Set to "1" to default the Engaged Length to "1" and use special logic to validate for garbage words.
+Note: Language codes are automatically sent based on the survey language. If the survey language is not supported by Imperium, AcceptNotSupportedLanguages is set to 1.
+2: Using XML
+To include Real Answer functionality in a survey using the real answer logic node, add the following <logic> tag to your survey XML. This tag should be added after the question you are validating and appear on the same page as that question:
+<logic label="ln1"
+realanswer:ClientID="00000ABC-00AB-00AB-00AB-000000ABCDEF"
+realanswer:SurveyID="TestSurvey1"
+realanswer:Targets="q1.r3"
+realanswer:Username="userid"
+uses="realanswer.4"/>
+Warning: The v1 Real Answer logic node is not compatible with trackVars="checkbox". To include Real Answer in a survey with trackVars="checkbox", use version 2+ (realanswer.4) instead.
+2.1: Parameters
+2.1.1: Required Attributes
+The following attributes are required for the logic node to function properly:
+Settings
+Description
+Example
+ClientID
+Unique ID assigned to client by Imperium. Replaces Username in v4 and above.
+ABC123-XYZ456
+Default: Empty
+SurveyID
+SurveyID
+30218
+Default: Empty
+Targets
+Which open-end element(s) needs to be sent
+q1, q3.r1.c1
+Default: Empty
+Note: The attributes above are provided by Imperium. You will need to purchase an Imperium license to use this integration.
+Once added, the realanswer.4 logic node takes the answer from an open end, sends it to the Real Answer webservice, and returns a response including the Real Answer Score (RAS) for that response.
+2.1.2: Optional Attributes
+You can add the following additional attributes to further define the Real Answer validation parameters for each open-end. Adding these attributes is entirely optional, and you can use one or all of them within your logic node:
+Settings
+Description
+Example
+BillingCode
+Used if they want to submit a billing code for the submission.
+12345
+Default: Empty
+EngagedLength
+Minimum length of response in words before the NonEngaged factor will be triggered. Anything under the specified number will trigger that flag.
+10
+Default: 0
+SupressSimilarity
+Set to "1" to disable similarity checking against previous answers in the same SurveyID/QuestionID.
+1
+Default: 0
+AutocorrectText
+If set to “1”, will perform an automatic spell check in English.
+0
+Default: 1
+TextClassQuestID
+A unique identifier indicating the type of question that is being answered. Used for text classification.
+3
+Default: -1
+DetectPII
+If set to “1”, will flag any answers containing Personally Identifiable Information (PII).
+1
+Default: 0
+SuppressRespondentDuplication
+If set to “1”, will suppress the automated duplication check that is enabled by default.
+0
+Default: 1
+UseDetectedLanguage
+If set to “1”, will flag any answers containing garbage words, as well as the bad words and phrases listed in Imperium’s DetectedLanguage lexicon.
+1
+Default: 0
+AcceptCustomOrCommonPhrases
+If set to “1”, will exclude Open End responses from Non-Engaged and Similarity Checks if the response is a Custom Factor or Common Phrase.
+1
+Default: 0
+IgnoreGarbageWords
+Used to accept requests with language codes not supported by RealAnswer. When set to “1”, the request will be processed for all checks excluding Lexicon based.
+1
+Default: 0
+IsBrandQuestion
+Used to indicate that the question is asking for brand names. When set to “1”, Engaged Length will default to “1” and use special logic to validate for garbage words.
+1
+Default: 0
+AcceptNotSupportedLanguages
+Used to accept requests with language codes not supported by RealAnswer. When set to “1”, the request will be processed for all checks excluding Lexicon based.
+1
+Default: 0
+Note: Language codes are automatically sent based on the survey language. If the survey language is not supported by Imperium, AcceptNotSupportedLanguages is set to 1.
+2.1.3: Customizing the Integration
+You can add one or more CheckCustomFactor variables to check responses against custom phrases that you define.
+There can be up to six CheckCustomFactor attributes in any survey, and these can be defined using custom phrases. Set each CheckCustomFactor attribute to "1" to run a check against its previously defined phrase:
+CheckCustomFactor1
+Perform a check for custom factor 1 to see if the string matches any of the previously defined phrases for this factor.
+CheckCustomFactor2
+Perform a check for custom factor 2 to see if the string matches any of the previously defined phrases for this factor.
+CheckCustomFactor3
+Perform a check for custom factor 3 to see if the string matches any of the previously defined phrases for this factor.
+CheckCustomFactor4
+Perform a check for custom factor 4 to see if the string matches any of the previously defined phrases for this factor.
+CheckCustomFactor5
+Perform a check for custom factor 5 to see if the string matches any of the previously defined phrases for this factor.
+CheckCustomFactor6
+Perform a check for custom factor 6 to see if the string matches any of the previously defined phrases for this factor.
+Note: The CheckCustomFactor attributes all default to "0".
+3: Additional Considerations
+3.1: Using Conditional Logic
+When using conditional logic in a Real Answer logic node, you may encounter an issue with the condition not propagating through the logic node. If this happens, you can encase your logic node in a <block> tag and apply the desired logic to that tag instead.
+For example, the following is a logic node based onQ1.r1:
+<block label="Block_1" cond="Q1.r1">
+<logic label="ln1"
+realanswer:ClientID="clientID"
+realanswer:EngagedLength="3"
+realanswer:SurveyID="surveyID"
+realanswer:Target="Q1.r1"
+uses="realanswer.4" />
+</block>

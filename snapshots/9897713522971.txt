@@ -1,0 +1,29 @@
+Title: March 6th General Release Notes
+Release Date: March 6, 2018
+Highlights of March 6th Release
+New Features
+Survey
+Add Autosum questions to surveys using the Survey Elements menu.
+Get alerted when removing questions with dependent logic.
+Portal
+View more detailed audit information when user, project, and group permissions change.
+Programming & Tools
+Use API calls to archive and unarchive projects.
+New Features
+Survey
+Autosum Element
+The new Autosum element greatly simplifies the process for adding autosum functionality to your surveys. With the element, you no longer need to first add a number question and then navigate through the style and question menus to get setup -- you just add a the question, adjust your settings, and BAM! You're good to go.
+The Autosum element is available now within the Survey Elements menu. Look for it alongside our other Standard question types:
+Survey Editor Guardrails
+When working with complex surveys, deleting questions and elements can be quite a process, especially if you're using a lot of conditional logic. However, that process doesn't have to be stressful.
+With the new guardrail system, you can delete elements with confidence, knowing that you'll receive a warning if you're about to remove something another question or element depends on. Guardrail warnings are issued when you attempt to delete questions or answers referenced in element conditions or when deleting parent elements, blocks or loops, with referenced elements.
+Portal
+Audit Logs
+With the new audit log updates, you can now find more information on user, project, and group permissions in the audit logs within your account menus in the portal.
+Programming & Tools
+API
+The Decipher API has been updated to allow you even more control over your projects. You can now archive or unarchive projects using a few simple API calls.
+Archive Projects
+Use the archive project call to archive a project just as you would from the portal.
+Unarchive Projects
+The un-archive project call allows you to unarchive a previously archived project.

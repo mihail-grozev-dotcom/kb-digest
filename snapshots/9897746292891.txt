@@ -1,0 +1,32 @@
+Title: 145.1 Release Notes
+Release Date: September 8, 2020
+Release Version: 145.1
+New Features
+Survey
+Survey Editor
+Added a custom dashboard to the Net Promoter Score (NPS) survey template.
+Reporting
+Dashboard
+Added the NPSSlider chart for use in dashboards.
+Architecture/DevTools
+Requires Decipher Cloud
+Added the “Dashboard_usage” admin report for users with staff This report displays the following dashboard usage details:
+Server
+Company
+User
+Project name
+Dashboard counts
+Last called
+Bug Fixes
+Survey
+Participant View
+Fixed an issue preventing open-end response options from displaying in cardsort questions unless QA tools were enabled.
+Reporting
+Crosstabs
+Fixed an issue causing excessive memory usage and proxy errors when question conditions contained references to extraVariables.
+Data Downloads
+Fixed an issue preventing SPSS / SPSS16 report data from being exported via API.
+Fixed an issue preventing data layout names from being displayed correctly in the Data Downloads menu.
+Programming & Tools
+API
+Fixed an issue preventing the API from loading when RIM weighting was applied to a survey containing broken virtual questions.

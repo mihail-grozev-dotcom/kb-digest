@@ -1,0 +1,125 @@
+Title: Validating Zip Codes From a File
+Zip codes can be validated and checked against an external zip code database file uploaded to a project using the File Manager. By validating the zip codes from an external file, you can be sure that participants are providing valid zip codes in their response, rather than just a random five-digit string.
+1: Validating Zip Codes From a File
+The example that follows will walk you through the process of validating zip codes from an external file. Participants who provide a zip code that is not present in the database file will be terminated from the survey.
+You will need to review your zip code database file before proceeding. In order to follow the steps outlined in this document, make sure you are aware of your header names and be prepared to change the template code to match your file.
+2: Configuring the Zip Code Database File
+The zip code database file must be a tab-delimited file saved in .dat format. The example shown below illustrates the setup required for the file. In this example, the zip code database is set up as an Excel file for easier viewing, but you must change it to tab-delimited (.dat) after the design has been configured.
+Below is an example of a zip code database file and common headers found in such a file. The headers and format of the zip code database file depend on the company from which you acquire the file. Column headers are the most important thing to pay attention to when modifying the template code.
+To change this file to a tab-delimited file, select "Save as", and select "tab-delimited (.txt)" format, then click "Save". Then edit your file name and manually replace ".txt" with the ".dat" extension and save it.
+The result will be the tab-delimited .dat file required by the system.
+3: Uploading the Zip Code Database File
+To upload the design file in the Survey Editor, click "Upload System Files" from the "More Tools" drop-down under "Build" in the navigation menu. This directs you to the File Manager.
+In the File Manager, click the "Add Files" button to select the file, or drag and drop the file into the space below the button. Multiple files can be added at once.
+Once the file has been selected it appears in the File Manager. Select the "System Only (Root)" location option, then click "Upload".
+Important: Once a file has been uploaded, it cannot be removed or deleted. Click "Remove" to remove the file before it is uploaded. Once uploaded, remember the name of the file. This name is required for setting up the code in the template below.
+4: Adding the Zip Code Validation Template
+Copy the following zip code template into your survey XML to initialize the zip code survey elements. Copy it to the location where the zip code question is deployed. This code sets up the logic and question style necessary to validate a participant's zip code. The next step is to modify this template to meet your needs.
+<exec when="init">
+def zipCodeFile(fname, zipHeader):
+try:
+zipCodesData = File( "%s/%s" % (gv.survey.path, fname), zipHeader)
+except IOError:
+zipCodesData = ""
+return zipCodesData
+</exec>
+<exec when="init">
+ZIPCODES = zipCodeFile("filename.dat", "zipHead")
+</exec>
+<text
+label="zipCode"
+optional="0"
+size="5"
+verify="zipcode">
+<title>What is your 5 digit zip code?</title>
+</text>
+<suspend/>
+<exec>
+RECORD = ZIPCODES.get( zipCode.val )
+if not(RECORD):
+setMarker("zipInvalidTerm")
+</exec>
+<term label="term_zipcode" cond="hasMarker('zipInvalidTerm')">Invalid Zip Code</term>
+5: Updating the Template
+The code in the template must be modified to fit the needs of your project. The section that follows provides a description of each block of code, along with any parts that need to be modified.
+5.1: Beginning of the Direct Validate Zip Code Template
+This code will define your zip code class. It takes in the name of your file and column that contains the zip code. The code below will take the file and convert it to an object you can iterate through in the code sections that follow.
+Note: This section is for informational purposes only. No changes to the code below are necessary.
+<exec when="init">
+def zipCodeFile(fname, zipHeader):
+try:
+zipCodesData = File( "%s/%s" % (gv.survey.path, fname), zipHeader)
+except IOError:
+zipCodesData = ""
+return zipCodesData
+</exec>
+5.2: Updating the Zip Code File Name and Column Header
+The code below initializes the class to open the zip code database file that you uploaded to your project. It takes two arguments:
+The first argument is the file name ("filename.dat"). You will need to replace this with the name of your zip code database file (e.g., in this case, "zipcodes.dat").
+The second argument is the header in the file that contains the valid zip codes. Update this with the zip code header name in your file. In this case, it will be changed to "ZipCode", the header name above.
+<exec when="init">
+#This is creating a variable (ZIPCODES) that contains our zip code database.
+ZIPCODES = zipCodeFile("filename.dat", "zipHead")
+</exec>
+5.3: Updating the Question Label
+Below is the question used in order to allow participants to enter their zip code. You can update the following items to fit your current project:
+The <text> question label attribute can be updated to match your question.
+If you update the question label, you will need to update the Python code to reflect that change. Line 12, update zipCode.val to your new question label.
+<text
+label="zipCode"
+optional="0"
+size="5"
+verify="zipcode">
+<title>What is your 5 digit zip code?</title>
+</text>
+<suspend/>
+<exec>
+RECORD = ZIPCODES.get( zipCode.val )
+if not(RECORD):
+setMarker("zipInvalidTerm")
+</exec>
+<term label="term_zipcode" cond="hasMarker('zipInvalidTerm')">Invalid Zip Code</term>
+5.4: Creating a Zip Code Validate
+The template code terminates participants with the marker "zipInvalidTerm". The <exec> tag can be replaced with a <validate> tag and the logic modified to generate an error for an invalid zip code instead. The result is shown below.
+<res label="zipError">Please enter a valid zip code.</res>
+<text
+label="zipCode"
+optional="0"
+size="5"
+verify="zipcode">
+<title>What is your 5 digit zip code?</title>
+<validate>
+RECORD = ZIPCODES.get( zipCode.val )
+if not(RECORD):
+error(res.zipError)
+</validate>
+</text>
+<suspend/>
+6: Results of Template Modifications
+Below is the revised code adapted to fit the needs of our zip code database file and question label. The actual file name "zipcodes.dat" replaced "filename.dat" in the template, as was the case for the header name "ZipCode" replacing "zipHead". Because the label of the zip code question is Q4, the question label for the zip code question is changed to "Q4" and the corresponding Python code is updated to "Q4.val" to reference the new label of the zip code question.
+<exec when="init">
+def zipCodeFile(fname, zipHeader):
+try:
+zipCodesData = File( "%s/%s" % (gv.survey.path, fname), zipHeader)
+except IOError:
+zipCodesData = ""
+return zipCodesData
+</exec>
+<exec when="init">
+ZIPCODES = zipCodeFile("zipcodes.dat", "ZipCode")
+</exec>
+<text
+label="Q4"
+optional="0"
+size="5"
+verify="zipcode">
+<title>What is your 5 digit zip code?</title>
+</text>
+<suspend/>
+<exec>
+RECORD = ZIPCODES.get( Q4.val )
+if not(RECORD):
+setMarker("zipInvalidTerm")
+</exec>
+<term label="term_zipcode" cond="hasMarker('zipInvalidTerm')">Invalid Zip Code</term>
+The following error appears if a participant tries to enter an invalid zip code.

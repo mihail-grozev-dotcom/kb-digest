@@ -1,0 +1,15 @@
+Title: Allgrep
+Requires Decipher Cloud
+1: Overview
+The allgrep command is a Decipher-only alternative to the standard Unix grep command. allgrep allows you to quickly search all survey-specific files on a server for specific text.
+Note: allgrep will only search content on surveys that are
+visible in the portal. To search all files, including the temp directory,
+use the Unix commands find and xargs. Searching
+all files may take several minutes to run.
+2: Running the Command
+To run allgrep , first specify the command, then the file name, then the text you are looking for:
+allgrep SURVEYFILE "TEXT"
+For example, if you wanted to find every survey with the label “Q1”, you would run the following:
+allgrep survey.xml "Q1"
+The output would be every survey directory containing a "Q1", along with the line on which that "Q1" was located.
+Note: allgrep works on any survey-specific file, like survey.xml, reports.json, and nstyles.

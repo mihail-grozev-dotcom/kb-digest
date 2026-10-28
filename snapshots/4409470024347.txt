@@ -1,0 +1,60 @@
+Title: Adding Participant Sources Using the Survey Editor
+Note: This document details the Participant Sources tool available in the Survey Editor. For information on managing participant sources using the Participant Sources menu, see Participant Sources.
+Participant sources determine how participants get in to take a survey and where they are directed upon survey completion. You can customize your participant sources to meet the needs of the any project by adding unique source names, URL variables, and exit pages.
+Adding custom participant sources is necessary when you want to use unique exit messages or exit links, add extra data variables that are collected via the URL, or lock down the survey to unique participants.
+Each participant source generates its own survey link that participants can use to access and take the survey.
+1: Fielding an Open Survey
+When a new project is created, it defaults to using an “Open Survey” link, which anyone can use to access and take the survey.
+Without modification, an Open Survey link uses Decipher's default exit pages and does not include variable tracking or allow you to lock the survey to unique participants. The Open Survey link can be modified to include all or some of these features, if desired, but if the survey will not have open sample, it is recommended that it is removed.
+2: Adding a Participant Source
+When creating a new project, the first element in the question tree will always be the Participant Sources element. Participant sources can be added to the project by selecting the Participant Sources element and clicking “+ Add New Participant Source”.
+When adding a new participant source, you can choose between several pre-programmed participant sources or a create your own custom participant source.
+2.1: Using a Pre-Programmed Option
+Decipher includes several pre-programmed participant sources from commonly used sample providers, configured to the needs of that particular vendor, including their required variables and exit pages. To add a pre-programmed participant source, select one from the list of available vendors and click "Insert".
+After adding a new pre-programmed participant source, you will be asked whether you would like to remove the Open Survey link to lock the survey. Removing the Open Survey link will restrict entry to the survey to participants in the new pre-programmed participant source or any custom participant sources.
+Once the pre-programmed participant source is added to the project, it is displayed in the question tree and, when selected, detailed information for the source will be visible in the staging area, as shown below.
+Pre-programmed participant sources can also be customized to meet the needs of specific projects, but changes are usually not required as these sources are built with the necessary URL variables and exit pages for the selected vendor.
+2.2: Using a Custom Option
+You can add a custom participant source to a project to use your own custom sample or sample from vendor that is not included as one of Decipher's pre-programmed sample providers. Custom participant sources can be customized to include any desired URL variables and exit pages.
+To add a custom participant source, select "Custom Participant Source" and click "Insert".
+As with a pre-programmed participant source, if the Open Survey link is still present, you will be asked whether you would like to remove it to lock the survey. Removing the Open Survey link will restrict entry to the survey to participants in the new custom participant source or other custom participant sources.
+Once the custom participant source is added, it is displayed in the question tree and, when selected, detailed information for the source will be visible in the staging area, as shown below.
+Note: Custom participant sources should be edited to meet the needs of a specific project. Making no changes to a custom participant source leaves the survey open to anyone with the Open Survey link.
+3: Customizing Participant Sources
+Selecting a participant source in the question tree allows you to make edits to the participant source name, URL variables, and exit pages.
+3.1: Naming the Source
+The participant source name is used for organizational and reporting purposes only. This name appears in the Project Summary along with the source's corresponding survey links. It also appears in the project's Response Summary and Crosstabs reporting tools.
+3.2: Adding URL Variables
+Data variables can be passed through the survey link by adding URL variables to the participant source. To add a URL variable, click “+ Variable”, then set the specifics of the variable in the "Add URL Variable" window.
+The following settings are available:
+Variable Name: The variable that is appended to the URL for this sample provider.
+Requirement: Allows you to specify if the variable is optional, required or unique.
+Optional: The variable does not have to be included in the URL for the participant to take the survey.
+Required: The variable must be included in the URL for the participant to be able to take the survey.
+Unique: The variable must be included in the URL for the participant to be able to take the survey, and it must contain a unique value as tracked by the survey system.
+Authentication: Allows you to specify how you would like to validate the variable.
+If the Requirement is set to "Optional", No Authentication can be specified.
+If the Requirement is set to "Required", No Authentication or Value List can be specified:
+No Authentication: the variable is required in the URL but can be anything.
+Value List: the variable is required and must be one of the specified values.
+If the requirement is set to "Unique" No Authentication or File can be specified:
+No Authentication: the variable is required in the URL but can be anything value that was not previously used by another participant.
+File: the variable is required and must be one of the values specified in a plain text (.txt) file. The file must contain one column with each valid value on its own line.
+The result of adding two variables is shown below. The “Seg” variable is set to "Required" and has a defined value list, while the “myID” variable is set to "Unique" and has had a file uploaded for Authentication.
+3.3: Configuring Exit Pages
+Exit pages can be configured for terminated, over-quota, and qualified participants in the form of either an on-screen message or a redirect to another webpage.
+Message: The specified message will display for the participant upon survey completion.
+Redirect: The participant will be sent to the specified URL upon survey completion.
+URL variables can be passed through the redirect link using the following syntax variableName=${variableName}.
+Additional variables passed through the redirect link should be separated by an ampersand (&).
+In the example below, a custom message will display for qualified participants, while terminated and over-quota participants will be sent to the specified web page with the participant's unique myID value passed through to the exit link.
+Custom exit pages can be added to display a specific message or redirect link for participants that will fulfill certain logic conditions.
+Learn More: Adding Logic
+To add a custom exit page, select "+ Add Custom Exit Page" then set up the logic conditions for it by clicking the pencil icon and updating the exit message or redirect link.
+4: Saving Customized Participant Sources
+If you would like to reuse a particular participant source in a future survey, you can save it to the Participant Sources list for use in other projects. To save a participant source, click "Save Custom Participant Source".
+In the Save Custom Participant Source window, enter a name and description for your new participant source. Then choose to make it available to only yourself or to other users within your company.
+After the participant source is saved, it will be visible in the Participant Source list, along with Decipher's other pre-programmed participant sources.
+5: Managing Survey Links
+If multiple participant sources are added to a project, each participant source will have its own survey link. With the exception of the Open Survey link, each participant source will have a list variable added to the survey link in order to capture and track the source of each survey participant. Any other variables added to a source's URL variables will also be present in that source's survey link.
+To access your participant source survey links, click "Responses" in the navigation menu at the top of any project page and select "Participant Sources".

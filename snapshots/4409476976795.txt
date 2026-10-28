@@ -1,0 +1,290 @@
+Title: Streamline Conditions with Vector Logic
+Vector logic is an additional and more abbreviated way to write Python condition logic. Consider the following examples.
+Normal (Non-Vector) Logic
+<number label="Q1" size="3" verify="range(1, 120)" title="Please enter your age." />
+<suspend/>
+<radio label="vQ1" where="execute" title="AGE GROUP (HIDDEN)">
+<exec>
+if Q1.ival lt 18:
+vQ1.val = vQ1.r1.index
+elif 18 le Q1.ival le 24:
+vQ1.val = vQ1.r2.index
+elif 25 le Q1.ival le 34:
+vQ1.val = vQ1.r3.index
+elif 35 le Q1.ival le 44:
+vQ1.val = vQ1.r4.index
+elif 45 le Q1.ival le 54:
+vQ1.val = vQ1.r5.index
+elif 55 le Q1.ival le 64:
+vQ1.val = vQ1.r6.index
+else:
+vQ1.val = vQ1.r7.index
+</exec>
+<row label="r1">1-17</row>
+<row label="r2">18-24</row>
+<row label="r3">25-34</row>
+<row label="r4">35-44</row>
+<row label="r5">45-54</row>
+<row label="r6">55-64</row>
+<row label="r7">>= 65</row>
+</radio>
+Vector Logic
+<number label="Q1" size="3" verify="range(1, 120)" title="Please enter your age."/>
+<suspend/>
+<stylevar name="x:xtra" type="string"/>
+<radio label="vQ1" where="execute" title="AGE GROUP (HIDDEN)">
+<exec>
+for eachRow in vQ1.rows:
+age_range = eachRow.o.alt # never set value using .o
+if Q1.check(age_range):
+vQ1.val = eachRow.index
+break
+</exec>
+<row label="r1" alt="1-17">1-17</row>
+<row label="r2" alt="18-24">18-24</row>
+<row label="r3" alt="25-34">25-34</row>
+<row label="r4" alt="35-44">35-44</row>
+<row label="r5" alt="45-54">45-54</row>
+<row label="r6" alt="55-64">55-64</row>
+<row label="r7" alt=">= 65">>= 65</row>
+</radio>
+Using vector logic, you can significantly reduce the amount of code you need to write to perform the same logical operations.
+Important: Vector logic does not consider nor account for rows / columns that were hidden from participants (e.g., disabled or failed to meet a condition). This also includes data manually populated through an <exec> block.
+1: Vector Functions
+A brief description of each vector function is listed in the table below. Click each function to learn more about it.
+Vector Function
+Short Description
+Examples
+any
+Checks whether anything was selected.
+Q1.any
+Q1.r1.any
+Q1.c1.any
+Q1.r1.but(Q1.r1.c1).any
+but
+Excludes the selection from the logic.
+Q1.but(Q1.r1).any
+Q1.r1.but(Q1.r1.c1, Q1.r1.c3).any
+Q1.c1.but(Q1.c1.r2).count
+Q1.but(Q1.r1, Q1.r2).sum
+all
+Checks whether everything was selected.
+Q1.r1.all
+Q1.c1.all
+Q1.r1.c1.all
+Q1.c1.all or Q1.c2.all or ...
+(e.g., straight lined)
+count
+Provides a count of how many were selected.
+Q1.r1.count
+Q1.c1.count
+Q1.r1.c1.count
+Q1.but(Q1.c1, Q1.c2).count
+sum
+Provides a sum of every cell.
+Q1.sum
+Q1.r1.sum
+Q1.c1.sum
+Q1.but(Q1.c1, Q1.c2).sum
+check
+Checks whether there were any numerical values.
+Q1.r1.check("1-10")
+Q1.r1.c1.check("2,4,6,8,10-20,>50")
+Q1.c1.check(">=1, &lt;11")
+Q1.check("!= 2")
+values
+Returns a tuple of raw values.
+Q1.values
+Q1.r1.values
+Q1.c1.values
+Q1.but(Q1.r1).values
+1.1: any
+The any function will return True if any value was provided or selected.
+Note: This function only considers rows which are seen by participants.
+Vector Logic
+Result
+Number Question
+Q1.any
+True
+Q1.r1.any
+False
+Q1.r2.any
+True
+Q1.c1.any
+False
+Q1.c2.any
+True
+Q1.but(Q1.r2, Q1.r3).any
+False
+Checkbox Question
+Q1.any
+True
+Q1.r1.any
+False
+Q1.r2.any
+True
+Q1.c1.any
+False
+Q1.c2.any
+True
+Q1.but(Q1.r2, Q1.r3).any
+False
+1.2: but
+The but function is a way to exclude specific elements from your vector logic.
+Vector Logic
+Result
+Number Question
+Q1.but(Q1.r1).any
+True
+Q1.but(Q1.r3).sum
+1
+Q1.but(Q1.c3).sum
+0
+Q1.c3.but(Q1.c3.r3).sum
+1
+Q1.but(Q1.r3.c3).count
+3
+Checkbox Question
+Q1.but(Q1.r1).any
+True
+Q1.but(Q1.r3).count
+2
+Q1.but(Q1.c3).count
+2
+Q1.c3.but(Q1.c3.r3).count
+1
+Q1.r3.but(Q1.r3.c1).all
+True
+1.3: all
+The all function is a way to check whether all items were populated.
+Vector Logic
+Result
+Number Question
+Q1.all
+False
+Q1.r1.all
+False
+Q1.but(Q1.r1, Q1.c1).all
+True
+Q1.c3.but(Q1.c3.r1).all
+True
+Q1.r3.but(Q1.r3.c1).all
+True
+Checkbox Question
+Q1.all
+False
+Q1.r1.all
+False
+Q1.but(Q1.r1, Q1.c1).all
+True
+Q1.c3.but(Q1.c3.r1).all
+True
+Q1.r3.but(Q1.r3.c1).all
+True
+1.4: count
+The count function returns the number of inputs populated.
+Note: This function only considers rows which are seen by participants.
+Vector Logic
+Result
+Number Question
+Q1.count
+4
+Q1.r1.count
+0
+Q1.r2.count
+2
+Q1.c2.count
+2
+Q1.but(Q1.c2).count
+2
+Q1.but(Q1.r1, Q1.c1).count
+4
+Checkbox Question
+Q1.count
+4
+Q1.r1.count
+0
+Q1.r2.count
+2
+Q1.c2.count
+2
+Q1.but(Q1.c2).count
+2
+Q1.but(Q1.r1, Q1.c1).count
+4
+1.5: sum
+The sum function returns the sum of the inputs populated.
+Vector Logic
+Result
+Number Question
+Q1.sum
+3
+Q1.r1.sum
+0
+Q1.r2.sum
+1
+Q1.c2.sum
+0
+Q1.but(Q1.c2).sum
+3
+Q1.but(Q1.r1, Q1.c1).sum
+3
+Checkbox Question
+Q1.sum
+4
+Q1.r1.sum
+0
+Q1.r2.sum
+2
+Q1.c2.sum
+2
+Q1.but(Q1.c2).sum
+2
+Q1.but(Q1.r1, Q1.c1).sum
+4
+1.6: check
+The check function checks the numerical values provided for number questions. A list of checks can be given. If any of those checks return True then the overall function returns True.
+Tip: A value of None (that is, left empty) will be considered a value of 0.
+Vector Logic
+Result
+Number Question
+Q1.r1.c1.check("0-100")
+True
+Q1.r1.c1.check("1-100")
+False
+Q1.r2.c2.check("0, 1, 2")
+True
+Q1.r2.c2.check("> -1")
+True
+Q1.c3.r3.check("1,3,>5")
+False
+Q1.c3.r3.check("!= 2")
+False
+Q1.c3.r3.check("&lt;= 2")
+True
+1.7: values
+The values function returns a tuple of the values provided.
+Vector Logic
+Result
+Number Question
+Q1.r1.values
+(None, None, None)
+Q1.r2.values
+(None, 0L, 1L)
+Q1.c2.values
+(None, 0L, 0L)
+Q1.but(Q1.c2).values
+(None, None, None, None, 1L, 2L)
+Q1.but(Q1.r1, Q1.c1).values
+(0L, 0L, 1L, 2L)
+Checkbox Question
+Q1.r1.values
+(None, None, None)
+Q1.r2.values
+(None, True, True)
+Q1.c2.values
+(None, True, True)
+Q1.but(Q1.c2).values
+(None, None, None, None, True, True)
+Q1.but(Q1.r1, Q1.c1).values
+(True, True, True, True)

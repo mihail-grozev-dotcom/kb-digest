@@ -1,0 +1,11 @@
+Title: Update-virtuals
+Requires Decipher Cloud
+Decipher Cloud users can use the update-virtuals script to force virtual questions to recompute their data.
+1: Running the Script
+To run the script, navigate to the directory of a survey that has virtual questions you want to recompute and enter the following:
+update-virtuals
+The script removes the following data files:
+data/virtual.bin
+data/virtual.fingerprint
+data/virtual.strings
+Then, the next time you run the survey, the virtual question data will recompute as these files are regenerated.

@@ -1,0 +1,23 @@
+Title: June 12th General Release Notes
+Release Date: June 12, 2018
+Highlights of June 12th Release
+New Features
+GDPR Compliance
+Use improved, GDPR-compliant features and data best practices.
+API: New Survey Properties
+Check survey launch dates and access history via simple API calls.
+Responses Report
+Sort and filter data with more control.
+View and edit response data from all open-ended questions at once.
+New Features
+GDPR Compliance
+Decipher has added new features and made some changes to its data retention policies to comply with GDPR guidelines.
+With tighter data controls on email lists, temp directories, and archived surveys, you can rest easy knowing that your projects are GDPR-compliant, regardless of age.
+API: New Survey Properties
+Gone are the days of hunting down separate logs and menus to view critical survey information. With the "Survey List" API, you can use four new properties to do all of the heavy lifting for you!
+Use the dateLaunched property to check when a survey was set live, or createdOn to view a timestamp of when it was created. If you're looking for details on more specific changes, try the new lastQuotaEdit and lastSurveyEdit properties to view more information about the survey's access history.
+Responses Report
+A variety of sorting and filtering updates have been made to the View/Edit Responses Report, giving you even more control over how you view your data.
+Quota markers will now display their Field Report text rather than raw code. Variable filtering functionality has also been improved, with the report now automatically searching for strings and substrings of entries.
+Additionally, a new option has been added to the columns menu, allowing you to view all open-ended responses at once.
+Learn More: About the View / Edit Responses Report

@@ -1,0 +1,27 @@
+Title: Verifying Loops
+Survey loops allow you to repeat question(s) for each response option that participants are either aware of or not aware of based on predefined criteria.
+Loops can be added to surveys using either the Loop element or the <loop> tag in the survey XML.
+1: Overview
+Once you have added a loop to a survey, you can verify its functionality by manually testing that survey.
+To verify your loop functionality, first navigate to the survey testing system by clicking “Test Survey” under “Preview” in the navigation menu at the top of any project page. Then configure your test environment and click “Show Survey with Tools”.
+Navigate through the survey to the question that controls the loop and select some of the options that are to be looped. Next, navigate to the question with the piped text and verify that the loop is only shown for the selected options as expected.
+Note: It may not be feasible to test every loop in a project due to the length of the loop, number of options that may trigger the loop, or complex logic. Verify that at least one version of the loop is working as expected and then use Crosstabs and the Coverage report to verify the rest.
+2: Examples
+2.1: Verifying Loops in the Survey
+In the example below, Q17 is the control question for the loop and you will see Q18 and Q19 for every response option you selected at Q17.
+For this task, imagine you are testing two of the six possible options displayed at the control question. For example, you might have selected “Apples” and “Cherries” at Q17.
+Once you click "Continue" you see Q18 and Q19 repeated twice, once for "Apples" and once for "Cherries". The first loop shown is for the “Apples” response option, since that was selected first in the control question.
+After answering Q18 and Q19 for the "Apple" response option, you are looped back to answer Q18 and Q19 for the “Cherries” option, as shown below.
+After completing both loops, the survey continues to Q20.
+Tip: Use the loop question labels to keep track of all the response options used in the loop. For example, in the label "Q18_r1", Q18 corresponds with the question number, while “r1” corresponds with the response option being looped, in this case, "Apples".
+If a question or response option is missing from the loop, this likely indicates a programming error. Verify that the survey setup is correct and then recheck the loop.
+2.2: Verifying Loops in Crosstabs
+Once you have verified the functionality of your loop in the survey, you can then verify that there are tables present for all response option loops in Crosstabs. For this task, you would run a "Total Crosstab", and verify that all questions in the loop are presented as tables for each response option that is looped in the survey.
+Learn More: Running a Total Crosstab
+Using the same example, you would verify that both Q18 and Q19 have tables for each response option in the loop (six tables, one for each fruit displayed at Q17).
+If a table is missing, this likely indicates a programming error. Verify that the survey setup is correct and then recheck the loop.
+2.3: Verifying Loops in the Coverage Report
+The final step in verifying a loop is to use the Coverage report. To access the Coverage report, from the navigation menu, select REPORT, then Data Downloads. Select Other Data Formats from the drop-down menu. On the Data Downloads page, select Coverage under the header Direct to Browser.
+After running the Coverage report download, verify that all questions in the loop are filling with data as expected. Verify also that a green checkmark is shown next to all looped questions, as shown below.
+The checkmark icon indicates that 100% of the participants shown the question answered it. You may hover over the checkmark icon to view the percentage, the number of participants that were shown, and the number of participants that answered the question.
+If any other icons are present, there may be a programming error. Verify that the survey setup is correct and then recheck the loop in the Coverage report.

@@ -1,0 +1,6 @@
+Title: Note Element
+The Note element allows you to leave comments for yourself or anyone else editing the survey in the Survey Editor. Note elements only appear in the Survey Editor, and are not included when testing a survey with QA tools or in the report.
+Note: Note elements are not shown to survey participants.
+1: Adding a Note
+To add a Note element, first click the + Element button to add a new survey element. Then click Structural Elements under Question Types and select the Note element. Then click Add.
+Enter the note content in the area provided.

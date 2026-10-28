@@ -1,0 +1,15 @@
+Title: 151.5 Release Notes
+Release Date: October 25, 2022
+Release Version: 151.5
+New Features
+Programming & Tools
+API
+API calls are recorded in logs/api with the time, user, survey affected, API call and the first 1024 bytes of the request.
+Bug Fixes
+Survey
+The test data page and SST runs now load faster.
+Participant Sources
+Fixed an issue that prevented the use of certain sample providers for survey compats 148 and above.
+Reporting
+Crosstabs
+Fixed an issue that caused an error when generating the bulk download link with version 1 of the Video Testimonials Dynamic Question (videocapture.1).

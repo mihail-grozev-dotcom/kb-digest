@@ -1,0 +1,50 @@
+Title: Adding Fulcrum Automatic Sample
+1: Overview
+Fulcrum by Federated Sample gives you instant access to highly targeted sampling, leading to faster delivery and cost efficiency, as well as broader supplier reach. Decipher is now integrated with Fulcrum, allowing for seamless transition from survey programming to sample fielding.
+There is no longer a need to program surveys in Decipher and then re-enter the survey details in Fulcrum. Now, once the survey is programmed in Decipher, the relevant sampling information automatically populates in Fulcrum, decreasing the amount of time it takes to successfully launch a study and increasing project management labor efficiency across the board.
+Tip: If you are using Fulcrum sample with another participant source, participants from the other participant source are shown the Fulcrum questions and their answers are collected in the data.
+2: Adding Fulcrum Automatic Sample
+Participant sources can be set up at any point as you build your survey, but for our purpose we'll begin by adding Fulcrum at the very beginning. This will enable us to create our basis for future terminates and quotas in the Survey Editor.
+Note: Contact your Account Manager if you would like Fulcrum Automatic sample enabled in Decipher. They will walk you through the process for getting a Fulcrum account.
+2.1: Adding the Participant Source
+To begin, click "Participant Sources" in the question tree and select "Add New Participant Source":
+In the "Participant Sources" menu, select "Fulcrum Automatic" and click "Insert":
+The new Fulcrum Automatic participant source will appear in the question tree grouped under "Participant Sources" and in the staging area. Enter the "CPI" and "Total Quota". Then click "Add Fulcrum Question":
+CPI: Cost per interview
+Total Quota: The total number of required completes
+Note: Regardless of the individual Fulcrum quotas set in the study, the total overall sample will be defined by what is entered for "Total Quota".
+2.2: Adding Fulcrum Question(s)
+The Fulcrum element library allows you to select the screener questions from Fulcrum. Click on a question to add it and the full question text will appear in the section to the right. Multiple questions may be selected. The search field and sort menu enable you to quickly find the question you're looking for.
+Note: Add the questions in the order you'd like them to be asked. Once they're added to the project the order cannot be changed. Some exceptions apply due to Fulcrum's requirements for the order.
+To remove a question while you're still editing within the library, simply click on it again and it will no longer appear in the right window.
+Once you have selected the questions you'd like to include, click "Add to Project":
+The element will update with a list of your questions, and they will be included in the question tree as well:
+2.3: Removing a Fulcrum Question
+To remove a Fulcrum question after you've saved your questions in the Survey Editor, locate the question in the question tree and right-click on it. Then select "Delete Element".
+3: Adding Terminate(s) Based on Fulcrum Question(s)
+Once you've added your Fulcrum sample questions, you may add terminate points based on the questions. Add a new terminate element, enter a title and click "New Condition" in the general options.
+Note: Terminates (i.e., "Fulcrum Qualifications") edited through the Fulcrum website will not be applied to your survey and will be lost when synced. Create your terminate points within Decipher.
+In the menu, the Fulcrum questions are listed in the "external resources" category. Select a question:
+Select the answer options that define the terminate. If the source is a number question, enter the value. Mouse-over the info icon to view valid entries for numeric questions:
+Select "Save", or "Save as" if you wish to name the condition for later use in the Survey Editor:
+4: Adding Quota(s) Based on Fulcrum Question(s)
+Any quotas used for Fulcrum sample should use the Fulcrum Quota Element. This dedicated quota element allows Fulcrum to track their sample, filling only quotas that apply to them. A standard quota element may be used, however it is not recommended when non-Fulcrum participant sources are also being used because Fulcrum cannot differentiate their sample bucket from the others.
+Add a new Fulcrum quota element, enter an appropriate title and click "Edit Quota". Specify the maximum number of participants in the field provided, then click "+Row" to add cells. The Fulcrum questions will be available in the quick quotas or logic conditions:
+Select a question, then click "OK."
+Note: Quotas edited through the Fulcrum website will not be synced or acknowledged in the survey. Create your quotas within Decipher.
+For numeric quotas, enter the value and click "OK." Repeat until the cells represent all answer options. Then enter the limits for the cells and save your quota:
+Once in place, quotas based on Fulcrum questions may be viewed and edited in the Response Summary, under the Quotas tab.
+5: Syncing with Fulcrum
+To sync your project with Fulcrum to add all quotas and qualifications, you will need to launch your study. To do a sync for purposes of testing, open the Project Summary under "Distribute" or test the survey (under "Test").
+5.1: Making Survey Changes
+Post-launch survey changes must be made on both the Decipher and Fulcrum sides since the Decipher survey will not initiate a sync after the initial launch.
+Note: If you edit any of the questions, re-sync to update with Fulcrum.
+5.2: Making Quota Changes
+Post-launch quota limit changes can be made using either the "Quotas" tab in the Response Summary or the Quota Limit API call, and are automatically synced with the project in Fulcrum.
+The following limitations apply when making changes to Fulcrum quota limits:
+Edits do not sync with Fulcrum if made within a LIVE survey (temp-edit-live)
+Quotas will not update if the changes are made directly within the quota.xls file in the survey shell
+Quota locking is not supported and locked limits will not sync with Fulcrum
+Note: If there is an error syncing with Fulcrum, an entry will be added to the survey's survey.log file.
+6: Viewing the Report
+The Fulcrum screener questions are fully integrated into Crosstabs and Report 2010, allowing you to create banners, tables, charts and view data just as any other question.

@@ -1,0 +1,26 @@
+Title: 150.1 Release Notes
+Release Date: April 12, 2022
+Release Version: 150.1
+New Features
+Portal
+Updated element colors (buttons, radios, navigation tabs, etc.) to match Forsta branding.
+Added the option to include user subscriptions when duplicating a project.
+Learn More: Duplicating a Survey
+XML Editor
+Subscribers can be copied using the –b flag in the copy-survey script.
+Learn More: Duplicating Surveys Using copy-survey
+Programming & Tools
+API
+Added the option to copy project subscriptions when using the surveys/<surveypath>/copy endpoint.
+Added the ability to track who created a user with the created_by (user) and created_on (date) in the rh/users API GET call.
+Added the API endpoint /rh/companies/{company}/groups to provide a list of all company groups and which users belong to each group for a given server. Users with staff access can use this endpoint.
+Architecture/Dev Tools
+New companies will identify which user_id created a company in the created_by column of the portal.company table.
+Bug Fixes
+Survey
+On the Company Settings page, the “Create User” button is disabled upon click to prevent creating a duplicate new user.
+Survey Editor
+Fixed an issue where the completion message of a card rating question could not be edited.
+Reporting
+Crosstabs
+Fixed an issue where the legend order in bar charts was incorrect when exporting as a PowerPoint.

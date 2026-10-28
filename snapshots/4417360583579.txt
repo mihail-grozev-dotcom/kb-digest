@@ -1,0 +1,80 @@
+Title: How to Dynamically Control a Rank Sort Question
+The Rank Sort question offers an engaging ranking experience for participants. With the Rank Sort question, participants are able to rank a list of items by clicking the items or dragging and dropping them into their preferred order.
+In some cases, however, there is a need to dynamically control certain aspects of the Rank Sort question (e.g., the number of rankable items or the minimum number of ranks) based on a control question. This article outlines the process for creating a dynamic ranking question that adjusts its response options according to participants’ answers to the control question.
+1: Programming the Control Question
+In this example, the control question is a multi-select brand awareness question containing five unique brands. In the follow-up Rank Sort question, participants will only be required to rank the brands with which they indicate they are familiar here.
+1.1: Randomize Brand List
+Brands in the control question can be randomized by checking the box for "Rows" under "Randomize" in the options panel.
+2: Programming the Rank Sort Question
+The Rank Sort Question is a dynamic question that is available within the Survey Elements Menu. To add a Rank Sort question, click "+ Element" and select "Rate, Rank, & Sort" under "Question Types".Then select "Rank Sort" and click "Add".
+Note: The Rank Sort element utilizes a select form and must contain multiple labels and items.
+2.1: Rank Labels
+The Rank Labels are the ranks that will be assigned by participants. In this example, there are five rank labels, one for each potentially visible brand.
+2.1.1: Rankable Items
+The Rankable Items are the options that participants will rank. In this example, the same brand list is used as it was in the control question.
+Learn More: Rank Sort Element
+2.2: Randomize Brand List
+As with the control question, the brands in a Rank Sort question can be randomized. This can be accomplished by checking the box for "Rows" under "Randomize" in the options panel.
+However, this will display the brands in a new random order and can create confusion for participants. Instead, the order of the brands should match that assigned in the control question. This can be adjusted by selecting “shuffleBy” in the "More Options" drop-down in the options panel and passing the question label of the control question as the value.
+3: Show Brands Conditionally
+Only brands selected in the control question should display in the Rank Sort question. This can be accomplished using the Answer Piping tool in the Survey Editor, or by adding the rowCond attribute to the survey XML.
+3.1: Answer Piping
+Rankable items can be displayed conditionally by selecting "Answer Piping" from the Rankable Item Actions menu:
+Selecting "Answer Piping" will open the "Show rows/cols if" menu in the options panel. From the drop-down menu, select the control question and “is selected” to only show the brands with which participants indicate they are familiar.
+Learn More:
+Answer Piping
+3.1.1: rowCond
+Since rankable items correspond to <row> elements in the XML, this change can be made from the XML Editor by adding the rowCond attribute to the question tag of the Rank Sort element.
+The code below will display rankable items only if the row in the corresponding index was selected in the control question:
+rowCond="Q19[row.index]"
+Learn More: Adding Condition / Skip Logic
+3.2: Show Ranks Conditionally
+The number of ranks that display should correspond to the number of items selected in the control question.
+3.2.1: choiceCond
+In the Rank Sort question, rank labels correspond to the <choice> element in the XML. The number of displayed ranks can be controlled by adding the choiceCond attribute to the question tag of the Rank Sort question.
+The code below will show participants only the rank labels that are equal to the number of brands selected in the control question:
+choiceCond="q1.count ge choice.index+1"
+3.3: Update minRanks Dynamically
+One requirement for the Rank Sort question is the inclusion of the minRanks attribute. minRanks defines the minimum number of ranks that must be assigned for a participant to move past the Rank Sort question.
+3.3.1: Exec Block
+Unfortunately, a static value for minRanks can present problems in situations such as this, where aspects of the Rank Sort question are dynamic. For instance, if minRanks is set to 3 but only two rankable items and ranks are shown, the participant will not be able to proceed in the survey.
+This can be avoided by dynamically updating the minRanks attribute based on the number of answers selected in the control question. minRanks can be modified programmatically with Python code.
+Nesting the exec block below within the Rank Sort question will dynamically update the minRanks attribute to the count of responses provided in the control question.
+<exec>
+Q20.minRanks = Q19.count
+</exec>
+4: Results of Dynamically Controlling a Rank Sort Question
+4.1: Survey XML
+A summary of the critical changes can be found below:
+shuffle="rows" and shuffleBy="Q19" matches the order of the brand list to the control question.
+rowCond="Q19[row.index]" only displays brands that were selected in the control question.
+choiceCond="Q19.count ge choice.index+1" limits the number of ranks to the count of brands selected in the control question.
+Q20.minRanks = Q19.count dynamically updates the minimum number of ranks to the count of brands selected in the control question.
+4.1.1: Example
+<select
+label="Q20"
+cond="Q19.count ge 1"
+choiceCond="Q19.count ge choice.index+1"
+minRanks="3"
+optional="1"
+rowCond="Q19[row.index]"
+shuffle="rows"
+shuffleBy="Q19"
+unique="none,cols"
+uses="ranksort.10">
+<title>Please rank the following items:</title>
+<comment>Click or drag each item into a rank position.</comment>
+<exec>
+Q20.minRanks = Q19.count
+</exec>
+<row label="r1">Brand 1</row>
+<row label="r2">Brand 2</row>
+<row label="r3">Brand 3</row>
+<row label="r4">Brand 4</row>
+<row label="r5">Brand 5</row>
+<choice label="ch1">1</choice>
+<choice label="ch2">2</choice>
+<choice label="ch3">3</choice>
+<choice label="ch4">4</choice>
+<choice label="ch5">5</choice>
+</select>

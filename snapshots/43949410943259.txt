@@ -1,0 +1,21 @@
+Title: 154.10 Release Notes
+Release Date: December 2, 2025
+Release Version: 154.10
+New Features
+Survey
+Integration
+Case-insensitive duplicate extra variables (evar) labels are now supported when Decipher surveys are synced to SmartHub.
+Language Manager
+Improved error message when a pipe in a translation does not match the original pipe in Language Manager.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+The api.2 logic node sends POST/PUT data as JSON by default. Previously such data was sent as "form data", which is not ideal for most API endpoints.
+Bug Fixes
+Survey
+Survey Editor
+Multi-User Editing has improved error handling when checking in a block.
+Responses
+Email Campaigns
+Special characters can now be used in seed lists.
+Portal
+On the project list page, an issue preventing some filtered search results from appearing has been resolved.

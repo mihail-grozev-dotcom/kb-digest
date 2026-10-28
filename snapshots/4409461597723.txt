@@ -1,0 +1,166 @@
+Title: Quality Assurance Essentials
+Welcome to our QA Essentials training series! This page contains all of the information you need to successfully use the Decipher platform for survey testing and quality assurance.
+To view the full Essentials onboarding training, see Decipher Essentials Training Series.
+Overview of the Portal
+Before we can start building our survey, we'll need to familiarize ourselves with the layout of the Decipher project system. This lesson provides a general introduction to the Portal, the central hub of the Decipher Platform where we can create, manage, review, and collaborate on projects.
+Reference Materials:
+Logging in to Your Account
+Introduction to the Portal
+Search Capabilities
+Project Management
+Basic Question Types
+Certain question types like single- or multi-choice are considered survey staples, and the Survey Editor includes customizable templates for these and most other common question types. In this lesson, we'll learn how to program the following basic question types from a questionnaire:
+Single Select: Allows participants to select one answer in a list of options.
+Single Select Grid: Allows participants to select one answer in a 2-dimensional grid layout.
+Multi-select: Allows participants to select multiple answers from a list of options.
+Multi-select Grid: Allows participants to select multiple answers in a 2-dimensional grid layout.
+Dropdown Menu: Allows participants to select one answer from a drop-down menu of options.
+Number: Allows participants to enter a numeric response in an open-ended answer field.
+Text: Allows participants to enter a text response in an open-ended answer field.
+Essay: Allows participants to enter a text response in a larger open-ended answer field than the traditional Text question type.
+Descriptive Content: Displays text and/or multimedia elements to participants without requiring interaction.
+Reference Materials:
+Basic Question Types Questionnaire (Download)
+Single Select Element
+Single Select Grid Element
+Multi-Select Element
+Dropdown Menu Element
+Number Element
+Text Element
+Essay Element
+Descriptive Content Element
+Dynamic Question Types
+Along with the basic question types covered above, the Survey Editor includes templates for a variety of dynamic question types which provide enhanced usability, participant engagement, and data quality. In this lesson, we'll learn how to program the following dynamic question types from a questionnaire:
+Button Select: Allows participants to select one answer in a list of options.
+Rating Scale: Allows participants to select one answer in a 2-dimensional grid layout.
+Slider: Allows participants to select multiple answers from a list of options.
+Star Rating: Allows participants to select multiple answers in a 2-dimensional grid layout.
+Rank Sort: Allows participants to select multiple answers from a drop-down menu of options.
+Card Rating: Allows participants to rate multiple response cards displayed one at a time.
+Note: Although dynamic questions use basic question types as their foundations, the data may not be directly comparable. When employing dynamic questions, be sure to develop standards and maintain consistency in how they are customized; this ensures the relative values of data can be interpreted without concern that the question format is biasing results in some way.
+Reference Materials:
+Dynamic Question Types Questionnaire (Download)
+Button Single Select Element
+Button Multi-Select Element
+Button Multi-Select Grid Element
+Rating Scale Element
+Slider Element
+Slider Rating Element
+Slider Decimal Element
+Star Rating Element
+Card Sort Single Select Element
+Running Simulated Data
+In this lesson, we will learn how to run simulated data to ensure that our survey logic is working correctly. When running simulated data, the system will attempt to send random data through the survey to fill the database, although specifics of how the simulated data is run can be adjusted via the simulation configuration settings. If survey errors are generated while running simulated data, information about each error will display in the simulated data window.
+Running simulated data is an important part in the testing process, as this process will help us identify potential errors in survey logic and survey flow.
+Reference Materials:
+Running Simulated Data
+Survey Testing Environment
+In this lesson, we'll learn how to configure the survey testing environment, where we can view our survey in different testing modes. The survey testing environment includes options for us to view our survey both with and without QA tools, and allows us to specify dummy values for testing the functionality of survey URL variables.
+Reference Materials:
+Testing an Online Survey
+Survey Testing Toolbar
+In this lesson, we will learn how to test our survey using the testing tools available within Decipher. These tools will help us ensure that our skip patterns are working correctly and let us review each question for errors before our survey goes live.
+The survey testing toolbar consists of:
+Tasks: Allows you to assign and resolve tasks directly within survey pages to make collaboration easier.
+Edit: Allows you to edit survey questions directly, without having to go back to the survey editor or XML to make changes.
+Recorder: Records the path you take through the survey so you don't have to remember your answers when trying to test a specific section.
+QA Codes: Makes labels, settings, and logic conditions visible for each question for easier reference.
+One Page: Enables you to see the entire survey on one page, and to make all of your edits at one time.
+Actions: Allows you to manage your survey languages, view your change history, and access the Knowledge Base.
+Quick Links: Provides links to other areas of your project for quick access to building, testing, distributing, and reporting tools.
+Note: To ensure proper quality control, we recommended using a copy of your questionnaire to guide you through any edits as you test through your survey with the tools above.
+Reference Materials:
+About the Survey Testing Toolbar
+Using Tasks to Provide Feedback
+Editing Text in the Test Environment
+Survey Recorder
+About QA Codes
+Language Manager
+In this lesson, we'll learn how to use the Language Manager to add a language to our survey, as well as how to export our survey into an Excel or XML file to be translated.
+Importing languages uses a text overlay, making it easier to import multiple languages at one time. Once the text has been translated, you can simply import the translated text back into the survey editor. The Language Manager also has an option to edit translations once they have been imported.
+Reference Materials:
+Language Manager Overview
+Survey Summary
+Adding & Managing Languages Questionnaire (Download)
+Response Summary
+The Response Summary shows the overall health of a survey by providing real-time data on participant traffic. It can be used to edit quota values while a survey is live, watch for unspecified terminates, monitor participation rates, and even track drop-out activity.
+In this lesson, we'll learn how to run the Response Summary to check our survey completion data, including counts for qualified participants, terminates, quotas and drop-outs.
+Reference Materials:
+About the Response Summary
+Monitoring Completions in Field
+Monitoring Terminates in Field
+Monitoring Quotas in Field
+Editing Quota Limits in Field
+Adding Quota Alerts in the Response Summary
+Downloading the Quota Structure
+Monitoring Drop-outs in Field
+Sharing the Response Summary
+View/Edit Responses
+In this lesson, we'll cover the basic functions of the View/Edit Responses report. The View/Edit Responses report allows users to view and edit the responses of every participant in a survey. It's a particularly useful tool for projects with a low incidence rate, where more attention should be given participants' progress through the survey.
+Reference Materials:
+About the View / Edit Responses Report
+Crosstabs Overview
+The Crosstabs reporting system is designed to improve the speed and ease of crosstab creation. In this lesson, we'll review the reporting tools available within the Crosstabs landing page, total frequencies report, and settings menu.
+Reference Materials:
+Crosstabs Overview
+Crosstabs Entry Page
+Crosstabs
+Configuring Crosstab Settings
+Running a Total Crosstab
+Running a Quick Split
+In this lesson, we'll learn how to run a quick split from question logic to quickly create segments in our Crosstabs report. We'll also learn how to nest and append segments from multiple questions.
+Reference Materials:
+Running a Quick Split Crosstab
+Build a Crosstab
+The Crosstabs reporting system also allows for the creation of custom segments, or banners, to more easily dissect and digest the information in your report. In this lesson, we'll take a closer look at Crosstabs and learn how to create our own custom banner.
+Reference Materials:
+Building a Crosstab
+Build & Edit a Crosstab with XML
+If you are familiar with our XML coding system, then using the XML editor within Crosstabs can be an easy way for you to edit or modify a crosstab. In this lesson, we'll learn how to use the Crosstabs XML editor to update our report and find errors that may not be visible within the graphical user interface (GUI).
+Reference Materials:
+Using XML to Edit Crosstabs
+View Options
+In this lesson, we'll learn about the View Options menu within Crosstabs, where we can adjust the settings and appearance of the tables in our report using the following options:
+Show/Hide QA codes: Showing makes question and answer labels visible for easier reference. Survey codes will also display contextually, highlighting key programming settings.
+Hide Tables with No Participants: Hides tables with no data.
+View Chart Options: Allows you to edit the table's chart color palette and select its data values.
+Show/Hide Download Data Values: Allows you to display/hide the data values in the Crosstabs report.
+Show/Hide Unweighted Total Count: If you are applying weights, you may choose to show or hide the unweighted "Total" row in your tables.
+Turn All Grid Tables On/Off: Allows you to show or hide grid tables throughout the report.
+Create a Table in Crosstabs
+In this lesson, we'll learn how to add a new table to the end of our Crosstabs report and how to reference this table when creating custom crosstabs or running quick splits.
+Editing Tables
+Next, we'll learn about editing tables within Crosstabs using the options available in the table editor:
+Updating Question & Answer Option text
+Show/Hide answer options
+Adding Nets
+Editing Stat Values
+Including answer options in the base for the table
+Adding statistics
+Applying a custom filter
+Reference Materials:
+Editing Tables in Crosstabs
+Create a Table Set
+In this lesson, we'll learn how to create a table set to limit the number of tables shown in a Crosstabs report. We'll also learn how to edit and remove table sets, as well as how to apply them to other Crosstabs reports.
+Reference Materials:
+Creating a Table Set
+Marking Favorite Tables in Crosstabs
+Add/Edit Charts in Crosstabs
+In this lesson, we'll learn how to get more from Crosstabs by adding charts to interactively display the information in our report.
+Reference Materials:
+Adding or Editing Charts
+Create a Saved Report
+A saved report is a custom collection of tables and charts that users can create by pinning these elements to their whiteboard in Crosstabs. In this lesson, we'll learn how to create our own saved report and about the options we have for sharing it with other users.
+Reference Materials:
+Pinning Tables and the Whiteboard
+Creating Saved Reports
+Crosstabs Permissions
+The Crosstabs landing page will display crosstab reports to users based on what they have permission to view or edit. In this lesson, we'll learn about the different permissions available within Crosstabs and how to assign these when saving a crosstab or quick split report:
+Private: Only you (the owner) can use/edit the current crosstab.
+Editable: Any logged-in user can edit the current crosstab.
+View Only: Any logged-in user can view the current crosstab. Only the crosstab owner can edit or delete it.
+Data Downloads in Crosstabs
+In this lesson, we'll learn about the various options we have for downloading our raw survey data.
+Reference Materials:
+Download Data in Crosstabs
+Data Downloads and Formatting Options

@@ -1,0 +1,267 @@
+Title: Attributes for Report Settings
+There are a variety of <survey> attributes that can be used to configure the behavior of both surveys and their questions across Decipher’s various tools and features.
+You can use the following attributes to control the various report settings for any Decipher survey:
+Note: Click to enlarge each image.
+Attribute
+Purpose
+Description
+agents
+Setting Expansion Level for vos / vbrowser Tables
+The agents attribute controls the operating system (vos) and browser version (vbrowser) virtual questions generated automatically in the report. It can be set to "normal", "full" or "none". It is required that userAgent be present in the extraVariables attribute for these tables to populate.
+By default, agents="normal" is specified and the following data is captured by the vos / vbrowser tables:
+vos
+vbrowser
+Windows 95
+Windows 98
+Windows 8
+Windows 7
+Windows Vista
+Windows 2003
+Windows XP
+Windows 2000
+Microsoft Windows NT 4.0
+Windows ME
+iPhone/iPad
+Mac OS X or older
+Other Mobile
+Linux, UNIX
+Opera
+MSIE 11
+MSIE 10.x
+MSIE 9.x
+MSIE 8.x
+MSIE 7.x
+MSIE 6.x
+MSIE 5.x or older
+Chrome
+Safari
+Firefox
+Other Mozilla or Netscape
+Mobile
+Text Browser
+If agents="full" is specified, the vos / vbrowser tables expand to include the following items (in addition to the ones listed above):
+vos
+vbrowser
+Nokia
+Blackberry
+DoCoMo
+Symbian
+PalmOS
+Samsung
+Android
+Sony Ericsson
+Windows Mobile
+Windows CE
+Symbos
+MIDP
+Opera Mobile
+Nintendo DS
+Nokia
+Blackberry
+DoCoMo
+Symbian
+PalmOS
+Samsung
+iphone
+Android
+Sony Ericsson
+Windows mobile
+Windowsce
+Symbos
+MIDP
+Opera mobi
+Nintendo ds
+Set agents="none" if you wish to remove the vos / vbrowser tables.
+Note: In compat="120+" surveys, the userAgents attribute is automatically added to all surveys.
+autoAddVariables
+Adding New Variables to Layouts Automatically
+The autoAddVariables attribute is a boolean value that controls whether new variables should be automatically added to data layouts.
+If autoAddVariables="1" is specified, then any new variable is automatically inserted following other selected variables from the same question and type. New variables that come from an entirely new question or were not selected in the layout will not automatically be added.
+For example, if your existing layout has Q1r1 and Q1r2 selected (checkbox) and you have added Q1r3 to your project after having created the layout, Q1r3 will automatically be inserted after Q1r2. However, a new Q1r3oe would not be inserted since it does not match the type.
+autoRecover
+Setting to Automatically Recover Partials
+Note: Surveys with delphi="1" have this attribute on by default.
+The autoRecover attribute is a boolean value that controls automatic data collection for partial participants. This attribute can be applied to surveys with a compat level of 109+.
+If autoRecover="1" is specified, partial participants are recovered and added to the dataset approximately every 15 minutes.
+A partial participant is a participant who has entered the survey but has not completed or submitted data in the last 15 minutes.
+If a partially recovered participant completes the survey, the previous partial data entry is updated with the new data.
+blankValue
+Specifying Replacement Value of Blanks
+The blankValue attribute allows you to replace the value for blanks in the dataset.
+For example, specifying blankValue="-99.99" replaces all blank (None) values to -99.99.
+Tip: This attribute is also available on per question basis.
+<radio label="Q1" optional="1" blankValue="NO ANSWER">
+<title>Please choose one...</title>
+<row label="r1">Item 1</row>
+...
+...
+</radio>
+capturePreciseTime
+Capturing Precision Timing
+Note: Surveys with delphi="1" have this attribute on by default.
+The capturePreciseTime attribute is a boolean value that allows you to capture the time from when the page is first loaded to the time it is submitted for every page that a participant sees.
+If capturePreciseTime="1" is specified, extra JavaScript runs on each page storing the timing, down to 1 millisecond.
+You can access the timing details in real time using any of the following functions:
+preciseTimeSpent()
+preciseTimeSpent(pageno)
+preciseTimeSpent(Q5.page)
+For example:
+<text label="Q1" title="What is your email address?"/>
+<suspend/>
+<html label="Q1_Timing" where="survey">
+<p>You took ${preciseTimeSpent(Q1.page)} seconds to answer that question.</p>
+</html>
+Note: For surveys with delphi="1", you must pass the question label as a string instead of a page number (pageno). For example, use preciseTimeSpent("Q5") or preciseTimeSpent(uuid, "Q5") instead of the above.
+You can access the timing details using the following functions in a virtual question
+preciseTimeSpent(uuid)
+preciseTimeSpent(uuid, pageno)
+For example:
+<float label="vqt1" title="Time spent on Q1">
+<virtual>
+vqt1.val = preciseTimeSpent(uuid, “Q5”)
+</virtual>
+</float>
+The following mutator function is also available to store the precise time for each page:
+<float label="pagetime" onLoad="preciseTimePerPage()" title="."/>
+Note: In surveys without delphi="1", changes to the layout of the survey may alter the capturePreciseTime and preciseTimeSpent values, because each participant might hold a different page view.
+cbUseFwidth
+Using Fixed Width for Column Binary Files
+The cbUseFwidth attribute is a boolean value that forces column binary files to use the fixed-width set in the variables.xls file (which defaults to sixty-four) rather than always using nine.
+checkboxBlankIfZero
+Using Blank Instead of 0 for Checkboxes
+The checkboxBlankIfZero attribute is a boolean value that allows you to control the value for <checkbox> elements.
+If checkboxBlankIfZero="1" is specified, all 0 (None) data is forced to a blank in the data files.
+dashboard
+Specifying Variables to Include in Response Summary
+Note: This attribute is not usable in surveys with delphi="1".
+The dashboard attribute enables you to display additional variables in the Response Summary.
+This attribute accepts a space-separated list of question variables with an appropriate row / column label (e.g., Q1.r1). For example, given the following two questions:
+<radio label="Q1">
+<title>Radio Question (Select One:)</title>
+<row label="r1">Row 1</row>
+<row label="r2">Row 2</row>
+<row label="r3">Row 3</row>
+<row label="r4">Row 4</row>
+</radio>
+<checkbox label="Q2" atleast="1">
+<title>Checkbox Question (Select all that apply:)</title>
+<row label="r1">1</row>
+<row label="r2">2</row>
+<row label="r3">3</row>
+<row label="r4">4</row>
+</checkbox>
+<suspend/>
+If you specify dashboard="Q1.r1 Q1.r2 Q2.r2" inside the <survey> element, you will get the following result in the "Completions" tab of the Response Summary.
+dashboardInclude
+Specifying Data File to Include in Response Summary
+Note: This attribute is not usable in surveys with delphi="1".
+The dashboardInclude attribute allows you to specify a tab-delimited file other than include.dat to include in the Response Summary.
+This is used sometimes to refer to a different tab-delimited file for the report and the Response Summary.
+dashboardIncludeKey
+Specifying Key to Use for Response Summary Data File
+The dashboardIncludeKey attribute allows you to specify a variable other than source to index the file included for the Response Summary.
+fixedWidth
+Setting the Size of Fixed-Width Fields
+The fixedWidth attribute controls the way fixed-width files show open-ended data.
+By default, fixedWidth="lax" is specified and all open-ended data is included in the download files with their field widths set to their defaults.
+If fixedWidth="tight" is specified, then only numeric open-ended data is included and the field width is determined by the verify, range or size attributes specified at the question level (e.g., verify="range(0, 999)" sets the field width to 3, size="10" sets the field width to 10).
+flatKey
+Setting the Key for Flat Form Data
+The flatKey attribute is used to get the OE Data (Flat Form) data file type. Specify a comma-separated list of variables (e.g., flatType="item1,item2,item3,..." or flatType="PID") and the data will be outputted according to the key(s) specified.
+flatShowEmpty
+Setting to Show Empty Lines in Flat Form
+The flatShowEmpty attribute is a boolean value that controls the OE Data (Flat Form) data file type to show empty lines.
+If flatShownEmpty="1" is specified, empty lines are shown in the downloaded data file.
+forceDataCharset
+Setting the Downloaded Data Character Set
+The forceDataCharset attribute allows you to convert data downloads contained within zip files from their default character set (typically UTF-8) to a new character set.
+Note: This attribute is used in very rare cases and you may find the available character sets on Python.org.
+fwoe
+Specifying OE Data to Include in Fixed-Width Files
+The fwoe attribute can be set to "text", "textarea", "other" or "" (blank) and controls which open-ended data appears in the data.
+If fwoe="text,textarea,other" is specified, then non-numeric text, textarea, and other data will appear.
+If fwoe="" is specified, then none of the non-numeric open-ended data will be shown.
+geoip
+Setting to Generate GeoIP Variables
+The geoip attribute controls the virtual questions that are added to the survey related to participant GeoIP information.
+If geoip="all" is specified, all GeoIP-related information relative to the country name, city, region and metro code is added.
+Learn more: Implementing a Digital Fingerprinting System.
+imagePrefix
+Specifying a Prefix for "Uploaded Files" Downloads
+The imagePrefix attribute controls the variable prepended to the "Uploaded Files" in the data downloads menu.
+By default, the participant's record is prepended. You may specify, for example, imagePrefix="source" to use the source variable instead.
+indexed
+Specifying Variables to Index Data By
+Note: In surveys with delphi="1", records are automatically indexed by uuid and any extraVariable identifiers.
+The indexed attribute can be used to index survey data based on an extraVariable. This is often used in association with the loadRecord function to load data from a source survey.
+minimumSegment
+Setting Minimum Population Size for Segments
+The minimumSegment attribute enables you to disable segments that do not meet a certain number of population. If minimumSegment="10" is specified, then segments below that population appear as blanks in the reports. This is required to obey certain UK market research regulations.
+Learn more: Hiding Low Base Segments in Reports and Exports.
+namingScheme
+Specifying Variable Naming Format
+The namingScheme attribute can be used to adjust the data labels for your questions. If namingScheme="cruft cruft" is specified, the system uses an older way of generating labels in the report. If namingScheme="TEST TEST" is specified, the question labels for each variable get changed to "TEST" instead of the normal "Q1".
+The default value, namingScheme="%L%R%C%H %L%R%C%Hoe", uses the labels you provided in the survey.xml to generate the labels appropriately.
+%L is replaced with the label of the question (which must be set).
+%R is replaced with the row label.
+%C is replaced with the column label.
+%H is replaced with the choice label.
+There are two parts to the naming scheme: the first part (before the space) is for normal questions and the second part (after space) is for open-ended questions.
+Instead of %R, you can use %r which will be the one-based index of the row. This means that even if you named your rows "r0", "A1", "x4", you will see "r1", "r2", "r3" instead.
+precision
+Setting the Number of Digits to Display After Decimal
+The precision attribute controls the number of digits to display after the decimal points for fixed-width data files.
+By default, the precision attribute is set to 2. However, tab-delimited files display six significant digits both before and after the decimal point and weights are shown with eight significant digits.
+saveRandomOrder
+Saving the order of shuffled elements
+The saveRandomOrder attribute is a boolean value that controls whether the order of randomized elements is saved when a participant exits the survey.
+If saveRandomOrder="0" is specified, the order for randomized elements is not saved. This setting may optimize the time it takes to save because the random order can be considerably large and slow to save.
+Note: The "Random Order" file located in the "Tracking Files" section of the data downloads will be blank.
+spssSimpleCheckbox
+Setting to Show Simple Labels in SPSS
+The spssSimpleCheckbox attribute is a boolean value that changes the value labels for checkboxes in the SPSS script data downloads.
+For example, instead of displaying Q1 1 'The text' 0 'NO TO: The text', it will be shown as Q1 1 'Selected' 0 'Not Selected'.
+sql
+Using SQL Database
+Note: This attribute is not usable in surveys with delphi="1".
+The sql attribute is a boolean value mostly used for panel surveys. If sql="1" is specified, the data will be stored inside a SQL database.
+sqlRefreshTime
+Setting the SQL Database Refresh Time
+The sqlRefreshTime attribute is an integer value that allows you to override the default time it takes for new records to appear in the report after having been added to the SQL database.
+The default is 3600 seconds (1 hour) and can be set to a lower value for smaller surveys. For panel surveys, however, this time should be kept at 1 hour to avoid lengthy delays.
+sqlTarget
+Setting the SQL Database File Path
+The sqlTarget attribute can be set to the path where the SQL database should be stored.
+For example, if sqlTarget="selfserve/9d3" is specified, then the database will reside in the main client directory specified.
+trackCheckbox
+Setting to Show Blanks for Unseen Checkbox Cells
+Note: Surveys with delphi="1" have this attribute on by default.
+Tip: trackCheckbox is obsolete, use the trackVars attribute described below instead.
+If trackCheckbox="1" is specified, then a hidden question _tcx, with one row per checkbox row and column in the survey, is generated. When a participant completes the survey, each cell in that question is set to TRUE if the corresponding cell was hidden due to a False condition. When downloading data, this information is used to turn checkbox variables that would be otherwise zero to blank (None) values.
+trackVars
+Setting to Show Blanks for Unseen Checkbox Cells
+Note: Surveys with delphi="1" have this attribute on by default.
+The trackVars attribute can be set to "none", "checkbox" or "term".
+If trackVars="checkbox" is specified, then each checkbox input is individually tracked to show if the cell was shown to the participant or hidden due to a False condition. This enables a reporting Percentage Base option that lets you configure the base to show the exact number of participants who actually saw the checkbox option rather than those who answered the question (e.g., "Total Shown Variable").
+The trackVars="checkbox" option tracks what rows and columns were seen in checkbox question by re-checking the conditions at the end of the survey when the participant's data is about to be saved. In order to generate the correct values, you must ensure that the conditions have the same value at the end of the survey as at the beginning. For example, if you base the visibility of a row based on a persistent variable (i.e., set by using <exec>p.showRows = ['r1', 'r3,' r5'] and checked by e.g., rowCond="row.label in p.showRows"), that persistent variable must remain unchanged throughout the survey.
+In contrast to trackCheckbox="1", with trackVars="checkbox" you can import and export this data. Variables that are not shown to the participant appear as blanks (None) instead of 0s. Tab importing data with a blank value set this "not shown to participant" flag.
+Note: Checkbox visibility is not tracked for questions with where="execute" in surveys with delphi="1".
+If you use hmerge with trackVars="checkbox", the downloaded data will be coded to 0/1 instead of blank/1. Note that the _tcx data value defaults to one if a participant answered a question before the trackVars attribute was added.
+Learn more: Setting an Answer Option Base to Total Shown
+If trackVars="term" is specified, then a marker will be added to each terminated participant tracking which termination condition they met. The percentages for all terminate points will be tracked in the Terminates tab of the Response Summary.
+Tip: You can specify trackVars="checkbox,term".
+weights
+Specifying Weights for Data Weighting
+The weights attribute allows you to provide weights for individual questions.
+zeroPad
+Setting to Enable Leading Zeroes for Fixed-Width Files
+The zeroPad attribute controls the leading zeroes in fixed-width files.
+If zeroPad="1" is specified, then leading zeroes are displayed in fixed-width files (e.g., a variable with a fixed-width of three with the value of "1" looks like "001").
+1: Learn More
+Click the links to get information on the below listed <survey> element's attributes.
+Overview of the Survey Tag and Quick Links
+Attributes for Project Settings
+Attributes for Display Settings
+Attributes for Question Settings
+Attributes for Field Settings
+Attributes for Device Settings

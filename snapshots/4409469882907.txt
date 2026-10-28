@@ -1,0 +1,125 @@
+Title: Take Action When a Participant Finishes a Survey
+See Adding Participant Sources Using the Survey Editor to learn how to setup participant sources and exit pages in the Survey Editor.
+1: Overview
+The <exit> element determines what happens when a participant finishes the survey. When a participant is terminated, overquota or successfully completes a survey, they can be:
+shown a message (e.g. "Thank you for taking our survey!")
+redirected to any URL (e.g. http://sample.com?respID=${respID})
+or both, shown a message for a specified amount of time and then redirected to some URL
+Many <exit> tags can be specified for every <samplesource> element provided in the survey. For example:
+<samplesources default="0">
+<samplesource list="0">
+<title>Open Survey</title>
+<invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+<completed>It seems you have already entered this survey.</completed>
+<exit cond="terminated">Thank you for taking our survey.</exit>
+<exit cond="qualified">Thank you for taking our survey.</exit>
+<exit cond="overquota">Thank you for taking our survey.</exit>
+</samplesource>
+<samplesource list="1">
+<title>My Sample Co.</title>
+<exit cond="terminated and Q1.r1">Thank you!</exit>
+<exit cond="terminated and Q1.r2" url="http://sampleCo.com?id=${ID}&amp;s=t"/>
+<exit cond="qualified" url="http://sampleCo.com?id=${ID}&amp;s=q" />
+<exit cond="overquota" url="http://sampleCo.com?id=${ID}&amp;s=oq" />
+</samplesource>
+<samplesource list="2">
+<title>Ice Cream Sample</title>
+<exit cond="1">Thank you very much!</exit>
+</samplesource>
+</samplesources>
+2: Attributes
+The following attributes can be applied to the <exit> element:
+Attribute
+Type
+Description
+cond
+string
+Specify the condition to use the <exit> element
+url
+string
+Redirect participants to the URL specified
+timeout
+int
+The number of seconds before redirecting participants to URL
+style
+string
+Load a specific style from nstyles
+2.1: cond - Who Should Use This Exit
+The cond attribute is required as it controls which <exit> the participant should take upon exiting the survey. In addition to any Python logic code, there are three special conditions available built-in to the system that can be applied to any project:
+Condition
+Description
+qualified
+Used when the participant successfully completes the survey
+overquota
+Used when the participant is marked as overquota
+terminated
+Used when the participant is terminated from the survey
+By default, a project created using the Survey Editor is equipped with the following exit links:
+<exit cond="terminated">Thank you for taking our survey.</exit>
+<exit cond="qualified">Thank you for taking our survey. Your efforts are greatly appreciated!</exit>
+<exit cond="overquota">Thank you for taking our survey.</exit>
+In addition to these built-in conditions, you may also specify any Python logic code. For example:
+<exit cond="list == '1' and qualified" url="https://www.google.com/"/>
+<exit cond="Q1.r4">Thank you for taking our survey.</exit>
+<exit cond="hasMarker('Sample_1')">Thanks for stopping by!</exit>
+<exit cond="1" timeout="5" url="http://yahoo.com">Thanks!</exit>
+The <exit> elements are evaluated starting from the first one. The condition that is met first will be the one that is used.
+If none of the conditions are met, participants will be redirected to our website.
+Learn more: Adding Condition / Skip Logic
+2.2: url - Set a URL to Redirect Participants
+The url attribute will redirect participants from the survey to the URL specified. For example:
+<exit cond="terminated" url="http://your.site.com/survey?s=t&amp;id=${id}">This message will not be seen.</exit>
+In the example above, participants who are terminated will be immediately redirected to the URL provided. They will not see the message supplied.
+You can specify any survey variable using the ${VAR} syntax.
+e.g. http://site.com/survey?sid=123&amp;id=${id}&amp;Q1=${Q1.val}
+You can use the timeout attribute to display a message before redirecting participants to the external URL. For example:
+<exit cond="overquota" url="http://your.site.com/survey?s=oq&amp;id=${id}" timeout="5">This message will be seen for 5 seconds.</exit>
+In the example above, participants who are overquota will be shown the message specified for 5 seconds before being redirected to the URL.
+2.3: timeout - Set the Number of Seconds Before Redirecting Participants
+The timeout attribute is an integer value representing the number of seconds to display a message before redirecting participants to the URL specified. For example:
+<exit cond="qualified" timeout="3" url="http://your.site.com/survey?uid=${uid}">Thanks! You are being redirected in 3 seconds.</exit>
+In the example above, participants who successfully complete the survey will be shown the message "Thanks! You are being redirected in 3 seconds." before being redirected to http://your.site.com/survey?uid=${uid} after 3 seconds.
+If no message is specified, the default message shown is:
+Survey Completed - Thank You
+You will be redirected in 3 seconds; please click here to continue now.
+2.4: style - Use a Custom Exit Page
+Requires Decipher Cloud
+The style attribute can be used to customize the final page that participants are redirected to. Inside your project's nstyles file, you can override the following attribute:
+*STYLENAME/sys.thankspage.timeout:
+For example, given the following <exit> element:
+<samplesources default="1">
+<samplesource list="1" title="default">
+<exit cond="1" style="customExit">We appreciate your support.</exit>
+</samplesource>
+</samplesources>
+Shown below, we can override the customExit style in our project's nstyles to change the exit page shown to participants:
+*customExit/sys.thankspage.timeout:
+<h1>A HUGE THANK YOU!</h1>
+<p>${text}</p>
+This produces the following result:
+We could also incorporate the url and timeout attributes by including the necessary JavaScript to redirect participants after they are shown the custom exit page.
+For example:
+<samplesources default="1">
+<samplesource list="1" title="default">
+<exit cond="1" style="customExit" timeout="5" url="http://google.com">We appreciate your support.</exit>
+</samplesource>
+</samplesources>
+Shown below, we can override the customExit style in our project's nstyles to change the exit page shown to participants:
+*customExit/sys.thankspage.timeout:
+<h1>A HUGE THANK YOU!</h1>
+<p>${text}</p>
+<script>
+var t = setTimeout(function() { window.location.href = "${url}"; }, ${timeout} * 1000);
+</script>
+This produces the same result, but now participants are redirected after 5 seconds to the URL specified in the <exit> element.
+3: Exit Examples
+There are three possible ways that an <exit> tag can be setup:
+3.1: Display a Message
+<exit cond="qualified">Thank you!</exit>
+3.2: Redirect to a URL
+<exit cond="qualified" url="http://your.site.com/survey?uid=${uid}"/>
+3.3: Display a Message Before Redirecting to a URL
+<exit cond="qualified" timeout="3" url="http://your.site.com/survey?uid=${uid}">Thanks! You are being redirected in 3 seconds.</exit>
+4: What's Next?
+Configuring Participant Sources
+Adding Participant Sources Using the Survey Editor (Survey Editor)

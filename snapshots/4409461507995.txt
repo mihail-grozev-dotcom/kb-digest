@@ -1,0 +1,111 @@
+Title: Data Archival and Deletion
+Note: This article outlines the default archival and deletion rules for Decipher surveys and data. If desired, you can use the Archive and Delete Settings feature to customize the data archival and deletion settings for your company.
+To keep up with the abundance of data that is generated within each Decipher server, some project files may be archived or removed after a certain amount of time and inactivity.
+The following table details how long project-related data is preserved for Decipher surveys with delphi="1" enabled. All times listed below indicate the amount of time that will pass between the last participant finishing the survey and the execution of the indicated action(s).
+Note: All surveys created after August 2019 have delphi="1" enabled by default.
+Time
+Action
+7 days (1 week) - Multi-Tenant Shared Environment
+Temporary survey directories (i.e., URLs starting with "temp"*) are archived**.
+Note: You can run touch keep in a temporary directory to prevent it from being archived. temp-view and temp-edit-live-#### directories are always archived regardless of keep status.
+21 days (3 weeks) - Single-Tenant Environment
+Quota debug logs are removed (i.e., quota.xls.log files).
+Session data for complete records is removed from the state.db file (or equivalent).
+Note: The session entry for the last participant activity is always retained.
+Abandoned surveys (surveys deleted from the Portal) are archived**.
+Temporary survey directories (i.e., URLs starting with "temp"*) are archived**.
+Note: You can run touch keep in a temporary directory to prevent it from being archived. temp-view and temp-edit-live-#### directories are always archived regardless of keep status.
+30 days (1 month)
+Copies of data directories made using copy-survey -d/-m are archived*.
+90 days
+Logic node debug data is removed for surveys with a compat level of 135+.
+Session data for partial records is removed from the state.db file (or equivalent).
+Note: The session entry for the last participant activity is always retained.
+Uploaded media files for the Media Testimonial Element are removed 90 days after date of upload.
+6 months
+Inactive users are disabled.
+12 months
+Version control data is removed.
+* Copies of data directories are permanently erased 12 months after being archived
+** Archived surveys are permanently erased 12 months after being archived. This also applies for surveys that have been manually archived. For information on how to manage archived data, see Scripts for Managing Archived Projects.
+1: Legacy Surveys
+The following table details how long project-related data is preserved for Decipher Legacy surveys (any survey without delphi="1" enabled). All times listed below indicate the amount of time that will pass between the last participant finishing the survey and the execution of the indicated action(s).
+Note: All surveys created after August 2019 have delphi="1" enabled by default.
+Time
+Action
+7 days (1 week) - Multi-Tenant Shared Environment
+Temporary survey directories (i.e., URLs starting with "temp"*) are archived**.
+Note: You can run touch keep in a temporary directory to prevent it from being archived. temp-view and temp-edit-live-#### directories are always archived regardless of keep status.
+21 days (3 weeks)
+Partial data is removed from the state.db file (if autoRecover="1" is not set).
+Quota debug logs are removed (e.g., quota.log and quota.xls.log files, etc.).
+Data saved using autosave="1" is removed (i.e., data saved by the “Come back later” feature).
+30 days (1 month)
+Backup data created when performing survey edits is removed (e.g., edit-results and transform files, etc.).
+Backups made of result files are removed (e.g., those generated when changes are made to the survey layout).
+Copies of data directories made using copy-survey -d/-m are archived**.
+Temporary survey directories (i.e., URLs starting with "temp") are archived **.
+Note: You can run touch keep in a temporary directory to prevent it from being archived. temp-view and temp-edit-live-#### directories are always archived regardless of keep status.
+6 months
+Inactive users are disabled.
+12 months (1 year)
+Version control data is removed.
+** Archived surveys are permanently erased 12 months after being archived. This also applies for surveys that have been manually archived. For information on how to manage archived data, see Scripts for Managing Archived Projects.
+1.2: Cloud Server Customization
+Requires Decipher Cloud
+If requested, Forsta can customize the data archival and deletion policies for individual Decipher Cloud servers. The following tables list the variables that control each of the data retention options available within a server.
+Please contact your Forsta representative if you would like to update your server values for any of the variables listed below.
+1.2.1: Archiving Data
+The following variables control the default number of days before users, projects, and reports are archived.
+Variable
+Default (in days)
+Description
+userRetentionDays
+180 (6 months)
+When inactive user accounts are disabled.
+retention.survey.data_mode_only
+1
+When data-only projects (copy-survey -d) are archived.
+Note: Such backups are created before clearing data or performing data merges.
+retention.survey.abandoned
+21 (3 weeks)
+When surveys that have been deleted via the Portal (using the “abandon survey” action) are archived.
+retention.survey.temp_directories
+21 (3 weeks) - Single-Tenant Environment
+7 (1 week) - Multi-Tenant Environment
+When directories starting with 'temp', 'tmp', or 'sst' are archived.
+Note: These are created during the “live edit” process or manually from the shell environment.
+retention.survey.main
+270 (9 months)
+The threshold for when surveys can be manually archived without being forced.
+Note: The number of days is counted since the last report was run or downloaded OR since the last participant finished the survey (whichever comes last). Survey states (Dev/Testing/Live) are not taken into account when archiving.
+1.2.2: Deleting Data
+The following variables control the default number of days before users, projects, and reports are deleted.
+Variable
+Default (in days)
+Description
+retention.survey.archived
+365 (1 year)
+When archived surveys are permanently deleted. To turn off permanent deletion of archived projects, set this value to "None".
+Note: Once the survey is deleted, unarchive will not work.
+retention.audit.participant
+1095 (3 years)
+When participant audit information is removed.
+Note: Without this data, the “Field Statistics” application cannot be used.
+retention.audit.performance
+180 (6 months)
+When information about Portal and Crosstabs performance is removed.
+Note: This affects only Forsta’s internal performance profiling application.
+retention.survey.unsent_lists
+30 (1 month)
+When unused / unsent email lists are removed.
+Note: Email list removal does not include unsent list files used with ADB within a survey. If a list file was sent using ADB, it will not get removed until the survey has been archived.
+retention.survey.deleted_data
+30 (1 month)
+When records deleted in surveys with delphi="1" are removed.
+retention.survey.state.complete
+21
+When session data for completed participants is removed.
+retention.survey.state.partial
+90 (3 months)
+When session data for partial participants is removed.

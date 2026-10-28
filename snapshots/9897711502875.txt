@@ -1,0 +1,30 @@
+Title: February 20th General Release Notes
+Release Date: February 20, 2018
+Highlights of February 20th Release
+New Features
+Crosstabs: Response Base
+Change the table base for multi-select questions.
+View questions by number of responses instead of participant count.
+Programming & Tools
+Use API calls to launch or re-launch surveys, run simulated data, and view survey warnings.
+Customize the project archival settings for your cloud server.
+New Features
+Crosstabs: Response Base
+Reporting on multi-choice questions has been enhanced within Crosstabs. You can now view your multi-select questions by number of responses rather than participant count.
+This new functionality is available in the Crosstabs table editor:
+Programming & Tools
+API
+The Decipher API has been updated to allow you more oversight when launching your projects. You can now launch surveys, run simulated data, and view launch errors directly from the shell using a few simple commands.
+Launch Surveys
+Use the launch survey call to launch or re-launch a survey from the shell just as you would from the portal, with all the same performance checks. Or, use the launch warnings call to view warning messages for the following:
+Open survey tasks
+Outdated translations
+Incompatible elements
+Missing project parameters
+Panel Management sync errors
+Fulcrum sync errors
+Insufficient test data
+Simulated Data
+The simulated data call allows you to run simulated data on a survey from the shell. Additionally, you can use the test data status call to view the status of any current or previously run test data.
+Project Archival
+Staff users can now customize cloud server data retention policies, specifying how many days must pass before certain actions are taken, such as when projects are archived, when projects are deleted, and when platform and field statistics information is removed.

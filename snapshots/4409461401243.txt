@@ -1,0 +1,80 @@
+Title: Text Highlighter Element
+The Text Highlighter element is a multiple choice type question with at least one choice option, which serves as the question marker and multiple row options, which serve as the highlightable text items. It offers an interactive experience, allowing participants to rate the likability of a concept or block of text by highlighting its words or sentences.
+The size of the concept or text block is automatically adjusted based on each participant's browser size. For mobile devices, white space is included on the right side of the concept or text block to allow participants to scroll up or down.
+See Customizing the Text Highlighter Element to learn how to customize the Text Highlighter element using the XML Editor.
+1: Adding a Text Highlighter Element
+To add a Text Highlighter, first click the "+ Element" button to add a new survey element. Then click "Stimulus" under Question Types and select the "Text Highlighter" element. Then click "Add".
+Enter the question and instruction text in the areas provided. Then add markers and highlightable text by clicking the following:
++ New Marker: Adds a new color-coded marker.
++ New Highlightable Text: Adds a text area for the concept or text block.
+2: Adding Highlightable Text
+To add the text for the concept or text block, click “+ New Highlightable Text” and enter the text in the text area provided. When adding highlightable text, you must use a new line to indicate each new highlightable item. For example, to allow participants to highlight each word individually, enter each word on its own line. Likewise, to highlight phrases or strings of words, enter each phrase or string on its own line.
+The "Text Assist Tool" can help alleviate most of the required work by replacing all "spaces" and putting words on individual lines. Click the "Text Assist Tool" to open the formatting tool in a new window.
+To use the tool, enter the text you want participants to highlight in the top field. As you type or paste in the text, the field below will automatically generate each word on a new line.
+Once all of the text is entered, click the "Copy to Clipboard" button. Then return to the Survey Editor.
+Back in the Survey Editor, paste the copied text into the "Highlightable Text" field. Each word will appear on a new line, allowing participants to highlight individual words.
+Note: Due to the potential for discrepancies in word count between multiple languages, the highlightable text within the Text Highlighter question cannot be translated directly (i.e., using a survey file or via the Language Manager). To translate highlightable text, you must manually adjust the text within the question.
+Tip: If your project is to be fielded in multiple languages, create a hidden question with the highlightable text in its original format. This will provide translators with context for more accurate translations.
+3: Adding Markers
+To add a color-coded text marker, click “+ New Marker” and enter the text for it in the choice field. Text Highlighter elements must have one to three markers specified. Additional markers can be added in the XML. The pre-defined colors are assigned as follows:
+If only one marker is specified, the marker color will be green.
+If two markers are specified, the first marker will be green and the second marker will be red.
+If three markers are specified, the first marker will be green, the second marker will be blue, and the third marker will be red.
+If four or more markers are specified, the first three markers are assigned as described above. The additional markers will not have any color unless one is specified in the survey XML using hottext:marker_color.
+Note: Do not number your response options unless you want that numeric text to appear for the participant. The system will automatically provide labels and numbers for the response options, which you can edit later in "Options".
+By default, all response options will appear in the question box with labels (ch1, ch2, etc. for markers, and r1, r2, etc. for highlightable text). You may edit each response option by selecting the "Marker Actions" and "Text Assist Tool Actions", as appropriate.
+4: Style Settings
+To configure the style settings for your Text Highlighter element, click the "..." button at the top right of the question in the staging area and select "Update Styling".
+In the "Question Display Options" window, use the input fields to adjust the minimum and maximum number of highlights for your highlighter. Additional information about each feature appears when you mouse-over the text.
+Once you are satisfied with your settings, click "Save and Preview" to preview the element, or click "Save and Close" to save the settings and exit the window.
+Minimum Highlights: The minimum number of words that each participant must highlight. For example, a value of "1" means a participant must highlight one word in order to continue to the next question.
+Maximum Highlights: The maximum number of words that each participant can highlight (must be greater than the minimum number of highlights or greater than zero). For example, a value of "20" means a participant may highlight up to 20 words.
+Tip: You can preview the resulting question at any time by clicking "Preview" located at the top right corner of the element. See Previewing a Question to learn more.
+5: Question Options
+The options available for configuring question and marker (choice) settings are displayed to the right of the staging area. Click any question or marker (choice) option to set rules for it.
+5.1: General Options
+Select the question to configure the following options. Each option, when altered, affects all attributes within the element.
+Label: The label assigned to the element. Click to edit the default label for the Text Highlighter element.
+Show If: The condition logic for displaying the element. Click to create new logic conditions or to select an existing logic condition for the element. For more information, see Adding Logic to a Question or Response Option.
+Languages: The element language. Click to select what languages the element will be shown in if the survey has multiple languages. The default is "all languages".
+More Options: Click to select less commonly used options. Once an option is selected, you will be able to specify the settings for that option. For more information on each option, see More Options - Advanced Features.
+Not compatible:
+Mandatory
+Randomize
+Shuffle Groups
+Rating / Scale
+5.2: Marker (Choice) Options
+When altered, each of the following options affects only specific marker (choice) attributes.
+Label: The label assigned to the marker (choice). Click to edit the default label for the marker.
+Data Value: The value assigned to the marker (choice) in the data. Click to edit the default value for the marker here if the option is available.
+Show If: The condition logic for displaying the marker (choice). Click to create new logic conditions or select an existing logic condition for the marker. For more information, see Adding Logic to a Question or Response Option.
+Languages: The language for the marker (choice). Click to select what languages the marker will be shown in if the survey has multiple languages. The default is "all languages".
+Hidden: Click to hide the marker from participants.
+More Options: Click to select less commonly used options. Once an option is selected, you will be able to specify the settings for that option. For more information on each option, see More Options - Advanced Features.
+Not compatible:
+Do Not Randomize
+Optional
+5.3: Highlightable Text (Row) Options
+When altered, each of the following options affects only specific highlightable text (row) attributes.
+Label: The label assigned to the highlightable text (row). Click to edit the default label for the highlightable text (row).
+Show If: The condition logic for displaying the highlightable text (row). Click to create new logic conditions or select an existing logic condition for the row. For more information, see Adding Logic to a Question or Response Option.
+Languages: The language for the highlightable text (row). Click to select what languages the highlightable text will be shown in if the survey has multiple languages. The default is "all languages".
+Hidden: Click to hide the highlightable text from participants.
+No Answer: Click to replace the <select> form with an exclusive <checkbox> form. This is primarily used if there is a "Don't Know" or "None of These" response option in the question.
+More Options: Click to select less commonly used options. Once an option is selected, you will be able to specify the settings for that option. For more information on each option, see More Options - Advanced Features.
+Not compatible:
+Do Not Randomize
+Data Value
+Optional
+6: Limitations
+The text highlighter is designed to be used with text and not images. If images are included, participants must click the image. Participants are unable to highlight images and words together with a single stroke. Forsta recommends using the hottext:prefix_html and hottext:suffix_html attributes to display images that cannot be highlighted to improve the participant experience.
+Using more than 100KB (e.g. 10 images of 10 KB) in the text highlighter will cause the survey page to load noticeably slower. Page timeouts are possible with more than 10 images.
+Due to the potential for discrepancies in word count between multiple languages, the highlightable text within the Text Highlighter question cannot be translated directly (i.e., using a survey file or via the Language Manager). To translate highlightable text, you must manually adjust the text within the question.
+Tip: If your project is to be fielded in multiple languages, create a hidden question with the highlightable text in its original format. This will provide translators with context for more accurate translations.
+7: Charting in Crosstabs
+Note: The report chart for the Text Highlighter element cannot be exported. However, it is possible to save the chart to your computer by taking a screenshot.
+Once you have applied your desired crosstab settings, locate the Text Highlighter element and click the "..." menu to view the available actions for that element. Then select "Add / Edit Charts".
+In the chart menu, click "Custom" and select "Highlighter Chart" from the drop-down. Then click "Save".
+Next, select the desired chart type and segment from the drop-downs. The color coding for chart types is defined in the Chart Options menu (located in the "Actions" menu).
+7.1: Calculations
+The legend for the Text Highlighter chart contains six color-coded buckets. The lowest count sets the lowest end of "Least Selected" and the highest count sets the highest end of "Most Selected". The six buckets distribute the responses inside that range.

@@ -1,0 +1,59 @@
+Title: Configuring Survey Display Settings
+The Display Settings section of the Project Settings Summary menu allows you to quickly review and adjust the display settings for your survey.
+1: Accessing Display Settings
+To view the display settings for your survey, first click the Settings button at the top right of the Survey Editor or XML Editor.
+In the Survey Summary window, select Display Settings from the Summary drop-down menu or scroll and click the Display Settings header.
+2: Configuring Display Settings
+2.1: Adding a Logo
+You may brand your survey by selecting a custom logo, or you have the option of choosing not to include a logo. To add a logo to your survey, click the Add Logo button. The logo image library appears, where you can select an existing image or upload a new image.
+By default, survey logos appear at the top left corner of the survey window. To change this, select the logo and choose a new position from the Logo Position drop-down menu. You can also set alternate (ALT) text for the logo using the Logo Alt Text input box. For participants who use a screen reader, the logo ALT text is read when they hover over the logo. Additionally, the alternate text is displayed to participants if the image cannot be shown (i.e. a missing resource). If left blank, "Logo" is the default input for this field.
+Once the logo and placement are set, click Insert. Inserted logos show in the Display Settings menu.
+If desired, you can change or remove the logo directly from this menu. If you do make any changes, be sure to save the new settings before exiting the Display Settings menu.
+2.2: Creating and Modifying Support Links
+By default, all survey footers contain Forsta's Privacy Policy and Help links. You can modify these links or create additional footers that display based on sample source, other extra variables defined in your survey, or device type.
+To customize the footer links for your survey, either click into the text-box containing the default text or click the Edit Survey Footer button to create a new footer.
+Clicking into a text-box will open the Rich Text Editor with options for font size, format, and color, text alignment, etc.
+Note: If you have different support links for different parts of your sample, you can add as many custom support links as you wish by clicking the Edit Survey Footer button again and specifying which links should show to that sample segment.
+2.2.1: Customizing Text
+Select the text you would like to modify and use the text editor options to make any changes. Make sure to save the new settings once you are done editing by clicking Save at the bottom right of the Display Settings window.
+Note: To remove the footer text completely, delete the contents of the text editor and save your changes.
+2.2.2: Customizing Links
+To modify a link within the survey footer, select the hyperlinked text inside the text editor and click the "link" icon from the Editor toolbar. This brings up a new window where you can modify the URL for the webpage participants will see, the display and hover text of your link, as well as how the new link will be opened.
+Note: Footer links can only be set up to open in a new browser tab.
+You can also create additional links by adding your desired text and using the link icon to modify it.
+2.2.3: Applying Logic
+By default, the survey footer is displayed to every participant that takes your survey. The logic for this behavior can be seen at the top of the Rich Text Editor, and by default, it is set to Show If: 1.
+To apply logic to your custom footer, click the pencil icon and add the desired logic. Keep in mind that logic can only be applied based on information already gathered. For general information about adding logic, see Adding Logic to a Question or Response Option.
+2.2.4: Removing Links
+To remove a custom link, click the "x" icon in the top right corner of the editor.
+2.3: Form Image Replacement (FIR)
+Allows you to use stylized images instead of browser default radio and checkbox forms. As you make changes to the FIR settings the preview window displays the results.
+Use FIR Globally: To use FIR globally, click On. This setting can be overridden at the question level to enable or disable FIR per question.
+Style: Set the style for FIR questions:
+Rounded: Rounds the corners
+Square: Squares off the corners
+Scale: The natural state of the form is small. When a participant hovers-over the option it scales to a larger size, and once clicked the final form is set.
+FIR sizing is controlled by the fir-size theme variable in surveys with compat levels of 129+. See The Less Styles System for more information.
+2.3.1: Set Display of 1-Column Questions
+Allows you to choose how 1-column questions are displayed.
+Lists:
+Tables:
+2.3.2: Do you want to update all existing 1-column questions?
+Select Yes or No.
+2.4: Configuring Mobile Options
+Allows you to configure the display of Single Select and Single Select Grid questions.
+2.4.1: Single Select Questions
+Select how Single Select questions are displayed on mobile devices.
+Lists: Shows all columns for each row in a list.
+Tables: Shows all columns for each row in a table.
+2.4.2: Single Select Grid Questions
+Select how Single Select Grid questions are displayed on mobile devices.
+List: Shows all columns for each row in a list.
+Accordions: Shows one row and column set at a time. When an answer is selected, columns are displayed for the next row. Participants also have the freedom of focusing on an option to collapse the other rows.
+Limitations
+The accordion style option is available only for surveys with a compat level of 144+.
+Accordion style grid questions are not optimized for surveys using Dark mode survey themes.
+In survey themes which display buttons and selections in the same color, selected responses default to blue in accordion style questions, regardless of which color is picked for them.
+3: Saving Display Settings
+Click Save to save any changes made to the display settings for the project.
+You can also click the arrow next to the Save button to select Save for this project, or if you would like these display settings to be set as the defaults for future projects as well, select Save and set as defaults.

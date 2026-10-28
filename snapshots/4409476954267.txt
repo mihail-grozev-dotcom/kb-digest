@@ -1,0 +1,258 @@
+Title: Mobile Optimization Options
+Note: Surveys must be compat=28 or above for mobile features to work.
+1: Overview
+The survey system is equipped with features that will auto-detect participants using a mobile device. When a participant enters the survey on a mobile device, a profile is generated of the device making its known properties available (e.g. screen size, touch enabled, vendor, model, etc...). This information allows us to load appropriate styles for the device and customize the survey's overall look and feel.
+Before launching, a mobile compatible survey is checked for potential problems (e.g. usage of Flash questions, question size).
+2: Builder Features and Settings
+The mobile options are available in the "Project Settings" under "Device Settings".
+The device settings section allows you to define the mobile compatibility for your survey. Select each device type you would like to allow for your survey. If a device is not allowed, participants attempting to take the survey on these devices will be shown a message. You may edit the default message by entering a custom message in the message field.
+Desktops: Allows standard desktop or laptop computer
+Tablets: Allows modern tablets like the iPad or Samsung Galaxy Tab
+Smartphones: Allows new devices like the iPhone, Android-based devices, webOS and newer Blackberries with touch input capabilities
+Feature Phones: Allows older devices that have HTML-capable browsers with a screen width of 240px or wider
+Click "save" to save any changes made to the device settings for this project. Click on the arrow next to the save button to select "Save for this project" or if you'd like the device settings to be the default for future projects, select "Save and set as defaults".
+Keep in mind that small screens, inflexible, device-specific, user input methods, and potentially slow data transfer speeds all combine to make the survey completion process more difficult than on a typical computer. Review the list of technical limitations, and see Mobile Survey Design for additional guidelines for creating mobile-friendly surveys.
+3: Mobile Survey Examples
+Modern Smartphone
+Tablet
+Feature Phone
+Mobile compatible surveys detect the device type and display the survey using a different set of styles. This helps improve usability, readability and interactivity.
+4: Mobile Compat Levels
+The following attributes can be added to the element to specify the level of compatibility and allowed devices.
+mobile="[none, compat, mobileOnly, noMobile]"
+Setting
+Description
+mobile="none"
+This is the same as leaving the attribute blank or not including the attribute at all. The survey functions as usual and no mobile features are turned on.
+mobile="compat"
+This turns on device detection and makes the survey mobile compatible. It will load the appropriate styles specified in the mobileDevices attribute (shown below).
+mobile="mobileOnly"
+This does the same thing as "compat", turning on mobile detection and loading the necessary styles. However, participants who enter on a desktop (PC/Mac/etc..) will see a "Please come back using your mobile device." message.
+Override this message by setting the mobileOnlyMessage attribute.
+mobile="noMobile"
+This rejects all mobile devices. Respondents who enter the survey using a mobile device will see a "Please come back using a computer." message. If mobileDevices="tablet" is specified, tablet users will be able to enter the survey and tablet styles will be loaded. This is the only device category allowed when "noMobile" is set.
+Override this message by setting the noMobileMessage attribute.
+mobileDevices="[smartphone, tablet, featurephone, mobile, desktop]"
+Setting
+Description
+smartphone
+Newer devices like the iPhone, iPod Touch, Android, webOS and new Blackberries. These devices are touch-enabled and have jQuery support for scripting.
+featurephone
+Older devices that have HTML-capable browsers and a screen width >= 240px.
+mobile
+Other mobile devices that may be really old, have limited capabilities, or we know very little about. (e.g. Motorola Razr, e-readers like the Amazon Kindle, ...)
+tablet
+Modern tablet devices like the iPad and Samsung Galaxy Tab.
+desktop
+Standard desktop computer (e.g. PC, Mac, laptop, ...).
+An example where only desktops, smartphones and tablets are allowed:
+<?xml version="1.0" encoding="UTF-8"?>
+<survey
+alt="ProjectName"
+name="Survey"
+compat="119"
+...
+mobile="compat"
+mobileDevices="smartphone,tablet,desktop"
+featurephoneNotAllowedMessage="The device you are using is not allowed to take this survey."
+state="live">
+5: Accessing Mobile Device Properties
+Properties of the device are available at any time by referencing the new device dictionary object. For example:
+<exec>
+model = gv.request.device.properties["model"]
+</exec>
+Below is a list of some of the interesting properties available.
+Property
+Value Type
+(bool means "0" or "1")
+Description
+isMobileDevice
+bool
+"1" if device is detected as mobile
+vendor
+string
+Make of the device (e.g. "Apple")
+model
+string
+Model of the device (e.g. "iPhone")
+releaseYear
+string
+Year the device was released (e.g. "2007)
+touch
+bool
+"1" if device is touch-enabled
+phone
+bool
+"1" if device is a phone
+tablet
+bool
+"1" if device is a tablet
+eReader
+bool
+"1" if device is an e-reader
+osVersion
+string
+Version number of the device (e.g. "4")
+httpsSupport
+bool
+"1" if device supports HTTPS
+isAndroid
+bool
+"1" if device is an Android
+isBada
+bool
+"1" if device is Samsung's platform, Bada
+isLinux
+bool
+"1" if device is Linux powered
+isiOS
+bool
+"1" if device is OSX (e.g. iPhone, iPad, etc...)
+isBlackberry
+bool
+"1" if device is BlackBerry RIM
+isSymbian
+bool
+"1" if device is Symbian OS
+isWindows
+bool
+"1" if device is Windows
+isProprietary
+bool
+"1" if device uses Proprietary OS
+(some Android and unknown devices use this..)
+os
+string
+Operating system in use (e.g. "iOS")
+category
+string
+Category of the device (e.g. "smartphone")
+uaQueried
+string
+User-agent of the device (e.g. AppleWebKit (iPhone; U;)...)
+mp3Support
+bool
+"1" if device supports .mp3 files
+cookieSupport
+bool
+"1" if device supports cookies
+family
+string
+General family name of the device
+There are also several convenience methods available for general info in your survey.
+<exec>
+d = gv.request.device
+d.isMobileDevice() # True if device is any mobile device
+d.isSmartphone() # True if smartphone category
+d.isTablet() # True if tablet category
+d.isIpad() # True if Apple iPad
+</exec>
+In addition to the methods above, you can reference the syntax below to detect the current device type:
+Syntax
+Description
+device.featurephone
+True if device is featurephone
+device.smartphone
+True if device is smartphone
+device.tablet
+True if device is tablet
+device.mobileDevice
+True for any mobile device
+device.iphone
+True if device is an iPhone
+device.android
+True if device is an Android
+device.blackberry
+True if device is a BlackBerry
+device.otherMobile
+True if device is a mobile device and not a smartphone, tablet or featurephone
+device.desktop
+True if NOT a mobile device
+device.width
+The screen width of the device or None if not detected
+device.height
+The screen height of the device or None if not detected
+For example:
+<radio label="Q1_desktop" cond="not device.mobileDevice">
+<title>
+10-scale question
+</title>
+<comment>Please select one for each row</comment>
+<row label="r1">Row</row>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+<col label="c6">6</col>
+<col label="c7">7</col>
+<col label="c8">8</col>
+<col label="c9">9</col>
+<col label="c10">10</col>
+</radio>
+<radio label="Q1_mobile" cond="device.mobileDevice">
+<title>
+5-scale question (reduced for mobile)
+</title>
+<comment>Please select one for each row</comment>
+<row label="r1">Row</row>
+<col label="c1">1</col>
+<col label="c2">2</col>
+<col label="c3">3</col>
+<col label="c4">4</col>
+<col label="c5">5</col>
+</radio>
+<suspend/>
+6: Creating Custom Mobile Styles
+Using the device detection properties mentioned above in association with the XML style system or nstyles file, we can dynamically apply styles to our survey to customize the look and feel for each device.
+Not familiar with the style system? Check out the XML Style System..
+6.1: XML Styles
+Using the XML style system, we can supply extra markup and code to supplement the mobile user's experience. For example:
+<style name="respview.client.js" cond="device.smartphone" wrap="ready" mode="after"><![CDATA[
+// run extra Javascript code for smartphones only
+]]></style>
+<style name="survey.logo" cond="device.smartphone"><![CDATA[
+<!-- No logo shown for smartphone devices -->
+]]></style>
+This is the most convenient way to dynamically alter the survey view for each device. It's best practice to eliminate vertical scrolling by displaying the survey logo only once on the first page for mobile devices. With the XML style system and the device properties, we can show smartphone users a comment element on the first page with the survey logo and hide the main survey logo. Desktop users would still see the main survey logo!
+6.2: nstyles
+The nstyles file is used for older surveys. Consider the XML style system instead.
+Mobile compat surveys automatically override gv.survey.respondentStylePrefix to the device category that was detected (e.g. smartphone, featurephone, tablet, or mobile).
+This enables you to configure the default styles to behave differently for each device. For example, if a smartphone device is detected, you can set a special style just for this device in the nstyles file:
+*smartphone/survey.logo:
+*smartphone/question.header: <h3>Smartphone Question Header!</h3>
+*smartphone/respview.client.css:
+<style>
+/* Hide survey footer only for smartphones */
+div#surveyFooter { display: none; }
+</style>
+The gv.survey.respondentStylePrefix is a read/write variable, so you may overwrite it for the entire survey.
+If you already have a special style specified (e.g. *fancystyle/question.header:), these will also get prefixed with the device category. You will need to consider overriding the style for the device being used if the default style is not applicable. For example:
+*smartphone,fancystyle/question.header:
+If not overridden, the special style will be loaded into the survey and that may not produce the desired effect.
+7: Mobile Best Practices
+As always, you should test your end result. Use a variety of device types to ensure the final product meets your expectations and the expectations of your client.
+If the survey is not fun to you, it won't be for the participant either.
+Need some tips on how to improve your survey design for mobile devices? Check out the article on Mobile Survey Design.
+When a survey is mobile compatible, there are numerous things that you should check to ensure the participant experience is as friendly as possible. The system will provide several warnings to help remind you.
+7.1: Warnings & Messages
+There are several warning messages that you may experience when running simulated data or launching the survey via the survey builder. All warnings can be ignored and you can bypass them at any time, but consider them as they are oriented towards good mobile survey design.
+For example, you may see the following warning messages when running simulated data:
+Just before launching your survey, the following warning messages may be provided. Click the "continue launch" button to proceed.
+The following attributes can be added to the element to modify the default messages displayed to participants entering on an incompatible device:
+Attribute
+Default Message
+smartphoneNotAllowedMessage
+"The device you are using is not allowed to take this survey."
+tabletNotAllowedMessage
+"The device you are using is not allowed to take this survey."
+featurephoneNotAllowedMessage
+"The device you are using is not allowed to take this survey."
+desktopNotAllowedMessage
+"The device you are using is not allowed to take this survey."
+mobileOnlyMessage
+"Please come back using your mobile device."
+noMobileMessage
+"Please come back using a computer."
+When a mobile device is blocked from the survey, the device used is recorded into a log file located in the data/exit.log file found in your project's directory.
+To modify the default text, go to Project Settings > Device Settings.

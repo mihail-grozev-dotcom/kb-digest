@@ -1,0 +1,33 @@
+Title: Connecting Users to Projects
+Newly created users and user groups do not have access to any projects until they have been assigned to them. Learn how to add users and user groups to surveys and set their project permissions.
+1: Assigning Users to Projects
+Users can be assigned to projects via the Portal or the project page.
+1.1: Via the Portal
+To assign users or user groups to projects from the Portal, first check the box(es) next to the desired project name(s). Then click the "users" icon above the projects list and select Add Users to Selected Projects.
+In the pop-up window, enter the name(s) of the user or group you wish to add, and set their permission level(s) for the project.
+Once you are satisfied with your configurations, click Apply.
+Note: You can mouse-over the 'i' icon next to each permission level drop-down to review individual permission settings.
+1.2: Via the Project Page
+To assign users or user groups to surveys from the project page, first select a survey by clicking the survey's name in the portal. In the project page, click Add Users / Groups under the Users tab:
+In the pop-up window, enter the name(s) of the user or groups you wish to add and set their permission level(s) for the project.
+Once you are satisfied with your configurations, click Apply.
+1.2.1: Setting Project-Specific Permissions
+When users and user groups are assigned to surveys, their default survey permissions will be displayed in the project page, where they can be updated at any time to be more or less restrictive. If a user is assigned to a survey both in a user group and as an individual user, the individual user permissions will override group user permissions.
+To update a user or user group's project-specific permissions, click the user or group's permission level listed under Permissions in the Users tab. Then select a new permission level or customize permissions by tool. If a user is assigned to a survey in multiple ways, a lightning bolt will display next to their permission levels in the user group(s). Clicking the lightning bolt will display the user's effective access.
+Additionally, users and user groups can be restricted to components of the Response Summary, limiting their view to assigned tabs or specific sample sources. See Restricting User Access to the Response Summary to learn how.
+1.2.2: Automatically Assigning Users to a Set of Surveys
+Note: Only company users with Staff or Supervisor roles and users with full admin permissions have the ability to assign users and groups to subdirectories.
+Assigning a user or user group to a subdirectory will automatically add that user or user group to all surveys within that subdirectory.
+To learn how to create a subdirectory, see Organizing Your Company with Subdirectories.
+To remove a user or group from a subdirectory, navigate to the Directories tab and click the subdirectory name to edit it. Then click the 'x' next to the user or group name to remove their access to the subdirectory.
+1.2.3: Setting a Permissions Expiration Date
+Note: Only company users with Staff or Supervisor roles and users with full admin permissions have the ability to set a user or user group's permissions expiration date.
+When you select a survey from the Portal, the project page opens where you can set a user's permissions expiration date from the Users tab. The permissions expiration date is set on a per survey basis and specifies when the user or group's permissions expire for the survey. By default, a user or group's permissions expiration date is set to Never.
+To set a user or user group's permissions expiration date, click the current permissions expiration date to open the Edit Permission Expiration window. Then choose Select Date from the drop-down and the current date displays in the date box.
+Next, click inside the date box and select an expiration date from the calendar. Once you are satisfied with the expiration date, click Apply to save it.
+Note: Permissions expire at 12:00 am on the expiration date or 24 hours after an edit is made.
+2: Removing Users from Projects
+2.1: Via the Portal
+To remove a user or user group from a survey via the Portal, first select the survey(s) and click the users icon in the top center of the screen. Select Remove Users from Selected Projects, then enter the user or user group name and click Apply. Removing a user or group from a survey will revoke their access to that survey.
+2.2: Via the Project Page
+To remove a user or user group from a survey via the project page, click the 'x' next to their name. Removing a user or group from a survey will revoke their access to that survey.

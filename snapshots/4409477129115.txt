@@ -1,0 +1,16 @@
+Title: Downloading Survey Archival Reports
+Surveys scheduled for archival and deletion are tracked via the company Archival Report. This report is downloadable directly from the Portal and contains the archival status of each of your company’s surveys.
+1: Accessing the Archival Report
+To view your company's Archival Report, click your profile picture in the upper-right of the Portal and select "Archival Report".
+The report will automatically be downloaded to your device in Excel (.xlxs) format.
+Note: The Archival Report you see is specific to your user account and will contain only the surveys for which you have access.
+2: Viewing the Report
+The Archival Report contains the following data, split by column:
+path: URL path for the survey, displayed in server/company#/survey#
+title: Name of the survey as it appears in the Portal.
+date: Timestamp of when the next action will be performed.
+Note: The date field indicates the earliest time that the action may be performed on the specified date. If you need to know the exact time when a survey will be archived, contact your Forsta representative for details.
+action: The next action scheduled to be performed for the survey. Can be:
+archive: Survey will be archived.
+clear: Survey will be deleted.
+retention: The number of days before the action is completed. Can be configured using the Archive and Delete settings on the company page.

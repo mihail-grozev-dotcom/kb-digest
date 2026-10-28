@@ -1,0 +1,189 @@
+Title: Configuring Participant Sources
+A survey’s participant sources determine how participants get into the survey and to where they are directed to upon survey completion. Participant sources can be configured in the XML Editor to meet the needs of the current project's required name, URL variables, error messages, and exit pages.
+1: Adding Participant Sources
+Participant sources are defined within the XML using the <samplesources> tag and one or more <samplesource> tags. The <samplesources> tag is the parent element within which all of the survey’s participant sources are nested using separate <samplesource> tags. If a survey has multiple participant sources, you must use the list variable to identify each source. If desired, you can also include a unique title value for each source to change how it is displayed in reports.
+For example, in the code below, there are two individual <samplesource> tags nested within the parent <samplesources> tag. This means that the associated survey has two participant sources: “EZ-Sample”, identified by list="1" and “Sample Co.”, identified by list="2".
+<samplesources>
+<samplesource list="1" title="EZ-Sample">
+</samplesource>
+<samplesource list="2" title="Sample Co.">
+</samplesource>
+</samplesources>
+Additional participant sources can be added by nesting another <samplesource> tag within the <samplesources> parent element. Each participant source must have a unique list value. For example, a third participant source, "Open Sample", is added in the example below, with a list value of "99".
+<samplesources>
+<samplesource list="1" title="EZ-Sample">
+</samplesource>
+<samplesource list="2" title="Sample Co.">
+</samplesource>
+<samplesource list="99" title="Open Sample">
+</samplesource>
+</samplesources>
+2: Configuring Participant Sources
+Once added, participant sources can be customized to meet the specific needs of a project. The sections that follow cover the modifications that can be made to the parent <samplesources> and individual <samplesource> tags.
+2.1: Default Participant Source
+By default, surveys use the "Open Survey" participant source. The "Open Survey" participant source adds the default attribute with a value of 0, which functions as its corresponding list value.
+If participants enter a survey without a list value, they will be redirected to list "0". If the default variable or its value is removed, or if the values for the sample are changed, users will not be redirected and will instead receive an error.
+A different default participant source can be declared in the parent <samplesources> element by adding the default attribute and setting it equal to the list value of the source you would like to use. With a new default participant source defined, participants without a list value will be assigned to that source instead.
+<samplesources default="2">
+<samplesource list="1" title="EZ-Sample">
+</samplesource>
+<samplesource list="2" title="Sample Co.">
+</samplesource>
+<samplesource list="99" title="Open Sample">
+</samplesource>
+</samplesources>
+2.2: Disable Browser Dupes
+You can prevent participants from taking a survey multiple times by adding the broswerDupes attribute to that survey's <survey> tag. This change is global and will apply to the entire project.
+Learn More: Attributes for Field Settings
+When enabled, you can disable this option for specific participant sources by adding disableBrowserDupes="1". Doing so will override the browserDupes setting specified in the <survey> tag and allow participants to take the survey multiple times.
+<samplesource list="99" title="Open Sample" disableBrowserDupes="1">
+</samplesource>
+2.3: URL Variables
+In general, survey variables are specified by entering a comma-separated list in the extraVariables attribute within the <survey> tag. However, you may also specify URL variables for each participant source by adding them to its individual <samplesource> tag. Variables can be added to identify unique participants, signal to sample companies when a participant completes the survey, supplement survey logic, or establish quota limitations for particular samples.
+To add a URL variable to a participant source, add a nested <var/> tag with that variable within the desired source's <samplesource> tag, as shown below. The <var/> tag is self-closing and requires a name attribute which will be appended to the Survey URL.
+<samplesource list="1" title="EZ-Sample">
+<var name="referer" />
+</samplesource>
+<samplesource list="2" title="Sample Co.">
+<var name="seg" /><var name="id" />
+</samplesource>
+2.3.1: Optional Variables
+By default, any variable added to a participant source will be optional. An optional variable does not have to be included in the survey link for a participant to enter and take the survey. If the variable is present, however, it will be captured and included in the survey data.
+2.3.2: Required Variables
+A required variable must be present in the survey link in order for a participant to enter and take the survey. You can make a variable required by adding required="1" to that variable’s <var/> tag.
+You can also define a value list that can be used to authenticate a required variable by adding the values attribute in addition to required="1". With a value list defined, only participants with those values defined in their links will be permitted to take the survey.
+In the following example, the seg variable was made required for the "Sample Co." participant source. Additionally, only values of 1, 2, 3, or 4 will be permitted for the seg variable.
+<samplesource list="2" title="Sample Co.">
+<var name="seg" required="1" values="1,2,3,4" />
+<var name="id" />
+</samplesource>
+2.3.3: Unique Variables
+A unique variable must be present in the survey link in order for a participant to enter and take the survey. Additionally, a participant cannot use the same value for a unique variable as another record that has already completed the survey or is in progress.
+You can make a variable unique by adding unique="1" to that variable's <var/> tag.
+You can also upload a file that can be used to authenticate a unique variable. The file must contain a list of valid values for the unique variable in a single column and be uploaded to the project’s System Files. The filename attribute can then be added in addition to unique="1" and set equal to the uploaded filename.
+Learn More: Uploading System Files
+With file authentication enabled, only participants with values defined in the file will be permitted to take the survey.
+In the following example, the "id" variable was made unique and the "ids.dat" file was used for authentication.
+<samplesource list="2" title="Sample Co.">
+<var name="seg" required="1" values="1,2,3,4" />
+<var name="id" unique="1" filename="ids.dat"/>
+</samplesource>
+2.3.4: Utilizing Variables in a Survey
+You can pipe a participant source variable into a survey using the following syntax where varName is the name of the participant source variable:
+[url varName]
+Additionally, you can apply logic conditions to survey questions and other elements based on participant source variables. In the example below, the comment "You are in segment 2!" will only display to participants who enter the survey with a value of 2 for the seg variable.
+<html label="cm1" cond="seg=='2'">You are in segment 2!</html>
+2.4: Error Messages
+Error messages related to participant source variables and participant location can also be modified to meet the specific needs of a project.
+The following sections outline the types of error messages you can customize.
+Learn More: System Language Resources
+2.4.1: Variable Not Provided
+If a URL variable that is set to be required or unique is not passed through a participant's survey link, they will see the following message:
+"Alert: The URL above does not include the proper information to be included in this survey. Please review your invite email for the proper URL, and contact the individual specified if problems persist."
+You can override this error message using a resource tag, as shown below:
+<res label="sys_invited.not">Please double check your URL!</res>
+Using a resource tag will apply this message to all participant sources. To apply a similar change to a specific participant source, you must instead nest an <invalid> tag with the desired error message within the corresponding <samplesource> tag with the desired error message.
+In the example below, the phrase "Please double check your URL!" will be used for any participant entering the survey with an invalid survey link from the "Sample Co." participant source.
+<samplesource list="2" title="Sample Co.">
+<invalid>Please double check your URL!</invalid>
+<var name="seg" required="1" values="1,2,3,4" />
+<var name="id" unique="1" filename="ids.dat"/>
+</samplesource>
+2.4.2: Variable Already In Use
+If one of a participant's unique URL variables is already in use, they will see the following error message:
+"Alert: Our records show that you are already taking this survey. If that is not correct, please wait 15 minutes and refresh this page. Thank you."
+You can override this message using a resource tag, as shown below:
+<res label="sys_invited.inprogress">Variable already in use!</res>
+Using a resource tag will apply this message to all participant sources. To apply this change to a specific participant source, you must instead nest an <inuse> tag can with the desired error message within the corresponding <samplesource> tag.
+In the example below, the phrase "You are already taking this survey!" will be used for any participant entering the survey with a duplicate variable value from the "Sample Co." participant source.
+<samplesource list="2" title="Sample Co.">
+<invalid>Please double check your URL!</invalid>
+<inuse>You are already taking this survey!</inuse>
+<var name="seg" required="1" values="1,2,3,4" /><var name="id" unique="1" filename="ids.dat"/>
+</samplesource>
+2.4.3: Variable Already Completed
+If one of a participant’s unique URL variables has already been marked as having completed the survey, they will see the following error message:
+"Alert: Thank you for your interest but it seems you have already finished this survey."
+You can override this message using a resource tag, as shown below:
+<res label="sys_invited.used">You have already completed...</res>
+Using a resource tag will apply this message to all participant sources. To apply this change to a specific participant source, you must instead nest an <inuse> tag with the desired error message within the corresponding <samplesource> tag.
+In the example below, the phrase "You are already done here…” will be used for any participant entering the survey with completed variable value from the "Sample Co." participant source.
+<samplesource list="2" title="Sample Co.">
+<invalid>Please double check your URL!</invalid>
+<inuse>You are already taking this survey!</inuse>
+<completed>You are already done here...</completed>
+<var name="seg" required="1" values="1,2,3,4" />
+<var name="id" unique="1" filename="ids.dat"/>
+</samplesource>
+2.4.4: Geographic Requirements Not Met
+If a participant’s location does not meet the geographical requirements for a survey, they will see the following error message:
+"Alert: We are sorry, but this survey has a geographic requirement. You appear to be accessing this survey from outside of that geographic area."
+You can override this message using a resource tag, as shown below:
+<res label="sys_invited.geoip">You need to move to take this survey.</res>
+Learn more: Implementing a Digital Fingerprinting System
+2.5: Exit Pages
+A survey’s exit pages can be customized to display a message to participants or to redirect them to a website (e.g., the sample provider's website) after they have completed the survey.
+You can use the <exit> tag to define a survey’s exit pages. The following sections outline the steps for customizing survey exit pages.
+2.5.1: Exit Messages
+Exit pages can be configured to show conditionally based on each participant’s survey completion status. To change the messaging shown on exit pages based on participants’ completion statuses, add one or more <exit> tags, specifying the desired message as well as the types of participant that should see each page using the cond attribute.
+Note: You can use the same method to apply compound logic to specify unique exit pages for participants that fulfill certain conditions.
+<samplesources default="2">
+<samplesource list="1" title="EZ-Sample">
+<exit cond="qualified">Thank for completing the survey!</exit>
+<exit cond="terminated and s2.val lt 18">Try again when you are a few years older.</exit>
+<exit cond="terminated">Thank you, but we are looking for someone a little different.</exit>
+<exit cond="overquota">Thank you, but we are a little full right now.</exit>
+<var name="referer" />
+</samplesource>
+<samplesource list="99" title="Open Sample" disableBrowserDupes="1">
+<exit cond="1">Thank you for your time!</exit>
+</samplesource>
+</samplesources>
+In the example above, all participants using the "Open Sample" link will see the same message. In the "EZ-Sample" link, specific exit messages are displayed for participants based on their completion status. Additionally, a custom message will display to participants who terminate because they are under 18 years old.
+Note: The system will always apply the first exit condition met by a participant. If you have more than one qualified, terminate, or overquota condition in your survey, be sure to include your custom condition(s) above the default exit condition for that status (e.g., <exit cond="terminated and q1.r2"> should come before <exit cond="terminated"> in the code).
+2.5.2: Redirect Links
+A redirect link can be specified to send participants to a desired website upon survey completion. To redirect participants to a web page, add that page's URL to the <exit> tag using the url attribute. Participant source variables can be passed back through the redirect link using the following syntax, where varName is the variable name:
+${varName}
+In the example below, the redirect link to a sample provider website is specified for qualified, terminated, and overquota participants. Additionally, the seg and id variables are passed back through the redirect link so that the sample provider can track participants’ statuses.
+<samplesource list="2" title="Sample Co.">
+<invalid>Please double check your URL!</invalid>
+<inuse>You are already taking this survey!</inuse>
+<completed>You are already done here...</completed>
+<var name="seg" required="1" values="1,2,3,4" />
+<var name="id" unique="1" filename="ids.dat"/>
+<exit cond="qualified" url="http://sampleco.domain.com/survey?stat=q&amp;seg=${seg}&amp;id=${id}"/>
+<exit cond="terminated" url="http://sampleco.domain.com/survey?stat=t&amp;seg=${seg}&amp;id=${id}"/>
+<exit cond="overquota" url="http://sampleco.domain.com/survey?stat=o&amp;seg=${seg}&amp;id=${id}"/>
+</samplesource>
+2.5.3: Redirecting After a Timed Delay
+Participants can also be redirected to a website or other web page after a specified amount of time. To add a time delay to a redirect, add the timeout attribute to the <exit> tag, along with the appropriate url value and a message to display to the participant before redirecting them. The timeout attribute is set equal to the length of the delay in seconds.
+In the example below, participants will see the specified exit message before being redirected to the Forsta homepage after 3 seconds.
+<samplesources default="2">
+<samplesource list="1" title="EZ-Sample">
+<exit cond="qualified" url="http://forsta.com/" timeout="3">Thanks again for completing the survey!</exit>
+<exit cond="terminated and s2.val lt 18" url="http://forsta.com/" timeout="3">Try again when you are a few years older.</exit>
+<exit cond="terminated" url="http://forsta.com/" timeout="3">Thank you, but we are looking for someone a little different.</exit>
+<exit cond="overquota" url="http://forsta.com/" timeout="3">Thank you, but we are a little full right now.</exit>
+<var name="referer" />
+</samplesource>
+2.6: Closing a Participant Source
+You can close an individual participant source by adding closed="1" to that source's <samplesource> tag. Closing an individual participant source will prevent participants from entering the survey for that particular source, but allow the rest of the survey to continue fielding.
+In the example below, the "Open Sample" source is closed, and participants entering the survey with list="99" in their survey link will see the following message: “Thank you for your time!”. Participants in the remaining two participant sources will be unaffected.
+<samplesource list="99" title="Open Sample" disableBrowserDupes="1" closed="1">
+<exit cond="1">Thank you for your time!</exit>
+</samplesource
+2.7: Survey Links
+If multiple participant sources are added to a project, each source will have its own survey link. Additionally, each participant source will have a "list" variable added to its survey link to capture and track all its sample. Any variables added to the source will also be present in the survey link.
+To access the survey links for any participant sources you have added to a project, select the "Survey Summary" tab within the Participant Sources menu.
+3: Participant Timeline
+When a new participant enters a survey via one of the survey links provided above, the participant's participant source is evaluated before they see any survey questions. The timeline in which the Decipher system handles participants entering a survey is detailed below:
+The language for the study is determined and set.
+The URL is checked to identify which list variable is passed. If none is provided, the system looks for the default list to use in the <samplesource> tag. If a default is not provided, the system will resort to the first <samplesource> specified (e.g., "EZ-Sample").
+The <samplesource> used is checked for being closed. A participant will not be allowed into the survey if <samplesource ... closed="1"> is set.
+The <samplesource> used is checked to confirm that all required variables are present.
+The <samplesource> variables that are validated against a file are checked.
+The <samplesource> variables that are unique are checked against previous completions.
+The <samplesource> variables that are unique are checked against participants already in the survey but not yet completed (15 minute inactivity timeout).
+If the participant is approved, <samplesource>-specific markers are set and variables are recorded and marked as in-use.
+If the participant finishes the survey, any unique <samplesource> variables are marked as completed.
+If the participant finishes the survey, the <exit> links are used to redirect the participant.

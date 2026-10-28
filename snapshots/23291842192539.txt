@@ -1,0 +1,29 @@
+Title: 153.26 Release Notes
+Release Date: February 27, 2024
+Release Version: 153.26
+New Features
+Survey
+Dynamic Questions
+Upgraded the Audio Player element (audio.4) to allow using [rel filename.mp3] when specifying the audio file.
+Running Simulated Data
+In a multi-language survey, the process of generating simulated data will now show which languages have generated enough qualified data, and which have not.
+Learn More: Running Simulated Data
+Programming and Tools
+Secure surveys can now use finish() to immediately finish the survey.
+Learn More: Secure Surveys Overview
+Architecture and DevTools
+Data Retention
+The survey archival and unarchival processes now include "Shared Document" file uploads.
+Bug Fixes
+Portal
+Granting survey permissions to a single user both individually and within a user group no longer causes errors on the Project Overview page.
+Survey
+Survey Editor
+A noanswer row will no longer be visually duplicated when adding row groups to a question.
+Reporting
+Crosstabs
+Creating a table from a banner that references some kinds of virtual variables no longer causes an error.
+Setting the base for single-column multi-row checkbox questions to "Total Shown Variable" will no longer cause errors when running reports.
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+The Research Defender SEARCH logic node no longer fails when an HTML response is encountered.

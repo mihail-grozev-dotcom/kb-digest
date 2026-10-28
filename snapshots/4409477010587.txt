@@ -1,0 +1,27 @@
+Title: Organizing Your Company with Subdirectories
+Subdirectories allow for a higher level of organization in your company. For example, you can create subdirectories for each division in the company while still maintaining project assets like a survey theme or answer options that have been shared to the company library.
+Additionally, subdirectories allow you to sandbox users (a mechanism for separating users), giving a specific group of users access to a directory instead of applying access on a per-project basis.
+In the following example, a company, Fresno Tech, uses the Decipher Platform for a variety of tasks. The company is organized into two teams which work with a number of different clients.
+Each team (user group) is comprised of various users; from programmers, to account managers, to analysts, and more. Both individual users and user groups are added to a subdirectory, allowing them access to projects created.
+You should use caution when adding a new user to a user group because it can potentially give them access to all projects in which the user group has access. For example, if a new user was added to Team A, then the user would have access to projects created in the Client 1A, Client 2A, and Client 3A subdirectories.
+However, this scenario might be ideal for adding new hires to a particular team to provide access to all their clients/projects as seen in the example but be aware of the permissions you are granting.
+Learn more:
+Create and Manage User Groups
+Create and Manage Users
+1: Creating Subdirectories
+Note: Only company supervisors can access and manage subdirectories.
+Follow the steps below to create a new directory.
+Step 1: On the company page, select “Directories”. Then click "+ Add New Subdirectory".
+A pop-up window opens where you can enter the details of the subdirectory.
+Step 2: Enter the details for the subdirectory:
+Name: The name for the subdirectory, as it will appear in the Portal.
+Allow New Projects: Allows you to add new projects to the directory.
+Automatically Grant User Permissions: Automatically grants users permissions to future projects in this subdirectory (this setting grants users/groups access to all projects in the subdirectory).
+User/User Group: Specify each user/group for this subdirectory and set their permission level (this permission level is applied to all projects in the subdirectory).
+Once you are satisfied with your settings, click "Save" to create the new subdirectory.
+2: Editing an Existing Subdirectory
+If you need to edit the directory at another time, click the directory name in the "Directories" menu to open the "Edit Subdirectory" window and make your changes.
+Learn more: Managing Your Company Page
+3: Creating a Project in a Subdirectory
+You can also assign a project a subdirectory during its creation using the "Project Directory" drop-down.
+Learn more: Creating a New Survey

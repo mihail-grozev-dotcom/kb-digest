@@ -1,0 +1,37 @@
+Title: Beacon M25 Release Notes
+Release Date: September 8, 2014
+Crosstabs & Classic Reporting
+#19250 Crosstabs supports a small subset of the old “aggregate” system, allowing you to create a “grid” question There is currently no user interface for this. See “Extended Documentation” for JSON syntax required.
+Research Hub / Portal
+Updated Field Statistics page lets users view data about their projects split by time and other metrics.
+Updated Usage Statistics page lets users view usage on a company or per-project level.
+Builder
+#17272: New options were added to the Display Settings for configuring “Global FIR” options.
+ImageManager: you can hide watermarking (while keeping other image protection) by setting the value to “”. Ex: [protected myimage.png value='']
+#18547: New “Mobile Optimization” option added to Device Settings and Question Display Options
+#19025: New “Display 1-Column Questions as” option added to Display Settings and Question Display Options
+Dashboard
+Dynamic splits make it possible to select which columns you want to see in any given dashboard. (#18738)
+Survey & CMS
+Surveys now switch between “mobile” and “desktop” formatting based on window size. Very little device-specific formatting now, so all devices get a similar unified experience. Applies to compat 125+, old surveys should not be affected.
+Added new theme system that’s much more DQ-friendly, including a few new themes. Old themes can still be used. New themes are not editable in Theme Builder yet, but will be eventually. Applies to compat 125+, old surveys should not be affected.
+Grids are now “responsive”. They stack table cells vertically instead of horizontally when the screen is too narrow (left/right scrolling can bias results). Applies to compat 125+, old surveys should not be affected.
+Grids with only 1 column are displayed as “lists” (simple lines of text) instead of large tables. Applies to compat 125+, old surveys should not be affected.
+#17990 If the back button is enabled in a compat=125 survey, it saves the data if the user uses the button and later resubmits and sees the same question. Only data from visible questions is saved: the user may be assigned to other quota cells or markers.
+Dynamic Questions Toolkit Updates
+Button Select 5 is fully compatible with the new Less-based Styles System. Compat 125+ is required. The directly supported Less variables are btn-color, btn-text-color, error-bg-color, error-text-color, btn-color-hover, btn-color-selected, and mobile. The two newly added and only allowed stylevars are atm1d:oneLine (DQ specific) and dq:showInputs (global). atm1d:oneLine is off by default, but if turned on will align the buttons either horizontally or vertically, whichever way fits. dq:showInputs is on by default and will display an icon control (radio button or check mark) on the button.
+Programming & Tools
+Need a list file with random data in it? Run: here dev/generate-random -n500 source email name list:1,2,3 country:uk,us,eu > somefile.txt. The -n500 determines count of items in the list. The field name source, email and name have a random appropriate value. For other fields, specify fieldname, colon, then a comma-separated list of values.
+You can cancel an email send from the command line: run bulk pending to view them, and bulk cancel id to cancel it. This is preferable to using atq: the send is known to be cancelled to the system and you can also cancel the send of someone on vacation. Cancellations are logged.
+#17272: New survey attributes were added: fir, firStyle, firSize, firColors
+#17272: New question attributes were added: fir, firStyle
+Added support for .less stylesheets in several areas, notable via the xml attributes ss:includeLESS and <themevar>, plus a few other areas
+#19074: If you add trackVars=”checkbox” to a survey and use hmerge, the tcx question will start at 1 (meaning that all existing records will be coded as 0/1 when downloading, and not as blank/1).
+New styles were added: el.open for open-width elements and el.noanswer for N/A elements
+Bugfixes
+#18752: Showing unique icons for all applicable questions in the standard library
+#19071: Inserting questions from the standard library will no longer show the “question label has changed” warning message
+#19077: <image> tag will not cause a loading problem.
+Security
+OAuth2: Single Sign On through Google will now be done using the OAuth2 protocol as OpenID 2.0 has been deprecated by Google. Users will be requested to share email address and basic profile information with Beacon when first attempting a Google Login.
+SAML 2.0 Single Sign On: SAML integration is now available for enterprise clients who wish to authenticate existing users via a SAML 2.0 capable identity provider.

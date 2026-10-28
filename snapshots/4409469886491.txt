@@ -1,0 +1,41 @@
+Title: Tracking via Google Analytics
+Google Analytics (GA) can be setup on a per project basis to track participant information, such as operating system, browser, screen resolution, and more.
+Step 1: Survey Link
+You must have the final survey link prior to starting the setup process.
+Step 2: Acquire code snippet from Google Analytics
+This will either be sent from the client, or can be pulled from the GA account.
+If sent from the client, skip to step 3; otherwise, follow the steps below to find the code snippet. Reach out to the Decipher Helpdesk to get your survey added to our existing company GA account.
+To find the code once in GA:
+From the Overview page, select the account that has the profile for the tracking code you're looking for, as the code is profile-specific.
+Select the profile from the accounts Overview page.
+From that profile's Actions column, click Edit.
+At the top right of the "Main Website Profile Information" box, click Check Status.
+Your tracking code can be copied and pasted from the text box in the Instructions for adding tracking section.
+Step 3: Create javascript file and set permissions
+In the static directory of your project, create a new file called "google.js." Paste the code from GA into the file and save. The code should look similar to the code below. Make sure the file permissions is set to 775. You can change the permissions using "chmod 775 google.js." In the code below, you will need to replace "UA-xxxxxxxx-1" with the active GA account number.
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-xxxxxxxx-1']);
+_gaq.push(['_setDomainName', 'none']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+Learn more about using JavaScript in Decipher surveys.
+Step 4: Call the script file
+Paste the following code to your survey.
+<style name='respview.client.js'><![CDATA[
+<script type="text/javascript" src="[rel google.js]"></script>
+]]></style>
+For more information about including JavaScript in your survey, please see Including Static Files.
+Step 5: Verify that the .js file is loading in your header
+Once you have setup the code. Load your survey and check the page source. In Firefox, press the Alt key to bring up the browser's menu bar. Select Tools, Web Developer, and then Page Source. This will open the HTML source for your survey. Verify that the google.js file is being called. For example:
+<script type="text/javascript" src="/s/common.js"></script>
+<script type="text/javascript" src="/survey/selfserve/9d3/091152/google.js">
+</script>
+Step 6: Verify that code is working properly
+GA does not update instantly, but rather checks on a time table. Wait a few hours after implementing the code before checking GA to see if the code is populating. Shown in the image below, once GA is collecting data properly, a green check box will show in the "Status" column to note that the syntax is working properly. Reach out to Decipher Helpdesk if after several hours you are still getting a status unknown warning.
+Step 7: Test and check survey analytic data after 24 hours
+Tracking takes 24 hours before data will start populating the reports. Once the green status is verified, make sure to testing the survey a few times to guarantee that the survey will have hits in the report. Be sure to use the exact link used to start tracking (e.g., make sure not to use the "https:" version of the link). Check back after 24 hours to make sure the report is populating properly.

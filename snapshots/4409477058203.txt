@@ -1,0 +1,43 @@
+Title: Survey Metadata API Calls
+Note: The below article uses examples of accessing the Decipher API from a Unix system that has the Beacon library package installed. See Decipher REST API to learn more about accessing the Decipher REST API.
+You can use the following API calls to perform a variety of tasks involving survey metadata. Click any call name to view more information.
+Call Name
+Description
+Run Simulated Data
+Runs simulated test data through the specified survey.
+Close
+Closes the specified survey.
+Launch
+Launches the specified survey.
+Warnings
+Retrieves a list of all possible launch warnings for the specified survey.
+Evaluate
+Retrieves the specified participant's state and survey progress information.
+Get Quota
+Retrieves the quota structure for the specified survey.
+Update Quotas
+Updates survey quotas as specified.
+List Files
+Retrieves a list of all files and resources for the specified survey.
+Upload / Replace File
+Uploads a new file or resource to the specified survey. Can also be used to replace the specified survey file or resource with a new file or resource.
+A list of allowed file types is located at Uploading System Files.
+Download File
+Retrieves only the specified survey file or resource.
+Delete File
+Deletes the specified survey file or resource. You may delete any of the file types allowed for upload by the file manager, as well as .index files.
+Note: You cannot delete the survey.xml file from a static directory.
+Debug Logic Nodes
+Retrieves all debug information for the specific logic node.
+Generate Test Link
+Generates a test URL link for the specified survey.
+Update Survey Category
+Updates the survey category and / or description displayed on the Project Overview page in the Portal.
+Note: By default, API calls in the shell output information directly to the console screen. If you want to reuse that output, you will want to save it to a file.
+Note: If you are using a web call method to access the API, you will need to have a way of providing your API key. See Decipher REST API for more information.
+Note: You will need to change v2.decipherinc.com to the domain that you use to log into the Decipher platform.
+1: Viewing Returned Data
+You can use the global select parameter to retrieve a subset of any GET call's returned data. You can pass in select as an argument set to a comma-separated list of properties to return.
+For example, select=id, login, active will only retrieve these three specific fields when calling in the User List API:
+beacon get rh/users select=id,login,active
+Note: The select parameter should only be used on GET method API calls to filter information retrieved via an API call, and not information that you send (e.g., via a PUT or POST method) to Decipher.

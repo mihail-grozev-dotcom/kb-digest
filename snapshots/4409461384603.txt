@@ -1,0 +1,9 @@
+Title: Setting an Exact Number of Values for a Valid Response
+The Survey Editor allows you to specify an exact number of values (i.e., response options) that must be selected in order for a response to be considered valid. This document outlines the process for forcing an exact value response within survey questions.
+Note: If your question contains an exclusive answer option you must add some custom XML to override that option’s behavior. See Setting an Exact Number of Values for a Valid Response With an Exclusive Option for instructions on setting an exact number of values for a valid response in a question with an exclusive response option.
+1: Adding the Question
+To create the question, first add a Multi-Select element and all desired response options. Then select the element so that its options appear to the right of the staging area. In the options panel, select "exactly" from the "More Options" drop-down menu.
+Once selected, the "exactly" option appears in the options panel for the element. Enter an integer in the field provided.
+2: Testing the Setup
+To test the setup, select "Test Survey" from the "Preview" drop-down in the navigation menu. Once you reach the question, attempt to select a different number of values than is required and continue. The question should display an error message.
+When you select the correct number of response options, you should be able to continue to the next question.

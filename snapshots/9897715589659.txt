@@ -1,0 +1,14 @@
+Title: 143.8 Release Notes
+Release Date: September 4, 2019
+Release Version: 143.8
+New Features
+Survey
+Added the surveyRestartTimeout variable, which allows users to set a participant timeout on surveys with delphi="1".
+Bug Fixes
+Portal
+Fixed an issue with the Usage Statistics report not displaying a proper completion date for the first and last participants in a survey.
+Survey
+Survey Editor
+Fixed an error caused by trying to change the project path name for a survey.
+Participant View
+Fixed an issue causing code blocks that should not be executed to execute when returning to a survey with delphi="1".

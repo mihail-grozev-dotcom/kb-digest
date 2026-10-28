@@ -1,0 +1,10 @@
+Title: Decipher Advanced Training Series
+Welcome to the Decipher Advanced Training Series.
+The training content below is designed to give new Decipher programmers self-paced training materials to learn the ins and outs of scripting surveys in the XML Editor. A basic understanding of the Decipher platform and the market research industry is necessary for fully understanding the content provided in this course. If you have not yet completed the Decipher Essentials Training Series, it is recommended that you do so before starting this series.
+Some programming experience is also necessary, as the Decipher Advanced Training Series teaches users how to implement features and processes in a Decipher survey using multiple programming languages. The material is covered briskly, so be sure to make use of the reference materials and exercises linked throughout the series, and don't be afraid to replay a video or two.
+Training Videos
+Click on the tiles below to get started:
+Scripting Basics
+Scripting Logic
+Advanced Scripting
+Styles

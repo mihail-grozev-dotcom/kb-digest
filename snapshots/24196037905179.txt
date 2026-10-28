@@ -1,0 +1,24 @@
+Title: 153.28 Release Notes
+Release Date: March 26, 2024
+Release Version: 153.28
+New Features
+Responses
+Campaign Manager
+The new special variable [email_urlencoded] ensures that email addresses with special characters such as + are decoded properly by the remove and global email preferences surveys. Use [email_urlencoded] when the email address is part of a URL in manually constructed bulk email invites instead of [email].
+The variable [email_urlencoded] is now used for the value of the email query parameter in opt-out links inserted by Campaign Manager.
+The Bulk script now as a --exclude-clickthrough option. Enabling this option excludes from sends participants that have entered the survey but dropped out. Without this option enabled, only completed participants are suppressed from further emails sends for that survey.
+Learn More: Email Sends with Bulk
+Bug Fixes
+Survey
+Dynamic Questions
+The current version of Rank Sort (ranksort.6) now allows participants to submit open-end answers on mobile devices as expected.
+Survey Editor
+Previewing a question inside a nested loop now works as expected, instead of generating a participant view error.
+In text and number questions, setting a minimum response length no longer requires setting a maximum response length.
+When using Project Settings to move a survey to a new directory, participant data will be retained rather than deleted.
+Programming and Tools
+API
+An issue with the Response Summary List Campaigns API endpoint has been fixed.
+Custom Code Elements (Logic Nodes)
+A performance regression in the email logic node has been fixed.
+Upgraded the Research Defender SEARCH logic node (researchdefender_search.2) to resolve a Crosstabs report display issue when 'Display in Report' is set to 'No'. Also, the survey_number property is now included in the report.

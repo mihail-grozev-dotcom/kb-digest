@@ -1,0 +1,70 @@
+Title: Scripting Agent FAQ
+The Scripting Agent uses AI to convert questionnaires from Microsoft Word documents into Decipher surveys. The following questions cover common considerations when preparing documents and reviewing imported surveys.
+Note: Decipher has various AI features that rely on AI Models. New versions of these models are frequently released and older versions are retired. When new models are used, there may be variances in responses based on the newer models.
+For instructions on importing a questionnaire, see Creating a Survey from a Word Document (Scripting Agent).
+Note: To enable the Scripting Agent, please contact Technical Support.
+1: General Capabilities
+Q. What Types of Questions Can the Scripting Agent Detect?
+A. The Scripting Agent supports common survey question types, including Single Select, Multi-Select, Text, Essay, Number, Float, and Drop-down questions.
+For a complete list of supported content, see Creating a Survey from a Word Document (Scripting Agent)--4: Supported Content.
+Q. Is There a Required Format for Writing My Questionnaire in Word?
+A. No specific format is required. However, a clear and well-structured questionnaire can improve detection accuracy and the resulting survey structure.
+Q. Is Excel Supported?
+A. No. The Scripting Agent supports Microsoft Word documents.
+Q. Is Document Formatting Preserved?
+A. The Scripting Agent focuses on questionnaire content and structure rather than the overall visual appearance of the Word document.
+It recognizes supported text formatting, including bold, italics, and underline. It does not preserve document fonts, colors, themes, or other visual styling.
+2: Questions and Advanced Logic
+Q. Will the Scripting Agent Create the Exact Question Type Specified in My Questionnaire?
+A. The Scripting Agent does not support every Decipher question type or feature.
+Some supported functionality can be applied automatically when the Scripting Agent recognizes the intended behavior. For example, Autosum can be applied to numeric questions that require a running total.
+Review the imported survey to confirm that each question was created with the expected structure and functionality.
+Q. How Does the Scripting Agent Handle Conjoint or MaxDiff Exercises?
+A. The Scripting Agent does not automatically create conjoint or MaxDiff exercises.
+Depending on how the content is written, it may create a basic question or add a programmer note for reference.
+Q. Can the Scripting Agent Create Hidden Questions?
+A. Hidden questions can be identified if they are noted as hidden questions. They are assigned the where="execute" attribute. An example of notating it in a survey questionnaire would be “Age Group [Hidden Variable]”.
+Q. Does the Scripting Agent Recognize Questionnaire Comments?
+A. Yes. In most cases, questionnaire comments are converted into programmer notes within the survey.
+Q. How Are Tracked Changes Handled?
+A. Tracked changes are not interpreted as document revisions. The final visible content is imported as standard questionnaire content.
+3: Styling, Templates, and Customization
+Q. Can the Scripting Agent Apply Themes, Branding, or Question Styles?
+A. No. Themes, branding, and question styles are not applied during import.
+Apply the required visual styling after the survey is created.
+Q. Can I Use the Scripting Agent With Existing Templates or Trackers?
+A. The Scripting Agent is designed primarily to convert questionnaire content into a survey rather than align the resulting survey with an existing template.
+After import, apply the required templates, branding, and styles within Decipher.
+4: Automation and Integrations
+Q. Can the Scripting Agent Be Used With Hooks or Automations?
+A. No. The Scripting Agent is not integrated with Hooks or automation workflows.
+Q. Is a REST API Available for the Scripting Agent?
+A. No. REST API access is not available for the Scripting Agent.
+5: Limits and Performance
+Q. Is There a Maximum File Size or Questionnaire Length?
+A. There is no officially defined limit.
+Very large documents of approximately 30,000 words or more may encounter processing constraints.
+Q. Are There Usage Limits?
+A. There are currently no enforced usage limits.
+6: Updating Existing Surveys
+Q. Can I Upload an Updated Questionnaire to Modify an Existing Survey?
+A. No. Importing a Word document is a one-time conversion process.
+Uploading an updated questionnaire does not update or synchronize changes with an existing survey.
+7: Troubleshooting
+Q. Can Content in a Questionnaire Prevent the Document From Being Uploaded?
+A. There are currently no known questionnaire content types that prevent an upload.
+For best results, use a clear and well-structured Word document and review the resulting survey after processing.
+8: Contact Support
+If you have additional questions or need assistance with the Scripting Agent, contact your Forsta account representative or the appropriate Forsta Helpdesk team.
+9: Data Privacy
+The OpenAI service is part of Forsta's Azure subscription. Once data (survey questionnaire text) has been submitted to Azure, it is governed by their data policy.
+The AI service is hosted on U.S. Azure OpenAI region.
+Data (survey questionnaire text) are not used for training (including improvements of OpenAI models, any Microsoft or 3rd party products or services, etc).
+Decipher does not store any data as it utilizes the survey questionnaire text to convert into survey elements.
+A copy of the uploaded survey questionnaire is stored in the Project Overview Shared Document Uploads.
+Survey questionnaire data stored on the Decipher side:
+follows standard Decipher data retention and security including encryption at rest.
+logging for OpenAI service (such as request and response) is retained for 5 weeks separate from the retention for the survey questionnaire.
+ISO certification notes: Microsoft Azure undergoes ISO/IEC 27017 audit for compliance. You can download the list of certifications undergone by it on the Microsoft portal: https://learn.microsoft.com/en-us/azure/compliance/offerings/cloud-services-in-audit-scope
+Third party: Data (survey questionnaire text) sent to Azure OpenAI is retained by Azure only for abuse monitoring, if certain indicators trigger possible abuse attempts; see the Data Privacy note for Azure OpenAI above.
+Data Flow:

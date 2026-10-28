@@ -1,0 +1,50 @@
+Title: Setting Up Toluna Encrypted Redirect Links
+This document provides details on how to setup encrypted redirect links for the Toluna participant source.
+The Toluna sample requires the use of a Python function which needs special variables and redirect links to ensure the quality of data collected. To setup encrypted redirect links for a Toluna sample, follow these steps:
+Step 1: Create a new Toluna project or access an existing project.
+Step 2: Open the project in the Survey Editor and add a new custom participant source.
+To do this, first click "Participant Source" in the question tree and then click "Add New Participant Source."
+In the Participant Sources window, select an existing custom participant source (pre-programmed) from the participant sources library and click Insert.
+Click "Yes, remove open sample."
+Step 3: Copy the Toluna Participant Source template into the survey.xml.
+Copy the template (provided below) to the location in the survey.xml where the participant sources are deployed.
+<samplesources>
+<samplesource list="1">
+<title>Custom Participant Source</title>
+<var name="gid" unique="1"/>
+<exit cond="terminated"
+url="${tolunaEncrypt('http://ups.surveyrouter.com/trafficui
+/mscui/SOTerminated.aspx?sname=XXXX&amp;gid=%s&amp;' % gid,
+'YYYY')}"/>
+<exit cond="overquota"
+url="${tolunaEncrypt('http://ups.surveyrouter.com/trafficui
+/mscui/SOQuotafull.aspx?sname=XXXX&amp;gid=%s&amp;' % gid,
+'YYYY')}"/>
+<exit cond="qualified"
+url="${tolunaEncrypt('http://ups.surveyrouter.com/trafficui/mscui
+/SOQualified.aspx?sname=XXXX&amp;gid=%s&amp;' % gid, 'YYYY')}"/>
+</samplesource>
+</samplesources>
+In the next steps, you modify this template to implement the Toluna encryption.
+Learn more: Configuring Participant Sources
+Step 4: Update the Redirect URLS
+To set up the encrypted Toluna Redirect links, you need to update the sname and secret key variables in the template URLs.
+Sname: Represents the name of the study. Toluna provides the study name and is created on a per-project basis
+Secret Key: The secret key is the unique identifying number for participants entering the survey. Toluna provides the secret key.
+To update the variables in the URLs, replace:
+'XXXX' with the Toluna provided sname.
+'YYYY' with the Toluna provided secret key. Be sure to place the secret key between the single quotes (' ') and do not delete them.
+You make these replacements for XXXX and YYYY in the terminated, overquota, and qualified redirect URLS.
+For example, for the below redirect link, the XXXX and YYYY variable placeholders have been bolded for your convenience to show you where to look for them in the template:
+http://ups.surveyrouter.com/trafficu...ed.aspx?sname=XXXX&amp;gid=%s&amp;' % gid, 'YYYY'
+Step 5: Test the Survey
+From the Test menu, select "Test Survey." In the survey test environment, give the participant source variables any dummy value like shown below and then click "Show Survey with Tools."
+Step 6: Verify unique values for each completion status.
+Verify that the “TolunaEnc” and SO (SOTerminated, SOQuotafull or SOQualified) values are unique for each type of completion status (Terminated, Overquota, and Qualified) as shown below.
+Qualified Status
+Preview
+Overquota Status
+Preview
+Terminated Status
+Preview
+Encrypted redirect links for the Toluna participant source are now complete.

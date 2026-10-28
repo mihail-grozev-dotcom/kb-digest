@@ -1,0 +1,46 @@
+Title: Setting the Percentage Base of a Dashboard Table or Chart
+When customizing dashboard tables, it is possible to change the base for the percentage calculation within a table to use survey logic.
+The keyword base re-bases the percentage calculation using another specified condition. This overrides the default dashboard basing set to all participants, or any basing from the total row and banner segments.
+The base keyword can be set to use any logic from within the survey:
+base <condition>
+1: Examples of changing the base
+1.1: Setting the Base to Answer Groups
+If you have a list of brands split into EU and US Brands, you may want to review the brand selection counts and percentages based on Europe and USA respectively.
+To achieve this, you can set the base of each of your rows to the corresponding brand list total, as shown below:
+table id=db-9 Brand Usage
+row base="d7.r1 or d7.r2 or d7.r3" d7.r1 Brand A
+row base="d7.r1 or d7.r2 or d7.r3" d7.r2 Brand B
+row base="d7.r1 or d7.r2 or d7.r3" d7.r3 Brand C
+row base="d7.r4 or d7.r5 or d7.r6" d7.r4 Brand D
+row base="d7.r4 or d7.r5 or d7.r6" d7.r5 Brand E
+row base="d7.r4 or d7.r5 or d7.r6" d7.r6 Brand F
+This will produce the following result:
+To expand on the above example, you can also use the base keyword, along with the rowlevel attribute to show each brand group total:
+Table id=db-5 Brand Usage
+row rowlevel=1 base="d7.r1 or d7.r2 or d7.r3" "d7.r1 or d7.r2 or d7.r3" "<b>US Brands Total</b>"
+row rowlevel=2 base="d7.r1 or d7.r2 or d7.r3" d7.r1 Brand A
+row rowlevel=2 base="d7.r1 or d7.r2 or d7.r3" d7.r2 Brand B
+row rowlevel=2 base="d7.r1 or d7.r2 or d7.r3" d7.r3 Brand C
+row rowlevel=1 base="d7.r1 or d7.r2 or d7.r3" "d7.r1 or d7.r2 or d7.r3" "<b>EU Brands Total</b>"
+row rowlevel=2 base="d7.r4 or d7.r5 or d7.r6" d7.r4 Brand D
+row rowlevel=2 base="d7.r4 or d7.r5 or d7.r6" d7.r5 Brand E
+row rowlevel=2 base="d7.r4 or d7.r5 or d7.r6" d7.r6 Brand F
+This will produce the below table:
+When expanded, the table will look like this:
+1.2: Setting the Base to Previously Selected Answer Options
+Another way to use the base keyword is to set the percentage calculation of a question’s answer options based on a selection made to a prior question. A typical example of this would be the following two questions:
+Question 1
+A Brand Awareness question:
+Question 2
+A brand preference question where the answer options are conditionally shown based on the selection in the previous question:
+In order to see how many people who are aware of each brand specifically also selected that brand as their favorite, you can adjust the base of each of your datapoints:
+table Brand Awareness
+rows q14.r1-r5
+table Brand Preference
+row base=q14.r1 q15.r1 Brand A
+row base=q14.r2 q15.r2 Brand B
+row base=q14.r3 q15.r3 Brand C
+row base=q14.r4 q15.r4 Brand D
+row base=q14.r5 q15.r5 Brand E
+This will produce the below tables:
+The percentages in the second table are now based on the counts displayed in the first one.

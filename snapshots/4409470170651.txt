@@ -1,0 +1,98 @@
+Title: Adding CATI ProTS® Sample
+Requires Decipher Cloud
+1: What is CATI ProTS Sample?
+ProTS® CATI (Computer Assisted Telephone Interviewing) mode utilizes a ProTS® dialer connected to your server to manage the dialing, disposition of sample and connections to your interviewers.
+ProTS® supports two modes:
+Predictive Mode to deliver optimal dialing performance with minimal abandonment rate
+Power Mode: a 1 to 1 dialing mode where there will always be an interviewer available to answer
+We offer built-in integration for ProTS® customers. Visit PRO-T-S to find out more about ProTS®.
+1.1: How Does it Work?
+The CATI dialer prioritizes "fresh" sample (i.e., numbers that have never been dialed) over all other sample. Once all "fresh" sample has been dialed, available callbacks are prioritized. Then the remaining callbacks are queued according to the calling times associated with each phone number.
+Note: The dialer does not automatically dial people who have a status of “No Answer”, “Busy Signal” or "Callback". These people need to be manually re-dialed.
+A phone number's calling time consists of the minimum (earliest) and maximum (latest) times at which it may be dialed. These times are determined by the timezone(s) associated with each number and cannot be changed:
+US and Canada: Timezones are determined using a predefined list of phone number prefixes.
+Other countries: Phone numbers are mapped to timezones using the Pythonpytz library and statistical data from Google's Libphonenumber.
+When the dialer pulls available sample, it checks that the current time falls within the min-max range local to each phone number. If the current time is outside of the min-max range for a phone number, that number is removed from the queue. For example, if a phone number has a min of 8am and a max of 8pm, it will not be available earlier than 8am nor later than 8pm.
+Note: Some phone numbers may be associated with more than one timezone and subsequently more than one min-max range. For example, if you have a list of Brazilian phone numbers and your maximum calling time is 8pm, some people may still be dialed at 9pm.
+Phone numbers can be further filtered using special syntax within the sample file before uploading:
+Timezone: You can include or exclude certain timezones.
+Sample Data: You can include or exclude a range of numbers, or list of numbers or strings.
+Note: The dialer only auto-removes phone numbers based on min-max range. Additional filtering does not apply to numbers that are already queued.
+1.2: Enabling CATI ProTS Sample for Your Company
+Currently, you must be a ProTS® customer and have a Decipher Cloud account to enable the CATI ProTS® participant source. Once setup for ProTS®, see Enabling CATI Sample for a Company for instructions on enabling CATI for a company.
+If you do not have a Decipher Cloud account, contact the Support Team to have CATI sample enabled for your company.
+2: Adding CATI ProTS Sample
+To add a CATI ProTS participant source, first navigate to the Participant Sources menu by clicking “Participant Sources” under “Responses” in the navigation menu at the top of any project page. Then click the “+ Participant Source” button.
+Next, select the “CATI ProTS” tile from the list of available source types.
+Once you have added the participant source, click the “CATI Management Console” link to finalize its setup.
+The following sections outline the required configuration fields.
+2.1: Intro Script
+The introduction script is read by the interviewers to each contact they call before beginning the survey. Click the “Project Configuration” tab to access your project settings. Then enter this script in the "Introduction Script" field.
+2.2: CATI Files
+2.2.1: Phone List
+Click the “Manage Sample” tab to manage your CATI sample. Then click the “+ Add Sample” button to add a new phone list file.
+The phone list file must be in an Excel file (.xls or .xlsx) and contain the following column headers:
+The first column header must be titled phonenumber, and contain 10-digit phone numbers of the recipients (mandatory)
+The second column must be titled name, and contain the names of the recipients (mandatory)
+The third column and beyond may be used to append filter criteria. E.g., demographic information like zipcode, gender, etc. (optional)
+Note: When applying a filter in the CATI management console, keep in mind that the values are case-sensitive
+Select "+Upload Phone List" to upload your list of telephone interview participants.
+Tip: If you want to add new participants, simply upload a new file and the system will update your list.
+2.2.2: Interviewers / Stations
+The interviewer file must be in an Excel file (.xls or .xlsx) and contain the following column headers:
+The first column header must be titled interviewers, and contain the alpha-numeric code assigned to your interviewers (i.e., the Interviewer ID)
+The second column must be titled stations, and contain the alpha-numeric station code
+Note: The interviewers and stations listed in your file must be a subset of the files applied for your company. See Enabling CATI Sample for a Company for information about the company files.
+Select "+Upload Stations / Interviewers" to upload your file.
+2.3: URL Variables
+To view your CATI URL variables, you must first navigate to the CATI participant source within the Survey Editor. Click “Survey Editor” under “Build” in the navigation menu at the top of any project page. Then select the “CATI (ProTS)” participant source from the question tree to view it in the staging area.
+The counts for the following variables are pulled from the CATI files that were uploaded:
+phoneNumber: Displays the total number of phone numbers in the list.
+Remove Sample: Click this link to remove the entire phone list that was uploaded.
+stationID: Displays the total number of (unique) stations assigned to the project.
+interviewerID: Displays the total number of interviewers assigned to the project.
+2.4: Exit Pages
+To view or edit your exit pages, you must first navigate to the CATI participant source within the Survey Editor. Click “Survey Editor” under “Build” in the navigation menu at the top of any project page. Then select the “CATI (ProTS)” participant source from the question tree to view it in the staging area.
+The exit pages are laid out for you to configure for terminated, over-quota and qualified participants. Simply select "Message" to show the participant a message at the end of the survey, or choose "Redirect" and enter the URL in the field provided.
+You also have the ability to add a custom exit page and define the logic condition for it. See Adding Participant Sources Using the Survey Editor to learn more.
+2.5: ProTS Settings
+You can access all other settings for your ProTS sample using either the CATI Management Console or the participant source within the Survey Editor.
+From the CATI Management Console, click the “Project Configuration” tab to access your project settings.
+From the Survey Editor, select the “CATI (ProTS)” participant source from the question tree to view it in the staging area.
+However you decide to access your settings, the following fields are available:
+Dial Mode:
+Predictive Dial Mode: Several numbers are dialed simultaneously, based on available interviewers and the abandonment rate. This mode maximizes the interviewer talk time and minimizes potential abandonment by utilizing a standard line ratio of 1:5:1. This ratio is dynamically adjusted on a study-by-study basis by ProTS to deliver optimum dialing performance.
+Power Dial Mode: Dials the participant's number and places the call into a queue that pairs it with the next available interviewer, ensuring that an interviewer is available to handle the call.
+Note: The dialer does not automatically dial people who have a status of “No Answer”, “Busy Signal” or "Callback". These people need to be manually re-dialed.
+Contact Hours: Set the time frame in which the dialer may make calls to participants. The time zone is set for the interviewer's local time and adjusted to the participant's time zone.
+Number of Rings: Set the maximum number of rings before a disposition is logged for the participant (i.e., "No Answer").
+Number of Attempts: Set the maximum number of attempts that may be made to contact a potential participant before a disqualification disposition is logged.
+Abandonment Rate: (Only available with the Predictive Dial Mode)
+Set the acceptable rate at which otherwise connected calls will be dropped due to an interviewer not being available. If set to 0, no calls will be abandoned (i.e., 1 in 10,000, or 0.01% abandonment rate).
+The abandonment rate is calculated as the value/1,000. For example, a value of 20 means 20 in 1,000 calls may be abandoned, making it a 2% abandonment rate.
+Recording Settings: Choose whether to record the calls or not. If enabled, use the start/stop settings to specify what section of the survey to record.
+Off: The dialer will not record any part of the interview.
+On: The dialer will record the interview according to the selected start and stop settings.
+Start: Select when the recording will begin, i.e., at the beginning of the survey or a specific question.
+Stop: Select when the recording will end, i.e., at the end of the survey or a specific question.
+Redial Delay: Set the amount of time, in minutes, before an attempt to redial may be made when a disposition of "No Answer", "Answering machine detected", "Busy" or "Circuit busy signal" is logged.
+Job Code: The job code is used for telephone billing.
+No Job Code: No job code added to the dialed numbers.
+Prefix: Adds the job code before the participant's phone number.
+Suffix: Adds the job code after the participant's phone number.
+Caller ID: Enter the number that will be shown on the participant's phone when they receive the call.
+3: CATI Comment Element
+Once the CATI Sample is setup, add the CATI Comment Element to your survey to provide instructions to your interviewers.
+3.1: Sending the Survey to Your Interviewers
+After the survey has been built, tested and launched (i.e., set live), you may distribute the URL to your interviewers. To access the URL, first click “Responses” in the navigation menu at the top of any project page. Then select “CATI Mode”.
+This opens a new tab with the login screen. Copy the entire URL.
+Then send the URL along with login instructions (click here to download) to each of your interviewers.
+3.1.1: Troubleshooting
+Interviewers are told to contact their Project Supervisor for assistance with problems.
+Login problems may be due to:
+The Interviewer simply forgot their ID or station ID
+Their ID wasn't in the "Interviewer/Station" file that was uploaded in the survey builder
+An interviewer cannot find the correct project in the dropdown menu:
+Check that the survey was set LIVE. All projects assigned to an interviewer ID with CATI sample that have been launched will appear in the dropdown menu.
+3.2: CATI ProTS Management Console
+Manage your settings, sample and interviewers once the survey is live in the CATI Management Console.

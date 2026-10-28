@@ -1,0 +1,115 @@
+Title: Beacon M19 Release Notes
+Release Date: March 4, 2014
+New survey compat level is 119. Use compat=”119” for all new surveys.
+Crosstabs & Classic Reporting
+#17257 Hierarchical permissions for Crosstabs/Dashboard [staff only]
+#17325 *UI Changes* Users can now save crosstabs runs. Saved runs are visible in the research hub and include banners, table sets and basing.
+#17306 You can force an additional filter on a question. Edit the table in crosstabs and select between one of the segments in a saved banner. All data in the table will be filtered by this condition in addition to any other global conditions. [
+#17297 When editing a table, you can hide a row but still keep it as part of the Total base. You can also hide rows that are netted (make sure to keep the hidden row as part of the base or the percentages will not make sense).
+#16239 Triple-S export can be customized. See #16923 for more information
+#17127 Automatic escaping of reserved words in conditions: questions labelled e.g “in” or “if” might have generated errors before
+#17335 “Data Wrangling” system lets you customize tab-delimitered and fixed-width output (and also normal Excel formats). For example, replace every checkbox variable with an X instead of 1 when download tab delimited data.
+#17312 Banner Syntax Round Trip. Toggling from Raw Code to User Interface mode now works for basic conditions. See case for limitations.
+#17270 PDF exports for Crosstabs reports.
+Research Hub / Portal ---
+#17186 Legacy groups can be converted into multiple full groups split by their permissions
+#17230 Users and groups can now automatically be assigned to new projects in a directory
+#17261 Users and groups can now be removed from multiple projects at once
+#17281 The company selector will allow filtering by company directory as well as company name (e.g. type “jwt” to go to “J. W. T. USA” or “53a” to go to Decipher )[staff only]
+#17280 Search has been extended (for staff only) to allow searching for any path in the system: type in a full survey path (you can also leave off selfserve/) and you will be told what company the project is under [staff only]
+#17283 Search has been extended (for staff only) to allow searching for any user in the system: type in any email address of a user while at any company to go to that user’s company [staff only]
+#17330 Projects can be filtered by state or type
+#17152 Various tooltips added throughout
+Real time Browser Stats: https://v2.decipherinc.com/admin/browser -- we use this page to decide what browsers we need to support, and which one we can drop.
+Dashboard link has been removed from the mega-menu and moved into the Reports tab in detail view.
+#17469 When duplicating a survey in the portal you can also copy permissions and data
+Builder
+Compat=119 surveys will generate a cleaner XML from builder, with fewer of the xmlns:XXX stuff.
+#17224 textarea questions were missing default title and comment (only affected to DQs)
+#17187 Panmenu should say “dynamic” in tooltips and other places instead of the deprecated “interactive”
+#17074 New sample sources for CATI (Computer Assisted Telephone Interviewing) mode
+Programmer/shell setup to enable CATI for a company
+#17145 New CATI comment, comment that will show only for Telephone interviewers dictating a survey to a telephone participant.
+Updated Dynamic tab with new DQ icons
+#17099: Dynamic questions now have prefilled settings to avoid starting error state and provide example setup
+#17318: Non-supported browsers see a modal when opening builder. Chrome is now a Tier 1 supported browser.
+#17314: Legacy Flash based DQ’s are now removed from panmenu/styles list in compat=119+.
+#17298: UI should allow only the latest valid version of a DQ, unless an older version is already in use in the project. If older version is in use, then lock the project to that version. In compat=119+, using mixed versions of the same DQ will result in a FATAL.
+#16197: DQ type=color controller saves values as #color, instead of converting to 0x (hex).
+#17409 (released prior to m19): Alert element field titles changed and options have been added:
+send reminder email after a period of inactivity
+survey content to include in the alert email
+link to participant’s full results can be turned on/off
+SPSS Importer
+Overall, SPSS import is much improved with loading bugs fixed, iterative workflow, and vastly improved automatic grouping. Specific updates below:
+#17041 Correcting most “Unexpected task termination” errors
+#17048 Squelched annoying “out of range” warning
+#17045 Improved manual grouping
+#17042 Improved automatic groupings
+#17043 All participants are now considered “qualified” for purposes of reporting
+#17046 When importing, automatically redirect to Crosstabs instead of Reporting 2010
+#17179 Integration with Research Hub
+#17047 Users may now save their progress and update report configuration (see “edit SPSS variables” in Actions menu)
+#17044 Multiresponse sets are recognized and group those variables automatically
+#16951 Fixed broken variable editing
+XML Editor
+#15943 every attribute is written on its own line in XML Editor
+Dashboard
+#16542 The Dashboard can now optionally use the Crosstabs engine. This can bring a up to 100x speedup though has limits on conditions you can use.
+If using the Crosstabs engine, you can enable weighting for a specific survey or segment used in the Dashboard. See documentation for limitations.
+A new dashboard hook allows you to dynamically change the dashboard using Python code. For example, automatically create one monthly filter for each of the last 6 months or dynamically change.
+There’s a hook for completely overriding the Excel export process. While not recommend, you can use it to create extremely specialized Excel output for one specific dashboard.
+#17094 You can now create multiple filters using the filtergroup keyword. All filters the follow a filtergroup keyword will be grouped in their own drop down.
+Create custom dashboard generators using the “uses” keyword on a table / chart generator. This requires that you create a javascript function that will be registered with dashboard generators, accepts the dashboard object data, and returns some content. That content will then be added to the dashboard in the specified place with specified width.
+Survey & CMS
+#17098 TrueSample works in SECURE surveys
+#17277 There’s a way to enter a live survey in testing mode even if not logged in. Currently there’s no user interface for it, but you can get the URL by running here dev/maketoken . while in the survey. The test token is valid for 1 week and works as if you were logged in (i.e. no data submission).
+#17323 Setting disableBrowserDupes=”1” on a sample source element disables the normal cookie (or higher) dupe checking on that particular sample source only. This is useful for mixed CATI/normal surveys.
+#17580 Basic offline detection for smartphones. Surveys that allow mobile smartphone participants will be shown a warning if their connection is interrupted. This will help prevent a participant from submitting responses when there might be connectivity issues (bad connection, server down, etc.). When connection is restored, the warning will go away. You can disable the feature by adding ss:disableOfflineDetection=”1” to the survey tag. Builder support coming next.
+#16348 Mobile devices that are blocked are now recorded to exit.log with attempted device and message they saw.
+Dynamic Questions Toolkit Updates
+#16544 meta.xml count syntax now supports x+ (where x is greater than 2) and x-y. DQ’s can now specify a range of row/col/choices that can be used with the DQ. e.g. We can force a DQ to support only 2-10 columns.
+#17099 added <template> to allow pre-constructed markup to be inserted into a project when question is first added from Builder panmenu. DQ’s created via the Pan Menu are now fully functional when added. Example rows/cols/choices/options are added automatically. You will no longer receive an error when previewing. (Note, some DQ’s have external resources that are still required. e.g. Image Map)
+#17078 Builder was updated to allow negative and decimal ranges. This update allows a more flexible range in the Builder UI. Slider Decimal can now work with negative ranges as well as decimal ranges.
+#16571 Shell survey.xml editing should be much more readable now. Namespace on the first line was removed.
+#13883 only write non-default value DQ attributes in Builder. The XML editor will now stop playing all DQ XML attributes. Only modified attributes via the style manager will be written out. This should make for a clean XML view. It’s advised to make edits in style manager.
+#17184 able to edit closed DQ’s in Builder. When new DQ’s released, old ones were retired. However, there were studies still using old DQ’s. This update allows them to continue editing them in the style manager.
+#14978 support custom DQ icons for Builder’s pan menu and tree. DQ’s can now support custom icons in the Pan Menu and Question Tree. Be on the look out for newly updated icons for each of our DQ’s.
+#16362 add Builder support for type=int negative numbers. Negative numbers weren’t allowed before for integer type variables. They are now supported. e.g. The media evaluator can now support -100/100 as min/max values.
+#16334 DQ’s no longer leave their attributes behind when switching to a new style or removing the style.
+#17383 question.col-legend-row is override via <style>. This can be overridden by XML styles now.
+#17132 allow restricting DQ’s by client directory. This update allows DQ’s to be visible only to certain client directories.
+Field report & Campaign Manager
+#15863 Word wrapping by 80 characters per line to avoid adding spaces by certain mail clients
+#16618 Full send can accept any amount and the default time limit is set to 20 minutes instead of 12 hours after the 10,000 soft send limit has reached.
+#16281 Remove suppression by survey when unabridged checkbox is selected.
+Programming & Tools
+#16833 The tabimport script can take a --layout argument: if specified, the altlabels of that data layout are used to match the data file with variables.
+#17307 The “datetime” module is important by default; datetime.datetime.now() etc. now work properly in SECURE surveys.
+#17217 A command line tool exists to import/export layouts. This can be used to edit very large variable layouts (see bug for documentation)
+#17469: copy-survey can now copy user permission by using the -u flag
+#17487 Using q3.val (for text/textarea) and q3.r1.open (for open=1 answers) will always quote the characters for safe inclusion into HTML. You can use .unsafe_val and .unsafe_open if you need the original text: if yes, make sure you never output it into HTML through any means
+#17521 When downloading “Uploaded Files” the default prefix for each image filename is the record (e.g. 43_q5_my_kitten.jpg has the file record #43 uploaded for q5 and titled “my kitten.jpg”). You can change it to another variable using imagePrefix=”uuid”
+#14439 quote_plus and urlencode from urllib are available by defaults in surveys (secure too).
+File Uploader
+#15873: ppt(x) file types allowed by staff
+#16536: uploader no longer errors out for non-selfserve projects
+Alerts Management (new)
+(Released prior to m19)
+This feature allows you to set up survey logic that can trigger alert notifications, which then have a life-cycle where people follow-up on the alerts until resolution. The system can be categorized in four sections:
+Alert Setup - Set up alerts inside the survey builder application by adding an alert element to the project. A project can contain multiple of these elements each with different logic, if desired.
+Alert Email - The alert email contains the content you specify at setup, including: subject, case id, participant answers, message and a link to open the alert inside the Alert Center.
+Alert Center - An overview and list of all alerts that have been triggered for the specific project. Requires report access to view. A link to the details of each alert can be accessed by clicking the alert’s id#.
+Alert Details - Each alert has its own detail page where you can: change status, assign an owner, specify actions that have been taken, and provide notes. A history of all changes that have been made is displayed.
+Bugfixes
+#17250 Tablet style was updated to remove the min-width: 759px rule for question grids, which should now prevent horizontal scrolling in most cases.
+#17070 For accessibility reasons, we removed max-scale settings on viewport for tablets, which was preventing pinch-zoom for participants.
+#17381 (ft) adding rows/columns/choices that contain words with ‘div’ no longer replaces it with ‘br/’. Occurred in webkit browsers.
+#17242 Show correct counts after deleting items in a campaign recipient list.
+Misc
+#17299 Workflow improvement - Project title in the header links to the project’s detailed portal page.
+Security
+#17238 A threshold of 10 incorrect logins within 5 minutes has been added to help prevent brute-force attacks. IPs listed in hermes/syslib/default_whitelist.txt or data/ipwhitelist.txt are ignored.
+#17238 When the maximum number of incorrect login attempts has been reached, the user’s account is no longer disabled. Instead, the account is locked for 1 hour. A supervisor or staff can unlock the account immediately from the edit-user dialog in the portal.
+Adobe Integration
+#17007 survey integration with Adobe Reporting Platform.Developers

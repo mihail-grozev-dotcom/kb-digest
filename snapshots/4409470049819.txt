@@ -1,0 +1,61 @@
+Title: Survey Archival and Deletion
+While some survey data is archived within the Decipher system after a prolonged period of inactivity, the surveys themselves will remain available unless manually removed. If desired, users with staff permissions can add the Archive and Delete Settings feature to their company to automatically archive closed or hibernated surveys and delete old survey data after a certain amount of time has passed.
+Note: This article refers to archiving surveys at the company level. Surveys archived at the company level are hidden from all company users. To hide a survey from just your own Portal view, you can hide it using the Portal Actions menu instead. Learn more about hiding surveys.
+Note: Surveys may be hibernated while live. Hibernated surveys may be archived even if they are live. For more information on hibernated surveys, see Hibernated Surveys.
+Once the Archive and Delete Settings feature has been added to a company, any company user with staff permissions can change the archival and deletion settings for that company directly from the company page in the Portal. They can also choose whether to send out a weekly archival report via an automated email.
+Note: To archive a single survey using the portal, you must have Supervisor permissions. See Archiving Surveys to learn more.
+1: Enabling the Feature
+Note: Staff permissions are required to enable the Archive and Delete Settings feature. If you do not have staff permissions and would like to enable the Archive and Delete Settings feature for your company, contact your Forsta representative for assistance.
+To enable the Archive and Delete Settings feature at the company level, you can either run an API call or use the settings options available in the company page of the Portal.
+1.1: Via the Decipher API
+If you would like to use the Decipher API to enable the Archive and Delete Settings feature, run the Settings API call, specifying the company name and the following URL parameters:
+retention.archive_days: The number of days after a survey is closed before the project is automatically archived.
+retention.clear_data_days: The number of days after a survey is archived before its participant data is deleted.
+retention.deletion_email: The email address of the person who will receive the weekly archival deletion report.
+If you have a dedicated, non-shared server, you can also enable this feature at the server level to archive surveys across all the companies on that server. To enable this feature at the server level, run the call above with the same parameters but replace the company name with “global”.
+Important: If the feature is enabled at the server level, every closed survey for every company that has not disabled data retention will be archived.
+1.2: Via the Portal
+If you would like to enable this feature via the Portal, first click Company Page under your company name or logo in the Portal to open the company page. Then click Company Settings and scroll down to the ARCHIVE AND DELETE SETTINGS section. The following settings are configurable and apply to all surveys created in the company:
+1. Auto-Archiving: Use the drop-down to enable or disable the Auto-Archiving feature and specify the amount of time to pass before each survey is archived.
+2. Purge Data: Use the drop-down to enable or disable the Purge Data feature and specify the amount of time to pass before all participant data is deleted for each survey.
+3. Survey deletion: The amount of time set to pass before surveys are deleted once they have been archived. This number is set in the server .config file and can be edited only by Forsta staff.
+4. Email Report To: Enter the email address for the person who should receive the weekly archival deletion report.
+Once you are satisfied with your settings, click Save to apply them.
+1.2.1: Auto-Archiving
+If enabled, the Auto-Archiving feature forces any survey that is both closed / hibernated and inactive to automatically be archived after a certain amount of time. In order for a survey to be auto-archived, it must meet the following conditions:
+It qualifies as inactive (it hasn’t been accessed by anyone in 90 days).
+AND
+It has been closed using the Close survey action in the Portal, the Close Survey API call, or the “closed” script.
+OR
+It is a live survey that has been hibernated for 90 consecutive days.
+To enable Auto-Archiving, select Enabled from the Auto-Archiving drop-down. Then specify when the archival should occur by entering a number of days.
+1.2.2: Purge Data
+If enabled, the Purge Data feature forces the participant data for any archived survey to automatically be deleted after a certain amount of time. In order for survey data to be deleted, the survey must first have been archived using either the archive script or the Auto-Archiving feature.
+To enable Purge Data, select Enabled from the Purge Data drop-down. Then specify when the clearing should occur by entering a number of days.
+1.2.3: Email Report
+Once auto-archiving has been enabled, an archival deletion report is automatically generated at the company level. This report includes a list of all the archived surveys that will be deleted within the next 90 days and can be set to automatically be shared via email once a week.
+To send this report to yourself or someone else, specify the email address of your intended recipient in the text box.
+2: Managing Survey Settings
+Once you have enabled survey archival and deletion for your company, you can manage the archival and deletion settings for your individual surveys directly from the projects list in the Portal. First, click the “...” button for that survey. Then select Archive and Deletion Settings.
+The Archive and Deletion Settings menu displays the Auto-Archiving and Purge Data status for the selected survey.
+Review your settings and choose to enable or disable archiving for the survey you have selected. Once you are satisfied with your changes, click Save to apply them.
+3: Frequently Asked Questions
+See below for answers to some of our most frequently asked questions regarding the Archive and Delete Settings feature.
+Can I add the Archive and Delete Settings feature to my company?
+You must have staff permissions to enable the Archive and Delete Settings feature for your company. If you do not have staff permissions, contact your Forsta representative to request this feature.
+What’s the difference between the two settings: Auto Archiving and Deletion? Why are there two different dates to set?
+Auto Archiving and Deletion are two windows of time that can be set
+Auto-Archiving will occur first – once a survey is closed, the auto-archiving countdown will begin.
+Deletion will occur after Auto-Archiving is complete.
+When can a survey be set for auto-archiving?
+A survey can be set into the auto-archiving process after it is closed or hibernated.
+What happens if a hibernated survey meets the auto-archival criteria?
+A hibernated survey that meets the applicable auto-archival criteria is automatically archived. Once the survey is archived, the standard archival retention processes apply.
+Is it possible to unarchive a survey after it has been archived?
+Yes, archived surveys can be unarchived via the portal or by using the ‘unarchive’ command in the shell. Learn more about scripts for managing archived projects.
+Can I customize the number of days it takes to delete a survey after archival?
+No, this number is set in the server .config file and can be edited only by Forsta staff. Contact your Forsta representative for assistance.
+Can I view a list of what surveys are scheduled for archival / deletion?
+Yes, you can view the Archived Surveys Report or download the survey Archival Report to view and track your company’s upcoming survey archivals and deletions.
+What is archived when I archive a survey?
+The survey and its shared documents are archived.

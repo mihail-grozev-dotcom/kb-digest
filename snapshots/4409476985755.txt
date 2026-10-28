@@ -1,0 +1,100 @@
+Title: Text Question XML
+The <text> element is an open-ended question type that enables participants to provide alpha-numeric content.
+Note: The <text> element collects data using a single-line input box. For multi-line support and a larger input area, use the <textarea> element instead. The information provided below still applies.
+The examples below demonstrate the different layouts available when working with <text> elements.
+1: One-Dimensional
+A one-dimensional <text> element requires at least one character of alpha-numeric content to be provided for each row or column.
+1.1: With No Rows
+When no row elements are specified, the text input box appears directly beneath the question title. In the example below, the participant must provide at least one alpha-numeric character to proceed.
+XML:
+<text label="Q1" optional="0">
+<title>
+What is the name of your favorite artist?
+</title>
+<comment>Please be as specific as possible</comment>
+</text>
+1.2: With Rows Only
+When only row elements are specified, the text question defaults to grouping by rows. This means that text must be provided for each row.
+In the example below, there are three row elements and no column elements. An answer must be provided for each row.
+XML:
+<text label="Q2" optional="0">
+<title>
+Who would cross the Bridge of Death must answer me these questions three,
+ere the other side he see.
+</title>
+<row label="r1">What... is your name?</row>
+<row label="r2">What... is your quest?</row>
+<row label="r3">What... is your favourite colour?</row>
+</text>
+1.3: With Rows and a Column Header
+This example is similar to the one above and demonstrates the differences when a column element is added. You now have the ability to specify text for a column header.
+XML:
+<text label="Q2" optional="0">
+<title>
+Who would cross the Bridge of Death must answer me these questions three, ere the other side he see.
+</title>
+<col label="c1">Answer these three ere the other side he see</col>
+<row label="r1">What... is your name?</row>
+<row label="r2">What... is your quest?</row>
+<row label="r3">What... is your favourite colour?</row>
+</text>
+1.4: With Columns Only
+When only column elements are specified, the <text> question defaults to grouping by columns. This means that a response must be provided for each column.
+In the example below, there are three column elements and no row elements. The participant must provide a response for each of the columns.
+XML:
+<text label="Q3" optional="0">
+<title>
+What is the first thing that comes to mind when you read the following colors?
+</title>
+<comment>Please be as specific as possible</comment>
+<col label="c1"><b style="color:red">Red</b></col>
+<col label="c2"><b style="color:green">Green</b></col>
+<col label="c3"><b style="color:blue">Blue</b></col>
+</text>
+1.5: With Columns and a Row Legend
+This example is similar to the one above and demonstrates the difference when a row element is added. You now have the ability to specify text for a row legend.
+In the example below, there are three column elements and a single row element. The participant must provide a value for the three input boxes.
+XML:
+<text label="Q4" optional="0">
+<title>
+What kind of food do you typically eat for the following meals?
+</title>
+<comment>(e.g. meat, vegetables, fruits, eggs, etc..)</comment>
+<col label="c1">Breakfast</col>
+<col label="c2">Lunch</col>
+<col label="c3">Dinner</col>
+<row label="r1">Type of food</row>
+</text>
+2: Two-Dimensional
+A two-dimensional <text> element requires at least a single character of alpha-numeric content to be provided for each row and column.
+2.1: Grouped by Rows
+When multiple row and column elements are specified, the <text> question defaults to grouping by rows.
+In the example below, the participant is asked to create two delicious pizzas by providing the necessary toppings for each.
+XML:
+<text label="Q5" optional="0">
+<title>
+Please create two delicious pizzas with a max of 3 toppings.
+</title>
+<row label="r1">Pizza 1</row>
+<row label="r2">Pizza 2</row>
+<col label="c1">Topping 1</col>
+<col label="c2" optional="0">Topping 2</col>
+<col label="c3" optional="0">Topping 3</col>
+</text>
+2.2: Grouped by Columns
+In contrast to the example above, this example is grouped by columns. In the example below, the participant is asked to provide two descriptive words for each of the car brands listed horizontally.
+XML:
+<text label="Q6" optional="0" grouping="cols">
+<title>
+Please use two words to describe the following car brands.
+</title>
+<col label="c1">Tesla</col>
+<col label="c2">Toyota</col>
+<col label="c3">BMW</col>
+<col label="c4">Ford</col>
+<row label="r1">1st</row>
+<row label="r2">2nd</row>
+</text>
+3: Learn More
+Text Question Attributes
+Text Element

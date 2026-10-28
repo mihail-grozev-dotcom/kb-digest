@@ -1,0 +1,6 @@
+Title: Closing a Survey
+When you are finished gathering data from participants, you can end fielding by closing your survey. You can close a live survey at any time from the survey actions menu.
+To close a survey via the Portal: First locate your project in the Portal and click the "..." button under "Actions" to open the project actions menu. Then select "Close Survey".
+To close a survey via the Project Overview: Click "Actions" at the top left of the page. Then select "Close Survey".
+A new window will open asking if you are sure you want to close your survey. If you are not sure, click "Cancel", otherwise click "Close Project".
+In the Portal, the project "state" will be changed to "CLOSED" and participants trying to enter the survey will be shown a message alerting them it is closed. Any participants who are still active at this point will have a grace period of one hour to complete the survey.
