@@ -56,6 +56,8 @@ def short(s):
 def word_change(old, new, ctx=4):
     a, b = old.split(), new.split()
     ops = [o for o in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes() if o[0] != "equal"]
+    if not ops:
+        return None
     i1, i2 = min(o[1] for o in ops), max(o[2] for o in ops)
     j1, j2 = min(o[3] for o in ops), max(o[4] for o in ops)
     lo_a, hi_a = max(0, i1 - ctx), min(len(a), i2 + ctx)
@@ -84,8 +86,9 @@ def diff_lines(old, new):
                     changes.append({"op": "added", "text": short(nl)})
                 else:
                     used.add(best)
-                    o, n = word_change(olds[best], nl)
-                    changes.append({"op": "changed", "old": o, "new": n})
+                    wc = word_change(olds[best], nl) if olds[best] != nl else None
+                    if wc:  # identical lines (repeated text that merely moved) are not a change
+                        changes.append({"op": "changed", "old": wc[0], "new": wc[1]})
             changes += [{"op": "removed", "text": short(ol)} for k, ol in enumerate(olds) if k not in used]
     return changes
 
