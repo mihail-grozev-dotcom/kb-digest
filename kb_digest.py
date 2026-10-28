@@ -153,10 +153,20 @@ def main():
     if os.environ.get("DRY_RUN"):
         print(msg)
         return 0
-    with smtplib.SMTP(os.environ["SMTP_HOST"], int(os.environ.get("SMTP_PORT", "587"))) as s:
-        s.starttls()
-        s.login(os.environ["SMTP_USER"], os.environ["SMTP_PASS"])
-        s.send_message(msg)
+    host = os.environ.get("SMTP_HOST", "").strip() or "smtp.gmail.com"
+    port = int(os.environ.get("SMTP_PORT", "").strip() or "587")
+    user, pw = os.environ.get("SMTP_USER", "").strip(), os.environ.get("SMTP_PASS", "")
+    if not user or not pw:
+        sys.exit("ERROR: the SMTP_USER and/or SMTP_PASS secret is missing or empty.")
+    try:
+        with smtplib.SMTP(host, port, timeout=30) as s:
+            s.starttls()
+            s.login(user, pw)
+            s.send_message(msg)
+    except smtplib.SMTPAuthenticationError as e:
+        sys.exit("ERROR: Gmail rejected the login (%s). Check SMTP_USER and use a Google APP PASSWORD in SMTP_PASS." % e.smtp_code)
+    except (smtplib.SMTPException, OSError) as e:
+        sys.exit("ERROR sending email via %s:%s - %s" % (host, port, e))
     print("Digest sent.")
     return 0
 
