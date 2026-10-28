@@ -43,4 +43,6 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_FROM_NAME: ${{ secrets.MAIL_FROM_NAME }}
+          MAIL_REPLY_TO: ${{ secrets.MAIL_REPLY_TO }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
