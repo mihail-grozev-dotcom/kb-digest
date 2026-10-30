@@ -449,6 +449,81 @@
      "text": "        "
     }
    ]
+  },
+  {
+   "id": 5313450889627,
+   "title": "Importing Recipients from Salesforce\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/5313450889627-Importing-Recipients-from-Salesforce",
+   "edited_at": "2026-06-16T18:10:08Z",
+   "detected_at": "2026-10-30T07:35:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 4409470034459,
+   "title": "Tips for Simplifying Logic\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409470034459-Tips-for-Simplifying-Logic",
+   "edited_at": "2024-07-17T11:11:24Z",
+   "detected_at": "2026-10-30T07:35:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 4409461532827,
+   "title": "Renaming a Survey\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409461532827-Renaming-a-Survey",
+   "edited_at": "2024-07-17T11:11:06Z",
+   "detected_at": "2026-10-30T07:35:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 9897655404699,
+   "title": "Beacon M16 Release Notes\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/9897655404699-Beacon-M16-Release-Notes",
+   "edited_at": "2024-07-17T11:08:49Z",
+   "detected_at": "2026-10-30T07:35:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 9897748472731,
+   "title": "147.9 Release Notes\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/9897748472731-147-9-Release-Notes",
+   "edited_at": "2024-07-17T11:07:47Z",
+   "detected_at": "2026-10-30T07:35:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
   }
  ]
 }
