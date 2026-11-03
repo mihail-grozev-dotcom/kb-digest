@@ -28,6 +28,9 @@ Modern Standard Arabic (MSA)
 Arabic (Generic 4)
 arabic_g4
 Modern Standard Arabic (MSA)
+Arabic (Bahrain)
+arabic_bahrain
+Modern Standard Arabic (MSA)
 Arabic (Egypt)
 arabic_egypt
 Modern Standard Arabic (MSA)
@@ -45,6 +48,9 @@ arabic_lebanon
 Modern Standard Arabic (MSA)
 Arabic (Morocco)
 arabic_morocco
+Modern Standard Arabic (MSA)
+Arabic (Oman)
+arabic_oman
 Modern Standard Arabic (MSA)
 Arabic (Qatar)
 arabic_qatar
@@ -93,6 +99,9 @@ English (American)
 English (Australia)
 aus
 English (unspecified)
+English (Bahrain)
+english_bahrain
+English (unspecified)
 English (Canada)
 english_ca
 English (unspecified)
@@ -129,6 +138,9 @@ English (unspecified)
 English (Generic 10)
 english_g10
 English (unspecified)
+English (Ghana)
+english_ghana
+English (unspecified)
 English (Hong Kong)
 english_hk
 English (unspecified)
@@ -141,6 +153,9 @@ English (unspecified)
 English (Ireland)
 english_ireland
 English (unspecified)
+English (Kuwait)
+english_kuwait
+English (unspecified)
 English (Malaysia)
 english_my
 English (unspecified)
@@ -150,8 +165,14 @@ English (unspecified)
 English (Nigeria)
 english_nigeria
 English (unspecified)
+English (Oman)
+english_oman
+English (unspecified)
 English (Philippines)
 english_philippines
+English (unspecified)
+English (Qatar)
+english_qatar
 English (unspecified)
 English (Saudi Arabia)
 english_saudiarabia
@@ -162,11 +183,17 @@ English (unspecified)
 English (South Africa)
 english_za
 English (unspecified)
+English (Sri Lanka)
+english_srilanka
+English (unspecified)
 English (Taiwan)
 english_tw
 English (unspecified)
 English (UAE)
 english_ae
+English (unspecified)
+English (Uganda)
+english_uganda
 English (unspecified)
 English (UK)
 uk
@@ -250,13 +277,15 @@ lao
 Latvian
 latvian
 Yes
-Lithunian
+Lithuanian
 lithuanian
 Yes
 Macedonian
 macedonian
 Malay
 malay
+Malay (Brunei)
+malay_brunei
 Malay (Singapore)
 malay_sg
 Malayalam
@@ -283,6 +312,9 @@ Yes
 Portuguese (Brazil)
 portuguese_br
 Portuguese (Brazilian)
+Portuguese (Timor-Leste)
+portuguese_timorleste
+Portuguese
 Punjabi
 punjabi
 Romanian
@@ -332,6 +364,9 @@ Spanish
 Spanish (Argentina)
 spanish_argentina
 Spanish
+Spanish (Bolivia)
+spanish_bolivia
+Spanish
 Spanish (Brazil)
 spanish_brazil
 Spanish
@@ -359,6 +394,9 @@ Spanish
 Spanish (Mexico)
 spanish_mexico
 Spanish
+Spanish (Panama)
+spanish_panama
+Spanish
 Spanish (Paraguay)
 spanish_paraguay
 Spanish
@@ -382,6 +420,8 @@ spanish_venezuela
 Spanish
 Swahili
 swahili
+Swahili (Tanzania)
+swahili_tanzania
 Swedish
 swedish
 Yes

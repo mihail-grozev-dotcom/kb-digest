@@ -1,0 +1,28 @@
+Title: 155.9 Release Notes 
+Release Date: November 3, 2026
+Release Version: 155.9
+New Features
+Survey
+Language Manager
+Added new country-specific languages to Language Manager for data collection: Arabic (Bahrain), Arabic (Oman), English (Bahrain), English (Ghana), English (Kuwait), English (Oman), English (Qatar), English (Sri Lanka), English (Uganda), Malay (Brunei), Portuguese (Timor-Leste), Spanish (Panama), and Swahili (Tanzania). The Arabic, Malay, Portuguese, Spanish, and Swahili options use the translations of the main language, and the English options use English (UK).
+Learn More: Available Survey Languages
+Project Warnings
+The “Missing Resource” tab will now contain the status code that prevented the resources from loading. E.g. while 404 means not found, 401 means a permission on the directory structure or file.
+The “Missing Resource” tabs is now split into Missing Resources (due to a 40x error, either file not found or some permission problem on the files you uploaded if using SFTP), and Serve Errors (500x error which would typically be rejected denied due to capacity issues or system maintenance).
+Project Warnings has now entries for respondents blocked due to cookie or digital fingerprinting dupes.
+Tasks Management
+The rich text editor for Tasks and Comments has been upgraded.
+Responses
+Email Campaigns
+Emails sent from Campaign Manager and the email logic node are now processed on EU-based email servers when the sender's domain is configured for EU processing. Campaign Manager and Template Manager settings now show the email processing region (US or EU) for each sender, including reminder senders. (Limited Availability; please contact your account representative for more information)
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+The number of concurrent background logic nodes (such as the API logic node) that run at one time is now limited based on server size to prevent excessive server overload. The limit is configurable by adjusting the tunable.async_limits.logic_nodes config.py setting.
+API
+New API available that lets you get the information presented in the Dropouts tab of the Project Summary
+Bug Fixes
+Survey
+Scripting Agent
+An issue affecting the removal of strikethrough text has been resolved.
+SPSS Importer
+A rare issue affecting larger-size file imports has been resolved.

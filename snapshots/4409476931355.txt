@@ -23,6 +23,7 @@ Performing an action in the Portal: 1 minute
 Running a report: 1 hour (allows long virtual questions to continue running after the browser has timed out)
 Certain background processes: 2 hours
 All other ordinary requests time out after 30 minutes.
+Shell editor processes (such as vim, vi, and nano) that remain open for longer than 24 hours may be forcibly terminated, discarding any unsaved changes.
 1.3: Surveys
 Surveys have the following limits:
 8192 of each type of question (virtual/real) [Increased to 8192 as of September 2013]

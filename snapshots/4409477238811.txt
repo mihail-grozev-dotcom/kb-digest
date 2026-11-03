@@ -1,6 +1,7 @@
 Title: Sending Reminders
 Once the initial email send is done and the reminder email has been created, the reminder email can be sent to contacts in the recipient list who have not yet completed the survey, have not reported a previous email as spam, and are not a bounce-back or opt-out.
 You may send more than one set of reminder emails. After the initial round of reminder emails have been sent out, follow the same steps (as outlined below) to send additional reminders to recipients in the list who have not completed the survey.
+Note: Emails sent from Campaign Manager are processed on EU-based email servers when the sender's domain is configured for EU processing. Campaign Manager and Template Manager settings show the email processing region (US or EU) for email sends, including reminder sends. EU email processing is available on a limited basis. Contact your account representative for more information.
 1: Launching Reminders
 To send reminder emails, click the project in the Campaign Manager and select Launch Reminders.
 Tip: If the Launch Reminders action is grayed out, you most likely have not sent test emails for the reminder to the recipients in the seed list. Open the reminder email and click Send Test Email.

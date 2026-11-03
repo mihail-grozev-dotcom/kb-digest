@@ -1,5 +1,6 @@
 Title: Email Campaign Manager Overview
 The Email Campaign Manager allows you to schedule and send email campaigns for your Decipher survey or project. This document describes how to access the Email Campaign Manager and navigate its unique tools and features.
+Note: Emails sent from Campaign Manager are processed on EU-based email servers when the sender's domain is configured for EU processing. Campaign Manager and Template Manager settings show the email processing region (US or EU) for email sends, including reminder sends. EU email processing is available on a limited basis. Contact your account representative for more information.
 1: Accessing the Campaign Manager
 To access and manage email campaigns for your project, first select your project in the Portal and click "Email Campaigns" under "Responses" in the navigation menu.
 Then click "New Campaign" to create your first campaign and email invitation.

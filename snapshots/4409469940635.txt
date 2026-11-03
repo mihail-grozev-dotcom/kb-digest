@@ -1,5 +1,6 @@
 Title: Sending an Email
 You can use the Logic Library to send out a single email from your survey. This can be done using either the "Send An Email" element in the Survey Editor or the "email" logic node in the survey XML, and because it is only run once, can be a great way to follow up with congratulatory offers or other messaging for participants completing a live survey.
+Note: Emails sent from the email logic node are processed on EU-based email servers when the sender's domain is configured for EU processing. EU email processing is available on a limited basis. Contact your account representative for more information.
 1: Using the Survey Editor
 To add email sending using the Survey Editor, click + Add Survey Element under the staging area.
 In the Element Library, select Advanced and select the Send An Email element. Then click Add.

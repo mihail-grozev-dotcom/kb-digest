@@ -1,5 +1,6 @@
 Title: Creating an Email Campaign
 You can use the Campaign Manager to create and send your own survey email campaigns. This document outlines the process for creating and managing an email campaign via the Campaign Manager.
+Note: Emails sent from Campaign Manager are processed on EU-based email servers when the sender's domain is configured for EU processing. Campaign Manager and Template Manager settings show the email processing region (US or EU) for email sends, including reminder sends. EU email processing is available on a limited basis. Contact your account representative for more information.
 1: Adding an Email Campaign
 To add an email campaign to a survey, first navigate to the Participant Sources menu by selecting “Participant Sources” under “RESPONSES”. Then click the “+ Participant Source” button.
 Next, click the “Email Campaign” tile in the list of source types. In the Campaign Manager, add a new email campaign, click the "New Campaign" button.
@@ -80,6 +81,8 @@ Enter the email address that recipients can reply to in the "Reply to address" f
 The Opt-Out section will show if the campaign is considered unbranded or branded.
 Unbranded: The url domain will be decipherinc.com and the opt-out link will direct to the global opt-out
 Branded: The url domain will be the CNAME domain and the opt-out link will direct to the company opt-out (the remove survey)
+4.5: Email Processing
+The Email Processing section on the Settings tab shows Region: US or Region: EU, based on the sender's domain configuration. Campaign Manager and Template Manager settings show this information for email sends, including reminder sends. If a reminder uses a different From address, check the region for that sender separately.
 5: Theme Settings
 Click the color square next to the option you want to update to open the color picker, then select the desired color and select "OK". The preview window (i.e., the email content) will display the updates, and you may also click the "Preview" button to view the email as the recipients will see it.
 Background Color: Click the square box to change the color that appears behind the framed body of the email, in the background.

@@ -736,6 +736,7 @@ You can also send emails through SendGrid using the --sendgrid-direct option.
 For example:
 bulk --sendgrid-direct send email.txt list.txt
 The sender email address can be any address supported by both SendGrid and the company containing the survey.
+Note: When sending through SendGrid, emails are processed on EU-based email servers when the sender's domain is configured for EU processing. EU email processing is available on a limited basis. Contact your account representative for more information.
 Note: Sending emails through SendGrid requires some additional server configuration. Please contact SurveySupport@forsta.com for assistance.
 Note: Configurations using the --sendgrid option will function the same way as those using --sendgrid-direct.
 3.2.13: Blacklisting Domains

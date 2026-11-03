@@ -1949,6 +1949,305 @@
      "text": "        "
     }
    ]
+  },
+  {
+   "id": 58141928084635,
+   "title": "155.9 Release Notes ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/58141928084635-155-9-Release-Notes",
+   "edited_at": "2026-11-03T18:09:04Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "new",
+   "changes": []
+  },
+  {
+   "id": 4409476931355,
+   "title": "Decipher Limits and Capacity",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409476931355-Decipher-Limits-and-Capacity",
+   "edited_at": "2026-11-03T18:09:04Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "added",
+     "text": "Shell editor processes (such as vim, vi, and nano) that remain open for longer than 24 hours may be forcibly terminated, discarding any unsaved changes."
+    }
+   ]
+  },
+  {
+   "id": 4409461335835,
+   "title": "Email Sends with Bulk",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409461335835-Email-Sends-with-Bulk",
+   "edited_at": "2026-11-03T18:09:03Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "added",
+     "text": "Note: When sending through SendGrid, emails are processed on EU-based email servers when the sender's domain is configured for EU processing. EU email processing is available on a limited basis. Contact your account representative for more information."
+    }
+   ]
+  },
+  {
+   "id": 4409469927451,
+   "title": "Available Survey Languages",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409469927451-Available-Survey-Languages",
+   "edited_at": "2026-11-03T18:09:02Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 33,
+   "changes": [
+    {
+     "op": "added",
+     "text": "Arabic (Bahrain)"
+    },
+    {
+     "op": "added",
+     "text": "arabic_bahrain"
+    },
+    {
+     "op": "added",
+     "text": "Modern Standard Arabic (MSA)"
+    },
+    {
+     "op": "added",
+     "text": "Modern Standard Arabic (MSA)"
+    },
+    {
+     "op": "added",
+     "text": "Arabic (Oman)"
+    },
+    {
+     "op": "added",
+     "text": "arabic_oman"
+    },
+    {
+     "op": "added",
+     "text": "English (Bahrain)"
+    },
+    {
+     "op": "added",
+     "text": "english_bahrain"
+    }
+   ]
+  },
+  {
+   "id": 4409477119643,
+   "title": "Technical Support",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409477119643-Technical-Support",
+   "edited_at": "2026-11-03T18:09:01Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 63,
+   "changes": [
+    {
+     "op": "added",
+     "text": "Holidays denoted with an asterisk(*) will have no support coverage available over all hours of the day. All other listed days will be classified and operated under holiday policies but with limited support coverage. For high severity issues on these days please refer to terms and conditions for con…"
+    },
+    {
+     "op": "added",
+     "text": "Note: Days following holidays will have longer than average response times."
+    },
+    {
+     "op": "removed",
+     "text": "Support will have limited shifts or be closed on the following holidays."
+    },
+    {
+     "op": "changed",
+     "old": "Holiday Date",
+     "new": "Holiday Dates"
+    },
+    {
+     "op": "removed",
+     "text": "New Years Day*"
+    },
+    {
+     "op": "removed",
+     "text": "Thursday, January 1, 2026"
+    },
+    {
+     "op": "removed",
+     "text": "Martin Luther King Jr. Day"
+    },
+    {
+     "op": "removed",
+     "text": "Monday, January 19, 2026"
+    }
+   ]
+  },
+  {
+   "id": 4409469940635,
+   "title": "Sending an Email",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409469940635-Sending-an-Email",
+   "edited_at": "2026-11-03T18:09:01Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "added",
+     "text": "Note: Emails sent from the email logic node are processed on EU-based email servers when the sender's domain is configured for EU processing. EU email processing is available on a limited basis. Contact your account representative for more information."
+    }
+   ]
+  },
+  {
+   "id": 4409477235867,
+   "title": "Creating an Email Campaign",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409477235867-Creating-an-Email-Campaign",
+   "edited_at": "2026-11-03T18:09:00Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "added",
+     "text": "Note: Emails sent from Campaign Manager are processed on EU-based email servers when the sender's domain is configured for EU processing. Campaign Manager and Template Manager settings show the email processing region (US or EU) for email sends, including reminder sends. EU email processing is avai…"
+    },
+    {
+     "op": "added",
+     "text": "4.5: Email Processing"
+    },
+    {
+     "op": "added",
+     "text": "The Email Processing section on the Settings tab shows Region: US or Region: EU, based on the sender's domain configuration. Campaign Manager and Template Manager settings show this information for email sends, including reminder sends. If a reminder uses a different From address, check the region …"
+    }
+   ]
+  },
+  {
+   "id": 8435114181147,
+   "title": "Email Template Manager Overview",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/8435114181147-Email-Template-Manager-Overview",
+   "edited_at": "2026-11-03T18:08:59Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "added",
+     "text": "Note: Emails sent from Campaign Manager are processed on EU-based email servers when the sender's domain is configured for EU processing. Campaign Manager and Template Manager settings show the email processing region (US or EU) for email sends, including reminder sends. EU email processing is avai…"
+    }
+   ]
+  },
+  {
+   "id": 4417353775515,
+   "title": "Email Campaign Manager Overview",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4417353775515-Email-Campaign-Manager-Overview",
+   "edited_at": "2026-11-03T18:08:59Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "added",
+     "text": "Note: Emails sent from Campaign Manager are processed on EU-based email servers when the sender's domain is configured for EU processing. Campaign Manager and Template Manager settings show the email processing region (US or EU) for email sends, including reminder sends. EU email processing is avai…"
+    }
+   ]
+  },
+  {
+   "id": 4409470182043,
+   "title": "Sending Emails in the Campaign Manager",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409470182043-Sending-Emails-in-the-Campaign-Manager",
+   "edited_at": "2026-11-03T18:08:58Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "added",
+     "text": "Note: Emails sent from Campaign Manager are processed on EU-based email servers when the sender's domain is configured for EU processing. Campaign Manager and Template Manager settings show the email processing region (US or EU) for email sends, including reminder sends. EU email processing is avai…"
+    }
+   ]
+  },
+  {
+   "id": 4409477238811,
+   "title": "Sending Reminders",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409477238811-Sending-Reminders",
+   "edited_at": "2026-11-03T18:08:57Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "added",
+     "text": "Note: Emails sent from Campaign Manager are processed on EU-based email servers when the sender's domain is configured for EU processing. Campaign Manager and Template Manager settings show the email processing region (US or EU) for email sends, including reminder sends. EU email processing is avai…"
+    }
+   ]
+  },
+  {
+   "id": 5313450889627,
+   "title": "Importing Recipients from Salesforce\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/5313450889627-Importing-Recipients-from-Salesforce",
+   "edited_at": "2026-06-16T18:10:08Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 4409470034459,
+   "title": "Tips for Simplifying Logic\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409470034459-Tips-for-Simplifying-Logic",
+   "edited_at": "2024-07-17T11:11:24Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 4409461532827,
+   "title": "Renaming a Survey\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409461532827-Renaming-a-Survey",
+   "edited_at": "2024-07-17T11:11:06Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 9897655404699,
+   "title": "Beacon M16 Release Notes\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/9897655404699-Beacon-M16-Release-Notes",
+   "edited_at": "2024-07-17T11:08:49Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 9897748472731,
+   "title": "147.9 Release Notes\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/9897748472731-147-9-Release-Notes",
+   "edited_at": "2024-07-17T11:07:47Z",
+   "detected_at": "2026-11-03T19:26:22Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
   }
  ]
 }

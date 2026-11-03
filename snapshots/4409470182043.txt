@@ -4,6 +4,7 @@ An email campaign has been created.
 The seed list has been created and test emails have been sent and reviewed.
 The survey has been set "live" (i.e., launched).
 The recipient list has been uploaded.
+Note: Emails sent from Campaign Manager are processed on EU-based email servers when the sender's domain is configured for EU processing. Campaign Manager and Template Manager settings show the email processing region (US or EU) for email sends, including reminder sends. EU email processing is available on a limited basis. Contact your account representative for more information.
 1: Launching a Campaign
 Once you have completed the steps above and you are ready to launch your campaign, click "Launch Campaign" to begin the launch process. Then select "Send Emails".
 1.1: Reviewing the Campaign Information

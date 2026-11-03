@@ -3,46 +3,54 @@ Title: Technical Support
 Email support is available as follows:
 SurveySupport@forsta.com
 2: Support Holiday Schedule
-Support will have limited shifts or be closed on the following holidays.
+Holidays denoted with an asterisk(*) will have no support coverage available over all hours of the day. All other listed days will be classified and operated under holiday policies but with limited support coverage. For high severity issues on these days please refer to terms and conditions for contact procedures and criteria.
+Note: Days following holidays will have longer than average response times.
 Holiday Name
-Holiday Date
-New Years Day*
-Thursday, January 1, 2026
-Martin Luther King Jr. Day
-Monday, January 19, 2026
-Liberation Day (Bulgaria)
-Independence Day (Bosnia)
-Monday, March 2 – Tuesday, March 3, 2026
-Orthodox Easter
-Friday, April 10 – Monday April 13, 2026
-Labour Day (Bulgaria/Bosnia)
-Friday, May 1 - Saturday, May 2, 2026
-St. George Day
-Wednesday, May 6, 2026
-Memorial Day*
-Culture and Literacy Day*
-Sunday, May 24 - Monday, May 25, 2026
-Juneteenth
-Friday, June 19, 2026
-Independence Day (USA)
-Friday, July 3 – Saturday, July 4, 2026
-Labor Day (USA)*
-Unification Day*
-Sunday, September 6 - Monday, September 7, 2026
-Independence Day (Bulgaria)
-Monday, September 22, 2026
+Holiday Dates
 Day of Bulgarian Enlighteners
 Sunday, November 1 - Monday, November 2, 2026
-Statehood Day (Bosnia)
-Thanksgiving (USA)
-Wednesday, November 25 – Saturday, November 28, 2026
+Statehood Day (Bosnia) and Thanksgiving (USA)
+Wednesday, November 25 - Saturday, November 28, 2026
 Christmas*
 Thursday, December 24 - Saturday, December 26, 2026
-Christmas
-Sunday, December 27 – Monday, December 28, 2026
-New Years Eve/Day*
-Thursday, December 31, 2026 – Friday, January 1, 2027
-* No Support Coverage
+Post-Christmas
+Monday, December 28 - Thursday, December 31, 2026
+New Years*
+Friday, January 1 - Monday, January 4, 2027
+Post-New Years
+Tuesday, January 5 - Friday January 8, 2027
+Martin Luther King Jr. Day
+Sunday, January 17 - Monday, January 18, 2027
+Independence Day (Bosnia)
+Monday, March 1, 2027
+Liberation Day (Bulgaria)
+Wednesday, March 3, 2027
+Orthodox Easter and Labour Day
+Monday, May 3 - Tuesday, May 4, 2027
+St. George Day
+Thursday, May 6, 2027
+Culture and Literacy Day
+Sunday, May 23 - Monday, May 24, 2027
+Memorial Day
+Sunday, May 30 - Monday May 31, 2027
+Juneteenth
+Friday, June 18, 2027
+Independence Day (USA)
+Sunday, July 4 - Monday, July 5, 2027
+Labor Day (USA)*
+Unification Day (Bulgaria)*
+Sunday, September 5 - Monday, September 6, 2027
+Independence Day (Bulgaria)
+Wednesday, September 22, 2027
+Day of Bulgarian Enlighteners
+Sunday, October 31 - Monday, November 1, 2027
+Statehood Day (Bosnia)
+Thanksgiving (USA)
+Thursday, November 25 - Sunday, November 28, 2027
+Christmas*
+Thursday, December 23 - Sunday, December 26, 2027
+New Years Eve*
+Friday, December 31, 2027
 3: Support Guidelines for Decipher and Panel Management
 3.1: Communication Methods
 Tickets to the support team can be submitted via email or via the Forsta Zendesk help center.
