@@ -30,7 +30,7 @@ The new task will appear with a red box next to it, indicating that it is a new 
 When you address a task (e.g., correct an error or make the specified changes), click the red box next to the task for the question. Then enter a comment and click "resolve task".
 This will "check off" the task and the box becomes green, indicating that the task has been resolved and is ready for testing.
 1.4: Reviewing Completed Tasks
-After the task has been tested, click the green box next to the task and select "reactivate" if the task was not implemented correctly, or "close" if the task was completed as expected.
+After the task has been tested, click the green box next to the task and select reactivate if the task was not implemented correctly, or close if the task was completed as expected.
 2: Viewing Survey Tasks from the Tasks List
 To access the Tasks List, select Build, then More Tools, then Tasks. The Tasks feature in the survey testing toolbar allows you to provide feedback and track the status of all open tasks. An overview of this feature is provided below.
 Search: Use the search bar to find tasks based on comment field.
