@@ -1,0 +1,44 @@
+Title: Migrating Custom Resources to Python 3
+Requires Decipher Cloud
+Compat 156 uses Python 3.14 instead of Python 2.7. This guide explains how to update custom dynamic questions (DQs), logic nodes, and hooks for Python 3.14.
+Keep the existing Python 2 files for surveys using earlier compat levels. Create separate Python 3 versions rather than renaming or replacing the originals. Custom resources are not converted automatically.
+1: Create Python 3 Resource Files
+For each Python 2 resource, add an adjacent Python 3 file with the name shown below. Update the Python syntax for version 3.14. Some dynamic questions do not include a Python module. For these questions, update the support tokens in meta.xml.
+Resource
+Python 2 file
+Python 3 file
+Logic node
+lib/local/<logic_node>/v1/logic.py
+lib/local/<logic_node>/v1/logic3.py
+Hook
+hooks.py
+hooks3.py, in the same location
+Dynamic question with Python code
+lib/local/<dqname>/v1/code.py
+lib/local/<dqname>/v1/code3.py
+Note: Surveys using compat 156 or higher require logic3.py for custom logic nodes and hooks3.py for custom hooks. Resources without these files are unavailable to those surveys.
+2: Set Dynamic Question Python Version Support
+Use the <supports> element in a dynamic question's meta.xml file to declare which Python runtimes the question supports. The p2 and p3 tokens control availability by compat level. They do not verify code compatibility.
+Python tokens
+Shown for compat
+Meaning
+No p2 or p3 token
+Both ranges
+The question can appear with either version. It may fail or load without its Python code; visibility does not confirm that it works.
+p2
+155 and earlier
+Declares Python 2.7 support.
+p3
+156 and later
+Declares Python 3.14 support.
+p2,p3
+Both ranges
+Declares intended support for both versions. The code must still be compatible with and tested on both versions.
+For example, to include both ranges, use <supports>p2,p3</supports>.
+For version availability, the no-p2/p3 state includes either a missing <supports> element or an existing element with only question-feature tokens. Existing question-feature restrictions still apply.
+3: Check Shared Styles
+Dynamic questions uses the same styles.xml file for both Python versions. If a question supports both Python 2.7 and Python 3.14, check that all Python expressions in styles.xml, including @if and ${...}, work in both runtimes. See DQ Styles (styles.xml) for examples.
+4: Test and Maintain Both Versions
+Apply future fixes and improvements to both the Python 2 and Python 3 files. Changes to one version do not automatically update the other.
+Test resource visibility and behavior with sandbox surveys that use each compat range before you apply changes to live resources. Forsta strongly recommends you include manual quality assurance (QA) for both Python versions. For existing sandbox and versioning guidance, see How to Create a Dynamic Question (DQ).
+For Python syntax changes, see Compat 156 (Python 3.14) Syntax Changes. Standard Python examples do not establish which modules or file operations are available in secure-survey execution. Review Secure Surveys Overview before using them in a secure survey.

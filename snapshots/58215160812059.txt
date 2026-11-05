@@ -1,0 +1,63 @@
+Title: Compat 156 (Python 3.14) Overview
+Planned Rollout Start: November 30, 2026
+Release Version: M56
+Availability depends on the server rollout, which is expected to complete by Q2 2027.
+1: Survey Versioning
+The new survey compatibility level is 156. Surveys using compat="156" or later run on Python 3.14 instead of Python 2.7. This is a breaking change for survey code and custom resources. The updated Pthon version supports future product development and access to newer Python language features and libraries.
+Python 3 code can be syntactically valid and still behave differently from equivalent Python 2.7 code. Syntax conversion alone is not a complete migration. Review data types, operator results, collections, imports, and resource loading as part of the same upgrade.
+1.1: Python Version and Existing Surveys
+A survey's compatibility level determines its Python version. Existing surveys keep their current compatibility level and are not converted automatically.
+Survey compatibility level
+Python version
+Upgrade impact
+155 and lower
+Python 2.7
+Existing surveys retain their compatibility level, subject to current support and retirement rules.
+156 and higher
+Python 3.14
+Review and test survey code and custom resources before upgrading.
+Earlier supported compatibility levels receive critical fixes only. New features and noncritical fixes target compatibility level 156 and higher. For a new survey, use the highest supported compatibility level available on its server, including 156 when available.
+Confirm compatibility level 156 is available on your server before planning an upgrade, and select the level intentionally for each survey.
+Important: Do not change a live survey's compatibility level without reviewing its code and custom resources and testing a separate copy first.
+Learn More: Survey Compat Levels
+1.2: Python Syntax and Behavior
+Moving to Python 3 requires more than changing syntax. Review behavior that can affect survey logic, data, and calculations:
+Use print(...) as a function and update except and raise syntax. The old <> inequality operator is replaced by !=.
+Python 3 distinguishes text strings (str) from byte strings (bytes). Convert explicitly with the appropriate encoding at boundaries where data changes between text and bytes.
+Dictionary methods such as .items(), .keys(), and .values() return views rather than Python 2 lists. Use membership tests instead of .has_key().
+Replace xrange with range. Python 3 range remains reusable and indexable, while map, filter, and zip return iterators. Convert those iterators to a list when the code needs list behavior.
+The / operator performs true division, while // performs floor division. For example, 5 / 2 is 2.5 and 5 // 2 is 2. Review quotas, calculations, rounding, and comparisons between unrelated types, such as numbers and strings.
+Some modules have different names. For example, use urllib.request instead of urllib2. Use explicit relative imports when importing from within a package.
+Do not replace every / with // mechanically. Floor division rounds down, so changing the operator can affect negative as well as positive operands. Confirm the required result for each calculation before applying a change.
+Syntax conversion does not guarantee that an imported module is exposed in secure survey execution. Review the supported environment and test the code.
+Learn More: Compat 156 (Python 3.14) Syntax Changes
+1.3: Custom Dynamic Questions, Logic Nodes, and Hooks
+Standard-library dynamic questions and logic nodes are available at compatibility level 156, except for retired features. Review custom resources separately before upgrading.
+Custom resources are not converted automatically. Keep the original Python 2 files and add Python 3.14 counterparts with updated code alongside them:
+Resource
+Python 2 file
+Python 3 file
+Logic node
+logic.py
+logic3.py
+Hook
+hooks.py
+hooks3.py
+Dynamic question with a Python module
+code.py
+code3.py
+In a dynamic question's meta.xml, the <supports> tokens control availability by Python version. Use p2 to show the question at compat="155" and earlier, p3 to show it at compat="156" and later, or p2,p3 to show it in both ranges. If neither Python token is listed, the question can appear in both ranges but may fail or load without its Python code. These tokens declare intended support; they do not confirm that the code works. Existing question-feature tokens continue to apply.
+Custom logic nodes and hooks without Python 3 counterparts are unavailable at compatibility level 156 and later. Not all dynamic questions have a code.py module. Dynamic questions share styles.xml, so @if and ${...} expressions must work in both Python versions when a resource supports both ranges.
+Apply future changes and fixes to both copies when both versions are supported, and test each intended compatibility range.
+Learn More: Migrating Custom Resources to Python 3
+1.4: Legacy Features
+Compatibility level 156 requires Delphi data and omits some legacy functionality. Examples include non-Delphi data, optional question labels, and un-secure surveys. Legacy integrations and tools are also unavailable.
+Check for dependencies on legacy features before upgrading. Earlier compatibility levels remain subject to existing support and retirement rules.
+Learn More: Compat 156 (Python 3.14) FAQ
+1.5: Before You Upgrade
+Inventory survey code in exec, conditions, virtuals, validation, onLoad, expressions, and styles. Identify custom resources and their dependencies.
+Update Python 3 files, metadata, and code while retaining Python 2 files needed by earlier compatibility levels.
+Run available compatibility checks and review their suggestions. The checks are not exhaustive.
+Test a separate sandbox or copy at the target compatibility level end to end. Check branching, quotas, calculations, dynamic questions, hooks, and data exports as applicable. Test both versions when a resource supports both.
+Perform manual quality assurance even when checks report no changes or issues. Move to production only after reviewing the code and resources and completing testing.
+Learn More: Compat 156 (Python 3.14) FAQ

@@ -1,0 +1,106 @@
+Title: Compat 156 (Python 3.14) Syntax Changes
+Compat 156 uses Python 3.14 instead of Python 2.7. This guide describes common syntax and behavior changes to review when updating survey code and custom resources. Test changes before using them in production surveys.
+The Python library and file-access examples in this guide describe standard Python. For custom resource files, see Migrating Custom Resources to Python 3. Before using code in a secure survey, review Secure Surveys Overview. For rollout and compatibility information, see Compat 156 (Python 3.14) FAQ.
+1: Survey Code Syntax
+1.1: Print
+In Python 2, print is a statement. In Python 3, use the print() function. To redirect output, pass the destination to its file argument.
+Python 2:
+print value
+print >> output_file, value
+Python 3:
+print(value)
+print(value, file=output_file)
+1.2: Exceptions
+Python 2 binds an exception with a comma and raises an exception with its class and message. Python 3 uses as to bind an exception and raises an exception instance.
+Python 2:
+try:
+run_task()
+except ValueError, error:
+raise ValueError, "Invalid value"
+Python 3:
+try:
+run_task()
+except ValueError as error:
+raise ValueError("Invalid value")
+1.3: Inequality Operator
+Python 2 uses <> for inequality. In Python 3, use !=.
+Python 2:
+left <> right
+Python 3:
+left != right
+1.4: Text and Bytes
+In Python 3, str represents text and bytes represents binary data. For a value that already represents text, replace unicode(value) with str(value). Python 3 has no basestring type. You can check for text with isinstance(value, str). You can check for binary data with isinstance(value, bytes). You can check for either type with isinstance(value, (str, bytes)) when both are valid inputs.
+Unicode u-prefixed string literals remain valid in Python 3 but are redundant. A b-prefixed literal represents bytes. At file or library boundaries, use encode or decode when converting between text and bytes.
+Decode bytes to text with an explicit encoding. Encode text when you need bytes.
+text = data.decode("utf-8")
+data = text.encode("utf-8")
+Replace StringIO.StringIO with io.StringIO for text or io.BytesIO for bytes.
+from io import BytesIO, StringIO
+text_buffer = StringIO()
+bytes_buffer = BytesIO()
+When you open a text file, specify its encoding. When you open a text file for the csv module, use newline="".
+import csv
+with open("data.csv", "r", encoding="utf-8", newline="") as csv_file:
+rows = list(csv.reader(csv_file))
+1.5: Dictionaries and Iteration
+Use key in mapping instead of mapping.has_key(key). Replace Python 2.7 iteritems(), iterkeys(), and itervalues() with Python 3.14 items(), keys(), and values(). The Python 3.14 methods return views instead of lists. Convert a view to a list only when you need list behavior, such as indexing or a separate snapshot.
+if key in mapping:
+for item_key, item_value in mapping.items():
+process(item_key, item_value)
+item_pairs = list(mapping.items())
+Replace xrange() with range(). Python 3.14 range is reusable and indexable; it is not a one-shot iterator. By contrast, map(), filter(), and zip() return iterators. Convert those results to lists only when your code needs a reusable, indexable list.
+numbers = range(5)
+first_number = numbers[0]
+paired_values = list(zip(left_values, right_values))
+1.6: Numbers and Comparisons
+In Python 3.14, / performs true division. Use // when you intend floor division. For example, 5 / 2 returns 2.5, while 5 // 2 returns 2.
+Python 3.14 uses one integer type, int. Replace long with int and remove the L suffix from integer literals.
+When you call round() without ndigits, it returns an integer. Python 3.14 rounds ties to the nearest even value, so round(2.5) returns 2 and round(3.5) returns 4.
+Python 3.14 does not order unrelated types in mixed-type comparisons. Comparing values such as a number and a string can raise TypeError. For a variable that is known to contain a number or None, check for None before comparing it. Validate other possible input types separately.
+if score is not None and score < 1:
+handle_low_score()
+2: Advanced Python Syntax
+2.1: Sorting and Imports
+Replace comparison functions used for sorting with a key function when possible. To adapt an existing comparison function, use functools.cmp_to_key.
+from functools import cmp_to_key
+records.sort(key=cmp_to_key(compare_records))
+Use explicit relative imports inside a package to identify modules in the same package.
+from . import helpers
+from .helpers import run_task
+2.2: Standard Library Module Names
+Several standard library modules have new names or locations in Python 3.
+Python 2
+Python 3
+urllib2
+urllib.request
+urlparse, urllib.urlencode, urllib.quote
+urllib.parse
+httplib
+http.client
+BaseHTTPServer
+http.server
+Cookie
+http.cookies
+cookielib
+http.cookiejar
+cPickle
+pickle
+ConfigParser
+configparser
+Queue
+queue
+commands
+subprocess
+md5, sha
+hashlib
+__builtin__
+builtins
+Use importlib.reload(module) instead of reload(module).
+2.3: Built-in Functions
+Import reduce() from functools. Replace apply(function, args, kwargs) with a function call that unpacks the arguments. The callable() function is available in Python 3.14.
+from functools import reduce
+result = reduce(combine, values)
+result = function(*args, **kwargs)
+3: Check Custom Resources
+These syntax examples do not guarantee that a custom resource or survey code works with every compat level. Check the appropriate Python version support for the resource and test its behavior in a sandbox before you apply changes to live resources. For file-access or module guidance, also review Secure Surveys Overview.
+For custom-resource file names and Python runtime support, see Migrating Custom Resources to Python 3.

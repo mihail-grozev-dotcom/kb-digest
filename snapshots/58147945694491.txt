@@ -1,0 +1,29 @@
+Title: Compat 156 (Python 3.14) FAQ
+This FAQ answers common questions about the transition to Compat 156 (Python 3.14), including compatibility, support, and migration requirements.
+Compat 156 introduces Python 3.14 to Forsta Surveys, replacing Python 2.7 for surveys using compat 156 or later. Existing surveys are not converted automatically. Review survey code and custom resources before upgrading, and test their behavior at the target compat level.
+1: Why is Python being upgraded?
+Decipher is updating to Python 3.14 to keep its core infrastructure up-to-date to support future product development and provide access to newer features and libraries that Python offers.
+2: What are the benefits of Python 3.14?
+Forsta recommends upgrading to compat 156 when it is available to receive new features and non-critical bug fixes. Some workloads may see performance improvements, but results vary. No specific performance gain is guaranteed.
+3: When is Decipher upgrading to Compat 156?
+Forsta plans to begin rolling out Compat 156 (Python 3.14) to production environments on November 30, 2026. The rollout is expected to be complete by the second quarter of 2027.
+4: Which compat levels use Python 3.14?
+Surveys using compat 156 or later run on Python 3.14. Surveys using compat 155 or earlier continue to run on Python 2.7. Python 2.7 survey code may require changes before it can run on Python 3.14. See Survey Compat Levels for current support and retirement rules.
+5: How does Compat 156 affect custom dynamic questions, logic nodes, and hooks?
+Standard-library dynamic questions (DQs) and logic nodes are available at compat 156, except for the retired features listed below. Review and update custom DQs, logic nodes, and hooks before using them with compat 156 or later. See Migrating Custom Resources to Python 3 for file and metadata details, and Compat 156 (Python 3.14) Syntax Changes for syntax changes.
+6: What happens to existing surveys when Compat 156 becomes available?
+Existing surveys are not converted automatically. Surveys with a compat level of 155 or below (compat levels 143 - 155) continue to run on Python 2.7. Review and adapt survey code and custom resources before moving a survey to compat 156 or later. Forsta does not automatically update existing custom code.
+7: What support do earlier compat levels receive?
+New features and non-critical fixes target compat 156 and higher. Supported lower compat levels (143 through 155) receive critical fixes only. Existing support and retirement rules still apply.
+8: Which compat level should I use for a new survey?
+Use compat 156 or higher when it is available on your server. If you need a lower compat level, first confirm that it remains available and supported.
+9: Are surveys converted automatically?
+No, existing surveys are not converted automatically. You will need to review and adapt survey code and custom resources for Python 3. Forsta will not make your changes as Forsta values stability for your data collection. For resources on identifying what code is incompatible with Compat 156, see Migrating Custom Resources to Python 3 for file and metadata details, and Compat 156 (Python 3.14) Syntax Changes for syntax changes.
+10: Do I still need to test after updating my code?
+Yes. Test survey behavior and custom resources at the target compat level. Manual quality assurance testing remains necessary, even when conversion assistance is used.
+11: Which legacy features are unavailable at compat 156?
+The following known legacy features are unavailable at compat 156 and later. Their legacy behavior may remain available on earlier compat levels only where those levels are still supported.
+Non-Delphi Data
+Optional Question Labels
+Non-secure Shell Surveys (not HTTP/HTTPS)
+Un-Secure Surveys
