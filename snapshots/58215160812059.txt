@@ -3,8 +3,8 @@ Planned Rollout Start: November 30, 2026
 Release Version: M56
 Availability depends on the server rollout, which is expected to complete by Q2 2027.
 1: Survey Versioning
-The new survey compatibility level is 156. Surveys using compat="156" or later run on Python 3.14 instead of Python 2.7. This is a breaking change for survey code and custom resources. The updated Pthon version supports future product development and access to newer Python language features and libraries.
-Python 3 code can be syntactically valid and still behave differently from equivalent Python 2.7 code. Syntax conversion alone is not a complete migration. Review data types, operator results, collections, imports, and resource loading as part of the same upgrade.
+The new survey compatibility level is 156. Surveys using compat="156" or later run on Python 3.14 instead of Python 2.7. This is a breaking change for survey code and custom resources. The updated Python version supports future product development and access to newer Python language features and libraries.
+Python 3 code can be syntactically valid and still behave differently from the equivalent Python 2.7 code. Syntax conversion alone is not a complete migration. Review data types, operator results, collections, imports, and resource loading as part of the same upgrade.
 1.1: Python Version and Existing Surveys
 A survey's compatibility level determines its Python version. Existing surveys keep their current compatibility level and are not converted automatically.
 Survey compatibility level
