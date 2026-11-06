@@ -24,6 +24,5 @@ Yes. Test survey behavior and custom resources at the target compat level. Manua
 11: Which legacy features are unavailable at compat 156?
 The following known legacy features are unavailable at compat 156 and later. Their legacy behavior may remain available on earlier compat levels only where those levels are still supported.
 Non-Delphi Data
-Optional Question Labels
 Non-secure Shell Surveys (not HTTP/HTTPS)
-Un-Secure Surveys
+Un-Secure Surveys (where the SECURE file has been removed)

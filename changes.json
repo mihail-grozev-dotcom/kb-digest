@@ -2921,6 +2921,140 @@
      "text": "        "
     }
    ]
+  },
+  {
+   "id": 58215160812059,
+   "title": "Compat 156 (Python 3.14) Overview",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/58215160812059-Compat-156-Python-3-14-Overview",
+   "edited_at": "2026-11-05T23:41:45Z",
+   "detected_at": "2026-11-06T01:44:11Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "changed",
+     "old": "Planned Rollout Start: November 30, 2026",
+     "new": "Planned Rollout Start: December 2, 2026"
+    },
+    {
+     "op": "changed",
+     "old": "… 156. Surveys using compat=\"156\" or later run on …",
+     "new": "… 156. Surveys using compat=\"156\" and p3=\"1\" or later run on …"
+    },
+    {
+     "op": "changed",
+     "old": "… level 156 and higher. For a new survey, use the highest supported compatibility level available on its server, including 156 when available.",
+     "new": "… level 156 and higher."
+    },
+    {
+     "op": "changed",
+     "old": "Confirm compatibility level 156 is available on …",
+     "new": "Confirm compat 156 is available on …"
+    },
+    {
+     "op": "changed",
+     "old": "Compatibility level 156 requires Delphi data and omits some legacy functionality. Examples include non-Delphi data, optional question labels, and un-secure surveys. Legacy integrations and tools …",
+     "new": "Compat level 156 requires Delphi data and omits some legacy functionality. Examples include non-Delphi data, optional question labels, and surveys where the SECURE file has been removed. Legacy integrations and tools …"
+    }
+   ]
+  },
+  {
+   "id": 58147945694491,
+   "title": "Compat 156 (Python 3.14) FAQ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/58147945694491-Compat-156-Python-3-14-FAQ",
+   "edited_at": "2026-11-05T23:41:45Z",
+   "detected_at": "2026-11-06T01:44:11Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "Optional Question Labels"
+    },
+    {
+     "op": "added",
+     "text": "Un-Secure Surveys (where the SECURE file has been removed)"
+    },
+    {
+     "op": "removed",
+     "text": "Un-Secure Surveys"
+    }
+   ]
+  },
+  {
+   "id": 5313450889627,
+   "title": "Importing Recipients from Salesforce\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/5313450889627-Importing-Recipients-from-Salesforce",
+   "edited_at": "2026-06-16T18:10:08Z",
+   "detected_at": "2026-11-06T01:44:11Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 4409470034459,
+   "title": "Tips for Simplifying Logic\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409470034459-Tips-for-Simplifying-Logic",
+   "edited_at": "2024-07-17T11:11:24Z",
+   "detected_at": "2026-11-06T01:44:11Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 4409461532827,
+   "title": "Renaming a Survey\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409461532827-Renaming-a-Survey",
+   "edited_at": "2024-07-17T11:11:06Z",
+   "detected_at": "2026-11-06T01:44:11Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 9897655404699,
+   "title": "Beacon M16 Release Notes\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/9897655404699-Beacon-M16-Release-Notes",
+   "edited_at": "2024-07-17T11:08:49Z",
+   "detected_at": "2026-11-06T01:44:11Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 9897748472731,
+   "title": "147.9 Release Notes\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/9897748472731-147-9-Release-Notes",
+   "edited_at": "2024-07-17T11:07:47Z",
+   "detected_at": "2026-11-06T01:44:11Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
   }
  ]
 }

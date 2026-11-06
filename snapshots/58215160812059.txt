@@ -1,9 +1,9 @@
 Title: Compat 156 (Python 3.14) Overview
-Planned Rollout Start: November 30, 2026
+Planned Rollout Start: December 2, 2026
 Release Version: M56
 Availability depends on the server rollout, which is expected to complete by Q2 2027.
 1: Survey Versioning
-The new survey compatibility level is 156. Surveys using compat="156" or later run on Python 3.14 instead of Python 2.7. This is a breaking change for survey code and custom resources. The updated Python version supports future product development and access to newer Python language features and libraries.
+The new survey compatibility level is 156. Surveys using compat="156" and p3="1" or later run on Python 3.14 instead of Python 2.7. This is a breaking change for survey code and custom resources. The updated Python version supports future product development and access to newer Python language features and libraries.
 Python 3 code can be syntactically valid and still behave differently from the equivalent Python 2.7 code. Syntax conversion alone is not a complete migration. Review data types, operator results, collections, imports, and resource loading as part of the same upgrade.
 1.1: Python Version and Existing Surveys
 A survey's compatibility level determines its Python version. Existing surveys keep their current compatibility level and are not converted automatically.
@@ -16,8 +16,8 @@ Existing surveys retain their compatibility level, subject to current support an
 156 and higher
 Python 3.14
 Review and test survey code and custom resources before upgrading.
-Earlier supported compatibility levels receive critical fixes only. New features and noncritical fixes target compatibility level 156 and higher. For a new survey, use the highest supported compatibility level available on its server, including 156 when available.
-Confirm compatibility level 156 is available on your server before planning an upgrade, and select the level intentionally for each survey.
+Earlier supported compatibility levels receive critical fixes only. New features and noncritical fixes target compatibility level 156 and higher.
+Confirm compat 156 is available on your server before planning an upgrade, and select the level intentionally for each survey.
 Important: Do not change a live survey's compatibility level without reviewing its code and custom resources and testing a separate copy first.
 Learn More: Survey Compat Levels
 1.2: Python Syntax and Behavior
@@ -51,7 +51,7 @@ Custom logic nodes and hooks without Python 3 counterparts are unavailable at co
 Apply future changes and fixes to both copies when both versions are supported, and test each intended compatibility range.
 Learn More: Migrating Custom Resources to Python 3
 1.4: Legacy Features
-Compatibility level 156 requires Delphi data and omits some legacy functionality. Examples include non-Delphi data, optional question labels, and un-secure surveys. Legacy integrations and tools are also unavailable.
+Compat level 156 requires Delphi data and omits some legacy functionality. Examples include non-Delphi data, optional question labels, and surveys where the SECURE file has been removed. Legacy integrations and tools are also unavailable.
 Check for dependencies on legacy features before upgrading. Earlier compatibility levels remain subject to existing support and retirement rules.
 Learn More: Compat 156 (Python 3.14) FAQ
 1.5: Before You Upgrade
