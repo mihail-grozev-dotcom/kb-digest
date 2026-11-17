@@ -6130,6 +6130,166 @@
      "text": "        "
     }
    ]
+  },
+  {
+   "id": 58798175737883,
+   "title": "155.10 Release Notes ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/58798175737883-155-10-Release-Notes",
+   "edited_at": "2026-11-17T16:45:13Z",
+   "detected_at": "2026-11-17T21:15:42Z",
+   "kind": "new",
+   "changes": []
+  },
+  {
+   "id": 4409477119643,
+   "title": "Technical Support",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409477119643-Technical-Support",
+   "edited_at": "2026-11-17T16:45:13Z",
+   "detected_at": "2026-11-17T21:15:42Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "Day of Bulgarian Enlighteners"
+    },
+    {
+     "op": "removed",
+     "text": "Sunday, November 1 - Monday, November 2, 2026"
+    },
+    {
+     "op": "added",
+     "text": "US Veterans Day"
+    },
+    {
+     "op": "added",
+     "text": "Thursday, November 11, 2027"
+    }
+   ]
+  },
+  {
+   "id": 4409470037403,
+   "title": "Project Warnings Report",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409470037403-Project-Warnings-Report",
+   "edited_at": "2026-11-17T16:45:12Z",
+   "detected_at": "2026-11-17T21:15:42Z",
+   "kind": "updated",
+   "more": 1,
+   "changes": [
+    {
+     "op": "changed",
+     "old": "8. Quota Misses: The number of participants reported for a project that do not qualify for any quota marker.",
+     "new": "8. Server Errors: The number of server-side errors reported for a project."
+    },
+    {
+     "op": "changed",
+     "old": "9: Blocked Respondents: The number of participants reported for a project as being blocked from entering the survey.",
+     "new": "9. Quota Misses: The number of participants reported for a project that do not qualify for any quota marker."
+    },
+    {
+     "op": "added",
+     "text": "10. Blocked Participants: The number of participants reported for a project as being blocked from entering the survey."
+    },
+    {
+     "op": "changed",
+     "old": "10. Warnings: Click any warning …",
+     "new": "11. Warnings: Click any warning …"
+    },
+    {
+     "op": "changed",
+     "old": "… images that are protected (i.e., protected image.png and image …",
+     "new": "… images that are protected (for example, protected image.png and image …"
+    },
+    {
+     "op": "added",
+     "text": "4. Server Errors: Select to view details about server-side errors reported for the project."
+    },
+    {
+     "op": "changed",
+     "old": "3. Quota Misses: Select to …",
+     "new": "5. Quota Misses: Select to …"
+    },
+    {
+     "op": "changed",
+     "old": "4. Blocked Respondents: Select to view the …",
+     "new": "6. Blocked Participants: Select to view the …"
+    }
+   ]
+  },
+  {
+   "id": 5313450889627,
+   "title": "Importing Recipients from Salesforce\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/5313450889627-Importing-Recipients-from-Salesforce",
+   "edited_at": "2026-06-16T18:10:08Z",
+   "detected_at": "2026-11-17T21:15:42Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 4409470034459,
+   "title": "Tips for Simplifying Logic\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409470034459-Tips-for-Simplifying-Logic",
+   "edited_at": "2024-07-17T11:11:24Z",
+   "detected_at": "2026-11-17T21:15:42Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 4409461532827,
+   "title": "Renaming a Survey\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/4409461532827-Renaming-a-Survey",
+   "edited_at": "2024-07-17T11:11:06Z",
+   "detected_at": "2026-11-17T21:15:42Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 9897655404699,
+   "title": "Beacon M16 Release Notes\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/9897655404699-Beacon-M16-Release-Notes",
+   "edited_at": "2024-07-17T11:08:49Z",
+   "detected_at": "2026-11-17T21:15:42Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
+  },
+  {
+   "id": 9897748472731,
+   "title": "147.9 Release Notes\n        ",
+   "url": "https://forstasurveys.zendesk.com/hc/en-us/articles/9897748472731-147-9-Release-Notes",
+   "edited_at": "2024-07-17T11:07:47Z",
+   "detected_at": "2026-11-17T21:15:42Z",
+   "kind": "updated",
+   "more": 0,
+   "changes": [
+    {
+     "op": "removed",
+     "text": "        "
+    }
+   ]
   }
  ]
 }

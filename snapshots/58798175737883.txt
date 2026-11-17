@@ -1,0 +1,14 @@
+Title: 155.10 Release Notes 
+Release Date: November 17, 2026
+Release Version: 155.10
+New Features
+Survey
+Project Warnings
+The “Blocked” tab in Project Warnings hides all warnings by default; click the individual pills to enable them.
+Learn More: Project Warnings Report
+Bug Fixes
+Programming and Tools
+Custom Code Elements (Logic Nodes)
+Research Defender REVIEW v1 logic node now handles restored respondent data correctly.
+API
+Any datafeed API request that uses the fields parameter no longer fails when uuid is not included in the list. The response now always includes uuid, which is needed to track which records have already been returned.

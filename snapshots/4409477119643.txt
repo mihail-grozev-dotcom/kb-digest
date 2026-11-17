@@ -7,8 +7,6 @@ Holidays denoted with an asterisk(*) will have no support coverage available ove
 Note: Days following holidays will have longer than average response times.
 Holiday Name
 Holiday Dates
-Day of Bulgarian Enlighteners
-Sunday, November 1 - Monday, November 2, 2026
 Statehood Day (Bosnia) and Thanksgiving (USA)
 Wednesday, November 25 - Saturday, November 28, 2026
 Christmas*
@@ -44,6 +42,8 @@ Independence Day (Bulgaria)
 Wednesday, September 22, 2027
 Day of Bulgarian Enlighteners
 Sunday, October 31 - Monday, November 1, 2027
+US Veterans Day
+Thursday, November 11, 2027
 Statehood Day (Bosnia)
 Thanksgiving (USA)
 Thursday, November 25 - Sunday, November 28, 2027

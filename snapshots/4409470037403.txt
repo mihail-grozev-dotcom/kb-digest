@@ -15,9 +15,10 @@ Survey State: By default, the project list displays only live surveys. Click to 
 5. Project list: A list of projects that meet the filter or search criteria. Click any project name to access its individual project warnings report.
 6. Exceptions: The number of loading or execution errors reported for a project.
 7. Missing Resources: The number of missing static resources reported for a project, such as images, scripts, or other media.
-8. Quota Misses: The number of participants reported for a project that do not qualify for any quota marker.
-9: Blocked Respondents: The number of participants reported for a project as being blocked from entering the survey.
-10. Warnings: Click any warning count to view more detailed information on the reported warnings.
+8. Server Errors: The number of server-side errors reported for a project.
+9. Quota Misses: The number of participants reported for a project that do not qualify for any quota marker.
+10. Blocked Participants: The number of participants reported for a project as being blocked from entering the survey.
+11. Warnings: Click any warning count to view more detailed information on the reported warnings.
 1.1: Color-Coded Thresholds
 The exceptions and warnings shown in the report are color-coded according to severity. Thresholds have been preset for your convenience.
 RED - Any count (>0) for exceptions, quota misses, and missing resources
@@ -32,9 +33,11 @@ Note: Only projects that have been launched or closed will contain project warni
 1. Date Range: Click to select / specify a date range from which to view project warnings.
 2. Exceptions: Select to view details about any errors generated from a live project. Click the error code for any error to get a complete description of the error text.
 3. Missing Resources: Select to view any resources that are referenced in the survey but not found on the server. You may need to upload a missing file to the survey. For more information, see Uploading System Files.
-Note: The project warning system does not monitor images that are protected (i.e., protected image.png and image image.png. If you are using protected images in a survey, be sure to thoroughly test your project before launching.
-3. Quota Misses: Select to view the number of participants who do not qualify for any of the survey's quota markers. This is likely caused by a programming error and should be addressed immediately. For more information, see Non-Qualified Participants.
-4. Blocked Respondents: Select to view the reason why participants have been blocked from the survey. Participants may be blocked for various reasons and some of which do not indicate a problem with the survey setup and/or sampling. For example, copying/pasting or otherwise entering a URL without its required appended variables will block a participant from the survey.
+Note: The project warning system does not monitor images that are protected (for example, protected image.png and image image.png. If you are using protected images in a survey, be sure to thoroughly test your project before launching.
+4. Server Errors: Select to view details about server-side errors reported for the project.
+5. Quota Misses: Select to view the number of participants who do not qualify for any of the survey's quota markers. This is likely caused by a programming error and should be addressed immediately. For more information, see Non-Qualified Participants.
+6. Blocked Participants: Select to view the reason why participants have been blocked from the survey. Participants may be blocked for various reasons and some of which do not indicate a problem with the survey setup and/or sampling. For example, copying/pasting or otherwise entering a URL without its required appended variables will block a participant from the survey.
+Blocked participants are grouped by block reason. Select a reason to show or hide its entries in the table. Select Toggle All to show or hide entries for all reasons.
 The following are reasons why a participant may be blocked:
 Invalid URL variables (See Locking Down a Survey by Unique Variables)
 Invalid CNAME (See Setting Up a Domain Alias (CNAME))
